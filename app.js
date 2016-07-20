@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var wx = require('./routes/wx');
+var wxAPI = require('./routes/wxAPI');
 
 var app = express();
 
@@ -24,12 +25,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', wx);
+//微信服务器配置
+// app.use('/', wx);
 
 app.use('/', routes);
 app.use('/users', users);
 
-app.use('/wx', users);
+app.use('/wx', wxAPI);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
