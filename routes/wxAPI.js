@@ -9,8 +9,8 @@ var OAuth = require('wechat-oauth');
 var client = new OAuth(APPID, APPSECRET);
 
 //微信API
-var WechatAPI = require('wechat-api');
-var api = new WechatAPI(APPID, APPSECRET);
+// var WechatAPI = require('wechat-api');
+// var api = new WechatAPI(APPID, APPSECRET);
 
 //微信sdk签名算法
 var sign = require('../module/wx/sign');
@@ -40,7 +40,7 @@ router.get('/jsSDK', function (req, res, next) {
                     var wxConfig = sign(data.ticket, originalUrl);
                     wxConfig.appId = APPID;
                     res.render('wxAPI', {title: '测试微信SDK', wxConfig: wxConfig});
-                    
+
                 })
             });
         });
