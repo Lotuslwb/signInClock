@@ -3,7 +3,7 @@ var router = express.Router();
 
 //引入OAuth并实例化
 var OAuth = require('wechat-oauth');
-var client = new OAuth('your appid', 'your secret');
+var client = new OAuth('wxa60ff9366a44a254', '6e362e213f9cc282f5ecf913eafa18d1');
 
 //主要是负责OAuth认证
 router.get('/', function (req, res, next) {
