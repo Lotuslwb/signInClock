@@ -22,12 +22,12 @@ var getSDKSign = function (originalUrl, APPID, APPSECRET, callback) {
 
         var signUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + TOKEN + '&type=jsapi';
         load(loadWay, signUrl, function (chunk) {
-            var wxConfig = sign(data.ticket, originalUrl);
+            var wxConfig = sign(chunk.ticket, originalUrl);
             wxConfig.appId = APPID;
 
             callback && callback(wxConfig);
         })
-        
+
     });
 }
 
