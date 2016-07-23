@@ -12,10 +12,13 @@ var http = require('https');
 //微信js sdk 调用
 router.get('/jsSDK', function (req, res, next) {
 
-    getSDKSign(APPID, APPSECRET, function (wxConfig) {
+    //当前URL
+    var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
+    
+    getSDKSign(originalUrl, APPID, APPSECRET, function (wxConfig) {
         res.render('wxAPI', {title: '测试微信SDK', wxConfig: wxConfig});
     });
-    
+
 })
 
 

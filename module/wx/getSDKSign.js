@@ -1,7 +1,7 @@
 /*
  *   获取js-sdk 的各种签名信息
- *
- *
+ *      originalUrl  当前URL
+ *      
  * */
 
 var https = require('https');
@@ -11,7 +11,7 @@ var https = require('https');
 var sign = require('../wx/sign');
 
 
-var getSDKSign = function (APPID, APPSECRET, callback) {
+var getSDKSign = function (originalUrl, APPID, APPSECRET, callback) {
 
     var getTokenUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
 
@@ -25,7 +25,6 @@ var getSDKSign = function (APPID, APPSECRET, callback) {
             https.get(singInUrl, function (ress) {
                 ress.on('data', function (data) {
                     data = JSON.parse(data);
-                    var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
 
                     var wxConfig = sign(data.ticket, originalUrl);
                     wxConfig.appId = APPID;
