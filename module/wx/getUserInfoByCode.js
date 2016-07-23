@@ -17,13 +17,26 @@ var getUserInfoByCode = function (code, APPID, APPSECRET, callback) {
             var userToken = chunk.access_token;
             var userRefreshToken = chunk.refresh_token;
             var openid = chunk.openid;
+            var expires_in = chunk.expires_in;
+
+            console.log(chunk);
 
             //拉取用户信息
             var getInfoUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token=' + userToken + '&openid=' + openid + '&lang=zh_CN';
             https.get(getInfoUrl, function (ress) {
                 ress.on('data', function (chunk) {
                     var chunk = JSON.parse(chunk);
-                    callback && callback(chunk);
+                    console.log(chunk);
+                    var data = {
+                        'sign': {
+                            access_token: userToken,
+                            refresh_token: userRefreshToken,
+                            expires_in: expires_in,
+                            openid: openid
+                        },
+                        chunk: chunk
+                    }
+                    callback && callback(data);
                 })
             });
         })

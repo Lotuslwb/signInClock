@@ -42,7 +42,9 @@ router.get('/callback', function (req, res) {
     var code = req.query.code;
 
     getUserInfoByCode(code, APPID, APPSECRET, function (data) {
-        res.render('wxDemo', {title: '测试微信openid', data: data});
+        var sign = data.sign;
+        var chunk = data.chunk;
+        res.render('wxDemo', {title: '测试微信openid', data: chunk});
     });
 
 })
