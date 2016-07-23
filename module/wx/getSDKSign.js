@@ -9,7 +9,7 @@ var load = require('../tools/load');
 var loadWay = 'https';
 
 
-var WXConfig = require('../module/wx/WXConfig');
+var WXConfig = require('../wx/WXConfig');
 var APPID = WXConfig.APPID;
 var APPSECRET = WXConfig.APPSECRET;
 
