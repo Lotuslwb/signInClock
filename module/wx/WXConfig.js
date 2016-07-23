@@ -3,5 +3,4 @@ var WXConfig = {
     APPSECRET: '6e362e213f9cc282f5ecf913eafa18d1'
 }
 
-
 module.exports = WXConfig;

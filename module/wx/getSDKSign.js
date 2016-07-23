@@ -4,6 +4,8 @@
  *
  * */
 
+var fs = require('fs');
+
 var log = require('../tools/log');
 var load = require('../tools/load');
 var loadWay = 'https';
@@ -17,9 +19,49 @@ var APPSECRET = WXConfig.APPSECRET;
 //微信sdk签名算法
 var sign = require('../wx/sign');
 
-
+//输出 -- 获取微信SDK
 var getSDKSign = function (originalUrl, callback) {
+    //先从缓存中获取
+    getSDKSignFromCache(function (err, data) {
+        //缓存报错 或者缓存中没有数据
+        if (err || data.length == 0) {
+            log('---缓存报错 或者缓存中没有数据---', err);
 
+            getSDKSignFormWX(originalUrl, function (wxConfig) {
+                log(wxConfig);
+                setSDKSignToCache(wxConfig);
+                callback && callback(wxConfig);
+            })
+        } else {
+            //缓存中有数据
+            var genTime = data.timestamp;
+            var nowTime = new Date().getTime() / 1000; //转换成秒
+            
+        }
+    })
+}
+
+//从缓存文件读取签名数据
+var getSDKSignFromCache = function (callback) {
+    fs.readFile('access_token.txt', 'utf8', function (err, txt) {
+        if (err) {
+            callback && callback(err);
+        } else {
+            log(txt);
+            callback(null, JSON.parse(txt));
+        }
+
+    });
+}
+//将签名数据写入缓存文件
+var setSDKSignToCache = function (data, callback) {
+    fs.writeFile('access_token.txt', JSON.stringify(data), function (err) {
+        callback && callback(err);
+    });
+}
+
+//从微信端拿签名数据
+var getSDKSignFormWX = function (originalUrl, callback) {
     var getTokenUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
 
     load(loadWay, getTokenUrl, function (chunk) {
@@ -30,7 +72,6 @@ var getSDKSign = function (originalUrl, callback) {
         load(loadWay, signUrl, function (chunk) {
             var wxConfig = sign(chunk.ticket, originalUrl);
             wxConfig.appId = APPID;
-
             callback && callback(wxConfig);
         })
 
