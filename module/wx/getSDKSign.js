@@ -8,11 +8,17 @@ var log = require('../tools/log');
 var load = require('../tools/load');
 var loadWay = 'https';
 
+
+var WXConfig = require('../module/wx/WXConfig');
+var APPID = WXConfig.APPID;
+var APPSECRET = WXConfig.APPSECRET;
+
+
 //微信sdk签名算法
 var sign = require('../wx/sign');
 
 
-var getSDKSign = function (originalUrl, APPID, APPSECRET, callback) {
+var getSDKSign = function (originalUrl, callback) {
 
     var getTokenUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
 

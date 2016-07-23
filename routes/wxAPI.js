@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var APPID = 'wxa60ff9366a44a254';
-var APPSECRET = '6e362e213f9cc282f5ecf913eafa18d1';
+var WXConfig = require('../module/wx/WXConfig');
+
+var APPID = WXConfig.APPID;
 
 
 var http = require('https');
@@ -15,7 +16,7 @@ router.get('/jsSDK', function (req, res, next) {
     //当前URL
     var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
 
-    getSDKSign(originalUrl, APPID, APPSECRET, function (wxConfig) {
+    getSDKSign(originalUrl, function (wxConfig) {
         res.render('wxAPI', {title: '测试微信SDK', wxConfig: wxConfig});
     });
 
@@ -41,7 +42,7 @@ router.get('/callback', function (req, res) {
     var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
     var code = req.query.code;
 
-    getUserInfoByCode(code, APPID, APPSECRET, function (data) {
+    getUserInfoByCode(code, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
         res.render('wxDemo', {title: '测试微信openid', data: chunk});

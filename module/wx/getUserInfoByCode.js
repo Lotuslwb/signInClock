@@ -8,7 +8,13 @@ var log = require('../tools/log');
 var load = require('../tools/load');
 var loadWay = 'https';
 
-var getUserInfoByCode = function (code, APPID, APPSECRET, callback) {
+var WXConfig = require('../module/wx/WXConfig');
+
+var APPID = WXConfig.APPID;
+var APPSECRET = WXConfig.APPSECRET;
+
+
+var getUserInfoByCode = function (code, callback) {
 
     //获取userInfo的access_token;
     var url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + APPID + '&secret=' + APPSECRET + '&code=' + code + '&grant_type=authorization_code'
