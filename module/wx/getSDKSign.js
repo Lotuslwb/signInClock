@@ -24,11 +24,12 @@ var getSDKSign = function (originalUrl, callback) {
     //先从缓存中获取
     getSDKSignFromCache(function (err, data) {
         //缓存报错 或者缓存中没有数据
+
+        log('getSDKSignFromCache-data', data);
         if (err || data.length == 0) {
             log('---缓存报错 或者缓存中没有数据---', err);
 
             getSDKSignFormWX(originalUrl, function (wxConfig) {
-                log(wxConfig);
                 setSDKSignToCache(wxConfig);
                 callback && callback(wxConfig);
             })
@@ -40,7 +41,7 @@ var getSDKSign = function (originalUrl, callback) {
             if (nowTime - genTime < expiresTime) {
                 //并没有超时,可以直接使用
                 log('---并没有超时,可以直接使用---');
-                callback && callback(wxConfig);
+                callback && callback(data);
             } else {
                 //已经超时,重新获取
                 log('---已经超时,重新获取---');
