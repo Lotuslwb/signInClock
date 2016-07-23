@@ -74,7 +74,6 @@ router.get('/callback', function (req, res) {
     http.get(url, function (ress) {
         ress.on('data', function (chunk) {
             var chunk = JSON.parse(chunk);
-            res.send(chunk);
             var userToken = chunk.access_token;
             var userRefreshToken = chunk.refresh_token;
             var openid = chunk.openid;
