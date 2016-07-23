@@ -36,7 +36,20 @@ var getSDKSign = function (originalUrl, callback) {
             //缓存中有数据
             var genTime = data.timestamp;
             var nowTime = new Date().getTime() / 1000; //转换成秒
-            
+            var expiresTime = data.expiresTime;
+            if (nowTime - genTime < expiresTime) {
+                //并没有超时,可以直接使用
+                log('---并没有超时,可以直接使用---');
+                callback && callback(wxConfig);
+            } else {
+                //已经超时,重新获取
+                log('---已经超时,重新获取---');
+                getSDKSignFormWX(originalUrl, function (wxConfig) {
+                    log(wxConfig);
+                    setSDKSignToCache(wxConfig);
+                    callback && callback(wxConfig);
+                })
+            }
         }
     })
 }
@@ -72,6 +85,7 @@ var getSDKSignFormWX = function (originalUrl, callback) {
         load(loadWay, signUrl, function (chunk) {
             var wxConfig = sign(chunk.ticket, originalUrl);
             wxConfig.appId = APPID;
+            wxConfig.expiresTime = expiresTime;
             callback && callback(wxConfig);
         })
 
