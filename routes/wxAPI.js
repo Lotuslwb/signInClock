@@ -22,7 +22,7 @@ router.get('/jsSDK', function (req, res, next) {
 
     http.get(url, function (ress) {
         ress.on('data', function (chunk) {
-            chunk = JSON.parse(chunk)
+            var chunk = JSON.parse(chunk)
             var TOKEN = chunk.access_token;
             var expiresTime = chunk.expires_in;
 
@@ -68,7 +68,15 @@ router.get('/', function (req, res, next) {
 router.get('/callback', function (req, res) {
     console.log('----weixin callback -----')
     var code = req.query.code;
-    res.send(code);
+
+    //获取userInfo的access_token;
+    var url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + APPID + '&secret=' + APPSECRET + '&code=' + code + '&grant_type=authorization_code'
+    http.get(url, function (ress) {
+        ress.on('data', function (chunk) {
+            var chunk = JSON.parse(chunk);
+            res.send(chunk);
+        })
+    });
 })
 
 module.exports = router;
