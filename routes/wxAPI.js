@@ -75,6 +75,18 @@ router.get('/callback', function (req, res) {
         ress.on('data', function (chunk) {
             var chunk = JSON.parse(chunk);
             res.send(chunk);
+            var userToken = chunk.access_token;
+            var userRefreshToken = chunk.refresh_token;
+            var openid = chunk.openid;
+
+            //拉取用户信息
+            var getInfoUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token=' + userToken + '&openid=' + openid + '&lang=zh_CN';
+            http.get(getInfoUrl, function (ress) {
+                ress.on('data', function (chunk) {
+                    var chunk = JSON.parse(chunk);
+                    res.send(chunk);
+                })
+            });
         })
     });
 })
