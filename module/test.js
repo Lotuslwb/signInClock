@@ -2,7 +2,7 @@
  * Created by lotuslwb on 16/7/19.
  */
 
-var obj = require('../module/connectDB');
+var obj = require('DB/connectDB');
 
 
 var options = {

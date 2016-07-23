@@ -27,20 +27,6 @@ router.get('/jsSDK', function (req, res, next) {
 
 //主要负责OAuth认证
 router.get('/', function (req, res, next) {
-    var hostname = req.hostname;
-    var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
-    var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
-    res.redirect(url);
-});
-
-
-/**
- * 认证授权后回调函数
- *
- * 获取信息
- */
-router.get('/callback', function (req, res) {
-
     var openid = req.signedCookies['session'];
 
     //已经有openid, 直接进入业务
@@ -48,19 +34,33 @@ router.get('/callback', function (req, res) {
         log('--已经有openid, 直接进入业务--')
         res.redirect('/wx/page');
     } else {
-        //获取个人信息并且保存
-        var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
-        var code = req.query.code;
-
-        getUserInfoByCode(code, function (data) {
-            var sign = data.sign;
-            var chunk = data.chunk;
-            res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
-            res.render('wxDemo', {title: '测试微信openid', data: chunk});
-        });
+        //暂无openid;获取之
+        var hostname = req.hostname;
+        var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
+        var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+        res.redirect(url);
     }
 
 
+});
+
+
+/**
+ * 认证授权后回调函数
+ *
+ * 获取个人信息并存入数据库; 然后进入业务
+ */
+router.get('/callback', function (req, res) {
+    //获取个人信息并且保存
+    var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
+    var code = req.query.code;
+
+    getUserInfoByCode(code, function (data) {
+        var sign = data.sign;
+        var chunk = data.chunk;
+        res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
+        res.redirect('/wx/page');
+    });
 });
 
 //业务页面
