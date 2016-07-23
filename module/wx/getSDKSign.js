@@ -22,7 +22,7 @@ var getSDKSign = function (APPID, APPSECRET, callback) {
             var expiresTime = chunk.expires_in;
 
             var singInUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + TOKEN + '&type=jsapi'
-            http.get(singInUrl, function (ress) {
+            https.get(singInUrl, function (ress) {
                 ress.on('data', function (data) {
                     data = JSON.parse(data);
                     var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
