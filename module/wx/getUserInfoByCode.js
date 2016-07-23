@@ -65,8 +65,6 @@ var getUserInfoByCode = function (code, APPID, APPSECRET, callback) {
                 })
             }
         });
-
-
     });
 }
 

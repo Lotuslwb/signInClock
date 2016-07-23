@@ -46,6 +46,10 @@ router.get('/callback', function (req, res) {
         var chunk = data.chunk;
         res.render('wxDemo', {title: '测试微信openid', data: chunk});
     });
+});
+
+//业务页面
+router.get('/page', function (req, res) {
 
 })
 

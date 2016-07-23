@@ -1,11 +1,12 @@
 /*
  *   获取js-sdk 的各种签名信息
  *      originalUrl  当前URL
- *      
+ *
  * */
 
-var https = require('https');
-
+var log = require('../tools/log');
+var load = require('../tools/load');
+var loadWay = 'https';
 
 //微信sdk签名算法
 var sign = require('../wx/sign');
@@ -15,28 +16,19 @@ var getSDKSign = function (originalUrl, APPID, APPSECRET, callback) {
 
     var getTokenUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
 
-    https.get(getTokenUrl, function (ress) {
-        ress.on('data', function (chunk) {
-            var chunk = JSON.parse(chunk)
-            var TOKEN = chunk.access_token;
-            var expiresTime = chunk.expires_in;
+    load(loadWay, getTokenUrl, function (chunk) {
+        var TOKEN = chunk.access_token;
+        var expiresTime = chunk.expires_in;
 
-            var singInUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + TOKEN + '&type=jsapi'
-            https.get(singInUrl, function (ress) {
-                ress.on('data', function (data) {
-                    data = JSON.parse(data);
+        var signUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + TOKEN + '&type=jsapi';
+        load(loadWay, signUrl, function (chunk) {
+            var wxConfig = sign(data.ticket, originalUrl);
+            wxConfig.appId = APPID;
 
-                    var wxConfig = sign(data.ticket, originalUrl);
-                    wxConfig.appId = APPID;
-
-                    callback && callback(wxConfig);
-
-                })
-            });
-        });
-    }).on('error', function (e) {
-        console.log(e);
-    }).end();
+            callback && callback(wxConfig);
+        })
+        
+    });
 }
 
 module.exports = getSDKSign;
