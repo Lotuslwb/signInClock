@@ -27,7 +27,18 @@ var getUserInfoByCode = function (code, APPID, APPSECRET, callback) {
                 //token有效
 
                 //获取用户信息
-                getUserInfoByToken(userToken, openid, callback);
+                getUserInfoByToken(userToken, openid, function (chunk) {
+                    var data = {
+                        'sign': {
+                            access_token: userToken,
+                            refresh_token: userRefreshToken,
+                            expires_in: expires_in,
+                            openid: openid
+                        },
+                        chunk: chunk
+                    }
+                    callback && callback(data);
+                });
             } else {
                 //token 无效,刷新;
                 var refreshTokenUrl = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=' + APPID + '&grant_type=refresh_token&refresh_token=' + userRefreshToken;
@@ -39,7 +50,18 @@ var getUserInfoByCode = function (code, APPID, APPSECRET, callback) {
                     expires_in = chunk.expires_in;
 
                     //获取用户信息
-                    getUserInfoByToken(userToken, openid, callback);
+                    getUserInfoByToken(userToken, openid, function (chunk) {
+                        var data = {
+                            'sign': {
+                                access_token: userToken,
+                                refresh_token: userRefreshToken,
+                                expires_in: expires_in,
+                                openid: openid
+                            },
+                            chunk: chunk
+                        }
+                        callback && callback(data);
+                    });
                 })
             }
         });
@@ -52,16 +74,7 @@ var getUserInfoByCode = function (code, APPID, APPSECRET, callback) {
 var getUserInfoByToken = function (userToken, openid, callback) {
     var getInfoUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token=' + userToken + '&openid=' + openid + '&lang=zh_CN';
     load(loadWay, getInfoUrl, function (chunk) {
-        var data = {
-            'sign': {
-                access_token: userToken,
-                refresh_token: userRefreshToken,
-                expires_in: expires_in,
-                openid: openid
-            },
-            chunk: chunk
-        }
-        callback && callback(data);
+        callback && callback(chunk);
     })
 }
 
