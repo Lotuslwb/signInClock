@@ -25,10 +25,8 @@ var getSDKSign = function (originalUrl, callback) {
     getSDKSignFromCache(function (err, data) {
         //缓存报错 或者缓存中没有数据
 
-        log('getSDKSignFromCache-data', data);
         if (err || data.length == 0) {
             log('---缓存报错 或者缓存中没有数据---', err);
-
             getSDKSignFormWX(originalUrl, function (wxConfig) {
                 setSDKSignToCache(wxConfig);
                 callback && callback(wxConfig);
