@@ -56,8 +56,8 @@ router.get('/jsSDK', function (req, res, next) {
 //主要是负责OAuth认证
 router.get('/', function (req, res, next) {
     var hostname = req.hostname;
-    var redirect_uri = 'http://' + hostname + ':8000/wx/callback';
-    var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + encodeURI(redirect_uri) + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+    var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
+    var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
     console.log(url);
     res.redirect(url);
 });
