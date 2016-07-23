@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var checkSignature = require('../module/WXcheckSignature');
+var checkSignature = require('../module/wx/WXcheckSignature');
 
 var TOKEN = 'icloudsoft';
 
