@@ -16,7 +16,12 @@
 
 <%= title %>
 
-<p><%= data %></p>
+<p> openid: <%= data.openid %></p>
+<p> 用户名: <%= data.nickname %></p>
+<p> 性别: <%= if(data.sex==1){ %>男<%}else{%>女<%}%>></p>
+<p> 城市: <%= data.city %></p>
+<img src="<%= data.headimgurl %>" />
+
 
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </body>
