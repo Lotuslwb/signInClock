@@ -4,17 +4,17 @@ var router = express.Router();
 var APPID = 'wxa60ff9366a44a254';
 var APPSECRET = '6e362e213f9cc282f5ecf913eafa18d1';
 
-var getSDKSign = require('../module/wx/getSDKSign');
-
 
 var http = require('https');
 
 //微信js sdk 调用
 router.get('/jsSDK', function (req, res, next) {
 
+    var getSDKSign = require('../module/wx/getSDKSign');
+
     //当前URL
     var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
-    
+
     getSDKSign(originalUrl, APPID, APPSECRET, function (wxConfig) {
         res.render('wxAPI', {title: '测试微信SDK', wxConfig: wxConfig});
     });
@@ -27,7 +27,6 @@ router.get('/', function (req, res, next) {
     var hostname = req.hostname;
     var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
     var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
-    console.log(url);
     res.redirect(url);
 });
 
@@ -39,27 +38,13 @@ router.get('/', function (req, res, next) {
  */
 router.get('/callback', function (req, res) {
 
+    var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
     var code = req.query.code;
 
-    //获取userInfo的access_token;
-    var url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + APPID + '&secret=' + APPSECRET + '&code=' + code + '&grant_type=authorization_code'
-    http.get(url, function (ress) {
-        ress.on('data', function (chunk) {
-            var chunk = JSON.parse(chunk);
-            var userToken = chunk.access_token;
-            var userRefreshToken = chunk.refresh_token;
-            var openid = chunk.openid;
-
-            //拉取用户信息
-            var getInfoUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token=' + userToken + '&openid=' + openid + '&lang=zh_CN';
-            http.get(getInfoUrl, function (ress) {
-                ress.on('data', function (chunk) {
-                    var chunk = JSON.parse(chunk);
-                    res.send(chunk);
-                })
-            });
-        })
+    getUserInfoByCode(code, APPID, APPSECRET, function (data) {
+        res.render('wxDemo', {title: '测试微信openid', data: data});
     });
+
 })
 
 module.exports = router;
