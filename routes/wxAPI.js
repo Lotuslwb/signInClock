@@ -4,9 +4,6 @@ var router = express.Router();
 var APPID = 'wxa60ff9366a44a254';
 var APPSECRET = '6e362e213f9cc282f5ecf913eafa18d1';
 
-//引入OAuth并实例化
-var OAuth = require('wechat-oauth');
-var client = new OAuth(APPID, APPSECRET);
 
 //微信API
 // var WechatAPI = require('wechat-api');
@@ -71,17 +68,7 @@ router.get('/', function (req, res, next) {
 router.get('/callback', function (req, res) {
     console.log('----weixin callback -----')
     var code = req.query.code;
-
-    client.getAccessToken('code', function (err, result) {
-        var accessToken = result.data.access_token;
-        var openid = result.data.openid;
-
-        client.getUser(openid, function (err, result) {
-            var userInfo = result;
-            res.send({userInfo: userInfo, accessToken: accessToken, openid: openid}.toString());
-        });
-
-    });
+    res.send(code);
 })
 
 module.exports = router;
