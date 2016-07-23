@@ -18,6 +18,7 @@ var sign = require('../module/wx/sign');
 
 var http = require('https');
 
+//微信js sdk 调用
 router.get('/jsSDK', function (req, res, next) {
 
     var url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
@@ -53,13 +54,6 @@ router.get('/jsSDK', function (req, res, next) {
 
 
 //主要是负责OAuth认证
-// router.get('/', function (req, res, next) {
-//     var hostname = req.hostname;
-//     console.log('http://' + hostname + ':8000/wx/callback')
-//     var url = client.getAuthorizeURL('http://' + hostname + ':8000/wx/callback', '', 'snsapi_userinfo');
-//
-//     res.redirect(url);
-// });
 
 router.get('/', function (req, res, next) {
     var hostname = req.hostname;
