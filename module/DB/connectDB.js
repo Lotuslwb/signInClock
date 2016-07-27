@@ -9,12 +9,15 @@ var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/YingFu');
 
+/*
+ * Schema  -- 骨架
+ *
+ * name -- 模型名字
+ * */
 
 var obj = function (options) {
-
     this.SchemaJSON = options.Schema;
     this.name = options.name;
-
     this.init();
 }
 
@@ -85,5 +88,6 @@ obj.prototype.remove = function (json, callback) {
     });
     return promise;
 }
+
 
 module.exports = obj;

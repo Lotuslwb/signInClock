@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
         log('--已经有openid, 直接进入业务--')
         res.redirect('/wx/page');
     } else {
-        //暂无openid;获取之
+        //暂无openid;获取之;
         var hostname = req.hostname;
         var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
         var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
@@ -58,9 +58,27 @@ router.get('/callback', function (req, res) {
     getUserInfoByCode(code, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
+        addUserToDB(chunk);
         res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
         res.redirect('/wx/page');
     });
+
+    function addUserToDB(chunk) {
+        var UserDB = require('../module/DB/UserDB');
+        var json = {
+            personInfo: {
+                openid: chunk.openid,
+                nickname: chunk.nickname,
+                sex: chunk.sex,
+                city: chunk.city,
+                headimgurl: chunk.headimgurl,
+            }
+        }
+
+        UserDB.add(json).then(function (docs) {
+            log('增加数据成功', docs);
+        });
+    }
 });
 
 //业务页面
