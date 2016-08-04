@@ -58,11 +58,13 @@ router.get('/callback', function (req, res) {
     getUserInfoByCode(code, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
-        addUserToDB(chunk);
-        res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
-        res.redirect('/wx/page');
+        addUserToDB(chunk).then(function (docs) {
+            res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
+            res.redirect('/wx/page');
+        });
     });
 
+    //将用户信息加入数据库
     function addUserToDB(chunk) {
         var UserDB = require('../module/DB/UserDB');
         var json = {
@@ -91,8 +93,6 @@ router.get('/callback', function (req, res) {
                 });
             }
         });
-
-
     }
 });
 
@@ -100,7 +100,11 @@ router.get('/callback', function (req, res) {
 router.get('/page', function (req, res, next) {
     var openid = req.signedCookies['session'];
     if (openid) {
-        res.render('index', {title: openid});
+        getUserInfoFormDB(openid, function (docs) {
+            res.render('index', {title: '获取用户信息', data: docs});
+        });
+
+
     } else {
         //如果cookie里面没有openid,获取之;
         var hostname = req.hostname;
@@ -109,6 +113,22 @@ router.get('/page', function (req, res, next) {
         res.redirect(url);
     }
 
+    function getUserInfoFormDB(openid, callback) {
+        var UserDB = require('../module/DB/UserDB');
+        var findJSON = {
+            openid: openid
+        }
+
+        var promise = UserDB.find(findJSON).then(function (docs) {
+            log(docs);
+            if (docs.length > 0) {
+                log('---数据库里面已经有此用户---');
+                callback(docs);
+            } else {
+                log('---数据库里面暂无此用户---');
+            }
+        });
+    }
 
 })
 
