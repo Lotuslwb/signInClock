@@ -120,7 +120,9 @@ router.get('/page', function (req, res, next) {
             openid: openid
         }
 
-        var promise = UserDB.find(findJSON).then(function (docs) {
+        log(findJSON);
+
+        UserDB.find(findJSON).then(function (docs) {
             log(docs);
             if (docs.length > 0) {
                 log('---数据库里面已经有此用户---');
