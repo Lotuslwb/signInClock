@@ -100,6 +100,7 @@ router.get('/callback', function (req, res) {
 //业务页面
 router.get('/page', function (req, res, next) {
     var openid = req.signedCookies['session'];
+    log(openid);
     if (openid) {
         getUserInfoFormDB(openid, function (docs) {
             res.render('index', {title: '获取用户信息', data: docs});
