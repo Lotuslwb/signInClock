@@ -81,9 +81,9 @@ router.get('/callback', function (req, res) {
         }
 
         var promise = UserDB.find(findJSON).then(function (docs) {
-            if (docs) {
+            if (docs.length > 0) {
                 log('---数据库里面已经有此用户---');
-                log(docs);
+                log(docs.toString());
             } else {
                 log('---数据库里面暂无此用户---');
                 UserDB.add(json).then(function (docs) {
