@@ -74,19 +74,43 @@ router.get('/callback', function (req, res) {
                 headimgurl: chunk.headimgurl,
             }
         }
+        var findJSON = {
+            personInfo: {
+                openid: chunk.openid
+            }
+        }
 
-        var promise = UserDB.add(json).then(function (docs) {
-            log('增加数据成功');
-            log(docs);
-            return promise;
+        var promise = UserDB.find(findJSON).then(function (docs) {
+            if (docs) {
+                log('---数据库里面已经有此用户---');
+                log(docs);
+            } else {
+                log('---数据库里面暂无此用户---');
+                UserDB.add(json).then(function (docs) {
+                    log('增加数据成功');
+                    log(docs);
+                    return promise;
+                });
+            }
         });
+
+
     }
 });
 
 //业务页面
 router.get('/page', function (req, res, next) {
     var openid = req.signedCookies['session'];
-    res.render('index', {title: openid});
+    if (openid) {
+        res.render('index', {title: openid});
+    } else {
+        //如果cookie里面没有openid,获取之;
+        var hostname = req.hostname;
+        var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
+        var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+        res.redirect(url);
+    }
+
 
 })
 
