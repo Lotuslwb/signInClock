@@ -100,6 +100,7 @@ router.get('/page', function (req, res, next) {
     var openid = req.signedCookies['session'];
     if (openid) {
         getUserInfoFormDB(openid, function (docs) {
+            log(docs)
             res.render('index', {title: '获取用户信息', data: docs});
         });
 
@@ -118,11 +119,8 @@ router.get('/page', function (req, res, next) {
             openid: openid.split('"')[1]
         };
 
-        log(openid);
-        log(findJSON);
 
-        UserDB.find(findJSON).then(function (docs) {
-            log(docs);
+        UserDB.User.findOne(findJSON).then(function (docs) {
             if (docs.length > 0) {
                 log('---数据库里面已经有此用户---');
                 callback(docs);
