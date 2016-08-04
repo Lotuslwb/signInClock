@@ -101,7 +101,7 @@ router.get('/page', function (req, res, next) {
     if (openid) {
         getUserInfoFormDB(openid, function (docs) {
             log(docs)
-            res.render('index', {title: '获取用户信息', data: docs});
+            res.render('index', {title: '获取用户信息', data: docs[0]});
         });
 
 
@@ -120,7 +120,7 @@ router.get('/page', function (req, res, next) {
         };
 
 
-        UserDB.User.findOne(findJSON).then(function (docs) {
+        UserDB.find(findJSON).then(function (docs) {
             if (docs.length > 0) {
                 log('---数据库里面已经有此用户---');
                 callback(docs);
