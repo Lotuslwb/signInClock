@@ -58,14 +58,14 @@ router.get('/callback', function (req, res) {
     getUserInfoByCode(code, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
-        addUserToDB(chunk).then(function (docs) {
+        addUserToDB(chunk, function (docs) {
             res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
             res.redirect('/wx/page');
         });
     });
 
     //将用户信息加入数据库
-    function addUserToDB(chunk) {
+    function addUserToDB(chunk, callback) {
         var UserDB = require('../module/DB/UserDB');
         var json = {
             openid: chunk.openid,
@@ -89,7 +89,7 @@ router.get('/callback', function (req, res) {
                 UserDB.add(json).then(function (docs) {
                     log('增加数据成功');
                     log(docs);
-                    return promise;
+                    callback(docs)
                 });
             }
         });
@@ -126,6 +126,7 @@ router.get('/page', function (req, res, next) {
                 callback(docs);
             } else {
                 log('---数据库里面暂无此用户---');
+                res.redirect('/wx');
             }
         });
     }
