@@ -115,8 +115,8 @@ router.get('/page', function (req, res, next) {
     function getUserInfoFormDB(openid, callback) {
         var UserDB = require('../module/DB/UserDB');
         var findJSON = {
-            openid: openid
-        }
+            openid: openid.split('"')[1]
+        };
 
         log(openid);
         log(findJSON);
