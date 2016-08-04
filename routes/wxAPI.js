@@ -126,7 +126,6 @@ router.get('/page', function (req, res, next) {
                 callback(docs);
             } else {
                 log('---数据库里面暂无此用户---');
-                res.redirect('/wx');
             }
         });
     }
