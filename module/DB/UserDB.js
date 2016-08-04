@@ -36,19 +36,19 @@ var obj = require("../DB/connectDB");
 
 var userDB = new obj(option);
 
-var json = {
-    personInfo: {
-        openid: '123openidtest',
-        nickname: '李文***彬',
-        sex: '1',
-        city: '长沙',
-        headimgurl: 'aaaa',
-    }
-}
-
-userDB.add(json).then(function (doc) {
-    log(doc);
-});
+// var json = {
+//     personInfo: {
+//         openid: '123openidtest',
+//         nickname: '李文***彬',
+//         sex: '1',
+//         city: '长沙',
+//         headimgurl: 'aaaa',
+//     }
+// }
+//
+// userDB.add(json).then(function (doc) {
+//     log(doc);
+// });
 
 module.exports = userDB;
 
