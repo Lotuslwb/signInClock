@@ -75,8 +75,10 @@ router.get('/callback', function (req, res) {
             }
         }
 
-        UserDB.add(json).then(function (docs) {
+        var promise = UserDB.add(json).then(function (docs) {
             log('增加数据成功', docs);
+
+            return promise;
         });
     }
 });
