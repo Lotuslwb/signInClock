@@ -66,8 +66,8 @@ router.get('/callback', function (req, res) {
     function addUserToDB(chunk) {
         var UserDB = require('../module/DB/UserDB');
         var json = {
+            openid: chunk.openid,
             personInfo: {
-                openid: chunk.openid,
                 nickname: chunk.nickname,
                 sex: chunk.sex,
                 city: chunk.city,
@@ -75,15 +75,13 @@ router.get('/callback', function (req, res) {
             }
         }
         var findJSON = {
-            personInfo: {
-                openid: chunk.openid
-            }
+            openid: chunk.openid
         }
 
         var promise = UserDB.find(findJSON).then(function (docs) {
+            log(docs);
             if (docs.length > 0) {
                 log('---数据库里面已经有此用户---');
-                log(docs.toString());
             } else {
                 log('---数据库里面暂无此用户---');
                 UserDB.add(json).then(function (docs) {

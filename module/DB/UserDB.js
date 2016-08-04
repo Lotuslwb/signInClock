@@ -2,8 +2,8 @@ var log = require('../tools/log');
 
 var name = 'user';
 var Schema = {
+    openid: String,
     personInfo: {
-        openid: String,
         nickname: String,
         sex: String,
         city: String,
