@@ -81,7 +81,6 @@ router.get('/callback', function (req, res) {
         }
 
         var promise = UserDB.find(findJSON).then(function (docs) {
-            log(docs);
             if (docs.length > 0) {
                 log('---数据库里面已经有此用户---');
                 callback(docs)
@@ -89,7 +88,6 @@ router.get('/callback', function (req, res) {
                 log('---数据库里面暂无此用户---');
                 UserDB.add(json).then(function (docs) {
                     log('增加数据成功');
-                    log(docs);
                     callback(docs)
                 });
             }
@@ -100,7 +98,6 @@ router.get('/callback', function (req, res) {
 //业务页面
 router.get('/page', function (req, res, next) {
     var openid = req.signedCookies['session'];
-    log(openid);
     if (openid) {
         getUserInfoFormDB(openid, function (docs) {
             res.render('index', {title: '获取用户信息', data: docs});
@@ -121,6 +118,7 @@ router.get('/page', function (req, res, next) {
             openid: openid
         }
 
+        log(openid);
         log(findJSON);
 
         UserDB.find(findJSON).then(function (docs) {
