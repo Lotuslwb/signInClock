@@ -53,7 +53,7 @@ router.get('/setSignIn', function (req, res, next) {
         var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1;
         var lastRecodeTime = recodeInfo.lastRecodeTime;
         var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1;
-
+        log(data);
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
             log(lastRecodeTime);

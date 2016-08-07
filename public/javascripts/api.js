@@ -12,6 +12,7 @@ window.oo = {
 }
 
 function dateFormat(day) {
+    console.log(day);
     if (!day) {
         return false;
     }
