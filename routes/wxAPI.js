@@ -32,7 +32,7 @@ router.get('/', function (req, res, next) {
     //已经有openid, 直接进入业务
     if (openid) {
         log('--已经有openid, 直接进入业务--')
-        res.redirect('/wx/page');
+        res.redirect('/page');
     } else {
         //暂无openid;获取之;
         var hostname = req.hostname;
@@ -61,7 +61,7 @@ router.get('/callback', function (req, res) {
         addUserToDB(chunk, function (docs) {
             //数据 保存成功再add cookie
             res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
-            res.redirect('/wx/page');
+            res.redirect('/page');
         });
     });
 
