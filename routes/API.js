@@ -29,6 +29,23 @@ router.get('/', function (req, res, next) {
 router.get('/getUseInfo', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
+
+    getUserInfoFormDB(openid, function (docs) {
+        //成功
+        res.send(sendData('200', docs, ''));
+    }, function (docs) {
+        //失败
+        res.send(sendData('301', docs, '暂无此用户的信息,请刷新重试'));
+    });
+});
+
+router.get('setSignIn', function (req, res, next) {
+    var openid = req.signedCookies['session'];
+
+
+});
+
+function getUserInfoFormDB(openid, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
     var findJSON = {
         openid: openid.split('"')[1]
@@ -38,14 +55,13 @@ router.get('/getUseInfo', function (req, res, next) {
         log(docs);
         if (docs.length > 0) {
             log('---数据库里面已经有此用户---');
-            res.send(sendData('200', docs, ''));
+            callback_s && callback_s(docs);
         } else {
             log('---数据库里面暂无此用户---');
-            res.send(sendData('301', docs, '暂无此用户的信息,请刷新重试'));
+            callback_f && callback_f(docs);
         }
     });
-
-});
+}
 
 
 function sendData(status, data, errmsg) {
