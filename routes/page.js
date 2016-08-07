@@ -7,7 +7,7 @@ var APPID = WXConfig.APPID;
 
 var log = require('../module/tools/log');
 
-//业务页面
+//检查openid
 router.get('/', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
