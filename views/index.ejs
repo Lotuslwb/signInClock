@@ -60,9 +60,10 @@
         url: '/api/getUseInfo',
         data: {},
         success: function (data) {
+            console.log(data);
+            
             if (data.status == '200') {
                 var persionInfo = data.data[0].personInfo;
-
                 $('.Tpl-nickname').text(persionInfo.nickname);
                 $('.Tpl-sex').text(persionInfo.sex);
                 $('.Tpl-headimgurl').attr('src', persionInfo.headimgurl);

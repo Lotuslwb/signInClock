@@ -1,9 +1,19 @@
 /**
  * Created by lotuslwb on 16/6/22.
  */
+
+window.debug = true;
+
 window.oo = {
     GetRequest: GetRequest,
-    fastClick: fastClick
+    fastClick: fastClick,
+    log: log
+}
+
+function log(msg) {
+    if (window.debug) {
+        console.log(msg)
+    }
 }
 
 
