@@ -148,7 +148,7 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
 function updateUserInfoToDB(_id, data, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
 
-    UserDB.update(_id, data).then(function (docs) {
+    UserDB.update(_id, data, function (err, docs) {
         log(docs);
         if (docs.length > 0) {
             callback_s && callback_s(docs);

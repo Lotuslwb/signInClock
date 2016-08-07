@@ -72,19 +72,17 @@ obj.prototype.find = function (json, callback) {
 
 obj.prototype.update = function (_id, JSON, callback) {
     var me = this;
-
+    
     var promise = me.User.update({_id: _id}, {
         $set: JSON
     }, function (err, docs) {
         if (err) {
             log('---更新失败---')
             log(err);
-            return;
         }
         log('更新成功');
         callback && callback(err, docs);
     });
-
 
     return promise;
 }
