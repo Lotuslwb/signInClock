@@ -86,6 +86,7 @@ router.get('/setSignIn', function (req, res, next) {
             totalRecodeCounts++;
             currentSerialRecodeCounts++;
             currentRecodeCounts++;
+            log(lastRecodeTime);
         }
 
         var updateDate = {
@@ -96,7 +97,7 @@ router.get('/setSignIn', function (req, res, next) {
                 totalRecodeCounts: totalRecodeCounts,
             }
         }
-        
+
 
         updateUserInfoToDB(data._id, updateDate, function (docs) {
             //成功

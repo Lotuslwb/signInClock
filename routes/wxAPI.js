@@ -77,9 +77,9 @@ router.get('/callback', function (req, res) {
                 headimgurl: chunk.headimgurl,
             }, recodeInfo: {
                 lastRecodeTime: '',
-                totalRecodeCounts: '',
-                currentRecodeCounts: '',
-                currentSerialRecodeCounts: '',
+                totalRecodeCounts: 0,
+                currentRecodeCounts: 0,
+                currentSerialRecodeCounts: 0
             },
             couponList: []
         }
