@@ -75,7 +75,13 @@ router.get('/callback', function (req, res) {
                 sex: chunk.sex,
                 city: chunk.city,
                 headimgurl: chunk.headimgurl,
-            }
+            }, recodeInfo: {
+                lastRecodeTime: '',
+                totalRecodeCounts: '',
+                currentRecodeCounts: '',
+                currentSerialRecodeCounts: '',
+            },
+            couponList: []
         }
         var findJSON = {
             openid: chunk.openid
