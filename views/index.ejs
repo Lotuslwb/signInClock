@@ -73,6 +73,24 @@
         },
         dataType: 'json'
     });
+
+    $('.J-singIn').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: '/api/setSignIn',
+            data: {},
+            success: function (data) {
+                console.log(data);
+
+                if (data.status == '200') {
+
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    });
 </script>
 </body>
 </html>

@@ -84,8 +84,8 @@ router.get('setSignIn', function (req, res, next) {
         data.recodeInfo.currentSerialRecodeCounts = currentSerialRecodeCounts;
         data.recodeInfo.lastRecodeTime = lastRecodeTime;
         data.recodeInfo.totalRecodeCounts = totalRecodeCounts;
+        res.send(sendData('200', data, ''));
 
-        log(data);
 
     }, function (docs) {
         res.send(sendData('301', docs, '暂无此用户的信息,请刷新重试'));
