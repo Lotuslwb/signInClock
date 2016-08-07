@@ -47,13 +47,12 @@ router.get('/setSignIn', function (req, res, next) {
 
 
     getUserInfoFormDB(openid, function (docs) {
-        log(docs);
         var data = docs[0];
         var recodeInfo = data.recodeInfo;
-        var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1;
-        var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1;
+        var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1 || 0;
+        var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1 || 0;
         var lastRecodeTime = recodeInfo.lastRecodeTime;
-        var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1;
+        var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1 || 0;
         log(data);
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
@@ -81,7 +80,8 @@ router.get('/setSignIn', function (req, res, next) {
 
             }
         } else {
-            //上次打卡时间为空 说明是第一次进来打开
+            //上次打卡时间为空 说明是第一次进来打卡
+            log('第一次进来打开');
             lastRecodeTime = new Date().getTime();
             totalRecodeCounts++;
             currentSerialRecodeCounts++;
@@ -96,8 +96,7 @@ router.get('/setSignIn', function (req, res, next) {
                 totalRecodeCounts: totalRecodeCounts,
             }
         }
-
-        log(updateDate);
+        
 
         updateUserInfoToDB(data._id, updateDate, function (docs) {
             //成功
