@@ -80,12 +80,17 @@ router.get('/setSignIn', function (req, res, next) {
             currentRecodeCounts++;
         }
 
-        data.recodeInfo.currentRecodeCounts = currentRecodeCounts;
-        data.recodeInfo.currentSerialRecodeCounts = currentSerialRecodeCounts;
-        data.recodeInfo.lastRecodeTime = lastRecodeTime;
-        data.recodeInfo.totalRecodeCounts = totalRecodeCounts;
+        var updateDate = {
+            recodeInfo: {
+                currentRecodeCounts: currentRecodeCounts,
+                currentSerialRecodeCounts: currentSerialRecodeCounts,
+                lastRecodeTime: lastRecodeTime,
+                totalRecodeCounts: totalRecodeCounts,
+            }
+        }
 
-        updateUserInfoToDB(data, function (docs) {
+
+        updateUserInfoToDB(data._id, updateDate, function (docs) {
             //成功
             res.send(sendData('200', docs, ''));
         }, function (docs) {
@@ -99,6 +104,7 @@ router.get('/setSignIn', function (req, res, next) {
     })
 
 });
+
 
 function isToday(date) {
     var now = new Date();
@@ -139,9 +145,8 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
 }
 
 
-function updateUserInfoToDB(data, callback_s, callback_f) {
+function updateUserInfoToDB(_id, data, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
-    var _id = data._id;
 
     UserDB.update(_id, data).then(function (docs) {
         log(docs);

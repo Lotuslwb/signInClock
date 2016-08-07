@@ -96,7 +96,7 @@ obj.prototype.remove = function (json, callback) {
             console.log('删除失败', err);
             return;
         }
-        console.log('删除成功');
+        log('删除成功');
         callback && callback(err, docs);
     });
     return promise;
