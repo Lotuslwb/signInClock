@@ -97,7 +97,7 @@ router.get('/setSignIn', function (req, res, next) {
 
         updateUserInfoToDB(data._id, updateDate, function (docs) {
             //成功
-            res.send(sendData('200', docs, ''));
+            res.send(sendData('200', updateDate, ''));
         }, function (docs) {
             //失败
             res.send(sendData('999', docs, '数据库更新失败'));
