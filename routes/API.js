@@ -28,6 +28,7 @@ router.get('/', function (req, res, next) {
 //获取用户信息
 router.get('/getUseInfo', function (req, res, next) {
 
+    var openid = req.signedCookies['session'];
     var UserDB = require('../module/DB/UserDB');
     var findJSON = {
         openid: openid.split('"')[1]
