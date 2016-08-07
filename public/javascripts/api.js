@@ -12,6 +12,9 @@ window.oo = {
 }
 
 function dateFormat(day) {
+    if (!day) {
+        return false;
+    }
     var Year = 0;
     var Month = 0;
     var Day = 0;
