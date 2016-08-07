@@ -46,13 +46,14 @@ router.get('/setSignIn', function (req, res, next) {
     getUserInfoFormDB(openid, function (docs) {
         var data = docs[0];
         var recodeInfo = data.recodeInfo;
-        log(recodeInfo);
-        var currentRecodeCounts = recodeInfo.currentRecodeCounts;
-        var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts;
-        var lastRecodeTime = recodeInfo.lastRecodeTime;
-        var totalRecodeCounts = recodeInfo.totalRecodeCounts;
+        var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1;
+        var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1;
+        var lastRecodeTime = recodeInfo.lastRecodeTime * 1;
+        var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1;
 
         if (lastRecodeTime.length > 0) {
+            log(isToday(lastRecodeTime))
+
             if (isToday(lastRecodeTime)) {
                 //上次打卡时间为今天;那么就不能再打卡了
                 log('上次打卡时间为今天;那么就不能再打卡了');
