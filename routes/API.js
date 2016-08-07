@@ -48,7 +48,7 @@ router.get('/setSignIn', function (req, res, next) {
         var recodeInfo = data.recodeInfo;
         var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1;
         var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1;
-        var lastRecodeTime = recodeInfo.lastRecodeTime * 1;
+        var lastRecodeTime = new Date(recodeInfo.lastRecodeTime * 1);
         var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1;
 
         if (lastRecodeTime.length > 0) {
@@ -66,7 +66,7 @@ router.get('/setSignIn', function (req, res, next) {
                     currentSerialRecodeCounts++;
                     currentRecodeCounts++;
                 } else {
-                    lastRecodeTime = new Date().getTime();
+                    lastRecodeTime = new Date();
                     totalRecodeCounts++;
                     currentRecodeCounts++;
 
@@ -87,7 +87,7 @@ router.get('/setSignIn', function (req, res, next) {
             recodeInfo: {
                 currentRecodeCounts: currentRecodeCounts,
                 currentSerialRecodeCounts: currentSerialRecodeCounts,
-                lastRecodeTime: lastRecodeTime,
+                lastRecodeTime: lastRecodeTime.getTime(),
                 totalRecodeCounts: totalRecodeCounts,
             }
         }
