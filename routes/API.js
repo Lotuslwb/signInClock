@@ -56,7 +56,7 @@ router.get('/setSignIn', function (req, res, next) {
 
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
-
+            log(lastRecodeTime);
             if (isToday(lastRecodeTime)) {
                 //上次打卡时间为今天;那么就不能再打卡了
                 res.send(sendData('990', data, '你今天已经打过卡了哦'));
