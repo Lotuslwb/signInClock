@@ -54,7 +54,8 @@ router.get('/setSignIn', function (req, res, next) {
         if (lastRecodeTime.length > 0) {
             if (isToday(lastRecodeTime)) {
                 //上次打卡时间为今天;那么就不能再打卡了
-                res.send(sendData('302', docs, '你今天已经打过卡了哦'));
+                log('上次打卡时间为今天;那么就不能再打卡了');
+                res.send(sendData('302', data, '你今天已经打过卡了哦'));
             } else {
                 if (isYesterday(lastRecodeTime)) {
                     //上次打卡时间为昨天;那么就可以统计连续打卡
@@ -88,7 +89,6 @@ router.get('/setSignIn', function (req, res, next) {
                 totalRecodeCounts: totalRecodeCounts,
             }
         }
-
 
         updateUserInfoToDB(data._id, updateDate, function (docs) {
             //成功
