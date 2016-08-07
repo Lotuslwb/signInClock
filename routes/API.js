@@ -53,10 +53,8 @@ router.get('/setSignIn', function (req, res, next) {
         var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1 || 0;
         var lastRecodeTime = recodeInfo.lastRecodeTime;
         var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1 || 0;
-        log(data);
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
-            log(lastRecodeTime);
             if (isToday(lastRecodeTime)) {
                 //上次打卡时间为今天;那么就不能再打卡了
                 res.send(sendData('990', data, '你今天已经打过卡了哦'));
@@ -141,7 +139,6 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
     };
 
     UserDB.find(findJSON).then(function (docs) {
-        log(docs);
         if (docs.length > 0) {
             log('---数据库里面已经有此用户---');
             callback_s && callback_s(docs);
@@ -157,11 +154,10 @@ function updateUserInfoToDB(_id, data, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
 
     UserDB.update(_id, data, function (err, docs) {
-        log(docs);
-        if (docs.length > 0) {
-            callback_s && callback_s(docs);
-        } else {
+        if (err) {
             callback_f && callback_f(docs);
+        } else {
+            callback_s && callback_s(docs);
         }
     });
 }
