@@ -42,6 +42,9 @@ router.get('/getUseInfo', function (req, res, next) {
 router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
 
+    res.send(sendData('302', {}, '你今天已经打过卡了哦'));
+
+
     getUserInfoFormDB(openid, function (docs) {
         var data = docs[0];
         var recodeInfo = data.recodeInfo;
