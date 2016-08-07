@@ -79,11 +79,13 @@
                 $('.Tpl-currentSerialRecodeCounts').text(recodeInfo.currentSerialRecodeCounts || 0);
                 $('.Tpl-totalRecodeCounts').text(recodeInfo.totalRecodeCounts || 0);
 
-                lastTimeDate && $('.Tpl-lastRecodeTime').text(window.oo.dateFormat(lastTimeDate));
-
-                if (isToday(lastTimeDate)) {
-                    $('.J-singIn').addClass('weui_btn_disabled');
+                if (lastTimeDate.length > 0) {
+                    $('.Tpl-lastRecodeTime').text(window.oo.dateFormat(lastTimeDate));
+                    if (isToday(lastTimeDate)) {
+                        $('.J-singIn').addClass('weui_btn_disabled');
+                    }
                 }
+
 
             } else {
                 alert(data.errmsg);
