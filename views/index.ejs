@@ -74,12 +74,13 @@
                 $('.Tpl-headimgurl').attr('src', persionInfo.headimgurl);
 
                 var recodeInfo = data.data[0].recodeInfo;
-                var lastTimeDate = recodeInfo.lastRecodeTime ? new Date(recodeInfo.lastRecodeTime * 1) : '';
+                var lastTimeDate = recodeInfo.lastRecodeTime.length > 0 ? new Date(recodeInfo.lastRecodeTime * 1) : '';
                 $('.Tpl-currentRecodeCounts').text(recodeInfo.currentRecodeCounts || 0);
                 $('.Tpl-currentSerialRecodeCounts').text(recodeInfo.currentSerialRecodeCounts || 0);
                 $('.Tpl-totalRecodeCounts').text(recodeInfo.totalRecodeCounts || 0);
 
                 if (lastTimeDate.length > 0) {
+                    console.log(lastTimeDate);
                     $('.Tpl-lastRecodeTime').text(window.oo.dateFormat(lastTimeDate));
                     if (isToday(lastTimeDate)) {
                         $('.J-singIn').addClass('weui_btn_disabled');
