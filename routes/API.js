@@ -48,11 +48,13 @@ router.get('/setSignIn', function (req, res, next) {
         var recodeInfo = data.recodeInfo;
         var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1;
         var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1;
-        var lastRecodeTime = new Date(recodeInfo.lastRecodeTime * 1);
+        var lastRecodeTime = recodeInfo.lastRecodeTime;
         var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1;
 
         if (lastRecodeTime.length > 0) {
-            log(isToday(lastRecodeTime))
+            lastRecodeTime = new Date(lastRecodeTime * 1);
+            log(lastRecodeTime);
+            log(isToday(lastRecodeTime));
 
             if (isToday(lastRecodeTime)) {
                 //上次打卡时间为今天;那么就不能再打卡了
