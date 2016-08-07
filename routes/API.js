@@ -35,7 +35,10 @@ router.get('/getUseInfo', function (req, res, next) {
         res.send(sendData('200', docs, ''));
     }, function (docs) {
         //失败
+        res.cookie('session', '');
         res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
+
+
     });
 });
 
@@ -103,6 +106,7 @@ router.get('/setSignIn', function (req, res, next) {
 
 
     }, function (docs) {
+        res.cookie('session', '');
         res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
     })
 
