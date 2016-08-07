@@ -39,7 +39,7 @@ router.get('/getUseInfo', function (req, res, next) {
     });
 });
 
-router.get('setSignIn', function (req, res, next) {
+router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
 
     getUserInfoFormDB(openid, function (docs) {
