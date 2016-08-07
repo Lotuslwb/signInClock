@@ -53,13 +53,13 @@ router.get('/setSignIn', function (req, res, next) {
 
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
-            log(lastRecodeTime);
-            log(isToday(lastRecodeTime));
 
             if (isToday(lastRecodeTime)) {
                 //上次打卡时间为今天;那么就不能再打卡了
                 log('上次打卡时间为今天;那么就不能再打卡了');
                 res.send(sendData('302', data, '你今天已经打过卡了哦'));
+                return false;
+                
             } else {
                 if (isYesterday(lastRecodeTime)) {
                     //上次打卡时间为昨天;那么就可以统计连续打卡
