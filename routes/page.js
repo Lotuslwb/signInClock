@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-
+var WXConfig = require('../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
 
 
