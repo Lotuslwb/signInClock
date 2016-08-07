@@ -10,6 +10,11 @@ var users = require('./routes/users');
 var wx = require('./routes/wxConnect');
 var wxAPI = require('./routes/wxAPI');
 
+//js 调用接口
+var API = require('./routes/API');
+//h5 页面
+var page = require('./routes/page');
+
 var app = express();
 
 // view engine setup
@@ -32,6 +37,8 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.use('/wx', wxAPI);
+app.use('/api', API);
+app.use('/page', page);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

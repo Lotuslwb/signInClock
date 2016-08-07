@@ -59,6 +59,7 @@ router.get('/callback', function (req, res) {
         var sign = data.sign;
         var chunk = data.chunk;
         addUserToDB(chunk, function (docs) {
+            //数据 保存成功再add cookie
             res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
             res.redirect('/wx/page');
         });
@@ -95,53 +96,5 @@ router.get('/callback', function (req, res) {
     }
 });
 
-//业务页面
-router.get('/page', function (req, res, next) {
-    var openid = req.signedCookies['session'];
-    if (openid) {
-        getUserInfoFormDB(openid, function (docs) {
-            log(docs)
-            res.render('index', {title: '获取用户信息', data: docs[0]});
-        });
-
-
-    } else {
-        //如果cookie里面没有openid,获取之;
-        var hostname = req.hostname;
-        var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
-        var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
-        res.redirect(url);
-    }
-
-    function getUserInfoFormDB(openid, callback) {
-        var UserDB = require('../module/DB/UserDB');
-        var findJSON = {
-            openid: openid.split('"')[1]
-        };
-
-
-        UserDB.find(findJSON).then(function (docs) {
-            if (docs.length > 0) {
-                log('---数据库里面已经有此用户---');
-                callback(docs);
-            } else {
-                log('---数据库里面暂无此用户---');
-            }
-        });
-    }
-
-})
-
-//测试
-router.get('/test', function (req, res, next) {
-    var data = {'name': 'liwenbin'};
-
-    res.cookie('session', JSON.stringify(data), {signed: true});
-
-    console.log(req.signedCookies['session']);
-
-
-    res.render('index', {title: "测试"});
-})
 
 module.exports = router;
