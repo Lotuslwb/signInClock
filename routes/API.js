@@ -81,12 +81,10 @@ router.get('/setSignIn', function (req, res, next) {
             }
         } else {
             //上次打卡时间为空 说明是第一次进来打卡
-            log('第一次进来打开');
-            lastRecodeTime = new Date().getTime();
+            lastRecodeTime = new Date();
             totalRecodeCounts++;
             currentSerialRecodeCounts++;
             currentRecodeCounts++;
-            log(lastRecodeTime);
         }
 
         var updateDate = {
