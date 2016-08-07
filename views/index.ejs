@@ -62,7 +62,7 @@
         data: {},
         success: function (data) {
             if (data.status == '200') {
-                var persionInfo = data[0].personInfo;
+                var persionInfo = data.data[0].personInfo;
 
                 $('.Tpl-nickname').text(persionInfo.nickname);
                 $('.Tpl-sex').text(persionInfo.sex);
