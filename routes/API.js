@@ -38,10 +38,10 @@ router.get('/getUseInfo', function (req, res, next) {
         log(docs);
         if (docs.length > 0) {
             log('---数据库里面已经有此用户---');
-            res.send(sendData('0000', docs, ''));
+            res.send(sendData('200', docs, ''));
         } else {
             log('---数据库里面暂无此用户---');
-            res.send(sendData('1001', docs, '暂无此用户的信息,请刷新重试'));
+            res.send(sendData('301', docs, '暂无此用户的信息,请刷新重试'));
         }
     });
 
