@@ -70,10 +70,10 @@ obj.prototype.find = function (json, callback) {
     return promise;
 }
 
-obj.prototype.update = function (queryJSON, JSON, callback) {
+obj.prototype.update = function (_id, JSON, callback) {
     var me = this;
 
-    var promise = me.User.update(queryJSON, {
+    var promise = me.User.update({_id: _id}, {
         $set: JSON
     }, function (err, docs) {
         if (err) {
