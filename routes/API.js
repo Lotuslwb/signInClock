@@ -42,8 +42,76 @@ router.get('/getUseInfo', function (req, res, next) {
 router.get('setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
 
+    getUserInfoFormDB(openid, function (docs) {
+        var data = docs[0];
+        var recodeInfo = data.recodeInfo;
+
+        var currentRecodeCounts = recodeInfo.currentRecodeCounts;
+        var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts;
+        var lastRecodeTime = recodeInfo.lastRecodeTime;
+        var totalRecodeCounts = recodeInfo.totalRecodeCounts;
+
+        if (lastRecodeTime.length > 0) {
+            if (isToday(lastRecodeTime)) {
+                //上次打卡时间为今天;那么就不能再打卡了
+                res.send(sendData('302', docs, '你今天已经打过卡了哦'));
+            } else {
+                if (isYesterday(lastRecodeTime)) {
+                    //上次打卡时间为昨天;那么就可以统计连续打卡
+                    lastRecodeTime = new Date().getTime();
+                    totalRecodeCounts++;
+                    currentSerialRecodeCounts++;
+                    currentRecodeCounts++;
+                } else {
+                    lastRecodeTime = new Date().getTime();
+                    totalRecodeCounts++;
+                    currentRecodeCounts++;
+
+                    //连续打卡次数归零
+                    currentSerialRecodeCounts = 0;
+                }
+
+            }
+        } else {
+            //上次打卡时间为空 说明是第一次进来打开
+            lastRecodeTime = new Date().getTime();
+            totalRecodeCounts++;
+            currentSerialRecodeCounts++;
+            currentRecodeCounts++;
+        }
+
+        data.recodeInfo.currentRecodeCounts = currentRecodeCounts;
+        data.recodeInfo.currentSerialRecodeCounts = currentSerialRecodeCounts;
+        data.recodeInfo.lastRecodeTime = lastRecodeTime;
+        data.recodeInfo.totalRecodeCounts = totalRecodeCounts;
+
+        log(data);
+
+    }, function (docs) {
+        res.send(sendData('301', docs, '暂无此用户的信息,请刷新重试'));
+    })
 
 });
+
+function isToday(date) {
+    var now = new Date();
+
+    if (now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDate() == date.getDate()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isYesterday(date) {
+
+    if (now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDate() == date.getDate() + 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 function getUserInfoFormDB(openid, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
