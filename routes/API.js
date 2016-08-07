@@ -47,6 +47,7 @@ router.get('/setSignIn', function (req, res, next) {
 
 
     getUserInfoFormDB(openid, function (docs) {
+        log(docs);
         var data = docs[0];
         var recodeInfo = data.recodeInfo;
         var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1;
@@ -95,6 +96,8 @@ router.get('/setSignIn', function (req, res, next) {
                 totalRecodeCounts: totalRecodeCounts,
             }
         }
+
+        log(updateDate);
 
         updateUserInfoToDB(data._id, updateDate, function (docs) {
             //成功
