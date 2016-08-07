@@ -4,6 +4,7 @@
 
 var mongoose = require('mongoose');
 
+var log = require('../tools/log');
 
 //连接数据库
 
@@ -46,10 +47,10 @@ obj.prototype.add = function (json, callback) {
     //保存数据库
     promise = _user.save(function (err, docs) {
         if (err) {
-            console.log('保存失败', err)
+            log('保存失败', err)
             return;
         }
-        console.log('保存成功');
+        log('保存成功');
         callback && callback(err, docs);
     });
     return promise;
@@ -60,20 +61,30 @@ obj.prototype.find = function (json, callback) {
     var me = this;
     var promise = me.User.find(json, function (err, docs) {
         if (err) {
-            console.log('查找失败', err);
+            log('查找失败', err);
             return;
         }
-        console.log('查找成功');
+        log('查找成功');
         callback && callback(err, docs);
     })
     return promise;
 }
 
-obj.prototype.update = function () {
+obj.prototype.update = function (queryJSON, JSON, callback) {
     var me = this;
 
-    //db.users.update({name: 'Lisi'}, {$inc: {age: 50}, $set: {name: 'hoho'}}, false, true);
-    // 相当于：update users set age = age + 50, name = ‘hoho’ where name = ‘Lisi’;
+    var promise = me.User.update(queryJSON, {
+        $set: JSON
+    }, function (err, docs) {
+        if (err) {
+            log('---更新失败---')
+            log(err);
+            return;
+        }
+        log('更新成功');
+        callback && callback(err, docs);
+    });
+
 
     return promise;
 }

@@ -84,7 +84,14 @@ router.get('/setSignIn', function (req, res, next) {
         data.recodeInfo.currentSerialRecodeCounts = currentSerialRecodeCounts;
         data.recodeInfo.lastRecodeTime = lastRecodeTime;
         data.recodeInfo.totalRecodeCounts = totalRecodeCounts;
-        res.send(sendData('200', data, ''));
+
+        updateUserInfoToDB(data, function (docs) {
+            //成功
+            res.send(sendData('200', docs, ''));
+        }, function (docs) {
+            //失败
+            res.send(sendData('302', docs, '数据库更新失败'));
+        })
 
 
     }, function (docs) {
@@ -131,6 +138,23 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
     });
 }
 
+
+function updateUserInfoToDB(data, callback_s, callback_f) {
+    var openid = data.openid;
+    var UserDB = require('../module/DB/UserDB');
+    var findJSON = {
+        openid: openid.split('"')[1]
+    };
+
+    UserDB.update(findJSON, data).then(function (docs) {
+        log(docs);
+        if (docs.length > 0) {
+            callback_s && callback_s(docs);
+        } else {
+            callback_f && callback_f(docs);
+        }
+    });
+}
 
 function sendData(status, data, errmsg) {
     return {
