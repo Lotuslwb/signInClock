@@ -34,16 +34,20 @@
 
             <div class="weui_cells_title">打卡信息</div>
             <div class="weui_cell">
-                <div class="weui_cell_bd weui_cell_primary"><p>总打卡次数: <span></span></p></div>
+                <div class="weui_cell_bd weui_cell_primary"><p>总打卡次数: <span class="Tpl-totalRecodeCounts"></span></p>
+                </div>
             </div>
             <div class="weui_cell">
-                <div class="weui_cell_bd weui_cell_primary"><p>当前打卡次数: <span></span></p></div>
+                <div class="weui_cell_bd weui_cell_primary"><p>当前打卡次数: <span class="Tpl-currentRecodeCounts"></span></p>
+                </div>
             </div>
             <div class="weui_cell">
-                <div class="weui_cell_bd weui_cell_primary"><p>当前连续打卡次数: <span></span></p></div>
+                <div class="weui_cell_bd weui_cell_primary"><p>当前连续打卡次数: <span
+                                class="Tpl-currentSerialRecodeCounts"></span></p></div>
             </div>
             <div class="weui_cell">
-                <div class="weui_cell_bd weui_cell_primary"><p>上次打卡时间: <span></span></p></div>
+                <div class="weui_cell_bd weui_cell_primary"><p>上次打卡时间: <span class="Tpl-lastRecodeTime"></span></p>
+                </div>
             </div>
 
 
@@ -67,6 +71,13 @@
                 $('.Tpl-nickname').text(persionInfo.nickname);
                 $('.Tpl-sex').text(persionInfo.sex);
                 $('.Tpl-headimgurl').attr('src', persionInfo.headimgurl);
+
+                var recodeInfo = data.data[0].recodeInfo;
+                $('.Tpl-currentRecodeCounts').text(recodeInfo.currentRecodeCounts || 0);
+                $('.Tpl-currentSerialRecodeCounts').text(recodeInfo.currentSerialRecodeCounts || 0);
+                $('.Tpl-lastRecodeTime').text(window.oo.dateFormat(recodeInfo.lastRecodeTime) || 0);
+                $('.Tpl-totalRecodeCounts').text(recodeInfo.totalRecodeCounts || 0);
+
             } else {
                 alert(data.errmsg);
             }

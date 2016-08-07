@@ -35,7 +35,7 @@ router.get('/getUseInfo', function (req, res, next) {
         res.send(sendData('200', docs, ''));
     }, function (docs) {
         //失败
-        res.send(sendData('301', docs, '暂无此用户的信息,请刷新重试'));
+        res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
     });
 });
 
@@ -57,9 +57,9 @@ router.get('/setSignIn', function (req, res, next) {
             if (isToday(lastRecodeTime)) {
                 //上次打卡时间为今天;那么就不能再打卡了
                 log('上次打卡时间为今天;那么就不能再打卡了');
-                res.send(sendData('302', data, '你今天已经打过卡了哦'));
+                res.send(sendData('990', data, '你今天已经打过卡了哦'));
                 return false;
-                
+
             } else {
                 if (isYesterday(lastRecodeTime)) {
                     //上次打卡时间为昨天;那么就可以统计连续打卡
@@ -99,12 +99,12 @@ router.get('/setSignIn', function (req, res, next) {
             res.send(sendData('200', docs, ''));
         }, function (docs) {
             //失败
-            res.send(sendData('302', docs, '数据库更新失败'));
+            res.send(sendData('999', docs, '数据库更新失败'));
         })
 
 
     }, function (docs) {
-        res.send(sendData('301', docs, '暂无此用户的信息,请刷新重试'));
+        res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
     })
 
 });
