@@ -30,6 +30,8 @@ router.get('/getUseInfo', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
 
+    log(openid);
+
     getUserInfoFormDB(openid, function (docs) {
         //成功
         res.send(sendData('200', docs, ''));
