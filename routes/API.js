@@ -44,12 +44,11 @@ router.get('/getUseInfo', function (req, res, next) {
 
 //签到
 router.get('/setSignIn', function (req, res, next) {
-
     var openid = req.signedCookies['session'];
+
     log('签到');
     log(openid);
-    log(req.cookies);
-
+    log(req);
 
     getUserInfoFormDB(openid, function (docs) {
         var data = docs[0];
@@ -157,6 +156,9 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
         openid: openid.split('"')[1]
     };
 
+    log('findJSON');
+    log(findJSON);
+
     UserDB.find(findJSON).then(function (docs) {
         if (docs.length > 0) {
             log('---数据库里面已经有此用户---');
@@ -172,6 +174,7 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
 function updateUserInfoToDB(_id, data, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
 
+    log('updateUserInfoToDB')
     UserDB.update(_id, data, function (err, docs) {
         if (err) {
             callback_f && callback_f(docs);
