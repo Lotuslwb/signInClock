@@ -46,7 +46,9 @@ router.get('/getUseInfo', function (req, res, next) {
 router.get('/setSignIn', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
+    log('签到');
     log(openid);
+    log(req.cookies);
 
 
     getUserInfoFormDB(openid, function (docs) {
@@ -152,7 +154,7 @@ function isYesterday(date) {
 function getUserInfoFormDB(openid, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
     var findJSON = {
-        openid: openid
+        openid: openid.split('"')[1]
     };
 
     UserDB.find(findJSON).then(function (docs) {
