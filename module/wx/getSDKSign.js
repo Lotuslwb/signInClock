@@ -25,7 +25,7 @@ var getSDKSign = function (originalUrl, callback) {
     getSDKSignFromCache(function (err, data) {
         //缓存报错 或者缓存中没有数据
 
-        if (err || data.length == 0) {
+        if (err || data.length == 0 || data == undefined) {
             log('---缓存报错 或者缓存中没有数据---', err);
             getSDKSignFormWX(originalUrl, function (wxConfig) {
                 setSDKSignToCache(wxConfig);
@@ -60,7 +60,11 @@ var getSDKSignFromCache = function (callback) {
             callback && callback(err);
         } else {
             log(txt);
-            callback(null, JSON.parse(txt));
+            if (txt) {
+                txt = JSON.parse(txt);
+            }
+
+            callback(null, txt);
         }
 
     });
