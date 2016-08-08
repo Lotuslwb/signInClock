@@ -48,7 +48,6 @@ router.get('/setSignIn', function (req, res, next) {
 
     log('签到');
     log(openid);
-    log(req);
 
     getUserInfoFormDB(openid, function (docs) {
         var data = docs[0];
