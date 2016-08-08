@@ -69,8 +69,10 @@ router.get('/setSignIn', function (req, res, next) {
             } else {
                 if (isYesterday(lastRecodeTime)) {
                     //上次打卡时间为昨天;那么就可以统计连续打卡
+                    log('check yesterday');
+                    log(isYesterday(lastRecodeTime));
 
-                    lastRecodeTime = new Date().getTime();
+                    lastRecodeTime = new Date();
                     totalRecodeCounts++;
                     currentSerialRecodeCounts++;
                     currentRecodeCounts++;
@@ -132,7 +134,6 @@ function isToday(date) {
 function isYesterday(date) {
     var now = new Date();
 
-    log('check yesterday');
 
     if (now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDate() == (date.getDate() + 1)) {
         return true;
