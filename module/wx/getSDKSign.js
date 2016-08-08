@@ -25,14 +25,15 @@ var getSDKSign = function (originalUrl, callback) {
     getSDKSignFromCache(function (err, data) {
         //缓存报错 或者缓存中没有数据
 
-        if (err || data.length == 0 || data == undefined) {
+        if (err || data.length == 0 || data == undefined || data['originalUrl'] != originalUrl) {
             log('---缓存报错 或者缓存中没有数据---', err);
             getSDKSignFormWX(originalUrl, function (wxConfig) {
-                setSDKSignToCache(wxConfig);
+                setSDKSignToCache(wxConfig, originalUrl);
                 callback && callback(wxConfig);
             })
         } else {
             //缓存中有数据
+            var data = data['originalUrl'];
             var genTime = data.timestamp;
             var nowTime = new Date().getTime() / 1000; //转换成秒
             var expiresTime = data.expiresTime;
@@ -45,7 +46,7 @@ var getSDKSign = function (originalUrl, callback) {
                 log('---已经超时,重新获取---');
                 getSDKSignFormWX(originalUrl, function (wxConfig) {
                     log(wxConfig);
-                    setSDKSignToCache(wxConfig);
+                    setSDKSignToCache(wxConfig, originalUrl);
                     callback && callback(wxConfig);
                 })
             }
@@ -70,8 +71,8 @@ var getSDKSignFromCache = function (callback) {
     });
 }
 //将签名数据写入缓存文件
-var setSDKSignToCache = function (data, callback) {
-    fs.writeFile('access_token.txt', JSON.stringify(data), function (err) {
+var setSDKSignToCache = function (data, originalUrl, callback) {
+    fs.writeFile('access_token.txt', JSON.stringify({data: data, originalUrl: originalUrl}), function (err) {
         callback && callback(err);
     });
 }
