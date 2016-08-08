@@ -50,6 +50,9 @@ router.get('/setSignIn', function (req, res, next) {
     log(openid);
 
     getUserInfoFormDB(openid, function (docs) {
+
+        log('getUserInfoFormDB  成功')
+
         var data = docs[0];
         var recodeInfo = data.recodeInfo;
         var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1 || 0;
@@ -66,6 +69,7 @@ router.get('/setSignIn', function (req, res, next) {
             } else {
                 if (isYesterday(lastRecodeTime)) {
                     //上次打卡时间为昨天;那么就可以统计连续打卡
+
                     lastRecodeTime = new Date().getTime();
                     totalRecodeCounts++;
                     currentSerialRecodeCounts++;
@@ -115,7 +119,6 @@ router.get('/setSignIn', function (req, res, next) {
 });
 
 
-
 function isToday(date) {
     var now = new Date();
 
@@ -127,6 +130,8 @@ function isToday(date) {
 }
 
 function isYesterday(date) {
+
+    log('check yesterday');
 
     if (now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDate() == date.getDate() + 1) {
         return true;
