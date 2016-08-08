@@ -70,7 +70,7 @@ var getSDKSignFromCache = function (callback) {
         } else {
             log(txt);
             if (txt) {
-                txt = txt.split(',');
+                txt = txt.split('***');
             }
 
             callback(null, txt);
@@ -85,7 +85,7 @@ var setSDKSignToCache = function (data, wxConfig, originalUrl, callback) {
 
     writeArry.push(JSON.stringify({data: wxConfig, originalUrl: originalUrl}));
 
-    fs.writeFile('access_token.txt', writeArry.toString(), function (err) {
+    fs.writeFile('access_token.txt', writeArry.toString('***'), function (err) {
         callback && callback(err);
     });
 }
