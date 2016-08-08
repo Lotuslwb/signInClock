@@ -25,18 +25,10 @@ var getSDKSign = function (originalUrl, callback) {
     //先从缓存中获取
     getSDKSignFromCache(function (err, data) {
         //缓存报错 或者缓存中没有数据
-        var inCache = false;
-
-        _.isArray(data) && _.each(data, function (n) {
-            if (n['originalUrl'] == originalUrl) {
-                inCache = true;
-            }
-        });
-
-        if (err || data.length == 0 || data == undefined || !inCache) {
+        if (err || data.length == 0 || data == undefined) {
             log('---缓存报错 或者缓存中没有数据---', err);
             getSDKSignFormWX(originalUrl, function (wxConfig) {
-                setSDKSignToCache(data, wxConfig, originalUrl);
+                setSDKSignToCache(wxConfig, originalUrl);
                 callback && callback(wxConfig);
             })
         } else {
@@ -54,7 +46,7 @@ var getSDKSign = function (originalUrl, callback) {
                 log('---已经超时,重新获取---');
                 getSDKSignFormWX(originalUrl, function (wxConfig) {
                     log(wxConfig);
-                    setSDKSignToCache(data, wxConfig, originalUrl);
+                    setSDKSignToCache(wxConfig, originalUrl);
                     callback && callback(wxConfig);
                 })
             }
@@ -69,8 +61,9 @@ var getSDKSignFromCache = function (callback) {
             callback && callback(err);
         } else {
             log(txt);
+
             if (txt) {
-                txt = txt.split('***');
+                txt = JSON.parse(txt);
             }
 
             callback(null, txt);
@@ -79,13 +72,10 @@ var getSDKSignFromCache = function (callback) {
     });
 }
 //将签名数据写入缓存文件
-var setSDKSignToCache = function (data, wxConfig, originalUrl, callback) {
+var setSDKSignToCache = function (data, originalUrl, callback) {
 
-    var writeArry = _.isArray(data) ? data : new Array();
 
-    writeArry.push(JSON.stringify({data: wxConfig, originalUrl: originalUrl}));
-
-    fs.writeFile('access_token.txt', writeArry.toString('***'), function (err) {
+    fs.writeFile('access_token.txt', JSON.stringify(data), function (err) {
         callback && callback(err);
     });
 }
