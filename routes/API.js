@@ -29,7 +29,6 @@ router.get('/', function (req, res, next) {
 router.get('/getUseInfo', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
-    log(openid);
     getUserInfoFormDB(openid, function (docs) {
         //成功
         res.send(sendData('200', docs, ''));
@@ -45,13 +44,10 @@ router.get('/getUseInfo', function (req, res, next) {
 //签到
 router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
-
-    log('签到');
-    log(openid);
+    
 
     getUserInfoFormDB(openid, function (docs) {
 
-        log('getUserInfoFormDB  成功')
 
         var data = docs[0];
         var recodeInfo = data.recodeInfo;
@@ -131,9 +127,9 @@ function isToday(date) {
 
 function isYesterday(date) {
 
-    log('check yesterday');
+    var now = new Date();
 
-    if (now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDate() == date.getDate() + 1) {
+    if (now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDate() == (date.getDate() + 1)) {
         return true;
     } else {
         return false;
@@ -147,8 +143,7 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
         openid: openid.split('"')[1]
     };
 
-    log('findJSON');
-    log(findJSON);
+
 
     UserDB.find(findJSON).then(function (docs) {
         if (docs.length > 0) {
@@ -165,7 +160,6 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
 function updateUserInfoToDB(_id, data, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
 
-    log('updateUserInfoToDB')
     UserDB.update(_id, data, function (err, docs) {
         if (err) {
             callback_f && callback_f(docs);
