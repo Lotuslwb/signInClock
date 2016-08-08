@@ -33,7 +33,6 @@ var getSDKSign = function (originalUrl, callback) {
             })
         } else {
             //缓存中有数据
-            var data = data['originalUrl'];
             var genTime = data.timestamp;
             var nowTime = new Date().getTime() / 1000; //转换成秒
             var expiresTime = data.expiresTime;
@@ -74,6 +73,11 @@ var getSDKSignFromCache = function (callback) {
 //将签名数据写入缓存文件
 var setSDKSignToCache = function (data, originalUrl, callback) {
 
+    var urlArry = originalUrl.split('/');
+    var pageNmae = urlArry[urlArry.length - 1];
+
+    log('pageNmae');
+    log(pageNmae);
 
     fs.writeFile('access_token.txt', JSON.stringify(data), function (err) {
         callback && callback(err);
