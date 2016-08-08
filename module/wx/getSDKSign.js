@@ -83,7 +83,7 @@ var setSDKSignToCache = function (data, wxConfig, originalUrl, callback) {
 
     var writeArry = _.isArray(data) ? data : new Array();
 
-    writeArry.push({data: wxConfig, originalUrl: originalUrl});
+    writeArry.push(JSON.stringify({data: wxConfig, originalUrl: originalUrl}));
 
     fs.writeFile('access_token.txt', writeArry.toString(), function (err) {
         callback && callback(err);
