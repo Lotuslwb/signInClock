@@ -115,19 +115,6 @@ router.get('/setSignIn', function (req, res, next) {
 
 });
 
-//获取 微信js-sdk
-router.get('/getWxSDK', function (req, res, next) {
-
-    var getSDKSign = require('../module/wx/getSDKSign');
-
-    //当前URL
-    var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
-
-    getSDKSign(originalUrl, function (wxConfig) {
-        res.send(sendData('200', {'wxConfig': wxConfig}, ''));
-    });
-
-});
 
 
 function isToday(date) {
