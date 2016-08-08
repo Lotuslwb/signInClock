@@ -60,7 +60,9 @@ var getSDKSignFromCache = function (callback) {
             callback && callback(err);
         } else {
             log(txt);
-            callback(null, JSON.parse(txt));
+            if (txt) {
+                callback(null, JSON.parse(txt));
+            }
         }
 
     });
