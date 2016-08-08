@@ -10,19 +10,7 @@ var http = require('https');
 
 var log = require('../module/tools/log');
 
-//微信js sdk 调用
-router.get('/jsSDK', function (req, res, next) {
 
-    var getSDKSign = require('../module/wx/getSDKSign');
-
-    //当前URL
-    var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
-
-    getSDKSign(originalUrl, function (wxConfig) {
-        res.render('wxAPI', {title: '测试微信SDK', wxConfig: wxConfig});
-    });
-
-})
 
 
 //主要负责OAuth认证
