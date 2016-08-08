@@ -5,6 +5,7 @@
  * */
 
 var fs = require('fs');
+var _ = require('lodash');
 
 var log = require('../tools/log');
 var load = require('../tools/load');
@@ -24,14 +25,15 @@ var getSDKSign = function (originalUrl, callback) {
     //先从缓存中获取
     getSDKSignFromCache(function (err, data) {
         //缓存报错 或者缓存中没有数据
-
         var inCache = false;
 
-        $.each(data, function (i, t) {
-            log(t);
+        _.isArray(data) && _.each(data, function (n) {
+            if (n['originalUrl'] == originalUrl) {
+                inCache = true;
+            }
         });
 
-        if (err || data.length == 0 || data == undefined || data['originalUrl'] != originalUrl) {
+        if (err || data.length == 0 || data == undefined || !inCache) {
             log('---缓存报错 或者缓存中没有数据---', err);
             getSDKSignFormWX(originalUrl, function (wxConfig) {
                 setSDKSignToCache(data, wxConfig, originalUrl);
@@ -79,7 +81,7 @@ var getSDKSignFromCache = function (callback) {
 //将签名数据写入缓存文件
 var setSDKSignToCache = function (data, wxConfig, originalUrl, callback) {
 
-    var writeArry = Array.isArray(data) ? data : new Array();
+    var writeArry = _.isArray(data) ? data : new Array();
 
     writeArry.push({data: wxConfig, originalUrl: originalUrl});
 
