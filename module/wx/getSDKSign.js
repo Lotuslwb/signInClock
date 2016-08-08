@@ -23,7 +23,7 @@ var sign = require('../wx/sign');
 //输出 -- 获取微信SDK
 var getSDKSign = function (originalUrl, callback) {
     //先从缓存中获取
-    getSDKSignFromCache(function (err, data) {
+    getSDKSignFromCache(originalUrl, function (err, data) {
         //缓存报错 或者缓存中没有数据
         if (err || data.length == 0 || data == undefined) {
             log('---缓存报错 或者缓存中没有数据---', err);
@@ -54,8 +54,13 @@ var getSDKSign = function (originalUrl, callback) {
 }
 
 //从缓存文件读取签名数据
-var getSDKSignFromCache = function (callback) {
-    fs.readFile('access_token.txt', 'utf8', function (err, txt) {
+var getSDKSignFromCache = function (originalUrl, callback) {
+
+    var urlArry = originalUrl.split('/');
+    var pageNmae = urlArry[urlArry.length - 1];
+
+
+    fs.readFile('access_token_' + pageNmae + '.txt', 'utf8', function (err, txt) {
         if (err) {
             callback && callback(err);
         } else {
@@ -76,10 +81,8 @@ var setSDKSignToCache = function (data, originalUrl, callback) {
     var urlArry = originalUrl.split('/');
     var pageNmae = urlArry[urlArry.length - 1];
 
-    log('pageNmae');
-    log(pageNmae);
 
-    fs.writeFile('access_token.txt', JSON.stringify(data), function (err) {
+    fs.writeFile('access_token_' + pageNmae + '.txt', JSON.stringify(data), function (err) {
         callback && callback(err);
     });
 }
