@@ -126,7 +126,7 @@ router.get('/getWxSDK', function (req, res, next) {
         res.send(sendData('200', {'wxConfig': wxConfig}, ''));
     });
 
-})
+});
 
 
 function isToday(date) {
@@ -152,7 +152,7 @@ function isYesterday(date) {
 function getUserInfoFormDB(openid, callback_s, callback_f) {
     var UserDB = require('../module/DB/UserDB');
     var findJSON = {
-        openid: openid.split('"')[1]
+        openid: openid
     };
 
     UserDB.find(findJSON).then(function (docs) {
