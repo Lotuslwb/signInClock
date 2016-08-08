@@ -18,6 +18,8 @@ router.get('/jsSDK', function (req, res, next) {
     //当前URL
     var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
 
+    log(originalUrl);
+
     getSDKSign(originalUrl, function (wxConfig) {
         res.render('wxAPI', {title: '测试微信SDK', wxConfig: wxConfig});
     });
