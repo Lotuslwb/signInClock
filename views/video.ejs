@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<%- include("header.ejs",{"title":title}) %>
+
+
+<div class="weui_btn_area"><a class="weui_btn weui_btn_primary" href="javascript:startRecode();">开始录音</a></div>
+<div class="weui_btn_area"><a class="weui_btn weui_btn_primary" href="javascript:stopRecord();">停止录音</a></div>
+<div class="weui_btn_area"><a class="weui_btn weui_btn_primary" href="javascript:playVoice();">播放录音</a></div>
+
+
+<script src="/javascripts/jquery.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/javascripts/api.js"></script>
+
+<script>
+
+    window.oo.initWX(function () {
+        window.oo.initWXSahre();
+    });
+
+
+    var localId;
+
+
+    function startRecode() {
+        wx.startRecord();
+    }
+
+    function stopRecord() {
+        wx.stopRecord({
+            success: function (res) {
+                localId = res.localId;
+                console.log('localId', localId)
+            }
+        });
+    }
+
+    function playVoice() {
+        wx.playVoice({
+            localId: localId
+        });
+    }
+</script>
+</body>
+</html>

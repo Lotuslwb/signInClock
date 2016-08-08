@@ -24,6 +24,10 @@ router.get('/', function (req, res, next) {
 
 router.get('/', function (req, res, next) {
     res.render('index', {title: '打卡呆毛'});
-})
+});
+
+router.get('/video', function (req, res, next) {
+    res.render('video', {title: '微信JS-SDK 测试'});
+});
 
 module.exports = router;
