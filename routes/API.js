@@ -124,6 +124,8 @@ router.get('/getWxSDK', function (req, res, next) {
     //当前URL
     var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
 
+    log(originalUrl);
+
     getSDKSign(originalUrl, function (wxConfig) {
         res.send(sendData('200', {'wxConfig': wxConfig}, ''));
     });
