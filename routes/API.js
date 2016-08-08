@@ -119,7 +119,7 @@ router.get('/setSignIn', function (req, res, next) {
 //获取 微信js-sdk
 router.get('/getWxSDK', function (req, res, next) {
 
-    var URL = req.body.originalUrl;
+    var URL = req.query.originalUrl;
 
     var getSDKSign = require('../module/wx/getSDKSign');
 
