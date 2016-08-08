@@ -50,7 +50,7 @@ function initWX(callback) {
     $.ajax({
         type: 'GET',
         url: '/api/getWxSDK',
-        data: {},
+        data: {'originalUrl': window.location.href},
         success: function (data) {
             var wxConfig = data.data.wxConfig;
 
