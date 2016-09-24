@@ -100,6 +100,7 @@ var getSDKSignFormWX = function (originalUrl, callback) {
             var wxConfig = sign(chunk.ticket, originalUrl);
             wxConfig.appId = APPID;
             wxConfig.expiresTime = expiresTime;
+            wxConfig.access_token = TOKEN;
             callback && callback(wxConfig);
         })
 

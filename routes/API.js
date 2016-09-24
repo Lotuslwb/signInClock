@@ -30,6 +30,7 @@ router.get('/getUseInfo', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
 
+
     getUserInfoFormDB(openid, function (docs) {
         //成功
         res.send(sendData('200', docs, ''));
@@ -123,11 +124,26 @@ router.get('/getWxSDK', function (req, res, next) {
 
     var getSDKSign = require('../module/wx/getSDKSign');
 
-    
+
     log(originalUrl);
 
     getSDKSign(originalUrl, function (wxConfig) {
+        wxConfig['access_token'] = '';
         res.send(sendData('200', {'wxConfig': wxConfig}, ''));
+    });
+
+})
+
+//从微信服务器下载音频文件到本地服务器
+router.get('/getVoiceFormWX', function (req, res, next) {
+    var media_id = req.query.media_id;
+    var originalUrl = req.query.originalUrl;
+    var getSDKSign = require('../module/wx/getSDKSign');
+
+    getSDKSign(originalUrl, function (wxConfig) {
+        var access_token = wxConfig['access_token'];
+        var url = 'http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + media_id;
+
     });
 
 })
@@ -156,6 +172,10 @@ function isYesterday(date) {
 
 
 function getUserInfoFormDB(openid, callback_s, callback_f) {
+
+    if(!openid){
+        callback_f && callback_f('openid 不能为空');
+    }
     var UserDB = require('../module/DB/UserDB');
     var findJSON = {
         openid: openid.split('"')[1]
