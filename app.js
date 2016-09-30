@@ -15,6 +15,14 @@ var API = require('./routes/API');
 //h5 页面
 var page = require('./routes/page');
 
+//老师投票项目
+var teacher = require('./routes/teacher/index');
+var teacherAPI=require('./routes/teacher/api');
+
+//英孚项目管理系统
+var admin = require('./routes/admin/index');
+var adminAPI=require('./routes/admin/api');
+
 var app = express();
 
 // view engine setup
@@ -39,6 +47,12 @@ app.use('/users', users);
 app.use('/wx', wxAPI);
 app.use('/api', API);
 app.use('/page', page);
+
+app.use('/teacher', teacher);
+app.use('/teacher/api', teacherAPI);
+
+app.use('/admin', admin);
+app.use('/admin/api', adminAPI);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

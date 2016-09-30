@@ -1,0 +1,164 @@
+<%- include("../header.ejs",{"title":'登录注册页面'}) %>
+
+
+<div class="container" style="display: none;" id="register">
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">中文名</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="realName" type="text" placeholder="中文名">
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">英文名</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="englishName" type="text" placeholder="英文名">
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">手机号</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="cellPhone" type="number" pattern="[0-9]*" placeholder="请输入手机号">
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">密码</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="passWord" type="password" pattern="[0-9]*" placeholder="请输入密码">
+            </div>
+        </div>
+        <div class="weui-cell weui-cell_select">
+            <div class="weui-cell__bd">
+                <select class="weui-select" name="city">
+                    <option selected="" value="">城市</option>
+                    <option value="1">上海</option>
+                    <option value="2">其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell weui-cell_select">
+            <div class="weui-cell__bd">
+                <select class="weui-select" name="school">
+                    <option selected="" value="">学校</option>
+                    <option value="1">上海女子小学</option>
+                    <option value="2">上海男子小学</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary J-register" href="javascript:">注册</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="display: none;" id="login">
+    <div class="weui-cells weui-cells_form">
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">手机号</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="cellPhone_login" type="number" pattern="[0-9]*" placeholder="请输入手机号">
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">密码</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="passWord_login" type="password" pattern="[0-9]*" placeholder="请输入密码">
+            </div>
+        </div>
+
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary J-login" href="javascript:">登录</a>
+        </div>
+    </div>
+</div>
+
+<div class="weui-msg__opr-area container">
+    <p class="weui-btn-area">
+        <a href="javascript:$('.container').hide(),$('#register').show();" class="weui-btn weui-btn_primary">注册</a>
+        <a href="javascript:$('.container').hide(),$('#login').show();" class="weui-btn weui-btn_default">登录</a>
+    </p>
+</div>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/api.js"></script>
+<script>
+    $('.J-register').click(function () {
+        if ($(this).hasClass('weui_btn_disabled')) {
+            return false;
+        }
+
+        var data = {
+            'realName': $("[name='realName']").val(),
+            'englishName': $("[name='englishName']").val(),
+            'cellPhone': $("[name='cellPhone']").val(),
+            'passWord': $("[name='passWord']").val(),
+            'cityNo': $("[name='city']").val(),
+            'cityName': $("[name='city']").find("option:selected").text(),
+            'schoolNo': $("[name='school']").val(),
+            'schoolName': $("[name='school']").find("option:selected").text(),
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: 'teacher/api/register',
+            data: data,
+            success: function (data) {
+                console.log(data);
+
+                if (data.status == '200') {
+                    alert('注册成功');
+                    window.location.reload();
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    });
+
+
+    $('.J-login').click(function () {
+        if ($(this).hasClass('weui_btn_disabled')) {
+            return false;
+        }
+
+        var data = {
+            'cellPhone': $("[name='cellPhone_login']").val(),
+            'passWord': $("[name='passWord_login']").val()
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: 'teacher/api/login',
+            data: data,
+            success: function (data) {
+                console.log(data);
+                if (data.status == '200') {
+                    alert('登录成功');
+                    window.location.reload();
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<%- include("../header.ejs",{"title":'登录页面'}) %>
+<link rel='stylesheet' href='/stylesheets/admin/login.css'/>
+<style>
+    body{height:100%;background:#16a085;overflow:hidden;}
+    canvas{z-index:-1;position:absolute;}
+</style>
+
+
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/admin/verificationNumbers.js"></script>
+<script src="/javascripts/admin/Particleground.js"></script>
+<script>
+    $(document).ready(function() {
+        //粒子背景特效
+        $('body').particleground({
+            dotColor: '#5cbdaa',
+            lineColor: '#5cbdaa'
+        });
+    });
+</script>
+
+<dl class="admin_login">
+    <dt>
+        <strong>站点后台管理系统</strong>
+        <em>Management System</em>
+    </dt>
+    <dd class="user_icon">
+        <input type="text" placeholder="账号" name="username" class="login_txtbx"/>
+    </dd>
+    <dd class="pwd_icon">
+        <input type="password" placeholder="密码" name="password" class="login_txtbx"/>
+    </dd>
+    <dd>
+        <input type="button" value="立即登陆" class="submit_btn J-login"/>
+    </dd>
+    <dd>
+        <p>© 2015-2017 lotuslwb 版权所有</p>
+    </dd>
+</dl>
+
+<script src="/javascripts/api.js"></script>
+<script>
+
+    $('.J-login').click(function () {
+        if ($(this).hasClass('weui_btn_disabled')) {
+            return false;
+        }
+
+        var data = {
+            'username': $("[name='username']").val(),
+            'password': $("[name='password']").val()
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: 'admin/api/login',
+            data: data,
+            success: function (data) {
+                console.log(data);
+                if (data.status == '200') {
+                    alert('登录成功');
+                    window.location.reload();
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    });
+</script>
+</body>
+</html>

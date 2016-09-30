@@ -100,5 +100,4 @@ obj.prototype.remove = function (json, callback) {
     return promise;
 }
 
-
 module.exports = obj;

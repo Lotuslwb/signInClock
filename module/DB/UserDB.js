@@ -36,6 +36,7 @@ var obj = require("../DB/connectDB");
 
 var userDB = new obj(option);
 
+
 // var json = {
 //     personInfo: {
 //         openid: '123openidtest',
