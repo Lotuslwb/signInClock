@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var log = require('../../module/tools/log');
-var teacherDB = require('../../module/DB/teacherDB');
+var teacherDB = require('../../module/DB/TeacherDB');
 
 
 /*老师上传参数资料*/
