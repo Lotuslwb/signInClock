@@ -38,7 +38,6 @@ router.post('/voteInfo', function (req, res, next) {
 router.post('/uploading', function (req, res, next) {
 
     var multiparty = require('multiparty');
-    var util = require('util');
     var fs = require('fs');
     var tel = req.signedCookies['session'].split('"')[1];
 
