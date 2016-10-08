@@ -1,0 +1,124 @@
+<%- include("header.ejs",{"title":username,"routes":routes}) %>
+
+<div class="main">
+
+    <div id="article" class="check-account">
+        <form id="J-search-form" class="pt40">
+            <div class="search-cell">
+
+                <span class="search-cell-title m0-left">中文名：</span>
+                <div class="inline">
+                    <input type="text" name="realName">
+                </div>
+
+                <span class="search-cell-title m0-left">状态：</span>
+                <select class="search-common-cell" id="select_card" name="status">
+                    <option value="">全部</option>
+                    <option value="0">未提交</option>
+                    <option value="1">待审核</option>
+                    <option value="2">审核通过</option>
+                    <option value="9">黑名单</option>
+                </select>
+
+            </div>
+
+
+            <div class="row">
+                <div class="form-actions text-center">
+                    <a class="button button-primary J-query">查询</a>
+                    <a class="button m0-left J-download" href="javascript:;">下载</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div id="article-content">
+        <div id="record-list">
+            <div id="record-list-title"></div>
+            <table class="table" id="record-table">
+
+            </table>
+
+        </div>
+    </div>
+
+
+    <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点-->
+    <div id="adminDialog" class="bui-hidden">
+        <form id="dialog-form" class="form-horizontal">
+            <div class="row">
+                <div class="control-group span10">
+                    <label class="control-label">角色：</label>
+                    <div class="controls">
+                        <select data-rules="{required:true}" name="roleId" class="input-normal J-role-select">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group span10">
+                    <label class="control-label">用户昵称：</label>
+                    <div class="controls">
+                        <input type="text" name="userName" class="input-normal control-text"
+                               data-rules="{required : true}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span18">
+                    <label class="control-label">登录名：</label>
+                    <div class="controls">
+                        <input type="text" name="userId" class="input-normal control-text"
+                               data-rules="{required : true,minlength:2,maxlength:32}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pw-inputRow">
+                <div class="control-group span10">
+                    <label class="control-label">登录密码：</label>
+                    <div class="controls">
+                        <input type="password" name="passWord" id="pw" class="input-normal control-text J-passWord"
+                               data-rules="{required : true}"/>
+                    </div>
+                </div>
+                <div class="control-group span10">
+                    <label class="control-label">密码确认：</label>
+                    <div class="controls">
+                        <input type="password" name="passwordAgain" id="passwordAgain"
+                               class="input-normal control-text J-passwordAgain"
+                               data-rules="{equalTo:'#pw'}"
+                               data-messages="{equalTo:'密码不匹配'}"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="control-group span10">
+                    <label class="control-label">进件城市：</label>
+                    <div class="controls J-CardPart-select"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span10">
+                    <label class="control-label">所属商户：</label>
+                    <div class="controls J-merchant-select"></div>
+                    <input type="hidden" id="merchantName_hide" name="merchantNo">
+                </div>
+                <div class="control-group span10">
+                    <label class="control-label">所属门店：</label>
+                    <div class="controls J-store-select"></div>
+                    <input type="hidden" id="storeName_hide" name="storeNo">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+<script src="http://g.alicdn.com/bui/bui/1.1.21/config.js"></script>
+
+<script type="text/javascript" src="/javascripts/admin/teacherVote.js"></script>
+
+<%- include("footer.ejs") %>

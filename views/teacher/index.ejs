@@ -1,8 +1,7 @@
 <%- include("../header.ejs",{"title":'老师上传页面'}) %>
 
 
-<div class="container" style="display: none;" id="container">
-
+<div class="container"  id="container">
 
     <div class="weui-cells weui-cells_form">
         <div class="weui-uploader__input-box">
@@ -40,7 +39,7 @@
 
 </div>
 
-<div class="page msg_success js_show container" style="display: none;" id="done">
+<div class="page msg_success js_show container" id="done">
     <div class="weui-msg">
         <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
         <div class="weui-msg__text-area">
@@ -58,6 +57,10 @@
     </div>
 </div>
 
+<div class="container" id="show">
+    展示老师信息
+</div>
+
 
 <script src="/javascripts/jquery.js"></script>
 <script src="/javascripts/api.js"></script>
@@ -72,6 +75,8 @@
         $('#container').show().siblings('.container').hide();
     }else if(status==1){
         $('#done').show().siblings('.container').hide();
+    }else if(status==2){
+        $('#show').show().siblings('.container').hide();
     }
     $('#groupPicUploader')[0].addEventListener('change', function () {
         uploader('groupPic', this);

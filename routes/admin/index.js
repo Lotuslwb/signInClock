@@ -5,11 +5,14 @@ var app = express();
 var log = require('../../module/tools/log');
 var teacherDB = require('../../module/DB/TeacherDB');
 
+var config = require('../admin/tsconfig.json');
+
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    var loginTel = req.signedCookies['session'];
-    if (!loginTel) {
+router.get('/*', function (req, res, next) {
+    var username = req.signedCookies['session'];
+    if (!username) {
+        res.cookie('session', '');
         res.render('admin/login', {title: 'Express'});
     } else {
         next();
@@ -19,13 +22,19 @@ router.get('/', function (req, res, next) {
 router.get('/', function (req, res, next) {
     var username = req.signedCookies['session'].split('"')[1];
 
-    if(username=='837531387@qq.com'){
-        res.render('admin/index');
-    }else{
+    if (username == config.username) {
+        res.render('admin/index', {username: username, routes: ''});
+    } else {
         res.cookie('session', '');
         res.render('admin/login', {title: 'Express'});
     }
 
+});
+
+/*金牌班主任*/
+router.get('/teacherVote', function (req, res, next) {
+    var username = req.signedCookies['session'].split('"')[1];
+    res.render('admin/teacherVote', {username: username, routes: 'teacherVote'});
 });
 
 

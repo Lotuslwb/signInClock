@@ -9,8 +9,10 @@ var teacherDB = require('../../module/DB/TeacherDB');
 /* GET home page. */
 router.get('/', function (req, res, next) {
     var loginTel = req.signedCookies['session'];
+
     if (!loginTel) {
         res.render('teacher/login', {title: 'Express'});
+
     } else {
         next();
     }
@@ -18,7 +20,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/', function (req, res, next) {
     var tel = req.signedCookies['session'].split('"')[1];
-
+    log(tel);
     getUserInfoFormDB(tel, function (docs) {
         var status = docs[0].VoteInfo.status;
         res.render('teacher/index', {status: status});

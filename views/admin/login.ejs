@@ -21,7 +21,7 @@
 
 <dl class="admin_login">
     <dt>
-        <strong>站点后台管理系统</strong>
+        <strong>英孚后台管理系统</strong>
         <em>Management System</em>
     </dt>
     <dd class="user_icon">
@@ -58,7 +58,6 @@
             success: function (data) {
                 console.log(data);
                 if (data.status == '200') {
-                    alert('登录成功');
                     window.location.reload();
                 } else {
                     alert(data.errmsg);
