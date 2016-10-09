@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
     var loginTel = req.signedCookies['session'];
 
     if (!loginTel) {
-        res.render('teacher/login', {title: 'Express'});
+        res.redirect('teacher/login');
 
     } else {
         next();
@@ -27,11 +27,14 @@ router.get('/', function (req, res, next) {
     }, function () {
         //失败
         res.cookie('session', '');
-        res.render('teacher/login', {title: 'Express'});
+        res.redirect('teacher/login');
     })
-
 });
 
+
+router.get('/login', function (req, res, next) {
+    res.render('teacher/login');
+})
 
 function getUserInfoFormDB(tel, callback_s, callback_f) {
 

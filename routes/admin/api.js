@@ -24,6 +24,7 @@ router.post('/login', function (req, res, next) {
 router.post('/teacher/query', function (req, res, next) {
     var status = req.body.status;
     var realName = req.body.realName;
+    var cellPhone = req.body.cellPhone;
     var queryJSON = {};
 
     if (status) {
@@ -32,6 +33,10 @@ router.post('/teacher/query', function (req, res, next) {
 
     if (realName) {
         queryJSON["teacherInfo.realName"] = realName;
+    }
+
+    if (cellPhone) {
+        queryJSON["teacherInfo.cellPhone"] = cellPhone;
     }
 
     queryUserInfoFormDB(queryJSON, function (docs) {

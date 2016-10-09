@@ -58,7 +58,7 @@
             success: function (data) {
                 console.log(data);
                 if (data.status == '200') {
-                    window.location.reload();
+                    window.location.href='/admin/teacherVote';
                 } else {
                     alert(data.errmsg);
                 }

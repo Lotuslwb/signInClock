@@ -1,103 +1,93 @@
 <%- include("../header.ejs",{"title":'登录注册页面'}) %>
 
 
-<div class="container" style="display: none;" id="register">
-    <div class="weui-cells weui-cells_form">
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">中文名</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" name="realName" type="text" placeholder="中文名">
-            </div>
-        </div>
+<div class="page page-register" id="register">
 
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">英文名</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" name="englishName" type="text" placeholder="英文名">
-            </div>
-        </div>
+    <img src="/images/teacher/register-txt.png" class="register-txt">
+    <input type="text" class="input" name="realName" placeholder="中文名"/>
+    <input type="text" class="input" name="englishName" placeholder="英文名"/>
 
-        <div class="weui-cell">
-            <div class="weui-cell__hd">
-                <label class="weui-label">手机号</label>
-            </div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" name="cellPhone" type="number" pattern="[0-9]*" placeholder="请输入手机号">
-            </div>
-        </div>
+    <select name="" class="input select">
+        <option value="">城市</option>
+    </select>
 
-        <div class="weui-cell">
-            <div class="weui-cell__hd">
-                <label class="weui-label">密码</label>
-            </div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" name="passWord" type="password" pattern="[0-9]*" placeholder="请输入密码">
-            </div>
-        </div>
-        <div class="weui-cell weui-cell_select">
-            <div class="weui-cell__bd">
-                <select class="weui-select" name="city">
-                    <option selected="" value="">城市</option>
-                    <option value="1">上海</option>
-                    <option value="2">其他</option>
-                </select>
-            </div>
-        </div>
-        <div class="weui-cell weui-cell_select">
-            <div class="weui-cell__bd">
-                <select class="weui-select" name="school">
-                    <option selected="" value="">学校</option>
-                    <option value="1">上海女子小学</option>
-                    <option value="2">上海男子小学</option>
-                </select>
-            </div>
-        </div>
+    <select name="" class="input select">
+        <option value="">学校</option>
+    </select>
 
-        <div class="weui-btn-area">
-            <a class="weui-btn weui-btn_primary J-register" href="javascript:">注册</a>
-        </div>
-    </div>
+    <input type="tel" class="input" name="cellPhone" placeholder="手机号"/>
+    <input type="text" class="input" name="passWord" placeholder="密码"/>
+    <input type="text" class="input" name="passWordAgain" placeholder="确认密码"/>
+
+    <a class="btn J-register" href="javascript:;">下一步</a>
+
 </div>
 
 
-<div class="container" style="display: none;" id="login">
-    <div class="weui-cells weui-cells_form">
+<div class="page page-login" id="login">
+    <img src="/images/teacher/login-txt.png" class="login-txt">
 
-        <div class="weui-cell">
-            <div class="weui-cell__hd">
-                <label class="weui-label">手机号</label>
-            </div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" name="cellPhone_login" type="number" pattern="[0-9]*" placeholder="请输入手机号">
-            </div>
-        </div>
+    <input type="tel" class="input" name="cellPhone_login" placeholder="手机号"/>
+    <input type="text" class="input" name="passWord_login" placeholder="密码"/>
 
-        <div class="weui-cell">
-            <div class="weui-cell__hd">
-                <label class="weui-label">密码</label>
-            </div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" name="passWord_login" type="password" pattern="[0-9]*" placeholder="请输入密码">
-            </div>
-        </div>
+    <a class="btn J-login" href="javascript:">登录</a>
+</div>
 
-        <div class="weui-btn-area">
-            <a class="weui-btn weui-btn_primary J-login" href="javascript:">登录</a>
-        </div>
+<div class="page page-index">
+
+    <img src="/images/teacher/index-img.png" class="index-img">
+    <img src="/images/teacher/index-img2.png" class="index-img2">
+
+    <img src="/images/teacher/index-rule.png" class="index-rule J-rule">
+
+    <div class="index-btn-list">
+        <a href="javascript:;" class="crile-btn index-btn J-gotoLogin">登录</a>
+
+        <a href="javascript:;" class="crile-btn index-btn J-gotoRegister">注册</a>
     </div>
 </div>
 
-<div class="weui-msg__opr-area container" style="display: block;">
-    <p class="weui-btn-area">
-        <a href="javascript:$('.container').hide(),$('#register').show();" class="weui-btn weui-btn_primary">注册</a>
-        <a href="javascript:$('.container').hide(),$('#login').show();" class="weui-btn weui-btn_default">登录</a>
-    </p>
+<div class="page page-register-done">
+    <img src="/images/teacher/register-done-txt.png" class="done-txt">
+    <a href="/teacher" class="btn">继续填写参赛资料</a>
+</div>
+
+<div class="overlay">
+    <img src="/images/teacher/rule-txt.png" class="rule-txt mid">
+    <img src="/images/teacher/closed.png" class="closed J-closed">
 </div>
 
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="/javascripts/jquery.js"></script>
 <script src="/javascripts/api.js"></script>
 <script>
+
+    route();
+
+
+    $(window).on('hashchange', route);
+
+
+    $('.J-gotoLogin').click(function () {
+        window.location.hash = '#login';
+        $('.page').hide(), $('#login').show();
+
+    });
+
+    $('.J-gotoRegister').click(function () {
+        window.location.hash = '#register';
+        $('.page').hide(), $('#register').show();
+
+    });
+
+    $('.J-rule').click(function () {
+        $('.overlay').show();
+    });
+
+    $('.J-closed').click(function () {
+        $(this).parent().hide();
+    })
+
     $('.J-register').click(function () {
         if ($(this).hasClass('weui_btn_disabled')) {
             return false;
@@ -116,14 +106,13 @@
 
         $.ajax({
             type: 'POST',
-            url: 'teacher/api/register',
+            url: '/teacher/api/register',
             data: data,
             success: function (data) {
                 console.log(data);
-
+                window.location.hash = '#done';
                 if (data.status == '200') {
-                    alert('注册成功');
-                    window.location.reload();
+                    $('.page').hide(), $('.page-register-done').show();
                 } else {
                     alert(data.errmsg);
                 }
@@ -131,7 +120,6 @@
             dataType: 'json'
         });
     });
-
 
     $('.J-login').click(function () {
         if ($(this).hasClass('weui_btn_disabled')) {
@@ -145,7 +133,7 @@
 
         $.ajax({
             type: 'POST',
-            url: 'teacher/api/login',
+            url: '/teacher/api/login',
             data: data,
             success: function (data) {
                 console.log(data);
@@ -159,6 +147,20 @@
             dataType: 'json'
         });
     });
+
+
+    function route() {
+        var hash = window.location.hash;
+        if (hash == '') {
+            $('.page').hide(), $('.page-index').show();
+        } else if (hash == '#register') {
+            $('.page').hide(), $('#register').show();
+        } else if (hash == '#login') {
+            $('.page').hide(), $('#login').show();
+        } else if (hash == '#done') {
+            $('.page').hide(), $('.page-register-done').show();
+        }
+    }
 </script>
 </body>
 </html>

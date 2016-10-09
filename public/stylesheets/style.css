@@ -1,10 +1,315 @@
-body {
-    padding: 0;
+body,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+form,
+fieldset,
+legend,
+input,
+select,
+textarea,
+button,
+th,
+td,
+menu,
+article,
+pre {
     margin: 0;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 0;
 }
 
-.container{
+pre {
+    white-space: normal;
+}
+
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+nav,
+section,
+select,
+time {
+    display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select,
+button,
+label {
+    font-size: 100%;
+    font-weight: 100;
+    vertical-align: middle;
+}
+
+ul,
+dl,
+ol {
+    list-style: none;
+}
+
+img,
+fieldset,
+input[type="submit"] {
+    border: none;
+}
+
+input {
+    outline: none;
+    background: transparent;
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+textarea {
+    word-wrap: break-word;
+    resize: none;
+}
+
+input,
+textarea,
+select {
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+}
+
+::-webkit-input-placeholder {
+    color: #9cabba;
+}
+
+.input[placeholder] {
+    color: #000;
+}
+
+body {
+    -webkit-user-select: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+    background: #f0f4f7;
+    color: #757575;
+    max-width: 750px;
+    margin: auto;
+    font-size: 30px;
+}
+
+html,
+body {
+    -webkit-text-size-adjust: none;
+    height: 100%;
+    min-width: 300px;
+    width: 100%;
+}
+
+img {
+    display: block;
+}
+
+a,
+button,
+input {
+    -webkit-touch-callout: none;
+    outline: none;
+    color: #757575;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    -webkit-touch-callout: none;
+    color: #757575;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    max-width: 640px;
+    margin: auto;
+    color: #fff;
+}
+
+.mid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.page {
+    height: 100%;
     display: none;
+}
+
+.page-index {
+    background: url("../images/teacher/index-bg.png") #ffef7c no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.page-register-done {
+    background: url("../images/teacher/register-done-bg.png") #ffef7c no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.page-register, .page-login {
+    background: url("../images/teacher/register-bg.png") #ffef7c no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.index-img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+.index-img2 {
+    position: absolute;
+    top: 0;
+    left: 40px;
+}
+
+.index-rule {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    margin-top: -35px;
+    z-index: 3;
+}
+
+.crile-btn {
+    display: block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 50%;
+    background: #ef4d67;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+}
+
+.index-btn-list {
+    position: absolute;
+    bottom: 60px;
+    left: 40px;
+    z-index: 4;
+}
+
+.index-btn {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.register-txt {
+    padding-top: 90px;
+    padding-bottom: 55px;
+    margin: auto;
+}
+
+.login-txt {
+    padding-top: 240px;
+    padding-bottom: 55px;
+    margin: auto;
+}
+
+.input {
+    display: block;
+    width: 330px;
+    height: 45px;
+    line-height: 45px;
+    box-sizing: border-box;
+    padding-left: 15px;
+    background: #ffffff;
+    margin: 0 auto 25px;
+}
+
+a.btn {
+    display: block;
+    width: 330px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background: #ef4d67;
+    color: #FFFFFF;
+    margin: auto;
+}
+
+.select {
+    background: url("../images/teacher/arrow.png") #FFFFFF no-repeat 288px center;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+    display: none;
+}
+
+.pop-rule {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
+
+.overlay .closed {
+    position: absolute;
+    right: 60px;
+    top: 60px;
+}
+
+.done-txt {
+    padding: 340px 0 20px;
+    margin: auto;
 }
 
