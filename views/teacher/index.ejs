@@ -1,82 +1,87 @@
 <%- include("../header.ejs",{"title":'老师上传页面'}) %>
 
 
-<div class="container"  id="container">
+<div class="page page-upload" id="container">
 
-    <div class="weui-cells weui-cells_form">
-        <div class="weui-uploader__input-box">
-            <p class="weui-uploader__title">个照上传</p>
-            <input id="personPicUploader" class="weui-uploader__input" type="file"
-                   accept="image/*" multiple="">
-            <div class="J-file"></div>
+    <div class="upload-box">
+        <div class="personPicBox">
+            <div class="wrap">
+                <input id="personPicUploader" class="uploader-input" type="file" accept="image/*" multiple="">
+                <div class="J-file file"></div>
+                <img src="/images/teacher/upload-icon.png" class="upload-icon">
+            </div>
+
+            <img src="/images/teacher/personPic-txt.png" class="txt">
+        </div>
+
+        <div class="groupPicBox">
+            <div class="wrap">
+                <input id="groupPicUploader" class="uploader-input" type="file" accept="image/*" multiple="">
+                <div class="J-file file"></div>
+                <img src="/images/teacher/upload-icon.png" class="upload-icon">
+            </div>
+            <img src="/images/teacher/groupPic-txt.png" class="txt">
         </div>
     </div>
-
-
-    <div class="weui-cells weui-cells_form">
-        <div class="weui-uploader__input-box">
-            <p class="weui-uploader__title">合照长传</p>
-            <input id="groupPicUploader" class="weui-uploader__input" type="file" accept="image/*" multiple="">
-            <div class="J-file"></div>
-        </div>
-    </div>
-
-
-    <div class="weui-cells__title">文本域</div>
-    <div class="weui-cells weui-cells_form">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <textarea class="weui-textarea" name="voteWords" placeholder="请输入文本" rows="3"></textarea>
-                <div class="weui-textarea-counter"><span>0</span>/150</div>
+    <div class="words-box">
+        <img src="/images/teacher/words-txt.png" class="txt">
+        <div class="textarea-box">
+            <textarea class="textarea J-textarea" placeholder="请输入文本" rows="3"></textarea>
+            <div class="textarea-counter"><span class="current-words">0</span>/<span class="total-words">300</span>
             </div>
         </div>
+
     </div>
-
-    <div class="weui-btn-area">
-        <a class="weui-btn weui-btn_primary J-submit" href="javascript:">确定</a>
-    </div>
-
-
+    <a class="btn upload-btn J-submit" href="javascript:">确定</a>
 </div>
 
-<div class="page msg_success js_show container" id="done">
-    <div class="weui-msg">
-        <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
-        <div class="weui-msg__text-area">
-            <h2 class="weui-msg__title">提交成功</h2>
-            <p class="weui-msg__desc">
-                您的信息已提交，我们将在3个工作日内完成审核，请自行登录查看审核结果。
-            </p>
-        </div>
-
-        <div class="weui-msg__extra-area">
-            <div class="weui-footer">
-                <p class="weui-footer__text">Copyright © 2008-2016 weui.io</p>
-            </div>
-        </div>
+<div class="page page-upload-done">
+    <div class="txt">
+        您的信息已提交,我们将在3个<br/>
+        工作日内完成审核,请自行登录<br/>
+        查看审核结果。
     </div>
+    <a href="javascript:;" class="J-out crile-btn out-btn">返回</a>
 </div>
 
-<div class="container" id="show">
-    展示老师信息
+<div class="page page-wait" id="wait">
+    <img src="/images/teacher/wait-txt.png" class="txt">
+
+    <a href="javascript:;" class="btn out-btn J-out">返回</a>
+</div>
+
+<div class="page page-fail" id="fail">
+    <img src="/images/teacher/fail-txt.png" class="txt">
+
+    <a href="javascript:;" class="btn J-reupload">重新递交资料</a>
+</div>
+
+<div class="page page-pass" id="pass">
+    <img src="/images/teacher/pass-txt.png" class="txt">
+
+    <a href="javascript:;" class="btn J-gotoDetail">进入个人页面</a>
 </div>
 
 
 <script src="/javascripts/jquery.js"></script>
 <script src="/javascripts/api.js"></script>
 <script src="/javascripts/lrz.all.bundle.js"></script>
+<script src="/javascripts/cookie.js"></script>
 <script>
 
     var groupPicImg, personPicImg;
 
     var status = <%= status %>;
+    var id = '<%= id %>';
 
-    if(status==0){
-        $('#container').show().siblings('.container').hide();
-    }else if(status==1){
-        $('#done').show().siblings('.container').hide();
-    }else if(status==2){
-        $('#show').show().siblings('.container').hide();
+    if (status == 0) {
+        $('#container').show().siblings('.page').hide();
+    } else if (status == 1) {
+        $('#wait').show().siblings('.page').hide();
+    } else if (status == 2) {
+        $('#pass').show().siblings('.page').hide();
+    } else if (status == 3) {
+        $('#fail').show().siblings('.page').hide();
     }
     $('#groupPicUploader')[0].addEventListener('change', function () {
         uploader('groupPic', this);
@@ -103,8 +108,7 @@
             success: function (data) {
                 console.log(data);
                 if (data.status == '200') {
-                    alert('提交成功');
-                    $('#done').show().siblings('.container').hide();
+                    $('.page-upload-done').show().siblings('.page').hide();
                 } else {
                     alert(data.errmsg);
                 }
@@ -114,6 +118,30 @@
 
     });
 
+    $('.J-textarea').on('input', function () {
+        var v = $(this).val();
+        var totalWords = $('.total-words').text() * 1;
+        if (v.length > totalWords) {
+            v = v.substr(0, totalWords);
+            $(this).val(v);
+        } else {
+            $('.current-words').text(v.length);
+        }
+    });
+
+    $('.J-out').click(function () {
+        window.Cookies.delCookie('session');
+        window.location.href = '/teacher/login';
+    });
+
+    $('.J-reupload').click(function () {
+        $('#container').show().siblings('.page').hide();
+    });
+
+    $('.J-gotoDetail').click(function () {
+        console.log(id);
+    })
+
 
     function uploader(name, me) {
         lrz(me.files[0])
@@ -122,7 +150,7 @@
                     var img = new Image();
                     img.src = rst.base64;
                     img.onload = function () {
-                        $(me).parent().find('.J-file').append(img);
+                        $(me).parent().find('.J-file').html(img);
                     };
 
                     rst.formData.append('fileLen', rst.fileLen);

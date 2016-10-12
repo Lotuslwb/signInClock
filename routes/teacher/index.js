@@ -23,7 +23,8 @@ router.get('/', function (req, res, next) {
     log(tel);
     getUserInfoFormDB(tel, function (docs) {
         var status = docs[0].VoteInfo.status;
-        res.render('teacher/index', {status: status});
+        var id = docs[0]._id;
+        res.render('teacher/index', {status: status, id: id});
     }, function () {
         //失败
         res.cookie('session', '');
@@ -33,7 +34,16 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/login', function (req, res, next) {
+    var loginTel = req.signedCookies['session'];
+    if (loginTel) {
+        res.redirect('../teacher');
+        return false;
+    }
     res.render('teacher/login');
+})
+
+router.get('/registerDone', function (req, res, next) {
+    res.render('teacher/registerDone');
 })
 
 function getUserInfoFormDB(tel, callback_s, callback_f) {

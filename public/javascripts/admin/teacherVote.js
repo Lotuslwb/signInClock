@@ -65,6 +65,7 @@ obj.prototype = {
                         var returnStr = '';
                         if (obj.status == 1) {
                             returnStr += '<span class="grid-command reviewed-btn">通过审核</span>';
+                            returnStr += '<span class="grid-command refuse-btn">拒绝审核</span>';
                         }
 
                         returnStr += '<span class="grid-command mod-btn">修改</span>';
@@ -200,28 +201,7 @@ obj.prototype = {
 
                         ]
                     });
-
-
-                    function removeItem() {
-                        $.ajax({
-                            url: '/admin/api/teacher/del',
-                            type: 'post',
-                            data: {'cellPhone': record.cellPhone},
-                            success: function (data) {
-                                console.log(data);
-                                if (data.status == 200) {
-                                    BUI.Message.Alert('删除成功');
-                                    me.updateGid(me);
-                                } else {
-                                    BUI.Message.Alert(data.errmsg);
-                                }
-                            }
-                        })
-                    }
-
                 }
-
-
                 if (target.hasClass('reviewed-btn')) {
 
                     BUI.Message.Show({
@@ -245,45 +225,83 @@ obj.prototype = {
 
                         ]
                     });
-
-                    function reviewedItem() {
-                        $.ajax({
-                            url: '/admin/api/teacher/reviewed',
-                            type: 'post',
-                            data: {'_id': record._id},
-                            success: function (data) {
-                                console.log(data);
-                                if (data.status == 200) {
-                                    BUI.Message.Alert('审核通过成功');
-                                    me.updateGid(me);
-                                } else {
-                                    BUI.Message.Alert(data.errmsg);
+                }
+                if (target.hasClass('refuse-btn')) {
+                    BUI.Message.Show({
+                        msg: '确定拒绝审核吗?',
+                        buttons: [
+                            {
+                                text: '是',
+                                elCls: 'button button-primary',
+                                handler: function () {
+                                    this.close();
+                                    refuseItem();
+                                }
+                            },
+                            {
+                                text: '否',
+                                elCls: 'button',
+                                handler: function () {
+                                    this.close();
                                 }
                             }
-                        })
-                    }
 
-                    function removeItem() {
-                        $.ajax({
-                            url: '/admin/api/teacher/del',
-                            type: 'post',
-                            data: {'cellPhone': record.cellPhone},
-                            success: function (data) {
-                                console.log(data);
-                                if (data.status == 200) {
-                                    BUI.Message.Alert('删除成功');
-                                    me.updateGid(me);
-                                } else {
-                                    BUI.Message.Alert(data.errmsg);
-                                }
-                            }
-                        })
-                    }
-
+                        ]
+                    });
                 }
 
-            });
 
+                function reviewedItem() {
+                    $.ajax({
+                        url: '/admin/api/teacher/reviewed',
+                        type: 'post',
+                        data: {'_id': record._id},
+                        success: function (data) {
+                            console.log(data);
+                            if (data.status == 200) {
+                                BUI.Message.Alert('审核通过成功');
+                                me.updateGid(me);
+                            } else {
+                                BUI.Message.Alert(data.errmsg);
+                            }
+                        }
+                    })
+                }
+
+                function refuseItem() {
+                    $.ajax({
+                        url: '/admin/api/teacher/refuse',
+                        type: 'post',
+                        data: {'_id': record._id},
+                        success: function (data) {
+                            console.log(data);
+                            if (data.status == 200) {
+                                BUI.Message.Alert('审核拒绝成功');
+                                me.updateGid(me);
+                            } else {
+                                BUI.Message.Alert(data.errmsg);
+                            }
+                        }
+                    })
+                }
+
+                function removeItem() {
+                    $.ajax({
+                        url: '/admin/api/teacher/del',
+                        type: 'post',
+                        data: {'cellPhone': record.cellPhone},
+                        success: function (data) {
+                            console.log(data);
+                            if (data.status == 200) {
+                                BUI.Message.Alert('删除成功');
+                                me.updateGid(me);
+                            } else {
+                                BUI.Message.Alert(data.errmsg);
+                            }
+                        }
+                    })
+                }
+            });
 
         });
         return gridObj;

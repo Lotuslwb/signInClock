@@ -62,6 +62,8 @@
 <script src="/javascripts/cookie.js"></script>
 <script>
 
+
+    var register = false;
     route();
 
 
@@ -112,8 +114,8 @@
                 console.log(data);
 
                 if (data.status == '200') {
-                    // $('.page').hide(), $('.page-register-done').show();
-                    window.location.href = '/teacher/registerDone#done';
+                    $('.page').hide(), $('.page-register-done').show();
+                    window.location.hash = '#done';
                 } else {
                     alert(data.errmsg);
                 }
@@ -153,7 +155,7 @@
         var hash = window.location.hash;
         var cookies = window.Cookies.getCookie('session');
 
-        if (cookies) {
+        if (cookies && register) {
             window.location.href = '/teacher';
         }
 

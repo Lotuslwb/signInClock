@@ -80,6 +80,22 @@ router.post('/teacher/reviewed', function (req, res, next) {
     });
 });
 
+/*金牌班主任 拒绝审核接口*/
+router.post('/teacher/refuse', function (req, res, next) {
+    var _id = req.body._id;
+
+    if (!_id) {
+        res.send(sendData('201', false, 'id不能为空'));
+        return false;
+    }
+
+    updateUserInfoToDB(_id, {'VoteInfo.status': '3'}, function (docs) {
+        res.send(sendData('200', true, ''));
+    }, function (docs, err) {
+        res.send(sendData('201', false, err));
+    });
+});
+
 
 function sendData(status, data, errmsg) {
     return {

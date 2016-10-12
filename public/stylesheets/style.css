@@ -189,7 +189,7 @@ body {
     -webkit-background-size: cover;
 }
 
-.page-register-done {
+.page-register-done,.page-upload-done {
     background: url("../images/teacher/register-done-bg.png") #ffef7c no-repeat top center;
     background-size: cover;
     -webkit-background-size: cover;
@@ -313,3 +313,119 @@ a.btn {
     margin: auto;
 }
 
+.page-upload {
+    background: url("../images/teacher/upload-bg.png") no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+
+
+
+.upload-box {
+    width: 544px;
+    margin: auto;
+    padding-top: 110px;
+    overflow: hidden;
+}
+.upload-box .txt{
+    margin: auto;
+    padding-top: 15px;
+}
+.upload-box .file{
+    position: absolute;
+    z-index:3;
+}
+.upload-box .file img{
+    width: 100%;
+}
+.upload-box .wrap{
+    position: relative;
+    overflow: hidden;
+}
+
+.personPicBox, .groupPicBox {
+    position: relative;
+}
+.personPicBox{
+    float: left;
+}
+.groupPicBox{
+    float: right;
+}
+
+.uploader-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+}
+.words-box .txt{
+    margin: auto;
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+
+.textarea-box{
+    background: #FFFFFF;
+    width: 580px;
+    margin:0 auto 40px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+}
+.textarea{
+    width: 100%;
+    height: 300px;
+    line-height: 1.2;
+}
+.textarea-box .textarea-counter{
+    color: #B2B2B2;
+    text-align: right;
+    padding-top: 10px;
+}
+.page-upload-done .txt{
+    padding-top: 230px;
+    font-size: 30px;
+    color: #4b4c4e;
+    line-height: 1.4;
+    text-align: center;
+}
+.page-upload-done .out-btn{
+    position: absolute;
+    right: 55px;
+    bottom: 55px;
+}
+.page-wait {
+    background: url("../images/teacher/wait-bg.png") no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+.page-wait .txt{
+    margin: auto;
+    padding-top: 305px;
+    padding-bottom: 140px;
+}
+
+.page-fail{
+    background: url("../images/teacher/fail-bg.png") no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+.page-fail .txt{
+    margin: auto;
+    padding-top: 230px;
+    padding-bottom: 120px;
+}
+
+.page-pass{
+    background: url("../images/teacher/pass-bg.png") no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+}
+.page-pass .txt{
+    margin: auto;
+    padding-top: 270px;
+    padding-bottom: 170px;
+}
