@@ -120,7 +120,7 @@ router.post('/login', function (req, res, next) {
 
 /*投票*/
 router.post('/vote', function (req, res, next) {
-    var ip = getClientIp(req).match(/\d+\.\d+\.\d+\.\d+/);
+    var ip = getClientIP(req).match(/\d+\.\d+\.\d+\.\d+/);
     console.log(req.ip);
 });
 
@@ -168,12 +168,15 @@ function updateUserInfoToDB(_id, data, callback_s, callback_f) {
 }
 
 
-
-function getClientIp(req) {
-    return req.headers['x-forwarded-for'] ||
-        req.connection.remoteAddress ||
-        req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress;
+function getClientIP(req) {
+    var ipAddress;
+    var headers = req.headers;
+    var forwardedIpsStr = headers['x-real-ip'] || headers['x-forwarded-for'];
+    forwardedIpsStr ? ipAddress = forwardedIpsStr : ipAddress = null;
+    if (!ipAddress) {
+        ipAddress = req.connection.remoteAddress;
+    }
+    return ipAddress;
 }
 
 
