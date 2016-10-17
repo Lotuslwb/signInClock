@@ -42,6 +42,21 @@ router.get('/login', function (req, res, next) {
     res.render('teacher/login');
 })
 
+
+router.get('/detail', function (req, res, next) {
+    var id = req.query.id;
+    // todo  如果没有id,应该验证
+    if (id) {
+        teacherDB.find({_id: id}).then(function (docs) {
+            if (docs.length > 0) {
+                res.render('teacher/detail', {data: docs[0]});
+            } else {
+                log(docs);
+            }
+        });
+    }
+});
+
 router.get('/registerDone', function (req, res, next) {
     res.render('teacher/registerDone');
 })

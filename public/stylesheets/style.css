@@ -189,7 +189,7 @@ body {
     -webkit-background-size: cover;
 }
 
-.page-register-done,.page-upload-done {
+.page-register-done, .page-upload-done {
     background: url("../images/teacher/register-done-bg.png") #ffef7c no-repeat top center;
     background-size: cover;
     -webkit-background-size: cover;
@@ -319,26 +319,28 @@ a.btn {
     -webkit-background-size: cover;
 }
 
-
-
 .upload-box {
     width: 544px;
     margin: auto;
     padding-top: 110px;
     overflow: hidden;
 }
-.upload-box .txt{
+
+.upload-box .txt {
     margin: auto;
     padding-top: 15px;
 }
-.upload-box .file{
+
+.upload-box .file {
     position: absolute;
-    z-index:3;
+    z-index: 3;
 }
-.upload-box .file img{
+
+.upload-box .file img {
     width: 100%;
 }
-.upload-box .wrap{
+
+.upload-box .wrap {
     position: relative;
     overflow: hidden;
 }
@@ -346,10 +348,12 @@ a.btn {
 .personPicBox, .groupPicBox {
     position: relative;
 }
-.personPicBox{
+
+.personPicBox {
     float: left;
 }
-.groupPicBox{
+
+.groupPicBox {
     float: right;
 }
 
@@ -362,70 +366,162 @@ a.btn {
     opacity: 0;
     z-index: 10;
 }
-.words-box .txt{
+
+.words-box .txt {
     margin: auto;
     padding-top: 70px;
     padding-bottom: 20px;
 }
 
-.textarea-box{
+.textarea-box {
     background: #FFFFFF;
     width: 580px;
-    margin:0 auto 40px;
+    margin: 0 auto 40px;
     padding: 20px 15px;
     box-sizing: border-box;
 }
-.textarea{
+
+.textarea {
     width: 100%;
     height: 300px;
     line-height: 1.2;
 }
-.textarea-box .textarea-counter{
+
+.textarea-box .textarea-counter {
     color: #B2B2B2;
     text-align: right;
     padding-top: 10px;
 }
-.page-upload-done .txt{
+
+.page-upload-done .txt {
     padding-top: 230px;
     font-size: 30px;
     color: #4b4c4e;
     line-height: 1.4;
     text-align: center;
 }
-.page-upload-done .out-btn{
+
+.page-upload-done .out-btn {
     position: absolute;
     right: 55px;
     bottom: 55px;
 }
+
 .page-wait {
     background: url("../images/teacher/wait-bg.png") no-repeat top center;
     background-size: cover;
     -webkit-background-size: cover;
 }
-.page-wait .txt{
+
+.page-wait .txt {
     margin: auto;
     padding-top: 305px;
     padding-bottom: 140px;
 }
 
-.page-fail{
+.page-fail {
     background: url("../images/teacher/fail-bg.png") no-repeat top center;
     background-size: cover;
     -webkit-background-size: cover;
 }
-.page-fail .txt{
+
+.page-fail .txt {
     margin: auto;
     padding-top: 230px;
     padding-bottom: 120px;
 }
 
-.page-pass{
+.page-pass {
     background: url("../images/teacher/pass-bg.png") no-repeat top center;
     background-size: cover;
     -webkit-background-size: cover;
 }
-.page-pass .txt{
+
+.page-pass .txt {
     margin: auto;
     padding-top: 270px;
     padding-bottom: 170px;
+}
+
+.page-detail {
+    background: url("../images/teacher/detail-bg.png") no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    display: block;
+    height: auto;
+    min-height: 100%;
+    overflow: auto;
+}
+
+.page-detail .swiper-container {
+    width: 500px;
+    height: 337px;
+    margin: auto;
+}
+
+.page-detail .swiper-container .swiper-pagination-bullet-active {
+    background: #FFFFFF;
+}
+
+.page-detail .detail-title {
+    margin: 0 auto 45px;
+    padding-top: 70px;
+}
+
+.page-detail .swiper-img {
+    width: 100%;
+}
+
+.page-detail .detail-vote-title {
+    margin: auto;
+    padding-top: 30px;
+}
+
+.page-detail .detail-vote-box {
+    width: 500px;
+    min-height: 100px;
+    margin: auto;
+    color: #39393b;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.page-detail .btn-list {
+    width: 500px;
+    margin: auto;
+    overflow: auto;
+}
+
+.page-detail .vote-btn {
+    float: left;
+}
+
+.page-detail .vote-counts {
+    float: right;
+    color: #39393b;
+    line-height: 80px;
+}
+
+.word-title {
+    padding-top: 60px;
+    margin: auto;
+}
+
+.writeVoteBox {
+    width: 500px;
+    margin: auto;
+    overflow: auto;
+}
+
+.writeVoteBox .writeVote {
+    float: right;
+    padding-top: 20px;
+}
+
+.word-list {
+    width: 500px;
+    margin: auto;
+    color: #39393b;
+    padding: 20px 20px 20px 40px;
+    line-height: 1.4;
 }

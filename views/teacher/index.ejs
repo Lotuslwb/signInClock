@@ -1,4 +1,4 @@
-<%- include("../header.ejs",{"title":'老师上传页面'}) %>
+<%- include("header.ejs",{"title":'老师上传页面'}) %>
 
 
 <div class="page page-upload" id="container">
@@ -139,8 +139,8 @@
     });
 
     $('.J-gotoDetail').click(function () {
-        console.log(id);
-    })
+        window.location.href = '/teacher/detail?id=' + id;
+    });
 
 
     function uploader(name, me) {

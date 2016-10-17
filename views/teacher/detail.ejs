@@ -1,0 +1,70 @@
+<%- include("header.ejs",{"title":'老师详情页面'}) %>
+
+<link rel='stylesheet' href='/swiper/swiper-3.3.1.min.css'/>
+<style>
+    html, body {
+        height: auto;
+        min-height: 100%;
+        overflow: auto;
+    }
+</style>
+<div class="page page-detail">
+    <img src="/images/teacher/detail-title.png" class="detail-title"/>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img class="swiper-img" src="/files/<%= data.VoteInfo.personPic %>"/>
+            </div>
+            <div class="swiper-slide">
+                <img class="swiper-img" src="/files/<%= data.VoteInfo.groupPic %>"/>
+            </div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <img src="/images/teacher/detail-vote-title.png" class="detail-vote-title"/>
+    <div class="detail-vote-box">
+        <%= data.VoteInfo.voteWords ? data.VoteInfo.voteWords : '暂时没有宣言!' %>
+    </div>
+
+    <div class="btn-list">
+        <img src="/images/teacher/detail-vote-btn.png" class="vote-btn J-vote">
+
+        <div class="vote-counts">
+            总票数: <span class="J-counts"><%= data.VoteData.totalVoteCounts ? data.VoteData.totalVoteCounts : 0 %></span>
+        </div>
+    </div>
+
+    <img src="/images/teacher/detail-word-title.png" class="word-title"/>
+    <div class="writeVoteBox">
+        <img src="/images/teacher/detail-writeVote.png" class="writeVote"/>
+    </div>
+
+    <div class="word-list">
+        <div class="name">zasdad</div>
+        <div class="content">我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬</div>
+    </div>
+
+
+</div>
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/api.js"></script>
+<script src="/javascripts/cookie.js"></script>
+<script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
+<script>
+    $('.J-vote').click(function () {
+
+    });
+
+
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+
+        // 如果需要分页器
+        pagination: '.swiper-pagination'
+    })
+</script>
+</body>
+</html>
