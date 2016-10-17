@@ -118,6 +118,13 @@ router.post('/login', function (req, res, next) {
 });
 
 
+/*投票*/
+router.post('/vote', function (req, res, next) {
+    var ip = getClientIp(req).match(/\d+\.\d+\.\d+\.\d+/);
+    console.log(req.ip);
+});
+
+
 function sendData(status, data, errmsg) {
     return {
         status: status,
@@ -158,6 +165,15 @@ function updateUserInfoToDB(_id, data, callback_s, callback_f) {
             callback_s && callback_s(docs);
         }
     });
+}
+
+
+
+function getClientIp(req) {
+    return req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
 }
 
 

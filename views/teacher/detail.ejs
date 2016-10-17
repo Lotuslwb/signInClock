@@ -54,7 +54,20 @@
 <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
     $('.J-vote').click(function () {
-
+        $.ajax({
+            type: 'POST',
+            url: '/teacher/api/vote',
+            data: {},
+            success: function (data) {
+                console.log(data);
+                if (data.status == '200') {
+                    alert('投票成功');
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
     });
 
 
