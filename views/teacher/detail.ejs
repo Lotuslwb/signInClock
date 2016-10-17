@@ -53,11 +53,13 @@
 <script src="/javascripts/cookie.js"></script>
 <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
+    var id = "<%= data._id %>";
+
     $('.J-vote').click(function () {
         $.ajax({
             type: 'POST',
             url: '/teacher/api/vote',
-            data: {},
+            data: {id: id},
             success: function (data) {
                 console.log(data);
                 if (data.status == '200') {
