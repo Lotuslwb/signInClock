@@ -121,8 +121,7 @@ router.post('/login', function (req, res, next) {
 /*投票*/
 router.post('/vote', function (req, res, next) {
     var ip = getClientIP(req);
-    log(ip);
-    
+    log(req.ip);
 });
 
 
@@ -169,7 +168,7 @@ function updateUserInfoToDB(_id, data, callback_s, callback_f) {
 }
 
 
-function getClientIP(req) {
+var getClientIP = function (req) {
     var ipAddress;
     var headers = req.headers;
     var forwardedIpsStr = headers['x-real-ip'] || headers['x-forwarded-for'];
