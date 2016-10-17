@@ -120,12 +120,15 @@ router.post('/login', function (req, res, next) {
 
 /*投票*/
 router.post('/vote', function (req, res, next) {
-    var externalip = require('externalip');
+    // var externalip = require('externalip');
+    //
+    // externalip(function (err, ip) {
+    //     console.log(ip); // => 8.8.8.8
+    // });
 
-    externalip(function (err, ip) {
-        console.log(ip); // => 8.8.8.8
-    });
-    
+    // log(req.ip);
+
+    log(getClientIP(req));
 });
 
 
