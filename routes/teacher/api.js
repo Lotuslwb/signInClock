@@ -129,7 +129,7 @@ router.post('/vote', function (req, res, next) {
             var IPArray = data.IPArray;
             var index = _.indexOf(IPArray, ip);
             if (index >= 0) {
-                res.send(sendData('201', false, '你已经投过票了哦'));
+                res.send(sendData('201', false, '你已投过票了'));
             } else {
                 log(data);
                 data.IPArray.push(ip);

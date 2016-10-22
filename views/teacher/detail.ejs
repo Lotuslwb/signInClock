@@ -69,11 +69,11 @@
             success: function (data) {
                 console.log(data);
                 if (data.status == '200') {
-                    alert('投票成功');
+                    toast('投票成功');
                     var counts = data.data.counts;
                     $('.J-counts').text(counts);
                 } else {
-                    alert(data.errmsg);
+                    toast(data.errmsg);
                 }
             },
             dataType: 'json'

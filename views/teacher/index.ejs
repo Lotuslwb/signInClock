@@ -93,13 +93,18 @@
 
     $('.J-submit').click(function () {
         if (!groupPicImg || !personPicImg) {
-            alert('您的图片还没上传完,请稍后');
+            toast('您的图片还没上传完,请稍后');
             return false;
         }
         var data = {
             personPic: personPicImg,
             groupPic: groupPicImg,
             voteWords: $('[name="voteWords"]').val()
+        }
+
+        if (data.voteWords.length == 0) {
+            toast('参赛宣言不能为空');
+            return false;
         }
         $.ajax({
             type: 'POST',
@@ -110,7 +115,7 @@
                 if (data.status == '200') {
                     $('.page-upload-done').show().siblings('.page').hide();
                 } else {
-                    alert(data.errmsg);
+                    toast(data.errmsg);
                 }
             },
             dataType: 'json'

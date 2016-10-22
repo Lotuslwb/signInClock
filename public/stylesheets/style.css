@@ -649,7 +649,7 @@ a.btn {
 }
 
 .toast {
-    position: absolute;
+    position: fixed;
     z-index: 99;
     padding: 30px 80px;
     left: 50%;
@@ -659,6 +659,7 @@ a.btn {
     text-align: center;
     border-radius: 10px;
     color: #FFFFFF;
+    min-width: 200px;
 
     display: none;
 }
