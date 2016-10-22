@@ -1,0 +1,58 @@
+<%- include("header.ejs",{"title":'老师列表页面'}) %>
+
+<style>
+    html {
+        height: 100%;
+        overflow: auto;
+    }
+
+    body {
+        height: auto;
+        min-height: 100%;
+        overflow: auto;
+    }
+</style>
+<div class="page page-list">
+    <div class="list-header">
+        <img src="/images/teacher/list-title.png" class="list-title">
+        <select class="city-select J-city">
+            <% for(var i = 0, cityList = data.cityList;i < cityList.length;i++){ %>
+            <option value="<%= cityList[i].cityNo %>" <%= (cityList[i].cityNo == data.cityNo ? 'selected' : '') %> >
+                <%= cityList[i].cityName %>
+            </option>
+            <% } %>
+        </select>
+    </div>
+
+    <div class="list-box">
+        <% for(var i = 0, list = data.list;i < list.length;i++){ %>
+        <div class="list-item J-item" data-id="<%= list[i]._id %>">
+            <div class="list-img">
+                <img class="swiper-img" src="/files/<%= list[i].VoteInfo.personPic %>"/>
+            </div>
+            <div class="list-des">
+                <%= list[i].teacherInfo.realName %> <br/>
+
+                总票数:<%= list[i].VoteData.totalVoteCounts || 0 %>
+            </div>
+        </div>
+        <% } %>
+
+    </div>
+
+</div>
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/api.js"></script>
+<script src="/javascripts/cookie.js"></script>
+<script>
+    $('.J-item').click(function () {
+        window.location.href = '/teacher/detail?id=' + $(this).data('id');
+    });
+
+    $('.J-city').change(function () {
+        window.location.href = '/teacher/list?cityNo=' + $(this).val();
+    });
+
+</script>
+</body>
+</html>

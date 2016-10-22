@@ -7,13 +7,14 @@
     <input type="text" class="input" name="realName" placeholder="中文名"/>
     <input type="text" class="input" name="englishName" placeholder="英文名"/>
 
-    <select name="" class="input select">
+    <select name="city" class="input select">
         <option value="">城市</option>
+        <% for(var i = 0;i < cityList.length;i++){ %>
+        <option value="<%= cityList[i].cityNo %>"><%= cityList[i].cityName %></option>
+        <% } %>
     </select>
 
-    <select name="" class="input select">
-        <option value="">学校</option>
-    </select>
+    <input type="text" class="input" name="school" placeholder="学校"/>
 
     <input type="tel" class="input" name="cellPhone" placeholder="手机号"/>
     <input type="text" class="input" name="passWord" placeholder="密码"/>
@@ -101,7 +102,7 @@
             'cityNo': $("[name='city']").val(),
             'cityName': $("[name='city']").find("option:selected").text(),
             'schoolNo': $("[name='school']").val(),
-            'schoolName': $("[name='school']").find("option:selected").text(),
+            'schoolName': $("[name='school']").val(),
         }
 
         $.ajax({

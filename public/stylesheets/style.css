@@ -284,7 +284,7 @@ a.btn {
     background: url("../images/teacher/arrow.png") #FFFFFF no-repeat 288px center;
 }
 
-.overlay {
+.loading, .overlay {
     position: absolute;
     left: 0;
     top: 0;
@@ -293,6 +293,10 @@ a.btn {
     background: rgba(0, 0, 0, 0.7);
     z-index: 99;
     display: none;
+}
+
+.loading {
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .pop-rule {
@@ -306,6 +310,42 @@ a.btn {
     position: absolute;
     right: 60px;
     top: 60px;
+}
+
+.loading-icon {
+    width: 64px;
+    height: 64px;
+
+    -webkit-animation: weuiLoading 1s steps(12, end) infinite;
+    animation: weuiLoading 1s steps(12, end) infinite;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -32px;
+    margin-left: -32px;
+    z-index: 999;
+    display: none;
+}
+
+@-webkit-keyframes weuiLoading {
+    0% {
+        -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+
+@keyframes weuiLoading {
+    0% {
+        -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    }
 }
 
 .done-txt {
@@ -496,6 +536,16 @@ a.btn {
     float: left;
 }
 
+.page-detail .vote-btn.disable {
+    float: left;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+}
+
 .page-detail .vote-counts {
     float: right;
     color: #39393b;
@@ -524,4 +574,91 @@ a.btn {
     color: #39393b;
     padding: 20px 20px 20px 40px;
     line-height: 1.4;
+}
+
+.word-list .word-item {
+    padding-top: 30px;
+    font-size: 24px;
+}
+
+.detail-more-btn {
+    margin: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.page-list {
+    background: url("../images/teacher/list-bg.png") no-repeat top center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    display: block;
+    height: auto;
+    min-height: 1008px;
+    overflow: auto;
+}
+
+.list-header {
+    position: relative;
+    width: 549px;
+    margin: auto;
+}
+
+.list-title {
+    padding-top: 75px;
+}
+
+.page-list .city-select {
+    height: 36px;
+    line-height: 36px;
+    width: 100px;
+    background: transparent url("../images/teacher/select-icon.png") no-repeat 70px center;
+    position: absolute;
+    right: 0;
+    top: 105px;
+}
+
+.page-list .list-box {
+    overflow: auto;
+    padding-top: 40px;
+    width: 548px;
+    margin: auto;
+
+}
+
+.page-list .list-item {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.page-list .list-img {
+    height: 180px;
+    width: 270px;
+    background: #f3f3f3;
+    overflow: hidden;
+}
+
+.page-list .list-img img {
+    width: 100%;
+}
+
+.page-list .list-des {
+    padding-top: 10px;
+    text-align: center;
+    line-height: 1.4;
+    color: #39393b;
+}
+
+.toast {
+    position: absolute;
+    z-index: 99;
+    padding: 30px 80px;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    background: rgba(40, 40, 40, 0.75);
+    text-align: center;
+    border-radius: 10px;
+    color: #FFFFFF;
+
+    display: none;
 }

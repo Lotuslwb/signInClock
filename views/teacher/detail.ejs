@@ -42,10 +42,15 @@
     </div>
 
     <div class="word-list">
-        <div class="name">zasdad</div>
-        <div class="content">我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬</div>
+        <% for(var i = 0;i < 4;i++){ %>
+        <div class="word-item">
+            <div class="name">zasdad</div>
+            <div class="content">我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬</div>
+        </div>
+        <% } %>
     </div>
 
+    <img src="/images/teacher/detail-more-btn.png" class="detail-more-btn J-gotoList"/>
 
 </div>
 <script src="/javascripts/jquery.js"></script>
@@ -54,6 +59,7 @@
 <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
     var id = "<%= data._id %>";
+    var cityNo = "<%= data.teacherInfo.cityNo %>";
 
     $('.J-vote').click(function () {
         $.ajax({
@@ -64,6 +70,8 @@
                 console.log(data);
                 if (data.status == '200') {
                     alert('投票成功');
+                    var counts = data.data.counts;
+                    $('.J-counts').text(counts);
                 } else {
                     alert(data.errmsg);
                 }
@@ -72,11 +80,14 @@
         });
     });
 
+    $('.J-gotoList').click(function () {
+        window.location.href = '/teacher/list?cityNo=' + cityNo;
+    });
+
 
     var mySwiper = new Swiper('.swiper-container', {
         direction: 'horizontal',
         loop: true,
-
         // 如果需要分页器
         pagination: '.swiper-pagination'
     })

@@ -39,7 +39,7 @@ router.get('/login', function (req, res, next) {
         res.redirect('../teacher');
         return false;
     }
-    res.render('teacher/login');
+    res.render('teacher/login', {cityList: getCityList()});
 })
 
 
@@ -47,14 +47,33 @@ router.get('/detail', function (req, res, next) {
     var id = req.query.id;
     // todo  如果没有id,应该验证
     if (id) {
-        teacherDB.find({_id: id}).then(function (docs) {
+        teacherDB.find({_id: id, 'VoteInfo.status': 2}).then(function (docs) {
             if (docs.length > 0) {
+                console.log(docs);
                 res.render('teacher/detail', {data: docs[0]});
             } else {
                 log(docs);
+                res.render('teacher/detail', {data: ''});
             }
         });
     }
+});
+
+router.get('/list', function (req, res, next) {
+    var data = {
+        cityNo: req.query.cityNo,
+        cityList: getCityList()
+    }
+
+    getTeacherListByCityNo(req.query.cityNo, function (docs) {
+        data.list = docs;
+        res.render('teacher/list', {data: data});
+    }, function (error) {
+        log(error);
+        data.list = '';
+        data.error = error;
+        res.render('teacher/list', {data: data});
+    })
 });
 
 router.get('/registerDone', function (req, res, next) {
@@ -78,6 +97,29 @@ function getUserInfoFormDB(tel, callback_s, callback_f) {
             callback_f && callback_f(docs);
         }
     });
+}
+
+function getTeacherListByCityNo(cityNo, callback_s, callback_f) {
+    if (!cityNo) {
+        callback_f && callback_f('cityNo 不能为空');
+    }
+    var findJSON = {
+        'teacherInfo.cityNo': cityNo,
+        'VoteInfo.status': 2
+    };
+    teacherDB.User.find(findJSON, {'teacherInfo.passWord': false, 'IPArray': false}).then(function (docs) {
+        if (docs.length > 0) {
+            log('---数据库里面已经有此用户---');
+            callback_s && callback_s(docs);
+        } else {
+            log('---数据库里面暂无此用户---');
+            callback_f && callback_f(docs);
+        }
+    });
+}
+
+function getCityList() {
+    return require('../../module/data/teacher');
 }
 
 

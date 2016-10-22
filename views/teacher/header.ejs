@@ -17,3 +17,26 @@
 </head>
 <body>
 
+<div class="loading"></div>
+<img src="/images/teacher/loading.png" class="loading-icon"/>
+
+<div class="toast"></div>
+<script>
+    var loadingShow = function () {
+        $('.loading').show();
+        $('.loading-icon').show();
+    }
+
+    var loadingHide = function () {
+        $('.loading').hide();
+        $('.loading-icon').hide();
+    }
+
+    var toast = function (msg, timer) {
+        $('.toast').text(msg).fadeIn();
+        setTimeout(function () {
+            $('.toast').fadeOut();
+        }, timer || 1000)
+    }
+</script>
+

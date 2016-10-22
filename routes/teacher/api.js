@@ -120,8 +120,35 @@ router.post('/login', function (req, res, next) {
 
 /*投票*/
 router.post('/vote', function (req, res, next) {
+    var _ = require('lodash');
+    var id = req.body.id;
     var ip = getClientIP(req);
-    log(req.ip);
+    teacherDB.find({_id: id}).then(function (docs) {
+        if (docs.length > 0) {
+            var data = docs[0];
+            var IPArray = data.IPArray;
+            var index = _.indexOf(IPArray, ip);
+            if (index >= 0) {
+                res.send(sendData('201', false, '你已经投过票了哦'));
+            } else {
+                log(data);
+                data.IPArray.push(ip);
+                data['VoteData'] ? data['VoteData'] : data['VoteData'] = {};
+                data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts = data['VoteData'].totalVoteCounts * 1 + 1 : data['VoteData'].totalVoteCounts = 1;
+                data['VoteData'].lastVoteTime = new Date().getTime();
+
+                updateUserInfoToDB(id, data, function (docs) {
+                    res.send(sendData('200', {counts: data['VoteData'].totalVoteCounts}, ''));
+                }, function () {
+
+                })
+            }
+        } else {
+            res.send(sendData('201', false, '数据不存在'));
+        }
+    }).catch(function (err) {
+        res.send(sendData('201', false, err));
+    });
 });
 
 
@@ -155,7 +182,6 @@ function getUserInfoFormDB(tel, callback_s, callback_f) {
 
 
 function updateUserInfoToDB(_id, data, callback_s, callback_f) {
-    console.log(data);
     teacherDB.update(_id, data, function (err, docs) {
         if (err) {
             log(err);
@@ -168,6 +194,7 @@ function updateUserInfoToDB(_id, data, callback_s, callback_f) {
 }
 
 
+//获取ip
 var getClientIP = function (req) {
     var ipAddress;
     var headers = req.headers;
