@@ -41,10 +41,7 @@
          * @param path 路径
          */
         delCookie: function (name, path) {
-            var exp = new Date();
-            exp.setTime(exp.getTime() - 1);
-            var val = Cookies.getCookie(name);
-            if (val != null) document.cookie = name + '=' + val + ';expires=' + exp.toGMTString() + ';path=' + path;
+            Cookies.setCookie(name, "", -1, path);
         }
     };
 
