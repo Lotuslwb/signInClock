@@ -62,12 +62,16 @@
     var cityNo = "<%= data.teacherInfo.cityNo %>";
 
     $('.J-vote').click(function () {
+
+        loadingShow();
+
         $.ajax({
             type: 'POST',
             url: '/teacher/api/vote',
             data: {id: id},
             success: function (data) {
                 console.log(data);
+                loadingHide();
                 if (data.status == '200') {
                     toast('投票成功');
                     var counts = data.data.counts;

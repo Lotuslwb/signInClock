@@ -21,15 +21,16 @@ obj.prototype = {
             var Grid = Grid,
                 Store = Data.Store,
                 columns = [
-                    {title: '中文名', dataIndex: 'realName', width: 100},
-                    {title: '英文名', dataIndex: 'englishName', width: 100},
-                    {title: '城市', dataIndex: 'cityName', width: 100},
-                    {title: '学校', dataIndex: 'schoolName', width: 100},
-                    {title: '电话', dataIndex: 'cellPhone', width: 100},
-                    {title: '宣言', dataIndex: 'voteWords', width: 300},
+                    {title: '中文名', dataIndex: 'realName', width: 80, sortable: false},
+                    {title: '英文名', dataIndex: 'englishName', width: 80, sortable: false},
+                    {title: '城市', dataIndex: 'cityName', width: 80, sortable: false},
+                    {title: '学校', dataIndex: 'schoolName', width: 80, sortable: false},
+                    {title: '电话', dataIndex: 'cellPhone', width: 120, sortable: false},
+                    {title: '宣言', dataIndex: 'voteWords', width: 300, sortable: false},
+                    {title: '票数', dataIndex: 'totalVoteCounts', width: 80},
                     {
-                        title: '图片', dataIndex: 'status', width: 200, renderer: function (v, obj) {
-                        if(obj.status<1){
+                        title: '图片', dataIndex: 'status', width: 200,sortable:false, renderer: function (v, obj) {
+                        if (obj.status < 1) {
                             return '---';
                         }
 
@@ -91,7 +92,7 @@ obj.prototype = {
                 },
                 remoteSort: true,
                 root: 'data.list',           //存放数据的字段名
-                totalProperty: 'result.totalCount', //存放记录总数的字段名(results)
+                totalProperty: 'data.totalCount', //存放记录总数的字段名(results)
                 proxy: {
                     pageStart: 1,
                     url: '/admin/api/teacher/query',
@@ -120,6 +121,12 @@ obj.prototype = {
                             $.each(item.VoteInfo, function (i, t) {
                                 item[i] = t;
                             })
+
+                            if (item.VoteData && item.VoteData.totalVoteCounts > 0) {
+                                item['totalVoteCounts'] = item.VoteData.totalVoteCounts;
+                            } else {
+                                item['totalVoteCounts'] = 0;
+                            }
                         })
                     }
                 }
@@ -135,11 +142,21 @@ obj.prototype = {
                 loadMask: new Mask.LoadMask({el: '#main'}), //加载数据时显示屏蔽层
                 store: store,
                 emptyDataTpl: '暂无数据',
+                tbar: { //添加、删除
+                    items: [{
+                        btnCls: 'button button-primary',
+                        text: '批量审批',
+                        listeners: {
+                            'click': passBathFunction
+                        }
+                    }]
+                },
                 // 底部工具栏
                 bbar: {
                     // pagingBar:表明包含分页栏
                     pagingBar: true
-                }
+                },
+                plugins: [Grid.Plugins.CheckSelection, Grid.Plugins.ColumnChecked]
             });
 
             grid.render();
@@ -153,26 +170,14 @@ obj.prototype = {
                 if (target.hasClass('mod-btn')) {
                     BUI.FormHelper.setFields($('#dialog-form')[0], record);
 
-                    $('.J-powercode').addClass('bui-hidden');
-
-                    $('.pw-inputRow').addClass('bui-hidden');
-
+                    console.log(me.dialog);
                     me.dialog.set('title', '修改权限');
                     me.dialog.set('success', function (e) {
                         var thisDialog = this;
                         if (me.dialogForm.isValid()) {
                             data = BUI.FormHelper.serializeToObject($('#dialog-form'));
-                            data.id = record.id;
-                            var p = {
-                                url: window.oo.api.base + modUrl,
-                                data: data,
-                                cb: function (data) {
-                                    BUI.Message.Alert('修改成功');
-                                    me.updateGid(me);
-                                    thisDialog.close();
-                                }
-                            }
-                            window.oo.load(p);
+                            changeItem(data.status, '修改状态成功');
+                            me.dialog.hide();
                         }
                     })
                     me.dialog.show();
@@ -212,7 +217,7 @@ obj.prototype = {
                                 elCls: 'button button-primary',
                                 handler: function () {
                                     this.close();
-                                    reviewedItem();
+                                    changeItem(2, '审核通过成功');
                                 }
                             },
                             {
@@ -235,7 +240,7 @@ obj.prototype = {
                                 elCls: 'button button-primary',
                                 handler: function () {
                                     this.close();
-                                    refuseItem();
+                                    changeItem(3, '审核拒绝成功');
                                 }
                             },
                             {
@@ -250,37 +255,38 @@ obj.prototype = {
                     });
                 }
 
-
-                function reviewedItem() {
+                function changeItem(status, msg) {
                     $.ajax({
-                        url: '/admin/api/teacher/reviewed',
+                        url: '/admin/api/teacher/changeStatus',
                         type: 'post',
-                        data: {'_id': record._id},
+                        data: {
+                            '_id': record._id, status: status
+                        },
                         success: function (data) {
                             console.log(data);
                             if (data.status == 200) {
-                                BUI.Message.Alert('审核通过成功');
+                                BUI.Message.Alert(msg);
                                 me.updateGid(me);
                             } else {
                                 BUI.Message.Alert(data.errmsg);
                             }
-                        }
-                    })
-                }
 
-                function refuseItem() {
-                    $.ajax({
-                        url: '/admin/api/teacher/refuse',
-                        type: 'post',
-                        data: {'_id': record._id},
-                        success: function (data) {
-                            console.log(data);
-                            if (data.status == 200) {
-                                BUI.Message.Alert('审核拒绝成功');
-                                me.updateGid(me);
-                            } else {
-                                BUI.Message.Alert(data.errmsg);
-                            }
+                            //发送短信
+                            // $.ajax({
+                            //     url: '/admin/api/teacher/smsSend',
+                            //     type: 'post',
+                            //     data: {
+                            //         'name': record.realName, 'cellPhone': record.cellPhone
+                            //     },
+                            //     success: function (data) {
+                            //         if (data.status == 200) {
+                            //             BUI.Message.Alert('短信发送成功');
+                            //             me.updateGid(me);
+                            //         } else {
+                            //             BUI.Message.Alert(data.errmsg);
+                            //         }
+                            //     }
+                            // });
                         }
                     })
                 }
@@ -301,8 +307,58 @@ obj.prototype = {
                         }
                     })
                 }
+
             });
 
+            function passBathFunction() {
+                var selections = grid.getSelection();
+                if (selections.length == 0) {
+                    BUI.Message.Alert('请选择至少一个数据');
+                    return false;
+                }
+
+                var idArray = [];
+                for (var i = 0; i < selections.length; i++) {
+                    idArray.push(selections[i]._id);
+                }
+
+                BUI.Message.Show({
+                    msg: '确定批量通过审核吗?',
+                    buttons: [
+                        {
+                            text: '是',
+                            elCls: 'button button-primary',
+                            handler: function () {
+                                this.close();
+                                $.ajax({
+                                    url: '/admin/api/teacher/changeStatusBath',
+                                    type: 'post',
+                                    data: {
+                                        '_idArray': idArray.toString(), status: 2
+                                    },
+                                    success: function (data) {
+                                        console.log(data);
+                                        if (data.status == 200) {
+                                            BUI.Message.Alert(data.errmsg);
+                                            me.updateGid(me);
+                                        } else {
+                                            BUI.Message.Alert(data.errmsg);
+                                        }
+                                    }
+                                })
+                            }
+                        },
+                        {
+                            text: '否',
+                            elCls: 'button',
+                            handler: function () {
+                                this.close();
+                            }
+                        }
+
+                    ]
+                });
+            }
         });
         return gridObj;
     },
@@ -332,8 +388,7 @@ obj.prototype = {
 
 
         BUI.use(['bui/overlay'], function (Overlay, Form) {
-
-            dialog = new Overlay.Dialog({
+            me.dialog = new Overlay.Dialog({
                 title: '',
                 width: 850,
                 height: 320,
@@ -343,7 +398,6 @@ obj.prototype = {
                 contentId: "adminDialog"
             });
         });
-        return dialog;
     },
     _genSelect: function (data, selector) {
         var str = '';
@@ -352,7 +406,6 @@ obj.prototype = {
         });
         $(selector).html(str);
     }
-
 }
 
 new obj();

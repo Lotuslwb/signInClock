@@ -1757,7 +1757,7 @@ fieldset[disabled] .x-icon-question.active {
     height: 14px;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url("../images/sprite-469-300.png");
+    background-image: url("../../images/admin/sprite-469-300.png");
     background-position: 14px 14px;
     background-repeat: no-repeat;
     *margin-right: .3em;
@@ -1789,7 +1789,7 @@ fieldset[disabled] .x-icon-question.active {
     height: 14px;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url("../images/sprite-469-300.png");
+    background-image: url("../../images/admin/sprite-469-300.png");
     background-position: 14px 14px;
     background-repeat: no-repeat;
     *margin-right: .3em;
@@ -5891,7 +5891,7 @@ form h3 {
 
 /** list-checkbox **/
 .x-checkbox {
-    background: url("../images/check_icon-100-100.gif") no-repeat 0px 0px transparent;
+    background: url("../../images/admin/check_icon-100-100.gif") no-repeat 0px 0px transparent;
 }
 
 .x-radio {
@@ -6189,7 +6189,7 @@ form h3 {
 .bui-grid .bui-pagingbar .bui-bar-item-button,
 .image-pbar .bui-pb-page,
 .bui-grid .bui-pagingbar .bui-pb-page {
-    background: url("../../resources/images/table-191-450.gif") no-repeat -999px -999px transparent;
+    background: url("../../images/admin/table-191-450.gif") no-repeat -999px -999px transparent;
     overflow: hidden;
 }
 
@@ -6340,7 +6340,7 @@ form h3 {
 .bar-btn-save,
 .bar-btn-create,
 .bui-bar-item-separator {
-    background: url("../../resources/images/table-191-450.gif") no-repeat -999px -999px transparent;
+    background: url("../../images/admin/table-191-450.gif") no-repeat -999px -999px transparent;
 }
 
 .bui-bar-item-separator {
@@ -6414,7 +6414,7 @@ form h3 {
 .bui-grid-table .sort-desc .bui-grid-sort-icon,
 .bui-grid-table .bui-grid-hd-menu-trigger,
 .bui-grid-table .bui-grid-cascade-icon {
-    background-image: url("../../resources/images/table-191-450.gif");
+    background-image: url("../../images/admin/table-191-450.gif");
     background-repeat: no-repeat;
 }
 
@@ -6766,7 +6766,7 @@ td.bui-grid-cell-empty {
 }
 
 .bui-grid .x-grid-checkbox {
-    background: url("../images/check_icon-100-100.gif") no-repeat 0px 3px transparent;
+    background: url("../../images/admin/check_icon-100-100.gif") no-repeat 0px 3px transparent;
     width: 13px;
     height: 20px;
     display: inline-block;
@@ -6842,7 +6842,7 @@ td.x-grid-rownumber {
 }
 
 .x-col-checkbox {
-    background: url("../images/check_icon-100-100.gif") 0 3px no-repeat;
+    background: url("../../images/admin/check_icon-100-100.gif") 0 3px no-repeat;
     width: 13px;
     height: 20px;
     display: inline-block;
@@ -7111,7 +7111,7 @@ textarea.bui-form-field-error,
 .bui-calendar .bui-calendar-header .x-datepicker-prev .icon,
 .bui-calendar .bui-calendar-header .x-datepicker-next .icon {
     vertical-align: text-bottom;
-    background-image: url('../images/sprite-469-300.png');
+    background-image: url('../../images/admin/sprite-469-300.png');
 }
 
 .bui-calendar .bui-calendar-header .x-datepicker-prev {
@@ -7512,7 +7512,7 @@ textarea.bui-form-field-error,
 
 .bui-tree-list .x-tree-icon-checkbox,
 .bui-tree-grid .x-tree-icon-checkbox {
-    background: url("../images/check_icon-100-100.gif") no-repeat 0px 0px transparent;
+    background: url("../../images/admin/check_icon-100-100.gif") no-repeat 0px 0px transparent;
 }
 
 .bui-tree-list .x-tree-icon-radio,

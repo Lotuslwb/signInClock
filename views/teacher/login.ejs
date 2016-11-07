@@ -109,12 +109,14 @@
             return false;
         }
 
+        loadingShow();
         $.ajax({
             type: 'POST',
             url: '/teacher/api/register',
             data: data,
             success: function (data) {
                 console.log(data);
+                loadingHide();
 
                 if (data.status == '200') {
                     // $('.page').hide(), $('.page-register-done').show();
@@ -141,12 +143,14 @@
             return false;
         }
 
+        loadingShow();
         $.ajax({
             type: 'POST',
             url: '/teacher/api/login',
             data: data,
             success: function (data) {
                 console.log(data);
+                loadingHide();
                 if (data.status == '200') {
                     window.location.href = '/teacher';
                 } else {

@@ -25,6 +25,11 @@ router.post('/teacher/query', function (req, res, next) {
     var status = req.body.status;
     var realName = req.body.realName;
     var cellPhone = req.body.cellPhone;
+    var limit = req.body.limit * 1;
+    var start = req.body.start * 1;
+    var field = req.body.field;
+    var direction = req.body.direction;
+    var sortJSON = {}
     var queryJSON = {};
 
     if (status) {
@@ -39,12 +44,25 @@ router.post('/teacher/query', function (req, res, next) {
         queryJSON["teacherInfo.cellPhone"] = cellPhone;
     }
 
-    queryUserInfoFormDB(queryJSON, function (docs) {
-        for (var i = 0; i < docs.length; i++) {
-            docs[i]['teacherInfo'].passWord = '****';
-        }
-        res.send(sendData('200', {list: docs}, ''));
+    if (field == 'totalVoteCounts') {
+        sortJSON['VoteData.totalVoteCounts'] = direction == 'ASC' ? 1 : -1;
+    }
+
+    if (field == 'status') {
+        sortJSON['VoteInfo.status'] = direction == 'ASC' ? 1 : -1;
+    }
+
+    teacherDB.User.find(queryJSON, function (err, docs) {
+        var totalCount = docs.length;
+        queryUserInfoFormDB(queryJSON, start, limit, sortJSON, function (docs) {
+            for (var i = 0; i < docs.length; i++) {
+                docs[i]['teacherInfo'].passWord = '****';
+            }
+            res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
+        });
     });
+
+
 });
 
 /*金牌班主任 删除接口*/
@@ -80,20 +98,79 @@ router.post('/teacher/reviewed', function (req, res, next) {
     });
 });
 
-/*金牌班主任 拒绝审核接口*/
-router.post('/teacher/refuse', function (req, res, next) {
+/*金牌班主任 修改状态接口*/
+router.post('/teacher/changeStatus', function (req, res, next) {
     var _id = req.body._id;
+    var status = req.body.status;
 
     if (!_id) {
         res.send(sendData('201', false, 'id不能为空'));
         return false;
     }
 
-    updateUserInfoToDB(_id, {'VoteInfo.status': '3'}, function (docs) {
+    if (!status) {
+        res.send(sendData('201', false, 'status不能为空'));
+        return false;
+    }
+
+    updateUserInfoToDB(_id, {'VoteInfo.status': status}, function (docs) {
         res.send(sendData('200', true, ''));
     }, function (docs, err) {
         res.send(sendData('201', false, err));
     });
+});
+
+/*金牌班主任 批量修改状态接口*/
+router.post('/teacher/changeStatusBath', function (req, res, next) {
+    var _idArray = req.body._idArray.split(',');
+    var status = req.body.status;
+
+    if (!_idArray) {
+        res.send(sendData('201', false, 'id不能为空'));
+        return false;
+    }
+
+    if (!status) {
+        res.send(sendData('201', false, 'status不能为空'));
+        return false;
+    }
+
+    updates(0);
+
+    function updates(index) {
+        updateUserInfoToDB(_idArray[index], {'VoteInfo.status': status}, function (docs) {
+            if (index < _idArray.length) {
+                index++;
+                updates(index);
+            } else {
+                res.send(sendData('200', true, '成功批量' + index + '个'));
+            }
+        }, function (docs, err) {
+            res.send(sendData('201', false, err + '————成功批量' + index + 1 + '个' + ';失败' + _idArray.length - (index + 1) + '个'));
+        });
+    }
+
+});
+
+
+/*金牌班主任 发送短信接口*/
+router.post('/teacher/smsSend', function (req, res, next) {
+    var name = req.body.name;
+    var cellPhone = req.body.cellPhone;
+
+    if (!name) {
+        res.send(sendData('201', false, 'name不能为空'));
+        return false;
+    }
+
+    if (!cellPhone) {
+        res.send(sendData('201', false, 'cellPhone不能为空'));
+        return false;
+    }
+
+    var smsSend = require('../../module/sms/TeacherSMS');
+    smsSend(name, cellPhone);
+    res.send(sendData('200', true, ''));
 });
 
 
@@ -105,15 +182,20 @@ function sendData(status, data, errmsg) {
     }
 }
 
-function queryUserInfoFormDB(json, callback_s, callback_f) {
+function queryUserInfoFormDB(json, start, limit, sortJSON, callback_s, callback_f) {
 
     if (!json) {
         json = {}
     }
 
-    teacherDB.find(json).then(function (docs) {
+    teacherDB.User.find(json, function (err, docs) {
+        if (err) {
+            log('查找失败', err);
+            return;
+        }
+        log('查找成功');
         callback_s && callback_s(docs);
-    });
+    }).skip(start).limit(limit).sort(sortJSON);
 }
 
 

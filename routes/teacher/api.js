@@ -50,9 +50,10 @@ router.post('/uploading', function (req, res, next) {
         if (err) {
             res.send(sendData('999', err, '上传错误'));
         } else {
+            log(files);
             var inputFile = files.file[0];
             var uploadedPath = inputFile.path;
-            var type = uploadedPath.split('.')[1];
+            var type = 'png';
             var theName = tel + '_' + new Date().getTime() + '.' + type
             var dstPath = './public/files/' + theName;
             //重命名为真实文件名

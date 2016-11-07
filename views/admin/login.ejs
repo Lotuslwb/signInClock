@@ -1,8 +1,16 @@
 <%- include("../header.ejs",{"title":'登录页面'}) %>
 <link rel='stylesheet' href='/stylesheets/admin/login.css'/>
 <style>
-    body{height:100%;background:#16a085;overflow:hidden;}
-    canvas{z-index:-1;position:absolute;}
+    body {
+        height: 100%;
+        background: #16a085;
+        overflow: hidden;
+    }
+
+    canvas {
+        z-index: -1;
+        position: absolute;
+    }
 </style>
 
 
@@ -10,7 +18,7 @@
 <script src="/javascripts/admin/verificationNumbers.js"></script>
 <script src="/javascripts/admin/Particleground.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         //粒子背景特效
         $('body').particleground({
             dotColor: '#5cbdaa',
@@ -34,7 +42,7 @@
         <input type="button" value="立即登陆" class="submit_btn J-login"/>
     </dd>
     <dd>
-        <p>© 2015-2017 lotuslwb 版权所有</p>
+        <p>技术支持:837531387@qq.com</p>
     </dd>
 </dl>
 
@@ -58,7 +66,7 @@
             success: function (data) {
                 console.log(data);
                 if (data.status == '200') {
-                    window.location.href='/admin/teacherVote';
+                    window.location.href = '/admin/teacherVote';
                 } else {
                     alert(data.errmsg);
                 }

@@ -1,6 +1,6 @@
 <%- include("header.ejs",{"title":'老师上传页面'}) %>
 
-
+<form style="display: none;"></form>
 <div class="page page-upload" id="container">
 
     <div class="upload-box">
@@ -62,8 +62,24 @@
     <a href="javascript:;" class="btn J-gotoDetail">进入个人页面</a>
 </div>
 
+<div class="page page-editPic">
+    <div class="editPic-box">
+        <img src="http://localhost:8090/files/123456_1475918424558.jpg">
+    </div>
+
+    <div class="mask"></div>
+    <div class="pic-btn-list">
+        <span class="cancel J-pic-cancel">取消</span>
+        <span class="ok J-compose">选取</span>
+    </div>
+</div>
+
+<canvas id="myCanvas" width="600" height="400"></canvas>
 
 <script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/jquery.pep.js"></script>
+<script src="/javascripts/touch-0.2.13.min.js"></script>
+<script src="/javascripts/canvas2image.js"></script>
 <script src="/javascripts/api.js"></script>
 <script src="/javascripts/lrz.all.bundle.js"></script>
 <script src="/javascripts/cookie.js"></script>
@@ -106,12 +122,15 @@
             toast('参赛宣言不能为空');
             return false;
         }
+
+        loadingShow();
         $.ajax({
             type: 'POST',
             url: 'teacher/api/voteInfo',
             data: data,
             success: function (data) {
                 console.log(data);
+                loadingHide();
                 if (data.status == '200') {
                     $('.page-upload-done').show().siblings('.page').hide();
                 } else {
@@ -147,34 +166,74 @@
         window.location.href = '/teacher/detail?id=' + id;
     });
 
+    $('.J-pic-cancel').click(function () {
+        $('.page').hide();
+        $('.page-upload').show();
+    })
+
+    $('.J-compose').click(function () {
+        var targetBoxLeft = 20, targetBoxTop = 220;
+
+        var canvas = $('#myCanvas')[0];
+        var canvasContext = canvas.getContext("2d");
+        var sx = $('.J-img').offset().left - targetBoxLeft;
+        var sh = $('.J-img').offset().top - targetBoxTop;
+        var imgW = $(".J-img").width(), imgH = $('.J-img').height();
+        canvasContext.save();
+
+        canvasContext.rect(0, 0, 640, 713);
+        canvasContext.fillStyle = "#ffffff";
+        canvasContext.fill();
+
+        canvasContext.drawImage($(".J-img")[0], 0, 0, window.width, window.height, sx, sh, imgW, imgH);
+        canvasContext.restore();
+
+        var png = Canvas2Image.convertToPNG(canvas, 600, 400);
+        $('.' + window.name + 'Box').find('.J-file').html(png);
+        $('.page-upload').show().siblings('.page').hide();
+        var imgData = $(png).attr('src');
+
+        var form = document.forms[0];
+        var formData = new FormData(form);
+        //convertBase64UrlToBlob函数是将base64编码转换为Blob
+        formData.append("file", convertBase64UrlToBlob(imgData));  //append函数的第一个参数是后台获取数据的参数名,和html标签的input的name属性功能相同
+
+
+        $.ajax({
+            url: 'teacher/api/uploading',
+            data: formData,
+            type: 'POST',
+            dataType: "text",
+            processData: false,         // 告诉jQuery不要去处理发送的数据
+            contentType: false,        // 告诉jQuery不要去设置Content-Type请求头
+            success: function (data) {
+                console.log(data);
+                var imgName = JSON.parse(data).data.imgName;
+                if (window.name == 'personPic') {
+                    personPicImg = imgName;
+                } else if (window.name == 'groupPic') {
+                    groupPicImg = imgName;
+                }
+            }
+        });
+    });
+
 
     function uploader(name, me) {
         lrz(me.files[0])
                 .then(function (rst) {
-
+                    window.name = name;
                     var img = new Image();
                     img.src = rst.base64;
                     img.onload = function () {
-                        $(me).parent().find('.J-file').html(img);
+                        window.width = img.width, window.height = img.height;
+                        $('.page').hide();
+                        $('.page-editPic').show().find('.editPic-box').html(img);
+                        var $img = $('.page-editPic').show().find('.editPic-box').find('img').addClass('J-img');
+                        handleImg($img);
                     };
+                    window.rst = rst;
 
-                    rst.formData.append('fileLen', rst.fileLen);
-                    $.ajax({
-                        url: 'teacher/api/uploading', // 这个地址做了跨域处理，可以用于实际调试
-                        data: rst.formData,
-                        processData: false,
-                        contentType: false,
-                        type: 'POST',
-                        success: function (data) {
-                            console.log(data);
-                            var imgName = data.data.imgName;
-                            if (name == 'personPic') {
-                                personPicImg = imgName;
-                            } else if (name == 'groupPic') {
-                                groupPicImg = imgName;
-                            }
-                        }
-                    });
                 })
                 .catch(function (err) {
                     // 处理失败会执行
@@ -182,6 +241,85 @@
                 .always(function () {
                     // 不管是成功失败，都会执行
                 });
+    }
+
+    function handleImg($img) {
+        $img.pep({
+            shouldEase: false,
+            useCSSTranslation: false
+        });
+
+        //固定的Selection长宽
+        var SelectHeight = $('body').height(), SelectWidth = $('body').width();
+
+        // mover 缩放
+        var imgW = $img.width(), imgH = $img.height();
+
+        touch.on('.J-img', 'touchstart', function (ev) {
+            ev.preventDefault();
+        });
+        touch.on('.J-img', 'touchend', function (ev) {
+
+        });
+        touch.on('.J-img', 'pinchstart', function (ev) {
+            ev.preventDefault();
+
+            imgW = $img.width();
+            imgH = $img.height();
+
+            $.pep.unbind($img);
+        });
+        touch.on('.J-img', 'pinchend', function (ev) {
+            $(".selecton").css({"height": 0});
+            $($img).pep({
+                shouldEase: false,
+                useCSSTranslation: false
+            });
+        });
+        touch.on('.J-img', 'pinch', function (ev) {
+            var imgScale = imgW / imgH;
+            var minScale = 0.2, maxScale = 1.5;
+            var base = ev.scale;
+            var w = imgW * base;
+            var h = imgH * base;
+            if (h > SelectHeight * maxScale) {
+                h = SelectHeight * maxScale;
+                w = SelectHeight * maxScale * imgScale;
+            }
+            if (w > SelectWidth * maxScale) {
+                w = SelectWidth * maxScale;
+                h = SelectWidth * maxScale / imgScale;
+            }
+            if (h < imgH * minScale) {
+                h = imgH * minScale;
+                w = imgH * minScale * imgScale;
+            }
+            if (w < imgW * minScale) {
+                w = imgW * minScale;
+                h = imgW * minScale / imgScale;
+            }
+            //alert(JSON.stringify({"width": imgW, "height": imgH}));
+            $img.css({"width": w, "height": h});
+        });
+    }
+
+    /**
+     * 将以base64的图片url数据转换为Blob
+     * @param urlData
+     *            用url方式表示的base64图片数据
+     */
+    function convertBase64UrlToBlob(urlData) {
+
+        var bytes = window.atob(urlData.split(',')[1]);        //去掉url的头，并转换为byte
+
+        //处理异常,将ascii码小于0的转换为大于0
+        var ab = new ArrayBuffer(bytes.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < bytes.length; i++) {
+            ia[i] = bytes.charCodeAt(i);
+        }
+
+        return new Blob([ab], {type: 'image/png'});
     }
 </script>
 </body>

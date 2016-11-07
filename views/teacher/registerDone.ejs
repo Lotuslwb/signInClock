@@ -88,66 +88,6 @@
 
     $('.J-closed').click(function () {
         $(this).parent().hide();
-    })
-
-    $('.J-register').click(function () {
-        if ($(this).hasClass('weui_btn_disabled')) {
-            return false;
-        }
-
-        var data = {
-            'realName': $("[name='realName']").val(),
-            'englishName': $("[name='englishName']").val(),
-            'cellPhone': $("[name='cellPhone']").val(),
-            'passWord': $("[name='passWord']").val(),
-            'cityNo': $("[name='city']").val(),
-            'cityName': $("[name='city']").find("option:selected").text(),
-            'schoolNo': $("[name='school']").val(),
-            'schoolName': $("[name='school']").find("option:selected").text(),
-        }
-
-        $.ajax({
-            type: 'POST',
-            url: '/teacher/api/register',
-            data: data,
-            success: function (data) {
-                console.log(data);
-
-                if (data.status == '200') {
-                    $('.page').hide(), $('.page-register-done').show();
-                    window.location.hash = '#done';
-                } else {
-                    alert(data.errmsg);
-                }
-            },
-            dataType: 'json'
-        });
-    });
-
-    $('.J-login').click(function () {
-        if ($(this).hasClass('weui_btn_disabled')) {
-            return false;
-        }
-
-        var data = {
-            'cellPhone': $("[name='cellPhone_login']").val(),
-            'passWord': $("[name='passWord_login']").val()
-        }
-
-        $.ajax({
-            type: 'POST',
-            url: '/teacher/api/login',
-            data: data,
-            success: function (data) {
-                console.log(data);
-                if (data.status == '200') {
-                    window.location.href = '/teacher';
-                } else {
-                    alert(data.errmsg);
-                }
-            },
-            dataType: 'json'
-        });
     });
 
 
