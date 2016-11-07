@@ -127,21 +127,26 @@ router.post('/vote', function (req, res, next) {
     teacherDB.find({_id: id}).then(function (docs) {
         if (docs.length > 0) {
             var data = docs[0];
+
             var IPArray = data.IPArray;
             var index = _.indexOf(IPArray, ip);
             if (index >= 0) {
                 res.send(sendData('201', false, '你已投过票了'));
             } else {
-                delete data['_id'];
-
-                log(data);
-
                 data.IPArray.push(ip);
-                data['VoteData'] ? data['VoteData'] : data['VoteData'] = {};
-                data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts = data['VoteData'].totalVoteCounts * 1 + 1 : data['VoteData'].totalVoteCounts = 1;
-                data['VoteData'].lastVoteTime = new Date().getTime();
 
-                updateUserInfoToDB(id, data, function (docs) {
+                var updateData = {
+                    IPArray: data.IPArray,
+                    VoteData: {
+                        totalVoteCounts: data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts * 1 + 1 : 1,
+                        lastVoteTime: new Date().getTime()
+                    }
+                };
+
+                log('--更新数据--');
+                log(updateData);
+                
+                updateUserInfoToDB(id, updateData, function (docs) {
                     res.send(sendData('200', {counts: data['VoteData'].totalVoteCounts}, ''));
                 }, function () {
 
