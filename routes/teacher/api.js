@@ -132,7 +132,10 @@ router.post('/vote', function (req, res, next) {
             if (index >= 0) {
                 res.send(sendData('201', false, '你已投过票了'));
             } else {
+                delete data['_id'];
+
                 log(data);
+
                 data.IPArray.push(ip);
                 data['VoteData'] ? data['VoteData'] : data['VoteData'] = {};
                 data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts = data['VoteData'].totalVoteCounts * 1 + 1 : data['VoteData'].totalVoteCounts = 1;
