@@ -145,7 +145,7 @@ router.post('/vote', function (req, res, next) {
 
                 log('--更新数据--');
                 log(updateData);
-                
+
                 updateUserInfoToDB(id, updateData, function (docs) {
                     res.send(sendData('200', {counts: data['VoteData'].totalVoteCounts}, ''));
                 }, function () {
