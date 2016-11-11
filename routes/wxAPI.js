@@ -16,7 +16,7 @@ router.get('/jsSDK', function (req, res, next) {
     var getSDKSign = require('../module/wx/getSDKSign');
 
     //当前URL
-    var originalUrl = 'http://' + req.hostname + ':8000' + req.originalUrl;
+    var originalUrl = 'http://' + req.hostname + ':8090' + req.originalUrl;
 
     log(originalUrl);
 
@@ -38,7 +38,7 @@ router.get('/', function (req, res, next) {
     } else {
         //暂无openid;获取之;
         var hostname = req.hostname;
-        var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
+        var redirect_uri = encodeURIComponent('http://' + hostname + ':8090/wx/callback');
         var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
         res.redirect(url);
     }
