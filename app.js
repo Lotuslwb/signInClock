@@ -39,9 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //微信服务器配置
-//app.use('/', wx);
+app.use('/', wx);
 
-app.use('/', routes);
+//app.use('/', routes);
 app.use('/users', users);
 
 app.use('/wx', wxAPI);

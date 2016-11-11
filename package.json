@@ -20,6 +20,7 @@
     "externalip": "^1.0.2",
     "lodash": "^4.14.1",
     "mongoose": "^4.5.5",
+    "multiparty": "^4.1.2",
     "wechat-api": "^1.28.0",
     "wechat-oauth": "^1.1.1"
   },
