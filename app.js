@@ -17,11 +17,11 @@ var page = require('./routes/page');
 
 //老师投票项目
 var teacher = require('./routes/teacher/index');
-var teacherAPI=require('./routes/teacher/api');
+var teacherAPI = require('./routes/teacher/api');
 
 //英孚项目管理系统
 var admin = require('./routes/admin/index');
-var adminAPI=require('./routes/admin/api');
+var adminAPI = require('./routes/admin/api');
 
 var app = express();
 
@@ -39,9 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //微信服务器配置
-app.use('/', wx);
+//app.use('/', wx);
 
-//app.use('/', routes);
+app.use('/', routes);
 app.use('/users', users);
 
 app.use('/wx', wxAPI);
