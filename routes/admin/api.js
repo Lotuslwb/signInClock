@@ -7,6 +7,8 @@ var leadsDB = require('../../module/DB/LeadsDB');
 
 var config = require('../admin/tsconfig.json');
 
+var fs = require('fs');
+
 
 /*管理员登录*/
 router.post('/login', function (req, res, next) {
@@ -212,6 +214,38 @@ router.post('/leads/query', function (req, res, next) {
         queryDataFormDB(leadsDB, queryJSON, start, limit, sortJSON, function (docs) {
             res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
         });
+    });
+
+
+});
+
+
+router.post('/leads/export', function (req, res, next) {
+    var tag = req.body.tag;
+    var realName = req.body.realName;
+    var cellPhone = req.body.cellPhone;
+    var queryJSON = {};
+
+    if (tag) {
+        queryJSON["tag"] = tag;
+    }
+
+    if (realName) {
+        queryJSON["realName"] = realName;
+    }
+
+    if (cellPhone) {
+        queryJSON["cellPhone"] = cellPhone;
+    }
+
+
+    leadsDB.User.find(queryJSON, function (err, docs) {
+        log(docs);
+        var data = [[1,2,3],[true, false, null, 'sheetjs'],['foo','bar',new Date('2014-02-19T14:30Z'), '0.3'], ['baz', null, 'qux']];
+
+        var buffer = xlsx.build(data);
+        fs.writeFileSync('b.xlsx', buffer, 'binary');
+        res.send(sendData('200', 'export successfully!', ''));
     });
 
 

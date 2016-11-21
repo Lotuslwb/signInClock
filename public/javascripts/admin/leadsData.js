@@ -14,6 +14,25 @@ obj.prototype = {
         $('.J-query').click(function () {
             me.updateGid(me);
         });
+
+        $('.J-download').click(function () {
+            // var form = $('#J-search-form');
+            // var data = BUI.FormHelper.serializeToObject(form);
+            // $.ajax({
+            //     url: '/admin/api/leads/export',
+            //     type: 'post',
+            //     data: data,
+            //     success: function (data) {
+            //         console.log(data);
+            //         if (data.status == 200) {
+            //             BUI.Message.Alert('导出成功');
+            //             me.updateGid(me);
+            //         } else {
+            //             BUI.Message.Alert(data.errmsg);
+            //         }
+            //     }
+            // })
+        });
     },
     initGid: function (me, cb) {
         var gridObj = {};
