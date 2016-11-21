@@ -3,7 +3,7 @@ var router = express.Router();
 
 var log = require('../../module/tools/log');
 var teacherDB = require('../../module/DB/TeacherDB');
-var leadsDB = require('../../module/DB/leadsDB');
+var leadsDB = require('../../module/DB/LeadsDB');
 
 var config = require('../admin/tsconfig.json');
 

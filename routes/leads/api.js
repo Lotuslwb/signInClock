@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var log = require('../../module/tools/log');
-var leadsDB = require('../../module/DB/leadsDB');
+var leadsDB = require('../../module/DB/LeadsDB');
 
 
 /* 收集 leads */
@@ -17,7 +17,7 @@ router.post('/addLeads', function (req, res, next) {
         res.cookie('session', JSON.stringify(data.cellPhone), {signed: true});
         res.send(sendData('200', true, ''));
     });
-    
+
 })
 
 
