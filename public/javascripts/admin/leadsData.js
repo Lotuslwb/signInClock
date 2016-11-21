@@ -25,10 +25,13 @@ obj.prototype = {
                     {title: '英文名', dataIndex: 'englishName', width: 80, sortable: false},
                     {
                         title: '性别', dataIndex: 'sex', width: 80, sortable: false, renderer: function (value) {
-                        if (value.length == 0) {
-                            return '-'
+                        if (value == 1) {
+                            return '男';
+                        } else if (value == 2) {
+                            return '女';
+                        } else {
+                            return '-';
                         }
-                        return value == 1 ? "男" : '女';
                     }
                     },
                     {title: '年龄', dataIndex: 'age', width: 80, sortable: false},

@@ -6,9 +6,6 @@ var tag = [
     {
         value: 'v1',
         text: 'v1'
-    },    {
-        value: 'v2',
-        text: 'v2'
     }
 ];
 
