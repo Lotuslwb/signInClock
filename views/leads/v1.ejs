@@ -1,0 +1,59 @@
+<%- include("header.ejs",{"title":'v1'}) %>
+
+<style>
+    a, input {
+        width: 480px;
+        height: 70px;
+        font-size: 26px;
+        display: block;
+        border: 1px solid #000000;
+    }
+</style>
+
+<input type="text" placeholder="中文名" name="realName">
+<input type="text" placeholder="电话" name="cellPhone">
+
+<a href="#" id="submit">提交</a>
+
+<script src="/javascripts/jquery.js"></script>
+
+<script>
+
+    $('#submit').click(function () {
+        var data = {
+            realName: $("[name='realName']").val(),
+            cellPhone: $("[name='cellPhone']").val(),
+            tag: 'v1'
+        }
+        var v = true;
+        $.each(data, function (i, t) {
+            if (t.length <= 0 && v) {
+                toast('请先完善信息');
+                v = false;
+            }
+        })
+
+        if (!v) {
+            return false;
+        }
+
+        loadingShow();
+        $.ajax({
+            type: 'POST',
+            url: '/leads/api/addLeads',
+            data: data,
+            success: function (data) {
+                console.log(data);
+                loadingHide();
+                if (data.status == '200') {
+                    toast('提交成功');
+                } else {
+                    toast(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    })
+</script>
+</body>
+</html>

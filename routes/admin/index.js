@@ -37,24 +37,14 @@ router.get('/teacherVote', function (req, res, next) {
     res.render('admin/teacherVote', {username: username, routes: 'teacherVote'});
 });
 
+/*收集leads*/
+router.get('/leads', function (req, res, next) {
+    var username = req.signedCookies['session'].split('"')[1];
+    res.render('admin/leads', {username: username, routes: 'leads', tag: getTag()});
+});
 
-function getUserInfoFormDB(tel, callback_s, callback_f) {
-
-    if (!tel) {
-        callback_f && callback_f('tel 不能为空');
-    }
-    var findJSON = {
-        'teacherInfo.cellPhone': tel
-    };
-    teacherDB.find(findJSON).then(function (docs) {
-        if (docs.length > 0) {
-            log('---数据库里面已经有此用户---');
-            callback_s && callback_s(docs);
-        } else {
-            log('---数据库里面暂无此用户---');
-            callback_f && callback_f(docs);
-        }
-    });
+function getTag() {
+    return require('../../module/data/leads');
 }
 
 

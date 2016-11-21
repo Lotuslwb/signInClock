@@ -3,6 +3,7 @@ var router = express.Router();
 
 var log = require('../../module/tools/log');
 var teacherDB = require('../../module/DB/TeacherDB');
+var leadsDB = require('../../module/DB/leadsDB');
 
 var config = require('../admin/tsconfig.json');
 
@@ -174,6 +175,49 @@ router.post('/teacher/smsSend', function (req, res, next) {
 });
 
 
+/*收集leads 查询接口*/
+router.post('/leads/query', function (req, res, next) {
+    var tag = req.body.tag;
+    var realName = req.body.realName;
+    var cellPhone = req.body.cellPhone;
+    var limit = req.body.limit * 1;
+    var start = req.body.start * 1;
+    var field = req.body.field;
+    var direction = req.body.direction;
+    var sortJSON = {}
+    var queryJSON = {};
+
+    if (tag) {
+        queryJSON["tag"] = tag;
+    }
+
+    if (realName) {
+        queryJSON["realName"] = realName;
+    }
+
+    if (cellPhone) {
+        queryJSON["cellPhone"] = cellPhone;
+    }
+
+    if (field == 'totalVoteCounts') {
+        sortJSON['VoteData.totalVoteCounts'] = direction == 'ASC' ? 1 : -1;
+    }
+
+    if (field == 'tag') {
+        sortJSON['tag'] = direction == 'ASC' ? 1 : -1;
+    }
+
+    leadsDB.User.find(queryJSON, function (err, docs) {
+        var totalCount = docs.length;
+        queryDataFormDB(leadsDB, queryJSON, start, limit, sortJSON, function (docs) {
+            res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
+        });
+    });
+
+
+});
+
+
 function sendData(status, data, errmsg) {
     return {
         status: status,
@@ -243,5 +287,21 @@ function updateUserInfoToDB(_id, data, callback_s, callback_f) {
     });
 }
 
+
+function queryDataFormDB(DB, json, start, limit, sortJSON, callback_s, callback_f) {
+
+    if (!json) {
+        json = {}
+    }
+
+    DB.User.find(json, function (err, docs) {
+        if (err) {
+            log('查找失败', err);
+            return;
+        }
+        log('查找成功');
+        callback_s && callback_s(docs);
+    }).skip(start).limit(limit).sort(sortJSON);
+}
 
 module.exports = router;

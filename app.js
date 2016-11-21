@@ -23,6 +23,10 @@ var teacherAPI = require('./routes/teacher/api');
 var admin = require('./routes/admin/index');
 var adminAPI = require('./routes/admin/api');
 
+//英孚收集leads 汇总
+var leads = require('./routes/leads/index');
+var leadsAPI = require('./routes/leads/api');
+
 var app = express();
 
 // view engine setup
@@ -53,6 +57,9 @@ app.use('/teacher/api', teacherAPI);
 
 app.use('/admin', admin);
 app.use('/admin/api', adminAPI);
+
+app.use('/leads', leads);
+app.use('/leads/api', leadsAPI);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
