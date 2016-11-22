@@ -1,39 +1,103 @@
 <%- include("header.ejs",{"title":'v1'}) %>
 
 <style>
-    a, input {
-        width: 480px;
-        height: 70px;
+
+
+    .form {
+        height: 350px;
+        background: #ededed;
+        overflow: auto;
         font-size: 26px;
+
+    }
+
+    .form input {
         display: block;
-        border: 1px solid #000000;
+        width: 500px;
+        height: 48px;
+        line-height: 48px;
+        box-sizing: border-box;
+        margin: auto;
+        border: none;
+        padding-left: 50px;
+        margin-bottom: 8px;
+    }
+
+    .form .realName {
+        margin-top: 50px;
+        background: url("/images/leads/v1/input-name.jpg");
+    }
+
+    .form .age {
+        background: url("/images/leads/v1/input-age.jpg");
+    }
+
+    .form .cellPhone {
+        background: url("/images/leads/v1/input-cell.jpg");
+    }
+
+    .form .submit {
+        display: block;
+        width: 498px;
+        margin: 20px auto;
     }
 </style>
 
-<input type="text" placeholder="中文名" name="realName">
-<input type="text" placeholder="电话" name="cellPhone">
+<img src="/images/leads/v1/pic1.jpg"/>
+<img src="/images/leads/v1/pic2.jpg"/>
+<div class="form">
+    <input type="text" placeholder="姓名" class="realName" name="realName"/>
+    <input type="number" placeholder="学员年龄" class="age" name="age"/>
+    <input type="tel" placeholder="手机号码" class="cellPhone" name="cellPhone"/>
+    <a href="#" class="submit"><img src="/images/leads/v1/input-submit.jpg"></a>
+</div>
+<img src="/images/leads/v1/pic3.jpg"/>
+<div class="form">
+    <input type="text" placeholder="姓名" class="realName" name="realName"/>
+    <input type="number" placeholder="学员年龄" class="age" name="age"/>
+    <input type="tel" placeholder="手机号码" class="cellPhone" name="cellPhone"/>
+    <a href="#" class="submit"><img src="/images/leads/v1/input-submit.jpg"></a>
+</div>
+<img src="/images/leads/v1/pic4.jpg"/>
+<div class="form">
+    <input type="text" placeholder="姓名" class="realName" name="realName"/>
+    <input type="number" placeholder="学员年龄" class="age" name="age"/>
+    <input type="tel" placeholder="手机号码" class="cellPhone" name="cellPhone"/>
+    <a href="#" class="submit"><img src="/images/leads/v1/input-submit.jpg"></a>
+</div>
 
-<a href="#" id="submit">提交</a>
 
 <script src="/javascripts/jquery.js"></script>
 
 <script>
 
-    $('#submit').click(function () {
+    $('.submit').click(function () {
+        var $form = $(this).parents('.form');
         var data = {
-            realName: $("[name='realName']").val(),
-            cellPhone: $("[name='cellPhone']").val(),
+            realName: $form.find("[name='realName']").val(),
+            cellPhone: $form.find("[name='cellPhone']").val(),
+            age: $form.find("[name='age']").val(),
             tag: 'v1'
         }
         var v = true;
         $.each(data, function (i, t) {
             if (t.length <= 0 && v) {
-                toast('请先完善信息');
+                toast('选项不能为空');
                 v = false;
             }
         })
 
         if (!v) {
+            return false;
+        }
+
+        if (data.cellPhone && !checkTel(data.cellPhone)) {
+            toast('手机号码格式有误');
+            return false;
+        }
+
+        if (data.age && !(data.age < 99 && data.age > 1)) {
+            toast('年龄不在范围内');
             return false;
         }
 
@@ -47,6 +111,7 @@
                 loadingHide();
                 if (data.status == '200') {
                     toast('提交成功');
+                    $('.form').hide();
                 } else {
                     toast(data.errmsg);
                 }
@@ -54,10 +119,15 @@
             dataType: 'json'
         });
     })
+
+    function checkTel(tel) {
+        var reg = /^0?1[3|4|5|7|8|9][0-9]\d{8}$/;
+        return reg.test(tel);
+    }
 </script>
 <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?3bdcd19ea5a52ab4ee3aecc0635fefce";
         var s = document.getElementsByTagName("script")[0];
