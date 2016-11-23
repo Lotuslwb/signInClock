@@ -57,9 +57,25 @@ obj.prototype = {
                     {title: '城市', dataIndex: 'cityName', width: 80, sortable: false},
                     {title: '学校', dataIndex: 'schoolName', width: 80, sortable: false},
                     {title: '电话', dataIndex: 'cellPhone', width: 120, sortable: false},
-                    {title: '是否会员', dataIndex: 'isLeaguer', width: 300, sortable: false},
+                    {title: '是否会员', dataIndex: 'isLeaguer', width: 80, sortable: false},
                     {title: '标签', dataIndex: 'tag', width: 80},
-                    {title: '其他', dataIndex: 'others', width: 80, sortable: false},
+                    {
+                        title: '创建时间',
+                        dataIndex: 'createTime',
+                        width: 100,
+                        sortable: false,
+                        renderer: function (value) {
+                            console.log(value)
+                            if (value) {
+                                return BUI.Date.format(value, 'yyyy-mm-dd');
+                            } else {
+                                return '-';
+                            }
+                        }
+                    },
+                    {
+                        title: '其他', dataIndex: 'others', width: 80, sortable: false
+                    },
                     {
                         title: '操作', dataIndex: 'h', width: 120, sortable: false, renderer: function (value, obj) {
                         var returnStr = '';

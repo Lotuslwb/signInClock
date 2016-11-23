@@ -7,11 +7,10 @@ var leadsDB = require('../../module/DB/LeadsDB');
 
 /* 收集 leads */
 router.post('/addLeads', function (req, res, next) {
-    var data = req.body;
-    console.log(data);
 
     var res = res;
     var data = req.body;
+    data.createTime = new Date().toString();
     leadsDB.add(data).then(function (doc) {
         log(doc);
         res.cookie('session', JSON.stringify(data.cellPhone), {signed: true});

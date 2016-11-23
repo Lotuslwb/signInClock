@@ -11,6 +11,7 @@ var Schema = {
     cellPhone: String,  //手机号
     isLeaguer: String,  //是否会员
     others: String,     //其他
+    createTime: String, //创建时间
     tag: String         //打标签
 };
 
