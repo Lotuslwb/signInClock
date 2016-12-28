@@ -1,0 +1,125 @@
+<%- include("header.ejs",{"title":'首页'}) %>
+<style>
+    body {
+        font-size: 36px;
+        color: #000000;
+    }
+
+    input {
+        margin: 10px;
+        border: 2px solid #000000;
+    }
+
+</style>
+
+<div class="page page-main active">
+    <h2>openid : <%= openid %></h2>
+
+    <input class="plan-input" type="text" placeholder="新年计划">
+    <input class="plan-input" type="text" placeholder="新年计划">
+    <input class="plan-input" type="text" placeholder="新年计划">
+    <input class="plan-input" type="text" placeholder="新年计划">
+
+    <select name="" class="plansNumber">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+
+
+    <select name="" id="punishmentSelect">
+        <% for(var i = 0;i < punishmentList.length;i++){ %>
+        <option value="<%= punishmentList[i].value %>"><%= punishmentList[i].text %></option>
+        <% } %>
+    </select>
+
+    <a href="javascript:;" id="submit">提交数据</a>
+</div>
+
+<div class="page page-result">
+
+    <a href="javascript:;" id="gotoShare">去分享页面</a>
+</div>
+
+
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/api.js"></script>
+<script src="/javascripts/cookie.js"></script>
+<script>
+
+    var id;
+    $('#submit').click(function () {
+        var data = {
+            plansArrayString: getPlansArray().toString(),
+            plansNumber: $('.plansNumber').val(),
+            punishmentValue: $('#punishmentSelect').val(),
+        }
+
+
+        if (data.plansArrayString.length <= 0) {
+            toast('请至少选择一个计划');
+            return false;
+        }
+
+        if (data.plansNumber <= 0) {
+            toast('至少完成数量要大于0');
+            return false;
+        }
+
+        if (data.punishmentValue.length <= 0) {
+            toast('请选择一个惩罚');
+            return false;
+        }
+
+        postAjax(data, function (data) {
+            $('.page-result').addClass('active').siblings('.page').removeClass('active');
+            id = data.data._id;
+        });
+
+    });
+
+    $('#gotoShare').click(function () {
+        if (id) {
+            window.location.href = '/newyear17/share?id=' + id;
+        } else {
+            toast('无id');
+        }
+    });
+
+    function getPlansArray() {
+        var plansArray = [];
+
+        $('.plan-input').map(function (index, item) {
+            var v = item.value;
+            if (v) {
+                plansArray.push(v);
+            }
+        })
+        return plansArray;
+    }
+
+    function postAjax(data, callback) {
+
+        loadingShow();
+
+        $.ajax({
+            type: 'POST',
+            url: '/newyear17/api/gen',
+            data: data,
+            success: function (data) {
+                console.log(data);
+                loadingHide();
+                if (data.status == '200') {
+                    toast('提交成功');
+                    callback(data);
+                } else {
+                    toast(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    }
+</script>
+</body>
+</html>

@@ -27,6 +27,12 @@ var adminAPI = require('./routes/admin/api');
 var leads = require('./routes/leads/index');
 var leadsAPI = require('./routes/leads/api');
 
+
+//新年计划
+var newyear17 = require('./routes/newyear17/index');
+var newyear17API = require('./routes/newyear17/api');
+
+
 var app = express();
 
 // view engine setup
@@ -43,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //微信服务器配置
-//app.use('/', wx);
+app.use('/', wx);
 
 app.use('/', routes);
 app.use('/users', users);
@@ -60,6 +66,10 @@ app.use('/admin/api', adminAPI);
 
 app.use('/leads', leads);
 app.use('/leads/api', leadsAPI);
+
+
+app.use('/newyear17', newyear17);
+app.use('/newyear17/api', newyear17API);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

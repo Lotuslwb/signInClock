@@ -60,11 +60,13 @@ router.get('/callback', function (req, res) {
     getUserInfoByCode(code, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
-        addUserToDB(chunk, function (docs) {
-            //数据 保存成功再add cookie
-            res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
-            res.redirect('/page');
-        });
+        res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
+        res.redirect('/page');
+
+        // addUserToDB(chunk, function (docs) {
+        //     //数据 保存成功再add cookie
+        //
+        // });
     });
 
     //将用户信息加入数据库

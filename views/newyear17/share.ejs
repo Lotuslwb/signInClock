@@ -1,0 +1,73 @@
+<%- include("header.ejs",{"title":'分享页面'}) %>
+<style>
+    body {
+        font-size: 36px;
+        color: #000000;
+    }
+
+    input {
+        margin: 10px;
+        border: 2px solid #000000;
+    }
+
+</style>
+
+<div class="page page-share active">
+    <h1>计划</h1>
+    <% for(var i = 0; i < data.plansArray.length;i++){ %>
+    <h2><%= data.plansArray[i] %></h2>
+    <% } %>
+    <h1>至少监督数量</h1>
+    <div class=""><%= data.plansNumber %></div>
+    <h1>接受惩罚值</h1>
+    <div class=""><%= [data.punishmentText] %></div>
+    <h1>监督人</h1>
+    <% for(var i = 0; i < data.supervisorArray.length;i++){ %>
+    <h2><%= (data.supervisorArray[i].openid) %></h2>
+    <% } %>
+    <br>
+    <a href="javascript:;" id="supportIt">支持一下把~~</a>
+</div>
+
+
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/api.js"></script>
+<script src="/javascripts/cookie.js"></script>
+<script>
+
+    var _id = '<%= data._id %>';
+    var supervisorArray = '<%= data.supervisorArray.toString('') %>'.split(',');
+
+    $('#supportIt').click(function () {
+        supportPost(function (data) {
+            console.log(data);
+        });
+    });
+
+    function supportPost(callback) {
+
+        loadingShow();
+
+        $.ajax({
+            type: 'POST',
+            url: '/newyear17/api/support',
+            data: {
+                _id: _id,
+                supervisorArray: supervisorArray.toString()
+            },
+            success: function (data) {
+                console.log(data);
+                loadingHide();
+                if (data.status == '200') {
+                    toast('提交成功');
+                    callback(data);
+                } else {
+                    toast(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    }
+</script>
+</body>
+</html>

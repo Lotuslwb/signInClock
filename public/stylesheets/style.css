@@ -183,6 +183,10 @@ body {
     display: none;
 }
 
+.page.active {
+    display: block;
+}
+
 .page-index {
     background: url("../images/teacher/index-bg.png") #ffef7c no-repeat top center;
     background-size: cover;
@@ -672,6 +676,7 @@ a.btn {
     font-size: 30px;
     color: #FFFFFF;
 }
+
 .page-editPic .pic-btn-list .ok {
     float: right;
     margin-right: 20px;
@@ -689,7 +694,8 @@ a.btn {
     z-index: 10;
     pointer-events: none;
 }
-#myCanvas{
+
+#myCanvas {
     display: none;
 }
 
