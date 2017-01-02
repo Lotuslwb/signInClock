@@ -38,14 +38,24 @@
 
     <img src="/images/teacher/detail-word-title.png" class="word-title"/>
     <div class="writeVoteBox">
-        <img src="/images/teacher/detail-writeVote.png" class="writeVote"/>
+        <img src="/images/teacher/detail-writeVote.png" class="writeVote J-writeVote"/>
+        <div class="clearfix"></div>
+        <div class="writeVoteForm">
+            <input type="text" class="input J-name" placeholder="你的昵称">
+            <div class="textarea-box">
+                <textarea class="textarea J-textarea" name="voteWords" placeholder="请输入文本" rows="3"></textarea>
+                <div class="textarea-counter"><span class="current-words">0</span>/<span class="total-words">300</span>
+                </div>
+            </div>
+            <a class="btn J-submitContent" href="javascript:;">提交</a>
+        </div>
     </div>
 
     <div class="word-list">
-        <% for(var i = 0;i < 4;i++){ %>
+        <% for(var i = 0;i < data.studentWords.length;i++){ %>
         <div class="word-item">
-            <div class="name">zasdad</div>
-            <div class="content">我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬我是李文彬</div>
+            <div class="name"><%= data.studentWords[i].studentName %></div>
+            <div class="content"><%= data.studentWords[i].content %></div>
         </div>
         <% } %>
     </div>
@@ -61,6 +71,7 @@
     var id = "<%= data._id %>";
     var cityNo = "<%= data.teacherInfo.cityNo %>";
 
+    //投票
     $('.J-vote').click(function () {
 
         loadingShow();
@@ -83,10 +94,80 @@
             dataType: 'json'
         });
     });
-
+    //去列表页
     $('.J-gotoList').click(function () {
         window.location.href = '/teacher/list?cityNo=' + cityNo;
     });
+    //写评价
+    $('.J-writeVote').click(function () {
+        var item = window.localStorage.getItem('content');
+        if (item && item.length > 1) {
+            toast('已经评价过了');
+            return false;
+        }
+
+        $('.writeVoteForm').addClass('active');
+    })
+
+    $('.J-submitContent').click(function () {
+        var contentData = {
+            studentName: $('.J-name').val(),
+            content: $('.J-textarea').val(),
+            time: new Date().getTime()
+        }
+
+        if (contentData.studentName.length <= 0) {
+            toast('昵称不能为空');
+            return false;
+        }
+        if (contentData.content.length <= 0) {
+            toast('评价不能为空');
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/teacher/api/content',
+            data: {data: JSON.stringify(contentData), id: id},
+            success: function (data) {
+                console.log(data);
+                loadingHide();
+                if (data.status == '200') {
+                    toast('评价成功');
+                    genContentList(data.data.studentWords);
+                    $('.writeVoteForm').removeClass('active');
+                    window.localStorage.setItem('content', JSON.stringify(contentData));
+                } else {
+                    toast(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+
+
+    });
+
+    $('.J-textarea').on('input', function () {
+        var v = $(this).val();
+        var totalWords = $('.total-words').text() * 1;
+        if (v.length > totalWords) {
+            v = v.substr(0, totalWords);
+            $(this).val(v);
+        } else {
+            $('.current-words').text(v.length);
+        }
+    });
+
+
+    function genContentList(data) {
+        var str = '';
+        $.each(data, function (index, item) {
+            str += '<div class="word-item">';
+            str += '<div class="name">' + item.studentName + '</div>';
+            str += '<div class="content">' + item.content + '</div></div>';
+        });
+        $('.word-list').html(str);
+    }
 
 
     var mySwiper = new Swiper('.swiper-container', {

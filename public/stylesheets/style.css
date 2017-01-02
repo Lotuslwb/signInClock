@@ -695,6 +695,23 @@ a.btn {
     pointer-events: none;
 }
 
+.writeVoteBox .textarea-box {
+    width: 500px;
+}
+
+.writeVoteBox .input {
+    margin: 20px 0 10px;
+    width: 100%;
+}
+
+.writeVoteForm {
+    display: none;
+}
+
+.writeVoteForm.active {
+    display: block;
+}
+
 #myCanvas {
     display: none;
 }

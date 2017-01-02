@@ -147,11 +147,45 @@ router.post('/vote', function (req, res, next) {
                 log(updateData);
 
                 updateUserInfoToDB(id, updateData, function (docs) {
-                    res.send(sendData('200', {counts: data['VoteData'].totalVoteCounts}, ''));
+                    res.send(sendData('200', {counts: updateData['VoteData'].totalVoteCounts}, ''));
                 }, function () {
 
                 })
             }
+        } else {
+            res.send(sendData('201', false, '数据不存在'));
+        }
+    }).catch(function (err) {
+        res.send(sendData('201', false, err));
+    });
+});
+
+/*评价*/
+router.post('/content', function (req, res, next) {
+    var _ = require('lodash');
+    var id = req.body.id;
+    var item = req.body.data && JSON.parse(req.body.data);
+    console.log(item, 'item')
+
+    teacherDB.find({_id: id}).then(function (docs) {
+        if (docs.length > 0) {
+            var data = docs[0];
+
+            data.studentWords.push(item);
+
+            var updateData = {
+                studentWords: data.studentWords,
+            };
+
+            log('--更新数据--');
+            log(updateData);
+
+            updateUserInfoToDB(id, updateData, function (docs) {
+                res.send(sendData('200', {studentWords: data.studentWords}, ''));
+            }, function () {
+
+            });
+
         } else {
             res.send(sendData('201', false, '数据不存在'));
         }

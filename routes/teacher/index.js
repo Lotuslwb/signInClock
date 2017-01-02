@@ -80,6 +80,7 @@ router.get('/registerDone', function (req, res, next) {
     res.render('teacher/registerDone');
 })
 
+
 function getUserInfoFormDB(tel, callback_s, callback_f) {
 
     if (!tel) {
