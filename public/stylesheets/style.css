@@ -592,7 +592,7 @@ a.btn {
 }
 
 .page-list {
-    background: url("../images/teacher/list-bg.png") no-repeat top center;
+    background: url("../images/teacher/list-bg.png") #9fdbee no-repeat top center;
     background-size: cover;
     -webkit-background-size: cover;
     display: block;
