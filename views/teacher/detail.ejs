@@ -100,8 +100,8 @@
     });
     //写评价
     $('.J-writeVote').click(function () {
-        var item = window.localStorage.getItem('content');
-        if (item && item.length > 1) {
+        var contentID = window.localStorage.getItem('contentID');
+        if (contentID && contentID == id) {
             toast('已经评价过了');
             return false;
         }
@@ -136,7 +136,7 @@
                     toast('评价成功');
                     genContentList(data.data.studentWords);
                     $('.writeVoteForm').removeClass('active');
-                    window.localStorage.setItem('content', JSON.stringify(contentData));
+                    window.localStorage.setItem('contentID', id);
                 } else {
                     toast(data.errmsg);
                 }

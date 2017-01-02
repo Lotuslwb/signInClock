@@ -156,7 +156,7 @@ var cityList = [
         cityName: '石家庄'
     },
     {
-        cityNo: 'SZ',
+        cityNo: 'SZ2',
         cityName: '苏州'
     },
     {
