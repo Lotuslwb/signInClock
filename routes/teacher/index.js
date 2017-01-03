@@ -44,7 +44,11 @@ router.get('/login', function (req, res, next) {
 
 
 router.get('/detail', function (req, res, next) {
+    var openid = req.signedCookies['session'];
     var id = req.query.id;
+
+    log(openid);
+
     // todo  如果没有id,应该验证
     if (id) {
         teacherDB.find({_id: id, 'VoteInfo.status': 2}).then(function (docs) {
