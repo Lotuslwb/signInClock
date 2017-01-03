@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
 
     var scope = 'snsapi_userinfo';
     //var scope = 'snsapi_base'; //静默授权
-    log(router);
+
     //已经有openid, 直接进入业务
     if (openid) {
         log('--已经有openid, 直接进入业务--')
@@ -61,9 +61,6 @@ router.get('/callback', function (req, res) {
     var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
     var code = req.query.code;
     var router = req.query.router;
-
-    log(router);
-
 
     getUserInfoByCode(code, function (data) {
         var sign = data.sign;
