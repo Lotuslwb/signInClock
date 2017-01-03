@@ -16,7 +16,7 @@ router.get('/jsSDK', function (req, res, next) {
     var getSDKSign = require('../module/wx/getSDKSign');
 
     //当前URL
-    var originalUrl = 'http://' + 'ma.eldesign.cn'+ '' + req.originalUrl;
+    var originalUrl = 'http://' + 'ma.eldesign.cn' + '' + req.originalUrl;
 
     log(originalUrl);
 
@@ -30,6 +30,12 @@ router.get('/jsSDK', function (req, res, next) {
 //主要负责OAuth认证
 router.get('/', function (req, res, next) {
     var openid = req.signedCookies['session'];
+    var router = req.query.router;
+    log(router);
+
+    // var scope='snsapi_userinfo';
+    var scope = 'snsapi_base'; //静默授权
+
 
     //已经有openid, 直接进入业务
     if (openid) {
@@ -39,7 +45,7 @@ router.get('/', function (req, res, next) {
         //暂无openid;获取之;
         var hostname = 'ma.eldesign.cn';
         var redirect_uri = encodeURIComponent('http://' + hostname + '/wx/callback');
-        var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+        var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=' + scope + '&state=1#wechat_redirect';
         res.redirect(url);
     }
 
