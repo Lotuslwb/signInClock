@@ -61,6 +61,7 @@ router.get('/callback', function (req, res) {
     //获取个人信息并且保存
     var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
     var code = req.query.code;
+    
 
     getUserInfoByCode(code, function (data) {
         var sign = data.sign;
