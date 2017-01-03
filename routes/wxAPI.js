@@ -31,7 +31,6 @@ router.get('/jsSDK', function (req, res, next) {
 router.get('/', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var router = req.query.router;
-    log(router);
 
     // var scope='snsapi_userinfo';
     var scope = 'snsapi_base'; //静默授权
@@ -40,11 +39,11 @@ router.get('/', function (req, res, next) {
     //已经有openid, 直接进入业务
     if (openid) {
         log('--已经有openid, 直接进入业务--')
-        res.redirect('/page');
+        res.redirect('/' + router);
     } else {
         //暂无openid;获取之;
         var hostname = 'ma.eldesign.cn';
-        var redirect_uri = encodeURIComponent('http://' + hostname + '/wx/callback');
+        var redirect_uri = encodeURIComponent('http://' + hostname + '/wx/callback?router=' + router);
         var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=' + scope + '&state=1#wechat_redirect';
         res.redirect(url);
     }
