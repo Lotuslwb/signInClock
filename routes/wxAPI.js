@@ -32,8 +32,8 @@ router.get('/', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var router = req.query.router;
 
-    // var scope='snsapi_userinfo';
-    var scope = 'snsapi_base'; //静默授权
+    var scope = 'snsapi_userinfo';
+    //var scope = 'snsapi_base'; //静默授权
 
 
     //已经有openid, 直接进入业务
@@ -61,14 +61,17 @@ router.get('/callback', function (req, res) {
     //获取个人信息并且保存
     var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
     var code = req.query.code;
-    var router = req.query.router || 'page';
+    var router = req.query.router;
 
+    log(router);
+
+    
     getUserInfoByCode(code, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
         res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
         res.redirect('/' + router);
-        
+
     });
 
     //将用户信息加入数据库
