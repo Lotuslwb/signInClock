@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
     } else {
         //如果cookie里面没有openid,获取之;
         var hostname = 'ma.eldesign.cn';
-        var redirect_uri = encodeURIComponent('http://' + hostname + ':8000/wx/callback');
+        var redirect_uri = encodeURIComponent('http://' + hostname + '/wx/callback');
         var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
         res.redirect(url);
     }

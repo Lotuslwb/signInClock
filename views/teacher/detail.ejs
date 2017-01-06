@@ -73,6 +73,12 @@
 
     //投票
     $('.J-vote').click(function () {
+        var voteID = window.localStorage.getItem('voteID');
+        if (voteID && voteID == id) {
+            toast('你已投过票了');
+            return false;
+        }
+
 
         loadingShow();
 
@@ -85,6 +91,7 @@
                 loadingHide();
                 if (data.status == '200') {
                     toast('投票成功');
+                    window.localStorage.setItem('voteID', id);
                     var counts = data.data.counts;
                     $('.J-counts').text(counts);
                 } else {
