@@ -7,14 +7,17 @@
     <input type="text" class="input" name="realName" placeholder="中文名"/>
     <input type="text" class="input" name="englishName" placeholder="英文名"/>
 
-    <select name="city" class="input select">
+    <select name="city" class="input select J-city">
         <option value="">城市</option>
         <% for(var i = 0;i < cityList.length;i++){ %>
         <option value="<%= cityList[i].cityNo %>"><%= cityList[i].cityName %></option>
         <% } %>
     </select>
 
-    <input type="text" class="input" name="school" placeholder="学校"/>
+    <select name="school" class="input select J-school">
+        <option value="">学校</option>
+    </select>
+
 
     <input type="tel" class="input" name="cellPhone" placeholder="手机号"/>
     <input type="password" class="input" name="passWord" placeholder="密码"/>
@@ -103,7 +106,7 @@
             'cityNo': $("[name='city']").val(),
             'cityName': $("[name='city']").find("option:selected").text(),
             'schoolNo': $("[name='school']").val(),
-            'schoolName': $("[name='school']").val(),
+            'schoolName': $("[name='school']").find("option:selected").text(),
         }
         if (!validate(data)) {
             return false;
@@ -161,6 +164,31 @@
         });
     });
 
+    $('.J-city').change(function () {
+        var data = {
+            cityNo: $(this).val()
+        };
+
+        if (data.cityNo == '') {
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/teacher/api/school',
+            data: data,
+            success: function (data) {
+                console.log(data);
+                if (data.status == '200') {
+                    genSchoolSelect(data.data);
+                } else {
+                    toast(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    })
+
 
     function route() {
         var hash = window.location.hash;
@@ -208,6 +236,14 @@
     function checkTel(tel) {
         var reg = /^0?1[3|4|5|7|8|9][0-9]\d{8}$/;
         return reg.test(tel);
+    }
+
+    function genSchoolSelect(data) {
+        var str = '<option value="">学校</option>';
+        for (var i = 0; i < data.length; i++) {
+            str += '<option value="' + i + '">' + data[i] + '</option>'
+        }
+        $('.J-school').html(str);
     }
 </script>
 </body>

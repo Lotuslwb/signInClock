@@ -76,7 +76,7 @@ var cityList = [
         cityName: '东营'
     },
     {
-        cityNo: 'GZ',
+        cityNo: 'GY',
         cityName: '贵阳'
     },
     {

@@ -70,6 +70,7 @@
 <script>
     var id = "<%= data._id %>";
     var cityNo = "<%= data.teacherInfo.cityNo %>";
+    var schoolNo = "<%= data.teacherInfo.schoolNo %>"
 
     //投票
     $('.J-vote').click(function () {
@@ -103,7 +104,7 @@
     });
     //去列表页
     $('.J-gotoList').click(function () {
-        window.location.href = '/teacher/list?cityNo=' + cityNo;
+        window.location.href = '/teacher/list?cityNo=' + cityNo + '&schoolNo=' + schoolNo;
     });
     //写评价
     $('.J-writeVote').click(function () {

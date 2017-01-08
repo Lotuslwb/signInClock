@@ -64,12 +64,21 @@ router.get('/detail', function (req, res, next) {
 });
 
 router.get('/list', function (req, res, next) {
+    var schoolList = getSchoolList();
     var data = {
         cityNo: req.query.cityNo,
-        cityList: getCityList()
+        cityList: getCityList(),
+        schoolNo: req.query.schoolNo,
     }
 
-    getTeacherListByCityNo(req.query.cityNo, function (docs) {
+    for (var index in schoolList) {
+        var item = schoolList[index];
+        if (item.cityNo == data.cityNo && item['schoolArray']) {
+            data.schoolArray = item.schoolArray;
+        }
+    }
+    
+    getTeacherListByCityNo(data.cityNo, data.schoolNo, function (docs) {
         data.list = docs;
         res.render('teacher/list', {data: data});
     }, function (error) {
@@ -104,7 +113,7 @@ function getUserInfoFormDB(tel, callback_s, callback_f) {
     });
 }
 
-function getTeacherListByCityNo(cityNo, callback_s, callback_f) {
+function getTeacherListByCityNo(cityNo, schoolNo, callback_s, callback_f) {
     if (!cityNo) {
         callback_f && callback_f('cityNo 不能为空');
     }
@@ -112,6 +121,10 @@ function getTeacherListByCityNo(cityNo, callback_s, callback_f) {
         'teacherInfo.cityNo': cityNo,
         'VoteInfo.status': 2
     };
+
+    if (schoolNo) {
+        findJSON['teacherInfo.schoolNo'] = schoolNo;
+    }
     teacherDB.User.find(findJSON, {'teacherInfo.passWord': false, 'IPArray': false}).then(function (docs) {
         if (docs.length > 0) {
             log('---数据库里面已经有此用户---');
@@ -125,6 +138,11 @@ function getTeacherListByCityNo(cityNo, callback_s, callback_f) {
 
 function getCityList() {
     return require('../../module/data/teacher');
+}
+
+
+function getSchoolList() {
+    return require('../../module/data/school');
 }
 
 

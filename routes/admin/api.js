@@ -32,8 +32,17 @@ router.post('/teacher/query', function (req, res, next) {
     var start = req.body.start * 1;
     var field = req.body.field;
     var direction = req.body.direction;
+    var cityNo = req.body.cityNo;
+    var schoolNo = req.body.schoolNo;
     var sortJSON = {}
     var queryJSON = {};
+
+    if (cityNo) {
+        queryJSON["teacherInfo.cityNo"] = cityNo;
+    }
+    if (schoolNo) {
+        queryJSON["teacherInfo.schoolNo"] = schoolNo;
+    }
 
     if (status) {
         queryJSON["VoteInfo.status"] = status;
@@ -105,6 +114,8 @@ router.post('/teacher/reviewed', function (req, res, next) {
 router.post('/teacher/changeStatus', function (req, res, next) {
     var _id = req.body._id;
     var status = req.body.status;
+    var cityNo = req.body.cityNo;
+    var schoolNo = req.body.schoolNo;
 
     if (!_id) {
         res.send(sendData('201', false, 'id不能为空'));
@@ -115,8 +126,31 @@ router.post('/teacher/changeStatus', function (req, res, next) {
         res.send(sendData('201', false, 'status不能为空'));
         return false;
     }
+    var findJSON = {'VoteInfo.status': status};
 
-    updateUserInfoToDB(_id, {'VoteInfo.status': status}, function (docs) {
+    if (cityNo) {
+        findJSON['teacherInfo.cityNo'] = cityNo;
+        var cityList = getCityList();
+        for (var i in cityList) {
+            var item = cityList[i];
+            if (item.cityNo == cityNo) {
+                findJSON['teacherInfo.cityName'] = item.cityName;
+            }
+        }
+    }
+    if (schoolNo) {
+        findJSON['teacherInfo.schoolNo'] = schoolNo;
+        var schoolList = getSchoolList();
+        for (var i in schoolList) {
+            var item = schoolList[i];
+            if (item.cityNo == cityNo) {
+                findJSON['teacherInfo.schoolName'] = item.schoolArray[schoolNo];
+            }
+        }
+    }
+    log(findJSON);
+
+    updateUserInfoToDB(_id, findJSON, function (docs) {
         res.send(sendData('200', true, ''));
     }, function (docs, err) {
         res.send(sendData('201', false, err));
@@ -241,7 +275,7 @@ router.post('/leads/export', function (req, res, next) {
 
     leadsDB.User.find(queryJSON, function (err, docs) {
         log(docs);
-        var data = [[1,2,3],[true, false, null, 'sheetjs'],['foo','bar',new Date('2014-02-19T14:30Z'), '0.3'], ['baz', null, 'qux']];
+        var data = [[1, 2, 3], [true, false, null, 'sheetjs'], ['foo', 'bar', new Date('2014-02-19T14:30Z'), '0.3'], ['baz', null, 'qux']];
 
         var buffer = xlsx.build(data);
         fs.writeFileSync('b.xlsx', buffer, 'binary');
@@ -336,6 +370,16 @@ function queryDataFormDB(DB, json, start, limit, sortJSON, callback_s, callback_
         log('查找成功');
         callback_s && callback_s(docs);
     }).skip(start).limit(limit).sort(sortJSON);
+}
+
+
+function getCityList() {
+    return require('../../module/data/teacher');
+}
+
+
+function getSchoolList() {
+    return require('../../module/data/school');
 }
 
 module.exports = router;

@@ -611,19 +611,35 @@ a.btn {
     padding-top: 75px;
 }
 
+
+.page-list .list-selectBox{
+    position: relative;
+    width: 549px;
+    margin:20px auto 0;
+}
+
+
 .page-list .city-select {
     height: 36px;
     line-height: 36px;
     width: 100px;
     background: transparent url("../images/teacher/select-icon.png") no-repeat 70px center;
-    position: absolute;
-    right: 0;
-    top: 105px;
+    display: inline-block;
+
+}
+.page-list .school-select {
+    height: 36px;
+    line-height: 36px;
+    width: 360px;
+    background: transparent url("../images/teacher/select-icon.png") no-repeat right 10px center;
+    display: inline-block;
+    padding-right: 40px;
+    box-sizing: border-box;
 }
 
 .page-list .list-box {
     overflow: auto;
-    padding-top: 40px;
+    padding-top: 30px;
     width: 548px;
     margin: auto;
 
@@ -656,6 +672,12 @@ a.btn {
     background: #000;
     position: relative;
     overflow: hidden;
+}
+
+.editPic-box {
+    overflow: hidden;
+    position: relative;
+    height: 1008px;
 }
 
 .page-editPic .editPic-box img {

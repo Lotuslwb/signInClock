@@ -29,6 +29,23 @@
 
             </div>
 
+            <div class="search-cell">
+                <span class="search-cell-title m0-left">城市：</span>
+                <select class="search-common-cell J-city" name="cityNo">
+                    <option value="">全部</option>
+                    <% for(var i = 0, cityList = cityList;i < cityList.length;i++){ %>
+                    <option value="<%= cityList[i].cityNo %>">
+                        <%= cityList[i].cityName %>
+                    </option>
+                    <% } %>
+                </select>
+
+                <span class="search-cell-title m0-left">学校：</span>
+                <select name="schoolNo" class="input select J-school">
+                    <option value="">全部</option>
+                </select>
+            </div>
+
 
             <div class="row">
                 <div class="form-actions text-center">
@@ -54,18 +71,33 @@
     <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点-->
     <div id="adminDialog" class="bui-hidden">
         <form id="dialog-form" class="form-horizontal">
-            <div class="row">
-                <div class="control-group span10">
-                    <label class="control-label">状态：</label>
-                    <select class="search-common-cell" name="status">
-                        <option value="">全部</option>
-                        <option value="0">未提交</option>
-                        <option value="1">待审核</option>
-                        <option value="2">审核通过</option>
-                        <option value="3">审核不通过</option>
-                        <option value="9">黑名单</option>
-                    </select>
-                </div>
+            <div class="search-cell">
+                <span class="search-cell-title">状态：</span>
+                <select class="search-common-cell" name="status">
+                    <option value="">全部</option>
+                    <option value="0">未提交</option>
+                    <option value="1">待审核</option>
+                    <option value="2">审核通过</option>
+                    <option value="3">审核不通过</option>
+                    <option value="9">黑名单</option>
+                </select>
+            </div>
+
+            <div class="search-cell">
+                <span class="search-cell-title">城市：</span>
+                <select class="search-common-cell J-city" name="cityNo">
+                    <option value="">全部</option>
+                    <% for(var i = 0, cityList = cityList;i < cityList.length;i++){ %>
+                    <option value="<%= cityList[i].cityNo %>">
+                        <%= cityList[i].cityName %>
+                    </option>
+                    <% } %>
+                </select>
+
+                <span class="search-cell-title m0-left">学校：</span>
+                <select name="schoolNo" class="input select J-school">
+                    <option value="">全部</option>
+                </select>
             </div>
 
         </form>

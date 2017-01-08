@@ -16,10 +16,20 @@
 <div class="page page-list">
     <div class="list-header">
         <img src="/images/teacher/list-title.png" class="list-title">
+    </div>
+    <div class="list-selectBox">
         <select class="city-select J-city">
             <% for(var i = 0, cityList = data.cityList;i < cityList.length;i++){ %>
             <option value="<%= cityList[i].cityNo %>" <%= (cityList[i].cityNo == data.cityNo ? 'selected' : '') %> >
                 <%= cityList[i].cityName %>
+            </option>
+            <% } %>
+        </select>
+
+        <select class="school-select J-school">
+            <% for(var i = 0, schoolArray = data.schoolArray;i < schoolArray.length;i++){ %>
+            <option value="<%= i %>" <%= (i == data.schoolNo ? 'selected' : '') %> >
+                <%= schoolArray[i] %>
             </option>
             <% } %>
         </select>
@@ -51,8 +61,13 @@
     });
 
     $('.J-city').change(function () {
-        window.location.href = '/teacher/list?cityNo=' + $(this).val();
+        window.location.href = '/teacher/list?cityNo=' + $('.J-city').val() + '&schoolNo=0';
     });
+
+    $('.J-school').change(function () {
+        window.location.href = '/teacher/list?cityNo=' + $('.J-city').val() + '&schoolNo=' + $('.J-school').val();
+    });
+
 
 </script>
 </body>

@@ -34,7 +34,22 @@ router.get('/', function (req, res, next) {
 /*金牌班主任*/
 router.get('/teacherVote', function (req, res, next) {
     var username = req.signedCookies['session'].split('"')[1];
-    res.render('admin/teacherVote', {username: username, routes: 'teacherVote'});
+    var schoolList = getSchoolList();
+
+    var data = {
+        username: username,
+        routes: 'teacherVote',
+        cityList: getCityList(),
+    }
+    
+    for (var index in schoolList) {
+        var item = schoolList[index];
+        if (item.cityNo == data.cityNo && item['schoolArray']) {
+            data.schoolArray = item.schoolArray;
+        }
+    }
+
+    res.render('admin/teacherVote', data);
 });
 
 /*收集leads*/
@@ -45,6 +60,15 @@ router.get('/leads', function (req, res, next) {
 
 function getTag() {
     return require('../../module/data/leads');
+}
+
+function getCityList() {
+    return require('../../module/data/teacher');
+}
+
+
+function getSchoolList() {
+    return require('../../module/data/school');
 }
 
 

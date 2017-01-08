@@ -5,6 +5,31 @@ var log = require('../../module/tools/log');
 var teacherDB = require('../../module/DB/TeacherDB');
 
 
+/*根据城市获取学校消息*/
+router.post('/school', function (req, res, next) {
+    var data = req.body;
+    var cityNo = data.cityNo;
+    var schoolNo = data.schoolNo;
+    var schoolList = getSchoolList();
+    var schoolArray;
+    for (var index in schoolList) {
+        var item = schoolList[index];
+        if (item.cityNo == cityNo && item['schoolArray']) {
+            schoolArray = item.schoolArray;
+        }
+    }
+
+    if (schoolArray && schoolNo) {
+        res.send(sendData('200', schoolArray[schoolNo * 1], ''));
+    } else if (schoolArray && schoolArray.length > 0) {
+        res.send(sendData('200', schoolArray, ''));
+    } else {
+        res.send(sendData('999', '', '暂无学校数据'));
+    }
+
+})
+
+
 /*老师上传参数资料*/
 router.post('/voteInfo', function (req, res, next) {
     var data = req.body;
@@ -247,6 +272,11 @@ var getClientIP = function (req) {
         ipAddress = req.connection.remoteAddress;
     }
     return ipAddress;
+}
+
+
+function getSchoolList() {
+    return require('../../module/data/school');
 }
 
 

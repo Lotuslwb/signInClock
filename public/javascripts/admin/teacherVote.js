@@ -14,6 +14,39 @@ obj.prototype = {
         $('.J-query').click(function () {
             me.updateGid(me);
         });
+
+        $('.J-city').change(function () {
+            var data = {
+                cityNo: $(this).val()
+            };
+
+            if (data.cityNo == '') {
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/teacher/api/school',
+                data: data,
+                success: function (data) {
+                    console.log(data);
+                    if (data.status == '200') {
+                        genSchoolSelect(data.data);
+                    } else {
+                        toast(data.errmsg);
+                    }
+                },
+                dataType: 'json'
+            });
+        })
+
+        function genSchoolSelect(data) {
+            var str = '<option value="">学校</option>';
+            for (var i = 0; i < data.length; i++) {
+                str += '<option value="' + i + '">' + data[i] + '</option>'
+            }
+            $('.J-school').html(str);
+        }
     },
     initGid: function (me, cb) {
         var gridObj = {};
@@ -24,12 +57,12 @@ obj.prototype = {
                     {title: '中文名', dataIndex: 'realName', width: 80, sortable: false},
                     {title: '英文名', dataIndex: 'englishName', width: 80, sortable: false},
                     {title: '城市', dataIndex: 'cityName', width: 80, sortable: false},
-                    {title: '学校', dataIndex: 'schoolName', width: 80, sortable: false},
+                    {title: '学校', dataIndex: 'schoolName', width: 180, sortable: false},
                     {title: '电话', dataIndex: 'cellPhone', width: 120, sortable: false},
                     {title: '宣言', dataIndex: 'voteWords', width: 300, sortable: false},
                     {title: '票数', dataIndex: 'totalVoteCounts', width: 80},
                     {
-                        title: '图片', dataIndex: 'status', width: 200,sortable:false, renderer: function (v, obj) {
+                        title: '图片', dataIndex: 'status', width: 100, sortable: false, renderer: function (v, obj) {
                         if (obj.status < 1) {
                             return '---';
                         }
@@ -176,7 +209,10 @@ obj.prototype = {
                         var thisDialog = this;
                         if (me.dialogForm.isValid()) {
                             data = BUI.FormHelper.serializeToObject($('#dialog-form'));
-                            changeItem(data.status, '修改状态成功');
+                            changeItem(data.status, '修改状态成功', {
+                                cityNo: data.cityNo,
+                                schoolNo: data.schoolNo
+                            });
                             me.dialog.hide();
                         }
                     })
@@ -255,12 +291,12 @@ obj.prototype = {
                     });
                 }
 
-                function changeItem(status, msg) {
+                function changeItem(status, msg, data) {
                     $.ajax({
                         url: '/admin/api/teacher/changeStatus',
                         type: 'post',
                         data: {
-                            '_id': record._id, status: status
+                            '_id': record._id, status: status, cityNo: data.cityNo || '', schoolNo: data.schoolNo || ''
                         },
                         success: function (data) {
                             console.log(data);
