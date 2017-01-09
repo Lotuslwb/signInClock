@@ -117,7 +117,7 @@ var schoolList = [
     },
     {
         cityNo: 'LZ',
-        schoolArray: '兰州'
+        schoolArray: ['兰州中心']
     },
     {
         cityNo: 'NJ',

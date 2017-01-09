@@ -296,7 +296,10 @@ obj.prototype = {
                         url: '/admin/api/teacher/changeStatus',
                         type: 'post',
                         data: {
-                            '_id': record._id, status: status, cityNo: data.cityNo || '', schoolNo: data.schoolNo || ''
+                            '_id': record._id,
+                            status: status,
+                            cityNo: data && data['cityNo'] || '',
+                            schoolNo: data && data['schoolNo'] || ''
                         },
                         success: function (data) {
                             console.log(data);
