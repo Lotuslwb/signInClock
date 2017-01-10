@@ -162,6 +162,7 @@
     });
 
     $('.J-gotoDetail').click(function () {
+        window.localStorage.setItem('again', true);
         window.location.href = '/teacher/detail?id=' + id;
     });
 

@@ -585,6 +585,11 @@ a.btn {
     font-size: 24px;
 }
 
+.word-list .word-item .name {
+    font-weight: bold;
+    font-size: 28px;
+}
+
 .detail-more-btn {
     margin: auto;
     padding-top: 40px;
@@ -611,13 +616,11 @@ a.btn {
     padding-top: 75px;
 }
 
-
-.page-list .list-selectBox{
+.page-list .list-selectBox {
     position: relative;
     width: 549px;
-    margin:20px auto 0;
+    margin: 20px auto 0;
 }
-
 
 .page-list .city-select {
     height: 36px;
@@ -627,6 +630,7 @@ a.btn {
     display: inline-block;
 
 }
+
 .page-list .school-select {
     height: 36px;
     line-height: 36px;
@@ -736,6 +740,12 @@ a.btn {
 
 #myCanvas {
     display: none;
+}
+
+.qcode-txt {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 20px;
 }
 
 .toast {

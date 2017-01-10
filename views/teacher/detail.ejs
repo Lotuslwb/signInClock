@@ -9,6 +9,13 @@
     }
 </style>
 <div class="page page-detail">
+
+    <div class="overlay"></div>
+    <div class="qcode-box mid" style="z-index: 100; display: none;">
+        <img src="/images/teacher/qcode.jpg"/>
+        <div class="qcode-txt">长按识别二维码,关注英孚亲子英语</div>
+    </div>
+
     <img src="/images/teacher/detail-title.png" class="detail-title"/>
     <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -59,9 +66,7 @@
         </div>
         <% } %>
     </div>
-
     <img src="/images/teacher/detail-more-btn.png" class="detail-more-btn J-gotoList"/>
-
 </div>
 <script src="/javascripts/jquery.js"></script>
 <script src="/javascripts/api.js"></script>
@@ -71,6 +76,15 @@
     var id = "<%= data._id %>";
     var cityNo = "<%= data.teacherInfo.cityNo %>";
     var schoolNo = "<%= data.teacherInfo.schoolNo %>"
+
+    var again = window.localStorage.getItem('again');
+
+    if (!again) {
+        $('.overlay').show();
+        $('.qcode-box').show();
+        window.localStorage.setItem('again', true);
+        window.localStorage.setItem('preId', id);
+    }
 
     //投票
     $('.J-vote').click(function () {

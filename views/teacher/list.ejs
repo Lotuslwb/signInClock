@@ -56,6 +56,13 @@
 <script src="/javascripts/api.js"></script>
 <script src="/javascripts/cookie.js"></script>
 <script>
+
+    var preId = window.localStorage.getItem('preId');
+    if (preId) {
+        window.localStorage.removeItem('preId');
+        window.location.href = '/teacher/detail?id=' + preId;
+    }
+
     $('.J-item').click(function () {
         window.location.href = '/teacher/detail?id=' + $(this).data('id');
     });
