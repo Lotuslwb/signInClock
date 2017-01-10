@@ -75,7 +75,8 @@
 <script>
     var id = "<%= data._id %>";
     var cityNo = "<%= data.teacherInfo.cityNo %>";
-    var schoolNo = "<%= data.teacherInfo.schoolNo %>"
+    var schoolNo = "<%= data.teacherInfo.schoolNo %>";
+    var realName = "<%= data.teacherInfo.realName %>";
 
     var again = window.localStorage.getItem('again');
 
@@ -209,8 +210,8 @@
 
         //“分享给朋友”
         wx.onMenuShareAppMessage({
-            title: '英孚打卡计划 分享title', // 分享标题
-            desc: '英孚打卡计划 分享desc', // 分享描述
+            title: realName + '正在参加英孚金牌班主任评选，快为TA投票，让TA和胡歌一起参加教育论坛吧！', // 分享标题
+            desc: '谁是英孚金牌班主任？由你来决定！', // 分享描述
             link: '', // 分享链接
             imgUrl: '', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
@@ -225,7 +226,8 @@
 
         //“分享到朋友圈”
         wx.onMenuShareTimeline({
-            title: '英孚打卡计划 分享title', // 分享标题
+            title: realName + '正在参加英孚金牌班主任评选，快为TA投票，让TA和胡歌一起参加教育论坛吧！', // 分享标题
+            desc: '谁是英孚金牌班主任？由你来决定！', // 分享描述
             link: '', // 分享链接
             imgUrl: '', // 分享图标
             success: function () {
@@ -249,7 +251,7 @@
                 log(wxConfig);
 
                 wx.config({
-                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                     appId: wxConfig.appId, // 必填，公众号的唯一标识
                     timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
                     nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
