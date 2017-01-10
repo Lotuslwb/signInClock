@@ -149,6 +149,9 @@ router.post('/vote', function (req, res, next) {
     var _ = require('lodash');
     var id = req.body.id;
     var ip = getClientIP(req);
+
+    log(ip);
+
     teacherDB.find({_id: id}).then(function (docs) {
         if (docs.length > 0) {
             var data = docs[0];
