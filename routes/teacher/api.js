@@ -274,6 +274,9 @@ var getClientIP = function (req) {
     if (!ipAddress) {
         ipAddress = req.connection.remoteAddress;
     }
+
+    const os = require('os');
+    log(os.networkInterfaces());
     return ipAddress;
 }
 
