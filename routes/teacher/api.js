@@ -276,7 +276,6 @@ var getClientIP = function (req) {
     }
 
     const os = require('os');
-    log(os.networkInterfaces());
     return ipAddress;
 }
 
