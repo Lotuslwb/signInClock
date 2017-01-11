@@ -121,6 +121,7 @@ router.get('/getWxSDK', function (req, res, next) {
     //当前URL
     var originalUrl = req.query.originalUrl;
 
+    //var getSDKSign = require('../module/wx/getSDKSign');
     var getSDKSign = require('../module/wx/getSDKSign');
 
 
