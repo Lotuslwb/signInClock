@@ -83,15 +83,17 @@
     var voteIDString = window.localStorage.getItem('voteIDArray');
     var voteIDArray = (voteIDString && voteIDString.split(',')) || [];
 
-    if (!again) {
-        $('.overlay').show();
-        $('.qcode-box').show();
-        window.localStorage.setItem('again', true);
-        window.localStorage.setItem('preId', id);
-    }
 
     //投票
     $('.J-vote').click(function () {
+
+        if (!again) {
+            $('.overlay').show();
+            $('.qcode-box').show();
+            window.localStorage.setItem('again', true);
+            window.localStorage.setItem('preId', id);
+            return false;
+        }
 
         if (voteIDArray.length > 0 && $.inArray(id, voteIDArray) >= 0) {
             toast('你已投过票了');
@@ -251,7 +253,6 @@
             data: {'originalUrl': window.location.href},
             success: function (data) {
                 var wxConfig = data.data.wxConfig;
-
 
 
                 wx.config({
