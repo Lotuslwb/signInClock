@@ -490,7 +490,6 @@ a.btn {
 .page-detail {
     background: url("../images/teacher/detail-bg.png") no-repeat top center;
     background-size: cover;
-    -webkit-background-size: cover;
     display: block;
     height: auto;
     min-height: 100%;
