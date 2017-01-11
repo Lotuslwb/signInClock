@@ -80,6 +80,9 @@
 
     var again = window.localStorage.getItem('again');
 
+    var voteIDString = window.localStorage.getItem('voteIDArray');
+    var voteIDArray = (voteIDString && voteIDString.split(',')) || [];
+
     if (!again) {
         $('.overlay').show();
         $('.qcode-box').show();
@@ -89,8 +92,8 @@
 
     //投票
     $('.J-vote').click(function () {
-        var voteIDArray = window.localStorage.getItem('voteIDArray').split(',');
-        if (voteIDArray && $.inArray(id, voteIDArray) >= 0) {
+
+        if (voteIDArray.length > 0 && $.inArray(id, voteIDArray) >= 0) {
             toast('你已投过票了');
             return false;
         }
@@ -107,7 +110,6 @@
                 loadingHide();
                 if (data.status == '200') {
                     toast('投票成功');
-                    var voteIDArray = window.localStorage.getItem('voteIDArray').split(',') || [];
                     voteIDArray.push(id);
                     window.localStorage.setItem('voteIDArray', voteIDArray.toString());
                     var counts = data.data.counts;
@@ -250,7 +252,7 @@
             success: function (data) {
                 var wxConfig = data.data.wxConfig;
 
-                log(wxConfig);
+
 
                 wx.config({
                     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
