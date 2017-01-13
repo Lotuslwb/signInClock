@@ -38,6 +38,7 @@ router.get('/', function (req, res, next) {
     //已经有openid, 直接进入业务
     if (openid) {
         log('--已经有openid, 直接进入业务--')
+        log(router);
         res.redirect('/' + router);
     } else {
         //暂无openid;获取之;
@@ -67,7 +68,6 @@ router.get('/callback', function (req, res) {
         var chunk = data.chunk;
         res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
         res.redirect('/' + router);
-
     });
 
     //将用户信息加入数据库
