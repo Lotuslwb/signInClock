@@ -150,7 +150,7 @@ router.post('/vote', function (req, res, next) {
     var id = req.body.id;
     var ip = getClientIP(req);
 
-    var openid = req.signedCookies['session'];
+    var openid = req.signedCookies['session'].split('"')[1];
 
     if (!openid) {
         res.send(sendData('201', false, '系统异常,刷新页面重试'));
