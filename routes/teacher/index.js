@@ -51,8 +51,7 @@ router.get('/detail', function (req, res, next) {
         res.redirect('/wx?router=teacher/detail?id=' + id);
         return false;
     }
-
-
+    
     // todo  如果没有id,应该验证
     if (id) {
         teacherDB.find({_id: id, 'VoteInfo.status': 2}).then(function (docs) {

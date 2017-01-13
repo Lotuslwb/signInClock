@@ -150,7 +150,23 @@ router.post('/vote', function (req, res, next) {
     var id = req.body.id;
     var ip = getClientIP(req);
 
-    log(ip);
+    var openid = req.signedCookies['session'];
+
+    if (!openid) {
+        res.send(sendData('201', false, 'openid失效,刷新页面重试'));
+        return false;
+    }
+
+    var load = require('../../module/tools/load');
+    var loadWay = 'https';
+    //拉取用户信息
+
+    var getInfoUrl = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN';
+    
+    var getInfoUrl = 'https://api.weixin.qq.com/sns/userinfo?access_token=' + userToken + '&openid=' + openid + '&lang=zh_CN';
+    load(loadWay, getInfoUrl, function (chunk) {
+        callback && callback(chunk);
+    })
 
     teacherDB.find({_id: id}).then(function (docs) {
         if (docs.length > 0) {

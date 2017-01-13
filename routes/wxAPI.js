@@ -55,7 +55,7 @@ router.get('/', function (req, res, next) {
 /**
  * 认证授权后回调函数
  *
- * 获取个人信息并存入数据库; 然后进入业务
+ * 获取openid;
  */
 router.get('/callback', function (req, res) {
     //获取个人信息并且保存
@@ -63,13 +63,13 @@ router.get('/callback', function (req, res) {
     var code = req.query.code;
     var router = req.query.router;
 
-    getUserInfoByCode(code, function (data) {
+
+    getUserInfoByCode({code: code, needInfo: false}, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
 
-        log(data.chunk);
-
         res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
+        res.cookie('code', code, {signed: true});
         res.redirect('/' + router);
     });
 

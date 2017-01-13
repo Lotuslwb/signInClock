@@ -13,10 +13,15 @@ var WXConfig = require('../wx/WXConfig');
 var APPID = WXConfig.APPID;
 var APPSECRET = WXConfig.APPSECRET;
 
+// option  code
+// option needInfo
 
-var getUserInfoByCode = function (code, callback) {
+var getUserInfoByCode = function (option, callback) {
 
     //获取userInfo的access_token;
+    var code = option.code;
+    var needInfo = option.needInfo;
+
     var url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + APPID + '&secret=' + APPSECRET + '&code=' + code + '&grant_type=authorization_code'
 
     load(loadWay, url, function (chunk) {
@@ -25,6 +30,23 @@ var getUserInfoByCode = function (code, callback) {
         var openid = chunk.openid;
         var expires_in = chunk.expires_in;
 
+        //如果不需要用户信息 只需要openid
+        if (!needInfo) {
+            var data = {
+                'sign': {
+                    access_token: userToken,
+                    refresh_token: userRefreshToken,
+                    expires_in: expires_in,
+                    openid: openid
+                },
+                chunk: chunk
+            }
+
+            callback && callback(data);
+            return false;
+        }
+
+        //获取用户信息
         //验证token 是否有效
         var checkTokenUrl = 'https://api.weixin.qq.com/sns/auth?access_token=' + userToken + '&openid=' + openid;
         load(loadWay, checkTokenUrl, function (chunk) {
