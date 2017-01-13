@@ -69,7 +69,7 @@ router.get('/callback', function (req, res) {
         var chunk = data.chunk;
 
         res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
-        res.cookie('code', code, {signed: true});
+        res.cookie('access_token', data.sign.access_token, {signed: true});
         res.redirect('/' + router);
     });
 

@@ -45,13 +45,24 @@ router.get('/login', function (req, res, next) {
 
 router.get('/detail', function (req, res, next) {
     var openid = req.signedCookies['session'];
+    var access_token = req.signedCookies['access_token'];
     var id = req.query.id;
 
-    if (!openid) {
+    if (!openid || !access_token) {
         res.redirect('/wx?router=teacher/detail?id=' + id);
         return false;
     }
-    
+
+    var load = require('../../module/tools/load');
+    var loadWay = 'https';
+    //拉取用户信息
+    var getInfoUrl = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + access_token + '&openid=' + openid + '&lang=zh_CN';
+    load(loadWay, getInfoUrl, function (chunk) {
+        log('拉取用户信息');
+        log(chunk);
+    })
+
+
     // todo  如果没有id,应该验证
     if (id) {
         teacherDB.find({_id: id, 'VoteInfo.status': 2}).then(function (docs) {
