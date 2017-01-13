@@ -151,9 +151,8 @@ router.post('/vote', function (req, res, next) {
     var ip = getClientIP(req);
 
     var openid = req.signedCookies['session'];
-    var access_token = req.signedCookies['access_token'];
 
-    if (!openid || !access_token) {
+    if (!openid) {
         res.send(sendData('201', false, '系统异常,刷新页面重试'));
         return false;
     }
