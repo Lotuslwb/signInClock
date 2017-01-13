@@ -159,6 +159,7 @@ router.post('/vote', function (req, res, next) {
 
     var getUserInfoByOpenid = require('../../module/wx/getUserInfoByOpenid');
 
+    getUserInfoByOpenid({openid: openid});
 
     teacherDB.find({_id: id}).then(function (docs) {
         if (docs.length > 0) {
