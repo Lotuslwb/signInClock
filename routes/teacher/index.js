@@ -47,7 +47,11 @@ router.get('/detail', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var id = req.query.id;
 
-    log(openid);
+    if (!openid) {
+        res.redirect('/wx?router=teacher/detail?id=' + id);
+        return false;
+    }
+
 
     // todo  如果没有id,应该验证
     if (id) {
@@ -77,7 +81,7 @@ router.get('/list', function (req, res, next) {
             data.schoolArray = item.schoolArray;
         }
     }
-    
+
     getTeacherListByCityNo(data.cityNo, data.schoolNo, function (docs) {
         data.list = docs;
         res.render('teacher/list', {data: data});
