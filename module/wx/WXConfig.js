@@ -5,9 +5,16 @@
 // }
 
 //英孚 订阅号
+// var WXConfig = {
+//     APPID: 'wxd49bea1e592f6e44',
+//     APPSECRET: '75f67f0ca4ed4bcd10d2e6ce9baef3b7'
+// }
+
+
+//英孚 服务号
 var WXConfig = {
-    APPID: 'wxd49bea1e592f6e44',
-    APPSECRET: '75f67f0ca4ed4bcd10d2e6ce9baef3b7'
+    APPID: 'wx48668a118d818bde',
+    APPSECRET: 'daf2d342da5aaf67a65d41496435f193'
 }
 
 
