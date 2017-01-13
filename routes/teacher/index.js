@@ -52,14 +52,6 @@ router.get('/detail', function (req, res, next) {
         return false;
     }
 
-    var load = require('../../module/tools/load');
-    var loadWay = 'https';
-    //拉取用户信息
-    var getInfoUrl = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=12121&openid=' + openid + '&lang=zh_CN';
-    load(loadWay, getInfoUrl, function (chunk) {
-        log('拉取用户信息');
-        log(chunk);
-    });
 
 
     // todo  如果没有id,应该验证

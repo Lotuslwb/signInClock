@@ -157,6 +157,8 @@ router.post('/vote', function (req, res, next) {
         return false;
     }
 
+    var getUserInfoByOpenid = require('../../module/wx/getUserInfoByOpenid');
+
 
     teacherDB.find({_id: id}).then(function (docs) {
         if (docs.length > 0) {
