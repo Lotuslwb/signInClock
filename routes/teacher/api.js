@@ -159,42 +159,48 @@ router.post('/vote', function (req, res, next) {
 
     var getUserInfoByOpenid = require('../../module/wx/getUserInfoByOpenid');
 
-    getUserInfoByOpenid({openid: openid});
-
-    teacherDB.find({_id: id}).then(function (docs) {
-        if (docs.length > 0) {
-            var data = docs[0];
-
-            var IPArray = data.IPArray;
-            var index = _.indexOf(IPArray, ip);
-            if (index >= 0) {
-                res.send(sendData('201', false, '你已投过票了'));
-            } else {
-                data.IPArray.push(ip);
-
-                var updateData = {
-                    IPArray: data.IPArray,
-                    VoteData: {
-                        totalVoteCounts: data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts * 1 + 1 : 1,
-                        lastVoteTime: new Date().getTime()
-                    }
-                };
-
-                log('--更新数据--');
-                log(updateData);
-
-                updateUserInfoToDB(id, updateData, function (docs) {
-                    res.send(sendData('200', {counts: updateData['VoteData'].totalVoteCounts}, ''));
-                }, function () {
-
-                })
-            }
+    getUserInfoByOpenid({openid: openid}, function (chunk) {
+        //没有关注该公众号
+        if (chunk.subscribe == 0) {
+            res.send(sendData('998', false, '您没有关注公众号'));
         } else {
-            res.send(sendData('201', false, '数据不存在'));
+            teacherDB.find({_id: id}).then(function (docs) {
+                if (docs.length > 0) {
+                    var data = docs[0];
+
+                    var IPArray = data.IPArray;
+                    var index = _.indexOf(IPArray, ip);
+                    if (index >= 0) {
+                        res.send(sendData('201', false, '你已投过票了'));
+                    } else {
+                        data.IPArray.push(ip);
+
+                        var updateData = {
+                            IPArray: data.IPArray,
+                            VoteData: {
+                                totalVoteCounts: data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts * 1 + 1 : 1,
+                                lastVoteTime: new Date().getTime()
+                            }
+                        };
+
+                        log('--更新数据--');
+                        log(updateData);
+
+                        updateUserInfoToDB(id, updateData, function (docs) {
+                            res.send(sendData('200', {counts: updateData['VoteData'].totalVoteCounts}, ''));
+                        }, function () {
+
+                        })
+                    }
+                } else {
+                    res.send(sendData('201', false, '数据不存在'));
+                }
+            }).catch(function (err) {
+                res.send(sendData('201', false, err));
+            });
         }
-    }).catch(function (err) {
-        res.send(sendData('201', false, err));
     });
+
 });
 
 /*评价*/
