@@ -32,13 +32,14 @@ router.get('/', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var router = req.query.router;
 
+
     var scope = 'snsapi_userinfo';
     //var scope = 'snsapi_base'; //静默授权
 
     //已经有openid, 直接进入业务
     if (openid) {
+        log(req.query);
         log('--已经有openid, 直接进入业务--')
-        log(router);
         res.redirect('/' + router);
     } else {
         //暂无openid;获取之;
