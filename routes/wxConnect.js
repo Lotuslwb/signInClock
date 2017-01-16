@@ -8,18 +8,18 @@ var wxConfig = require('../module/wx/WXConfig');
 
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    console.log(req.query);
-    var query = req.query;
-    var checkResult = checkSignature(query.signature, query.timestamp, query.nonce, wxConfig.token);
-
-    if (checkResult) {
-        res.send(query.echostr);
-        console.log('验证成功');
-    } else {
-        console.log('验证失败');
-    }
-});
+// router.get('/', function (req, res, next) {
+//     console.log(req.query);
+//     var query = req.query;
+//     var checkResult = checkSignature(query.signature, query.timestamp, query.nonce, wxConfig.token);
+//
+//     if (checkResult) {
+//         res.send(query.echostr);
+//         console.log('验证成功');
+//     } else {
+//         console.log('验证失败');
+//     }
+// });
 
 var wxConfig = require('../module/wx/WXConfig');
 var wechat = require('wechat');
@@ -30,7 +30,7 @@ var config = {
 };
 
 app.use(express.query());
-app.use('/wechat', wechat(config, function (req, res, next) {
+app.use('/', wechat(config, function (req, res, next) {
     // 微信输入信息都在req.weixin上
     var message = req.weixin;
     if (message.FromUserName === 'diaosi') {
@@ -66,8 +66,6 @@ app.use('/wechat', wechat(config, function (req, res, next) {
         ]);
     }
 }));
-
-
 
 
 module.exports = router;
