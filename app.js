@@ -49,19 +49,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //微信服务器配置
-app.use('/wxServer', wx);
+// app.use('/wxServer', wx);
 
 //微信服务器使用
-// var wxConfig = require('./module/wx/WXConfig');
-// var wxFunc = require('./module/wx/WXFunc');
-// var wechat = require('wechat');
-// var config = {
-//     token: wxConfig.token,
-//     appid: wxConfig.APPID,
-//     encodingAESKey: wxConfig.encodingAESKey
-// };
-// app.use(express.query());
-// app.use('/wxServer', wechat(config, wxFunc));
+var wxConfig = require('./module/wx/WXConfig');
+var wxFunc = require('./module/wx/WXFunc');
+var wechat = require('wechat');
+var config = {
+    token: wxConfig.token,
+    appid: wxConfig.APPID,
+    encodingAESKey: wxConfig.encodingAESKey
+};
+app.use(express.query());
+app.use('/wxServer', wechat(config, wxFunc));
 
 
 app.use('/', routes);

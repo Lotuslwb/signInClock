@@ -27,10 +27,10 @@ var WXFunc = function (req, res, next) {
         // 回复高富帅(图文回复)
         res.reply([
             {
-                title: '你来我家接我吧',
-                description: '这是女神与高富帅之间的对话',
-                picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
-                url: 'http://nodeapi.cloudfoundry.com/'
+                title: '测试',
+                description: 'test',
+                picurl: '',
+                url: 'http://www.ef.com.cn/englishfirst/landing/lifeclub?etag=EFCN_KidsOwn-SNS-WeChatService-menu-wclh'
             }
         ]);
     }

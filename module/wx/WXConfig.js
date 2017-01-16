@@ -1,10 +1,10 @@
 //测试号
-var WXConfig = {
-    APPID: 'wxa60ff9366a44a254',
-    APPSECRET: '6e362e213f9cc282f5ecf913eafa18d1',
-    token: 'icloudsoft',
-    encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
-}
+// var WXConfig = {
+//     APPID: 'wxa60ff9366a44a254',
+//     APPSECRET: '6e362e213f9cc282f5ecf913eafa18d1',
+//     token: 'icloudsoft',
+//     encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
+// }
 
 //英孚 订阅号
 // var WXConfig = {
@@ -14,12 +14,12 @@ var WXConfig = {
 
 
 //英孚 服务号
-// var WXConfig = {
-//     APPID: 'wx48668a118d818bde',
-//     APPSECRET: 'daf2d342da5aaf67a65d41496435f193',
-//     token: 'icloudsoft',
-//     encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
-// }
+var WXConfig = {
+    APPID: 'wx48668a118d818bde',
+    APPSECRET: 'daf2d342da5aaf67a65d41496435f193',
+    token: 'icloudsoft',
+    encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
+}
 
 
 module.exports = WXConfig;
