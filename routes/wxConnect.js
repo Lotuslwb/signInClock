@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var app = express();
 
-
+var wxConfig = require('../module/wx/WXConfig');
 var checkSignature = require('../module/wx/WXcheckSignature');
 
 
@@ -19,7 +19,6 @@ router.get('/', function (req, res, next) {
         console.log('验证失败');
     }
 });
-
 
 
 module.exports = router;
