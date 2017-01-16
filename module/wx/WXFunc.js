@@ -26,7 +26,7 @@ var WXFunc = function (req, res, next) {
     } else {
 
         res.reply('欢迎来到英孚教育青少儿英语服务号');
-        
+        // https://github.com/node-webot/wechat
         // 回复高富帅(图文回复)
         // res.reply([
         //     {
