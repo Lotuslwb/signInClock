@@ -1,4 +1,5 @@
 var WXInitFunc = function () {
+    var wxConfig = require('../module/wx/WXConfig');
     var WechatAPI = require('wechat-api');
     var api = new WechatAPI(wxConfig.APPID, wxConfig.APPSECRET);
     var Menu = {
