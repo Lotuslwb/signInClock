@@ -49,11 +49,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //微信服务器配置
-// app.use('/wxServer', wx);
+//app.use('/wxServer', wx);
 
-//微信服务器使用
+
 var wxConfig = require('./module/wx/WXConfig');
 var wxFunc = require('./module/wx/WXFunc');
+var wxInitFunc = require('./module/wx/WXInitFunc');
 var wechat = require('wechat');
 var config = {
     token: wxConfig.token,
@@ -62,6 +63,7 @@ var config = {
 };
 app.use(express.query());
 app.use('/wxServer', wechat(config, wxFunc));
+wxInitFunc();
 
 
 app.use('/', routes);
