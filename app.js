@@ -49,48 +49,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //微信服务器配置
-//app.use('/wxServer', wx);
+app.use('/wxServer', wx);
 
-
-var wxConfig = require('./module/wx/WXConfig');
-var wxFunc = require('./module/wx/WXFunc');
-var wechat = require('wechat');
-var config = {
-    token: wxConfig.token,
-    appid: wxConfig.APPID,
-    encodingAESKey: wxConfig.encodingAESKey
-};
-app.use(express.query());
-app.use('/wxServer', wechat(config, wxFunc));
-
-var WechatAPI = require('wechat-api');
-
-var api = new WechatAPI(wxConfig.APPID, wxConfig.APPSECRET);
-var Menu = {
-    "button": [
-        {
-            "type": "click",
-            "name": "今日歌曲",
-            "key": "V1001_TODAY_MUSIC"
-        },
-        {
-            "name": "菜单",
-            "sub_button": [
-                {
-                    "type": "view",
-                    "name": "搜索",
-                    "url": "http://www.soso.com/"
-                },
-                {
-                    "type": "click",
-                    "name": "赞一下我们",
-                    "key": "V1001_GOOD"
-                }]
-        }]
-};
-api.createMenu(Menu, function (result) {
-    console.log(result);
-});
+//微信服务器使用
+// var wxConfig = require('./module/wx/WXConfig');
+// var wxFunc = require('./module/wx/WXFunc');
+// var wechat = require('wechat');
+// var config = {
+//     token: wxConfig.token,
+//     appid: wxConfig.APPID,
+//     encodingAESKey: wxConfig.encodingAESKey
+// };
+// app.use(express.query());
+// app.use('/wxServer', wechat(config, wxFunc));
 
 
 app.use('/', routes);
