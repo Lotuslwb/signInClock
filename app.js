@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //微信服务器配置
 //app.use('/wxServer', wx);
 
-var wxConfig = require('../module/wx/WXConfig');
+var wxConfig = require('./module/wx/WXConfig');
 var wechat = require('wechat');
 var config = {
     token: wxConfig.token,
