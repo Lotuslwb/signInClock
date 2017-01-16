@@ -30,7 +30,7 @@ var config = {
 };
 
 app.use(express.query());
-app.use('/', wechat(config, function (req, res, next) {
+app.use('/wechat', wechat(config, function (req, res, next) {
     // 微信输入信息都在req.weixin上
     var message = req.weixin;
     if (message.FromUserName === 'diaosi') {
@@ -66,6 +66,8 @@ app.use('/', wechat(config, function (req, res, next) {
         ]);
     }
 }));
+
+
 
 
 module.exports = router;
