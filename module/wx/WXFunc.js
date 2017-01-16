@@ -24,15 +24,18 @@ var WXFunc = function (req, res, next) {
             }
         });
     } else {
+
+        res.reply('欢迎来到英孚教育青少儿英语服务号');
+        
         // 回复高富帅(图文回复)
-        res.reply([
-            {
-                title: '测试',
-                description: 'test',
-                picurl: '',
-                url: 'http://www.ef.com.cn/englishfirst/landing/lifeclub?etag=EFCN_KidsOwn-SNS-WeChatService-menu-wclh'
-            }
-        ]);
+        // res.reply([
+        //     {
+        //         title: '欢迎来到',
+        //         description: 'test',
+        //         picurl: '',
+        //         url: 'http://www.ef.com.cn/englishfirst/landing/lifeclub?etag=EFCN_KidsOwn-SNS-WeChatService-menu-wclh'
+        //     }
+        // ]);
     }
 };
 

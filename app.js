@@ -62,7 +62,7 @@ var config = {
     encodingAESKey: wxConfig.encodingAESKey
 };
 app.use(express.query());
-//wxInitFunc();
+wxInitFunc();
 app.use('/wxServer', wechat(config, wxFunc));
 
 

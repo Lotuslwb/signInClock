@@ -82,7 +82,6 @@ var WXInitFunc = function () {
     api.createMenu(Menu, function (result) {
         console.log(result);
     });
-
 }
 
 
