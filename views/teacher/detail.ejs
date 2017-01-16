@@ -77,13 +77,23 @@
     var cityNo = "<%= data.teacherInfo.cityNo %>";
     var schoolNo = "<%= data.teacherInfo.schoolNo %>";
     var realName = "<%= data.teacherInfo.realName %>";
-    
+
+    var again = window.localStorage.getItem('again');
+
     var voteIDString = window.localStorage.getItem('voteIDArray');
     var voteIDArray = (voteIDString && voteIDString.split(',')) || [];
 
 
     //投票
     $('.J-vote').click(function () {
+
+        if (!again) {
+            $('.overlay').show();
+            $('.qcode-box').show();
+            window.localStorage.setItem('again', true);
+            window.localStorage.setItem('preId', id);
+            return false;
+        }
 
         if (voteIDArray.length > 0 && $.inArray(id, voteIDArray) >= 0) {
             toast('你已投过票了');
@@ -109,6 +119,8 @@
                 } else if (data.status == '998') {
                     $('.overlay').show();
                     $('.qcode-box').show();
+                    window.localStorage.setItem('again', true);
+                    window.localStorage.setItem('preId', id);
                     return false;
                 } else {
                     toast(data.errmsg);
