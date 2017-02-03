@@ -47,10 +47,10 @@ router.get('/detail', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var id = req.query.id;
 
-    if (!openid) {
-        res.redirect('/wx?router=teacher/detail?id=' + id);
-        return false;
-    }
+    // if (!openid) {
+    //     res.redirect('/wx?router=teacher/detail?id=' + id);
+    //     return false;
+    // }
 
 
 
