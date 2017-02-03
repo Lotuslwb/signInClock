@@ -111,4 +111,19 @@ router.get('/callback', function (req, res) {
 });
 
 
+router.get('/wxError', function (req, res, next) {
+    var ua = (req.headers['user-agent']).toLowerCase();
+    var isWeixin = ua.indexOf('micromessenger') != -1;
+    var redirect = req.query.redirect;
+    console.log(ua);
+    if (!isWeixin) {
+        res.render('wxError', {title: 'wxError'});
+        return false;
+    } else {
+        res.redirect(redirect);
+        return false;
+    }
+});
+
+
 module.exports = router;
