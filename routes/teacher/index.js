@@ -47,11 +47,17 @@ router.get('/detail', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var id = req.query.id;
 
+    var ua = (req.headers['user-agent']);
+    console.log(ua);
+    if (!(ua.match(/MicroMessenger/i) == "micromessenger")) {
+        res.redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa60ff9366a44a254&redirect_uri=http%3A%2F%2F192.168.101.16%3A8090%2Fwx%2Fcallback&response_type=code&scope=snsapi_userinfo&state=1&connect_redirect=1#wechat_redirect');
+        return false;
+    }
+
     // if (!openid) {
     //     res.redirect('/wx?router=teacher/detail?id=' + id);
     //     return false;
     // }
-
 
 
     // todo  如果没有id,应该验证
