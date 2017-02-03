@@ -64,10 +64,8 @@ router.get('/detail', function (req, res, next) {
     if (id) {
         teacherDB.find({_id: id, 'VoteInfo.status': 2}).then(function (docs) {
             if (docs.length > 0) {
-                console.log(docs);
                 res.render('teacher/detail', {data: docs[0]});
             } else {
-                log(docs);
                 res.render('teacher/detail', {data: ''});
             }
         });
