@@ -35,10 +35,10 @@ router.get('/', function (req, res, next) {
 
 router.get('/login', function (req, res, next) {
     var loginTel = req.signedCookies['session'];
-    if (loginTel) {
-        res.redirect('../teacher');
-        return false;
-    }
+    // if (loginTel) {
+    //     res.redirect('../teacher');
+    //     return false;
+    // }
     res.render('teacher/login', {cityList: getCityList()});
 })
 
