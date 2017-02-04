@@ -196,7 +196,7 @@ var schoolList = [
     },
     {
         cityNo: 'WH',
-        schoolArray: ['机场河旗舰中心', '武昌中心', '永清路中心', '光谷中心']
+        schoolArray: ['机场河旗舰中心', '武昌中心', '永清路中心', '光谷中心', '武胜凯德中心']
     },
     {
         cityNo: 'WX',
