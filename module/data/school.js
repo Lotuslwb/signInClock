@@ -96,7 +96,7 @@ var schoolList = [
         schoolArray: ['呼和浩特中心']
     },
     {
-        cityNo: 'HZ',
+        cityNo: 'HuiZ',
         schoolArray: ['惠州中心']
     },
     {

@@ -96,7 +96,7 @@ var cityList = [
         cityName: '呼和浩特'
     },
     {
-        cityNo: 'HZ',
+        cityNo: 'HuiZ',
         cityName: '惠州'
     },
     {
@@ -172,7 +172,7 @@ var cityList = [
         cityName: '唐山'
     },
     {
-        cityNo: 'TS',
+        cityNo: 'TJ',
         cityName: '天津'
     },
     {
