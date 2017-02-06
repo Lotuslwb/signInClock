@@ -84,7 +84,7 @@
 <script src="/javascripts/cookie.js"></script>
 <script>
 
-    var groupPicImg, personPicImg;
+    var groupPicImg = '', personPicImg = '';
 
     var status = <%= status %>;
     var id = '<%= id %>';
@@ -210,6 +210,7 @@
                 // console.log(data);
                 // var imgName = JSON.parse(data).data.imgName;
                 var imgName = data.data;
+                console.log(imgName);
                 if (window.name == 'personPic') {
                     personPicImg = imgName;
                 } else if (window.name == 'groupPic') {
