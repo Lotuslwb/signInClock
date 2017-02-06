@@ -209,7 +209,7 @@
             success: function (data) {
                 // console.log(data);
                 // var imgName = JSON.parse(data).data.imgName;
-                var imgName = data.data.imgName;
+                var imgName = data.data;
                 if (window.name == 'personPic') {
                     personPicImg = imgName;
                 } else if (window.name == 'groupPic') {

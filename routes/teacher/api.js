@@ -86,7 +86,7 @@ router.post('/uploading', function (req, res, next) {
                 if (err) {
                     res.send(sendData('999', '', '重命名错误'));
                 } else {
-                    res.send(sendData('200', {'imgName': theName}, ''));
+                    res.send(sendData('200', theName, ''));
                 }
             });
         }
