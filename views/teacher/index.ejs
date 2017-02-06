@@ -107,7 +107,7 @@
     });
 
     $('.J-submit').click(function () {
-        if (!groupPicImg || !personPicImg) {
+        if (groupPicImg.length < 1 || personPicImg.length < 1) {
             toast('您的图片还没上传完,请稍后');
             return false;
         }
@@ -207,8 +207,9 @@
             processData: false,         // 告诉jQuery不要去处理发送的数据
             contentType: false,        // 告诉jQuery不要去设置Content-Type请求头
             success: function (data) {
-                console.log(data);
-                var imgName = JSON.parse(data).data.imgName;
+                // console.log(data);
+                // var imgName = JSON.parse(data).data.imgName;
+                var imgName = data.data.imgName;
                 if (window.name == 'personPic') {
                     personPicImg = imgName;
                 } else if (window.name == 'groupPic') {
