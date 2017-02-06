@@ -41,7 +41,7 @@ var schoolList = [
     },
     {
         cityNo: 'CS',
-        schoolArray: ["长沙中心"]
+        schoolArray: ["解放路中心", "奥克斯广场中心"]
     },
     {
         cityNo: 'CShu',
@@ -53,7 +53,7 @@ var schoolList = [
     },
     {
         cityNo: 'CD',
-        schoolArray: ['顺城中心', '紫荆中心', '沙湾中心', '优品道中心', '高新世豪广场中心', 'SM广场']
+        schoolArray: ['顺城中心', '紫荆中心', '沙湾中心', '优品道中心', '高新世豪广场中心', 'SM广场', '大悦城中心', '温江中心', '万象城中心（少儿）']
     },
     {
         cityNo: 'CX',
@@ -69,7 +69,7 @@ var schoolList = [
     },
     {
         cityNo: 'DG',
-        schoolArray: ["东莞中心"]
+        schoolArray: ["胜和路中心", '东城万达中心', '西平中心']
     },
     {
         cityNo: 'DY',
@@ -81,7 +81,7 @@ var schoolList = [
     },
     {
         cityNo: 'HZ',
-        schoolArray: ["城西中心", "城东中心", "城北中心", "武林中心", "临平中心"]
+        schoolArray: ["城西中心", "城东中心", "城北中心", "武林中心", "临平中心", '滨江中心', '城西银泰中心']
     },
     {
         cityNo: 'HEB',
@@ -105,7 +105,7 @@ var schoolList = [
     },
     {
         cityNo: 'JX',
-        schoolArray: ['嘉兴中心']
+        schoolArray: ['汇丰中心', '万达中心']
     },
     {
         cityNo: 'JH',
@@ -121,7 +121,7 @@ var schoolList = [
     },
     {
         cityNo: 'NJ',
-        schoolArray: ['新街口中心', '山西路中心', '龙江中心']
+        schoolArray: ['新街口中心', '山西路中心', '万达中心']
     },
     {
         cityNo: 'NN',
@@ -137,19 +137,17 @@ var schoolList = [
     },
     {
         cityNo: 'QD',
-        schoolArray: ['青岛中心']
+        schoolArray: ['市南中心', '崂山中心']
     },
     {
         cityNo: 'QHD',
         schoolArray: ['秦皇岛中心']
     },
     {
-        cityNo: "RZ",
-        schoolArray: ["日照中心"]
+
     },
     {
-        cityNo: "RA",
-        schoolArray: ["瑞安中心"]
+
     },
     {
         cityNo: 'SX',
@@ -169,7 +167,7 @@ var schoolList = [
     },
     {
         cityNo: 'TY',
-        schoolArray: ['湖西中心', '双西中心']
+        schoolArray: ['龙潭中心', '双西中心', '亲贤中心']
     },
     {
         cityNo: 'TZ',
@@ -177,11 +175,11 @@ var schoolList = [
     },
     {
         cityNo: 'TS',
-        schoolArray: ['新华中心', '凤凰新城中心']
+        schoolArray: ['银泰中心', '凤凰新城中心']
     },
     {
         cityNo: 'TJ',
-        schoolArray: ['和平中心', '天塔中心', '塘沽中心', '晶采中心', '河东中心', '泰达中心']
+        schoolArray: ['和平中心', '天塔中心', , '晶采中心', '河东中心', '泰达中心', '天佑城中心']
     },
     {
         cityNo: 'WLMQ',
@@ -191,16 +189,15 @@ var schoolList = [
         cityNo: 'WHai',
         schoolArray: ['威海中心']
     }, {
-        cityNo: 'WZ',
-        schoolArray: ['下吕浦中心', '新城中心']
+
     },
     {
         cityNo: 'WH',
-        schoolArray: ['机场河旗舰中心', '武昌中心', '永清路中心', '光谷中心', '武胜凯德中心']
+        schoolArray: ['机场河旗舰中心', '水果湖中心', '永清路中心', '光谷中心', '武胜凯德中心']
     },
     {
         cityNo: 'WX',
-        schoolArray: ['太湖广场中心', '宝龙中心', '胜利门中心', '大剧院中心']
+        schoolArray: ['太湖广场中心', '宝龙中心', '胜利门中心', '大剧院中心', '江阴万达中心 ']
     },
     {
         cityNo: 'XM',
@@ -232,11 +229,11 @@ var schoolList = [
     },
     {
         cityNo: 'ZJG',
-        schoolArray: ['张家港中心']
+        schoolArray: ['华昌东方广场中心', '购物公园中心']
     },
     {
         cityNo: 'ZZ',
-        schoolArray: ['中环百货中心', '青少年宫中心', '宝龙广场中心']
+        schoolArray: ['中环百货中心', '青少年宫中心', '宝龙广场中心', '普罗旺世中心']
     },
     {
         cityNo: 'ZJ',
@@ -245,3 +242,4 @@ var schoolList = [
 ];
 
 module.exports = schoolList;
+
