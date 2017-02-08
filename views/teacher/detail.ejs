@@ -20,10 +20,10 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img class="swiper-img" src="/files/<%= data.VoteInfo.personPic %>"/>
+                <img class="swiper-img" src="/files/<%= data.VoteInfo.personPic.split('.png')[0] + '.jpeg' %>"/>
             </div>
             <div class="swiper-slide">
-                <img class="swiper-img" src="/files/<%= data.VoteInfo.groupPic %>"/>
+                <img class="swiper-img" src="/files/<%= data.VoteInfo.groupPic.split('.png')[0] + '.jpeg' %>"/>
             </div>
         </div>
         <!-- 如果需要分页器 -->

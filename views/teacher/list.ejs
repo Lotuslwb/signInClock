@@ -39,7 +39,7 @@
         <% for(var i = 0, list = data.list;i < list.length;i++){ %>
         <div class="list-item J-item" data-id="<%= list[i]._id %>">
             <div class="list-img">
-                <img class="swiper-img" src="/files/<%= list[i].VoteInfo.personPic %>"/>
+                <img class="swiper-img" src="/files/<%= list[i].VoteInfo.personPic.split('.png')[0] + '.jpeg' %>"/>
             </div>
             <div class="list-des">
                 <%= list[i].teacherInfo.realName %> <br/>
@@ -155,7 +155,8 @@
 </script>
 
 <div style="display: none;">
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261210751'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261210751' type='text/javascript'%3E%3C/script%3E"));</script>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1261210751'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261210751' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
 </body>
 </html>
