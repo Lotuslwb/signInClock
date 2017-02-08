@@ -69,7 +69,7 @@ obj.prototype = {
 
                         var returnStr = '';
 
-                        returnStr += '<a href="/files/' + obj.groupPic + '" target="_blank" >' + '合照' + '</a><br/>';
+                        returnStr += '<a href="/files/' + obj.groupPic.split('.png')[0] + '.jpg' + '" target="_blank" >' + '合照' + '</a><br/>';
                         returnStr += '<a href="/files/' + obj.personPic.split('.png')[0] + '.jpg' + '" target="_blank" >' + '个照' + '</a><br/>';
                         return returnStr;
                     }
