@@ -8,6 +8,16 @@
         overflow: auto;
     }
 </style>
+
+<%
+function hanldePic(pic) {
+    if (pic.indexOf('.png') > -1) {
+        return pic.split('.png')[0] + '.jpg';
+    } else {
+        return pic;
+    }
+}
+%>
 <div class="page page-detail">
 
     <div class="overlay" style="position: fixed;"></div>
@@ -20,10 +30,10 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img class="swiper-img" src="/files/<%= data.VoteInfo.personPic.split('.png')[0] + '.jpg' %>"/>
+                <img class="swiper-img" src="/files/<%= hanldePic(data.VoteInfo.personPic) %>"/>
             </div>
             <div class="swiper-slide">
-                <img class="swiper-img" src="/files/<%= data.VoteInfo.groupPic.split('.png')[0] + '.jpg' %>"/>
+                <img class="swiper-img" src="/files/<%= hanldePic(data.VoteInfo.groupPic) %>"/>
             </div>
         </div>
         <!-- 如果需要分页器 -->

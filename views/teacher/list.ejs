@@ -13,6 +13,18 @@
         background: #9fdbee;
     }
 </style>
+
+<%
+function hanldePic(pic) {
+    if (pic.indexOf('.png') > -1) {
+        return pic.split('.png')[0] + '.jpg';
+    } else {
+        return pic;
+    }
+}
+%>
+
+
 <div class="page page-list">
     <div class="list-header">
         <img src="/images/teacher/list-title.png" class="list-title">
@@ -39,7 +51,7 @@
         <% for(var i = 0, list = data.list;i < list.length;i++){ %>
         <div class="list-item J-item" data-id="<%= list[i]._id %>">
             <div class="list-img">
-                <img class="swiper-img" src="/files/<%= list[i].VoteInfo.personPic.split('.png')[0] + '.jpg' %>"/>
+                <img class="swiper-img" src="/files/<%= hanldePic(list[i].VoteInfo.personPic) %>"/>
             </div>
             <div class="list-des">
                 <%= list[i].teacherInfo.realName %> <br/>
