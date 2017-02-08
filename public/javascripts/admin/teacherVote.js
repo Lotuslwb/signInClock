@@ -78,7 +78,7 @@ obj.prototype = {
                         var returnStr = '';
 
                         returnStr += '<a href="/files/' + hanldePic(obj.groupPic) + '" target="_blank" >' + '合照' + '</a><br/>';
-                        returnStr += '<a href="/files/' + hanldePic(obj.personPic) + '.jpg' + '" target="_blank" >' + '个照' + '</a><br/>';
+                        returnStr += '<a href="/files/' + hanldePic(obj.personPic) + '" target="_blank" >' + '个照' + '</a><br/>';
                         return returnStr;
                     }
                     },
