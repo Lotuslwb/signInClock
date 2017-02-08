@@ -78,7 +78,7 @@ router.post('/uploading', function (req, res, next) {
             log(files);
             var inputFile = files.file[0];
             var uploadedPath = inputFile.path;
-            var type = 'png';
+            var type = 'jpeg';
             var theName = tel + '_' + new Date().getTime() + '.' + type
             var dstPath = './public/files/' + theName;
             //重命名为真实文件名

@@ -188,7 +188,7 @@
         canvasContext.drawImage($(".J-img")[0], 0, 0, window.width, window.height, sx, sh, imgW, imgH);
         canvasContext.restore();
 
-        var png = Canvas2Image.convertToPNG(canvas, 600, 400);
+        var png = Canvas2Image.convertToJPEG(canvas, 600, 400);
         $('.' + window.name + 'Box').find('.J-file').html(png);
         $('.page-upload').show().siblings('.page').hide();
         var imgData = $(png).attr('src');
@@ -319,7 +319,7 @@
             ia[i] = bytes.charCodeAt(i);
         }
 
-        return new Blob([ab], {type: 'image/png'});
+        return new Blob([ab], {type: 'image/jpeg'});
     }
 </script>
 
@@ -398,7 +398,8 @@
     }
 </script>
 <div style="display: none;">
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261210751'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261210751' type='text/javascript'%3E%3C/script%3E"));</script>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1261210751'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261210751' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
 </body>
 </html>

@@ -40,7 +40,7 @@ var Canvas2Image = function () {
 
     function getDataURL(canvas, type, width, height) {
         canvas = scaleCanvas(canvas, width, height);
-        return canvas.toDataURL(type);
+        return canvas.toDataURL(type, 0.4);
     }
 
     function saveFile(strData) {
