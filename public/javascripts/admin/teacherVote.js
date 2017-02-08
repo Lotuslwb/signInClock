@@ -3,6 +3,14 @@ function obj() {
 }
 
 
+function hanldePic(pic) {
+    if (pic.indexOf('.png') > -1) {
+        return pic.split('.png')[0] + 'jpg';
+    } else {
+        return pic;
+    }
+}
+
 obj.prototype = {
     initialize: function () {
         var me = this;
@@ -69,8 +77,8 @@ obj.prototype = {
 
                         var returnStr = '';
 
-                        returnStr += '<a href="/files/' + obj.groupPic.split('.png')[0] + '.jpg' + '" target="_blank" >' + '合照' + '</a><br/>';
-                        returnStr += '<a href="/files/' + obj.personPic.split('.png')[0] + '.jpg' + '" target="_blank" >' + '个照' + '</a><br/>';
+                        returnStr += '<a href="/files/' + hanldePic(obj.groupPic) + '" target="_blank" >' + '合照' + '</a><br/>';
+                        returnStr += '<a href="/files/' + hanldePic(obj.personPic) + '.jpg' + '" target="_blank" >' + '个照' + '</a><br/>';
                         return returnStr;
                     }
                     },
