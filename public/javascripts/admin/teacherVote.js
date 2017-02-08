@@ -5,7 +5,7 @@ function obj() {
 
 function hanldePic(pic) {
     if (pic.indexOf('.png') > -1) {
-        return pic.split('.png')[0] + 'jpg';
+        return pic.split('.png')[0] + '.jpg';
     } else {
         return pic;
     }
