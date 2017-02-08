@@ -1,1 +1,0 @@
-{"nonceStr":"elkz5motz6r2uik","timestamp":"1486566457","url":"http://localhost:8090/teacher","signature":"a7539ea8a3ea25c7326072298027cb582cfb8905","appId":"wxd49bea1e592f6e44"}

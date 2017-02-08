@@ -1,1 +1,0 @@
-{"nonceStr":"i4ll3cet0b43g14","timestamp":"1486569314","url":"http://localhost:8090/teacher/list?cityNo=GZ&schoolNo=0","signature":"9e0af7263c828722d371e7e8cb16f8e6c9c60daa","appId":"wxd49bea1e592f6e44"}

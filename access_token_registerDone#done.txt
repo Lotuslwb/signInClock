@@ -1,1 +1,0 @@
-{"nonceStr":"gttegs0jb07wrk9","timestamp":"1486565817","url":"http://localhost:8090/teacher/registerDone#done","signature":"913c087304d5d916c7984ce0df83d97bc0eb485c","appId":"wxd49bea1e592f6e44"}

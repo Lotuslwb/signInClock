@@ -1,1 +1,0 @@
-{"nonceStr":"zjpo2rlcoesqyqf","timestamp":"1486569583","url":"http://localhost:8090/teacher/list?cityNo=SH&schoolNo=0","signature":"f1d0c5c8004fbce69d6145821ae8636b36f23c20","appId":"wxd49bea1e592f6e44"}
