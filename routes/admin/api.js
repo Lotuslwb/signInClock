@@ -236,11 +236,11 @@ router.post('/leads/query', function (req, res, next) {
     }
 
     if (field == 'totalVoteCounts') {
-        sortJSON['VoteData.totalVoteCounts'] = direction == 'ASC' ? 1 : -1;
+        sortJSON['VoteData.totalVoteCounts'] = (direction == 'ASC' ? 1 : -1);
     }
 
     if (field == 'tag') {
-        sortJSON['tag'] = direction == 'ASC' ? 1 : -1;
+        sortJSON['tag'] = (direction == 'ASC' ? 1 : -1);
     }
 
     leadsDB.User.find(queryJSON, function (err, docs) {
