@@ -66,7 +66,7 @@ var getSDKSignFromCache = function (originalUrl, callback) {
     var pageNmae = urlArry[urlArry.length - 1];
 
 
-    fs.readFile('access_token_' + pageNmae + '.txt', 'utf8', function (err, txt) {
+    fs.readFile('access_token.txt', 'utf8', function (err, txt) {
         if (err) {
             callback && callback(err);
         } else {
@@ -88,7 +88,7 @@ var setSDKSignToCache = function (data, originalUrl, callback) {
     var pageNmae = urlArry[urlArry.length - 1];
 
 
-    fs.writeFile('access_token_' + pageNmae + '.txt', JSON.stringify(data), function (err) {
+    fs.writeFile('access_token.txt', JSON.stringify(data), function (err) {
         callback && callback(err);
     });
 }
