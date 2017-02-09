@@ -7,6 +7,8 @@ var APPID = WXConfig.APPID;
 
 var log = require('../module/tools/log');
 
+//微信sdk签名算法
+var sign = require('../module/wx/sign');
 
 //检查openid
 router.get('/', function (req, res, next) {
@@ -127,8 +129,13 @@ router.get('/getWxSDK', function (req, res, next) {
 
     log(originalUrl);
 
-    getSDKSign(originalUrl, function (wxConfig) {
-        wxConfig['access_token'] = '';
+    getSDKSign(originalUrl, function (chunk) {
+       // wxConfig['access_token'] = '';
+        var wxConfig = sign(chunk.ticket, originalUrl);
+        wxConfig.appId = APPID;
+        wxConfig.expiresTime = chunk.expiresTime;
+        wxConfig.access_token = chunk.TOKEN;
+        log(wxConfig);
         res.send(sendData('200', {'wxConfig': wxConfig}, ''));
     });
 

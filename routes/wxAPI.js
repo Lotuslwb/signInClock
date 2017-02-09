@@ -5,6 +5,9 @@ var WXConfig = require('../module/wx/WXConfig');
 
 var APPID = WXConfig.APPID;
 
+//微信sdk签名算法
+var sign = require('../module/wx/sign');
+
 
 var http = require('https');
 
@@ -19,10 +22,14 @@ router.get('/jsSDK', function (req, res, next) {
     //当前URL
     var originalUrl = 'http://' + 'ma.eldesign.cn' + '' + req.originalUrl;
 
-    log(originalUrl);
 
-    getSDKSign(originalUrl, function (wxConfig) {
-        res.render('wxAPI', {title: '测试微信SDK', wxConfig: wxConfig});
+    getSDKSign(originalUrl, function (chunk) {
+        var wxConfig = sign(chunk.ticket, originalUrl);
+        wxConfig.appId = APPID;
+        wxConfig.expiresTime = chunk.expiresTime;
+        wxConfig.access_token = chunk.TOKEN;
+        log(wxConfig);
+        res.render('wxAPI', {title: '微信SDK', wxConfig: wxConfig});
     });
 
 })
