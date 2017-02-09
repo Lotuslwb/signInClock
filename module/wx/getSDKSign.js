@@ -23,40 +23,40 @@ var sign = require('../wx/sign');
 //输出 -- 获取微信SDK
 var getSDKSign = function (originalUrl, callback) {
 
-    // getSDKSignFormWX(originalUrl, function (wxConfig) {
-    //     setSDKSignToCache(wxConfig, originalUrl);
-    //     callback && callback(wxConfig);
-    // })
+    getSDKSignFormWX(originalUrl, function (wxConfig) {
+        setSDKSignToCache(wxConfig, originalUrl);
+        callback && callback(wxConfig);
+    })
 
     //先从缓存中获取
-    getSDKSignFromCache(originalUrl, function (err, data) {
-        //缓存报错 或者缓存中没有数据
-        if (err || data.length == 0 || data == undefined) {
-            log('---缓存报错 或者缓存中没有数据---', err);
-            getSDKSignFormWX(originalUrl, function (wxConfig) {
-                setSDKSignToCache(wxConfig, originalUrl);
-                callback && callback(wxConfig);
-            })
-        } else {
-            //缓存中有数据
-            var genTime = data.timestamp;
-            var nowTime = new Date().getTime() / 1000; //转换成秒
-            var expiresTime = data.expiresTime;
-            if (nowTime - genTime < expiresTime) {
-                //并没有超时,可以直接使用
-                log('---并没有超时,可以直接使用---');
-                callback && callback(data);
-            } else {
-                //已经超时,重新获取
-                log('---已经超时,重新获取---');
-                getSDKSignFormWX(originalUrl, function (wxConfig) {
-                    log(wxConfig);
-                    setSDKSignToCache(wxConfig, originalUrl);
-                    callback && callback(wxConfig);
-                })
-            }
-        }
-    })
+    // getSDKSignFromCache(originalUrl, function (err, data) {
+    //     //缓存报错 或者缓存中没有数据
+    //     if (err || data.length == 0 || data == undefined) {
+    //         log('---缓存报错 或者缓存中没有数据---', err);
+    //         getSDKSignFormWX(originalUrl, function (wxConfig) {
+    //             setSDKSignToCache(wxConfig, originalUrl);
+    //             callback && callback(wxConfig);
+    //         })
+    //     } else {
+    //         //缓存中有数据
+    //         var genTime = data.timestamp;
+    //         var nowTime = new Date().getTime() / 1000; //转换成秒
+    //         var expiresTime = data.expiresTime;
+    //         if (nowTime - genTime < expiresTime) {
+    //             //并没有超时,可以直接使用
+    //             log('---并没有超时,可以直接使用---');
+    //             callback && callback(data);
+    //         } else {
+    //             //已经超时,重新获取
+    //             log('---已经超时,重新获取---');
+    //             getSDKSignFormWX(originalUrl, function (wxConfig) {
+    //                 log(wxConfig);
+    //                 setSDKSignToCache(wxConfig, originalUrl);
+    //                 callback && callback(wxConfig);
+    //             })
+    //         }
+    //     }
+    // })
 }
 
 //从缓存文件读取签名数据
