@@ -70,10 +70,12 @@ function hanldePic(pic) {
 
     <div class="word-list">
         <% for(var i = 0;i < data.studentWords.length;i++){ %>
+            <% if(data.studentWords[i].studentName.indexOf('人工') < 0 && data.studentWords[i].studentName.indexOf('投票') < 0 && data.studentWords[i].content.indexOf('人工') < 0 && data.studentWords[i].content.indexOf('投票') < 0){ %>
         <div class="word-item">
             <div class="name"><%= data.studentWords[i].studentName %></div>
             <div class="content"><%= data.studentWords[i].content %></div>
         </div>
+            <% } %>
         <% } %>
     </div>
     <img src="/images/teacher/detail-more-btn.png" class="detail-more-btn J-gotoList"/>
