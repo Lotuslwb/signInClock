@@ -25,5 +25,5 @@
     "wechat-api": "^1.28.0",
     "wechat-oauth": "^1.1.1"
   },
-  "debug": true
+  "debug": false
 }
