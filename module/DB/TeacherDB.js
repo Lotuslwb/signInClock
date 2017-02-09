@@ -27,7 +27,7 @@ var Schema = {
         time: String
     }],
     VoteData: {
-        totalVoteCounts: String, //次数
+        totalVoteCounts: Number, //次数
         lastVoteTime: String  //上次抽奖时间
     }
 };

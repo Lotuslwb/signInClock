@@ -71,14 +71,22 @@ obj.prototype = {
                     {title: '票数', dataIndex: 'totalVoteCounts', width: 80},
                     {
                         title: '图片', dataIndex: 'status', width: 100, sortable: false, renderer: function (v, obj) {
-                        if (obj.status < 1) {
-                            return '---';
-                        }
 
                         var returnStr = '';
 
-                        returnStr += '<a href="/files/' + hanldePic(obj.groupPic) + '" target="_blank" >' + '合照' + '</a><br/>';
-                        returnStr += '<a href="/files/' + hanldePic(obj.personPic) + '" target="_blank" >' + '个照' + '</a><br/>';
+                        if (obj.groupPic && obj.groupPic.length > 0) {
+                            returnStr += '<a href="/files/' + hanldePic(obj.groupPic) + '" target="_blank" >' + '合照' + '</a><br/>';
+                        }
+
+                        if (obj.personPic && obj.personPic.length > 0) {
+                            returnStr += '<a href="/files/' + hanldePic(obj.personPic) + '" target="_blank" >' + '个照' + '</a><br/>';
+                        }
+
+                        if (returnStr.length == 0) {
+                            returnStr = '---';
+                        }
+
+
                         return returnStr;
                     }
                     },
