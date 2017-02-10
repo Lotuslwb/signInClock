@@ -63,7 +63,7 @@ var getSDKSign = function (originalUrl, callback) {
 var getSDKSignFromCache = function (originalUrl, callback) {
 
     var urlArry = originalUrl.split('/');
-    var pageNmae = urlArry[urlArry.length - 1];
+    var pageName = urlArry[urlArry.length - 1];
 
 
     fs.readFile('access_token.txt', 'utf8', function (err, txt) {
@@ -73,7 +73,15 @@ var getSDKSignFromCache = function (originalUrl, callback) {
             log(txt);
 
             if (txt) {
-                txt = JSON.parse(txt);
+                try {
+                    txt = JSON.parse(txt);
+                } catch (error) {
+                    try {
+                        txt = JSON.parse(txt.split('}')[0] + '}');
+                    } catch (error) {
+
+                    }
+                }
             }
 
             callback(null, txt);
