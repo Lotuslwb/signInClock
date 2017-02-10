@@ -188,7 +188,7 @@ obj.prototype = {
                 render: '#record-table',
                 width: '100%',
                 columns: columns,
-                loadMask: new Mask.LoadMask({el: '#main'}), //加载数据时显示屏蔽层
+                loadMask: new Mask.LoadMask({el: '#record-list'}), //加载数据时显示屏蔽层
                 store: store,
                 emptyDataTpl: '暂无数据',
                 tbar: { //添加、删除
