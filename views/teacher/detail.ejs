@@ -70,7 +70,19 @@ function hanldePic(pic) {
 
     <div class="word-list">
         <% for(var i = 0;i < data.studentWords.length;i++){ %>
-        <% if(data.studentWords[i].studentName.indexOf('人工') < 0 && data.studentWords[i].studentName.indexOf('工拉票') < 0 && data.studentWords[i].studentName.indexOf('投票') < 0 && data.studentWords[i].content.indexOf('人工') < 0 && data.studentWords[i].content.indexOf('投票') < 0){ %>
+        <%
+            function check() {
+                var flag = true;
+                var words = ['人工', '拉票', '投票', '刷票', 'piao'];
+                for (var i = 0; i < words.length; i++) {
+                    if (data.studentWords[i].studentName.indexOf(words[i]) >= 0 || data.studentWords[i].content.indexOf(words[i]) >= 0) {
+                        flag = false;
+                    }
+                }
+                return flag;
+            }
+        %>
+        <% if (check()){ %>
         <div class="word-item">
             <div class="name"><%= data.studentWords[i].studentName %></div>
             <div class="content"><%= data.studentWords[i].content %></div>
