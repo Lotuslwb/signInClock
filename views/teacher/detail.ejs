@@ -103,8 +103,8 @@ function hanldePic(pic) {
     var realName = "<%= data.teacherInfo.realName %>";
 
     var again = window.localStorage.getItem('again');
-
-    var voteIDString = window.localStorage.getItem('voteIDArray');
+    var date = new Date().getMonth() + '_' + new Date().getDate();
+    var voteIDString = window.localStorage.getItem('voteIDArray' + '_' + date);
     var voteIDArray = (voteIDString && voteIDString.split(',')) || [];
 
 
@@ -137,7 +137,8 @@ function hanldePic(pic) {
                 if (data.status == '200') {
                     toast('投票成功');
                     voteIDArray.push(id);
-                    window.localStorage.setItem('voteIDArray', voteIDArray.toString());
+                    var date = new Date().getMonth() + '_' + new Date().getDate();
+                    window.localStorage.setItem('voteIDArray' + '_' + date, voteIDArray.toString());
                     var counts = data.data.counts;
                     $('.J-counts').text(counts);
                 } else if (data.status == '998') {

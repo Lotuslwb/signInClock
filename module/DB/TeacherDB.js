@@ -21,6 +21,7 @@ var Schema = {
         status: String, //审核状态  0 - 未提交  1 -待审核; 2- 审核通过; 3- 审核不通过 9- 黑名单
     },
     IPArray: [],
+    IPOBJ: JSON,
     studentWords: [{
         studentName: String,
         content: String,

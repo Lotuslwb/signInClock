@@ -153,31 +153,71 @@ router.post('/vote', function (req, res, next) {
     teacherDB.find({_id: id}).then(function (docs) {
         if (docs.length > 0) {
             var data = docs[0];
+            var everyDay = true;
 
-            var IPArray = data.IPArray;
-            var index = _.indexOf(IPArray, ip);
-            if (index >= 0) {
-                res.send(sendData('201', false, '你已投过票了'));
+            if (everyDay) {
+                var date = new Date().getMonth() + '_' + new Date().getDate();
+
+                if (!data.IPOBJ) {
+                    data.IPOBJ = {};
+                }
+                if (!data.IPOBJ[date]) {
+                    data.IPOBJ[date] = [];
+                }
+
+                var IPArray = data.IPOBJ[date];
+                var index = _.indexOf(IPArray, ip);
+                if (index >= 0) {
+                    res.send(sendData('201', false, '你已投过票了'));
+                } else {
+                    data.IPOBJ[date].push(ip);
+
+                    var updateData = {
+                        IPOBJ: data.IPOBJ,
+                        VoteData: {
+                            totalVoteCounts: data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts * 1 + 1 : 1,
+                            lastVoteTime: new Date().getTime()
+                        }
+                    };
+
+                    log('--更新数据--');
+                    log(updateData);
+
+                    updateUserInfoToDB(id, updateData, function (docs) {
+                        res.send(sendData('200', {counts: updateData['VoteData'].totalVoteCounts}, ''));
+                    }, function () {
+
+                    })
+                }
+
             } else {
-                data.IPArray.push(ip);
+                var IPArray = data.IPArray;
+                var index = _.indexOf(IPArray, ip);
+                if (index >= 0) {
+                    res.send(sendData('201', false, '你已投过票了'));
+                } else {
+                    data.IPArray.push(ip);
 
-                var updateData = {
-                    IPArray: data.IPArray,
-                    VoteData: {
-                        totalVoteCounts: data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts * 1 + 1 : 1,
-                        lastVoteTime: new Date().getTime()
-                    }
-                };
+                    var updateData = {
+                        IPArray: data.IPArray,
+                        VoteData: {
+                            totalVoteCounts: data['VoteData'].totalVoteCounts ? data['VoteData'].totalVoteCounts * 1 + 1 : 1,
+                            lastVoteTime: new Date().getTime()
+                        }
+                    };
 
-                log('--更新数据--');
-                log(updateData);
+                    log('--更新数据--');
+                    log(updateData);
 
-                updateUserInfoToDB(id, updateData, function (docs) {
-                    res.send(sendData('200', {counts: updateData['VoteData'].totalVoteCounts}, ''));
-                }, function () {
+                    updateUserInfoToDB(id, updateData, function (docs) {
+                        res.send(sendData('200', {counts: updateData['VoteData'].totalVoteCounts}, ''));
+                    }, function () {
 
-                })
+                    })
+                }
             }
+
+
         } else {
             res.send(sendData('201', false, '数据不存在'));
         }
