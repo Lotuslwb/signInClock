@@ -74,8 +74,8 @@ function hanldePic(pic) {
             function check() {
                 var flag = true;
                 var words = ['人工', '拉票', '投票', '刷票', 'piao'];
-                for (var i = 0; i < words.length; i++) {
-                    if (data.studentWords[i].studentName.indexOf(words[i]) >= 0 || data.studentWords[i].content.indexOf(words[i]) >= 0) {
+                for (var j = 0; j < words.length; j++) {
+                    if (data.studentWords[i].studentName.indexOf(words[j]) >= 0 || data.studentWords[i].content.indexOf(words[j]) >= 0) {
                         flag = false;
                     }
                 }
