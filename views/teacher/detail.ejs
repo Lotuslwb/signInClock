@@ -23,7 +23,8 @@ function hanldePic(pic) {
     <div class="overlay" style="position: fixed;"></div>
     <div class="qcode-box mid" style="z-index: 100; display: none; position: fixed;">
         <img src="/images/teacher/qcode.jpg" style="width: 450px;"/>
-        <div class="qcode-txt">投票前请先长按识别二维码，<br>关注英孚亲子口袋英语哦！</div>
+        <div class="qcode-txt">投票成功<br/>长按识别二维码<br/>关注英孚教育青少儿英语<br/>获得更多精彩资讯</div>
+        <!--<a href="javascript:;" class="btn J-closed">知道了</a>-->
     </div>
 
     <img src="/images/teacher/detail-title.png" class="detail-title"/>
@@ -135,15 +136,20 @@ function hanldePic(pic) {
                 console.log(data);
                 loadingHide();
                 if (data.status == '200') {
-                    toast('投票成功');
+
+                    $('.overlay').show();
+                    $('.qcode-box').show();
+
                     voteIDArray.push(id);
                     var date = new Date().getMonth() + '_' + new Date().getDate();
                     window.localStorage.setItem('voteIDArray' + '_' + date, voteIDArray.toString());
                     var counts = data.data.counts;
                     $('.J-counts').text(counts);
                 } else if (data.status == '998') {
+
                     $('.overlay').show();
                     $('.qcode-box').show();
+
                     window.localStorage.setItem('again', true);
                     window.localStorage.setItem('preId', id);
                     return false;
@@ -154,6 +160,17 @@ function hanldePic(pic) {
             dataType: 'json'
         });
     });
+
+    $('.overlay').click(function () {
+        $('.overlay').hide();
+        $('.qcode-box').hide();
+    });
+    $('.J-closed').click(function () {
+        $('.overlay').hide();
+        $('.qcode-box').hide();
+    });
+
+
     //去列表页
     $('.J-gotoList').click(function () {
         window.location.href = '/teacher/list?cityNo=' + cityNo + '&schoolNo=' + schoolNo;
