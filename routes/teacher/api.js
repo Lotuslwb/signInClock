@@ -149,6 +149,13 @@ router.post('/vote', function (req, res, next) {
     var _ = require('lodash');
     var id = req.body.id;
     var ip = getClientIP(req);
+    var date = new Date('2017-02-16 10:00:00').getTime();
+    var now = new Date().getTime();
+
+    if (now > date) {
+        res.send(sendData('201', false, '投票已过期'));
+        return false;
+    }
 
     teacherDB.find({_id: id}).then(function (docs) {
         if (docs.length > 0) {
