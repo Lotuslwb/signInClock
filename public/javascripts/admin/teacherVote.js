@@ -250,9 +250,9 @@ obj.prototype = {
                         success: function (data) {
                             console.log(data);
                             if (data.status == 200) {
-                                var studentWords = data.list[0].studentWords;
+                                var studentWords = data.data.list[0].studentWords;
                                 var str = '';
-                                if (studentWords.length > 0) {
+                                if (studentWords) {
                                     $.each(studentWords, function (index, item) {
                                         var words = ['人工', '拉票', '投票', '刷票', 'piao', '这女上过', '拿刀逼着投的', '色色', '造假专家'];
                                         var flag = true;
