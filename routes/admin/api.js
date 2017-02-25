@@ -71,6 +71,7 @@ router.post('/teacher/query', function (req, res, next) {
                 docs[i]['teacherInfo'].passWord = '****';
                 docs[i]['IPArray'] = [];
                 docs[i]['studentWords'] = [];
+                docs[i]['IPOBJ'] = [];
             }
             res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
         });
@@ -88,10 +89,11 @@ router.post('/teacher/queryById', function (req, res, next) {
 
     teacherDB.User.find(queryJSON, {IPArray: 0}, function (err, docs) {
         var totalCount = docs.length;
-        queryUserInfoFormDB(queryJSON, start, limit, sortJSON, function (docs) {
+        queryUserInfoFormDB(queryJSON, function (docs) {
             for (var i = 0; i < docs.length; i++) {
                 docs[i]['teacherInfo'].passWord = '****';
                 docs[i]['IPArray'] = [];
+                docs[i]['IPOBJ'] = [];
             }
             res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
         });
