@@ -142,7 +142,7 @@ obj.prototype = {
                 pageSize: 10,
                 sortInfo: {
                     field: "createdAt",
-                    direction: 'DESC' //升序ASC，降序DESC
+                    direction: 'ASC' //升序ASC，降序DESC
                 },
                 remoteSort: true,
                 root: 'data.list',           //存放数据的字段名
@@ -243,15 +243,29 @@ obj.prototype = {
                 if (target.hasClass('comments-btn')) {
                     var studentWords = record.studentWords;
                     var str = '';
-                    $.each(studentWords, function (index,item) {
-                        str += '<div class="comments-rows">';
-                        str += '<div class="studentName">' + item.studentName + '</div>'
-                        str += '<div class="content">' + item.content + '</div> </div>'
-                    });
-                    $('.adminDialogComments-content').html(str);
+                    if (studentWords.length > 0) {
+                        $.each(studentWords, function (index, item) {
+                            var words = ['人工', '拉票', '投票', '刷票', 'piao', '这女上过', '拿刀逼着投的', '色色', '造假专家'];
+
+                            if (item.studentName.indexOf(words[j]) >= 0 || item.content.indexOf(words[j]) >= 0) {
+                                return false;
+                            }
+
+                            str += '<div class="comments-rows">';
+                            str += '<div class="studentName">' + item.studentName + '</div>'
+                            str += '<div class="content">' + item.content + '</div> </div>'
+
+
+                        });
+                        $('.adminDialogComments-content').html(str);
+                    } else {
+                        $('.adminDialogComments-content').html('<div class="comments-rows"><div class="studentName">暂无数据</div></div>');
+                    }
+
 
                     me.dialogComments.set('title', '查看留言');
                     me.dialogComments.show();
+
                 }
 
                 if (target.hasClass('remove-btn')) {
