@@ -64,7 +64,7 @@ router.post('/teacher/query', function (req, res, next) {
         sortJSON['VoteInfo.status'] = direction == 'ASC' ? 1 : -1;
     }
 
-    teacherDB.User.find(queryJSON, function (err, docs) {
+    teacherDB.User.find(queryJSON, {IPArray: 0}, function (err, docs) {
         var totalCount = docs.length;
         queryUserInfoFormDB(queryJSON, start, limit, sortJSON, function (docs) {
             for (var i = 0; i < docs.length; i++) {

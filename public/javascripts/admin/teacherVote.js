@@ -142,7 +142,7 @@ obj.prototype = {
                 pageSize: 10,
                 sortInfo: {
                     field: "totalVoteCounts",
-                    direction: 'ASC' //升序ASC，降序DESC
+                    direction: 'DESC' //升序ASC，降序DESC
                 },
                 remoteSort: true,
                 root: 'data.list',           //存放数据的字段名
