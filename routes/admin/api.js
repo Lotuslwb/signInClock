@@ -82,16 +82,15 @@ router.post('/teacher/query', function (req, res, next) {
 
 /*金牌班主任 查询详情接口*/
 router.post('/teacher/queryById', function (req, res, next) {
-    var _id = req.body._id;
-    var queryJSON = {
-        _id: _id
-    };
-
-    teacherDB.find(queryJSON, function (docs) {
-        for (var i = 0; i < docs.length; i++) {
-            docs[i]['teacherInfo'].passWord = '****';
-            docs[i]['IPArray'] = [];
-            docs[i]['IPOBJ'] = [];
+    var tel = req.body.tel;
+    getUserInfoFormDB(tel, function (docs) {
+        console.log(docs);
+        if (docs) {
+            for (var i = 0; i < docs.length; i++) {
+                docs[i]['teacherInfo'].passWord = '****';
+                docs[i]['IPArray'] = [];
+                docs[i]['IPOBJ'] = [];
+            }
         }
         res.send(sendData('200', {list: docs}, ''));
     });

@@ -245,7 +245,7 @@ obj.prototype = {
                         url: '/admin/api/teacher/queryById',
                         type: 'post',
                         data: {
-                            '_id': record._id,
+                            'tel': record.cellPhone,
                         },
                         success: function (data) {
                             console.log(data);
