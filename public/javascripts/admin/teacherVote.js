@@ -241,6 +241,8 @@ obj.prototype = {
                 }
 
                 if (target.hasClass('comments-btn')) {
+                    
+                    $('.adminDialogComments-content').html('');
                     $.ajax({
                         url: '/admin/api/teacher/queryById',
                         type: 'post',
