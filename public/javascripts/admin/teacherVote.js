@@ -141,7 +141,7 @@ obj.prototype = {
                 currentPage: 10,
                 pageSize: 10,
                 sortInfo: {
-                    field: "createdAt",
+                    field: "totalVoteCounts",
                     direction: 'ASC' //升序ASC，降序DESC
                 },
                 remoteSort: true,
@@ -246,16 +246,19 @@ obj.prototype = {
                     if (studentWords.length > 0) {
                         $.each(studentWords, function (index, item) {
                             var words = ['人工', '拉票', '投票', '刷票', 'piao', '这女上过', '拿刀逼着投的', '色色', '造假专家'];
+                            var flag = true;
 
-                            if (item.studentName.indexOf(words[j]) >= 0 || item.content.indexOf(words[j]) >= 0) {
-                                return false;
+                            for (var j = 0; j < words.length; j++) {
+                                if (item.studentName.indexOf(words[j]) >= 0 || item.content.indexOf(words[j]) >= 0) {
+                                    flag = false;
+                                }
                             }
 
-                            str += '<div class="comments-rows">';
-                            str += '<div class="studentName">' + item.studentName + '</div>'
-                            str += '<div class="content">' + item.content + '</div> </div>'
-
-
+                            if (flag) {
+                                str += '<div class="comments-rows">';
+                                str += '<div class="studentName">' + item.studentName + '</div>'
+                                str += '<div class="content">' + item.content + '</div> </div>'
+                            }
                         });
                         $('.adminDialogComments-content').html(str);
                     } else {
