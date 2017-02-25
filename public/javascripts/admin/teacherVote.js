@@ -241,7 +241,7 @@ obj.prototype = {
                 }
 
                 if (target.hasClass('comments-btn')) {
-                    
+
                     $('.adminDialogComments-content').html('');
                     $.ajax({
                         url: '/admin/api/teacher/queryById',
@@ -254,7 +254,7 @@ obj.prototype = {
                             if (data.status == 200) {
                                 var studentWords = data.data.list[0].studentWords;
                                 var str = '';
-                                if (studentWords) {
+                                if (studentWords && studentWords.length > 0) {
                                     $.each(studentWords, function (index, item) {
                                         var words = ['人工', '拉票', '投票', '刷票', 'piao', '这女上过', '拿刀逼着投的', '色色', '造假专家'];
                                         var flag = true;
