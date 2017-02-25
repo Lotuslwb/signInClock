@@ -87,18 +87,14 @@ router.post('/teacher/queryById', function (req, res, next) {
         _id: _id
     };
 
-    teacherDB.User.find(queryJSON, {IPArray: 0}, function (err, docs) {
-        var totalCount = docs.length;
-        queryUserInfoFormDB(queryJSON, function (docs) {
-            for (var i = 0; i < docs.length; i++) {
-                docs[i]['teacherInfo'].passWord = '****';
-                docs[i]['IPArray'] = [];
-                docs[i]['IPOBJ'] = [];
-            }
-            res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
-        });
+    queryUserInfoFormDB(queryJSON, function (docs) {
+        for (var i = 0; i < docs.length; i++) {
+            docs[i]['teacherInfo'].passWord = '****';
+            docs[i]['IPArray'] = [];
+            docs[i]['IPOBJ'] = [];
+        }
+        res.send(sendData('200', {list: docs}, ''));
     });
-
 
 });
 
