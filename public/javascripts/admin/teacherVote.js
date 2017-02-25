@@ -243,10 +243,10 @@ obj.prototype = {
                 if (target.hasClass('comments-btn')) {
                     var studentWords = record.studentWords;
                     var str = '';
-                    $.each(studentWords, function () {
+                    $.each(studentWords, function (index,item) {
                         str += '<div class="comments-rows">';
-                        str += '<div class="studentName">' + $(this).studentName + '</div>'
-                        str += '<div class="content">' + $(this).content + '</div> </div>'
+                        str += '<div class="studentName">' + item.studentName + '</div>'
+                        str += '<div class="content">' + item.content + '</div> </div>'
                     });
                     $('.adminDialogComments-content').html(str);
 

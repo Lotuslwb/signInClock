@@ -739,3 +739,7 @@ input[type="text"].checkCode-input {
     font-size: 14px;
     font-weight: 500;
 }
+
+.bui-dialog .bui-stdmod-body {
+    overflow: auto;
+}
