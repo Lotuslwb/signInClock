@@ -726,6 +726,16 @@ input[type="text"].checkCode-input {
 #iframe {
     width: 100%;
 }
-.bui-bar{
+
+.bui-bar {
     margin-bottom: 20px;
+}
+
+.comments-rows {
+    margin-bottom: 10px;
+}
+
+.comments-rows .studentName {
+    font-size: 14px;
+    font-weight: 500;
 }

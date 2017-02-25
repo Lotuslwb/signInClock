@@ -16,6 +16,7 @@ obj.prototype = {
         var me = this;
         me.gridObj = me.initGid(me);
         me.dialog = me.initDialog(me);
+        me.dialogComments = me.initDialogComments(me);
         me.bindEvent(me);
     },
     bindEvent: function (me) {
@@ -116,6 +117,10 @@ obj.prototype = {
                         if (obj.status == 1) {
                             returnStr += '<span class="grid-command reviewed-btn">通过审核</span>';
                             returnStr += '<span class="grid-command refuse-btn">拒绝审核</span>';
+                        }
+
+                        if (obj.status == 2) {
+                            returnStr += '<span class="grid-command comments-btn">留言</span>';
                         }
 
                         returnStr += '<span class="grid-command mod-btn">修改</span>';
@@ -233,6 +238,20 @@ obj.prototype = {
                         }
                     })
                     me.dialog.show();
+                }
+
+                if (target.hasClass('comments-btn')) {
+                    var studentWords = record.studentWords;
+                    var str = '';
+                    $.each(studentWords, function () {
+                        str += '<div class="comments-rows">';
+                        str += '<div class="studentName">' + $(this).studentName + '</div>'
+                        str += '<div class="content">' + $(this).content + '</div> </div>'
+                    });
+                    $('.adminDialogComments-content').html(str);
+
+                    me.dialogComments.set('title', '查看留言');
+                    me.dialogComments.show();
                 }
 
                 if (target.hasClass('remove-btn')) {
@@ -451,6 +470,21 @@ obj.prototype = {
                 elBefore: '#adminDialog',
                 //配置DOM容器的编号
                 contentId: "adminDialog"
+            });
+        });
+    },
+    initDialogComments: function (me) {
+        var dialog;
+
+        BUI.use(['bui/overlay'], function (Overlay, Form) {
+            me.dialogComments = new Overlay.Dialog({
+                title: '',
+                width: 850,
+                height: 500,
+                elCls: 'adminDialogComments',
+                elBefore: '#adminDialogComments',
+                //配置DOM容器的编号
+                contentId: "adminDialogComments"
             });
         });
     },
