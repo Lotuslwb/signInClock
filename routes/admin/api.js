@@ -69,6 +69,8 @@ router.post('/teacher/query', function (req, res, next) {
         queryUserInfoFormDB(queryJSON, start, limit, sortJSON, function (docs) {
             for (var i = 0; i < docs.length; i++) {
                 docs[i]['teacherInfo'].passWord = '****';
+                docs[i]['IPArray'] = [];
+
             }
             res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
         });
