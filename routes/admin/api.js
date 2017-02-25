@@ -87,7 +87,7 @@ router.post('/teacher/queryById', function (req, res, next) {
         _id: _id
     };
 
-    queryUserInfoFormDB(queryJSON, function (docs) {
+    teacherDB.find(queryJSON, function (docs) {
         for (var i = 0; i < docs.length; i++) {
             docs[i]['teacherInfo'].passWord = '****';
             docs[i]['IPArray'] = [];
