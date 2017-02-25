@@ -70,7 +70,28 @@ router.post('/teacher/query', function (req, res, next) {
             for (var i = 0; i < docs.length; i++) {
                 docs[i]['teacherInfo'].passWord = '****';
                 docs[i]['IPArray'] = [];
+                docs[i]['studentWords'] = [];
+            }
+            res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
+        });
+    });
 
+
+});
+
+/*金牌班主任 查询详情接口*/
+router.post('/teacher/queryById', function (req, res, next) {
+    var _id = req.body._id;
+    var queryJSON = {
+        _id: _id
+    };
+
+    teacherDB.User.find(queryJSON, {IPArray: 0}, function (err, docs) {
+        var totalCount = docs.length;
+        queryUserInfoFormDB(queryJSON, start, limit, sortJSON, function (docs) {
+            for (var i = 0; i < docs.length; i++) {
+                docs[i]['teacherInfo'].passWord = '****';
+                docs[i]['IPArray'] = [];
             }
             res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
         });

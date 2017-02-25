@@ -241,30 +241,43 @@ obj.prototype = {
                 }
 
                 if (target.hasClass('comments-btn')) {
-                    var studentWords = record.studentWords;
-                    var str = '';
-                    if (studentWords.length > 0) {
-                        $.each(studentWords, function (index, item) {
-                            var words = ['人工', '拉票', '投票', '刷票', 'piao', '这女上过', '拿刀逼着投的', '色色', '造假专家'];
-                            var flag = true;
+                    $.ajax({
+                        url: '/admin/api/teacher/queryById',
+                        type: 'post',
+                        data: {
+                            '_id': record._id,
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            if (data.status == 200) {
+                                var studentWords = data.list[0].studentWords;
+                                var str = '';
+                                if (studentWords.length > 0) {
+                                    $.each(studentWords, function (index, item) {
+                                        var words = ['人工', '拉票', '投票', '刷票', 'piao', '这女上过', '拿刀逼着投的', '色色', '造假专家'];
+                                        var flag = true;
 
-                            for (var j = 0; j < words.length; j++) {
-                                if (item.studentName.indexOf(words[j]) >= 0 || item.content.indexOf(words[j]) >= 0) {
-                                    flag = false;
+                                        for (var j = 0; j < words.length; j++) {
+                                            if (item.studentName.indexOf(words[j]) >= 0 || item.content.indexOf(words[j]) >= 0) {
+                                                flag = false;
+                                            }
+                                        }
+
+                                        if (flag) {
+                                            str += '<div class="comments-rows">';
+                                            str += '<div class="studentName">' + item.studentName + '</div>'
+                                            str += '<div class="content">' + item.content + '</div> </div>'
+                                        }
+                                    });
+                                    $('.adminDialogComments-content').html(str);
+                                } else {
+                                    $('.adminDialogComments-content').html('<div class="comments-rows"><div class="studentName">暂无数据</div></div>');
                                 }
+                            } else {
+                                BUI.Message.Alert(data.errmsg);
                             }
-
-                            if (flag) {
-                                str += '<div class="comments-rows">';
-                                str += '<div class="studentName">' + item.studentName + '</div>'
-                                str += '<div class="content">' + item.content + '</div> </div>'
-                            }
-                        });
-                        $('.adminDialogComments-content').html(str);
-                    } else {
-                        $('.adminDialogComments-content').html('<div class="comments-rows"><div class="studentName">暂无数据</div></div>');
-                    }
-
+                        }
+                    })
 
                     me.dialogComments.set('title', '查看留言');
                     me.dialogComments.show();
