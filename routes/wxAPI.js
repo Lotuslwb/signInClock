@@ -37,6 +37,12 @@ router.get('/jsSDK', function (req, res, next) {
 
 //主要负责OAuth认证
 router.get('/', function (req, res, next) {
+
+    res.redirect('http://ma.eldesign.cn/teacher/login');
+
+    return false;
+
+
     var openid = req.signedCookies['session'];
     var router = req.query.router;
 
