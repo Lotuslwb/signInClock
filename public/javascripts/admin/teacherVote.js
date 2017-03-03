@@ -250,7 +250,7 @@ obj.prototype = {
                             'tel': record.cellPhone,
                         },
                         success: function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status == 200) {
                                 var studentWords = data.data.list[0].studentWords;
                                 var str = '';

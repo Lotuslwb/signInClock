@@ -84,7 +84,7 @@ router.post('/teacher/query', function (req, res, next) {
 router.post('/teacher/queryById', function (req, res, next) {
     var tel = req.body.tel;
     getUserInfoFormDB(tel, function (docs) {
-        console.log(docs);
+        //console.log(docs);
         if (docs) {
             for (var i = 0; i < docs.length; i++) {
                 docs[i]['teacherInfo'].passWord = '****';
