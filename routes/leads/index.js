@@ -10,5 +10,9 @@ router.get('/v1', function (req, res, next) {
     res.render('leads/v1', {});
 })
 
+router.get('/v2', function (req, res, next) {
+    res.render('leads/v2', {});
+})
+
 
 module.exports = router;
