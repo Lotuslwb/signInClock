@@ -153,8 +153,8 @@ select {
 }
 
 .page1 .page1-canvasBox.active .myCanvas {
-    transform: translate3d(105px, 95px, 0) scale(0.2) rotate(720deg);
-    -webkit-transform: translate3d(105px, 95px, 0) scale(0.2) rotate(720deg);
+    transform: translate3d(105px, 110px, 0) scale(0.2) rotate(720deg);
+    -webkit-transform: translate3d(105px, 110px, 0) scale(0.2) rotate(720deg);
     opacity: 0;
 }
 
