@@ -28,11 +28,13 @@ var adminAPI = require('./routes/admin/api');
 var leads = require('./routes/leads/index');
 var leadsAPI = require('./routes/leads/api');
 
-
 //新年计划
 var newyear17 = require('./routes/newyear17/index');
 var newyear17API = require('./routes/newyear17/api');
 
+
+//夏令营计划
+var camp = require('./routes/camp/index');
 
 var app = express();
 
@@ -85,6 +87,8 @@ app.use('/leads/api', leadsAPI);
 
 app.use('/newyear17', newyear17);
 app.use('/newyear17/api', newyear17API);
+
+app.use('/camp', camp);
 
 
 // catch 404 and forward to error handler

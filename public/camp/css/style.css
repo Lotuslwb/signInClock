@@ -1,0 +1,887 @@
+/* html,body,div,span,h1,h2,h3,p,blockquote,em,img,dl,dt,dd,ol,ul,li,form,label,input{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-family:'\5FAE\8F6F\96C5\9ED1';font-size:12px;vertical-align:baseline;} */
+body, h1, h2, h3, p, dl, ul, ol, form {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #646464;
+    /*font-family:'\5FAE\8F6F\96C5\9ED1';*/
+}
+
+dd {
+    margin-left: 0;
+}
+
+:focus {
+    outline: 0;
+}
+
+ol, ul {
+    list-style-type: none;
+}
+
+.clear-both {
+    clear: both;
+    height: 0;
+    overflow: hidden
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+    display: block;
+}
+
+em, var {
+    font-style: normal;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+html, body {
+    height: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    overflow: hidden;
+}
+
+i {
+    font-style: normal;
+}
+
+table, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+}
+
+select {
+    -webkit-appearance: none !important;
+}
+
+.f-hide {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+}
+
+.mid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -50%, 0);
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page1 .page1-man {
+    position: absolute;
+    right: 20px;
+    top: 105px;
+    background: url("../img/page1-man-1.png") no-repeat;
+    width: 111px;
+    height: 209px;
+}
+
+.page.active .page1-man {
+    animation: page1-man-Ani 4s step-start both;
+    -webkit-animation: page1-man-Ani 4s step-start both;
+}
+
+.page1 .page1-man-5 {
+    right: 145px;
+    bottom: 60px;
+    position: absolute;
+    display: none;
+}
+
+.page1 .page1-gotoCanvas {
+    display: none;
+}
+
+.page1 .page1-canvasBox {
+    display: none;
+    background: url("../img/page1-canvasBox.png") no-repeat;
+    width: 446px;
+    height: 364px;
+}
+
+.page1 .page1-canvasBox.active {
+    background: none;
+}
+
+.page1 .page1-canvasBox.active .canvas-footer {
+    display: none;
+}
+
+.page1 .page1-canvasBox.active .myCanvas {
+    transform: translate3d(105px, 95px, 0) scale(0.2) rotate(720deg);
+    -webkit-transform: translate3d(105px, 95px, 0) scale(0.2) rotate(720deg);
+    opacity: 0;
+}
+
+.page1 .myCanvas {
+    width: 400px;
+    height: 250px;
+    margin: 30px auto 0;
+    display: block;
+    transition: transform 1s ease, opacity 200ms ease 1500ms;
+    -webkit-transition: -webkit-transform 1s ease, opacity 200ms ease 1500ms;
+}
+
+.page1 .canvas-footer {
+    width: 344px;
+    margin: 12px auto;
+}
+
+.page1 .canvas-reset {
+    margin-right: 40px;
+}
+
+.page1 .canvas-btn {
+    width: 150px;
+    height: 70px;
+    display: inline-block;
+}
+
+.page1 .page1-man-unlocking {
+    background: url("../img/page1-man-6.png") no-repeat;
+    width: 98px;
+    height: 169px;
+
+    position: absolute;
+    top: 100px;
+    right: 185px;
+    display: none;
+}
+
+.page1 .page1-man-unlocking.active {
+    display: block;
+    animation: page1-man-unlocking-Ani 1s step-start both;
+    -webkit-animation: page1-man-unlocking-Ani 1s step-start both;
+}
+
+.page2 {
+    background: #ffffff;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page2 .page2-header {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+}
+
+.page2 .page2-main {
+    padding-top: 63px;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transition: all 2s ease;
+    -webkit-transition: all 2s ease;
+}
+
+.page2 .page2-title {
+    padding-top: 30px;
+}
+
+.page2 .page2-main-status1 {
+    background: url("../img/page2-man-status1-1.png") no-repeat;
+    width: 180px;
+    height: 286px;
+
+    position: absolute;
+    right: 40px;
+    top: 650px;
+    z-index: 11;
+    display: none;
+}
+
+.page2.status1 .page2-main-status1 {
+    display: block;
+    animation: page2-main-status1-Ani 3s step-end both;
+    -webkit-animation: page2-main-status1-Ani 3s step-end both;
+}
+
+.page2 .arrow {
+    background: url("../img/arrow.png") no-repeat;
+    width: 34px;
+    height: 56px;
+    position: absolute;
+    bottom: 10px;
+    right: 60px;
+    display: none;
+}
+
+.page2 .arrow.up {
+    background: url("../img/arrow-up.png") no-repeat;
+}
+
+.page2 .arrow.active {
+    display: block;
+    animation: arrow-Ani 1s ease both 99;
+    -webkit-animation: arrow-Ani 1s ease both 99;
+}
+
+.page2 .page2-pic2 {
+    margin: auto;
+    padding-top: 30px;
+}
+
+.page2 .page2-pic2-zan {
+    margin: auto;
+    transform: translate(45px, 0);
+    -webkit-transform: translate(45px, 0);
+}
+
+.page2 .hr {
+    margin-top: 10px;
+    width: 100%;
+    height: 1px;
+    background: #d5cdcd;
+}
+
+.page2 .page2-item {
+    position: relative;
+}
+
+.page2 .page2-status2-box, .page2 .page2-status3-box {
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    top: 180px;
+}
+
+.page2 .page2-status2-box .page2-man-status2 {
+    background: url("../img/page2-man-status2.png") no-repeat;
+    width: 125px;
+    height: 120px;
+
+    transform: translate3d(125px, 0, 0);
+    -webkit-transform: translate3d(125px, 0, 0);
+    transition: transform 800ms ease 2000ms, background 500ms ease 1s;
+    -webkit-transition: -webkit-transform 800ms ease 2000ms, background 500ms ease 1s;
+}
+
+.page2 .page2-man-cai {
+    background: url("../img/page2-man-cai1.png") no-repeat;
+    width: 173px;
+    height: 269px;
+    position: absolute;
+    top: 450px;
+    left: 235px;
+    opacity: 0;
+
+    z-index: 12;
+}
+
+.page2.status6 .page2-man-cai {
+    opacity: 1;
+    transition: opacity 100ms ease 3000ms;
+    -webkit-transition: opacity 100ms ease 3000ms;
+    animation: page2-man-cai-Ani 1100ms step-start 3100ms both;
+    -webkit-animation: page2-man-cai-Ani 1100ms step-start 3100ms both;
+}
+
+.page2.status6 .page2-pic1-player.active {
+    background: url("../img/page2-pic1-player-2.png") no-repeat;
+    width: 481px;
+    height: 321px;
+    transform: translate(10px, 125px);
+    -webkit-transform: translate(10px, 125px);
+}
+
+.page2 .page2-pic6-link {
+    display: block;
+    width: 490px;
+    height: 92px;
+
+    position: absolute;
+    left: 116px;
+    top: 143px;
+    z-index: 2;
+}
+
+.page2 .book-box {
+    position: absolute;
+    right: -65px;
+    top: 190px;
+    z-index: 10;
+
+    transform: translate(-40px, -40px);
+    -webkit-transform: translate(-40px, -40px);
+    opacity: 0;
+    transition: all 800ms ease 4100ms;
+    -webkit-transition: all 800ms ease 4100ms;
+}
+
+.page2.status6 .book-box {
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    opacity: 1;
+}
+
+.page2 .page2-book-link {
+    position: absolute;
+    margin-top: -66px;
+    left: 28px;
+    display: none;
+    opacity: 0;
+}
+
+.page2.status6 .page2-book-link {
+    display: block;
+    opacity: 1;
+    transition: opacity 400ms ease 5000ms;
+    -webkit-transition: opacity 400ms ease 5000ms;
+    animation: swing 1s ease 5500ms 99;
+}
+
+.page2.status2 .page2-status2-box .page2-man-status2 {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.page2.status3 .page2-status3-box .page2-man-status2 {
+    background: url("../img/page2-man-status2.png") no-repeat;
+    width: 125px;
+    height: 120px;
+
+    transform: translate3d(125px, 0, 0);
+    -webkit-transform: translate3d(125px, 0, 0);
+    transition: transform 800ms ease 2s, background 500ms ease 1s;
+    -webkit-transition: -webkit-transform 800ms ease 2s, background 500ms ease 1s;
+}
+
+.page2.status3 .page2-status3-box .page2-man-status2 {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.page2 .changed .page2-man-status2 {
+    background: url("../img/page2-man-status2-2.png") no-repeat;
+}
+
+.page2 .changed .page2-status2-word {
+    background: url("../img/page2-status2-word2.png") no-repeat;
+    width: 244px;
+    height: 127px;
+}
+
+.page2.status1 .page2-main {
+    transform: translate3d(0, -145px, 0);
+    -webkit-transform: translate3d(0, -145px, 0);
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+
+.page2.status2 .page2-main {
+    transform: translate3d(0, -1055px, 0);
+    -webkit-transform: translate3d(0, -1055px, 0);
+    transition: all 2s ease;
+    -webkit-transition: all 2s ease;
+
+}
+
+.page2.status3 .page2-main {
+    transform: translate3d(0, -1555px, 0);
+    -webkit-transform: translate3d(0, -1555px, 0);
+    transition: all 2s ease;
+    -webkit-transition: all 2s ease;
+}
+
+.page2.status4 .page2-main {
+    transform: translate3d(0, -2100px, 0);
+    -webkit-transform: translate3d(0, -2100px, 0);
+    transition: all 2s ease;
+    -webkit-transition: all 2s ease;
+}
+
+.page2.status5 .page2-main {
+    transform: translate3d(0, -3015px, 0);
+    -webkit-transform: translate3d(0, -3015px, 0);
+    transition: all 3s ease;
+    -webkit-transition: all 3s ease;
+}
+
+.page2.status6 .page2-main {
+    transform: translate3d(0, -100px, 0);
+    -webkit-transform: translate3d(0, -100px, 0);
+}
+
+.page2.status6 .page2-main-status1 {
+    display: none;
+}
+
+.page2 .status1-box {
+    position: relative;
+}
+
+.page2 .page2-pic1-boxs {
+    position: absolute;
+    bottom: 0;
+    margin-top: -100%;
+    left: 50%;
+    margin-left: -235px;
+}
+
+.page2 .page2-status2-word {
+    background: url(../img/page2-status2-word1.png) no-repeat;
+    width: 216px;
+    height: 107px;
+    position: absolute;
+    right: 6px;
+    margin-top: -10px;
+    opacity: 0;
+    transition: opacity 500ms ease 3000ms, background 500ms ease 1s;
+    -webkit-transition: opacity 500ms ease 3000ms, background 500ms ease 1s;
+}
+
+.page2.status2 .page2-status2-word {
+    opacity: 1;
+}
+
+.page2 .status2-zan-box {
+    position: absolute;
+    right: 20px;
+    top: 444px;
+    z-index: 10;
+}
+
+.page2 .status3-zan-box {
+    position: absolute;
+    right: 20px;
+    top: 338px;
+    z-index: 10;
+}
+
+.page2 .zan-box {
+    background: url("../img/needZan.png") no-repeat;
+    width: 190px;
+    height: 37px;
+
+    position: absolute;
+    top: 0px;
+    right: 60px;
+    display: none;
+}
+
+.page2 .status2-zan-box.alreadyZan .zan-box {
+    background: url("../img/already-zan.png") no-repeat;
+    width: 190px;
+    height: 37px;
+    display: block;
+}
+
+.page2 .zan-box-btn-1 {
+    position: absolute;
+    left: 0;
+    width: 90px;
+    height: 40px;
+}
+
+.page2 .zan-box-btn-2 {
+    position: absolute;
+    right: 0;
+    width: 90px;
+    height: 40px;
+}
+
+.page2 .status2-zan-box.needZan .zan-box {
+    display: block;
+}
+
+.page2 .status2-zan, .status3-zan {
+    width: 60px;
+    height: 30px;
+}
+
+.page2 .page2-pic1-boxs img {
+    opacity: 0;
+}
+
+.page2 .page2-pic1 {
+    margin: auto;
+    background: url("../img/page2-pic1.jpg") no-repeat;
+    width: 580px;
+    height: 630px;
+}
+
+.page2 .page2-pic1-player {
+    margin: auto;
+    background: url("../img/page2-pic1-player.jpg") no-repeat;
+    width: 414px;
+    height: 250px;
+    transform: translate(0, 140px);
+    -webkit-transform: translate(0, 140px);
+    transition: all 400ms ease 1s;
+    -webkit-transition: all 400ms ease 1s;
+    position: relative;
+    z-index: 10;
+}
+
+.page2.status1 .page2-pic1-boxs .page2-pic1-c1 {
+    opacity: 1;
+    transition: all 500ms ease 1s;
+    -webkit-transition: all 500ms ease 1s;
+}
+
+.page2.status1 .page2-pic1-boxs .page2-pic1-c2 {
+    opacity: 1;
+    transition: all 500ms ease 1500ms;
+    -webkit-transition: all 500ms ease 1500ms;
+}
+
+.page2.status1 .page2-pic1-boxs .page2-pic1-c3 {
+    opacity: 1;
+    transition: all 500ms ease 2000ms;
+    -webkit-transition: all 500ms ease 2000ms;
+}
+
+.page2.status1 .page2-pic1-boxs .page2-pic1-c4 {
+    opacity: 1;
+    transition: all 500ms ease 2500ms;
+    -webkit-transition: all 500ms ease 2500ms;
+}
+
+.page2.status1 .page2-pic1-boxs .page2-pic1-c5 {
+    opacity: 1;
+    transition: all 500ms ease 3000ms;
+    -webkit-transition: all 500ms ease 3000ms;
+}
+
+.page2 .page2-status5-box {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+}
+
+.page2 .page2-man-status5 {
+    background: url("../img/page2-man-status5-1.png") no-repeat;
+    width: 300px;
+    height: 402px;
+    opacity: 0;
+    transition: opacity 100ms ease 3s;
+    -webkit-transition: opacity 100ms ease 3s;
+
+}
+
+.page2.status5 .page2-man-status5 {
+    opacity: 1;
+    animation: page2-man-status5-Ani 600ms step-end 3500ms both 3;
+    -webkit-animation: page2-man-status5-Ani 600ms step-end 3500ms both 3;
+}
+
+.newCanvas {
+    position: absolute;
+}
+
+.page2-status4-box-1 {
+    position: absolute;
+    top: 142px;
+    left: 50%;
+    background: url(../img/page2-status4-box-1.png) no-repeat;
+    width: 493px;
+    height: 333px;
+    margin-left: -218px;
+    opacity: 0;
+    transition: opacity 400ms ease 2500ms;
+}
+
+.page2.status4 .page2-status4-box-1 {
+    opacity: 1;
+}
+
+.page2-status4-box-1 .status4-next-btn {
+    height: 72px;
+    width: 220px;
+    margin: 260px auto;
+}
+
+.J-canvasBox-status4 {
+    background: url("../img/page2-status4-box-2.png") no-repeat;
+    width: 533px;
+    height: 427px;
+    position: absolute;
+    z-index: 4;
+    left: 66px;
+    top: 85px;
+    display: none;
+    transition: transform 500ms ease;
+    -webkit-transition: -webkit-transform 500ms ease;
+}
+
+.J-canvasBox-status4.active {
+    background: url("../img/page2-status4-box-3.jpg") no-repeat;
+    width: 533px;
+    height: 427px;
+    transform: scale(0.7) translate3d(-57px, -22px, 0);
+    -webki-transform: scale(0.7) translate3d(-57px, -22px, 0);
+}
+
+.J-canvasBox-status4 .canvas-footer {
+    position: absolute;
+    bottom: 0;
+    height: 78px;
+    width: 100%;
+    text-align: center;
+}
+
+.J-canvasBox-status4 .canvas-footer .canvas-btn {
+    height: inherit;
+    display: inline-block;
+}
+
+.J-canvasBox-status4 .canvas-footer .canvas-reset {
+    width: 180px;
+    margin-right: 49px;
+    margin-left: 19px;
+}
+
+.J-canvasBox-status4 .canvas-footer .canvas-done {
+    width: 160px;
+}
+
+.J-canvasBox-status4 .status4Canvas {
+    width: 533px;
+    height: 427px;
+}
+
+.music-icon {
+    position: absolute;
+    z-index: 50;
+    width: 50px;
+    height: 49px;
+    right: 20px;
+    top: 70px;
+    background: url("../img/music-icon-diasable.png") no-repeat;
+    background-size: cover;
+}
+
+.music-icon.active {
+    background: url("../img/music-icon.png") no-repeat;
+    background-size: cover;
+}
+
+@keyframes page1-man-Ani {
+    0%, 25% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+    30% {
+        background: url("../img/page1-man-2.png") no-repeat;
+    }
+    35% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+    40% {
+        background: url("../img/page1-man-2.png") no-repeat;
+    }
+    52.5% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+    65% {
+        background: url("../img/page1-man-3.png") no-repeat;
+    }
+    70% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+    82.5% {
+        background: url("../img/page1-man-4.png") no-repeat;
+    }
+    87.5%, 100% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+
+}
+
+@-webkit-keyframes page1-man-Ani {
+    0%, 25% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+    30% {
+        background: url("../img/page1-man-2.png") no-repeat;
+    }
+    35% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+    40% {
+        background: url("../img/page1-man-2.png") no-repeat;
+    }
+    52.5% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+    65% {
+        background: url("../img/page1-man-3.png") no-repeat;
+    }
+    70% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+    82.5% {
+        background: url("../img/page1-man-4.png") no-repeat;
+    }
+    87.5%, 100% {
+        background: url("../img/page1-man-1.png") no-repeat;
+    }
+
+}
+
+@keyframes page1-man-unlocking-Ani {
+    0% {
+        background: url("../img/page1-man-6.png") no-repeat;
+    }
+    15% {
+        background: url("../img/page1-man-7.png") no-repeat;
+    }
+    30% {
+        background: url("../img/page1-man-6.png") no-repeat;
+    }
+    46% {
+        background: url("../img/page1-man-7.png") no-repeat;
+    }
+    61%, 100% {
+        background: url("../img/page1-man-6.png") no-repeat;
+    }
+
+}
+
+@-webkit-keyframes page1-man-unlocking-Ani {
+    0% {
+        background: url("../img/page1-man-6.png") no-repeat;
+    }
+    15% {
+        background: url("../img/page1-man-7.png") no-repeat;
+    }
+    30% {
+        background: url("../img/page1-man-6.png") no-repeat;
+    }
+    46% {
+        background: url("../img/page1-man-7.png") no-repeat;
+    }
+    61%, 100% {
+        background: url("../img/page1-man-6.png") no-repeat;
+    }
+
+}
+
+@keyframes page2-main-status1-Ani {
+    0% {
+        background: url("../img/page2-man-status1-1.png") no-repeat;
+    }
+    33% {
+        background: url("../img/page2-man-status1-2.png") no-repeat;
+    }
+    66% {
+        background: url("../img/page2-man-status1-3.png") no-repeat;
+    }
+    100% {
+        background: url("../img/page2-man-status1-4.png") no-repeat;
+    }
+}
+
+@-webkit-keyframes page2-main-status1-Ani {
+    0% {
+        background: url("../img/page2-man-status1-1.png") no-repeat;
+    }
+    33% {
+        background: url("../img/page2-man-status1-2.png") no-repeat;
+    }
+    66% {
+        background: url("../img/page2-man-status1-3.png") no-repeat;
+    }
+    100% {
+        background: url("../img/page2-man-status1-4.png") no-repeat;
+    }
+}
+
+@keyframes arrow-Ani {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -8px, 0);
+        -webkit-transform: translate3d(0, -8px, 0);
+    }
+}
+
+@-webkit-keyframes arrow-Ani {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -8px, 0);
+        -webkit-transform: translate3d(0, -8px, 0);
+    }
+}
+
+@keyframes page2-man-status5-Ani {
+    0%, 40%, 80% {
+        background: url("../img/page2-man-status5-1.png") no-repeat;
+    }
+    20%, 60%, 100% {
+        background: url("../img/page2-man-status5-2.png") no-repeat;
+    }
+}
+
+@-webkit-keyframes page2-man-status5-Ani {
+    0%, 40%, 80% {
+        background: url("../img/page2-man-status5-1.png") no-repeat;
+    }
+    20%, 60%, 100% {
+        background: url("../img/page2-man-status5-2.png") no-repeat;
+    }
+}
+
+@keyframes page2-man-cai-Ani {
+    0%, 20%, 40%, 60%, 80% {
+        background: url("../img/page2-man-cai1.png") no-repeat;
+    }
+    10%, 30%, 50%, 70%, 90% {
+        background: url("../img/page2-man-cai2.png") no-repeat;
+    }
+    100% {
+        background: url("../img/page2-man-cai3.png") no-repeat;
+    }
+}
+
+

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script src="/javascripts/dpi.js"></script>
+    <link rel="stylesheet" href="/camp/css/style.css">
+    <link rel="stylesheet" href="/camp/css/animate.css">
+</head>
+
+<body>
+<div class="f-hide">
+    <img src="/camp/img/page1-man-1.png">
+    <img src="/camp/img/page1-man-2.png">
+    <img src="/camp/img/page1-man-3.png">
+    <img src="/camp/img/page1-man-4.png">
+    <img src="/camp/img/page1-man-5.png">
+    <img src="/camp/img/page1-man-6.png">
+    <img src="/camp/img/page1-man-7.png">
+
+    <img src="/camp/img/page2-man-status1-1.png">
+    <img src="/camp/img/page2-man-status1-2.png">
+    <img src="/camp/img/page2-man-status1-3.png">
+    <img src="/camp/img/page2-man-status1-4.png">
+
+    <img src="/camp/img/page2-man-status2.png">
+    <img src="/camp/img/page2-status2-word1.png">
+    <img src="/camp/img/needZan.png">
+    <img src="/camp/img/already-zan.png">
+
+    <img src="/camp/img/page2-pic1.jpg">
+    <img src="/camp/img/page2-pic1-player.jpg">
+    <img src="/camp/img/page2-pic1-player-2.png">
+
+    <img src="/camp/img/page2-status4-box-1.png">
+    <img src="/camp/img/page2-status4-box-2.png">
+    <img src="/camp/img/page2-status4-box-3.jpg">
+</div>
+
+<div class="music-icon J-musicIcon"></div>
+
+
+<div class="page1 page">
+    <div class="mid">
+        <img src="/camp/img/page1-bg.jpg">
+        <div class="page1-man"></div>
+        <div class="page1-man-unlocking"></div>
+        <img src="/camp/img/page1-man-5.png" class="page1-man-5">
+        <img src="/camp/img/page1-gotoCanvas.png" class="mid page1-gotoCanvas">
+        <div class="page1-canvasBox mid">
+            <canvas class="newCanvas" id="newCanvas" style="display: none;"></canvas>
+            <div class="J-canvasBox">
+                <canvas id="myCanvas" class="myCanvas"></canvas>
+
+                <div class="canvas-footer">
+                    <div class="canvas-reset canvas-btn"></div>
+                    <div class="canvas-done canvas-btn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page page2">
+    <img src="/camp/img/page2-header.jpg" class="page2-header">
+    <div class="page2-main">
+        <div class="status1-box">
+            <img src="/camp/img/page2-title.png" class="page2-title">
+            <div class="page2-pic1">
+                <div class="page2-pic1-player">
+                    <div class="book-box">
+                        <img src="/camp/img/page2-book.png" class="page2-book">
+                        <a href="http://www.ef.com.cn/englishfirst/landing/mobilesummer17?pid=b824883a35779b0deaad886ffffb1d6e&etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Html5"
+                           class="page2-book-link">
+                            <img src="/camp/img/page2-book-link.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="page2-pic1-boxs">
+                <img src="/camp/img/page2-pic1-c1.jpg" class="page2-pic1-c1"/>
+                <img src="/camp/img/page2-pic1-c2.jpg" class="page2-pic1-c2"/>
+                <img src="/camp/img/page2-pic1-c3.jpg" class="page2-pic1-c3"/>
+                <img src="/camp/img/page2-pic1-c4.jpg" class="page2-pic1-c4"/>
+                <img src="/camp/img/page2-pic1-c5.jpg" class="page2-pic1-c5"/>
+            </div>
+
+            <div class="page2-man-cai"></div>
+
+
+            <div class="page2-main-status1"></div>
+        </div>
+
+        <!--status2-->
+        <div class="page2-item">
+            <img src="/camp/img/page2-pic2.jpg" class="page2-pic2"/>
+            <img src="/camp/img/page2-pic2-zan.png" class="page2-pic2-zan J-pic2-zan">
+            <div class="hr"></div>
+
+            <div class="page2-status2-box">
+                <div class="page2-man-status2"></div>
+                <div class="page2-status2-word"></div>
+            </div>
+            <div class="status2-zan-box">
+                <div class="status2-zan"></div>
+                <div class="zan-box">
+                    <div class="zan-box-btn-1"></div>
+                </div>
+            </div>
+        </div>
+        <!--status3-->
+        <div class="page2-item">
+            <img src="/camp/img/page2-pic3.jpg" class="page2-pic2"/>
+            <img src="/camp/img/page2-pic3-zan.png" class="page2-pic2-zan J-pic3-zan">
+            <div class="hr"></div>
+
+            <div class="page2-status3-box">
+                <div class="page2-man-status2"></div>
+            </div>
+            <div class="status3-zan-box status2-zan-box">
+                <div class="status3-zan"></div>
+                <div class="zan-box">
+                    <div class="zan-box-btn-2"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--status4-->
+        <div class="page2-item">
+            <img src="/camp/img/page2-pic4.jpg" class="page2-pic2"/>
+            <img src="/camp/img/page2-pic4-zan.png" class="page2-pic2-zan">
+            <div class="hr"></div>
+
+            <div class="page2-status4-box-1">
+                <div class="status4-next-btn"></div>
+            </div>
+
+            <div class="J-canvasBox-status4">
+                <canvas id="status4Canvas" class="status4Canvas"></canvas>
+
+                <div class="canvas-footer">
+                    <div class="canvas-reset canvas-btn canvas-reset-status4"></div>
+                    <div class="canvas-done canvas-btn canvas-done-status4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page2-item">
+            <img src="/camp/img/page2-pic5.jpg" class="page2-pic2"/>
+            <img src="/camp/img/page2-pic5-zan.png" class="page2-pic2-zan">
+            <div class="hr"></div>
+        </div>
+
+        <div class="page2-item">
+            <a class="page2-pic6-link"
+               href="https://mp.weixin.qq.com/s?__biz=MjM5MDkyMTk5MQ==&mid=2650875614&idx=1&sn=2f81f76bd0422af6ac8e5fbcecaa7e7e&chksm=bd48e2b68a3f6ba0643994f80614913e01dec298392d34ed22068150913ddba6ce52fcad8e53#rd"></a>
+            <img src="/camp/img/page2-pic6.jpg" class="page2-pic2"/>
+            <div class="hr"></div>
+        </div>
+        <!--status5-->
+        <div class="page2-item">
+            <img src="/camp/img/page2-pic7.jpg" class="page2-pic2"/>
+            <img src="/camp/img/page2-pic7-zan.png" class="page2-pic2-zan">
+            <div class="hr"></div>
+
+            <div class="page2-status5-box">
+                <div class="page2-man-status5"></div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="arrow active"></div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/sketchpad.js"></script>
+<script src="js/jquery.touchSwipe.min.js"></script>
+<script>
+
+    var currentStatus = 0;
+
+    function indexHanlder() {
+        this.init();
+    }
+    indexHanlder.prototype = {
+        init: function () {
+            this.bindEvent(this);
+            this.initCanvas();
+        },
+        initCanvas: function () {
+            this.sketchpad = new Sketchpad({
+                element: '#myCanvas',
+                width: 400,
+                height: 250
+            });
+            this.sketchpadStatus4 = new Sketchpad({
+                element: '#status4Canvas',
+                width: 533,
+                height: 427,
+                penSize: 15
+            });
+        },
+        bindEvent: function (me) {
+
+            $('.status4-next-btn').on('touchstart', function () {
+                $('.page2-status4-box-1').fadeOut();
+                $('.J-canvasBox-status4').fadeIn();
+            });
+
+            $('.canvas-reset-status4').on('touchstart', function () {
+                me.sketchpadStatus4.undo();
+            })
+
+            $('.canvas-done-status4').on('touchstart', function () {
+                $('.J-canvasBox-status4').addClass('active');
+                setTimeout(function () {
+                    gotoStatus('status5');
+                }, 500)
+            })
+
+            $(".page2-main").on("touchstart", function (e) {
+                e.preventDefault();
+                return true;
+            });
+
+            $('.page1-man').on('animationend', function () {
+                $(this).fadeOut(500);
+                $('.page1-man-5').fadeIn(500);
+                setTimeout(function () {
+                    $('.page1-man-5').hide();
+                    $('.page1-gotoCanvas').fadeIn();
+                }, 1000)
+            });
+
+            $('.page2-main').swipe({
+                swipe: function (event, direction) {
+
+                    if (!$('.page2').hasClass('canSwiper')) {
+                        return false;
+                    }
+
+                    if (direction == 'up') {
+                        if (currentStatus <= 5) {
+                            $('.page2').addClass('status' + currentStatus);
+                            $('.page2').removeClass('canSwiper');
+                        }
+
+                        if (currentStatus == 3) {
+                            setTimeout(function () {
+                                zanboxbtn2();
+                            }, 2000)
+                        }
+
+
+                        if (currentStatus == 5) {
+                            setTimeout(function () {
+                                gotoStatus('status6', true);
+                                $('.arrow').addClass('up');
+                                setTimeout(function () {
+                                    $('.page2-pic1-player').addClass('active');
+                                    $('.arrow').fadeOut();
+                                }, 3000)
+                            }, 6000)
+                        }
+
+                    } else if (direction == 'down') {
+                        if (currentStatus < 6) {
+                            return false;
+                        }
+                        $('.page2').addClass('status' + currentStatus);
+                        $('.page2').removeClass('canSwiper');
+                    }
+                }
+            });
+
+
+            $('.page1-gotoCanvas').click(function () {
+                $(this).hide();
+                $('.page1-canvasBox').show();
+            });
+
+            $('.canvas-reset').click(function () {
+                console.log('canvas-reset');
+                me.sketchpad.undo();
+            })
+
+            $('.canvas-done').click(function () {
+
+                var theKey = me.sketchpad.toObject();
+                if (theKey.strokes.length <= 0) {
+                    return false;
+                }
+
+                $('.page1-canvasBox').addClass('active');
+                $('.page1-man-5').show();
+                setTimeout(function () {
+                    $('.page1-man-5').fadeOut(1000);
+                    $('.page1-man-unlocking').fadeIn(1000, function () {
+                        $('.page1-man-unlocking').addClass('active').on('animationend', function () {
+                            console.log('开门');
+                            $('.page1').removeClass('active');
+                            gotoPage2();
+                        });
+                    })
+                }, 1500)
+            })
+
+            $('.status2-zan').on('touchstart', function () {
+                if ($(this).hasClass('alreadyZan')) {
+                    $(this).parent().addClass('alreadyZan');
+                } else {
+                    $(this).parent().addClass('needZan');
+                }
+
+            });
+
+
+            $('.zan-box-btn-1').on('touchstart', function () {
+                if ($(this).parents('.status2-zan-box').hasClass('needZan')) {
+                    //点赞
+                    var src = $('.J-pic2-zan').attr('src').split('.')[0];
+                    $('.J-pic2-zan').attr('src', src + '-1.png').data('src', src);
+                    $(this).parents('.status2-zan-box').removeClass('needZan');
+                    $('.status2-zan').addClass('alreadyZan')
+                    $('.page2-status2-box').addClass('changed');
+                } else {
+                    //取消点赞
+                    var src = $('.J-pic2-zan').data('src');
+                    $(this).parents('.status2-zan-box').removeClass('alreadyZan');
+                    $('.J-pic2-zan').attr('src', src + '.png');
+                    $('.page2-status2-box').fadeOut();
+
+                    gotoStatus('status3');
+
+                }
+            });
+
+        }
+    }
+
+    function zanboxbtn2() {
+        var src = $('.J-pic3-zan').attr('src').split('.')[0];
+        $('.J-pic3-zan').attr('src', src + '-1.png').data('src', src);
+        $('.zan-box-btn-2').parents('.status2-zan-box').removeClass('needZan');
+
+
+        gotoStatus('status4');
+
+    }
+
+    function status3Zan() {
+        if (!$('.status3-zan').hasClass('alreadyZan')) {
+            $('.status3-zan').parent().addClass('needZan');
+        }
+    }
+
+
+    var page = new indexHanlder();
+
+    function gotoStatus(status, auto) {
+        if (auto) {
+            $('.page2').addClass(status);
+        } else {
+            $('.page2').addClass('canSwiper');
+        }
+
+        currentStatus = status.split('status')[1];
+        console.log(currentStatus);
+    }
+
+    function gotoPage2() {
+        $('.page2').addClass('active');
+        setTimeout(function () {
+            gotoStatus('status1', true);
+            setTimeout(function () {
+                gotoStatus('status2');
+            }, 4000)
+        }, 500)
+    }
+
+    function drwaKeyImg() {
+        var myCanvas = document.getElementById('myCanvas');
+        var context = myCanvas.getContext("2d");
+        var imgData = context.getImageData(0, 0, myCanvas.width, myCanvas.height).data;
+        var lOffset = myCanvas.width, rOffset = 0, tOffset = myCanvas.height, bOffset = 0;
+
+        for (var i = 0; i < myCanvas.width; i++) {
+            for (var j = 0; j < myCanvas.height; j++) {
+                var pos = (i + myCanvas.width * j) * 4
+                if (imgData[pos] == 255 || imgData[pos + 1] == 255 || imgData[pos + 2] == 255 || imgData[pos + 3] == 255) {
+                    bOffset = Math.max(j, bOffset); // 找到有色彩的最下端
+                    rOffset = Math.max(i, rOffset); // 找到有色彩的最右端
+
+                    tOffset = Math.min(j, tOffset); // 找到有色彩的最上端
+                    lOffset = Math.min(i, lOffset); // 找到有色彩的最左端
+                }
+            }
+        }
+
+        lOffset++;
+        rOffset++;
+        tOffset++;
+        bOffset++;
+
+        var newCanvas = document.getElementById('newCanvas');
+        newCanvas.width = rOffset - lOffset;
+        newCanvas.height = bOffset - tOffset;
+        var ctx = newCanvas.getContext("2d");
+        ctx.drawImage(myCanvas, lOffset, tOffset, newCanvas.width, newCanvas.height, 0, 0, newCanvas.width, newCanvas.height);
+        newCanvas.style.display = 'block';
+        newCanvas.style.top = tOffset + 30 + 'px';
+        newCanvas.style.left = lOffset + 30 + 'px';
+    }
+</script>
+<script>
+
+    //预加载器
+    function loader() {
+        this.init();
+    }
+
+    loader.prototype = {
+        init: function () {
+            var me = this;
+            var loaded = 0;
+
+            if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+                me.onLoaded();
+            } else {
+                var imgLoad = imagesLoaded('body');
+                imgLoad.on('progress', function (instance, image) {
+                    loaded++;
+                    if (loaded == instance.images.length) {
+                        me.onLoaded();
+                    }
+                });
+            }
+        },
+        onLoaded: function () {
+
+        }
+    }
+
+    var loader = new loader();
+
+    loader.onLoaded = function () {
+        //gotoPage2();
+        $('.page1').addClass('active').siblings('.page').removeClass('active');
+    }
+
+
+</script>
+
+<script>
+
+    var musicSrc = 'mp3/index.mp3';
+    //musicPlayer(musicSrc);
+
+    function musicPlayer(musicSrc) {
+
+        if (!musicSrc) {
+            return false;
+        }
+
+        this.audioElement = new Audio(musicSrc);
+        this.audioElement.controls = false;
+        this.audioElement.loop = true;
+        this.audioElement.autoplay = true;
+        this.audioElement.load();
+        this.audioElement.pause();
+
+        var me = this;
+
+        //bind event
+        $('.J-musicIcon').click(function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                me.audioElement.pause();
+            } else {
+                $(this).addClass('active');
+                me.audioElement.play();
+            }
+        }).removeClass('active');
+
+        $('body').one('touchstart', function () {
+            me.audioElement.play();
+            $('.J-musicIcon').addClass('active');
+        })
+
+        return this.audioElement;
+
+    }
+
+</script>
+
+<script>
+
+    var musicSrc = 'mp3/1.mp3';
+    musicPlayer(musicSrc);
+
+    function musicPlayer(musicSrc) {
+
+        if (!musicSrc) {
+            return false;
+        }
+
+        this.audioElement = new Audio(musicSrc);
+        this.audioElement.controls = false;
+        this.audioElement.loop = true;
+        this.audioElement.autoplay = true;
+        this.audioElement.load();
+        this.audioElement.pause();
+
+        var me = this;
+
+        //bind event
+        $('.J-musicIcon').click(function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                me.audioElement.pause();
+            } else {
+                $(this).addClass('active');
+                me.audioElement.play();
+            }
+        }).removeClass('active');
+
+        $('body').one('touchstart', function () {
+            me.audioElement.play();
+            $('.J-musicIcon').addClass('active');
+        })
+
+        return this.audioElement;
+
+    }
+
+</script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+
+    initWX(initWXSahre);
+
+    function initWXSahre() {
+
+        //“分享给朋友”
+        wx.onMenuShareAppMessage({
+            title: '最有趣的暑假都在别人的朋友圈里??', // 分享标题
+            desc: '', // 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/camp/logo.jpg', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //“分享到朋友圈”
+        wx.onMenuShareTimeline({
+            title: '最有趣的暑假都在别人的朋友圈里??', // 分享标题
+            desc: '', // 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/camp/logo.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    }
+
+    function initWX(callback) {
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/getWxSDK',
+            data: {'originalUrl': window.location.href},
+            success: function (data) {
+                var wxConfig = data.data.wxConfig;
+
+                //log(wxConfig);
+
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: wxConfig.appId, // 必填，公众号的唯一标识
+                    timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                    signature: wxConfig.signature,// 必填，签名，见附录1
+                    jsApiList: ['startRecord', 'stopRecord', 'playVoice', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+
+                wx.ready(function () {
+                    callback && callback();
+                });
+
+                wx.error(function (res) {
+                    console.log(res);
+                });
+
+
+            },
+            dataType: 'json'
+        });
+
+
+    }
+</script>
+
+</body>
+
+</html>
