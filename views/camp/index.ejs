@@ -92,10 +92,9 @@
             <div class="page2-pic1">
                 <div class="page2-pic1-player">
                     <div class="book-box">
-                        <img src="/camp/img/page2-book.png" class="page2-book">
-                        <a href="http://www.ef.com.cn/englishfirst/landing/mobilesummer17?pid=b824883a35779b0deaad886ffffb1d6e&etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Html5"
-                           class="page2-book-link">
-                            <img src="/camp/img/page2-book-link.png">
+                        <a href="http://www.ef.com.cn/englishfirst/landing/mobilesummer17?pid=b824883a35779b0deaad886ffffb1d6e&etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Html5">
+                            <img src="/camp/img/page2-book.png" class="page2-book">
+                            <img src="/camp/img/page2-book-link.png" class="page2-book-link">
                         </a>
                     </div>
                 </div>
@@ -232,6 +231,10 @@
             $('.status4-next-btn').on('touchstart', function () {
                 $('.page2-status4-box-1').fadeOut();
                 $('.J-canvasBox-status4').fadeIn();
+            });
+
+            $('.page2-book-link').on('touchstart', function () {
+                window.location.href = 'http://www.ef.com.cn/englishfirst/landing/mobilesummer17?pid=b824883a35779b0deaad886ffffb1d6e&etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Html5';
             });
 
             $('.canvas-reset-status4').on('touchstart', function () {
