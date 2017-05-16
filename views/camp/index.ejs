@@ -194,7 +194,7 @@
 
 
     </div>
-    <div class="arrow active"></div>
+    <div class="arrow active J-arrow"></div>
 </div>
 
 
@@ -234,6 +234,10 @@
                 $('.J-canvasBox-status4').fadeIn();
             });
 
+            $('.J-arrow').on('touchstart', function () {
+                swipeHandle('', 'up');
+            })
+
             $('.page2-book-link').on('touchstart', function () {
                 window.location.href = 'http://www.ef.com.cn/englishfirst/landing/mobilesummer17?pid=b824883a35779b0deaad886ffffb1d6e&etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Html5';
             });
@@ -264,44 +268,7 @@
             });
 
             $('.page2-main').swipe({
-                swipe: function (event, direction) {
-
-                    if (!$('.page2').hasClass('canSwiper')) {
-                        return false;
-                    }
-
-                    if (direction == 'up') {
-                        if (currentStatus <= 5) {
-                            $('.page2').addClass('status' + currentStatus);
-                            $('.page2').removeClass('canSwiper');
-                        }
-
-                        if (currentStatus == 3) {
-                            setTimeout(function () {
-                                zanboxbtn2();
-                            }, 2000)
-                        }
-
-
-                        if (currentStatus == 5) {
-                            setTimeout(function () {
-                                gotoStatus('status6', true);
-                                $('.arrow').addClass('up');
-                                setTimeout(function () {
-                                    $('.page2-pic1-player').addClass('active');
-                                    $('.arrow').fadeOut();
-                                }, 3000)
-                            }, 6000)
-                        }
-
-                    } else if (direction == 'down') {
-                        if (currentStatus < 6) {
-                            return false;
-                        }
-                        $('.page2').addClass('status' + currentStatus);
-                        $('.page2').removeClass('canSwiper');
-                    }
-                }
+                swipe: swipeHandle
             });
 
 
@@ -352,20 +319,62 @@
                     var src = $('.J-pic2-zan').attr('src').split('.')[0];
                     $('.J-pic2-zan').attr('src', src + '-1.png').data('src', src);
                     $(this).parents('.status2-zan-box').removeClass('needZan');
-                    $('.status2-zan').addClass('alreadyZan')
-                    $('.page2-status2-box').addClass('changed');
+                    $('.status2-zan').addClass('alreadyZan');
+                    $('.page2-status2-box').fadeOut();
+                    gotoStatus('status3');
+                    return false;
+//                    $('.page2-status2-box').addClass('changed');
                 } else {
                     //取消点赞
-                    var src = $('.J-pic2-zan').data('src');
-                    $(this).parents('.status2-zan-box').removeClass('alreadyZan');
-                    $('.J-pic2-zan').attr('src', src + '.png');
-                    $('.page2-status2-box').fadeOut();
-
-                    gotoStatus('status3');
+//                    var src = $('.J-pic2-zan').data('src');
+//                    $(this).parents('.status2-zan-box').removeClass('alreadyZan');
+//                    $('.J-pic2-zan').attr('src', src + '.png');
+//                    $('.page2-status2-box').fadeOut();
+//
+//                    gotoStatus('status3');
 
                 }
             });
 
+        }
+    }
+
+    function swipeHandle(event, direction) {
+
+        if (!$('.page2').hasClass('canSwiper')) {
+            return false;
+        }
+
+        if (direction == 'up') {
+            if (currentStatus <= 5) {
+                $('.page2').addClass('status' + currentStatus);
+                $('.page2').removeClass('canSwiper');
+            }
+
+            if (currentStatus == 3) {
+                setTimeout(function () {
+                    zanboxbtn2();
+                }, 2000)
+            }
+
+
+            if (currentStatus == 5) {
+                setTimeout(function () {
+                    gotoStatus('status6', true);
+                    $('.arrow').addClass('up');
+                    setTimeout(function () {
+                        $('.page2-pic1-player').addClass('active');
+                        $('.arrow').fadeOut();
+                    }, 3000)
+                }, 6000)
+            }
+
+        } else if (direction == 'down') {
+            if (currentStatus < 6) {
+                return false;
+            }
+            $('.page2').addClass('status' + currentStatus);
+            $('.page2').removeClass('canSwiper');
         }
     }
 
