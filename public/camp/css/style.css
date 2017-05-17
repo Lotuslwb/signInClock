@@ -316,10 +316,10 @@ select {
 
 .page2.status6 .page2-man-cai {
     opacity: 1;
-    transition: opacity 100ms ease 3000ms;
-    -webkit-transition: opacity 100ms ease 3000ms;
-    animation: page2-man-cai-Ani 1100ms step-start 3100ms both;
-    -webkit-animation: page2-man-cai-Ani 1100ms step-start 3100ms both;
+    transition: opacity 100ms ease 1500ms;
+    -webkit-transition: opacity 100ms ease 1500ms;
+    animation: page2-man-cai-Ani 1100ms step-start 1600ms both;
+    -webkit-animation: page2-man-cai-Ani 1100ms step-start 1600ms both;
 }
 
 .page2.status6 .page2-pic1-player.active {
@@ -350,8 +350,8 @@ select {
     transform: translate(-40px, -40px);
     -webkit-transform: translate(-40px, -40px);
     opacity: 0;
-    transition: all 800ms ease 4100ms;
-    -webkit-transition: all 800ms ease 4100ms;
+    transition: all 800ms ease 3100ms;
+    -webkit-transition: all 800ms ease 3100ms;
 }
 
 .page2.status6 .book-box {
@@ -439,15 +439,15 @@ select {
 .page2.status5 .page2-main {
     transform: translate3d(0, -3015px, 0);
     -webkit-transform: translate3d(0, -3015px, 0);
-    transition: all 6s linear;
-    -webkit-transition: all 6s linear;
+    transition: all 4500ms linear;
+    -webkit-transition: all 4500ms linear;
 }
 
 .page2.status6 .page2-main {
     transform: translate3d(0, -100px, 0);
     -webkit-transform: translate3d(0, -100px, 0);
-    transition: all 3s ease-in;
-    -webkit-transition: all 3s ease-in;
+    transition: all 1500ms ease-in;
+    -webkit-transition: all 1500ms ease-in;
 }
 
 .page2.status6 .page2-main-status1 {
@@ -602,15 +602,15 @@ select {
     width: 300px;
     height: 402px;
     opacity: 0;
-    transition: opacity 100ms ease 6s;
-    -webkit-transition: opacity 100ms ease 6s;
+    transition: opacity 100ms ease 4500ms;
+    -webkit-transition: opacity 100ms ease 4500ms;
 
 }
 
 .page2.status5 .page2-man-status5 {
     opacity: 1;
-    animation: page2-man-status5-Ani 600ms step-end 6500ms both 3;
-    -webkit-animation: page2-man-status5-Ani 600ms step-end 6500ms both 3;
+    animation: page2-man-status5-Ani 600ms step-end 5000ms both 3;
+    -webkit-animation: page2-man-status5-Ani 600ms step-end 5000ms both 3;
 }
 
 .page2.status2 .status2-zan {
