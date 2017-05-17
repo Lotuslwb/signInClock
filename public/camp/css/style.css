@@ -439,13 +439,15 @@ select {
 .page2.status5 .page2-main {
     transform: translate3d(0, -3015px, 0);
     -webkit-transform: translate3d(0, -3015px, 0);
-    transition: all 3s ease;
-    -webkit-transition: all 3s ease;
+    transition: all 6s linear;
+    -webkit-transition: all 6s linear;
 }
 
 .page2.status6 .page2-main {
     transform: translate3d(0, -100px, 0);
     -webkit-transform: translate3d(0, -100px, 0);
+    transition: all 3s ease-in;
+    -webkit-transition: all 3s ease-in;
 }
 
 .page2.status6 .page2-main-status1 {
@@ -600,15 +602,35 @@ select {
     width: 300px;
     height: 402px;
     opacity: 0;
-    transition: opacity 100ms ease 3s;
-    -webkit-transition: opacity 100ms ease 3s;
+    transition: opacity 100ms ease 6s;
+    -webkit-transition: opacity 100ms ease 6s;
 
 }
 
 .page2.status5 .page2-man-status5 {
     opacity: 1;
-    animation: page2-man-status5-Ani 600ms step-end 3500ms both 3;
-    -webkit-animation: page2-man-status5-Ani 600ms step-end 3500ms both 3;
+    animation: page2-man-status5-Ani 600ms step-end 6500ms both 3;
+    -webkit-animation: page2-man-status5-Ani 600ms step-end 6500ms both 3;
+}
+
+.page2.status2 .status2-zan {
+    opacity: 1;
+    transition: opacity 500ms ease 2s;
+}
+
+.page2 .status2-zan {
+    opacity: 0;
+}
+
+.page2.status2 .status2-zan .shou {
+    animation: shou-Ani 2s ease 2000ms both 99;
+    -webkit-animation: shou-Ani 2s ease 2000ms both 99;
+}
+
+.page2 .shou {
+    position: absolute;
+    width: 45px;
+    left: 13px;
 }
 
 .newCanvas {
@@ -840,6 +862,28 @@ select {
     50% {
         transform: translate3d(0, -8px, 0);
         -webkit-transform: translate3d(0, -8px, 0);
+    }
+}
+
+@keyframes shou-Ani {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, 5px, 0);
+        -webkit-transform: translate3d(0, 5px, 0);
+    }
+}
+
+@-webkit-keyframes shou-Ani {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, 5px, 0);
+        -webkit-transform: translate3d(0, 5px, 0);
     }
 }
 
