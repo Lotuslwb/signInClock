@@ -639,8 +639,8 @@ select {
 
 .J-canvasBox-status4 {
     background: url("../img/page2-status4-box-2.png") no-repeat;
-    width: 533px;
-    height: 427px;
+    width: 523px;
+    height: 366px;
     position: absolute;
     z-index: 4;
     left: 66px;
@@ -653,9 +653,9 @@ select {
 .J-canvasBox-status4.active {
     background: url("../img/page2-status4-box-3.jpg") no-repeat;
     width: 533px;
-    height: 427px;
-    transform: scale(0.7) translate3d(-57px, -22px, 0);
-    -webki-transform: scale(0.7) translate3d(-57px, -22px, 0);
+    height: 366px;
+    transform: scale(0.7) translate3d(-44px, 0px, 0);
+    -webki-transform: scale(0.7) translate3d(-44px, 0px, 0);
 }
 
 .J-canvasBox-status4 .canvas-footer {
@@ -683,7 +683,7 @@ select {
 
 .J-canvasBox-status4 .status4Canvas {
     width: 533px;
-    height: 427px;
+    height: 366px;
 }
 
 .music-icon {

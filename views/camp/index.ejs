@@ -92,7 +92,7 @@
             <div class="page2-pic1">
                 <div class="page2-pic1-player">
                     <div class="book-box">
-                        <a href="http://www.ef.com.cn/englishfirst/landing/mobilesummer17?pid=b824883a35779b0deaad886ffffb1d6e&etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Html5">
+                        <a href="http://www.ef.com.cn/englishfirst/landing/mobilesummer2017?etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Xiaorenh5">
                             <img src="/camp/img/page2-book.png" class="page2-book">
                             <img src="/camp/img/page2-book-link.png" class="page2-book-link">
                         </a>
@@ -222,9 +222,9 @@
             });
             this.sketchpadStatus4 = new Sketchpad({
                 element: '#status4Canvas',
-                width: 533,
-                height: 427,
-                penSize: 15
+                width: 523,
+                height: 366,
+                penSize: 10
             });
         },
         bindEvent: function (me) {
@@ -239,7 +239,7 @@
             })
 
             $('.page2-book-link').on('touchstart', function () {
-                window.location.href = 'http://www.ef.com.cn/englishfirst/landing/mobilesummer17?pid=b824883a35779b0deaad886ffffb1d6e&etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Html5';
+                window.location.href = 'http://www.ef.com.cn/englishfirst/landing/mobilesummer2017?etag=EFCN_Smr17_KidsOwn-SNS-Wechat-Summeracademy-Xiaorenh5';
             });
 
             $('.canvas-reset-status4').on('touchstart', function () {
@@ -305,7 +305,7 @@
 
             $('.status2-zan').on('touchstart', function () {
                 if ($(this).hasClass('alreadyZan')) {
-                    $(this).parent().addClass('alreadyZan');
+                    // $(this).parent().addClass('alreadyZan');
                 } else {
                     $(this).parent().addClass('needZan');
                 }
