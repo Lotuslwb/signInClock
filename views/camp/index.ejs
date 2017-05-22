@@ -163,7 +163,7 @@
 
             <div class="J-canvasBox-status4">
                 <canvas id="status4Canvas" class="status4Canvas"></canvas>
-
+                <img src="/camp/img/arrow.png" class="canvasBox-status4-arrow">
                 <div class="canvas-footer">
                     <div class="canvas-reset canvas-btn canvas-reset-status4"></div>
                     <div class="canvas-done canvas-btn canvas-done-status4"></div>
@@ -233,6 +233,7 @@
             $('.status4-next-btn').on('touchstart', function () {
                 $('.page2-status4-box-1').fadeOut();
                 $('.J-canvasBox-status4').fadeIn();
+                $('.canvasBox-status4-arrow').addClass('active')
             });
 
             $('.J-arrow').on('touchstart', function () {
