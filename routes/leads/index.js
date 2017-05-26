@@ -14,5 +14,9 @@ router.get('/v2', function (req, res, next) {
     res.render('leads/v2', {});
 })
 
+router.get('/v3', function (req, res, next) {
+    res.render('leads/v3', {});
+})
+
 
 module.exports = router;
