@@ -19,6 +19,10 @@ router.get('/index', function (req, res, next) {
     res.render('camp/index');
 });
 
+router.get('/robin8', function (req, res, next) {
+    res.render('camp/robin8');
+});
+
 
 router.get('/share', function (req, res, next) {
 
