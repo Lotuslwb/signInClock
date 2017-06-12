@@ -1,0 +1,131 @@
+<%- include("header750.ejs",{"title":'2017暑假英孚职业体验营'}) %>
+
+<style>
+
+    html, body {
+        max-width: 750px;
+    }
+
+    .form {
+        height: 380px;
+        background: #ededed;
+        overflow: auto;
+        font-size: 28px;
+
+    }
+
+    .form input {
+        display: block;
+        width: 670px;
+        height: 60px;
+        line-height: 60px;
+        box-sizing: border-box;
+        margin: auto;
+        border: none;
+        padding-left: 80px;
+        margin-bottom: 20px;
+    }
+
+    .form .realName {
+        margin-top: 50px;
+        background: url("/images/leads/v2/input-name.jpg");
+        background-size: 100% 100%;
+    }
+
+    .form .age {
+        background: url("/images/leads/v2/input-age.jpg");
+        background-size: 100% 100%;
+    }
+
+    .form .cellPhone {
+        background: url("/images/leads/v2/input-cell.jpg");
+        background-size: 100% 100%;
+    }
+
+    .form .submit {
+        display: block;
+        width: 670px;
+        margin: 20px auto;
+    }
+</style>
+
+<img src="/images/leads/v4/pic1.jpg"/>
+<div class="form">
+    <input type="text" placeholder="姓名" class="realName" name="realName"/>
+    <input type="number" placeholder="学员年龄" class="age" name="age"/>
+    <input type="tel" placeholder="手机号码" class="cellPhone" name="cellPhone"/>
+    <a href="#" class="submit"><img src="/images/leads/v4/btn.jpg"></a>
+</div>
+<img src="/images/leads/v4/pic2.jpg"/>
+
+<script src="/javascripts/jquery.js"></script>
+
+<script>
+
+    $('.submit').click(function () {
+        var $form = $(this).parents('.form');
+        var data = {
+            realName: $form.find("[name='realName']").val(),
+            cellPhone: $form.find("[name='cellPhone']").val(),
+            age: $form.find("[name='age']").val(),
+            tag: 'v4'
+        }
+        var v = true;
+        $.each(data, function (i, t) {
+            if (t.length <= 0 && v) {
+                toast('选项不能为空');
+                v = false;
+            }
+        })
+
+        if (!v) {
+            return false;
+        }
+
+        if (data.cellPhone && !checkTel(data.cellPhone)) {
+            toast('手机号码格式有误');
+            return false;
+        }
+
+        if (data.age && !(data.age < 99 && data.age > 1)) {
+            toast('年龄不在范围内');
+            return false;
+        }
+
+        loadingShow();
+        $.ajax({
+            type: 'POST',
+            url: '/leads/api/addLeads',
+            data: data,
+            success: function (data) {
+                console.log(data);
+                loadingHide();
+                if (data.status == '200') {
+                    toast('提交成功');
+                    $('.form').hide();
+                } else {
+                    toast(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    })
+
+    function checkTel(tel) {
+        var reg = /^0?1[3|4|5|7|8|9][0-9]\d{8}$/;
+        return reg.test(tel);
+    }
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a82ef149842c5b202087129c811b57fe";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</body>
+</html>

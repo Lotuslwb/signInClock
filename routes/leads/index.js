@@ -18,5 +18,17 @@ router.get('/v3', function (req, res, next) {
     res.render('leads/v3', {});
 })
 
+router.get('/v4', function (req, res, next) {
+    res.render('leads/v4', {});
+})
+
+router.get('/v5', function (req, res, next) {
+    res.render('leads/v5', {});
+})
+
+router.get('/v6', function (req, res, next) {
+    res.render('leads/v6', {});
+})
+
 
 module.exports = router;
