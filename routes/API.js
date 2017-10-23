@@ -14,6 +14,7 @@ var sign = require('../module/wx/sign');
 router.get('/', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
+    console.log(openid);
     if (openid) {
         next();
     } else {
