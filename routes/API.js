@@ -11,7 +11,7 @@ var log = require('../module/tools/log');
 var sign = require('../module/wx/sign');
 
 //检查openid
-router.get('/', function (req, res, next) {
+router.get('/*', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
     console.log(openid);
