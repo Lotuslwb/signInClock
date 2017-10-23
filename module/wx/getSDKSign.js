@@ -23,6 +23,8 @@ var sign = require('../wx/sign');
 //输出 -- 获取微信SDK
 var getSDKSign = function (originalUrl, callback) {
 
+    
+
     // getSDKSignFormWX(originalUrl, function (wxConfig) {
     //     setSDKSignToCache(wxConfig, originalUrl);
     //     callback && callback(wxConfig);

@@ -1,7 +1,7 @@
 var WXFunc = function (req, res, next) {
     // 微信输入信息都在req.weixin上
     var message = req.weixin;
-    //console.log(message);
+    console.log(message);
     if (message.FromUserName === 'diaosi') {
         // 回复屌丝(普通回复)
         res.reply('hehe');
@@ -24,18 +24,7 @@ var WXFunc = function (req, res, next) {
             }
         });
     } else {
-
         res.reply('欢迎来到英孚教育青少儿英语服务号');
-        // https://github.com/node-webot/wechat
-        // 回复高富帅(图文回复)
-        // res.reply([
-        //     {
-        //         title: '欢迎来到',
-        //         description: 'test',
-        //         picurl: '',
-        //         url: 'http://www.ef.com.cn/englishfirst/landing/lifeclub?etag=EFCN_KidsOwn-SNS-WeChatService-menu-wclh'
-        //     }
-        // ]);
     }
 };
 
