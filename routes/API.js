@@ -22,6 +22,7 @@ router.get('/*', function (req, res, next) {
         var hostname = 'ma.eldesign.cn';
         var redirect_uri = encodeURIComponent('http://' + hostname + '/wx/callback');
         var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+        console.log(url);
         res.redirect(url);
     }
 });
