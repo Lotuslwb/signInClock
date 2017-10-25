@@ -24,13 +24,18 @@ var getUserInfoByCode = function (option, callback) {
 
     var url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + APPID + '&secret=' + APPSECRET + '&code=' + code + '&grant_type=authorization_code'
 
+    console.log(url);
+
     load(loadWay, url, function (chunk) {
+
+        console.log(chunk,'chunk');
+
         var userToken = chunk.access_token;
         var userRefreshToken = chunk.refresh_token;
         var openid = chunk.openid;
         var expires_in = chunk.expires_in;
 
-        console.log(openid,'openid');
+
 
         //如果不需要用户信息 只需要openid
         if (!needInfo) {
