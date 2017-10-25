@@ -11,10 +11,10 @@ var log = require('../module/tools/log');
 var sign = require('../module/wx/sign');
 
 //检查openid
-router.get('/*', function (req, res, next) {
+router.get('/', function (req, res, next) {
 
     var openid = req.signedCookies['session'];
-    console.log(openid);
+
     if (openid) {
         next();
     } else {
@@ -22,7 +22,6 @@ router.get('/*', function (req, res, next) {
         var hostname = 'ma.eldesign.cn';
         var redirect_uri = encodeURIComponent('http://' + hostname + '/wx/callback');
         var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
-        console.log(url);
         res.redirect(url);
     }
 });
@@ -41,7 +40,6 @@ router.get('/getUseInfo', function (req, res, next) {
         //失败
         res.cookie('session', '');
         res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
-
 
     });
 });
