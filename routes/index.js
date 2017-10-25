@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 //检查openid
-router.get('/*', function (req, res, next) {
+router.get('/', function (req, res, next) {
 
   var openid = req.signedCookies['session'];
 
