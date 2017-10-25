@@ -75,7 +75,7 @@ router.get('/callback', function (req, res) {
     //获取个人信息并且保存
     var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
     var code = req.query.code;
-    var router = req.query.router;
+    var router = req.query.router || '';
 
 
     getUserInfoByCode({code: code, needInfo: false}, function (data) {
