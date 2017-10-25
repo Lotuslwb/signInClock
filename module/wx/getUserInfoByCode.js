@@ -30,6 +30,8 @@ var getUserInfoByCode = function (option, callback) {
         var openid = chunk.openid;
         var expires_in = chunk.expires_in;
 
+        console.log(openid,'openid');
+
         //如果不需要用户信息 只需要openid
         if (!needInfo) {
             var data = {
