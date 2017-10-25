@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 
+var WXConfig = require('../module/wx/WXConfig');
+var APPID = WXConfig.APPID;
+
 //检查openid
 router.get('/', function (req, res, next) {
 
