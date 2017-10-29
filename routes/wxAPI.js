@@ -74,10 +74,10 @@ router.get('/callback', function (req, res) {
     var router = req.query.router || '';
 
 
-    getUserInfoByCode({code: code, needInfo: false}, function (data) {
+    getUserInfoByCode({code: code, needInfo: true}, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
-
+        console.log(chunk, 'chunk');
         res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
         addUserToDB(chunk, function () {
             res.redirect('/' + router);
