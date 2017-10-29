@@ -23,7 +23,7 @@ function getUserInfoByOpenid(openid, cb_s, cb_f) {
     }
 
     var findJSON = {
-        'openid': openid
+        'openid': openid.split('"')[1]
     };
     console.log(findJSON);
     UserDB.find(findJSON).then(function (docs) {
