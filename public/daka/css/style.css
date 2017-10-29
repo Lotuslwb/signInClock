@@ -1,0 +1,512 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+select {
+    /*很关键：将默认的select选择框样式清除*/
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+/*::-webkit-input-placeholder {*/
+/*color: black;*/
+/*}*/
+
+/*::-moz-placeholder {*/
+/*color: black;*/
+/*}*/
+
+.mid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.page {
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+
+.f-hide {
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.page.active {
+    display: block;
+}
+
+.index-page {
+    background: url("../img/index-bg.jpg") no-repeat top;
+    background-size: 100%;
+    padding-top: 80px;
+}
+
+.index-page .date-box {
+    background: url("../img/date-box-bg.png") no-repeat;
+    width: 222px;
+    height: 61px;
+    line-height: 61px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: center;
+}
+
+.index-page .index-words-en {
+    color: #333;
+    font-weight: bold;
+    line-height: 1.7;
+    font-size: 24px;
+    padding-bottom: 20px;
+}
+
+.index-page .index-main {
+    position: relative;
+    width: 584px;
+    margin: auto;
+    /*padding-top: 30px;*/
+}
+
+.index-page .index-words-cn {
+    color: #585858;
+    line-height: 1.7;
+    font-size: 24px;
+}
+
+.index-page .date-box-icon {
+    background: url("../img/date-box-icon-bg.png") no-repeat;
+    display: inline-block;
+    width: 31px;
+    height: 31px;
+    vertical-align: text-bottom;
+    font-size: 18px;
+    line-height: 42px;
+    margin-right: 10px;
+    color: #ffffff;
+}
+
+.index-page .date-box-text {
+    font-size: 26px;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.index-page .index-words {
+    width: 584px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.index-page .index-title {
+    color: #e9329c;
+    text-align: center;
+    font-size: 32px;
+}
+
+.index-page .index-main-box {
+    padding-top: 30px;
+}
+
+.index-page .reading-cover {
+    width: 233px;
+    height: 312px;
+    background-color: rgb(191, 191, 191);
+    display: inline-block;
+}
+
+.index-page .reading-info {
+    color: #333333;
+    line-height: 1.6;
+    font-size: 24px;
+    width: 310px;
+    float: right;
+}
+
+.index-page .reading-info .des {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 111px;
+    margin-bottom: 18px;
+}
+
+.index-page .day-box {
+    font-size: 18px;
+    color: #333333;
+    position: absolute;
+    top: -15px;
+    left: 6px;
+}
+
+.index-page .day-box .days {
+    font-size: 60px;
+    display: block;
+    color: #e9329c;
+    line-height: 0.8;
+}
+
+.index-page .banner {
+    position: absolute;
+    bottom: 80px;
+}
+
+.index-page .start-btn {
+    width: 276px;
+    height: 70px;
+    line-height: 70px;
+    background: rgb(233, 50, 156);
+    color: #ffffff;
+    text-align: center;
+    font-size: 26px;
+    border-radius: 40px;
+}
+
+.menu-bar {
+    height: 80px;
+    line-height: 80px;
+    background: #edf0f2;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.menu-icon {
+    width: 33%;
+    height: 100%;
+    float: left;
+}
+
+.index-icon {
+    background: url("../img/icon/index-icon.png") center center no-repeat;
+}
+
+.index-icon.active {
+    background: url("../img/icon/index-icon-active.png") center center no-repeat;
+}
+
+.plan-icon {
+    background: url("../img/icon/plan-icon.png") center center no-repeat;
+}
+
+.plan-icon.active {
+    background: url("../img/icon/plan-icon-active.png") center center no-repeat;
+}
+
+.personal-icon {
+    background: url("../img/icon/personal-icon.png") center center no-repeat;
+}
+
+.personal-icon.active {
+    background: url("../img/icon/personal-icon-active.png") center center no-repeat;
+}
+
+.personal-title {
+    font-size: 26px;
+    color: #333333;
+}
+
+.personal-list {
+    color: #333333;
+    font-size: 24px;
+    padding-left: 25px;
+    width: 256px;
+    display: inline-block;
+}
+
+.personal-list li {
+    padding-top: 25px;
+}
+
+.personal-list li .number {
+    color: #e9329c;
+    float: right;
+}
+
+.personal-logo {
+    float: right;
+    margin-top: 20px;
+}
+
+.personal-main {
+    padding: 30px;
+    box-sizing: border-box;
+    color: #333333;
+    position: relative;
+}
+
+.personal-time {
+    color: #e9329c;
+    font-size: 72px;
+    font-weight: bold;
+    line-height: 1.12;
+}
+
+.personal-main .time-info {
+    font-size: 22px;
+}
+
+.personal-main .time-setting {
+    color: #00a7fe;
+    font-size: 24px;
+    position: absolute;
+    right: 30px;
+    top: 85px;
+    border-bottom: 2px solid #00a7fe;
+}
+
+.personal-hr {
+    margin-top: 30px;
+}
+
+.personal-question {
+    color: #00a7fe;
+    font-size: 24px;
+    line-height: 2;
+    text-decoration: underline;
+}
+
+.calendar-panel {
+    margin: auto;
+    width: 520px;
+}
+
+.index-page .day-box.day-box-plan {
+    top: 15px;
+    left: 50px;
+}
+
+.plan-title {
+    color: #e9329c;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.plan-page {
+    overflow: auto;
+    padding-bottom: 120px;
+    box-sizing: border-box;
+}
+
+.finish-list {
+    width: 583px;
+    margin: auto;
+}
+
+.finish-list .finish-item {
+    float: left;
+    width: 33.33%;
+    padding-top: 25px;
+}
+
+.finish-list .finish-item img {
+    width: 140px;
+}
+
+.start-banner {
+    position: relative;
+}
+
+.start-banner .banner-text {
+    width: 583px;
+    margin: auto;
+    color: #e9329c;
+    font-size: 24px;
+    margin-top: -80px;
+}
+
+.start-banner .banner-text span {
+    font-size: 48px;
+    display: block;
+    font-weight: bold;
+    line-height: 0.8;
+}
+
+.start-banner .banner-number {
+    display: inline-block;
+}
+
+.start-banner .banner-hr {
+    display: inline-block;
+    height: 65px;
+    width: 2px;
+    background: #e9329c;
+    margin-left: 10px;
+}
+
+.start-banner .banner-title {
+    display: inline-block;
+    font-size: 26px;
+    vertical-align: text-bottom;
+    line-height: 40px;
+}
+
+.start-banner .banner-info {
+    font-size: 24px;
+}
+
+.logo {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+}
+
+.allInList, .startInfoList {
+    width: 583px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+.allInList {
+    border-bottom: 2px solid #bfbfbf;
+}
+
+.allInList-title, .startInfoList-title {
+    font-size: 26px;
+    color: #585858;
+}
+
+.allInList-main {
+    padding-top: 18px;
+    text-align: left;
+}
+
+.allInList-item {
+    float: left;
+    margin-right: 9px;
+    margin-top: 7px;
+}
+
+.startInfoList-text {
+    color: #585858;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.startInfoList-text div {
+    padding-top: 8px;
+}
+
+.startInfoList-text a {
+    color: #00a7fe;
+    padding-top: 8px;
+    display: block;
+}
+
+.join-btn {
+    width: 582px;
+    height: 69px;
+    line-height: 69px;
+    background-color: rgb(233, 50, 156);
+    margin: 35px auto 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 24px;
+    border-radius: 40px;
+}
+
+.start-detail-banner {
+    padding: 20px 0;
+    background: #333333;
+}
+
+.start-detail-banner div.banner-text {
+    margin-top: 0;
+    color: #ffffff;
+}
+
+.start-detail-banner div.banner-hr {
+    background: #ffffff;
+}
+
+.rule-list {
+    width: 583px;
+    margin: auto;
+    padding: 30px 0;
+    color: #585858;
+    font-size: 24px;
+}
+
+.rule-list .rule-list-title {
+    font-weight: bold;
+}
+
+.reading-page {
+    background: #f5f8fa;
+    overflow: auto;
+    padding-bottom: 180px;
+    box-sizing: border-box;
+}
+
+.reading-page .banner {
+    position: absolute;
+    bottom: 80px;
+}
+
+.reading-page .reading-title {
+    width: 583px;
+    font-size: 26px;
+    color: #333333;
+    margin: auto;
+    padding: 30px 0;
+}
+
+.reading-page .reading-main {
+    width: 583px;
+    color: #333333;
+    font-size: 24px;
+    background: #ffffff;
+    margin: auto;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.record-btn-list {
+    width: 583px;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.reading-page .btn-item {
+    color: #333333;
+    font-size: 24px;
+    text-align: center;
+    display: inline-block;
+    padding: 15px;
+    display: none;
+}
+.reading-page .record-status{
+    padding-top: 10px;
+}
+
+.reading-page .record-btn-list .record-btn {
+    display: block;
+}
+
+.reading-page .record-btn-list.active .record-btn {
+    display: none;
+}
+
+.reading-page .record-btn-list.active .btn-item2 {
+    display: inline-block;
+}
