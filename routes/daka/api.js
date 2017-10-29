@@ -25,7 +25,7 @@ function getUserInfoByOpenid(openid, cb_s, cb_f) {
     var findJSON = {
         'openid': openid
     };
-    teacherDB.find(findJSON).then(function (docs) {
+    UserDB.find(findJSON).then(function (docs) {
         if (docs.length > 0) {
             console.log('---数据库里面已经有此用户---');
             cb_s && cb_s(docs);
