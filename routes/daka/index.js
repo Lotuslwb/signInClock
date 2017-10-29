@@ -35,7 +35,7 @@ function checkOpenid(req, res, cb) {
     var openid = req.signedCookies['session'];
 
     if (openid) {
-        next();
+        cb();
     } else {
         //如果cookie里面没有openid,获取之;
         var hostname = 'ma.eldesign.cn';
