@@ -33,7 +33,7 @@ router.get('/reading', function (req, res, next) {
 
 function checkOpenid(req, res, cb) {
     var openid = req.signedCookies['session'];
-
+    console.log(openid);
     if (openid) {
         cb();
     } else {

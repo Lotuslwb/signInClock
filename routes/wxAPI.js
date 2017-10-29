@@ -37,7 +37,7 @@ router.get('/jsSDK', function (req, res, next) {
 
 //主要负责OAuth认证
 router.get('/', function (req, res, next) {
-    
+
 
     var openid = req.signedCookies['session'];
     var router = req.query.router;
@@ -79,7 +79,9 @@ router.get('/callback', function (req, res) {
         var chunk = data.chunk;
 
         res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
-        res.redirect('/' + router);
+        addUserToDB(chunk, function () {
+            res.redirect('/' + router);
+        })
     });
 
     //将用户信息加入数据库
@@ -117,6 +119,8 @@ router.get('/callback', function (req, res) {
             }
         });
     }
+
+
 });
 
 
