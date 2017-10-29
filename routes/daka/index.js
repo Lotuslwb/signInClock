@@ -4,6 +4,7 @@ var app = express();
 
 var WXConfig = require('../../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
+var UserDB = require('../../module/DB/UserDB');
 
 
 router.get('/start', function (req, res, next) {
@@ -33,9 +34,8 @@ router.get('/reading', function (req, res, next) {
 
 function checkOpenid(req, res, cb) {
     var openid = req.signedCookies['session'];
-    console.log(openid);
     if (openid) {
-        cb();
+        cb(openid);
     } else {
         //如果cookie里面没有openid,获取之;
         var hostname = 'ma.eldesign.cn';
@@ -47,8 +47,8 @@ function checkOpenid(req, res, cb) {
 
 
 router.get('/index', function (req, res, next) {
-    checkOpenid(req, res, function () {
-        res.render('daka/index', {title: 'index'});
+    checkOpenid(req, res, function (openid) {
+        res.render('daka/index', {title: 'index', now: new Date()});
     });
 });
 

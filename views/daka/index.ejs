@@ -1,4 +1,5 @@
-﻿<%- include("header.ejs",{"title":'微信JS-SDK 测试'}) %>
+﻿<%- include("header.ejs",{"title": title}) %>
+<%= now %>
 
 <div class="page main-page index-page active">
     <div class="date-box">
@@ -45,6 +46,15 @@
     $('.start-btn').click(function () {
         window.location.href = '/daka/reading';
     })
+
+    $.ajax({
+        type: 'GET',
+        url: '/dakaApi/getUserInfo',
+        success: function (data) {
+            console.log('getUserInfo', data);
+        },
+        dataType: 'json'
+    });
 </script>
 
 </body>

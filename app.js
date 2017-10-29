@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/daka/index');
+var daka = require('./routes/daka/index');
+var dakaApi = require('./routes/daka/api');
 var users = require('./routes/users');
 var wx = require('./routes/wxConnect');
 var wxAPI = require('./routes/wxAPI');
@@ -68,7 +69,8 @@ app.use(express.query());
 app.use('/wxServer', wechat(config, wxFunc));
 //wxInitFunc();
 
-app.use('/daka', routes);
+app.use('/daka', daka);
+app.use('/dakaApi', dakaApi);
 app.use('/users', users);
 
 app.use('/wx', wxAPI);
