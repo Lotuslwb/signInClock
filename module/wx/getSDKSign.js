@@ -23,7 +23,7 @@ var sign = require('../wx/sign');
 //输出 -- 获取微信SDK
 var getSDKSign = function (originalUrl, callback) {
 
-    
+
 
     // getSDKSignFormWX(originalUrl, function (wxConfig) {
     //     setSDKSignToCache(wxConfig, originalUrl);
@@ -108,8 +108,8 @@ var getSDKSignFormWX = function (originalUrl, callback) {
     var getTokenUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
 
     load(loadWay, getTokenUrl, function (chunk) {
-        // log('获取token');
-        // log(chunk);
+        log('获取token');
+        log(chunk);
         var TOKEN = chunk.access_token;
         var expiresTime = chunk.expires_in;
 
