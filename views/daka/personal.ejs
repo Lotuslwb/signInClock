@@ -1,19 +1,18 @@
 ﻿<%- include("header.ejs",{"title":'微信JS-SDK 测试'}) %>
 
 
-
 <div class="page main-page index-page active">
     <div class="date-box">
-        <div class="date-box-icon">11</div>
-        <div class="date-box-text">Oct 11, 2017</div>
+        <div class="date-box-icon"></div>
+        <div class="date-box-text"></div>
     </div>
 
     <div class="index-words">
         <div class="personal-title">乐乐妈妈 欢迎您！</div>
         <ul class="personal-list">
-            <li>已阅读： <span class="number">7天</span></li>
-            <li>累积阅读字数： <span class="number">90</span></li>
-            <li>我的兑奖券： <span class="number">2</span></li>
+            <li>已阅读： <span class="number J-currentSerialRecodeCounts">天</span></li>
+            <li>累积阅读字数： <span class="number"></span></li>
+            <li>我的兑奖券： <span class="number"></span></li>
         </ul>
         <img src="../../../../daka/img/pic-logo.png" class="personal-logo">
     </div>
@@ -34,7 +33,23 @@
 </div>
 
 <%- include("menu.ejs",{"type":'personal'}) %>
+<%- include("commonjs.ejs") %>
+<script>
+    var now = "<%= now %>";
+    initFloatDate(now);
+    
+    getUserInfo(function (data) {
+        var data = data.data[0];
+        var personInfo = data['personInfo'];
+        var recodeInfo = data['recodeInfo'];
 
+        var headimgurl = personInfo ? personInfo['headimgurl'] : '';
+        var currentSerialRecodeCounts = recodeInfo ? recodeInfo['currentSerialRecodeCounts'] || 0 : 0;
+        console.log(headimgurl);
+        $('.personal-logo').attr('src', headimgurl);
+        $('.J-currentSerialRecodeCounts').text(currentSerialRecodeCounts + '天');
+    })
+</script>
 
 </body>
 </html>

@@ -5,6 +5,7 @@ var app = express();
 var WXConfig = require('../../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
 var UserDB = require('../../module/DB/UserDB');
+var log = require('../module/tools/log');
 
 
 router.get('/start', function (req, res, next) {
@@ -18,10 +19,6 @@ router.get('/plan', function (req, res, next) {
 
 router.get('/start_detail', function (req, res, next) {
     res.render('daka/start_detail', {title: 'index'});
-});
-
-router.get('/personal', function (req, res, next) {
-    res.render('daka/personal', {title: 'index'});
 });
 
 
@@ -48,9 +45,16 @@ function checkOpenid(req, res, cb) {
 
 router.get('/index', function (req, res, next) {
     //res.render('daka/index', {title: 'index', now: new Date()});
-    
+
     checkOpenid(req, res, function (openid) {
         res.render('daka/index', {title: 'index', now: new Date()});
+    });
+});
+
+
+router.get('/personal', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        res.render('daka/personal', {title: 'index', now: new Date()});
     });
 });
 
