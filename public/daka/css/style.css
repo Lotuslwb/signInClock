@@ -244,6 +244,9 @@ select {
 .personal-logo {
     float: right;
     margin-top: 20px;
+    width: 162px;
+    height: 162px;
+    border-radius: 50%;
 }
 
 .personal-main {
@@ -495,7 +498,8 @@ select {
     padding: 15px;
     display: none;
 }
-.reading-page .record-status{
+
+.reading-page .record-status {
     padding-top: 10px;
 }
 
