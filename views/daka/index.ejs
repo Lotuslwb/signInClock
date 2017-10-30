@@ -77,7 +77,8 @@
         type: 'GET',
         url: '/dakaApi/getUserInfo',
         success: function (data) {
-            var data = data[0];
+            console.log(data, 'getUserInfo');
+            var data = data.data[0];
             var recodeInfo = data['recodeInfo'];
             var currentSerialRecodeCounts = recodeInfo ? recodeInfo['currentSerialRecodeCounts'] || 0 : 0;
             $('.J-currentSerialRecodeCounts').text(currentSerialRecodeCounts);
