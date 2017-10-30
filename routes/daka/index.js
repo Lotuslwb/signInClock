@@ -47,6 +47,8 @@ function checkOpenid(req, res, cb) {
 
 
 router.get('/index', function (req, res, next) {
+    //res.render('daka/index', {title: 'index', now: new Date()});
+    
     checkOpenid(req, res, function (openid) {
         res.render('daka/index', {title: 'index', now: new Date()});
     });

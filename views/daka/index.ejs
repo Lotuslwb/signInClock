@@ -1,10 +1,9 @@
 ﻿<%- include("header.ejs",{"title": title}) %>
-<%= now %>
 
 <div class="page main-page index-page active">
     <div class="date-box">
-        <div class="date-box-icon">11</div>
-        <div class="date-box-text">Oct 11, 2017</div>
+        <div class="date-box-icon"></div>
+        <div class="date-box-text"></div>
     </div>
 
     <div class="index-words">
@@ -18,7 +17,7 @@
     </div>
 
     <div class="index-main">
-        <div class="day-box">DAY <span class="days">7</span></div>
+        <div class="day-box">DAY <span class="days J-currentSerialRecodeCounts"></span></div>
         <div class="index-title">今天读什么?</div>
         <div class="index-main-box">
             <div class="reading-cover"><img src="../../../../daka/img/pic.png"></div>
@@ -41,21 +40,53 @@
 
 <%- include("menu.ejs",{"type":'index'}) %>
 
-
 <script>
-    $('.start-btn').click(function () {
-        window.location.href = '/daka/reading';
-    })
+    function initFloatDate(now) {
+        var MothString = {
+            '1': 'Jan',
+            '2': 'Feb',
+            '3': 'Mar',
+            '4': 'Apr',
+            '5': 'May',
+            '6': 'Jun',
+            '7': 'Jul',
+            '8': 'Aug',
+            '9': 'Sep',
+            '10': 'Oct',
+            '11': 'Nov',
+            '12': 'Dec'
+        }
+        var nowDateObj = new Date(now);
+        var nowYear = nowDateObj.getFullYear(),
+                nowDate = nowDateObj.getDate(),
+                nowMoth = nowDateObj.getMonth(),
+                nowMothString = MothString[nowMoth * 1 + 1];
+        $('.date-box-icon').text(nowDate);
+        $('.date-box-text').text(nowMothString + ' ' + nowDate + ', ' + nowYear);
+
+        $('.start-btn').click(function () {
+            window.location.href = '/daka/reading';
+        })
+    }
+</script>
+<script>
+    var now = "<%= now %>";
+    initFloatDate(now);
 
     $.ajax({
         type: 'GET',
         url: '/dakaApi/getUserInfo',
         success: function (data) {
-            console.log('getUserInfo', data);
+            var data = data[0];
+            var recodeInfo = data['recodeInfo'];
+            var currentSerialRecodeCounts = recodeInfo ? recodeInfo['currentSerialRecodeCounts'] || 0 : 0;
+            $('.J-currentSerialRecodeCounts').text(currentSerialRecodeCounts);
+
         },
         dataType: 'json'
     });
 </script>
+
 
 </body>
 </html>
