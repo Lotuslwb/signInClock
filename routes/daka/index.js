@@ -5,7 +5,7 @@ var app = express();
 var WXConfig = require('../../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
 var UserDB = require('../../module/DB/UserDB');
-var log = require('../module/tools/log');
+var log = require('../../module/tools/log');
 
 
 router.get('/start', function (req, res, next) {
