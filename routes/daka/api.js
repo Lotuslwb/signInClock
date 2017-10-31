@@ -10,7 +10,9 @@ router.get('/getUserInfo', function (req, res, next) {
     console.log(openid, 'getUserInfo');
     if (!openid) {
         res.send(sendData('999', docs, 'openid 不能为空'));
+        return false;
     }
+
     getUserInfoByOpenid(openid, function (docs) {
         res.send(sendData('200', docs, ''));
     }, function (docs) {
@@ -21,8 +23,14 @@ router.get('/getUserInfo', function (req, res, next) {
 //签到
 router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
-    var recordServerId = req.query.serverId;
+    //var recordServerId = req.query.serverId;
     console.log(openid, 'setSignIn');
+
+    if (!openid) {
+        res.send(sendData('999', docs, 'openid 不能为空'));
+        return false;
+    }
+
     getUserInfoFormDB(openid, function (docs) {
 
 
