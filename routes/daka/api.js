@@ -33,15 +33,28 @@ router.get('/setSignIn', function (req, res, next) {
 
     getUserInfoFormDB(openid, function (docs) {
 
-
+        log(data, 'getUserInfoFormDB');
         var data = docs[0];
         var recodeInfo = data.recodeInfo;
         var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1 || 0;
         var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1 || 0;
         var lastRecodeTime = recodeInfo.lastRecodeTime;
         var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1 || 0;
-        var recodeTimeArray = readingInfo.recodeTimeArray || [];
+        var recodeTimeArray = recodeInfo.recodeTimeArray || [];
+
         var readingInfo = data.readingInfo;
+
+        var runDaka = function () {
+            //记录打卡时间
+            recodeTimeArray.push(getFormatDate());
+
+            //记录录音信息 和 书籍信息
+            readingInfo.push({
+                readingTimeId: getFormatDate(), //阅读日期  20170102
+                recordServerId: recordServerId, // 录音,微信服务器ID
+                recordLocalId: '' //录音 本地服务器ID
+            })
+        }
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
             if (isToday(lastRecodeTime)) {
@@ -51,17 +64,7 @@ router.get('/setSignIn', function (req, res, next) {
 
             } else {
                 //打卡逻辑
-
-                //记录打卡时间
-                recodeTimeArray.push(getFormatDate());
-                readingInfo.push();
-                //记录录音信息 和 书籍信息
-                readingInfo.push({
-                    readingTimeId: getFormatDate(), //阅读日期  20170102
-                    recordServerId: recordServerId, // 录音,微信服务器ID
-                    recordLocalId: '' //录音 本地服务器ID
-                })
-
+                runDaka();
                 if (isYesterday(lastRecodeTime)) {
                     //上次打卡时间为昨天;那么就可以统计连续打卡
 
@@ -80,12 +83,14 @@ router.get('/setSignIn', function (req, res, next) {
 
             }
         } else {
+            runDaka();
             //上次打卡时间为空 说明是第一次进来打卡
             lastRecodeTime = new Date();
             totalRecodeCounts++;
             currentSerialRecodeCounts++;
             currentRecodeCounts++;
         }
+
 
         var updateDate = {
             recodeInfo: {
@@ -95,8 +100,10 @@ router.get('/setSignIn', function (req, res, next) {
                 totalRecodeCounts: totalRecodeCounts,
                 recodeTimeArray: recodeTimeArray
             },
-            readingInfo: {}
+            readingInfo: readingInfo
         }
+
+        log(updateDate, 'updateDate');
 
         updateUserInfoToDB(data._id, updateDate, function (docs) {
             //成功
@@ -108,7 +115,6 @@ router.get('/setSignIn', function (req, res, next) {
 
 
     }, function (docs) {
-        res.cookie('session', '');
         res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
     })
 
