@@ -7,6 +7,7 @@ var UserDB = require('../../module/DB/UserDB');
 
 router.get('/getUserInfo', function (req, res, next) {
     var openid = req.signedCookies['session'];
+    console.log(openid, 'getUserInfo');
     if (!openid) {
         res.send(sendData('999', docs, 'openid 不能为空'));
     }
@@ -111,7 +112,6 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
     if (!openid) {
         callback_f && callback_f('openid 不能为空');
     }
-    var UserDB = require('../module/DB/UserDB');
     var findJSON = {
         openid: openid.split('"')[1]
     };
@@ -129,7 +129,6 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
 }
 
 function updateUserInfoToDB(_id, data, callback_s, callback_f) {
-    var UserDB = require('../module/DB/UserDB');
 
     UserDB.update(_id, data, function (err, docs) {
         if (err) {
