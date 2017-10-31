@@ -94,6 +94,9 @@
                 success: function (res) {
                     var serverId = res.serverId; // 返回音频的服务器端ID
                     alert(serverId);
+                    setSignIn({serverId: serverId}, function (data) {
+                        console.log(data);
+                    })
 
                 }
             });
