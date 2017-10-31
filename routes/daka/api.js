@@ -23,7 +23,7 @@ router.get('/getUserInfo', function (req, res, next) {
 //签到
 router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
-    //var recordServerId = req.query.serverId;
+    var recordServerId = req.query.serverId;
     console.log(openid, 'setSignIn');
 
     if (!openid) {
@@ -42,16 +42,16 @@ router.get('/setSignIn', function (req, res, next) {
         var recodeTimeArray = recodeInfo.recodeTimeArray || [];
         var readingInfo = data.readingInfo;
         var runDaka = function () {
-            console.log(runDaka);
             //记录打卡时间
             recodeTimeArray.push(getFormatDate());
-
+            console.log('recodeTimeArray', recodeTimeArray)
             //记录录音信息 和 书籍信息
             readingInfo.push({
                 readingTimeId: getFormatDate(), //阅读日期  20170102
                 recordServerId: recordServerId, // 录音,微信服务器ID
                 recordLocalId: '' //录音 本地服务器ID
             })
+            console.log(readingInfo, 'readingInfo')
         }
 
         console.log('lastRecodeTime', lastRecodeTime.length);
