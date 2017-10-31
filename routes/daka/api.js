@@ -53,7 +53,7 @@ router.get('/setSignIn', function (req, res, next) {
             })
         }
 
-        console.log('lastRecodeTime', lastRecodeTime);
+        console.log('lastRecodeTime', lastRecodeTime.length);
 
 
         if (lastRecodeTime.length > 0) {
