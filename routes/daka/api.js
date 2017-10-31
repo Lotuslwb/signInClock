@@ -34,7 +34,6 @@ router.get('/setSignIn', function (req, res, next) {
     getUserInfoFormDB(openid, function (docs) {
 
         var data = docs[0];
-
         var recodeInfo = data.recodeInfo;
         var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1 || 0;
         var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1 || 0;
@@ -53,6 +52,9 @@ router.get('/setSignIn', function (req, res, next) {
                 recordLocalId: '' //录音 本地服务器ID
             })
         }
+
+        console.log('lastRecodeTime', lastRecodeTime);
+
 
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
