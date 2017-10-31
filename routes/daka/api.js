@@ -42,6 +42,7 @@ router.get('/setSignIn', function (req, res, next) {
         var recodeTimeArray = recodeInfo.recodeTimeArray || [];
         var readingInfo = data.readingInfo;
         var runDaka = function () {
+            console.log(runDaka);
             //记录打卡时间
             recodeTimeArray.push(getFormatDate());
 
