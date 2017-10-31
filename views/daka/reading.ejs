@@ -44,7 +44,7 @@
 <script>
 
     var localId = '';
-    function recordStop() {
+    function recordStop(res) {
         localId = res.localId;
         $('.record-btn-list').addClass('active');
     }
@@ -57,7 +57,7 @@
                 //已经在录音,结束录音
                 wx.stopRecord({
                     success: function (res) {
-                        recordStop();
+                        recordStop(res);
                     }
                 });
             } else {
@@ -100,7 +100,7 @@
         wx.onVoiceRecordEnd({
             // 录音时间超过一分钟没有停止的时候会执行 complete 回调
             complete: function (res) {
-                recordStop();
+                recordStop(res);
             }
         });
     });
