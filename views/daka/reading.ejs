@@ -62,6 +62,7 @@
                 });
             } else {
                 wx.startRecord();
+                $(this).addClass('active');
                 $('.record-status').text('录音中...');
             }
         })
