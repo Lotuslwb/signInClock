@@ -39,7 +39,6 @@
 </div>
 
 <%- include("menu.ejs",{"type":'index'}) %>
-
 <%- include("commonjs.ejs") %>
 
 
@@ -54,7 +53,9 @@
         $('.J-currentSerialRecodeCounts').text(currentSerialRecodeCounts);
     })
 
-    initWX();
+    initWX(function () {
+        initWXSahre();
+    });
 </script>
 
 
