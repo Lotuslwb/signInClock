@@ -144,6 +144,11 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
     });
 }
 
+function getFormatDate() {
+    var now = new Date();
+    return now.getYear().toString() + (now.getMonth() * 1 + 1).toString() + now.getDate().toString();
+}
+
 function updateUserInfoToDB(_id, data, callback_s, callback_f) {
 
     UserDB.update(_id, data, function (err, docs) {
