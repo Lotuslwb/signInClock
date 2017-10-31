@@ -33,7 +33,7 @@ router.get('/setSignIn', function (req, res, next) {
 
     getUserInfoFormDB(openid, function (docs) {
 
-        log(data, 'getUserInfoFormDB');
+        log(docs, 'getUserInfoFormDB');
         var data = docs[0];
         var recodeInfo = data.recodeInfo;
         var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1 || 0;
