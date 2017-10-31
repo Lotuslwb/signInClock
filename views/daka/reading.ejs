@@ -34,9 +34,9 @@
         </div>
     </div>
 
-    <div class="banner">
-        <img src="../../../../daka/img/pic-banner.jpg">
-    </div>
+    <!--<div class="banner">-->
+    <!--<img src="../../../../daka/img/pic-banner.jpg">-->
+    <!--</div>-->
 </div>
 
 <%- include("menu.ejs",{"type":''}) %>
@@ -86,14 +86,15 @@
         })
 
         $('.J-gotoDaka-btn').click(function () {
-            alert('去打卡啦!');
-            // 上传音频
+
+            // 上传音频 和 打卡
             wx.uploadVoice({
                 localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
                 isShowProgressTips: 1, // 默认为1，显示进度提示
                 success: function (res) {
                     var serverId = res.serverId; // 返回音频的服务器端ID
                     alert(serverId);
+
                 }
             });
         })
@@ -105,6 +106,23 @@
             }
         });
     });
+
+    function setSignIn(data, cb) {
+        $.ajax({
+            type: 'GET',
+            data: data,
+            url: '/dakaApi/setSignIn',
+            success: function (data) {
+                console.log(data);
+                if (data.status == '200') {
+                    cb && cb(data);
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    }
 </script>
 
 </body>

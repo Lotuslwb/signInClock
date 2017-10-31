@@ -47,7 +47,7 @@ router.get('/getUseInfo', function (req, res, next) {
 //签到
 router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
-
+    var recordServerId = req.query.serverId;
 
     getUserInfoFormDB(openid, function (docs) {
 
@@ -58,6 +58,8 @@ router.get('/setSignIn', function (req, res, next) {
         var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1 || 0;
         var lastRecodeTime = recodeInfo.lastRecodeTime;
         var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1 || 0;
+        var recodeTimeArray = readingInfo.recodeTimeArray || [];
+        var readingInfo = data.readingInfo;
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
             if (isToday(lastRecodeTime)) {
@@ -66,6 +68,18 @@ router.get('/setSignIn', function (req, res, next) {
                 return false;
 
             } else {
+                //打卡逻辑
+
+                //记录打卡时间
+                recodeTimeArray.push(getFormatDate());
+                readingInfo.push();
+                //记录录音信息 和 书籍信息
+                readingInfo.push({
+                    readingTimeId: getFormatDate(), //阅读日期  20170102
+                    recordServerId: recordServerId, // 录音,微信服务器ID
+                    recordLocalId: '' //录音 本地服务器ID
+                })
+                
                 if (isYesterday(lastRecodeTime)) {
                     //上次打卡时间为昨天;那么就可以统计连续打卡
 
@@ -97,7 +111,9 @@ router.get('/setSignIn', function (req, res, next) {
                 currentSerialRecodeCounts: currentSerialRecodeCounts,
                 lastRecodeTime: lastRecodeTime.getTime(),
                 totalRecodeCounts: totalRecodeCounts,
-            }
+                recodeTimeArray: recodeTimeArray
+            },
+            readingInfo: {}
         }
 
 
@@ -130,7 +146,7 @@ router.get('/getWxSDK', function (req, res, next) {
     log(originalUrl);
 
     getSDKSign(originalUrl, function (chunk) {
-       // wxConfig['access_token'] = '';
+        // wxConfig['access_token'] = '';
         var wxConfig = sign(chunk.ticket, originalUrl);
         wxConfig.appId = APPID;
         wxConfig.expiresTime = chunk.expiresTime;
@@ -175,6 +191,11 @@ function isYesterday(date) {
     } else {
         return false;
     }
+}
+
+function getFormatDate() {
+    var now = new Date();
+    return now.getYear().toString() + (now.getMonth() * 1 + 1).toString() + now.getDate().toString();
 }
 
 

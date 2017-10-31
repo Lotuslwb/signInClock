@@ -17,12 +17,23 @@ var Schema = {
         totalRecodeCounts: String,
         currentRecodeCounts: String,
         currentSerialRecodeCounts: String,
+        recodeTimeArray: Array
     },
     couponList: [{
         couponStatus: String,
         couponCode: String,
         couponGetTime: String,
         couponUseTime: String,
+    }],
+    readingInfo: [{
+        readingTimeId: String, //阅读日期  20170102
+        recordServerId: String, // 录音,微信服务器ID
+        recordLocalId: String, //录音 本地服务器ID
+        readingList: {
+            bookId: String,  //今日书籍ID
+            bookName: String, // 今日书籍名
+            bookCover: String //今天书籍封页
+        }
     }]
 };
 
