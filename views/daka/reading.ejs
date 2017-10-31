@@ -16,20 +16,20 @@
     </div>
     <div class="record-btn-list">
         <div class="record-btn btn-item">
-            <img src="../../../../daka/img/record-icon.png" class="record-icon">
+            <img src="../../../../daka/img/record-icon.png" class="record-icon J-record-btn">
             <div class="record-status">点击录制</div>
         </div>
 
         <div class="againRecord-btn btn-item btn-item2">
-            <img src="../../../../daka/img/againRecord.png" class="record-icon">
+            <img src="../../../../daka/img/againRecord.png" class="record-icon J-againRecord-btn">
             <div class="record-status">重录</div>
         </div>
         <div class="playRecord-btn btn-item btn-item2">
-            <img src="../../../../daka/img/playRecord.png" class="record-icon">
+            <img src="../../../../daka/img/playRecord.png" class="record-icon J-playRecord-btn">
             <div class="record-status">回放</div>
         </div>
         <div class="gotoDaka-btn btn-item btn-item2">
-            <img src="../../../../daka/img/gotoDaka.png" class="record-icon">
+            <img src="../../../../daka/img/gotoDaka.png" class="record-icon J-gotoDaka-btn">
             <div class="record-status">去打卡</div>
         </div>
     </div>
@@ -40,8 +40,70 @@
 </div>
 
 <%- include("menu.ejs",{"type":''}) %>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<%- include("commonjs.ejs") %>
+<script>
 
+    var localId = '';
+    function recordStop() {
+        localId = res.localId;
+        $('.record-btn-list').addClass('active');
+    }
+    initWX(function () {
+        initWXSahre();
+
+        //开始录音 或者结束录音
+        $('.J-record-btn').click(function () {
+            if ($(this).hasClass('active')) {
+                //已经在录音,结束录音
+                wx.stopRecord({
+                    success: function (res) {
+                        recordStop();
+                    }
+                });
+            } else {
+                wx.startRecord();
+                $('.record-status').text('录音中...');
+            }
+        })
+
+        //播放录音
+        $('.J-playRecord-btn').click(function () {
+            if (localId) {
+                wx.playVoice({
+                    localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                });
+            } else {
+                alert('没有录音');
+            }
+        });
+
+        //重新录音
+        $('.J-againRecord-btn').click(function () {
+            $('.record-btn-list').removeClass('active');
+            $('.record-status').text('点击录音');
+        })
+
+        $('.J-gotoDaka-btn').click(function () {
+            alert('去打卡啦!');
+            // 上传音频
+            wx.uploadVoice({
+                localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                    var serverId = res.serverId; // 返回音频的服务器端ID
+                    alert(serverId);
+                }
+            });
+        })
+
+        wx.onVoiceRecordEnd({
+            // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+            complete: function (res) {
+                recordStop();
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
