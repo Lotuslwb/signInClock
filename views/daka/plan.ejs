@@ -37,7 +37,7 @@
 <script>
     getUserInfo(function (data) {
         console.log(data);
-        var data = data[0];
+        var data = data.data[0];
         var recodeInfo = data['recodeInfo'];
         var recodeTimeArray = recodeInfo ? recodeInfo['recodeTimeArray'] : [];
         $('#calendar').calendar({
