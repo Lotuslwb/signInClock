@@ -96,6 +96,8 @@
                     alert(serverId);
                     setSignIn({serverId: serverId}, function (data) {
                         console.log(data);
+                        alert('打卡成功');
+                        window.location.href = '/daka/plan';
                     })
 
                 }

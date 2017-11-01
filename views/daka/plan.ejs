@@ -33,7 +33,12 @@
 
 </div>
 <%- include("menu.ejs",{"type":'plan'}) %>
-
+<%- include("commonjs.ejs") %>
+<script>
+    getUserInfo(function (data) {
+        console.log(data);
+    })
+</script>
 
 </body>
 </html>
