@@ -124,6 +124,29 @@ router.get('/setSignIn', function (req, res, next) {
 });
 
 
+
+function isToday(date) {
+    var now = new Date();
+
+    if (now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDate() == date.getDate()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isYesterday(date) {
+    var now = new Date();
+
+
+    if (now.getYear() == date.getYear() && now.getMonth() == date.getMonth() && now.getDate() == (date.getDate() + 1)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function getUserInfoFormDB(openid, callback_s, callback_f) {
 
     if (!openid) {

@@ -87,7 +87,7 @@
                 // allDay: 得到当前列表显示的所有天数
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
                 var allDay_str = returnDateStr(allDay);
-                
+
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
                 if ($.inArray(allDay_str + '', timeArray) >= 0) {
                     $(this).attr('class', 'item item-curDay');
