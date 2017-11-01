@@ -37,6 +37,15 @@
 <script>
     getUserInfo(function (data) {
         console.log(data);
+        var data = data[0];
+        var recodeInfo = data['recodeInfo'];
+        var recodeTimeArray = recodeInfo ? recodeInfo['recodeTimeArray'] : [];
+        $('#calendar').calendar({
+            ifSwitch: false, // 是否切换月份
+            hoverDate: false, // hover是否显示当天信息
+            backToday: false, // 是否返回当天
+            TimeArray: recodeTimeArray
+        });
     })
 </script>
 

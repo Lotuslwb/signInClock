@@ -1,14 +1,3 @@
-// 关于月份： 在设置时要-1，使用时要+1
-$(function () {
-
-    $('#calendar').calendar({
-        ifSwitch: false, // 是否切换月份
-        hoverDate: false, // hover是否显示当天信息
-        backToday: false // 是否返回当天
-    });
-
-});
-
 ;(function ($, window, document, undefined) {
 
     var monthEnglish = {
@@ -37,7 +26,7 @@ $(function () {
 
         this.opts = $.extend({}, this.defaults, options);
 
-        // console.log(this.opts);
+        console.log(this.opts);
     };
 
     Calendar.prototype = {
@@ -98,10 +87,10 @@ $(function () {
                 // allDay: 得到当前列表显示的所有天数
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
                 var allDay_str = returnDateStr(allDay);
-
+                var timeArray = self.opts.timeArray;
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
-                console.log(returnDateStr(new Date()));
-                if (returnDateStr(new Date()) === allDay_str) {
+
+                if ($.inArray(allDay_str, timeArray) > 0) {
                     $(this).attr('class', 'item item-curDay');
                 } else if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
                     $(this).attr('class', 'item item-curMonth');
@@ -174,6 +163,13 @@ $(function () {
             this.$calendarToday_week = this.$calendar_today.find('.week');
 
             this.showCalendar();
+
+            var _date = dateObj.getDate();
+
+            dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
+
+            self.showCalendar();
+
 
             if (this.opts.ifSwitch) {
                 this.$arrow_prev.bind('click', function () {
