@@ -26,7 +26,6 @@
 
         this.opts = $.extend({}, this.defaults, options);
 
-        console.log(this.opts);
     };
 
     Calendar.prototype = {
@@ -79,6 +78,7 @@
             var month = dateObj.getDate().getMonth() + 1;
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
+            var timeArray = self.opts.timeArray;
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
 
@@ -87,9 +87,9 @@
                 // allDay: 得到当前列表显示的所有天数
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
                 var allDay_str = returnDateStr(allDay);
-                var timeArray = self.opts.timeArray;
-                $(this).text(allDay.getDate()).attr('data', allDay_str);
 
+                $(this).text(allDay.getDate()).attr('data', allDay_str);
+                debugger;
                 if ($.inArray(allDay_str, timeArray) > 0) {
                     $(this).attr('class', 'item item-curDay');
                 } else if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
