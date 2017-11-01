@@ -163,6 +163,7 @@
             this.$calendarToday_week = this.$calendar_today.find('.week');
 
             this.showCalendar(this);
+            console.log(this.opts, 'opts');
 
             var _date = dateObj.getDate();
 
