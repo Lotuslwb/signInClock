@@ -4,7 +4,7 @@ var router = express.Router();
 var log = require('../../module/tools/log');
 var UserDB = require('../../module/DB/UserDB');
 
-
+//查找用户信息
 router.get('/getUserInfo', function (req, res, next) {
     var openid = req.signedCookies['session'];
     console.log(openid, 'getUserInfo');
@@ -119,6 +119,43 @@ router.get('/setSignIn', function (req, res, next) {
         res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
     })
 
+});
+
+//保存闹钟设置
+router.get('/setClockInfo', function (req, res, next) {
+    var openid = req.signedCookies['session'];
+    var clockSwitch = req.query.clockSwitch, clockTime = req.query.clockTime;
+    if (!openid) {
+        res.send(sendData('999', docs, 'openid 不能为空'));
+        return false;
+    }
+    if (!clockTime || !clockTime) {
+        res.send(sendData('999', docs, 'clockTime 和  clockTime不能为空'));
+        return false;
+    }
+
+    getUserInfoFormDB(openid, function (docs) {
+
+        var data = docs[0];
+        var updateDate = {
+            clockInfo: {
+                clockSwitch: clockSwitch,
+                clockTime: clockTime
+            }
+        }
+        log(updateDate);
+        log(data);
+        updateUserInfoToDB(data._id, updateDate, function (docs) {
+            //成功
+            res.send(sendData('200', updateDate, ''));
+        }, function (docs) {
+            //失败
+            res.send(sendData('999', docs, '数据库更新失败'));
+        })
+
+    }, function (docs) {
+        res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
+    })
 });
 
 

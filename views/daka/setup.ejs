@@ -1,0 +1,104 @@
+﻿<%- include("header.ejs",{"title":'微信JS-SDK 测试'}) %>
+
+
+<div class="page main-page index-page active">
+    <div class="date-box">
+        <div class="date-box-icon"></div>
+        <div class="date-box-text"></div>
+    </div>
+
+    <div class="index-words">
+        <div class="personal-title">阅读提醒设置：</div>
+        <div class="switch-btn active"></div>
+
+        <div class="personal-title setup-title">提醒时间：</div>
+        <div class="setup-time">
+            <select class="setup-select J-select-hours">
+                <% for(var i = 1;i <= 24;i++){ %>
+                <option value="<%= i < 10 ? '0' + i : i %>"><%= i < 10 ? '0' + i : i %></option>
+                <% } %>
+            </select>
+            <span class="inline-block">:</span>
+            <select class="setup-select J-select-min">
+                <% for(var i = 0;i <= 60;i++){ %>
+                <option value="<%= i < 10 ? '0' + i : i %>"><%= i < 10 ? '0' + i : i %></option>
+                <% } %>
+            </select>
+        </div>
+    </div>
+
+    <div class="index-main">
+        <div class="setup-btn-list">
+            <div class="btn return-btn">返 回</div>
+            <div class="btn save-btn">保 存</div>
+        </div>
+    </div>
+
+
+</div>
+
+<%- include("menu.ejs",{"type":'personal'}) %>
+<%- include("commonjs.ejs") %>
+<script>
+    var now = "<%= now %>";
+    initFloatDate(now);
+    $('.switch-btn').click(function () {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+        } else {
+            $(this).addClass('active');
+        }
+    })
+
+    $('.return-btn').click(function () {
+        window.history.go(-1);
+    });
+
+    $('.save-btn').click(function () {
+        var data = {
+            clockSwitch: $('.switch-btn').hasClass('active') ? 'on' : 'off',
+            clockTime: $('.J-select-hours').val() + ':' + $('.J-select-min').val()
+        }
+        console.log(data);
+        setClockInfo(data, function () {
+            alert('保存成功');
+            window.history.go(-1);
+        })
+    });
+
+    getUserInfo(function (data) {
+        var data = data.data[0];
+        var clockInfo = data['clockInfo'];
+        var clockTime = clockInfo.clockTime;
+        var clockSwitch = clockInfo.clockSwitch;
+        var clockTimeArry = clockTime ? clockTime.split(':') : ['08', '59'];
+
+        if (clockSwitch == 'on') {
+            $('.switch-btn').addClass('active');
+        } else {
+            $('.switch-btn').removeClass('active');
+        }
+        $('.J-select-hours').val(clockTimeArry[0]);
+        $('.J-select-min').val(clockTimeArry[1]);
+    })
+
+    function setClockInfo(data, cb) {
+        $.ajax({
+            type: 'GET',
+            url: '/dakaApi/setClockInfo',
+            data: data,
+            success: function (data) {
+                console.log(data, 'setClockInfo');
+                if (data.status == '200') {
+                    cb && cb(data);
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    }
+</script>
+
+</body>
+</html>

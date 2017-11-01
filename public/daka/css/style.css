@@ -514,3 +514,70 @@ select {
 .reading-page .record-btn-list.active .btn-item2 {
     display: inline-block;
 }
+
+.switch-btn {
+    background: url("../img/off-btn.png") no-repeat;
+    width: 131px;
+    height: 38px;
+    margin-top: 30px;
+}
+
+.switch-btn.active {
+    background: url("../img/on-btn.png") no-repeat;
+}
+
+.setup-title {
+    margin-top: 30px;
+}
+
+.setup-time {
+    margin-top: 30px;
+}
+
+.setup-select {
+    display: inline-block;
+    width: 110px;
+    height: 50px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    color: #333333;
+    font-size: 24px;
+    border-radius: 5px;
+    border: 1px solid rgb(210, 210, 210);
+    background: none;
+    background: url("../img/select-bg.png") no-repeat center right 10px;
+}
+
+.inline-block {
+    display: inline-block;
+    color: #333333;
+    font-size: 24px;
+}
+
+.setup-time .inline-block {
+    width: 20px;
+    text-align: center;
+}
+
+.btn {
+    width: 276px;
+    height: 70px;
+    line-height: 70px;
+    background: rgb(233, 50, 156);
+    color: #ffffff;
+    text-align: center;
+    font-size: 26px;
+    border-radius: 40px;
+}
+
+.return-btn {
+    float: left;
+}
+
+.save-btn {
+    float: right;
+}
+
+.setup-btn-list {
+    margin-top: 400px;
+}

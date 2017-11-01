@@ -34,7 +34,11 @@ var Schema = {
             bookName: String, // 今日书籍名
             bookCover: String //今天书籍封页
         }
-    }]
+    }],
+    clockInfo: {
+        clockTime: String,
+        clockSwitch: String
+    }
 };
 
 var option = {

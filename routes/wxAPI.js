@@ -84,7 +84,7 @@ router.get('/callback', function (req, res) {
         })
     });
 
-    //将用户信息加入数据库
+    //将用户信息加入数据库,初始化用户信息
     function addUserToDB(chunk, callback) {
         var UserDB = require('../module/DB/UserDB');
         var json = {
@@ -100,7 +100,11 @@ router.get('/callback', function (req, res) {
                 currentRecodeCounts: 0,
                 currentSerialRecodeCounts: 0
             },
-            couponList: []
+            couponList: [],
+            clockInfo: {
+                clockTime: '20:30',
+                clockSwitch: 'on'
+            }
         }
         var findJSON = {
             openid: chunk.openid

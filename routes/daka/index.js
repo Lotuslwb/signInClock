@@ -59,4 +59,11 @@ router.get('/personal', function (req, res, next) {
 });
 
 
+router.get('/setup', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        res.render('daka/setup', {title: 'index', now: new Date()});
+    });
+});
+
+
 module.exports = router;
