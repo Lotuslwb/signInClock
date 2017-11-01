@@ -72,13 +72,13 @@
             this.$calendarToday_week.text(_weekStr);
         },
 
-        showCalendar: function (me) { // 输入数据并显示
+        showCalendar: function (opts) { // 输入数据并显示
             var self = this;
             var year = dateObj.getDate().getFullYear();
             var month = dateObj.getDate().getMonth() + 1;
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
-            var timeArray = me.opts.timeArray;
+            var timeArray = opts.timeArray;
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
 
@@ -162,14 +162,14 @@
             this.$calendarToday_date = this.$calendar_today.find('.date');
             this.$calendarToday_week = this.$calendar_today.find('.week');
 
-            this.showCalendar(this);
-            console.log(this.opts, 'opts');
+            this.showCalendar(this.opts);
+
 
             var _date = dateObj.getDate();
 
             dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
 
-            self.showCalendar(this);
+            self.showCalendar(this.opts);
 
 
             if (this.opts.ifSwitch) {
@@ -178,7 +178,7 @@
 
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
 
-                    self.showCalendar(this);
+                    self.showCalendar(this.opts);
                 });
 
                 this.$arrow_next.bind('click', function () {
@@ -186,7 +186,7 @@
 
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() + 1, 1));
 
-                    self.showCalendar(this);
+                    self.showCalendar(this.opts);
                 });
             }
 
@@ -195,7 +195,7 @@
                     if (!self.$calendarDate_item.hasClass('item-curDay')) {
                         dateObj.setDate(new Date());
 
-                        self.showCalendar(this);
+                        self.showCalendar(this.opts);
                     }
                 });
             }
