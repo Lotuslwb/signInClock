@@ -72,13 +72,13 @@
             this.$calendarToday_week.text(_weekStr);
         },
 
-        showCalendar: function () { // 输入数据并显示
+        showCalendar: function (me) { // 输入数据并显示
             var self = this;
             var year = dateObj.getDate().getFullYear();
             var month = dateObj.getDate().getMonth() + 1;
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
-            var timeArray = self.opts.timeArray;
+            var timeArray = me.opts.timeArray;
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
 
@@ -89,7 +89,7 @@
                 var allDay_str = returnDateStr(allDay);
 
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
-                debugger;
+                console.log(allDay_str, timeArray);
                 if ($.inArray(allDay_str, timeArray) > 0) {
                     $(this).attr('class', 'item item-curDay');
                 } else if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
@@ -162,13 +162,13 @@
             this.$calendarToday_date = this.$calendar_today.find('.date');
             this.$calendarToday_week = this.$calendar_today.find('.week');
 
-            this.showCalendar();
+            this.showCalendar(this);
 
             var _date = dateObj.getDate();
 
             dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
 
-            self.showCalendar();
+            self.showCalendar(this);
 
 
             if (this.opts.ifSwitch) {
@@ -177,7 +177,7 @@
 
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
 
-                    self.showCalendar();
+                    self.showCalendar(this);
                 });
 
                 this.$arrow_next.bind('click', function () {
@@ -185,7 +185,7 @@
 
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() + 1, 1));
 
-                    self.showCalendar();
+                    self.showCalendar(this);
                 });
             }
 
@@ -194,7 +194,7 @@
                     if (!self.$calendarDate_item.hasClass('item-curDay')) {
                         dateObj.setDate(new Date());
 
-                        self.showCalendar();
+                        self.showCalendar(this);
                     }
                 });
             }
