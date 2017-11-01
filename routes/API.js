@@ -45,7 +45,6 @@ router.get('/getUseInfo', function (req, res, next) {
 });
 
 
-
 //获取 微信js-sdk
 router.get('/getWxSDK', function (req, res, next) {
     //当前URL
@@ -107,7 +106,14 @@ function isYesterday(date) {
 
 function getFormatDate() {
     var now = new Date();
-    return now.getYear().toString() + (now.getMonth() * 1 + 1).toString() + now.getDate().toString();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var day = now.getDate();
+
+    month = month < 9 ? ('0' + month) : ('' + month);
+    day = day < 9 ? ('0' + day) : ('' + day);
+
+    return year + month + day;
 }
 
 

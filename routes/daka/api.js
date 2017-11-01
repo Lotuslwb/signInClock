@@ -51,15 +51,13 @@ router.get('/setSignIn', function (req, res, next) {
                 recordServerId: recordServerId, // 录音,微信服务器ID
                 recordLocalId: '' //录音 本地服务器ID
             })
-            console.log(readingInfo, 'readingInfo')
         }
-
-        console.log('lastRecodeTime', lastRecodeTime.length);
 
 
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
-            if (isToday(lastRecodeTime)) {
+            //isToday(lastRecodeTime)
+            if (false) {
                 //上次打卡时间为今天;那么就不能再打卡了
                 res.send(sendData('990', data, '你今天已经打过卡了哦'));
                 return false;
@@ -124,7 +122,6 @@ router.get('/setSignIn', function (req, res, next) {
 });
 
 
-
 function isToday(date) {
     var now = new Date();
 
@@ -170,7 +167,14 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
 
 function getFormatDate() {
     var now = new Date();
-    return now.getFullYear().toString() + (now.getMonth() * 1 + 1).toString() + now.getDate().toString();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var day = now.getDate();
+
+    month = month < 9 ? ('0' + month) : ('' + month);
+    day = day < 9 ? ('0' + day) : ('' + day);
+
+    return year + month + day;
 }
 
 function updateUserInfoToDB(_id, data, callback_s, callback_f) {
