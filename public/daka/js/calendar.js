@@ -78,7 +78,6 @@
             var month = dateObj.getDate().getMonth() + 1;
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
-            console.log(self.opts);
             var timeArray = self.opts.TimeArray;
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
@@ -90,7 +89,7 @@
                 var allDay_str = returnDateStr(allDay);
 
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
-                console.log(allDay_str, timeArray);
+                console.log(allDay_str, timeArray, $.inArray(allDay_str, timeArray) > 0);
                 if ($.inArray(allDay_str, timeArray) > 0) {
                     $(this).attr('class', 'item item-curDay');
                 } else if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
@@ -163,14 +162,14 @@
             this.$calendarToday_date = this.$calendar_today.find('.date');
             this.$calendarToday_week = this.$calendar_today.find('.week');
 
-            this.showCalendar(this.opts);
+            this.showCalendar();
 
 
             var _date = dateObj.getDate();
 
             dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
 
-            self.showCalendar(this.opts);
+            self.showCalendar();
 
 
             if (this.opts.ifSwitch) {
@@ -179,7 +178,7 @@
 
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
 
-                    self.showCalendar(this.opts);
+                    self.showCalendar();
                 });
 
                 this.$arrow_next.bind('click', function () {
@@ -187,7 +186,7 @@
 
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() + 1, 1));
 
-                    self.showCalendar(this.opts);
+                    self.showCalendar();
                 });
             }
 
@@ -196,7 +195,7 @@
                     if (!self.$calendarDate_item.hasClass('item-curDay')) {
                         dateObj.setDate(new Date());
 
-                        self.showCalendar(this.opts);
+                        self.showCalendar();
                     }
                 });
             }
