@@ -87,9 +87,8 @@
                 // allDay: 得到当前列表显示的所有天数
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
                 var allDay_str = returnDateStr(allDay);
-
+                
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
-                console.log(allDay_str + '', timeArray, $.inArray(allDay_str, timeArray) >= 0);
                 if ($.inArray(allDay_str + '', timeArray) >= 0) {
                     $(this).attr('class', 'item item-curDay');
                 } else if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
@@ -163,13 +162,6 @@
             this.$calendarToday_week = this.$calendar_today.find('.week');
 
             this.showCalendar();
-
-
-            var _date = dateObj.getDate();
-
-            dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
-
-            self.showCalendar();
 
 
             if (this.opts.ifSwitch) {
