@@ -89,8 +89,8 @@
                 var allDay_str = returnDateStr(allDay);
 
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
-                console.log(allDay_str.toString(), timeArray, $.inArray(allDay_str, timeArray) > 0);
-                if ($.inArray(allDay_str.toString(), timeArray) > 0) {
+                console.log(allDay_str + '', timeArray, $.inArray(allDay_str, timeArray) > 0);
+                if ($.inArray(allDay_str + '', timeArray) > 0) {
                     $(this).attr('class', 'item item-curDay');
                 } else if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
                     $(this).attr('class', 'item item-curMonth');
