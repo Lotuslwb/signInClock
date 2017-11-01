@@ -78,6 +78,7 @@
             var month = dateObj.getDate().getMonth() + 1;
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
+            console.log(opts);
             var timeArray = opts.timeArray;
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
