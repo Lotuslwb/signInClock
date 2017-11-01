@@ -19,7 +19,7 @@
 
     <div class="index-main personal-main">
         <div class="personal-title">阅读提醒设置：</div>
-        <div class="personal-time">20:30</div>
+        <div class="personal-time J-clockTime">20:30</div>
         <div class="time-info">闹钟，每天</div>
         <div class="time-setting J-gotoSetup">设置</div>
         <hr class="personal-hr"/>
@@ -42,10 +42,11 @@
         var data = data.data[0];
         var personInfo = data['personInfo'];
         var recodeInfo = data['recodeInfo'];
+        var clockInfo = data['clockInfo'];
 
         var headimgurl = personInfo ? personInfo['headimgurl'] : '';
         var currentSerialRecodeCounts = recodeInfo ? recodeInfo['currentSerialRecodeCounts'] || 0 : 0;
-        console.log(headimgurl);
+        $('.J-clockTime').text(clockInfo['clockTime']);
         $('.personal-logo').attr('src', headimgurl);
         $('.J-currentSerialRecodeCounts').text(currentSerialRecodeCounts + '天');
     })
