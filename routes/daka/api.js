@@ -20,6 +20,18 @@ router.get('/getUserInfo', function (req, res, next) {
     })
 });
 
+//查询所有参与者的用户信息
+router.get('/getAllPersonInfo', function (req, res, next) {
+
+
+    UserDB.find({}, {personInfo: true}).then(function (docs) {
+
+        res.send(sendData('200', docs));
+    });
+
+});
+
+
 //签到
 router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];

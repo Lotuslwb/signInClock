@@ -9,7 +9,9 @@ var log = require('../../module/tools/log');
 
 
 router.get('/start', function (req, res, next) {
-    res.render('daka/start', {title: '开始打卡'});
+    UserDB.find({}, {personInfo: true}).then(function (docs) {
+        res.render('daka/start', {title: '开始打卡', docs: docs});
+    });
 })
 
 
