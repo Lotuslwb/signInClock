@@ -3,8 +3,14 @@
     <meta name="viewport" content="width=device-width">
 </head>
 <body style="margin: 0px;">
-<video controls="" autoplay="autoplay" name="media" style="width: 100%;">
+<video id="myVideo" controls="" autoplay="autoplay" name="media" style="width: 100%;">
     <source src="mp4/1_2.mp4" type="video/mp4">
 </video>
+<script>
+    var vid = document.getElementById("myVideo");
+    vid.onended = function () {
+        window.location.href = '/mp4finish.html'
+    };
+</script>
 </body>
 </html>
