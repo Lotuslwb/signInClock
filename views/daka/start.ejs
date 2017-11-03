@@ -19,40 +19,13 @@
     <div class="allInList-title">10000 人已参加</div>
     <div class="allInList-main clearfix">
         <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item"><img
-                src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item"><img
-                src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item"><img
-                src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item"><img
-                src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
-        <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
+        <% for(var i = 0;i < docs.length;i++){ %>
+        <% if(docs[i]['personInfo'].headimgurl){ %>
+        <img src="<%= docs[i]['personInfo'].headimgurl %>" class="allInList-item">
+        <% }} %>
     </div>
 </div>
-<div>
-    <%=docs%>
-</div>
+
 <div class="startInfoList">
     <div class="startInfoList-title">我和宝贝的21天亲子共读计划</div>
     <div class="startInfoList-text">
