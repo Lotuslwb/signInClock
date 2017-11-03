@@ -41,7 +41,7 @@
         var recodeInfo = data['recodeInfo'];
         var recodeTimeArray = recodeInfo ? recodeInfo['recodeTimeArray'] : [];
         var currentRecodeCounts = recodeInfo ? recodeInfo['currentRecodeCounts'] || 0 : 0;
-        $('.J-currentRecodeCounts').text(currentRecodeCounts + '天');
+        $('.J-currentRecodeCounts').text(currentRecodeCounts);
         $('#calendar').calendar({
             ifSwitch: false, // 是否切换月份
             hoverDate: false, // hover是否显示当天信息
