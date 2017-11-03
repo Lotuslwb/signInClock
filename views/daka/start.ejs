@@ -50,7 +50,9 @@
         <img src="../../../../daka/img/pic-logo2.jpg" class="allInList-item">
     </div>
 </div>
-
+<div>
+    <%=docs%>
+</div>
 <div class="startInfoList">
     <div class="startInfoList-title">我和宝贝的21天亲子共读计划</div>
     <div class="startInfoList-text">
@@ -66,13 +68,9 @@
 </div>
 
 <script>
-    var docs =<%= docs %>;
-    console.log(docs);
     $('.join-btn').click(function () {
         window.location.href = '/daka/index';
     });
-
-
 </script>
 
 </body>
