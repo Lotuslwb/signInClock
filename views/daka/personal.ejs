@@ -45,10 +45,10 @@
         var clockInfo = data['clockInfo'];
 
         var headimgurl = personInfo ? personInfo['headimgurl'] : '';
-        var currentSerialRecodeCounts = recodeInfo ? recodeInfo['currentSerialRecodeCounts'] || 0 : 0;
+        var currentRecodeCounts = recodeInfo ? recodeInfo['currentRecodeCounts'] || 0 : 0;
         $('.J-clockTime').text(clockInfo['clockTime']);
         $('.personal-logo').attr('src', headimgurl);
-        $('.J-currentSerialRecodeCounts').text(currentSerialRecodeCounts + '天');
+        $('.J-currentRecodeCounts').text(currentRecodeCounts + '天');
     })
 
     $('.J-gotoSetup').click(function () {

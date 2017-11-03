@@ -10,7 +10,7 @@
 
     <div class="index-words">
         <div class="calendar-panel" id="calendar"></div>
-        <div class="day-box day-box-plan">DAY <span class="days">7</span></div>
+        <div class="day-box day-box-plan">DAY <span class="days J-currentRecodeCounts">7</span></div>
     </div>
 
     <div class="index-main">
@@ -40,6 +40,8 @@
         var data = data.data[0];
         var recodeInfo = data['recodeInfo'];
         var recodeTimeArray = recodeInfo ? recodeInfo['recodeTimeArray'] : [];
+        var currentRecodeCounts = recodeInfo ? recodeInfo['currentRecodeCounts'] || 0 : 0;
+        $('.J-currentRecodeCounts').text(currentRecodeCounts + '天');
         $('#calendar').calendar({
             ifSwitch: false, // 是否切换月份
             hoverDate: false, // hover是否显示当天信息
