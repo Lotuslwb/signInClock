@@ -18,14 +18,13 @@
 <style>
     body {
         margin: 0;
-        background: #ffbc54;
+        background: #000000;
     }
 
     .video-wrapper {
         position: relative;
         height: 100%;
         overflow: hidden;
-        background: #ffbc54;
     }
 
     .video-responsive {
@@ -41,7 +40,7 @@
         position: absolute;
         top: -16px;
         width: 100%;
-        background: #ffbc54;
+        background: #000;
         z-index: 5;
         cursor: pointer;
     }
@@ -54,75 +53,10 @@
         height: 100%;
         overflow: auto;
         z-index: 50;
-        background: url("mp4/mp4_cover.jpg") no-repeat center #ffbc54;
     }
-
-    .go {
-        margin: auto;
-        display: block;
-        padding-top: 140px;
-        animation: swing 2s ease 99;
-        -webkit-animation: swing 2s ease 99;
-    }
-
-    @-webkit-keyframes swing {
-        20% {
-            -webkit-transform: rotate3d(0, 0, 1, 15deg);
-            transform: rotate3d(0, 0, 1, 15deg);
-        }
-
-        40% {
-            -webkit-transform: rotate3d(0, 0, 1, -10deg);
-            transform: rotate3d(0, 0, 1, -10deg);
-        }
-
-        60% {
-            -webkit-transform: rotate3d(0, 0, 1, 5deg);
-            transform: rotate3d(0, 0, 1, 5deg);
-        }
-
-        80% {
-            -webkit-transform: rotate3d(0, 0, 1, -5deg);
-            transform: rotate3d(0, 0, 1, -5deg);
-        }
-
-        100% {
-            -webkit-transform: rotate3d(0, 0, 1, 0deg);
-            transform: rotate3d(0, 0, 1, 0deg);
-        }
-    }
-
-    @keyframes swing {
-        20% {
-            -webkit-transform: rotate3d(0, 0, 1, 15deg);
-            transform: rotate3d(0, 0, 1, 15deg);
-        }
-
-        40% {
-            -webkit-transform: rotate3d(0, 0, 1, -10deg);
-            transform: rotate3d(0, 0, 1, -10deg);
-        }
-
-        60% {
-            -webkit-transform: rotate3d(0, 0, 1, 5deg);
-            transform: rotate3d(0, 0, 1, 5deg);
-        }
-
-        80% {
-            -webkit-transform: rotate3d(0, 0, 1, -5deg);
-            transform: rotate3d(0, 0, 1, -5deg);
-        }
-
-        100% {
-            -webkit-transform: rotate3d(0, 0, 1, 0deg);
-            transform: rotate3d(0, 0, 1, 0deg);
-        }
-    }
-
 </style>
-
 <div id="masker">
-    <img src="mp4/go.png" class="go"/>
+    <img src="./mp4/mp4_cover.jpg" alt="">
 </div>
 
 <div class="video-wrapper js-video-wrapper">

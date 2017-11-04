@@ -41,7 +41,7 @@ router.get('/teacherVote', function (req, res, next) {
         routes: 'teacherVote',
         cityList: getCityList(),
     }
-
+    
     for (var index in schoolList) {
         var item = schoolList[index];
         if (item.cityNo == data.cityNo && item['schoolArray']) {
@@ -56,13 +56,6 @@ router.get('/teacherVote', function (req, res, next) {
 router.get('/leads', function (req, res, next) {
     var username = req.signedCookies['session'].split('"')[1];
     res.render('admin/leads', {username: username, routes: 'leads', tag: getTag()});
-});
-
-
-/*打卡计划*/
-router.get('/daka', function (req, res, next) {
-    var username = req.signedCookies['session'].split('"')[1];
-    res.render('admin/daka', {username: username, routes: 'daka'});
 });
 
 function getTag() {
