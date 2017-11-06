@@ -46,7 +46,7 @@
         cursor: pointer;
     }
 
-    #masker {
+    .masker {
         position: absolute;
         left: 0;
         top: 0;
@@ -119,22 +119,69 @@
         }
     }
 
-</style>
+    .page {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        display: none;
+    }
 
-<div id="masker">
-    <img src="mp4/go.png" class="go"/>
+    .page.active {
+        display: block;
+    }
+
+    .number {
+        text-align: center;
+        color: #ffffff;
+        font-size: 32px;
+        padding-top: 625px;
+    }
+    .f-hide{
+        overflow: hidden;
+        height: 0;
+        width: 0;
+    }
+</style>
+<div class="f-hide">
+    <img src="mp4/qcode.jpg">
 </div>
 
-<div class="video-wrapper js-video-wrapper">
-    <div class="video-responsive">
-        <video id="video" class="video js-video" webkit-playsinline="" playsinline="">
-            <source src="./mp4/1_2.mp4" type="video/mp4">
-        </video>
+<div class="page loading-page active">
+    <div class="masker">
+        <div class="number">1%</div>
     </div>
+</div>
+<div class="page video-page">
+    <div id="masker" class="masker">
+        <img src="mp4/go.png" class="go"/>
+    </div>
+
+    <div class="video-wrapper js-video-wrapper">
+        <div class="video-responsive">
+            <video id="video" class="video js-video" webkit-playsinline="" playsinline="">
+                <source src="./mp4/1_2.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+<div class="page result-page">
+    <img src="mp4/qcode.jpg" style="width: 100%;">
 </div>
 
 
 <script>
+    var number = 1;
+    var $number = $('.number');
+    var timer = setInterval(function () {
+        number += Math.floor(2 * Math.random()) + 2;
+        if (number <= 100) {
+            $number.text(number + '%');
+        } else {
+            clearInterval(timer);
+            $('.video-page').addClass('active').siblings('.page').removeClass('active');
+        }
+    }, 1000 / 60)
+
     $('#video').get(0).load();
 
 
@@ -147,7 +194,7 @@
 
 
     $('#video').on('ended', function () {
-        window.location.href = '/mp4finish.html';
+        $('.result-page').addClass('active').siblings('.page').removeClass('active');
     })
 
 
