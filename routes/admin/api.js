@@ -322,19 +322,9 @@ router.post('/daka/uploadImage', function (req, res, next) {
             res.send(sendData('999', err, '上传错误'));
         } else {
             log(files);
-            var inputFile = files.file[0];
+            var inputFile = files['Filedata'][0];
             var uploadedPath = inputFile.path;
-            var type = 'jpeg';
-            var theName = new Date().getTime() + '.' + type
-            var dstPath = './public/files/' + theName;
-            //重命名为真实文件名
-            fs.rename(uploadedPath, dstPath, function (err) {
-                if (err) {
-                    res.send(sendData('999', '', '重命名错误'));
-                } else {
-                    res.send(sendData('200', {'imgName': theName}, ''));
-                }
-            });
+            res.send(sendData('200', {'imgName': uploadedPath}, ''));
         }
 
 
