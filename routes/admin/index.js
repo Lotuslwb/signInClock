@@ -58,6 +58,13 @@ router.get('/leads', function (req, res, next) {
     res.render('admin/leads', {username: username, routes: 'leads', tag: getTag()});
 });
 
+
+/*打卡计划*/
+router.get('/daka', function (req, res, next) {
+    var username = req.signedCookies['session'].split('"')[1];
+    res.render('admin/daka', {username: username, routes: 'daka'});
+});
+
 function getTag() {
     return require('../../module/data/leads');
 }

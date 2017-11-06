@@ -136,7 +136,8 @@
         font-size: 32px;
         padding-top: 625px;
     }
-    .f-hide{
+
+    .f-hide {
         overflow: hidden;
         height: 0;
         width: 0;
@@ -214,10 +215,10 @@
 
         //“分享给朋友”
         wx.onMenuShareAppMessage({
-            title: '英孚-分享title', // 分享标题
-            desc: '英孚-分享desc', // 分享描述
+            title: '全世界的名牌包包，不如会英语的宝宝', // 分享标题
+            //desc: '', // 分享描述
             link: 'http://ma.eldesign.cn/mp4.html', // 分享链接
-            imgUrl: '', // 分享图标
+            imgUrl: 'http://ma.eldesign.cn/mp4/logo.jpg', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {
@@ -230,9 +231,9 @@
 
         //“分享到朋友圈”
         wx.onMenuShareTimeline({
-            title: '英孚-分享title', // 分享标题
-            link: '英孚-分享desc', // 分享链接
-            imgUrl: 'http://ma.eldesign.cn/mp4.html', // 分享图标
+            title: '全世界的名牌包包，不如会英语的宝宝', // 分享标题
+            link: 'http://ma.eldesign.cn/mp4.html', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/mp4/logo.jpg', // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
             },
