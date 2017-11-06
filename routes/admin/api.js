@@ -306,6 +306,41 @@ router.post('/leads/export', function (req, res, next) {
 });
 
 
+/*上传图片*/
+router.post('/daka/uploadImage', function (req, res, next) {
+
+    var multiparty = require('multiparty');
+    var fs = require('fs');
+
+    //生成multiparty对象，并配置上传目标路径
+    var form = new multiparty.Form({uploadDir: './public/files/daka'});
+    //上传完成后处理
+    form.parse(req, function (err, fields, files) {
+        var filesTmp = JSON.stringify(files, null, 2);
+
+        if (err) {
+            res.send(sendData('999', err, '上传错误'));
+        } else {
+            log(files);
+            var inputFile = files.file[0];
+            var uploadedPath = inputFile.path;
+            var type = 'jpeg';
+            var theName = new Date().getTime() + '.' + type
+            var dstPath = './public/files/' + theName;
+            //重命名为真实文件名
+            fs.rename(uploadedPath, dstPath, function (err) {
+                if (err) {
+                    res.send(sendData('999', '', '重命名错误'));
+                } else {
+                    res.send(sendData('200', {'imgName': theName}, ''));
+                }
+            });
+        }
+
+
+    });
+});
+
 function sendData(status, data, errmsg) {
     return {
         status: status,

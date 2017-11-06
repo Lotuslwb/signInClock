@@ -36,14 +36,21 @@
 
     .canvas,
     .video {
-        height: 1040px;
-        left: 0;
-        position: absolute;
-        top: -16px;
+        /*height: 1040px;*/
+        /*left: 0;*/
+        /*top: 0;*/
+        /*position: absolute;*/
+        /*width: 100%;*/
+        /*background: #ffbc54;*/
+        /*z-index: 5;*/
+        /*cursor: pointer;*/
+
         width: 100%;
-        background: #ffbc54;
-        z-index: 5;
-        cursor: pointer;
+        height: 100%;
+        bottom: 0px;
+        left: 0px;
+        position: absolute;
+        object-fit: cover;
     }
 
     .masker {
@@ -132,9 +139,8 @@
 
     <div class="video-wrapper js-video-wrapper">
         <div class="video-responsive">
-            <video id="video" class="video js-video" webkit-playsinline="" playsinline="">
-                <source src="./mp4/1_2.mp4" type="video/mp4">
-            </video>
+            <video id="video" class="video js-video" webkit-playsinline="" playsinline="" src="./mp4/1_2.mp4"
+                   type="video/mp4"></video>
         </div>
     </div>
 </div>

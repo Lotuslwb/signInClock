@@ -41,7 +41,7 @@ router.get('/teacherVote', function (req, res, next) {
         routes: 'teacherVote',
         cityList: getCityList(),
     }
-    
+
     for (var index in schoolList) {
         var item = schoolList[index];
         if (item.cityNo == data.cityNo && item['schoolArray']) {
@@ -63,6 +63,11 @@ router.get('/leads', function (req, res, next) {
 router.get('/daka', function (req, res, next) {
     var username = req.signedCookies['session'].split('"')[1];
     res.render('admin/daka', {username: username, routes: 'daka'});
+});
+
+router.get('/daka/add', function (req, res, next) {
+    var username = req.signedCookies['session'].split('"')[1];
+    res.render('admin/daka_add', {username: username, routes: 'daka'});
 });
 
 function getTag() {
