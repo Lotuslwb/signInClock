@@ -174,7 +174,7 @@
     var number = 1;
     var $number = $('.number');
     var timer = setInterval(function () {
-        number += Math.floor(2 * Math.random()) + 2;
+        number += Math.floor(2 * Math.random());
         if (number <= 100) {
             $number.text(number + '%');
         } else {
