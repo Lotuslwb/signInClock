@@ -61,61 +61,31 @@
         margin: auto;
         display: block;
         padding-top: 140px;
-        animation: swing 2s ease 99;
-        -webkit-animation: swing 2s ease 99;
     }
 
-    @-webkit-keyframes swing {
-        20% {
-            -webkit-transform: rotate3d(0, 0, 1, 15deg);
-            transform: rotate3d(0, 0, 1, 15deg);
-        }
+    .go2 {
+        position: absolute;
+        left: 230px;
+        top: 710px;
+        animation: fadeIn 1s ease 99;
+        -webkit-animation: fadeIn 1s ease 99;
+    }
 
-        40% {
-            -webkit-transform: rotate3d(0, 0, 1, -10deg);
-            transform: rotate3d(0, 0, 1, -10deg);
+    @keyframes fadeIn {
+        0%, 100% {
+            opacity: 1;
         }
-
-        60% {
-            -webkit-transform: rotate3d(0, 0, 1, 5deg);
-            transform: rotate3d(0, 0, 1, 5deg);
-        }
-
-        80% {
-            -webkit-transform: rotate3d(0, 0, 1, -5deg);
-            transform: rotate3d(0, 0, 1, -5deg);
-        }
-
-        100% {
-            -webkit-transform: rotate3d(0, 0, 1, 0deg);
-            transform: rotate3d(0, 0, 1, 0deg);
+        50% {
+            opacity: 0;
         }
     }
 
-    @keyframes swing {
-        20% {
-            -webkit-transform: rotate3d(0, 0, 1, 15deg);
-            transform: rotate3d(0, 0, 1, 15deg);
+    @-webkit-keyframes fadeIn {
+        0%, 100% {
+            opacity: 1;
         }
-
-        40% {
-            -webkit-transform: rotate3d(0, 0, 1, -10deg);
-            transform: rotate3d(0, 0, 1, -10deg);
-        }
-
-        60% {
-            -webkit-transform: rotate3d(0, 0, 1, 5deg);
-            transform: rotate3d(0, 0, 1, 5deg);
-        }
-
-        80% {
-            -webkit-transform: rotate3d(0, 0, 1, -5deg);
-            transform: rotate3d(0, 0, 1, -5deg);
-        }
-
-        100% {
-            -webkit-transform: rotate3d(0, 0, 1, 0deg);
-            transform: rotate3d(0, 0, 1, 0deg);
+        50% {
+            opacity: 0;
         }
     }
 
@@ -154,7 +124,8 @@
 </div>
 <div class="page video-page">
     <div id="masker" class="masker">
-        <img src="mp4/go.png" class="go"/>
+        <img src="mp4/ready.png" class="go"/>
+        <img src="mp4/go2.png" class="go2"/>
     </div>
 
     <div class="video-wrapper js-video-wrapper">
