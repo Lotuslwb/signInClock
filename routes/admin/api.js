@@ -5,6 +5,8 @@ var log = require('../../module/tools/log');
 var teacherDB = require('../../module/DB/TeacherDB');
 var leadsDB = require('../../module/DB/LeadsDB');
 
+var ArticleDB = require('../../module/DB/ArticleDB');
+
 var config = require('../admin/tsconfig.json');
 
 var fs = require('fs');
@@ -306,7 +308,7 @@ router.post('/leads/export', function (req, res, next) {
 });
 
 
-/*上传图片*/
+/* 打卡计划 -- 上传图片*/
 router.post('/daka/uploadImage', function (req, res, next) {
 
     var multiparty = require('multiparty');
@@ -330,6 +332,44 @@ router.post('/daka/uploadImage', function (req, res, next) {
 
     });
 });
+
+/* 打卡计划 --  上传文章信息 */
+router.post('/daka/saveArticleData', function (req, res, next) {
+    var data = req.body;
+    console.log(data);
+    saveArticleDataToDB(data, function (docs) {
+        res.send(sendData('200', docs, ''));
+    });
+
+});
+
+/* 打卡计划 --  查询接口*/
+router.post('/daka/query', function (req, res, next) {
+
+    ArticleDB.find({}, function (err, docs) {
+        var totalCount = docs.length;
+        res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
+    });
+
+
+});
+
+
+function saveArticleDataToDB(data, callback_s, callback_f) {
+    if (!data) {
+        callback_f && callback_f('数据不能为空');
+    }
+    ArticleDB.add(data, function (err, docs) {
+        if (err) {
+            log('插入数据库失败', err);
+            callback_f && callback_f('插入数据库失败:' + err);
+        } else {
+            log('成功插入');
+            callback_s && callback_s(docs);
+        }
+    })
+
+}
 
 function sendData(status, data, errmsg) {
     return {

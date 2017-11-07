@@ -26,72 +26,10 @@ obj.prototype = {
             var Grid = Grid,
                 Store = Data.Store,
                 columns = [
-                    {title: '中文名', dataIndex: 'realName', width: 80, sortable: false},
-                    {title: '英文名', dataIndex: 'englishName', width: 80, sortable: false},
-                    {title: '城市', dataIndex: 'cityName', width: 80, sortable: false},
-                    {title: '学校', dataIndex: 'schoolName', width: 180, sortable: false},
-                    {title: '电话', dataIndex: 'cellPhone', width: 120, sortable: false},
-                    {title: '宣言', dataIndex: 'voteWords', width: 300, sortable: false},
-                    {title: '票数', dataIndex: 'totalVoteCounts', width: 80},
-                    {
-                        title: '图片', dataIndex: 'status', width: 100, sortable: false, renderer: function (v, obj) {
-
-                        var returnStr = '';
-
-                        if (obj.groupPic && obj.groupPic.length > 0) {
-                            returnStr += '<a href="/files/' + hanldePic(obj.groupPic) + '" target="_blank" >' + '合照' + '</a><br/>';
-                        }
-
-                        if (obj.personPic && obj.personPic.length > 0) {
-                            returnStr += '<a href="/files/' + hanldePic(obj.personPic) + '" target="_blank" >' + '个照' + '</a><br/>';
-                        }
-
-                        if (returnStr.length == 0) {
-                            returnStr = '---';
-                        }
-
-
-                        return returnStr;
-                    }
-                    },
-                    {
-                        title: '审核状态', dataIndex: 'status', width: 100, renderer: function (value, obj) {
-
-                        var statusWord;
-                        if (value == 0) {
-                            statusWord = '未提交';
-                        } else if (value == 1) {
-                            statusWord = '待审核';
-                        } else if (value == 2) {
-                            statusWord = '审核通过';
-                        } else if (value == 3) {
-                            statusWord = '审核不通过';
-                        } else if (value == 9) {
-                            statusWord = '黑名单';
-                        } else {
-                            statusWord = '未知';
-                        }
-                        return statusWord;
-                    }
-                    },
-                    {
-                        title: '操作', dataIndex: 'h', width: 120, sortable: false, renderer: function (value, obj) {
-                        var returnStr = '';
-                        if (obj.status == 1) {
-                            returnStr += '<span class="grid-command reviewed-btn">通过审核</span>';
-                            returnStr += '<span class="grid-command refuse-btn">拒绝审核</span>';
-                        }
-
-                        if (obj.status == 2) {
-                            returnStr += '<span class="grid-command comments-btn">留言</span>';
-                        }
-
-                        returnStr += '<span class="grid-command mod-btn">修改</span>';
-                        returnStr += ' <span class="grid-command remove-btn">删除</span>';
-
-                        return returnStr;
-                    }
-                    }
+                    {title: '文章标题', dataIndex: 'articleTitle', width: 80, sortable: false},
+                    {title: '简介', dataIndex: 'brief', width: 80, sortable: false},
+                    {title: '阅读耗时', dataIndex: 'needTime', width: 80, sortable: false},
+                    {title: '词汇量', dataIndex: 'wordLength', width: 180, sortable: false},
                 ];
 
             var form = $('#J-search-form');
@@ -112,7 +50,7 @@ obj.prototype = {
                 totalProperty: 'data.totalCount', //存放记录总数的字段名(results)
                 proxy: {
                     pageStart: 1,
-                    url: '/admin/api/teacher/query',
+                    url: '/admin/api/daka/query',
                     method: 'post',
                     dataType: 'json'
                 }
@@ -128,23 +66,6 @@ obj.prototype = {
                     if (list.length == 0) {
                         BUI.Message.Alert('暂时没有数据');
                         return false;
-                    } else {
-                        $.each(list, function (index, item) {
-
-                            $.each(item.teacherInfo, function (i, t) {
-                                item[i] = t;
-                            })
-
-                            $.each(item.VoteInfo, function (i, t) {
-                                item[i] = t;
-                            })
-
-                            if (item.VoteData && item.VoteData.totalVoteCounts > 0) {
-                                item['totalVoteCounts'] = item.VoteData.totalVoteCounts;
-                            } else {
-                                item['totalVoteCounts'] = 0;
-                            }
-                        })
                     }
                 }
                 console.log(list);
@@ -159,15 +80,6 @@ obj.prototype = {
                 loadMask: new Mask.LoadMask({el: 'body'}), //加载数据时显示屏蔽层
                 store: store,
                 emptyDataTpl: '暂无数据',
-                tbar: { //添加、删除
-                    items: [{
-                        btnCls: 'button button-primary',
-                        text: '批量审批',
-                        listeners: {
-                            'click': passBathFunction
-                        }
-                    }]
-                },
                 // 底部工具栏
                 bbar: {
                     // pagingBar:表明包含分页栏

@@ -1,6 +1,6 @@
 var log = require('../tools/log');
 
-var name = 'user';
+var name = 'article';
 var Schema = {
     wordLength: String,  //词汇量
     brief: String, //简介

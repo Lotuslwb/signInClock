@@ -1,20 +1,32 @@
 <%- include("header.ejs",{"title":username,"routes":routes}) %>
+<style>
+    .daka-cover-preview {
+        width: 200px;
+    }
 
+    #editor {
+        margin-left: 120px;
+    }
+
+    .search-cell-title {
+        width: 90px;
+    }
+</style>
 <div class="main">
 
     <div id="article" class="check-account">
-        <form id="J-search-form" class="pt40">
+        <form id="J_Form" class="pt40">
             <div class="search-cell">
-                <span class="search-cell-title m0-left">标题：</span>
+                <span class="search-cell-title m0-left"><s>*</s>标题：</span>
                 <div class="inline">
-                    <input type="text" name="realName">
+                    <input type="text" name="articleTitle" data-rules="{required : true}">
                 </div>
             </div>
 
             <div class="search-cell">
-                <span class="search-cell-title m0-left">耗时(分钟)：</span>
+                <span class="search-cell-title m0-left"><s>*</s>耗时(分钟)：</span>
                 <div class="inline">
-                    <input type="text" name="realName">
+                    <input type="text" name="needTime" data-rules="{required : true,number:true}">
                 </div>
             </div>
 
@@ -22,6 +34,39 @@
                 <span class="search-cell-title m0-left">上传封页</span>
                 <div class="inline">
                     <div id="J_Uploader"></div>
+                </div>
+            </div>
+            <div class="search-cell J-previewBox" style="display: none">
+                <span class="search-cell-title m0-left">封页预览</span>
+                <div class="inline">
+                    <div id="J-preview"></div>
+                </div>
+            </div>
+
+            <div class="search-cell">
+                <label class="search-cell-title m0-left"><s>*</s>简介：</label>
+                <textarea name="brief" id="" class="control-row4 input-large" data-rules="{required : true}"></textarea>
+            </div>
+
+            <div class="search-cell">
+                <span class="search-cell-title m0-left">资源类型：</span>
+                <select class="search-common-cell" id="select_card" name="tag">
+                    <option value="video">视频</option>
+                    <option value="audio">音频</option>
+                </select>
+            </div>
+            <div class="search-cell">
+                <span class="search-cell-title m0-left">上传资源</span>
+                <div class="inline">
+
+                </div>
+            </div>
+
+
+            <div class="search-cell">
+                <span class="search-cell-title m0-left" style="vertical-align: top;">文章正文</span>
+                <div id="editor">
+
                 </div>
             </div>
 
@@ -46,6 +91,8 @@
 <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
 <script src="http://g.alicdn.com/bui/bui/1.1.21/config.js"></script>
 
+<script type="text/javascript" src="/javascripts/admin/wangEditor.min.js"></script>
 <script type="text/javascript" src="/javascripts/admin/daka_add.js"></script>
+
 
 <%- include("footer.ejs") %>
