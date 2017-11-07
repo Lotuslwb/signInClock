@@ -163,11 +163,10 @@
     var $number = $('.number');
     var timer = setInterval(function () {
         number += Math.floor(2 * Math.random());
-        if (number <= 100) {
+        if (number <= 95) {
             $number.text(number + '%');
         } else {
-            clearInterval(timer);
-            $('.video-page').addClass('active').siblings('.page').removeClass('active');
+
         }
     }, 1000 / 60)
 
@@ -178,13 +177,15 @@
     var ld = vd = 0;
 
     $('#video').get(0).addEventListener('canplaythrough', function () {
-        vd = 1;
-    })
+        $number.text(100 + '%');
+        clearInterval(timer);
+        $('.video-page').addClass('active').siblings('.page').removeClass('active');
+    });
 
 
     $('#video').on('ended', function () {
         $('.result-page').addClass('active').siblings('.page').removeClass('active');
-    })
+    });
 
 
     $('#masker').on('touchend', function () {
@@ -270,7 +271,7 @@
 </script>
 <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?12246994d53b9ff1941d7b70e7e32a41";
         var s = document.getElementsByTagName("script")[0];

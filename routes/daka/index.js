@@ -5,6 +5,7 @@ var app = express();
 var WXConfig = require('../../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
 var UserDB = require('../../module/DB/UserDB');
+var ArticleDB = require('../../module/DB/ArticleDB');
 var log = require('../../module/tools/log');
 
 
@@ -47,9 +48,10 @@ function checkOpenid(req, res, cb) {
 
 
 router.get('/index', function (req, res, next) {
-    //res.render('daka/index', {title: 'index', now: new Date()});
 
     checkOpenid(req, res, function (openid) {
+        var id = '';
+        getBookInfoById();
         res.render('daka/index', {title: 'index', now: new Date()});
     });
 });
@@ -68,5 +70,16 @@ router.get('/setup', function (req, res, next) {
     });
 });
 
+
+function getBookInfoById(id, cb_s, cb_f) {
+    ArticleDB.find({_id: id}, function (err, docs) {
+        if (err) {
+            cb_f && cb_f(err);
+        } else {
+            cb_s && cb_s(docs);
+        }
+    });
+
+}
 
 module.exports = router;

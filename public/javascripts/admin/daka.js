@@ -84,8 +84,7 @@ obj.prototype = {
                 bbar: {
                     // pagingBar:表明包含分页栏
                     pagingBar: true
-                },
-                plugins: [Grid.Plugins.CheckSelection, Grid.Plugins.ColumnChecked]
+                }
             });
 
             grid.render();
