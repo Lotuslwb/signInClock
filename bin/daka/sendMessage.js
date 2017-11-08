@@ -35,19 +35,13 @@ var getData = function (openid) {
 var fs = require("fs");
 fs.unlinkSync('access_token.txt');
 
-var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
-var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI';
-console.log(getData(openid), 'getData');
-send(getData(openid));
-//send(getData(openid2));
 
-
-// for (var i = 0; i < 1000; i++) {
-//     var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
-//     var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI'
-//     send(getData(openid));
-//     send(getData(openid2));
-// }
+for (var i = 0; i < 1000; i++) {
+    var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
+    var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI';
+    send(getData(openid));
+    send(getData(openid2));
+}
 
 
 // rule2.minute = times2;
