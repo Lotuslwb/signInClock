@@ -72,6 +72,12 @@ router.get('/personal', function (req, res, next) {
     });
 });
 
+router.get('/test', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        res.render('daka/test', {title: 'index', now: new Date(), openid: openid});
+    });
+});
+
 
 router.get('/setup', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
