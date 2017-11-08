@@ -7,7 +7,7 @@ function postHttps(URL, Data, cb) {
     var post_option = url.parse(URL);
     post_option.method = "POST";
     post_option.port = 443;
-    var post_data = (Data);
+    var post_data = querystring.stringify(Data);
     post_option.headers = {
         'content-type': 'application/json',
         'Content-Length': post_data.length
