@@ -98,9 +98,8 @@ var setSDKSignToCache = function (data, originalUrl, callback) {
     var pageNmae = urlArry[urlArry.length - 1];
 
 
-    fs.writeFile('access_token.txt', JSON.stringify(data), function (err) {
-        callback && callback(err);
-    });
+    fs.writeFileSync('access_token.txt', JSON.stringify(data));
+    callback && callback();
 }
 
 //从微信端拿签名数据
