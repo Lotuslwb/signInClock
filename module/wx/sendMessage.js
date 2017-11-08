@@ -25,6 +25,7 @@ var getWebContent = function (uri, method, data, callback) {
 
 var WxSendMessage = function (data) {
 
+    console.log(data, 'WxSendMessage');
 
     var getSDKSign = require('./getSDKSign');
     var originalUrl = '';
@@ -32,8 +33,6 @@ var WxSendMessage = function (data) {
     getSDKSign(originalUrl, function (wxConfig) {
         var access_token = wxConfig['TOKEN'];
         var SendMessageUrl = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=' + access_token;
-        var data = data;
-        console.log(data, 'getData(openid)');
         getWebContent(SendMessageUrl, 'POST', data, function (response) {
 
             console.log(response.body);
