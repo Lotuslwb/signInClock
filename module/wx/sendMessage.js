@@ -8,7 +8,6 @@ function postHttps(URL, Data, cb) {
     post_option.method = "POST";
     post_option.port = 443;
     var post_data = querystring.stringify(Data);
-    console.log(post_data, 'post_data');
     post_option.headers = {
         'content-type': 'application/json',
         'Content-Length': post_data.length
@@ -58,8 +57,9 @@ var WxSendMessage = function () {
         console.log(access_token);
         var SendMessageUrl = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=' + access_token;
         postHttps(SendMessageUrl, data, function (chunk) {
-            var chunk = JSON.parse(chunk);
             console.log(chunk);
+            console.log('---消息推送 回调--');
+            var chunk = JSON.parse(chunk);
         })
     });
 }
