@@ -17,7 +17,8 @@ var Schema = {
         totalRecodeCounts: String,
         currentRecodeCounts: String,
         currentSerialRecodeCounts: String,
-        recodeTimeArray: Array
+        recodeTimeArray: Array,
+        totalWordLength: String
     },
     couponList: [{
         couponStatus: String,

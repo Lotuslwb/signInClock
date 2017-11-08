@@ -41,6 +41,7 @@ router.get('/setSignIn', function (req, res, next) {
         bookName: req.query.bookName, // 今日书籍名
         bookCover: req.query.bookCover //今天书籍封页
     };
+    var wordLength = req.query.wordLength;
 
     console.log(openid, 'setSignIn');
 
@@ -58,11 +59,12 @@ router.get('/setSignIn', function (req, res, next) {
         var lastRecodeTime = recodeInfo.lastRecodeTime;
         var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1 || 0;
         var recodeTimeArray = recodeInfo.recodeTimeArray || [];
+        var totalWordLength = readingInfo.totalWordLength || 0;
         var readingInfo = data.readingInfo;
         var runDaka = function () {
             //记录打卡时间
             recodeTimeArray.push(getFormatDate());
-            console.log('recodeTimeArray', recodeTimeArray)
+            totalWordLength += wordLength;
             //记录录音信息 和 书籍信息
             readingInfo.push({
                 readingTimeId: getFormatDate(), //阅读日期  20170102
@@ -118,7 +120,8 @@ router.get('/setSignIn', function (req, res, next) {
                 currentSerialRecodeCounts: currentSerialRecodeCounts,
                 lastRecodeTime: lastRecodeTime.getTime(),
                 totalRecodeCounts: totalRecodeCounts,
-                recodeTimeArray: recodeTimeArray
+                recodeTimeArray: recodeTimeArray,
+                totalWordLength: totalWordLength
             },
             readingInfo: readingInfo
         }
