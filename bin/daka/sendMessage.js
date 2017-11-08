@@ -4,9 +4,9 @@ var schedule = require("node-schedule");
 var rule2 = new schedule.RecurrenceRule();
 var times2 = [30, 59];
 
-var getData = function () {
+var getData = function (openid) {
     var data = {
-        "touser": "oKdUIuDXWO5Ek3IswpcRvESoOUVI",  //接收者openid
+        "touser": openid,  //接收者openid
         "template_id": "vdlzK9Ik1kIaJEplGMQY5E8MwFZ14bQUkM-7OWHXQSE", //模板ID
         "url": "http://www.ef.com.cn/englishfirst/landing/mobilelifeclub?etag=EFCN_Wint18_KidsOwn-SNS-KOL-Double11-H5",
         "data": {
@@ -30,10 +30,12 @@ var getData = function () {
     };
     return data;
 }
-var data = getData();
 
 for (var i = 0; i < 1000; i++) {
-    send(data);
+    var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
+    var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI'
+    send(getData(openid));
+    send(getData(openid2));
 }
 
 
