@@ -9,7 +9,7 @@ function postHttps(URL, Data, cb) {
     post_option.port = 443;
     var post_data = querystring.stringify(Data);
     post_option.headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/json',
         'Content-Length': post_data.length
     };
     var post_req = https.request(post_option, function (res) {
@@ -46,7 +46,6 @@ var WxSendMessage = function () {
                     "value": "2014-12-15 10:00",
                     "color": "#173177"
                 },
-
                 "remark": {
                     "value": "请您准时到达，不见不散！",
                     "color": "#173177"
