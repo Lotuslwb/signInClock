@@ -35,7 +35,9 @@ module.exports = function (data) {
         getWebContent(SendMessageUrl, 'POST', data, function (response) {
 
             console.log(response.body);
-            console.log('---消息推送 成功--');
+            if (response.body.errcode == '0') {
+                console.log('---消息推送 成功--');
+            }
         });
     });
 };
