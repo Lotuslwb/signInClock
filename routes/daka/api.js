@@ -36,6 +36,12 @@ router.get('/getAllPersonInfo', function (req, res, next) {
 router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
+    var readingList = {
+        bookId: req.query.bookId,  //今日书籍ID
+        bookName: req.query.bookName, // 今日书籍名
+        bookCover: req.query.bookCover //今天书籍封页
+    };
+
     console.log(openid, 'setSignIn');
 
     if (!openid) {
@@ -61,7 +67,8 @@ router.get('/setSignIn', function (req, res, next) {
             readingInfo.push({
                 readingTimeId: getFormatDate(), //阅读日期  20170102
                 recordServerId: recordServerId, // 录音,微信服务器ID
-                recordLocalId: '' //录音 本地服务器ID
+                recordLocalId: '',//录音 本地服务器ID
+                readingList: readingList //今日书籍信息
             })
         }
 

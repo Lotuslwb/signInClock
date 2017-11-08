@@ -34,6 +34,9 @@
 <%- include("commonjs.ejs") %>
 <script>
 
+    var bookId = '<%= bookInfo._id %>';
+    var bookName = '<%= bookInfo.articleTitle %>';
+    var bookCover = '<%= bookInfo.coverUrl %>';
     var localId = '';
     function recordStop(res) {
         localId = res.localId;
@@ -85,7 +88,7 @@
                 success: function (res) {
                     var serverId = res.serverId; // 返回音频的服务器端ID
                     alert(serverId);
-                    setSignIn({serverId: serverId}, function (data) {
+                    setSignIn({serverId: serverId, bookId: bookId, bookName: bookName, bookCover: bookCover}, function (data) {
                         console.log(data);
                         alert('打卡成功');
                         window.location.href = '/daka/plan';
