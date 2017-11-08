@@ -1,6 +1,4 @@
 var request = require('request');
-var fs = require("fs");
-
 var getWebContent = function (uri, method, data, callback) {
     method = method || "POST";
 
@@ -27,7 +25,6 @@ var getWebContent = function (uri, method, data, callback) {
 
 var WxSendMessage = function () {
     
-    fs.unlinkSync('access_token.txt');
 
     var getSDKSign = require('./getSDKSign');
     var originalUrl = '';
