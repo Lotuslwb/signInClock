@@ -38,7 +38,8 @@ fs.unlinkSync('access_token.txt');
 var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
 var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI';
 console.log(getData(openid), 'getData');
-//send(getData(openid));
+console.log(send, 'send');
+send(getData(openid));
 //send(getData(openid2));
 
 
