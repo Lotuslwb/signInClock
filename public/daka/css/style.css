@@ -588,3 +588,8 @@ select {
     height: 311px;
     object-fit: cover;
 }
+
+.reading-page .reading-main p{
+    color: #333333;
+    font-size: 24px;
+}
