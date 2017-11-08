@@ -47,7 +47,6 @@ var getSDKSign = function (originalUrl, callback) {
             if (nowTime - genTime < expiresTime) {
                 //并没有超时,可以直接使用
                 log('---并没有超时,可以直接使用---');
-                log(data);
                 callback && callback(data);
             } else {
                 //已经超时,重新获取

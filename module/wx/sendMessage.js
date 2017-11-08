@@ -28,6 +28,7 @@ var WxSendMessage = function () {
     var originalUrl = '';
 
     getSDKSign(originalUrl, function (wxConfig) {
+        console.log(wxConfig);
         var access_token = wxConfig['access_token'];
         var data = {
             "touser": "oKdUIuDXWO5Ek3IswpcRvESoOUVI",  //接收者openid
