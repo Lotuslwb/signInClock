@@ -17,10 +17,6 @@ router.get('/start', function (req, res, next) {
 })
 
 
-router.get('/plan', function (req, res, next) {
-    res.render('daka/plan', {title: 'index'});
-});
-
 router.get('/start_detail', function (req, res, next) {
     res.render('daka/start_detail', {title: 'index'});
 });
@@ -51,6 +47,14 @@ function checkOpenid(req, res, cb) {
     }
 }
 
+router.get('/plan', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        var openid = req.signedCookies['session'];
+        getUserInfoByOpenid(openid, function (docs) {
+            res.render('daka/plan', {title: 'index', bookInfo: docs[0]});
+        })
+    });
+});
 
 router.get('/index', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
@@ -75,6 +79,26 @@ router.get('/setup', function (req, res, next) {
     });
 });
 
+
+function getUserInfoByOpenid(openid, cb_s, cb_f) {
+    if (!openid) {
+        cb_f && cb_f('openid 不能为空');
+    }
+
+    var findJSON = {
+        'openid': openid.split('"')[1]
+    };
+    console.log(findJSON);
+    UserDB.find(findJSON).then(function (docs) {
+        if (docs.length > 0) {
+            console.log('---数据库里面已经有此用户---');
+            cb_s && cb_s(docs);
+        } else {
+            console.log('---数据库里面暂无此用户---');
+            cb_f && cb_f(docs);
+        }
+    });
+}
 
 function getBookInfoById(id, cb_s, cb_f) {
     ArticleDB.find({_id: id}, function (err, docs) {

@@ -16,17 +16,13 @@
     <div class="index-main">
         <div class="plan-title">已完成</div>
         <div class="finish-list">
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
-
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
-
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
-            <a class="finish-item" href="#"><img src="../../../../daka/img/pic.png"></a>
+            <% var readingInfo = bookInfo['readingInfo']; for(var i = 0;i < readingInfo.length;i++){ %>
+            <% if(readingInfo[i]['readingList'] && readingInfo[i]['readingList'].bookId ){ %>
+            <a class="finish-item" href="/daka/reading?bookId=<%= readingInfo[i]['readingList'].bookId %>">
+                <img src="<%= readingInfo[i]['readingList'].bookCover %>">
+            </a>
+            <% } %>
+            <% } %>
         </div>
     </div>
 
@@ -36,7 +32,6 @@
 <%- include("commonjs.ejs") %>
 <script>
     getUserInfo(function (data) {
-        console.log(data);
         var data = data.data[0];
         var recodeInfo = data['recodeInfo'];
         var recodeTimeArray = recodeInfo ? recodeInfo['recodeTimeArray'] : [];
