@@ -31,12 +31,16 @@ var getData = function (openid) {
     return data;
 }
 
-for (var i = 0; i < 1000; i++) {
-    var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
-    var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI'
-    send(getData(openid));
-    send(getData(openid2));
-}
+send(getData(openid));
+send(getData(openid2));
+
+
+// for (var i = 0; i < 1000; i++) {
+//     var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
+//     var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI'
+//     send(getData(openid));
+//     send(getData(openid2));
+// }
 
 
 // rule2.minute = times2;
