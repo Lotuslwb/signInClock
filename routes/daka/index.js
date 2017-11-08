@@ -27,7 +27,12 @@ router.get('/start_detail', function (req, res, next) {
 
 
 router.get('/reading', function (req, res, next) {
-    res.render('daka/reading', {title: 'index'});
+
+    var id = getBookId();
+    getBookInfoById(id, function (docs) {
+        res.render('daka/reading', {title: 'index', bookInfo: docs[0]});
+    });
+
 });
 
 
@@ -48,9 +53,8 @@ function checkOpenid(req, res, cb) {
 
 
 router.get('/index', function (req, res, next) {
-
     checkOpenid(req, res, function (openid) {
-        var id = '5a0250903a959103fbfaed93';
+        var id = getBookId();
         getBookInfoById(id, function (docs) {
             res.render('daka/index', {title: 'index', now: new Date(), bookInfo: docs[0]});
         });
@@ -81,6 +85,10 @@ function getBookInfoById(id, cb_s, cb_f) {
         }
     });
 
+}
+
+function getBookId() {
+    return '5a0250903a959103fbfaed93';
 }
 
 module.exports = router;

@@ -1,18 +1,9 @@
 ﻿<%- include("header.ejs",{"title":'微信JS-SDK 测试'}) %>
 
 <div class="page main-page reading-page active">
-    <div class="reading-title">TITLE TITLE TITLE TITLE TITLE TITLE</div>
+    <div class="reading-title"><%= bookInfo.articleTitle %></div>
     <div class="reading-main">
-        The best kind of leader: one who creates independence, not dependence.The best kind of leader: one who creates
-        independence, not dependence.The best kind of leader: one who creates independence, not dependence.The best kind
-        of leader: one who creates independence, not dependence.
-        <br/><br/>
-        The best kind of leader: one who creates independence, not dependence.The best kind of leader: one who creates
-        independence, not dependence.The best kind of leader: one who creates independence, not dependence.
-        <br/><br/>
-        The best kind of leader: one who creates independence, not dependence.The best kind of leader: one who creates
-        independence, not dependence.The best kind of leader: one who creates independence, not dependence.
-        <br/><br/>
+        <%= bookInfo.articleText %>
     </div>
     <div class="record-btn-list">
         <div class="record-btn btn-item">
