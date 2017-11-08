@@ -17,7 +17,7 @@ var getWebContent = function (uri, method, data, callback) {
             if (error) {
                 console.log(error);
             } else {
-                callback && callback(body);
+                callback && callback(response);
             }
         }
     );
@@ -33,12 +33,13 @@ var WxSendMessage = function (data) {
         var access_token = wxConfig['TOKEN'];
         var SendMessageUrl = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=' + access_token;
         var data = data;
-        getWebContent(SendMessageUrl, 'POST', data, function (chunk) {
+        getWebContent(SendMessageUrl, 'POST', data, function (response) {
+
+            console.log(response);
             console.log('---消息推送 成功--');
         });
     });
 }
-
 
 
 module.exports = WxSendMessage;
