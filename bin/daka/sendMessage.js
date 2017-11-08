@@ -31,6 +31,9 @@ var getData = function (openid) {
     return data;
 }
 
+
+var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
+var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI'
 send(getData(openid));
 send(getData(openid2));
 
