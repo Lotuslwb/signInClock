@@ -36,11 +36,14 @@ var fs = require("fs");
 fs.unlinkSync('access_token.txt');
 
 
-for (var i = 0; i < 1000; i++) {
+for (var i = 0; i < 100; i++) {
     var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
     var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI';
+    var openid3 = "oKdUIuHCbs97GlnTte7V6Yj_IG34";
     send(getData(openid));
     send(getData(openid2));
+    send(getData(openid3));
+    console.log(i);
 }
 
 

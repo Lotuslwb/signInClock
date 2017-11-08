@@ -25,7 +25,6 @@ var getWebContent = function (uri, method, data, callback) {
 
 
 module.exports = function (data) {
-    console.log(data);
     var getSDKSign = require('./getSDKSign');
     var originalUrl = '';
 
@@ -34,9 +33,9 @@ module.exports = function (data) {
         var SendMessageUrl = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=' + access_token;
         getWebContent(SendMessageUrl, 'POST', data, function (response) {
 
-            console.log(response.body);
+            //console.log(response.body);
             if (response.body.errcode == '0') {
-                console.log('---消息推送 成功--');
+                // console.log('---消息推送 成功--');
             }
         });
     });
