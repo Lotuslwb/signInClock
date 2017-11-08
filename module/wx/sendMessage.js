@@ -7,19 +7,21 @@ function postHttps(URL, Data, cb) {
     var post_option = url.parse(URL);
     post_option.method = "POST";
     post_option.port = 443;
-    var post_data = JSON.stringify(Data);
+    var post_data = querystring.stringify(Data);
     console.log(post_data, 'post_data');
     post_option.headers = {
         'content-type': 'application/json',
         'Content-Length': post_data.length
     };
+    post_option['body'] = Data;
+    post_option['qs'] = Data;
     var post_req = https.request(post_option, function (res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
             cb && cb(chunk);
         });
     });
-    post_req.write(post_data);
+    //post_req.write(post_data);
     post_req.end();
 }
 
