@@ -20,12 +20,12 @@
         <div class="day-box">DAY <span class="days J-currentRecodeCounts"></span></div>
         <div class="index-title">今天读什么?</div>
         <div class="index-main-box">
-            <div class="reading-cover"><img src="../../../../daka/img/pic.png"></div>
+            <div class="reading-cover"><img src="<%= bookInfo.coverUrl %>"></div>
             <div class="reading-info">
                 <div class="difficulty">难度等级：</div>
-                <div class="wordsLength">词汇量：30</div>
-                <div class="needTime">耗时：5分钟</div>
-                <div class="des">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</div>
+                <div class="wordsLength">词汇量：<%= bookInfo.wordLength || 0 %></div>
+                <div class="needTime">耗时：<%= bookInfo.needTime || 0 %>分钟</div>
+                <div class="des"><%= bookInfo.brief || '' %></div>
                 <div class="start-btn">开始阅读</div>
             </div>
         </div>

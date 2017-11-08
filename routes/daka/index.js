@@ -50,9 +50,10 @@ function checkOpenid(req, res, cb) {
 router.get('/index', function (req, res, next) {
 
     checkOpenid(req, res, function (openid) {
-        var id = '';
-        getBookInfoById();
-        res.render('daka/index', {title: 'index', now: new Date()});
+        var id = '5a0250903a959103fbfaed93';
+        getBookInfoById(id, function (docs) {
+            res.render('daka/index', {title: 'index', now: new Date(), bookInfo: docs[0]});
+        });
     });
 });
 
