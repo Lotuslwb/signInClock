@@ -33,6 +33,7 @@ var WxSendMessage = function (data) {
         var access_token = wxConfig['TOKEN'];
         var SendMessageUrl = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=' + access_token;
         var data = data;
+        console.log(data, 'getData(openid)');
         getWebContent(SendMessageUrl, 'POST', data, function (response) {
 
             console.log(response.body);
