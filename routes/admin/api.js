@@ -337,7 +337,7 @@ router.post('/daka/uploadImage', function (req, res, next) {
 router.post('/daka/saveArticleData', function (req, res, next) {
     var data = req.body;
     console.log(data);
-    saveArticleDataToDB(data, {articleText: false}, function (docs) {
+    saveArticleDataToDB(data, function (docs) {
         res.send(sendData('200', docs, ''));
     });
 
