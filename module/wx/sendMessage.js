@@ -1,31 +1,5 @@
 var request = require('request');
-
-function postHttps(URL, Data, cb) {
-    var https = require('https');
-    var url = require('url');
-    var querystring = require('querystring');
-
-
-    var post_option = url.parse(URL);
-    post_option.method = "POST";
-    post_option.port = 443;
-    var post_data = querystring.stringify(Data);
-    post_option.headers = {
-        'content-type': 'application/json',
-        'Content-Length': post_data.length
-    };
-    post_option['body'] = Data;
-    post_option['qs'] = Data;
-    var post_req = https.request(post_option, function (res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            cb && cb(chunk);
-        });
-    });
-    post_req.write(post_data);
-    post_req.end();
-}
-
+var fs = require("fs");
 
 var getWebContent = function (uri, method, data, callback) {
     method = method || "POST";
@@ -52,25 +26,20 @@ var getWebContent = function (uri, method, data, callback) {
 }
 
 var WxSendMessage = function () {
+    
+    fs.unlinkSync('access_token.txt');
+
     var getSDKSign = require('./getSDKSign');
     var originalUrl = '';
 
     getSDKSign(originalUrl, function (wxConfig) {
         var access_token = wxConfig['TOKEN'];
-
-        console.log(access_token);
         var SendMessageUrl = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=' + access_token;
         var data = getData();
         getWebContent(SendMessageUrl, 'POST', data, function (chunk) {
-            console.log(chunk);
-            console.log('---消息推送 回调--');
-            var chunk = JSON.parse(chunk);
+            console.log('---消息推送 成功--');
+
         });
-        
-        //
-        // postHttps(SendMessageUrl, data, function (chunk) {
-        //
-        // })
     });
 }
 
