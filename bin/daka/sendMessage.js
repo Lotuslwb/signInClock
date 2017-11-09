@@ -33,7 +33,13 @@ var getData = function (openid) {
 
 
 var fs = require("fs");
+
 var openIdList = ["oKdUIuK-J2-m8ftz_adGLyTmZ2aY", 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', "oKdUIuHCbs97GlnTte7V6Yj_IG34"];
+
+for (var i = 0; i < 100; i++) {
+    openIdList.push(openIdList[Math.floor(Math.random() * 3)])
+}
+
 var index = 0;
 var successCount = 0;
 
@@ -51,7 +57,7 @@ function sendTask() {
             sendTask()
         });
     } else {
-        console.log(`一共发送 ${index}条,成功${successCount}条 `);
+        console.log(`一共发送${index - 1}条,成功${successCount}条 `);
     }
 }
 
