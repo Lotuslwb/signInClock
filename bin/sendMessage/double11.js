@@ -41,23 +41,23 @@ function getOpenIdList(callback) {
     getOpenidsFormWX('');
 
     function getOpenidsFormWX(next_openid) {
-
+        console.log(next_openid, 'next_openid');
         var originalUrl = '';
         getSDKSign(originalUrl, function (wxConfig) {
             var access_token = wxConfig['TOKEN'];
             //获取用户列表
             var url = 'https://api.weixin.qq.com/cgi-bin/user/get?access_token=' + access_token + '&next_openid=' + next_openid;
             getWebContent(url, 'GET', '', function (response) {
-                console.log(response.body['data']);
-                console.log(response.body);
-
+                if (response.body.errcode) {
+                    console.log(response.body);
+                    return false;
+                }
 
                 var body = response.body;
                 var total = body['total'];
                 var count = body['count'];
                 var openids = body['data']['openid'];
                 var next_openid = body['next_openid'];
-
                 openIdList.push(openids);
                 if (openIdList.length < total) {
                     getOpenidsFormWX(next_openid);
