@@ -61,7 +61,7 @@ router.get('/setSignIn', function (req, res, next) {
             var lastRecodeTime = recodeInfo.lastRecodeTime;
             var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1 || 0;
             var recodeTimeArray = recodeInfo.recodeTimeArray || [];
-            var totalWordLength = readingInfo.totalWordLength || 0;
+            var totalWordLength = recodeInfo.totalWordLength || 0;
             var readingInfo = data.readingInfo;
             var runDaka = function () {
                 //记录打卡时间
@@ -79,7 +79,6 @@ router.get('/setSignIn', function (req, res, next) {
             console.log('error', e);
         }
 
-        console.log('lastRecodeTime', lastRecodeTime);
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
             if (isToday(lastRecodeTime)) {
