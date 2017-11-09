@@ -58,7 +58,7 @@ function getOpenIdList(callback) {
                 var count = body['count'];
                 var openids = body['data']['openid'];
                 var next_openid = body['next_openid'];
-                openIdList.push(openids);
+                openIdList.push(...openids);
 
                 console.log(openIdList.length, 'openIdList.length');
 
