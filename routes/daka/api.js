@@ -53,31 +53,35 @@ router.get('/setSignIn', function (req, res, next) {
     getUserInfoFormDB(openid, function (docs) {
 
         var data = docs[0];
-        var recodeInfo = data.recodeInfo;
-        var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1 || 0;
-        var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1 || 0;
-        var lastRecodeTime = recodeInfo.lastRecodeTime;
-        var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1 || 0;
-        var recodeTimeArray = recodeInfo.recodeTimeArray || [];
-        var totalWordLength = readingInfo.totalWordLength || 0;
-        var readingInfo = data.readingInfo;
-        var runDaka = function () {
-            //记录打卡时间
-            recodeTimeArray.push(getFormatDate());
-            totalWordLength += wordLength;
-            //记录录音信息 和 书籍信息
-            readingInfo.push({
-                readingTimeId: getFormatDate(), //阅读日期  20170102
-                recordServerId: recordServerId, // 录音,微信服务器ID
-                recordLocalId: '',//录音 本地服务器ID
-                readingList: readingList //今日书籍信息
-            })
+        console.log(data);
+        try {
+            var recodeInfo = data.recodeInfo;
+            var currentRecodeCounts = recodeInfo.currentRecodeCounts * 1 || 0;
+            var currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1 || 0;
+            var lastRecodeTime = recodeInfo.lastRecodeTime;
+            var totalRecodeCounts = recodeInfo.totalRecodeCounts * 1 || 0;
+            var recodeTimeArray = recodeInfo.recodeTimeArray || [];
+            var totalWordLength = readingInfo.totalWordLength || 0;
+            var readingInfo = data.readingInfo;
+            var runDaka = function () {
+                //记录打卡时间
+                recodeTimeArray.push(getFormatDate());
+                totalWordLength += wordLength;
+                //记录录音信息 和 书籍信息
+                readingInfo.push({
+                    readingTimeId: getFormatDate(), //阅读日期  20170102
+                    recordServerId: recordServerId, // 录音,微信服务器ID
+                    recordLocalId: '',//录音 本地服务器ID
+                    readingList: readingList //今日书籍信息
+                })
+            }
+        } catch (e) {
+            console.log('error', e);
         }
 
-
+        console.log('lastRecodeTime', lastRecodeTime);
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
-            console.log('lastRecodeTime', lastRecodeTime)
             if (isToday(lastRecodeTime)) {
                 //上次打卡时间为今天;那么就不能再打卡了
                 res.send(sendData('990', data, '你今天已经打过卡了哦'));
