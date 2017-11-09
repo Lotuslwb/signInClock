@@ -1,4 +1,4 @@
-var getWebContent = require('./getWebContent');
+var getWebContent = require('./../tools/getWebContent');
 var getSDKSign = require('./getSDKSign');
 
 

@@ -30,11 +30,14 @@ var data = {
 
 //设置获取用户信息
 var getSDKSign = require('../../module/wx/getSDKSign');
-var getWebContent = require('../../module/wx/getWebContent');
+var getWebContent = require('../../module/tools/getWebContent');
+
 getOpenIdList(function (openIdList) {
+    //获取所有用户的openid;
     console.log(openIdList.length);
     console.log(openIdList[openIdList.length - 22]);
 });
+
 
 function getOpenIdList(callback) {
     var openIdList = [];
@@ -59,9 +62,6 @@ function getOpenIdList(callback) {
                 var openids = body['data']['openid'];
                 var next_openid = body['next_openid'];
                 openIdList.push(...openids);
-
-                console.log(openIdList.length, 'openIdList.length');
-
                 if (openIdList.length < total * 1) {
                     getOpenidsFormWX(next_openid);
                 } else {

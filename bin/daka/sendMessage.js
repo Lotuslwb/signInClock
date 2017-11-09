@@ -42,6 +42,8 @@ schedule.scheduleJob(rule2, function () {
 
 });
 
+getOpenIdList();
+
 function getOpenIdList(cb) {
     var openIdList = [];
 
