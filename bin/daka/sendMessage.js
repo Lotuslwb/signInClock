@@ -33,17 +33,26 @@ var getData = function (openid) {
 
 
 var fs = require("fs");
+var openIdList = ["oKdUIuK-J2-m8ftz_adGLyTmZ2aY", 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', "oKdUIuHCbs97GlnTte7V6Yj_IG34"];
+var index = 0;
+var successCount = 0;
+
 fs.unlinkSync('access_token.txt');
+sendTask();
 
-
-for (var i = 0; i < 1; i++) {
-    var openid = "oKdUIuK-J2-m8ftz_adGLyTmZ2aY";
-    var openid2 = 'oKdUIuDXWO5Ek3IswpcRvESoOUVI';
-    var openid3 = "oKdUIuHCbs97GlnTte7V6Yj_IG34";
-    send(getData(openid));
-    send(getData(openid2));
-    send(getData(openid3));
-    console.log(i);
+function sendTask() {
+    var openid = openIdList[index];
+    index++;
+    if (openid) {
+        send(getData(openid), function (response) {
+            if (response.body.errcode == '0') {
+                successCount++;
+            }
+            sendTask()
+        });
+    } else {
+        console.log(`一共发送 ${index}条,成功${successCount}条 `);
+    }
 }
 
 
