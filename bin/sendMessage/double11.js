@@ -7,20 +7,20 @@ var data = {
     "url": "http://www.ef.com.cn/englishfirst/landing/mobilelifeclub?etag=EFCN_Win18_KidsOwn-SNS-WechatSA-message-double11",
     "data": {
         "first": {
-            "value": "英孚青少儿英语2017秋季课程,11.11超值优惠！！",
+            "value": "英孚青少儿英语2017秋季课程 /n 11.11超值优惠！！",
             "color": "#173177"
         },
         "keyword1": {
             "value": "年度巨献 - 新生奖学金",
-            "color": "#173177"
+            "color": "#0070C0"
         },
         "keyword2": {
             "value": "梁芳莹Fandy",
-            "color": "#173177"
+            "color": "#0070C0"
         },
         "remark": {
             "value": "立即领取",
-            "color": "#173177"
+            "color": "#0070C0"
         }
     }
 };
