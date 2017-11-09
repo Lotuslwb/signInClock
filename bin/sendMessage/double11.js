@@ -53,7 +53,8 @@ function getOpenIdList(callback) {
                 var count = body['count'];
                 var openids = body['data']['openid'];
                 var next_openid = body['next_openid'];
-
+                console.log(body['data']);
+                console.log(body);
                 openIdList.push(openids);
                 if (openIdList.length < total) {
                     getOpenidsFormWX(next_openid);
