@@ -23,7 +23,7 @@ module.exports = function (openIdList, DataTpl) {
                 sendTask()
             });
         } else {
-            console.log(`一共发送${index - 1}条,成功${successCount}条 `);
+            console.log(`--- send: ${index - 1}, successCount: ${successCount}条---`);
         }
     }
 };

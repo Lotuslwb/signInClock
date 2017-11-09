@@ -34,7 +34,7 @@ var getSDKSign = function (originalUrl, callback) {
     getSDKSignFromCache(originalUrl, function (err, data) {
         //缓存报错 或者缓存中没有数据
         if (err || data.length == 0 || data == undefined) {
-            log('---缓存报错 或者缓存中没有数据---', err);
+            //log('---缓存报错 或者缓存中没有数据---', err);
             getSDKSignFormWX(originalUrl, function (wxConfig) {
                 setSDKSignToCache(wxConfig, originalUrl);
                 callback && callback(wxConfig);
@@ -46,11 +46,11 @@ var getSDKSign = function (originalUrl, callback) {
             var expiresTime = data.expiresTime;
             if (nowTime - genTime < expiresTime) {
                 //并没有超时,可以直接使用
-                log('---并没有超时,可以直接使用---');
+                //log('---并没有超时,可以直接使用---');
                 callback && callback(data);
             } else {
                 //已经超时,重新获取
-                log('---已经超时,重新获取---');
+                //log('---已经超时,重新获取---');
                 getSDKSignFormWX(originalUrl, function (wxConfig) {
                     log(wxConfig);
                     setSDKSignToCache(wxConfig, originalUrl);
@@ -72,7 +72,7 @@ var getSDKSignFromCache = function (originalUrl, callback) {
         if (err) {
             callback && callback(err);
         } else {
-            log(txt);
+            //log(txt);
 
             if (txt) {
                 try {
@@ -107,8 +107,8 @@ var getSDKSignFormWX = function (originalUrl, callback) {
     var getTokenUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
 
     load(loadWay, getTokenUrl, function (chunk) {
-        log('获取token');
-        log(chunk);
+        //log('获取token');
+        //log(chunk);
         var TOKEN = chunk.access_token;
         var expiresTime = chunk.expires_in;
 
@@ -123,8 +123,8 @@ var getSDKSignFormWX = function (originalUrl, callback) {
             // wxConfig.appId = APPID;
             // wxConfig.expiresTime = expiresTime;
             // wxConfig.access_token = TOKEN;
-            log('最后的chunk')
-            log(chunk);
+            //log('最后的chunk')
+            //log(chunk);
             callback && callback(chunk);
         })
 
