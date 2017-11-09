@@ -16,9 +16,9 @@
 </div>
 
 <div class="allInList">
-    <div class="allInList-title">10000 人已参加</div>
+    <div class="allInList-title"><%= docs.length %> 人已参加</div>
     <div class="allInList-main clearfix">
-        <% for(var i = 0;i < docs.length;i++){ %>
+        <% for(var i = 0;i < docs.length || i < 22;i++){ %>
         <% if(docs[i]['personInfo'].headimgurl){ %>
         <img src="<%= docs[i]['personInfo'].headimgurl %>" class="allInList-item">
         <% }} %>
