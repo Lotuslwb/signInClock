@@ -44,7 +44,7 @@ function getOpenIdList(cb) {
     var openIdList = [];
     cb && cb(openIdList);
 
-    UserDB.find({'clockInfo.clockSwitch': 'on'}, {'clockInfo': 1}).then(function (docs) {
+    UserDB.User.find({'clockInfo.clockSwitch': 'on'}, {'clockInfo': 1}).then(function (docs) {
         console.log(docs);
     });
 }
