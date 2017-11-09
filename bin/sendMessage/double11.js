@@ -48,10 +48,10 @@ function getOpenIdList(callback) {
             //获取用户列表
             var url = 'https://api.weixin.qq.com/cgi-bin/user/get?access_token=' + access_token + '&next_openid=' + next_openid || '';
             getWebContent(url, 'GET', '', function (response) {
-                console.log(body['data']);
-                console.log(body);
+                console.log(response.body['data']);
+                console.log(response.body);
 
-                
+
                 var body = response.body;
                 var total = body['total'];
                 var count = body['count'];
