@@ -4,7 +4,7 @@ module.exports = function (openIdList, DataTpl) {
 
     var index = 0;
     var successCount = 0;
-    fs.unlinkSync('access_token.txt');
+    //fs.unlinkSync('access_token.txt');
     sendTask();
 
     function getData(openid) {
