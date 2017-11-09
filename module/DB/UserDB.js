@@ -38,7 +38,7 @@ var Schema = {
     }],
     clockInfo: {
         clockTime: String,
-        clockSwitch: String
+        clockSwitch: String //on 开启, off 关闭
     }
 };
 
