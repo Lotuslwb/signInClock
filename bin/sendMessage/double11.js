@@ -27,24 +27,45 @@ var data = {
 
 //sendMessageBath(openIdList, data);
 
-getOpenIdList();
 
-function getOpenIdList(cb) {
+//设置获取用户信息
+var getSDKSign = require('../../module/wx/getSDKSign');
+var getWebContent = require('../../module/wx/getWebContent');
+getOpenIdList(function (openIdList) {
+    console.log(openIdList.length);
+    console.log(openIdList[openIdList.length - 22]);
+});
+
+function getOpenIdList(callback) {
     var openIdList = [];
+    getOpenidsFormWX();
 
-    var getSDKSign = require('../../module/wx/getSDKSign');
-    var getWebContent = require('../../module/wx/getWebContent');
-    var originalUrl = '';
-    getSDKSign(originalUrl, function (wxConfig) {
-        var access_token = wxConfig['TOKEN'];
-        //获取用户列表
-        var url = 'https://api.weixin.qq.com/cgi-bin/user/get?access_token=' + access_token + '&next_openid=';
-        getWebContent(url, 'GET', '', function (response) {
-            console.log(response);
+    function getOpenidsFormWX(next_openid) {
+
+        var originalUrl = '';
+        getSDKSign(originalUrl, function (wxConfig) {
+            var access_token = wxConfig['TOKEN'];
+            //获取用户列表
+            var url = 'https://api.weixin.qq.com/cgi-bin/user/get?access_token=' + access_token + '&next_openid=' + next_openid || '';
+            getWebContent(url, 'GET', '', function (response) {
+                var body = response.body;
+                var total = body['total'];
+                var count = body['count'];
+                var openids = body['data']['openid'];
+                var next_openid = body['next_openid'];
+
+                openIdList.push(openids);
+                if (openIdList.length < total) {
+                    getOpenidsFormWX(next_openid);
+                } else {
+                    callback && callback(openIdList)
+                }
+            });
         });
-    });
-    cb && cb(openIdList);
+    }
 }
+
+
 
 
 
