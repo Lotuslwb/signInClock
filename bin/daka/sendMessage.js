@@ -63,6 +63,8 @@ function getOpenIdList(cb) {
             var doc_time = doc['clockInfo']['clockTime'];
             var doc_hours = doc_time.split(':')[0];
             var doc_minutes = doc_time.split(':')[1];
+            console.log(doc_hours,now_hours);
+            console.log(doc_minutes,now_minutes);
             if (now_hours == doc_hours && Math.abs(now_minutes - doc_minutes) <= 5) {
                 var openid = doc['openid'];
                 openIdList.push(openid);
