@@ -25,8 +25,26 @@ var data = {
     }
 };
 
-sendMessageBath(openIdList, data);
+//sendMessageBath(openIdList, data);
 
+getOpenIdList();
+
+function getOpenIdList(cb) {
+    var openIdList = [];
+
+    var getSDKSign = require('../../module/wx/getSDKSign');
+    var getWebContent = require('../../module/wx/getWebContent');
+    var originalUrl = '';
+    getSDKSign(originalUrl, function (wxConfig) {
+        var access_token = wxConfig['TOKEN'];
+        //获取用户列表
+        var url = 'https://api.weixin.qq.com/cgi-bin/user/get?access_token=' + access_token + '&next_openid=';
+        getWebContent(url, 'GET', '', function (response) {
+            console.log(response);
+        });
+    });
+    cb && cb(openIdList);
+}
 
 
 
