@@ -7,8 +7,8 @@ var data = {
     "url": "http://www.ef.com.cn/englishfirst/landing/mobilelifeclub?etag=EFCN_Win18_KidsOwn-SNS-WechatSA-message-double11",
     "data": {
         "first": {
-            "value": "英孚青少儿英语2017秋季课程 \n 11.11超值优惠！！",
-            "color": "#173177"
+            "value": "英孚青少儿英语2017秋季课程 \n 11.11超值优惠！\n",
+            "color": "#0070C0"
         },
         "keyword1": {
             "value": "年度巨献 - 新生奖学金",
