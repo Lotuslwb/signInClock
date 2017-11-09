@@ -53,6 +53,7 @@ function getOpenIdList(cb) {
         'openid': 1,
         'personInfo': 1
     }).then(function (docs) {
+        console.log(docs, 'docs');
         var now = new Date();
         var now_hours = now.getHours();
         var now_minutes = now.getHours();
