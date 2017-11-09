@@ -77,7 +77,6 @@ router.get('/setSignIn', function (req, res, next) {
 
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
-            //isToday(lastRecodeTime)
             if (false) {
                 //上次打卡时间为今天;那么就不能再打卡了
                 res.send(sendData('990', data, '你今天已经打过卡了哦'));
@@ -86,14 +85,16 @@ router.get('/setSignIn', function (req, res, next) {
             } else {
                 //打卡逻辑
                 runDaka();
+                console.log('lastRecodeTime', lastRecodeTime)
                 if (isYesterday(lastRecodeTime)) {
                     //上次打卡时间为昨天;那么就可以统计连续打卡
-
+                    console.log('上次打卡时间为昨天;那么就可以统计连续打卡', lastRecodeTime)
                     lastRecodeTime = new Date();
                     totalRecodeCounts++;
                     currentSerialRecodeCounts++;
                     currentRecodeCounts++;
                 } else {
+                    console.log('上次打卡时间不是昨天', lastRecodeTime)
                     lastRecodeTime = new Date();
                     totalRecodeCounts++;
                     currentRecodeCounts++;
