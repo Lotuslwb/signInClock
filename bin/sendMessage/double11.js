@@ -1,6 +1,7 @@
 //设置批量发送消息
 var sendMessageBath = require('../sendMessageBath');
 var WXUserDB = require('../../module/DB/WXUserDB');
+
 var data = {
     "touser": '',  //接收者openid
     "template_id": "hEUpEGx8MV2mC5gs7lUJ5954esygcPCAYPWq90YshQ8", //模板ID
@@ -26,7 +27,7 @@ var data = {
 };
 
 
-WXUserDB.find({}).then(function (docs) {
+WXUserDB.find({"openid": "oKdUIuGgokkiL4du7fC9rfdRQGrg"}).then(function (docs) {
     var openIdList = docs.map(function (item) {
         return item['openid'];
     });

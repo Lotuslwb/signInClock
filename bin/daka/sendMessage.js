@@ -9,7 +9,6 @@ var UserDB = require('../../module/DB/UserDB');
 
 //设置批量发送消息
 var sendMessageBath = require('../sendMessageBath');
-//var openIdList = ["oKdUIuK-J2-m8ftz_adGLyTmZ2aY", 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', "oKdUIuHCbs97GlnTte7V6Yj_IG34"];
 var data = {
     "touser": '',  //接收者openid
     "template_id": "vdlzK9Ik1kIaJEplGMQY5E8MwFZ14bQUkM-7OWHXQSE", //模板ID
