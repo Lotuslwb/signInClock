@@ -113,7 +113,8 @@ function getOpenIdList(callback) {
 //同步微信和本地数据库数据
 function synDataInWxAndDB() {
     getOpenIdList(function (openIdList, access_token) {
-        WXUserDB.find({}).then(function (docs) {
+        WXUserDB.find({}, function (docs) {
+            console.log(docs.length);
             var openIdListInDB = docs.map(function (item) {
                 return item.openid;
             });
