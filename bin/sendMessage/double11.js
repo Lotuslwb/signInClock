@@ -1,5 +1,7 @@
 //设置批量发送消息
 var sendMessageBath = require('../sendMessageBath');
+var WXUserDB = require('../../module/DB/WXUserDB');
+
 var openIdList = ["oKdUIuK-J2-m8ftz_adGLyTmZ2aY", 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', "oKdUIuHCbs97GlnTte7V6Yj_IG34", "oKdUIuGgokkiL4du7fC9rfdRQGrg"];
 var data = {
     "touser": '',  //接收者openid
@@ -25,7 +27,13 @@ var data = {
     }
 };
 
-sendMessageBath(openIdList, data);
+var dataList = openIdList.map(function (item) {
+    data.touser = item;
+    return data;
+});
+console.log(dataList, 'dataList');
+
+sendMessageBath(dataList);
 
 
 

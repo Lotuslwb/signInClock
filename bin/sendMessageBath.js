@@ -1,4 +1,4 @@
-module.exports = function (openIdList, DataTpl) {
+module.exports = function (DataTpl) {
     var fs = require("fs");
     var send = require('../module/wx/sendMessage');
 
@@ -7,8 +7,7 @@ module.exports = function (openIdList, DataTpl) {
     fs.unlinkSync('access_token.txt');
     sendTask();
 
-    function getData(openid) {
-        DataTpl['touser'] = openid;
+    function getData() {
         return DataTpl;
     }
 
