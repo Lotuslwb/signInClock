@@ -67,7 +67,7 @@ function getUserFromWXByBath(openIdList, cb) {
         //是否继续迭代
         index++;
         if ((index + 1) * 100 < openIdList.length) {
-            getUserFromWXByBath(cb)
+            getUserFromWXByBath(openIdList, cb)
         } else {
             //已经获取所有用户信息
             console.log(WXUserData.length, 'WXUserData')
@@ -114,7 +114,7 @@ function getOpenIdList(callback) {
 //同步微信和本地数据库数据
 function synDataInWxAndDB() {
     getOpenIdList(function (openIdList, access_token) {
-        console.log(openIdList, 'openIdList');
+        console.log(openIdList.length, 'openIdList');
         WXUserDB.find({}).then(function (docs) {
             console.log(docs.length);
             var openIdListInDB = docs.map(function (item) {
