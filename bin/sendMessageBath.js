@@ -13,10 +13,11 @@ module.exports = function (openIdList, DataList) {
 
     function sendTask() {
         var openid = openIdList[index];
+        var data = getData(index);
         index++;
         if (openid) {
             console.log(getData(index), index, 'getData(index)')
-            send(getData(index), function (response) {
+            send(data, function (response) {
                 if (response.body.errcode == '0') {
                     successCount++;
                     console.log('openid:' + openid + ' has sent success!');
