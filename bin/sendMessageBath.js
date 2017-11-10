@@ -1,4 +1,4 @@
-module.exports = function (DataTpl) {
+module.exports = function (openIdList, DataList) {
     var fs = require("fs");
     var send = require('../module/wx/sendMessage');
 
@@ -7,15 +7,15 @@ module.exports = function (DataTpl) {
     fs.unlinkSync('access_token.txt');
     sendTask();
 
-    function getData() {
-        return DataTpl;
+    function getData(index) {
+        return DataList[index];
     }
 
     function sendTask() {
         var openid = openIdList[index];
         index++;
         if (openid) {
-            send(getData(openid), function (response) {
+            send(getData(index), function (response) {
                 if (response.body.errcode == '0') {
                     successCount++;
                     console.log('openid:' + openid + ' has sent success!');

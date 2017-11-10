@@ -33,7 +33,7 @@ var dataList = openIdList.map(function (item) {
 });
 console.log(dataList, 'dataList');
 
-sendMessageBath(dataList);
+sendMessageBath(openIdList, dataList);
 
 
 
