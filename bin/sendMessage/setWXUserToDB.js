@@ -4,6 +4,7 @@ var getWebContent = require('../../module/tools/getWebContent');
 
 //获取数据库
 var WXUserDB = require('../../module/DB/WXUserDB');
+var index = 0;
 
 synDataInWxAndDB();
 
@@ -12,7 +13,7 @@ function initDBformWX() {
     getOpenIdList(function (openIdList, access_token) {
         //获取所有用户的openid;
         var openIdList = openIdList;
-        var i = 0;
+
 
         console.log(openIdList.length, 'openIdList.length');
         //获取所有用户ID的用户信息
@@ -39,7 +40,7 @@ function saveUserDataIntoDB(WXUserData) {
 //通过openidList,从微信获取用户详细信息
 function getUserFromWXByBath(openIdList, cb) {
     var WXUserData = [];
-    var subOpenIdList = openIdList.slice(i * 100, (i + 1) * 100);
+    var subOpenIdList = openIdList.slice(index * 100, (index + 1) * 100);
     console.log(subOpenIdList.length, 'subOpenIdList.length');
     var subOpenIdListObj = {
         "user_list": subOpenIdList.map(function (item) {
@@ -64,8 +65,8 @@ function getUserFromWXByBath(openIdList, cb) {
         }
 
         //是否继续迭代
-        i++;
-        if ((i + 1) * 100 < openIdList.length) {
+        index++;
+        if ((index + 1) * 100 < openIdList.length) {
             getUserFromWXByBath(cb)
         } else {
             //已经获取所有用户信息
@@ -113,7 +114,7 @@ function getOpenIdList(callback) {
 //同步微信和本地数据库数据
 function synDataInWxAndDB() {
     getOpenIdList(function (openIdList, access_token) {
-        WXUserDB.find({}, function (docs) {
+        WXUserDB.find({}).then(function (docs) {
             console.log(docs.length);
             var openIdListInDB = docs.map(function (item) {
                 return item.openid;
@@ -122,11 +123,13 @@ function synDataInWxAndDB() {
                 return openIdListInDB.indexOf(itme) < 0;
             });
             console.log(diffOpenIdList.length, 'diffOpenIdList.length');
+            index = 0;
             getUserFromWXByBath(diffOpenIdList, function (WXUserData) {
                 console.log('--- 获取所有用户ID的用户信息 回调 ---');
                 saveUserDataIntoDB(WXUserData)
             });
-        })
+
+        });
     })
 }
 
