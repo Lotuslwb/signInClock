@@ -31,7 +31,9 @@ var dataList = openIdList.map(function (item) {
     data.touser = item;
     return data;
 });
-console.log(dataList, 'dataList');
+
+console.log(dataList.length, 'dataList');
+console.log(openIdList.length, 'openIdList');
 
 sendMessageBath(openIdList, dataList);
 
