@@ -5,6 +5,8 @@ var getWebContent = require('../../module/tools/getWebContent');
 //获取数据库
 var WXUserDB = require('../../module/DB/WXUserDB');
 var index = 0;
+var WXUserData = [];
+
 
 synDataInWxAndDB();
 
@@ -17,16 +19,16 @@ function initDBformWX() {
 
         console.log(openIdList.length, 'openIdList.length');
         //获取所有用户ID的用户信息
-        getUserFromWXByBath(openIdList, function (WXUserData) {
+        getUserFromWXByBath(openIdList, function () {
             console.log('--- 获取所有用户ID的用户信息 回调 ---');
-            saveUserDataIntoDB(WXUserData)
+            saveUserDataIntoDB()
         });
     });
 }
 
 
 //将用户信息存入数据库
-function saveUserDataIntoDB(WXUserData) {
+function saveUserDataIntoDB() {
     var WXUserDBList = [];
     for (var i = 0; i < WXUserData.length; i++) {
         WXUserDBList.push(WXUserDB.add(WXUserData[i]));
@@ -38,8 +40,7 @@ function saveUserDataIntoDB(WXUserData) {
 
 
 //通过openidList,从微信获取用户详细信息
-function getUserFromWXByBath(openIdList, cb) {
-    var WXUserData = [];
+function getUserFromWXByBath(openIdList, access_token, cb) {
     var subOpenIdList = openIdList.slice(index * 100, (index + 1) * 100);
     console.log(subOpenIdList.length, 'subOpenIdList.length');
     var subOpenIdListObj = {
@@ -67,7 +68,7 @@ function getUserFromWXByBath(openIdList, cb) {
         //是否继续迭代
         index++;
         if ((index + 1) * 100 < openIdList.length) {
-            getUserFromWXByBath(openIdList, cb)
+            getUserFromWXByBath(openIdList, access_token, cb)
         } else {
             //已经获取所有用户信息
             console.log(WXUserData.length, 'WXUserData')
@@ -125,9 +126,9 @@ function synDataInWxAndDB() {
             });
             console.log(diffOpenIdList.length, 'diffOpenIdList.length');
             index = 0;
-            getUserFromWXByBath(diffOpenIdList, function (WXUserData) {
+            getUserFromWXByBath(diffOpenIdList, access_token, function () {
                 console.log('--- 获取所有用户ID的用户信息 回调 ---');
-                saveUserDataIntoDB(WXUserData)
+                saveUserDataIntoDB()
             });
 
         });
