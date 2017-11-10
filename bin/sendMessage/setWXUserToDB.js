@@ -27,12 +27,14 @@ getOpenIdList(function (openIdList, access_token) {
     function getUserFromWXByBath(cb) {
         var subOpenIdList = openIdList.slice(i * 100, (i + 1) * 100);
         console.log(subOpenIdList.length, 'subOpenIdList.length');
-        var subOpenIdListObj = subOpenIdList.map(function (item) {
-            return {
-                'openid': item
-            }
-        });
-        console.log(subOpenIdListObj[1], 'subOpenIdListObj[1]');
+        var subOpenIdListObj = {
+            "user_list": subOpenIdList.map(function (item) {
+                return {
+                    'openid': item
+                }
+            })
+        };
+        console.log(subOpenIdListObj['user_list'][1], 'subOpenIdListObj_user_list_1');
 
         //批量获取用户基本信息
         var url = 'https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=' + access_token;
