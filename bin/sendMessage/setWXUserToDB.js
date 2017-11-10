@@ -14,6 +14,14 @@ getOpenIdList(function (openIdList, access_token) {
     //获取所有用户ID的用户信息
     getUserFromWXByBath(function () {
         console.log('--- 获取所有用户ID的用户信息 回调 ---');
+        var WXUserDBList = [];
+        for (var i = 0; i < WXUserData.length; i++) {
+            WXUserDBList.push(WXUserDB.add(WXUserData[i]));
+        }
+        Promise.all(WXUserDBList).then(function () {
+            console.log('---批量导入成功---')
+            console.log(WXUserDB.User.find({}).count());
+        })
     });
 
     function getUserFromWXByBath(cb) {
