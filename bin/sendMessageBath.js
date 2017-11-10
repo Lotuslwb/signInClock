@@ -20,6 +20,8 @@ module.exports = function (openIdList, DataList) {
                     successCount++;
                     console.log('openid:' + openid + ' has sent success!');
                     console.log(`--- send: ${index - 1}, successCount: ${successCount}条---`);
+                } else {
+                    console.log(response.body, 'sent error');
                 }
                 sendTask()
             });
