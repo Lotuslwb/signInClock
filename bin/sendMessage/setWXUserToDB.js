@@ -44,13 +44,15 @@ getOpenIdList(function (openIdList, access_token) {
                 console.error(body);
             } else {
                 var user_info_list = body['user_info_list'];
-                WXUserData.push(...user_info_list);
+                if (user_info_list) {
+                    WXUserData.push(...user_info_list);
+                }
             }
 
             //是否继续迭代
             i++;
             if ((i + 1) * 100 < openIdList.length) {
-                getUserFromWXByBath()
+                getUserFromWXByBath(cb)
             } else {
                 //已经获取所有用户信息
                 console.log(WXUserData.length, 'WXUserData')

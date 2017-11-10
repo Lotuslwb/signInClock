@@ -19,6 +19,7 @@ module.exports = function (openIdList, DataTpl) {
             send(getData(openid), function (response) {
                 if (response.body.errcode == '0') {
                     successCount++;
+                    console.log('openid:' + openid + ' has sent success!');
                 }
                 sendTask()
             });
