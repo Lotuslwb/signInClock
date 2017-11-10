@@ -37,7 +37,11 @@ var data = {
 schedule.scheduleJob(rule2, function () {
 
     getOpenIdList(function (openIdList) {
-        sendMessageBath(openIdList, data);
+        var dataList = openIdList.map(function (item) {
+            data.touser = item;
+            return data;
+        });
+        sendMessageBath(openIdList, dataList);
     });
 
 });
