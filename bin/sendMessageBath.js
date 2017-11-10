@@ -20,10 +20,12 @@ module.exports = function (openIdList, DataTpl) {
                 if (response.body.errcode == '0') {
                     successCount++;
                     console.log('openid:' + openid + ' has sent success!');
+                    console.log(`--- send: ${index - 1}, successCount: ${successCount}条---`);
                 }
                 sendTask()
             });
         } else {
+            console.log('--- finished ---');
             console.log(`--- send: ${index - 1}, successCount: ${successCount}条---`);
         }
     }
