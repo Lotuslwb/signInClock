@@ -28,7 +28,6 @@ var data = {
 
 
 WXUserDB.find({"openid": "oKdUIuGgokkiL4du7fC9rfdRQGrg"}).then(function (docs) {
-
     var openIdList = docs.map(function (item) {
         return item['openid'];
     });
@@ -37,7 +36,6 @@ WXUserDB.find({"openid": "oKdUIuGgokkiL4du7fC9rfdRQGrg"}).then(function (docs) {
         data['data']['keyword2']['value'] = item['nickname'];
         return data;
     });
-    console.log(dataList,'dataList');
     sendMessageBath(openIdList, dataList);
 })
 
