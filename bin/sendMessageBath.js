@@ -15,6 +15,7 @@ module.exports = function (openIdList, DataList) {
         var openid = openIdList[index];
         index++;
         if (openid) {
+            console.log(getData(index), index, 'getData(index)')
             send(getData(index), function (response) {
                 if (response.body.errcode == '0') {
                     successCount++;
