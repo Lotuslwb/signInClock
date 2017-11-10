@@ -28,7 +28,7 @@ var data = {
 
 //4849
 
-WXUserDB.User.find().skip(10001).then(function (docs) {
+WXUserDB.User.find().then(function (docs) {
     console.log(docs[1], 'docs.length');
     var openIdList = docs.map(function (item) {
         return item['openid'];
