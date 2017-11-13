@@ -60,8 +60,8 @@
 
 
     var userId = '<%= UserInfo._id %>';
-    var personInfo = JSON.parse('<%= UserInfo.personInfo %>');
-    var recodeInfo = JSON.parse('<%= UserInfo.recodeInfo %>')
+    var personInfo = <%- UserInfo.personInfo %>;
+    var recodeInfo = <%- UserInfo.recodeInfo %>;
 
     var headimgurl = personInfo ? personInfo['headimgurl'] : '';
     var nickname = personInfo ? personInfo['nickname'] : '';
