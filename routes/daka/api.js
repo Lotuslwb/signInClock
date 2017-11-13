@@ -39,7 +39,8 @@ router.get('/setSignIn', function (req, res, next) {
     var readingList = {
         bookId: req.query.bookId,  //今日书籍ID
         bookName: req.query.bookName, // 今日书籍名
-        bookCover: req.query.bookCover //今天书籍封页
+        bookCover: req.query.bookCover, //今天书籍封页
+        bookDes: req.query.bookDes //今天书籍封页
     };
     var wordLength = req.query.wordLength;
 

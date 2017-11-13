@@ -16,7 +16,6 @@ router.get('/start', function (req, res, next) {
     });
 })
 
-
 router.get('/start_detail', function (req, res, next) {
     res.render('daka/start_detail', {title: 'index'});
 });
@@ -71,6 +70,18 @@ router.get('/personal', function (req, res, next) {
         res.render('daka/personal', {title: 'index', now: new Date()});
     });
 });
+
+router.get('/result', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        var id = getBookId();
+        getBookInfoById(id, function (docs) {
+            res.render('daka/result', {bookInfo: docs[0]});
+        });
+    });
+
+
+});
+
 
 router.get('/test', function (req, res, next) {
     checkOpenid(req, res, function (openid) {

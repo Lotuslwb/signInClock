@@ -52,6 +52,13 @@ select {
     padding-top: 80px;
 }
 
+.result-page {
+    background: url("../img/result-bg.jpg") no-repeat top;
+    background-size: 100%;
+    padding-top: 55px;
+    overflow: auto;
+}
+
 .index-page .date-box {
     background: url("../img/date-box-bg.png") no-repeat;
     width: 222px;
@@ -589,7 +596,200 @@ select {
     object-fit: cover;
 }
 
-.reading-page .reading-main p{
+.reading-page .reading-main p {
     color: #333333;
     font-size: 24px;
+}
+
+.result-page .banner-text {
+    text-align: center;
+}
+
+.result-page .banner-logo {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 25px;
+}
+
+.result-page .banner-title {
+    display: inline-block;
+    color: #333333;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.result-page .banner-info {
+    font-size: 24px;
+    text-align: left;
+}
+
+.result-page .personal-logo {
+    float: none;
+    width: 165px;
+    height: 165px;
+}
+
+.result-page .personal-name {
+    font-size: 24px;
+    color: #333333;
+    text-align: center;
+    line-height: 2.5;
+}
+
+.result-page .record-info {
+    text-align: center;
+}
+
+.result-page .record-info .hr {
+    margin-top: 30px;
+    width: 100%;
+    background: #dcdcdc;
+    height: 2px;
+}
+
+.result-page .record-info-right, .result-page .record-info-left {
+    width: 50%;
+}
+
+.result-page .record-info-right {
+    float: right;
+}
+
+.result-page .record-info-left {
+    float: left;
+}
+
+.result-page .record-info-mid {
+    width: 2px;
+    height: 100px;
+    background: #dcdcdc;
+    margin-left: 50%;
+    margin-top: 20px;
+    height: 100px;
+}
+
+.result-page .record-info .title {
+    font-size: 24px;
+    color: #585858;
+}
+
+.result-page .record-info .text {
+    font-size: 48px;
+    color: #e9329c;
+}
+
+.result-page .record-info .text span {
+    font-size: 22px;
+    color: #333333;
+}
+
+.result-page .book-info .title {
+    text-align: center;
+    padding: 30px 0;
+    color: #e9329c;
+    font-size: 30px;
+}
+
+.result-page .book-info .cover {
+    width: 137px;
+    height: 185px;
+    object-fit: cover;
+    float: left;
+}
+
+.result-page .book-info .main {
+    padding: 0 10px 10px 10px;
+    min-height: 90px;
+}
+
+.result-page .book-info .text {
+    color: #585858;
+    font-size: 24px;
+    margin-left: 166px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.result-page .book-info .share-btn {
+    width: 361px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 40px;
+    background: #e9329c;
+    color: #ffffff;
+    text-align: center;
+    font-size: 26px;
+    float: right;
+}
+
+.result-page .book-info {
+    overflow: auto;
+    padding-bottom: 25px;
+}
+
+.result-page .AD-info {
+    background: url("../img/result-banner.png");
+    width: 583px;
+    height: 128px;
+    margin: 0 auto 100px;
+    position: relative;
+}
+
+.result-page .AD-info .qcode {
+    position: absolute;
+    right: 60px;
+    top: 13px;
+}
+
+/* ui-alert */
+.ui-overlay {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: rgba(51, 51, 51, 0.9);
+}
+
+.ui-alert {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    padding: 45px 40px;
+    background: #ffffff;
+    border-radius: 10px;
+    width: 550px;
+    box-sizing: border-box;
+}
+
+.ui-alert-closed {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.ui-alert-title {
+    color: #e9329c;
+    text-align: center;
+    font-size: 30px;
+    line-height: 45px;
+}
+
+.ui-alert-text {
+    line-height: 1.6;
+    font-size: 24px;
+    color: #585858;
+    padding-top: 30px;
 }
