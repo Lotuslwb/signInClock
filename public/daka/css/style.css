@@ -856,19 +856,19 @@ select {
     height: 138px;
     border-radius: 138px;
     position: absolute;
-    background-color: #e9329c;
+    background-color: #0068b1;
 }
 
 .time {
-    width: 100px;
-    height: 100px;
-    margin: 20px 0 0 20px;
+    width: 122px;
+    height: 122px;
+    margin: 8px 0 0 9px;
     background-color: #e9329c;
     border-radius: 100px;
     position: absolute;
     z-index: 1;
     text-align: center;
-    line-height: 100px;
+    line-height: 122px;
     font-size: 30px;
 }
 
