@@ -167,36 +167,31 @@
         if (totle == 0) {
             clearInterval(s);
             clearInterval(t1);
-            $(".pie2").css("-o-transform", "rotate(" + d + "deg)");
-            $(".pie2").css("-moz-transform", "rotate(" + d + "deg)");
-            $(".pie2").css("-webkit-transform", "rotate(" + d + "deg)");
+            $(".pie2").css("-webkit-transform", "rotate(0deg)");
+            $(".pie1").css("-webkit-transform", "rotate(" + d + "deg)");
         } else {
             if (totle > 0 && MS > 0) {
                 MS = MS - 1;
                 if (MS < 10) {
                     MS = "0" + MS
                 }
-                ;
+
             }
-            ;
+
             if (MS == 0 && SS > 0) {
                 MS = 10;
                 SS = SS - 1;
                 if (SS < 10) {
                     SS = "0" + SS
                 }
-                ;
             }
-            ;
             if (SS == 0 && MM > 0) {
                 SS = 60;
                 MM = MM - 1;
                 if (MM < 10) {
                     MM = "0" + MM
                 }
-                ;
             }
-            ;
         }
         $(".time").html(SS + "s");
     };
@@ -210,7 +205,7 @@
             $(".pie1").css("-moz-transform", "rotate(" + i + "deg)");
             $(".pie1").css("-webkit-transform", "rotate(" + i + "deg)");
         } else {
-            $(".pie2").css("backgroundColor", "#d13c36");
+            $(".pie2").css("backgroundColor", "#0068b1");
             $(".pie2").css("-o-transform", "rotate(" + i + "deg)");
             $(".pie2").css("-moz-transform", "rotate(" + i + "deg)");
             $(".pie2").css("-webkit-transform", "rotate(" + i + "deg)");
@@ -239,7 +234,8 @@
     }
 
     var countStop = function () {
-
+        clearInterval(s);
+        clearInterval(t1);
     }
 </script>
 </body>

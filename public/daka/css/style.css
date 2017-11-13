@@ -824,7 +824,6 @@ select {
 .pie {
     width: 138px;
     height: 138px;
-    background-color: blue;
     border-radius: 100px;
     position: absolute;
 }
@@ -834,7 +833,7 @@ select {
     -o-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
-    background-color: #fff;
+    background-color: #e9329c;
 }
 
 .pie2 {
@@ -842,7 +841,7 @@ select {
     -o-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
-    background-color: #fff;
+    background-color: #e9329c;
 }
 
 .hold {
@@ -857,14 +856,14 @@ select {
     height: 138px;
     border-radius: 138px;
     position: absolute;
-    background-color: #d13c36;
+    background-color: #e9329c;
 }
 
 .time {
     width: 100px;
     height: 100px;
     margin: 20px 0 0 20px;
-    background-color: #e45534;
+    background-color: #e9329c;
     border-radius: 100px;
     position: absolute;
     z-index: 1;
