@@ -22,8 +22,11 @@ router.get('/start_detail', function (req, res, next) {
 
 
 router.get('/reading', function (req, res, next) {
-
-    var id = getBookId();
+    var id = req.query.bookId;
+    if (!id) {
+        res.redirect('/daka/start');
+        return false;
+    }
     getBookInfoById(id, function (docs) {
         res.render('daka/reading', {title: 'index', bookInfo: docs[0]});
     });
@@ -88,7 +91,11 @@ router.get('/personal', function (req, res, next) {
 
 router.get('/result', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
-        var id = getBookId();
+        var id = req.query.bookId;
+        if (!id) {
+            res.redirect('/daka/start');
+            return false;
+        }
         getBookInfoById(id, function (docs) {
             res.render('daka/result', {bookInfo: docs[0]});
         });

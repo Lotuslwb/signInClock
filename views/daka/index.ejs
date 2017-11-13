@@ -26,7 +26,7 @@
                 <div class="wordsLength">词汇量：<%= bookInfo.wordLength || 0 %></div>
                 <div class="needTime">耗时：<%= bookInfo.needTime || 0 %>分钟</div>
                 <div class="des"><%= bookInfo.brief || '' %></div>
-                <div class="start-btn">开始阅读</div>
+                <div class="start-btn" data-id="<%= bookInfo._id %>">开始阅读</div>
             </div>
         </div>
     </div>
@@ -45,6 +45,10 @@
 <script>
     var now = "<%= now %>";
     initFloatDate(now);
+
+    $('.start-btn').click(function () {
+        window.location.href = '/daka/reading?bookId=' + $(this).data('id');
+    })
 
     getUserInfo(function (data) {
         var data = data.data[0];
