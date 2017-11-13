@@ -816,9 +816,9 @@ select {
 
 /* time scroll*/
 .game_time {
-    position: absolute;
-    left: 0;
-    top: 0;
+    margin: auto;
+    width: 138px;
+    height: 138px;
 }
 
 .pie {

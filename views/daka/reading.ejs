@@ -7,7 +7,16 @@
     </div>
     <div class="record-btn-list">
         <div class="record-btn btn-item">
-            <img src="../../../../daka/img/record-icon.png" class="record-icon J-record-btn">
+            <div class="record-icon J-record-btn game_time">
+                <div class="hold">
+                    <div class="pie pie1"></div>
+                </div>
+                <div class="hold">
+                    <div class="pie pie2"></div>
+                </div>
+                <div class="bg"></div>
+                <div class="time"><img src="../../../../daka/img/record-icon.png"></div>
+            </div>
             <div class="record-status J-record-status">点击录制</div>
         </div>
 
@@ -30,16 +39,7 @@
     <!--</div>-->
 </div>
 
-<div class="game_time">
-    <div class="hold">
-        <div class="pie pie1"></div>
-    </div>
-    <div class="hold">
-        <div class="pie pie2"></div>
-    </div>
-    <div class="bg"></div>
-    <div class="time"></div>
-</div>
+
 <%- include("menu.ejs",{"type":''}) %>
 <%- include("commonjs.ejs") %>
 <script>
@@ -72,7 +72,7 @@
             } else {
                 wx.startRecord();
                 $(this).addClass('active');
-                $('.J-record-status').text('录音中...');
+                $('.J-record-status').html('录音中...<span class="J-time"></span>');
             }
         })
 
@@ -193,7 +193,7 @@
                 }
             }
         }
-        $(".time").html(SS + "s");
+        $(".J-time").html(SS + "s");
     };
 
     var start1 = function () {
