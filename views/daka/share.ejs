@@ -1,0 +1,111 @@
+﻿<%- include("header.ejs",{"title":'打卡成功'}) %>
+
+
+<div class="page main-page index-page result-page active">
+
+    <div class="index-words">
+        <div class="banner-text">
+            <img src="/daka/img/EF.png" class="banner-logo"/>
+            <div class="banner-title">
+                我和宝贝的21天亲子共读计划
+                <div class="banner-info">2016/09/01 开始</div>
+            </div>
+        </div>
+        <div class="personal-info">
+            <img src="http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLyV1Ir9mstNAOmvyNzpTFcibv3xWVSCp135dehaicLbhWY6hRDnadIibZYEr31bE2y3Egt0HU60ibKdw/0"
+                 class="personal-logo">
+            <div class="personal-name J-nickname"></div>
+        </div>
+        <div class="record-info">
+            <div class="record-info-left">
+                <div class="title">累积读书天数</div>
+                <div class="text J-currentRecodeCounts"><span>天</span></div>
+            </div>
+            <div class="record-info-right">
+                <div class="title">累积阅读字数</div>
+                <div class="text J-totalWordLength"></div>
+            </div>
+            <div class="record-info-mid"></div>
+            <div class="hr"></div>
+        </div>
+        <div class="book-info">
+            <div class="title">今天读什么?</div>
+            <img class="cover" src="<%= bookInfo.coverUrl %>"/>
+            <div class="main">
+                <div class="text"><%= bookInfo.brief %></div>
+            </div>
+            <div class="share-btn">分享至朋友圈</div>
+        </div>
+    </div>
+    <div class="AD-info">
+        <img src="/daka/img/qcode.png" class="qcode">
+    </div>
+    <div class="overlay overlay-share">
+        <img src="/daka/img/shareTxt.png" class="shareTxt">
+    </div>
+</div>
+
+<%- include("menu.ejs",{"type":'personal'}) %>
+<%- include("commonjs.ejs") %>
+<script>
+    var bookId = "<%= bookInfo._id %>";
+
+    $('.share-btn').click(function () {
+        $('.overlay-share').show();
+    });
+
+    $('.overlay-share').click(function () {
+        $(this).hide();
+    })
+
+
+    var userId = '<%= UserInfo._id %>';
+    var personInfo = JSON.parse('<%= UserInfo.personInfo %>');
+    var recodeInfo = JSON.parse('<%= UserInfo.recodeInfo %>')
+
+    var headimgurl = personInfo ? personInfo['headimgurl'] : '';
+    var nickname = personInfo ? personInfo['nickname'] : '';
+    var currentRecodeCounts = recodeInfo ? recodeInfo['currentRecodeCounts'] || 0 : 0;
+    var totalWordLength = recodeInfo ? recodeInfo['totalWordLength'] || 0 : 0;
+    $('.J-nickname').text(nickname)
+    $('.personal-logo').attr('src', headimgurl);
+    $('.J-currentRecodeCounts').html(currentRecodeCounts + '<span>天</span>');
+    $('.J-totalWordLength').text(totalWordLength);
+
+    initWX(function () {
+        //“分享给朋友”
+        wx.onMenuShareAppMessage({
+            title: '英孚打卡计划 分享title', // 分享标题
+            desc: '英孚打卡计划 分享desc', // 分享描述
+            link: 'http://ma.eldesign.cn/daka/share?bookId=' + bookId + '&userId=' + userId, // 分享链接
+            imgUrl: '', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //“分享到朋友圈”
+        wx.onMenuShareTimeline({
+            title: '英孚打卡计划 分享title', // 分享标题
+            link: 'http://ma.eldesign.cn/daka/share?bookId=' + bookId + '&userId=' + userId, // 分享链接
+            imgUrl: '', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+    })
+
+
+</script>
+
+</body>
+</html>

@@ -30,6 +30,21 @@ router.get('/reading', function (req, res, next) {
 
 });
 
+router.get('/share', function (req, res, next) {
+    var id = req.query.bookId;
+    var userId = req.query.userId;
+    if (!id && !userId) {
+        res.redirect('/daka/start');
+        return false;
+    }
+    getUserInfoByUserId(userId, function (docs) {
+        var UserInfo = docs[0];
+        getBookInfoById(id, function (docs) {
+            res.render('daka/share', {bookInfo: docs[0], UserInfo: UserInfo});
+        });
+    })
+});
+
 
 //*** 需要openid的页面 放在这个下面 ***//
 
@@ -78,8 +93,6 @@ router.get('/result', function (req, res, next) {
             res.render('daka/result', {bookInfo: docs[0]});
         });
     });
-
-
 });
 
 
@@ -104,6 +117,24 @@ function getUserInfoByOpenid(openid, cb_s, cb_f) {
 
     var findJSON = {
         'openid': openid.split('"')[1]
+    };
+    UserDB.find(findJSON).then(function (docs) {
+        if (docs.length > 0) {
+            console.log('---数据库里面已经有此用户---');
+            cb_s && cb_s(docs);
+        } else {
+            console.log('---数据库里面暂无此用户---');
+            cb_f && cb_f(docs);
+        }
+    });
+}
+function getUserInfoByUserId(id, cb_s, cb_f) {
+    if (!id) {
+        cb_f && cb_f('userId 不能为空');
+    }
+
+    var findJSON = {
+        '_id': id
     };
     console.log(findJSON);
     UserDB.find(findJSON).then(function (docs) {
