@@ -822,8 +822,8 @@ select {
 }
 
 .pie {
-    width: 200px;
-    height: 200px;
+    width: 138px;
+    height: 138px;
     background-color: blue;
     border-radius: 100px;
     position: absolute;
@@ -846,30 +846,30 @@ select {
 }
 
 .hold {
-    width: 200px;
-    height: 200px;
+    width: 138px;
+    height: 138px;
     position: absolute;
     z-index: 1;
 }
 
 .bg {
-    width: 200px;
-    height: 200px;
-    border-radius: 200px;
+    width: 138px;
+    height: 138px;
+    border-radius: 138px;
     position: absolute;
     background-color: #d13c36;
 }
 
 .time {
-    width: 160px;
-    height: 160px;
+    width: 100px;
+    height: 100px;
     margin: 20px 0 0 20px;
     background-color: #e45534;
-    border-radius: 160px;
+    border-radius: 100px;
     position: absolute;
     z-index: 1;
     text-align: center;
-    line-height: 160px;
+    line-height: 100px;
     font-size: 30px;
 }
 
