@@ -830,7 +830,7 @@ select {
 }
 
 .pie1 {
-    clip: rect(0px, 200px, 200px, 100px);
+    clip: rect(0px, 138px, 138px, 69px);
     -o-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
@@ -838,7 +838,7 @@ select {
 }
 
 .pie2 {
-    clip: rect(0px, 100px, 200px, 0px);
+    clip: rect(0px, 69px, 138px, 0px);
     -o-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
