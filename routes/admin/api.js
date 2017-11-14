@@ -354,7 +354,7 @@ router.post('/daka/del', function (req, res, next) {
     var _id = req.body._id;
     var queryJSON = {};
 
-    if (!cellPhone) {
+    if (!_id) {
         res.send(sendData('201', false, '手机号不能为空'));
         return false;
     }
