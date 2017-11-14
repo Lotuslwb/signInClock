@@ -25,8 +25,17 @@
             <div class="record-status">重录</div>
         </div>
         <div class="playRecord-btn btn-item btn-item2">
-            <img src="../../../../daka/img/playRecord.png" class="record-icon J-playRecord-btn">
-            <div class="record-status">回放</div>
+            <div class="J-playRecord-btn game_time">
+                <div class="hold">
+                    <div class="pie pie1"></div>
+                </div>
+                <div class="hold">
+                    <div class="pie pie2"></div>
+                </div>
+                <div class="bg"></div>
+                <div class="time"><img src="/daka/img/playRecord.png" class="record-icon"></div>
+            </div>
+            <div class="record-status J-playRecord-text">回放</div>
         </div>
         <div class="gotoDaka-btn btn-item btn-item2">
             <img src="../../../../daka/img/gotoDaka.png" class="record-icon J-gotoDaka-btn">
@@ -84,6 +93,7 @@
                 wx.playVoice({
                     localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
                 });
+                $('.J-playRecord-text').html('回放中<span class="dotting"></span>');
             } else {
                 alert('没有录音');
             }
@@ -130,6 +140,11 @@
             // 录音时间超过一分钟没有停止的时候会执行 complete 回调
             complete: function (res) {
                 recordStop(res);
+            }
+        });
+        wx.onVoicePlayEnd({
+            success: function (res) {
+                $('.J-playRecord-text').text('回放');
             }
         });
     });
@@ -196,7 +211,7 @@
                 }
             }
         }
-        $(".J-time").html(SS + "s");
+        $(".J-time").html(60 - SS * 1 + "s");
     };
 
     var start1 = function () {
@@ -239,6 +254,8 @@
     var countStop = function () {
         clearInterval(s);
         clearInterval(t1);
+        $(".pie1").css("-webkit-transform", "rotate(0deg)");
+        $(".pie2").css("-webkit-transform", "rotate(0deg)");
     }
 
     var overTime = function () {
