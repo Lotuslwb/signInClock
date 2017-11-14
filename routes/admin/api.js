@@ -275,7 +275,6 @@ router.post('/leads/query', function (req, res, next) {
 
 });
 
-
 router.post('/leads/export', function (req, res, next) {
     var tag = req.body.tag;
     var realName = req.body.realName;
@@ -345,13 +344,25 @@ router.post('/daka/saveArticleData', function (req, res, next) {
 
 /* 打卡计划 --  查询接口*/
 router.post('/daka/query', function (req, res, next) {
-
     ArticleDB.find({}, function (err, docs) {
         var totalCount = docs.length;
         res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
     });
+});
+/*打卡计划 删除接口*/
+router.post('/daka/del', function (req, res, next) {
+    var _id = req.body._id;
+    var queryJSON = {};
 
+    if (!cellPhone) {
+        res.send(sendData('201', false, '手机号不能为空'));
+        return false;
+    }
 
+    queryJSON["_id"] = _id;
+    ArticleDB.remove(queryJSON).then(function (docs) {
+        res.send(sendData('200', true, ''));
+    });
 });
 
 

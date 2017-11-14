@@ -731,11 +731,39 @@ select {
     padding-bottom: 25px;
 }
 
+.result-page .book-info .medie-player {
+    width: 364px;
+    height: 86px;
+    background: #fcfcfc;
+    border-bottom: 1px solid #f1f1f1;
+    border-top: 1px solid #f1f1f1;
+    margin-left: 166px;
+    margin-bottom: 12px;
+    font-size: 24px;
+    color: #122032;
+    padding-top: 12px;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.result-page .book-info .media-player-icon {
+    float: left;
+    margin-right: 16px;
+    margin-left: 24px;
+    margin-top: 9px;
+}
+
+.result-page .book-info .articleTitle span {
+    display: block;
+    color: #686566;
+    font-size: 20px;
+}
+
 .result-page .AD-info {
     background: url("../img/result-banner.png");
     width: 583px;
     height: 128px;
-    margin: 0 auto 160px;
+    margin: 0 auto 80px;
     position: relative;
 }
 
@@ -887,12 +915,33 @@ select {
     box-shadow: 4px 0 currentColor, 12px 0 currentColor, 20px 0 currentColor; /* for IE9+, ..., 3个点 */
     animation: dot 4s infinite step-start both; /* for IE10+, ... */
 }
-.dotting:before { content: '...'; } /* for IE8. 若无需兼容IE8, 此行以及下一行删除*/
-.dotting::before { content: ''; } /* for IE9+ 覆盖 IE8 */
-:root .dotting { margin-right: 8px; } /* for IE9+,FF,CH,OP,SF 占据空间*/
+
+.dotting:before {
+    content: '...';
+}
+
+/* for IE8. 若无需兼容IE8, 此行以及下一行删除*/
+.dotting::before {
+    content: '';
+}
+
+/* for IE9+ 覆盖 IE8 */
+:root .dotting {
+    margin-right: 8px;
+}
+
+/* for IE9+,FF,CH,OP,SF 占据空间*/
 
 @keyframes dot {
-    25% { box-shadow: none; }                                  /* 0个点 */
-    50% { box-shadow: 4px 0 currentColor; }                    /* 1个点 */
-    75% { box-shadow: 4px 0 currentColor, 12px 0 currentColor;  /* 2个点 */ }
+    25% {
+        box-shadow: none;
+    }
+    /* 0个点 */
+    50% {
+        box-shadow: 4px 0 currentColor;
+    }
+    /* 1个点 */
+    75% {
+        box-shadow: 4px 0 currentColor, 12px 0 currentColor; /* 2个点 */
+    }
 }

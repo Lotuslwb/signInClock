@@ -32,9 +32,15 @@
             <div class="title">今天读什么?</div>
             <img class="cover" src="<%= bookInfo.coverUrl %>"/>
             <div class="main">
+                <div class="medie-player">
+                    <img src="/daka/img/media-player-icon.jpg" class="media-player-icon">
+                    <div class="articleTitle">
+                        <%= bookInfo.articleTitle %>
+                        <span>来自EF英孚教育青少儿英语</span>
+                    </div>
+                </div>
                 <div class="text"><%= bookInfo.brief %></div>
             </div>
-            <div class="share-btn">分享至朋友圈</div>
         </div>
     </div>
     <div class="AD-info">
@@ -45,7 +51,6 @@
     </div>
 </div>
 
-<%- include("menu.ejs",{"type":'personal'}) %>
 <%- include("commonjs.ejs") %>
 <script>
     var bookId = "<%= bookInfo._id %>";

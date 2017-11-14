@@ -68,7 +68,7 @@ router.get('/plan', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var openid = req.signedCookies['session'];
         getUserInfoByOpenid(openid, function (docs) {
-            res.render('daka/plan', {title: 'index', bookInfo: docs[0]});
+            res.render('daka/plan', {title: 'index', now: new Date(), bookInfo: docs[0]});
         })
     });
 });

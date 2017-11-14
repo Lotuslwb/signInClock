@@ -31,6 +31,11 @@
 <%- include("menu.ejs",{"type":'plan'}) %>
 <%- include("commonjs.ejs") %>
 <script>
+
+    var now = "<%= now %>";
+    initFloatDate(now);
+
+
     getUserInfo(function (data) {
         var data = data.data[0];
         var recodeInfo = data['recodeInfo'];

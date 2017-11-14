@@ -30,6 +30,13 @@ obj.prototype = {
                     {title: '简介', dataIndex: 'brief', width: 80, sortable: false},
                     {title: '阅读耗时', dataIndex: 'needTime', width: 80, sortable: false},
                     {title: '词汇量', dataIndex: 'wordLength', width: 180, sortable: false},
+                    {
+                        title: '操作', dataIndex: 'h', width: 120, sortable: false, renderer: function (value, obj) {
+                        var returnStr = '';
+                        returnStr += ' <span class="grid-command remove-btn">删除</span>';
+                        return returnStr;
+                    }
+                    }
                 ];
 
             var form = $('#J-search-form');
@@ -161,7 +168,6 @@ obj.prototype = {
                 }
 
                 if (target.hasClass('remove-btn')) {
-
                     BUI.Message.Show({
                         msg: '确定删除吗?',
                         buttons: [
@@ -273,9 +279,9 @@ obj.prototype = {
 
                 function removeItem() {
                     $.ajax({
-                        url: '/admin/api/teacher/del',
+                        url: '/admin/api/daka/del',
                         type: 'post',
-                        data: {'cellPhone': record.cellPhone},
+                        data: {'_id': record._id},
                         success: function (data) {
                             console.log(data);
                             if (data.status == 200) {
