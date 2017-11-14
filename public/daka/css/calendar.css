@@ -119,7 +119,7 @@ ul, li {
     margin: 4px;
     text-align: center;
 
-    display: none;
+    /*display: none;*/
 }
 
 .calendar-week .item {
