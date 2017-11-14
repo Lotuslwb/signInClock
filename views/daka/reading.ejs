@@ -116,7 +116,7 @@
         })
 
         $('.J-gotoDaka-btn').click(function () {
-
+            console.log(localId);
             // 上传音频 和 打卡
             wx.uploadVoice({
                 localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得

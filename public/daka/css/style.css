@@ -727,7 +727,7 @@ select {
 }
 
 .result-page .book-info {
-    overflow: auto;
+    overflow: hidden;
     padding-bottom: 25px;
 }
 
