@@ -54,6 +54,7 @@
     function recordStop(res) {
         localId = res.localId;
         $('.record-btn-list').addClass('active');
+        countStop();
     }
 
     initWX(function () {
@@ -73,6 +74,7 @@
                 wx.startRecord();
                 $(this).addClass('active');
                 $('.J-record-status').html('录音中...<span class="J-time"></span>');
+                countDown();
             }
         })
 
@@ -169,6 +171,7 @@
             clearInterval(t1);
             $(".pie2").css("-webkit-transform", "rotate(0deg)");
             $(".pie1").css("-webkit-transform", "rotate(" + d + "deg)");
+            overTime();
         } else {
             if (totle > 0 && MS > 0) {
                 MS = MS - 1;
@@ -236,6 +239,10 @@
     var countStop = function () {
         clearInterval(s);
         clearInterval(t1);
+    }
+
+    var overTime = function () {
+        console.log('计时器结束');
     }
 </script>
 </body>
