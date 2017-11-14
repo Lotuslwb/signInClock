@@ -89,13 +89,23 @@
 
         //播放录音
         $('.J-playRecord-btn').click(function () {
-            if (localId) {
-                wx.playVoice({
-                    localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                wx.stopRecord({
+                    success: function (res) {
+                        $('.J-playRecord-text').text('回放');
+                    }
                 });
-                $('.J-playRecord-text').html('回放中<span class="dotting"></span>');
             } else {
-                alert('没有录音');
+                $(this).addClass('active');
+                if (localId) {
+                    wx.playVoice({
+                        localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                    });
+                    $('.J-playRecord-text').html('回放中<span class="dotting"></span>');
+                } else {
+                    alert('没有录音');
+                }
             }
         });
 

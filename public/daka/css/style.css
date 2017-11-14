@@ -881,8 +881,10 @@ select {
 }
 
 .dotting {
-    display: inline-block; min-width: 2px; min-height: 2px;
-    box-shadow: 2px 0 currentColor, 6px 0 currentColor, 10px 0 currentColor; /* for IE9+, ..., 3个点 */
+    display: inline-block;
+    min-width: 4px;
+    min-height: 4px;
+    box-shadow: 4px 0 currentColor, 12px 0 currentColor, 20px 0 currentColor; /* for IE9+, ..., 3个点 */
     animation: dot 4s infinite step-start both; /* for IE10+, ... */
 }
 .dotting:before { content: '...'; } /* for IE8. 若无需兼容IE8, 此行以及下一行删除*/
@@ -891,6 +893,6 @@ select {
 
 @keyframes dot {
     25% { box-shadow: none; }                                  /* 0个点 */
-    50% { box-shadow: 2px 0 currentColor; }                    /* 1个点 */
-    75% { box-shadow: 2px 0 currentColor, 6px 0 currentColor;  /* 2个点 */ }
+    50% { box-shadow: 4px 0 currentColor; }                    /* 1个点 */
+    75% { box-shadow: 4px 0 currentColor, 12px 0 currentColor;  /* 2个点 */ }
 }
