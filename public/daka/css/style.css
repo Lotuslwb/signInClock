@@ -916,6 +916,11 @@ select {
     height: 380px;
 }
 
+.difficulty-star {
+    color: #e9329c;
+    font-size: 24px;
+}
+
 .dotting {
     display: inline-block;
     min-width: 4px;
