@@ -54,10 +54,9 @@
 <%- include("commonjs.ejs") %>
 <script>
     var bookId = "<%= bookInfo._id %>";
-    var readingInfo =<%- UserInfo.readingInfo %>;
-    var currentReadingInfo = readingInfo.filter(function (item) {
+    var currentReadingInfo =<%- UserInfo.readingInfo.filter(function (item) {
         return item.readingList['bookId'] = bookId;
-    })[0];
+    })[0] %>;
     console.log(currentReadingInfo);
     var recordLocalId = currentReadingInfo['recordLocalId'], recordServerId = currentReadingInfo['recordServerId'];
     var localId;
