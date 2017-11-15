@@ -54,7 +54,8 @@
 <%- include("commonjs.ejs") %>
 <script>
     var bookId = "<%= bookInfo._id %>";
-    var currentReadingInfo =<%- UserInfo.readingInfo.filter(function (item) {
+    var currentReadingInfo =<%- var ReadingInfo = UserInfo.readingInfo.filter(function (item) {
+        item._id = [];
         return item.readingList['bookId'] = bookInfo._id;
     })[0] %>;
     console.log(currentReadingInfo);
