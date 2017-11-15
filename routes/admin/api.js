@@ -339,7 +339,6 @@ router.post('/daka/saveArticleData', function (req, res, next) {
     saveArticleDataToDB(data, function (docs) {
         res.send(sendData('200', docs, ''));
     });
-
 });
 
 /* 打卡计划 --  查询接口*/

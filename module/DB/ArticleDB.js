@@ -9,6 +9,7 @@ var Schema = {
     articleTitle: String, //文章标题
     articleText: String, //正文
     resourceType: String, //资源类型 , video  or audio
+    videoURL: String
 };
 
 var option = {
