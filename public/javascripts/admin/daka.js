@@ -28,6 +28,7 @@ obj.prototype = {
                 columns = [
                     {title: '文章标题', dataIndex: 'articleTitle', width: 400, sortable: false},
                     {title: '阅读耗时', dataIndex: 'needTime', width: 80, sortable: false},
+                    {title: '难度等级', dataIndex: 'difficulty', width: 80, sortable: false},
                     {title: '词汇量', dataIndex: 'wordLength', width: 180, sortable: false},
                     {title: '视频链接', dataIndex: 'videoURL', width: 400, sortable: false},
                     {

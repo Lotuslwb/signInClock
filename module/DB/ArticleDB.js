@@ -9,7 +9,8 @@ var Schema = {
     articleTitle: String, //文章标题
     articleText: String, //正文
     resourceType: String, //资源类型 , video  or audio
-    videoURL: String
+    videoURL: String, //视频URl
+    difficulty: String //难度等级
 };
 
 var option = {
