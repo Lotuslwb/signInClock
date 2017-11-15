@@ -144,7 +144,7 @@
             success: function (res) {
                 localId = res.localId; // 返回音频的本地ID
                 console.log(res);
-                console.log(recordServerId, 'recordServerId');
+                alert(recordServerId, 'recordServerId');
                 cb && cb(localId);
             }
         });
