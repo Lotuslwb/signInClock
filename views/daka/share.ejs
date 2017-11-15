@@ -54,6 +54,13 @@
 <%- include("commonjs.ejs") %>
 <script>
     var bookId = "<%= bookInfo._id %>";
+    var readingInfo =<%- UserInfo.readingInfo %>;
+    var currentReadingInfo = readingInfo.filter(function (item) {
+        return item.readingList['bookId'] = bookId;
+    })[0];
+    console.log(currentReadingInfo);
+    var recordLocalId = currentReadingInfo['recordLocalId'], recordServerId = currentReadingInfo['recordServerId'];
+    var localId;
 
     $('.share-btn').click(function () {
         $('.overlay-share').show();
@@ -62,6 +69,8 @@
     $('.overlay-share').click(function () {
         $(this).hide();
     })
+
+    WXDownloadVoice();
 
 
     var userId = '<%= UserInfo._id %>';
@@ -78,6 +87,20 @@
     $('.J-totalWordLength').text(totalWordLength);
 
     initWX(function () {
+        $('.medie-player').click(function () {
+            if (localId) {
+                wx.playVoice({
+                    localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                });
+            } else {
+                WXDownloadVoice(function (localId) {
+                    wx.playVoice({
+                        localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                    });
+                })
+            }
+        });
+
         //“分享给朋友”
         wx.onMenuShareAppMessage({
             title: '英孚打卡计划 分享title', // 分享标题
@@ -109,7 +132,16 @@
 
     })
 
-
+    function WXDownloadVoice(cb) {
+        wx.downloadVoice({
+            serverId: recordLocalId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+            isShowProgressTips: 0, // 默认为1，显示进度提示
+            success: function (res) {
+                localId = res.localId; // 返回音频的本地ID
+                cb && cb(localId);
+            }
+        });
+    }
 </script>
 
 </body>
