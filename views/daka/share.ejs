@@ -74,7 +74,6 @@
         $(this).hide();
     })
 
-    WXDownloadVoice();
 
 
     var userId = '<%= UserInfo._id %>';
@@ -91,6 +90,8 @@
     $('.J-totalWordLength').text(totalWordLength);
 
     initWX(function () {
+        WXDownloadVoice();
+
         $('.medie-player').click(function () {
             if (localId) {
                 console.log(localId);
