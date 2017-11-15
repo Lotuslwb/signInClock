@@ -93,6 +93,7 @@
     initWX(function () {
         $('.medie-player').click(function () {
             if (localId) {
+                console.log(localId);
                 wx.playVoice({
                     localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
                 });
@@ -142,6 +143,7 @@
             isShowProgressTips: 0, // 默认为1，显示进度提示
             success: function (res) {
                 localId = res.localId; // 返回音频的本地ID
+                console.log(localId);
                 cb && cb(localId);
             }
         });
