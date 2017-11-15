@@ -909,6 +909,13 @@ select {
     font-size: 30px;
 }
 
+.iframe {
+    width: 583px;
+    display: block;
+    margin: 0 auto 25px;
+    height: 380px;
+}
+
 .dotting {
     display: inline-block;
     min-width: 4px;

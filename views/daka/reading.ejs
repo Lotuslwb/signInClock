@@ -3,8 +3,12 @@
 <div class="page main-page reading-page active">
     <div class="reading-title"><%= bookInfo.articleTitle %></div>
     <div class="reading-video">
-        <iframe frameborder="0" width="100%" height="auto"
-                src="https://v.qq.com/iframe/player.html?vid=o0340hpol81&tiny=0&auto=0"></iframe>
+        <% if(bookInfo.videoURL){ %>
+        <% var videoStrArry = bookInfo.videoURL.split('/'); var videoCode = videoStrArry[videoStrArry.length - 1].split('.html')[0]; %>
+        <iframe frameborder="0" class="iframe"
+                src="https://v.qq.com/iframe/player.html?vid=<%= videoCode %>&tiny=0&auto=0">
+        </iframe>
+        <% } %>
     </div>
     <div class="reading-main">
         <%- bookInfo.articleText %>
