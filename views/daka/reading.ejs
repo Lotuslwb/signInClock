@@ -75,10 +75,10 @@
         var top = $(this).scrollTop();
         var diff = Math.abs(top - preScrollTop);
         preScrollTop = top;
-        if (diff < 10) {
+        if (diff < 5) {
             return false;
         }
-        
+
         top > 100 ? $iframe.addClass('active') : $iframe.removeClass('active');
     });
 
