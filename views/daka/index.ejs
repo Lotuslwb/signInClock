@@ -8,11 +8,10 @@
 
     <div class="index-words">
         <div class="index-words-en">
-            “Whatever you think about all the time, you will attract into your life. Not what you want – what you think
-            about.” – Bob Proctor, Motivational Coach
+            <%= bookInfo.wisdomEN || '' %>
         </div>
         <div class="index-words-cn">
-            「你一直想的事，不管它是什么，将被吸引到你的人生里；不是你想要的事，而是你想的事。」– 包柏‧普克 (励志导师)
+            <%= bookInfo.wisdomCH || '' %>
         </div>
     </div>
 
@@ -22,7 +21,14 @@
         <div class="index-main-box">
             <div class="reading-cover"><img class="cover-img" src="<%= bookInfo.coverUrl %>"></div>
             <div class="reading-info">
-                <div class="difficulty">难度等级：<span class="difficulty-star"><% for(var i = 0;i < 5;i++){ %><% if(i < bookInfo.difficulty * 1){ %>★<% }else{ %>☆<% }} %></span></div>
+                <div class="difficulty">难度等级：<span class="difficulty-star">
+                        <% for(var i = 0;i < 5;i++){ %>
+                        <% if(i < bookInfo.difficulty * 1){ %>
+                        ★
+                        <% }else{ %>
+                        ☆
+                        <% }} %>
+                    </span></div>
                 <div class="wordsLength">词汇量：<%= bookInfo.wordLength || 0 %></div>
                 <div class="needTime">耗时：<%= bookInfo.needTime || 0 %>分钟</div>
                 <div class="des"><%= bookInfo.brief || '' %></div>
