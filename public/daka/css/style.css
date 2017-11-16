@@ -369,10 +369,12 @@ select {
     font-size: 26px;
     vertical-align: text-bottom;
     line-height: 40px;
+    font-weight: bold;
 }
 
 .start-banner .banner-info {
     font-size: 24px;
+    font-weight: normal;
 }
 
 .logo {
@@ -909,11 +911,17 @@ select {
     font-size: 30px;
 }
 
-.iframe {
+.reading-video, .iframe {
     width: 583px;
     display: block;
     margin: 0 auto 25px;
     height: 380px;
+}
+
+.iframe.active {
+    position: fixed;
+    top: 0;
+    margin: 0;
 }
 
 .difficulty-star {

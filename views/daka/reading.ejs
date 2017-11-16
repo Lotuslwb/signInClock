@@ -68,6 +68,20 @@
     var wordLength = '<%= bookInfo.wordLength %>';
     var localId = '';
 
+    var preScrollTop = 0;
+
+    var $iframe = $('.iframe');
+    $('.reading-page').scroll(function () {
+        var top = $(this).scrollTop();
+        var diff = Math.abs(top - preScrollTop);
+        preScrollTop = top;
+        if (diff < 10) {
+            return false;
+        }
+        
+        top > 100 ? $iframe.addClass('active') : $iframe.removeClass('active');
+    });
+
     function recordStop(res) {
         localId = res.localId;
         $('.record-btn-list').addClass('active');
