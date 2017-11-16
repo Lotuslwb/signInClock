@@ -63,7 +63,16 @@
 
             <div class="search-cell">
                 <label class="search-cell-title m0-left"><s>*</s>简介：</label>
-                <textarea name="brief" id="" class="control-row4 input-large" data-rules="{required : true}"></textarea>
+                <textarea name="brief" class="control-row4 input-large"
+                          data-rules="{required : true,maxlength:60}"></textarea>
+            </div>
+            <div class="search-cell">
+                <label class="search-cell-title m0-left"><s>*</s>名言中文：</label>
+                <textarea name="wisdomCH" class="control-row4 input-large" data-rules="{required : true}"></textarea>
+            </div>
+            <div class="search-cell">
+                <label class="search-cell-title m0-left"><s>*</s>名言英文：</label>
+                <textarea name="wisdomEN" class="control-row4 input-large" data-rules="{required : true}"></textarea>
             </div>
 
             <div class="search-cell">

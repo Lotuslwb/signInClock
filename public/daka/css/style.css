@@ -125,7 +125,7 @@ select {
 }
 
 .index-page .index-main-box {
-    padding-top: 30px;
+    padding-top: 24px;
 }
 
 .index-page .reading-cover {
@@ -138,7 +138,7 @@ select {
 .index-page .reading-info {
     color: #333333;
     line-height: 1.6;
-    font-size: 24px;
+    font-size: 23px;
     width: 310px;
     float: right;
 }
@@ -147,10 +147,10 @@ select {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
-    height: 111px;
-    margin-bottom: 18px;
+    height: 138px;
+    margin-bottom: 12px;
 }
 
 .index-page .day-box {
@@ -175,8 +175,8 @@ select {
 
 .index-page .start-btn {
     width: 276px;
-    height: 70px;
-    line-height: 70px;
+    height: 64px;
+    line-height: 64px;
     background: rgb(233, 50, 156);
     color: #ffffff;
     text-align: center;
