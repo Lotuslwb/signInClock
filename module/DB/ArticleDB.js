@@ -10,6 +10,7 @@ var Schema = {
     articleText: String, //正文
     resourceType: String, //资源类型 , video  or audio
     videoURL: String, //视频URl
+    audioURL: String, //音频URl
     difficulty: String, //难度等级
     wisdomCH: String, //名人名言 中文
     wisdomEN: String, //名人名言 英文

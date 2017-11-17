@@ -1,5 +1,14 @@
 ﻿<%- include("header.ejs",{"title":'打卡'}) %>
-
+<style>
+    .medie-player {
+        width: 583px;
+        margin: auto;
+        padding: 0;
+        border: 0;
+        background: rgba(255, 255, 255, 0.9);
+        margin-top: -1px;
+    }
+</style>
 <div class="page main-page reading-page index-page active">
     <div class="reading-title"><%= bookInfo.articleTitle %></div>
 
@@ -12,13 +21,16 @@
     </div>
     <% } %>
 
+    <% if(bookInfo.audioURL){ %>
     <div class="medie-player">
+        <audio src="<%= bookInfo.audioURL %>" preload="preload"></audio>
         <img src="/daka/img/media-player-icon.jpg" class="media-player-icon">
         <div class="articleTitle">
             Babette的逃脱
             <span>来自EF英孚教育青少儿英语</span>
         </div>
     </div>
+    <% } %>
 
     <div class="reading-main">
         <%- bookInfo.articleText %>
