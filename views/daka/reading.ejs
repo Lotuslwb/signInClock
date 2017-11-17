@@ -1,4 +1,4 @@
-﻿<%- include("header.ejs",{"title":'打卡'}) %>
+﻿<%- include("header.ejs",{"title":'英孚青少儿英语亲子共读训练营'}) %>
 <style>
     .medie-player {
         width: 583px;
@@ -175,8 +175,13 @@
 
         //重新录音
         $('.J-againRecord-btn').click(function () {
-            $('.record-btn-list').removeClass('active');
-            $('.J-record-status').text('点击录音');
+            wx.stopRecord({
+                success: function (res) {
+                    $('.J-playRecord-text').text('回放');
+                    $('.record-btn-list').removeClass('active');
+                    $('.J-record-status').text('点击录音');
+                }
+            });
         })
 
         $('.J-gotoDaka-btn').click(function () {
