@@ -54,6 +54,58 @@ router.get('/setSignIn', function (req, res, next) {
     getUserInfoFormDB(openid, function (docs) {
 
         var data = docs[0];
+        try {
+            var readingInfo = data.readingInfo;
+            var timeId = getFormatDate();
+            var newReadingInfo = readingInfo.map(function (item) {
+                if (item.readingTimeId == timeId) {
+                    item.recordServerId = recordServerId;
+                }
+            })
+        } catch (e) {
+            console.log('error', e);
+        }
+
+
+        var updateDate = {
+            readingInfo: newReadingInfo
+        }
+
+        log(updateDate);
+
+        updateUserInfoToDB(data._id, updateDate, function (docs) {
+            //成功
+            res.send(sendData('200', updateDate, ''));
+        }, function (docs) {
+            //失败
+            res.send(sendData('999', docs, '数据库更新失败'));
+        })
+
+    }, function (docs) {
+        res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
+    })
+});
+router.get('/saveVoice', function (req, res, next) {
+    var openid = req.signedCookies['session'];
+    var recordServerId = req.query.serverId;
+    var readingList = {
+        bookId: req.query.bookId,  //今日书籍ID
+        bookName: req.query.bookName, // 今日书籍名
+        bookCover: req.query.bookCover, //今天书籍封页
+        bookDes: req.query.bookDes //今天书籍封页
+    };
+    var wordLength = req.query.wordLength;
+
+    console.log(openid, 'setSignIn');
+
+    if (!openid) {
+        res.send(sendData('999', docs, 'openid 不能为空'));
+        return false;
+    }
+
+    getUserInfoFormDB(openid, function (docs) {
+
+        var data = docs[0];
         console.log(data);
         try {
             var recodeInfo = data.recodeInfo;
@@ -64,18 +116,13 @@ router.get('/setSignIn', function (req, res, next) {
             var recodeTimeArray = recodeInfo.recodeTimeArray || [];
             var totalWordLength = recodeInfo.totalWordLength || 0;
             var readingInfo = data.readingInfo;
-            var runDaka = function () {
-                //记录打卡时间
-                recodeTimeArray.push(getFormatDate());
-                totalWordLength = totalWordLength * 1 + wordLength * 1;
-                //记录录音信息 和 书籍信息
-                readingInfo.push({
-                    readingTimeId: getFormatDate(), //阅读日期  20170102
-                    recordServerId: recordServerId, // 录音,微信服务器ID
-                    recordLocalId: '',//录音 本地服务器ID
-                    readingList: readingList //今日书籍信息
-                })
-            }
+
+
+            readingInfo.push({
+                recordServerId: recordServerId, // 录音,微信服务器ID
+                recordLocalId: '',//录音 本地服务器ID
+                readingList: readingList //今日书籍信息
+            })
         } catch (e) {
             console.log('error', e);
         }
