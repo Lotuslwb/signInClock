@@ -28,7 +28,7 @@ router.get('/reading', function (req, res, next) {
         return false;
     }
     getBookInfoById(id, function (docs) {
-        res.render('daka/reading', {title: 'index', bookInfo: docs[0]});
+        res.render('daka/reading', {title: 'index', bookInfo: docs[0], now: new Date()});
     });
 
 });
@@ -163,7 +163,6 @@ function getBookInfoById(id, cb_s, cb_f) {
             cb_s && cb_s(docs);
         }
     });
-
 }
 
 function getBookId() {

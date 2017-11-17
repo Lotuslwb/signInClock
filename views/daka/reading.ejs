@@ -12,6 +12,14 @@
     </div>
     <% } %>
 
+    <div class="medie-player">
+        <img src="/daka/img/media-player-icon.jpg" class="media-player-icon">
+        <div class="articleTitle">
+            Babette的逃脱
+            <span>来自EF英孚教育青少儿英语</span>
+        </div>
+    </div>
+
     <div class="reading-main">
         <%- bookInfo.articleText %>
     </div>
@@ -62,6 +70,10 @@
 <%- include("menu.ejs",{"type":''}) %>
 <%- include("commonjs.ejs") %>
 <script>
+
+    var now = "<%= now %>";
+    initFloatDate(now);
+
 
     var bookId = '<%= bookInfo._id %>';
     var bookName = '<%= bookInfo.articleTitle %>';
