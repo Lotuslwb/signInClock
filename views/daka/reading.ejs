@@ -1,4 +1,4 @@
-﻿<%- include("header.ejs",{"title":'英孚青少儿英语亲子共读训练营'}) %>
+﻿<%- include("header.ejs",{"title":'英孚亲子共读训练营'}) %>
 <style>
     .medie-player {
         width: 583px;
@@ -155,11 +155,10 @@
         $('.J-playRecord-btn').click(function () {
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
-                wx.stopRecord({
-                    success: function (res) {
-                        $('.J-playRecord-text').text('回放');
-                    }
+                wx.stopVoice({
+                    localId: localId
                 });
+                $('.J-playRecord-text').text('回放');
             } else {
                 $(this).addClass('active');
                 if (localId) {
@@ -175,13 +174,12 @@
 
         //重新录音
         $('.J-againRecord-btn').click(function () {
-            wx.stopRecord({
-                success: function (res) {
-                    $('.J-playRecord-text').text('回放');
-                    $('.record-btn-list').removeClass('active');
-                    $('.J-record-status').text('点击录音');
-                }
+            wx.stopVoice({
+                localId: localId
             });
+            $('.J-playRecord-text').text('回放');
+            $('.J-playRecord-text').text('回放');
+            $('.record-btn-list').removeClass('active');
         })
 
         $('.J-gotoDaka-btn').click(function () {
