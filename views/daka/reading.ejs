@@ -22,8 +22,7 @@
     <% } %>
 
     <% if(bookInfo.audioURL){ %>
-    <div class="medie-player">
-        <audio src="<%= bookInfo.audioURL %>" preload="preload"></audio>
+    <div class="medie-player J-medie-player" data-url="<%= bookInfo.audioURL %>">
         <img src="/daka/img/media-player-icon.jpg" class="media-player-icon">
         <div class="articleTitle">
             Babette的逃脱
@@ -48,6 +47,7 @@
                 <div class="time"><img src="../../../../daka/img/record-icon.png" class="record-icon"></div>
             </div>
             <div class="record-status J-record-status">点击录制</div>
+            <div class="record-status">可以选择你喜欢的一段进行录音</div>
         </div>
 
         <div class="againRecord-btn btn-item btn-item2">
@@ -82,6 +82,7 @@
 <%- include("menu.ejs",{"type":''}) %>
 <%- include("commonjs.ejs") %>
 <script>
+
 
     var now = "<%= now %>";
     initFloatDate(now);
@@ -226,6 +227,36 @@
 
 </script>
 <script>
+    musicPlayer();
+    function musicPlayer() {
+        var $player = $('.J-medie-player');
+        if (!$player) {
+            return false;
+        }
+
+        var musicSrc = $player.data('url');
+        var audioElement = new Audio(musicSrc);
+        audioElement.controls = false;
+        audioElement.loop = true;
+        audioElement.autoplay = false;
+        audioElement.load();
+        audioElement.pause();
+
+
+        //bind event
+        $player.click(function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                audioElement.pause();
+            } else {
+                $(this).addClass('active');
+                audioElement.play();
+            }
+        }).removeClass('active');
+        
+    }
+</script>
+<script>
     var i = 0;
     var j = 0;
     var count = 0;
@@ -268,7 +299,7 @@
                 }
             }
         }
-        $(".J-time").html(60 - SS * 1 + "s");
+        $(".J-time").html(SS * 1 + "s");
     };
 
     var start1 = function () {
