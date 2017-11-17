@@ -155,7 +155,7 @@
         $('.J-playRecord-btn').click(function () {
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
-                wx.pauseVoice({
+                wx.stopVoice({
                     localId: localId
                 });
                 $('.J-playRecord-text').text('回放');
@@ -174,7 +174,7 @@
 
         //重新录音
         $('.J-againRecord-btn').click(function () {
-            wx.pauseVoice({
+            wx.stopVoice({
                 localId: localId
             });
             $('.J-playRecord-text').text('回放');
