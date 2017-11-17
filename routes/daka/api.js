@@ -37,7 +37,6 @@ router.get('/saveVoice', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
 
-
     console.log(openid, 'setSignIn');
 
     if (!openid) {
@@ -55,6 +54,7 @@ router.get('/saveVoice', function (req, res, next) {
                 if (item.readingTimeId == timeId) {
                     item.recordServerId = recordServerId;
                 }
+                return item;
             })
         } catch (e) {
             console.log('error', e);
