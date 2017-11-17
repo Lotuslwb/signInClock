@@ -79,7 +79,7 @@
                 title: '英孚青少儿英语亲子共读训练营', // 分享标题
                 desc: '从今天起，每天和孩子一起读会英文书吧！', // 分享描述
                 link: 'http://ma.eldesign.cn/daka/share?bookId=' + bookId + '&userId=' + userId, // 分享链接
-                imgUrl: '/daka/img/sharelogo.jpg', // 分享图标
+                imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -94,7 +94,7 @@
             wx.onMenuShareTimeline({
                 title: '【' + nickname + '】正在读【<%= bookInfo.articleTitle %>】，已读' + totalWordLength + '字，还顺便给你朗读了一段，快去听听吧！', // 分享标题
                 link: 'http://ma.eldesign.cn/daka/share?bookId=' + bookId + '&userId=' + userId, // 分享链接
-                imgUrl: '/daka/img/sharelogo.jpg', // 分享图标
+                imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                 },
