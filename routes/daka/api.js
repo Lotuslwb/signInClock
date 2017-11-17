@@ -31,8 +31,7 @@ router.get('/getAllPersonInfo', function (req, res, next) {
 
 });
 
-
-//签到
+//保存录音
 router.get('/saveVoice', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
@@ -80,6 +79,7 @@ router.get('/saveVoice', function (req, res, next) {
     })
 });
 
+//签到
 router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
@@ -111,13 +111,17 @@ router.get('/setSignIn', function (req, res, next) {
             var recodeTimeArray = recodeInfo.recodeTimeArray || [];
             var totalWordLength = recodeInfo.totalWordLength || 0;
             var readingInfo = data.readingInfo;
-
-
-            readingInfo.push({
-                recordServerId: recordServerId, // 录音,微信服务器ID
-                recordLocalId: '',//录音 本地服务器ID
-                readingList: readingList //今日书籍信息
-            })
+            var runDaka = function () {
+                //记录打卡时间
+                recodeTimeArray.push(getFormatDate());
+                console.log('recodeTimeArray', recodeTimeArray)
+                //记录录音信息 和 书籍信息
+                readingInfo.push({
+                    readingTimeId: getFormatDate(), //阅读日期  20170102
+                    recordServerId: recordServerId, // 录音,微信服务器ID
+                    recordLocalId: '' //录音 本地服务器ID
+                })
+            }
         } catch (e) {
             console.log('error', e);
         }
