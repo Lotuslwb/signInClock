@@ -466,7 +466,7 @@ select {
 
 .reading-page {
     /*background: #f5f8fa;*/
-    overflow: auto;
+    overflow: hidden;
     padding-bottom: 180px;
     box-sizing: border-box;
 }
@@ -494,6 +494,8 @@ select {
     margin: auto;
     padding: 25px;
     box-sizing: border-box;
+    height: 400px;
+    overflow: auto;
 }
 
 .record-btn-list {
