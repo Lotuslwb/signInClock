@@ -135,6 +135,7 @@
 
         //开始录音 或者结束录音
         $('.J-record-btn').click(function () {
+            audioElement.pause();
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 //已经在录音,结束录音
@@ -151,8 +152,10 @@
             }
         })
 
-        //播放录音
+        //播放录音  回放
         $('.J-playRecord-btn').click(function () {
+            audioElement.pause();
+
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 wx.stopVoice({
@@ -174,6 +177,8 @@
 
         //重新录音
         $('.J-againRecord-btn').click(function () {
+
+            audioElement.pause();
             wx.stopVoice({
                 localId: localId
             });
@@ -306,6 +311,7 @@
 
 </script>
 <script>
+    var audioElement;
     musicPlayer();
     function musicPlayer() {
         var $player = $('.J-medie-player');
@@ -314,7 +320,7 @@
         }
 
         var musicSrc = $player.data('url');
-        var audioElement = new Audio(musicSrc);
+        audioElement = new Audio(musicSrc);
         audioElement.controls = false;
         audioElement.loop = true;
         audioElement.autoplay = false;
