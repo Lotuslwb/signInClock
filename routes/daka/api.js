@@ -33,16 +33,10 @@ router.get('/getAllPersonInfo', function (req, res, next) {
 
 
 //签到
-router.get('/setSignIn', function (req, res, next) {
+router.get('/saveVoice', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
-    var readingList = {
-        bookId: req.query.bookId,  //今日书籍ID
-        bookName: req.query.bookName, // 今日书籍名
-        bookCover: req.query.bookCover, //今天书籍封页
-        bookDes: req.query.bookDes //今天书籍封页
-    };
-    var wordLength = req.query.wordLength;
+
 
     console.log(openid, 'setSignIn');
 
@@ -85,7 +79,8 @@ router.get('/setSignIn', function (req, res, next) {
         res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
     })
 });
-router.get('/saveVoice', function (req, res, next) {
+
+router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
     var readingList = {
