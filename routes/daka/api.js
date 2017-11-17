@@ -114,7 +114,7 @@ router.get('/setSignIn', function (req, res, next) {
             var runDaka = function () {
                 //记录打卡时间
                 recodeTimeArray.push(getFormatDate());
-                totalWordLength += wordLength * 1;
+                totalWordLength = totalWordLength * 1 + wordLength * 1;
                 //记录录音信息 和 书籍信息
                 readingInfo.push({
                     readingTimeId: getFormatDate(), //阅读日期  20170102
