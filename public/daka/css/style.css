@@ -960,15 +960,22 @@ select {
 .number-text {
     font-size: 48px;
     color: #e9329c;
-    height: 66px;
-    width: 29px;
     text-align: center;
-    overflow: hidden;
     display: inline-block;
+    transition: all ease 1s;
+    -webkit-transition: all ease 1s;
 }
+
+.number_0 {
+    transform: translate3d(0, -68px, 0);
+    -webkit-transform: translate3d(0, -68px, 0);
+}
+
 .animate-number {
     display: inline-block;
     vertical-align: middle;
+    overflow: hidden;
+    height: 66px;
 }
 
 /* for IE8. 若无需兼容IE8, 此行以及下一行删除*/

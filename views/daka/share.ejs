@@ -27,7 +27,7 @@
             </div>
             <div class="record-info-right">
                 <div class="title">累积阅读字数</div>
-                <div class="text J-totalWordLength"></div>
+                <div class="text J-totalWordLength animate-number"></div>
             </div>
             <div class="record-info-mid"></div>
             <div class="hr"></div>
@@ -98,13 +98,22 @@
         var $totalWordLength = $('.J-totalWordLength');
 
         for (var i = 0; i < currentRecodeCounts.length; i++) {
-            var $tpl_new = $tpl.clone().find('span').addClass('number_' + currentRecodeCounts[i]);
+            //'number_' + currentRecodeCounts[i]
+            var translateStr = 'translate3d(0,' + -1 * 68 * currentRecodeCounts[i] + 'px,0)';
+            var $tpl_new = $tpl.clone().find('span').css({
+                'transform': translateStr,
+                '-webkit-transform': translateStr
+            });
             console.log(currentRecodeCounts, 'currentRecodeCounts');
             $currentRecodeCounts.append($tpl_new);
         }
 
         for (var i = 0; i < totalWordLength.length; i++) {
-            var $tpl_new = $tpl.clone().find('span').addClass('number_' + totalWordLength[i]);
+            var translateStr = 'translate3d(0,' + -1 * 68 * totalWordLength[i] + 'px,0)';
+            var $tpl_new = $tpl.clone().find('span').css({
+                'transform': translateStr,
+                '-webkit-transform': translateStr
+            });
             console.log(totalWordLength, 'totalWordLength');
             $totalWordLength.append($tpl_new);
         }
