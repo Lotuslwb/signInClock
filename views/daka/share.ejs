@@ -85,7 +85,7 @@
     var userId = '<%= UserInfo._id %>';
     var personInfo = <%- UserInfo.personInfo %>;
     var recodeInfo = <%- UserInfo.recodeInfo %>;
-    var firstDay = <%- UserInfo.readingInfo[0].readingTimeId %>;
+    var firstDay = <%= UserInfo.readingInfo[0].readingTimeId %>;
 
 
     var headimgurl = personInfo ? personInfo['headimgurl'] : '';
