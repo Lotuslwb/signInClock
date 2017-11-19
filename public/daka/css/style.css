@@ -953,6 +953,10 @@ select {
 
 }
 
+.number-tpl {
+    display: none;
+}
+
 /* for IE8. 若无需兼容IE8, 此行以及下一行删除*/
 .dotting::before {
     content: '';

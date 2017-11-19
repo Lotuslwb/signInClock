@@ -1,6 +1,6 @@
 ﻿<%- include("header.ejs",{"title":'英孚亲子共读训练营'}) %>
 
-<div id="number-tpl">
+<div id="number-tpl" class="number-tpl">
     <span>0<br/>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</span></div>
 
 <div class="page main-page index-page result-page active">
@@ -90,7 +90,7 @@
     var totalWordLength = recodeInfo ? recodeInfo['totalWordLength'] || 0 : 0;
     $('.J-nickname').text(nickname)
     $('.personal-logo').attr('src', headimgurl);
-
+    initAnimateNumber();
 
     function initAnimateNumber() {
         var $tpl = $('#number-tpl').html();
