@@ -8,7 +8,8 @@
             <img src="/daka/img/EF.png" class="banner-logo"/>
             <div class="banner-title">
                 我和宝贝的亲子共读计划
-                <div class="banner-info">2016/09/01 开始</div>
+
+                <div class="banner-info"><span class="J-startDate"></span> 开始</div>
             </div>
         </div>
         <div class="personal-info">
@@ -18,7 +19,7 @@
         </div>
         <div class="record-info">
             <div class="record-info-left">
-                <div class="title">累积读书天数</div>
+                <div class="title">累积阅读时间</div>
                 <div class="text J-currentRecodeCounts"><span class="days">天</span></div>
             </div>
             <div class="record-info-right">
@@ -64,6 +65,8 @@
         var personInfo = data['personInfo'];
         var recodeInfo = data['recodeInfo'];
         var clockInfo = data['clockInfo'];
+        var readingInfo = data['readingInfo'];
+        var firstDay = readingInfo[0].readingTimeId;
 
         var headimgurl = personInfo ? personInfo['headimgurl'] : '';
         var nickname = personInfo ? personInfo['nickname'] : '';
@@ -73,6 +76,7 @@
         $('.personal-logo').attr('src', headimgurl);
         $('.J-currentRecodeCounts').html(currentRecodeCounts + '<span class="days">天</span>');
         $('.J-totalWordLength').text(totalWordLength);
+        $('.J-startDate').text(firstDay.substr(0, 4) + '/' + firstDay.substr(4, 2) + '/' + firstDay.substr(6, 2));
 
         initWX(function () {
             //“分享给朋友”

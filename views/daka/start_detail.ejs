@@ -13,7 +13,14 @@
         <div class="banner-hr"></div>
         <div class="banner-title">
             我和宝贝的亲子共读计划
-            <div class="banner-info">2016/09/01 开始</div>
+            <%
+            var now_month = new Date().getMonth() * 1 + 1;
+            var now_date = new Date().getDate() * 1;
+            %>
+            <div class="banner-info"><%= new Date().getFullYear() %>
+                /<%= now_month > 0 ? now_month : '0' + now_month; %>/<%= now_date > 0 ? now_date : '0' + now_date; %>
+                开始
+            </div>
         </div>
     </div>
 </div>
