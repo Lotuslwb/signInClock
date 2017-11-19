@@ -98,13 +98,13 @@
         var $totalWordLength = $('.J-totalWordLength');
 
         for (var i = 0; i < currentRecodeCounts.length; i++) {
-            var $tpl_new = $tpl.find('span').addClass('number_' + currentRecodeCounts[i]);
-            $currentRecodeCounts.appendTo($tpl_new);
+            var $tpl_new = $tpl.find('span').addClass('number_' + currentRecodeCounts[currentRecodeCounts.length - i]);
+            $currentRecodeCounts.append($tpl_new);
         }
 
         for (var i = 0; i < totalWordLength.length; i++) {
-            var $tpl_new = $tpl.addClass('number_' + totalWordLength[i]);
-            $totalWordLength.appendTo($tpl_new);
+            var $tpl_new = $tpl.addClass('number_' + totalWordLength[totalWordLength.length - i]);
+            $totalWordLength.append($tpl_new);
         }
     }
 
