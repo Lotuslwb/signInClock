@@ -98,25 +98,35 @@
         var $totalWordLength = $('.J-totalWordLength');
 
         for (var i = 0; i < currentRecodeCounts.length; i++) {
-            //'number_' + currentRecodeCounts[i]
-            var translateStr = 'translate3d(0,' + -1 * 66 * currentRecodeCounts[i] + 'px,0)';
-            var $tpl_new = $tpl.clone().find('span').css({
-                'transform': translateStr,
-                'webkitTransform': translateStr
-            });
-            console.log(currentRecodeCounts, 'currentRecodeCounts');
+            var $tpl_new = $tpl.clone().find('span');
             $currentRecodeCounts.append($tpl_new);
         }
 
         for (var i = 0; i < totalWordLength.length; i++) {
-            var translateStr = 'translate3d(0,' + -1 * 66 * totalWordLength[i] + 'px,0)';
-            var $tpl_new = $tpl.clone().find('span').css({
-                'transform': translateStr,
-                'webkitTransform': translateStr
-            });
-            console.log(totalWordLength, 'totalWordLength');
+            var $tpl_new = $tpl.clone().find('span')
             $totalWordLength.append($tpl_new);
         }
+
+        setTimeout(function () {
+            for (var i = 0; i < currentRecodeCounts.length; i++) {
+                var translateStr = 'translate3d(0,' + -1 * 66 * currentRecodeCounts[i] + 'px,0)';
+                $currentRecodeCounts.find('.number-text').eq(i).css({
+                    'transform': translateStr,
+                    'webkitTransform': translateStr
+                });
+                console.log(currentRecodeCounts, 'currentRecodeCounts');
+            }
+
+            for (var i = 0; i < totalWordLength.length; i++) {
+                var translateStr = 'translate3d(0,' + -1 * 66 * totalWordLength[i] + 'px,0)';
+                $totalWordLength.find('.number-text').eq(i).css({
+                    'transform': translateStr,
+                    'webkitTransform': translateStr
+                });
+                console.log(totalWordLength, 'totalWordLength');
+
+            }
+        }, 500)
     }
 
     initWX(function () {
