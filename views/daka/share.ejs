@@ -62,9 +62,24 @@
     <%
     var currentReadingInfo = UserInfo.readingInfo.filter(function (item) {
         item['_id'] = [];
-        return item.readingList['bookId'] = bookInfo._id;
+        return item.readingTimeId == returnDateStr(new Date());
     })[0];
+
+    function returnDateStr(date) { // 日期转字符串
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+
+        month = month < 9 ? ('0' + month) : ('' + month);
+        day = day < 9 ? ('0' + day) : ('' + day);
+
+        return year + month + day;
+    };
     %>
+
+    var currentReadingInfo =<%- currentReadingInfo %>;
+
+    alert(JSON.parse(currentReadingInfo));
 
     var bookId = "<%= bookInfo._id %>";
 
