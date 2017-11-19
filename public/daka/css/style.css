@@ -687,7 +687,7 @@ select {
     color: #e9329c;
 }
 
-.result-page .record-info .text span {
+.result-page .record-info .text .days {
     font-size: 22px;
     color: #333333;
 }
@@ -947,6 +947,10 @@ select {
 
 .dotting:before {
     content: '...';
+}
+
+.animate-number {
+
 }
 
 /* for IE8. 若无需兼容IE8, 此行以及下一行删除*/

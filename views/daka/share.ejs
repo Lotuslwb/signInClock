@@ -1,5 +1,7 @@
 ﻿<%- include("header.ejs",{"title":'英孚亲子共读训练营'}) %>
 
+<div id="number-tpl">
+    <span>0<br/>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9</span></div>
 
 <div class="page main-page index-page result-page active">
 
@@ -19,7 +21,9 @@
         <div class="record-info">
             <div class="record-info-left">
                 <div class="title">累积读书天数</div>
-                <div class="text J-currentRecodeCounts"><span>天</span></div>
+                <div class="text">
+                    <div class="animate-number J-currentRecodeCounts"></div>
+                    <span class="days">天</span></div>
             </div>
             <div class="record-info-right">
                 <div class="title">累积阅读字数</div>
@@ -54,6 +58,7 @@
 <%- include("commonjs.ejs") %>
 <script>
 
+
     <%
     var currentReadingInfo = UserInfo.readingInfo.filter(function (item) {
         item['_id'] = [];
@@ -85,8 +90,23 @@
     var totalWordLength = recodeInfo ? recodeInfo['totalWordLength'] || 0 : 0;
     $('.J-nickname').text(nickname)
     $('.personal-logo').attr('src', headimgurl);
-    $('.J-currentRecodeCounts').html(currentRecodeCounts + '<span>天</span>');
-    $('.J-totalWordLength').text(totalWordLength);
+
+
+    function initAnimateNumber() {
+        var $tpl = $('#number-tpl').html();
+        var $currentRecodeCounts = $('.J-currentRecodeCounts');
+        var $totalWordLength = $('.J-totalWordLength');
+
+        for (var i = 0; i < currentRecodeCounts.length; i++) {
+            var $tpl_new = $tpl.addClass('number_' + currentRecodeCounts[i]);
+            $currentRecodeCounts.appendTo($tpl_new);
+        }
+
+        for (var i = 0; i < totalWordLength.length; i++) {
+            var $tpl_new = $tpl.addClass('number_' + totalWordLength[i]);
+            $totalWordLength.appendTo($tpl_new);
+        }
+    }
 
     initWX(function () {
         WXDownloadVoice();
