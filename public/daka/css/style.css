@@ -966,6 +966,10 @@ select {
     overflow: hidden;
     display: inline-block;
 }
+.animate-number {
+    display: inline-block;
+    vertical-align: middle;
+}
 
 /* for IE8. 若无需兼容IE8, 此行以及下一行删除*/
 .dotting::before {

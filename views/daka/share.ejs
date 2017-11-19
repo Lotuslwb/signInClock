@@ -104,7 +104,7 @@
         }
 
         for (var i = 0; i < totalWordLength.length; i++) {
-            var $tpl_new = $tpl.clone().addClass('number_' + totalWordLength[totalWordLength.length - 1 - i]);
+            var $tpl_new = $tpl.clone().find('span').addClass('number_' + totalWordLength[totalWordLength.length - 1 - i]);
             console.log($tpl_new);
             $totalWordLength.append($tpl_new);
         }
