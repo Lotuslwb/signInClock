@@ -36,6 +36,8 @@ router.get('/reading', function (req, res, next) {
 router.get('/share', function (req, res, next) {
     var id = req.query.bookId;
     var userId = req.query.userId;
+    var readTime = req.query.readTime;
+
     if (!id && !userId) {
         res.redirect('/daka/start');
         return false;
@@ -43,7 +45,7 @@ router.get('/share', function (req, res, next) {
     getUserInfoByUserId(userId, function (docs) {
         var UserInfo = docs[0];
         getBookInfoById(id, function (docs) {
-            res.render('daka/share', {bookInfo: docs[0], UserInfo: UserInfo});
+            res.render('daka/share', {bookInfo: docs[0], UserInfo: UserInfo, readTime: readTime});
         });
     })
 });
@@ -92,12 +94,13 @@ router.get('/personal', function (req, res, next) {
 router.get('/result', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var id = req.query.bookId;
+        var readTime = req.query.readTime;
         if (!id) {
             res.redirect('/daka/start');
             return false;
         }
         getBookInfoById(id, function (docs) {
-            res.render('daka/result', {bookInfo: docs[0]});
+            res.render('daka/result', {bookInfo: docs[0], readTime: readTime});
         });
     });
 });

@@ -62,19 +62,8 @@
     <%
     var currentReadingInfo = UserInfo.readingInfo.filter(function (item) {
         item['_id'] = [];
-        return item.readingTimeId == returnDateStr(new Date());
+        return item.readingTimeId == readTime;
     })[0];
-
-    function returnDateStr(date) { // 日期转字符串
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-
-        month = month < 9 ? ('0' + month) : ('' + month);
-        day = day < 9 ? ('0' + day) : ('' + day);
-
-        return year + month + day;
-    };
     %>
 
     var currentReadingInfo =<%- currentReadingInfo %>;

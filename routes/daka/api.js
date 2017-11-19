@@ -36,7 +36,6 @@ router.get('/saveVoice', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
 
-    console.log(openid, 'setSignIn');
 
     if (!openid) {
         res.send(sendData('999', docs, 'openid 不能为空'));
