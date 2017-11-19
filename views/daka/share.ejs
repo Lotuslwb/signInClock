@@ -93,12 +93,12 @@
     initAnimateNumber();
 
     function initAnimateNumber() {
-        var $tpl = $('#number-tpl').html();
+        var $tpl = $('#number-tpl');
         var $currentRecodeCounts = $('.J-currentRecodeCounts');
         var $totalWordLength = $('.J-totalWordLength');
 
         for (var i = 0; i < currentRecodeCounts.length; i++) {
-            var $tpl_new = $tpl.addClass('number_' + currentRecodeCounts[i]);
+            var $tpl_new = $tpl.find('span').addClass('number_' + currentRecodeCounts[i]);
             $currentRecodeCounts.appendTo($tpl_new);
         }
 
