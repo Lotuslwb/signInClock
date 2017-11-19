@@ -185,8 +185,11 @@
             success: function (res) {
                 localId = res.localId; // 返回音频的本地ID
                 console.log(res);
-                alert(JSON.stringify(res));
+                alert('下载音频成功' + JSON.stringify(res));
                 cb && cb(localId);
+            },
+            fail: function (res) {
+                alert('下载音频失败:' + JSON.stringify(res));
             }
         });
     }
