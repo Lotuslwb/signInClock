@@ -70,7 +70,7 @@
         var totalWordLength = recodeInfo ? recodeInfo['totalWordLength'] || 0 : 0;
         $('.J-nickname').text(nickname)
         $('.personal-logo').attr('src', headimgurl);
-        $('.J-currentRecodeCounts').html(currentRecodeCounts + '<span>天</span>');
+        $('.J-currentRecodeCounts').html(currentRecodeCounts + '<span class="days">天</span>');
         $('.J-totalWordLength').text(totalWordLength);
 
         initWX(function () {
