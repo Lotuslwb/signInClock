@@ -72,8 +72,6 @@
     var recordLocalId = "<%= currentReadingInfo['recordLocalId'] %>", recordServerId = "<%= currentReadingInfo['recordServerId'] %>";
     var localId;
 
-    alert(recordServerId);
-
     $('.share-btn').click(function () {
         $('.overlay-share').show();
     });
@@ -182,21 +180,20 @@
     })
 
     function WXDownloadVoice(cb) {
-        alert(recordServerId);
         wx.downloadVoice({
             serverId: recordServerId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
             isShowProgressTips: 1, // 默认为1，显示进度提示
             success: function (res) {
                 localId = res.localId; // 返回音频的本地ID
                 console.log(res);
-                alert('下载音频成功' + JSON.stringify(res));
+                //alert('下载音频成功' + JSON.stringify(res));
                 cb && cb(localId);
             },
             fail: function (res) {
                 alert('下载音频失败:' + JSON.stringify(res));
             },
             complete: function (res) {
-                alert('complete:' + JSON.stringify(res));
+                //alert('complete:' + JSON.stringify(res));
             }
         });
     }
