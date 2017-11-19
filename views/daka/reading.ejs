@@ -190,6 +190,13 @@
         $('.J-gotoDaka-btn').click(function () {
             var timeInLocal = localStorage.getItem('time');
             var now = returnDateStr(new Date());
+
+            audioElement.pause();
+            wx.stopVoice({
+                localId: localId
+            });
+            $('.J-playRecord-text').text('回放');
+
             if (timeInLocal == now) {
                 //今日已经打卡
                 wx.uploadVoice({
