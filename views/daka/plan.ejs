@@ -18,7 +18,8 @@
         <div class="finish-list">
             <% var readingInfo = bookInfo['readingInfo']; for(var i = 0;i < readingInfo.length;i++){ %>
             <% if(readingInfo[i]['readingList'] && readingInfo[i]['readingList'].bookId ){ %>
-            <a class="finish-item" href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>">
+            <a class="finish-item"
+               href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>&readTime=<%= readingInfo[i]['readingTimeId'] %>">
                 <img src="<%= readingInfo[i]['readingList'].bookCover %>">
             </a>
             <% } %>
