@@ -102,17 +102,17 @@
             var translateStr = 'translate3d(0,' + -1 * 68 * currentRecodeCounts[i] + 'px,0)';
             var $tpl_new = $tpl.clone().find('span').css({
                 'transform': translateStr,
-                '-webkit-transform': translateStr
+                'webkitTransform': translateStr
             });
             console.log(currentRecodeCounts, 'currentRecodeCounts');
             $currentRecodeCounts.append($tpl_new);
         }
 
         for (var i = 0; i < totalWordLength.length; i++) {
-            var translateStr = 'translate3d(0,' + -1 * 68 * totalWordLength[i] + 'px,0)';
+            var translateStr = 'translate3d(0,' + -1 * 66 * totalWordLength[i] + 'px,0)';
             var $tpl_new = $tpl.clone().find('span').css({
                 'transform': translateStr,
-                '-webkit-transform': translateStr
+                'webkitTransform': translateStr
             });
             console.log(totalWordLength, 'totalWordLength');
             $totalWordLength.append($tpl_new);
