@@ -1,6 +1,11 @@
 var getWebContent = require('../../module/tools/getWebContent');
 var getSDKSign = require('../../module/wx/getSDKSign');
 
+var DOWNLOAD_DIR = './downloads/';
+var spawn = require('child_process').spawn;
+var fs = require('fs');
+
+
 var originalUrl = '';
 var mediaId = '1Mzulsh1vcveqylz0Ir6REd9OH2RZDIU72Icl2cv1tVm57qXb4dy5Tm-n-NFgt0B';
 getSDKSign(originalUrl, function (wxConfig) {
@@ -9,18 +14,7 @@ getSDKSign(originalUrl, function (wxConfig) {
     console.log(url);
 
 
-    var fs = require('fs');
-    var request = require('request');
-//采用request模块，向服务器发起一次请求，获取图片资源
-    request.head(url, function (err, res, body) {
-        if (err) {
-            console.log(err);
-        }
-    });
-
-    var img_filename = 'mu.jpg';
-    request(url).pipe(fs.createWriteStream('./' + img_filename));     //通过流的方式，把图片写到本地目录下
-
+    download_file_curl(url)
 
     // getWebContent(url, 'GET', '', function (response) {
     //     response.body.pipe(fs.createWriteStream(mediaId));
@@ -29,6 +23,33 @@ getSDKSign(originalUrl, function (wxConfig) {
     //     // }
     // });
 });
+
+
+// Function to download file using curl
+var download_file_curl = function (file_url) {
+
+    // extract the file name
+    var file_name = url.parse(file_url).pathname.split('/').pop();
+    // create an instance of writable stream
+    var file = fs.createWriteStream(DOWNLOAD_DIR + file_name);
+    // execute curl using child_process' spawn function
+    var curl = spawn('curl', [file_url]);
+    // add a 'data' event listener for the spawn instance
+    curl.stdout.on('data', function (data) {
+        file.write(data);
+    });
+    // add an 'end' event listener to close the writeable stream
+    curl.stdout.on('end', function (data) {
+        file.end();
+        console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR);
+    });
+    // when the spawn child process exits, check if there were any errors and close the writeable stream
+    curl.on('exit', function (code) {
+        if (code != 0) {
+            console.log('Failed: ' + code);
+        }
+    });
+};
 
 
 module.exports = function (data, cb) {
