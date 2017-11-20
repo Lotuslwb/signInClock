@@ -9,7 +9,7 @@ getSDKSign(originalUrl, function (wxConfig) {
     var url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + mediaId;
     console.log(url);
     getWebContent(url, 'GET', '', function (response) {
-        response.pipe(fs.createWriteStream(mediaId));
+        response.body.pipe(fs.createWriteStream(mediaId));
         // if (response.body.errcode == '0') {
         //     // console.log('---消息推送 成功--');
         // }
