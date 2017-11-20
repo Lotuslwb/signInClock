@@ -26,12 +26,12 @@ obj.prototype = {
             var Grid = Grid,
                 Store = Data.Store,
                 columns = [
-                    {title: '文章标题', dataIndex: 'articleTitle', width: 400, sortable: false},
+                    {title: '文章标题', dataIndex: 'articleTitle', width: 300, sortable: false},
                     {title: '阅读耗时', dataIndex: 'needTime', width: 80, sortable: false},
                     {title: '难度等级', dataIndex: 'difficulty', width: 80, sortable: false},
-                    {title: '词汇量', dataIndex: 'wordLength', width: 180, sortable: false},
-                    {title: '视频链接', dataIndex: 'videoURL', width: 200, sortable: false},
-                    {title: '音频链接', dataIndex: 'audioURL', width: 200, sortable: false},
+                    {title: '词汇量', dataIndex: 'wordLength', width: 80, sortable: false},
+                    {title: '视频链接', dataIndex: 'videoURL', width: 300, sortable: false},
+                    {title: '音频链接', dataIndex: 'audioURL', width: 300, sortable: false},
                     {
                         title: '操作', dataIndex: 'h', width: 120, sortable: false, renderer: function (value, obj) {
                         var returnStr = '';

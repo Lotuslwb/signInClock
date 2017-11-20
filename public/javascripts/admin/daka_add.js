@@ -110,7 +110,7 @@ obj.prototype = {
 
         });
 
-        $('#select_card').change(function () {
+        $('#resourceType-select').change(function () {
             var v = $(this).val();
             if (v == 'video') {
                 $('.videoURLDIV').show();
