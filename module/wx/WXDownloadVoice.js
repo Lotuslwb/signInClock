@@ -4,6 +4,7 @@ var getSDKSign = require('../../module/wx/getSDKSign');
 var DOWNLOAD_DIR = './downloads/';
 var spawn = require('child_process').spawn;
 var fs = require('fs');
+var url = require('url');
 
 
 var originalUrl = '';
