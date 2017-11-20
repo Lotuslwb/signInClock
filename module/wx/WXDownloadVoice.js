@@ -18,7 +18,9 @@ getSDKSign(originalUrl, function (wxConfig) {
 
 // Function to download file using curl
 var download_file_curl = function (file_url, mediaId) {
-    exec('curl -o ' + mediaId + '.amr "' + file_url + '"', function (err, stdout, stderr) {
+    var doURL = 'curl -o ' + mediaId + '.amr "' + file_url + '"';
+    console.log(doURL);
+    exec(doURL, function (err, stdout, stderr) {
         if (err) {
             console.log(error.stack);
             console.log('Error code: ' + error.code);
