@@ -1,5 +1,6 @@
 var getWebContent = require('../../module/tools/getWebContent');
 var getSDKSign = require('../../module/wx/getSDKSign');
+var fs = require('fs');
 
 var originalUrl = '';
 var mediaId = '1Mzulsh1vcveqylz0Ir6REd9OH2RZDIU72Icl2cv1tVm57qXb4dy5Tm-n-NFgt0B';
