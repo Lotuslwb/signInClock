@@ -27,6 +27,7 @@ var download_file_curl = function (file_url, mediaId) {
             console.log('Signal received: ' + error.signal);
         }
         console.log('data : ' + stdout);
+        console.log('stderr : ' + stderr);
     }).on('exit', function (code) {
         console.log('子进程已退出, 退出码 ' + code);
     });
