@@ -22,9 +22,7 @@ var download_file_curl = function (file_url, mediaId) {
     console.log(doURL);
     exec(doURL, function (err, stdout, stderr) {
         if (err) {
-            console.log(error.stack);
-            console.log('Error code: ' + error.code);
-            console.log('Signal received: ' + error.signal);
+            console.log(error);
         }
         console.log('stderr : ' + stderr);
     }).on('exit', function (code) {
