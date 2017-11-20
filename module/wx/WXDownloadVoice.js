@@ -18,7 +18,7 @@ getSDKSign(originalUrl, function (wxConfig) {
 
 // Function to download file using curl
 var download_file_curl = function (file_url, mediaId) {
-    var doURL = 'curl -o ' + mediaId + '.amr "' + file_url + '"';
+    var doURL = 'curl -o ' + '/public/files/media/' + mediaId + '.amr "' + file_url + '"';
     console.log(doURL);
     exec(doURL, function (err, stdout, stderr) {
         if (err) {
@@ -26,10 +26,9 @@ var download_file_curl = function (file_url, mediaId) {
             console.log('Error code: ' + error.code);
             console.log('Signal received: ' + error.signal);
         }
-        console.log('data : ' + stdout);
         console.log('stderr : ' + stderr);
     }).on('exit', function (code) {
-        console.log('子进程已退出, 退出码 ' + code);
+        // console.log('子进程已退出, 退出码 ' + code);
     });
 };
 
