@@ -1,7 +1,7 @@
 var getWebContent = require('../../module/tools/getWebContent');
 var getSDKSign = require('../../module/wx/getSDKSign');
 
-var DOWNLOAD_DIR = './downloads/';
+var DOWNLOAD_DIR = '/';
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 var url = require('url');
