@@ -18,7 +18,7 @@ getSDKSign(originalUrl, function (wxConfig) {
 
 // Function to download file using curl
 var download_file_curl = function (file_url, mediaId) {
-    var doURL = 'curl -o ' + '/public/files/media/' + mediaId + '.amr "' + file_url + '"';
+    var doURL = 'curl -o ' + '/root/signInClock/public/files/media/' + mediaId + '.amr "' + file_url + '"';
     console.log(doURL);
     exec(doURL, function (err, stdout, stderr) {
         if (err) {
