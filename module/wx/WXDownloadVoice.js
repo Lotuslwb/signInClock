@@ -2,7 +2,7 @@ var getWebContent = require('../../module/tools/getWebContent');
 var getSDKSign = require('../../module/wx/getSDKSign');
 
 var originalUrl = '';
-var mediaId = 'wPaWv7itm1ZPNknhTU9gwlXDfDl7WhCQsG7mRR2b8k2Q3Fl-wt5uEqBLK4Jr57uM';
+var mediaId = '1Mzulsh1vcveqylz0Ir6REd9OH2RZDIU72Icl2cv1tVm57qXb4dy5Tm-n-NFgt0B';
 getSDKSign(originalUrl, function (wxConfig) {
     var access_token = wxConfig['TOKEN'];
     var url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + mediaId;
