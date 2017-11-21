@@ -14,7 +14,7 @@ var wxDownloadVoicePromise = function (obj = {}) {
 };
 
 
-function wxdownloadVoice(data = {
+function wxDownloadVoice(data = {
     mediaId: '',
     DOWNLOAD_DIR: '/'
 }, cb) {
