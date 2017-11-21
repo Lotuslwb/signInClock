@@ -37,6 +37,7 @@ var wxDownloadVoicePromise = function (obj = {}) {
         var cb = function (path) {
             resolve(path)
         }
+        console.log('wxDownloadVoicePromise')
         wxDownloadVoice(obj,cb)
     })
 }
