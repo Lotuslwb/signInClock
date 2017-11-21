@@ -11,11 +11,10 @@ function wxdownloadVoice(data = {
     var DOWNLOAD_DIR = data.DOWNLOAD_DIR;
     var mediaId = data.mediaId;
     var originalUrl = '';
-
+    console.log(data,'data');
     getSDKSign(originalUrl, function (wxConfig) {
         var access_token = wxConfig['TOKEN'];
         var url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + mediaId;
-        console.log(url);
         download_file_curl(url, mediaId);
     });
 
