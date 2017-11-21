@@ -8,6 +8,7 @@ var wxDownloadVoicePromise = function (obj = {}) {
         var cb = function (path) {
             resolve(path)
         }
+        console.log(obj, 'obj');
         wxDownloadVoice(obj, cb)
     })
 };
@@ -17,7 +18,6 @@ function wxdownloadVoice(data = {
     mediaId: '',
     DOWNLOAD_DIR: '/'
 }, cb) {
-    console.log(data, 'data');
     var DOWNLOAD_DIR = data.DOWNLOAD_DIR;
     var mediaId = data.mediaId;
     var originalUrl = '';
