@@ -15,6 +15,7 @@ function wxdownloadVoice(data = {
     getSDKSign(originalUrl, function (wxConfig) {
         var access_token = wxConfig['TOKEN'];
         var url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + mediaId;
+        console.log(url);
         download_file_curl(url, mediaId);
     });
 
@@ -37,8 +38,7 @@ var wxDownloadVoicePromise = function (obj = {}) {
         var cb = function (path) {
             resolve(path)
         }
-        console.log('wxDownloadVoicePromise')
-        wxDownloadVoice(obj,cb)
+        wxDownloadVoice(obj, cb)
     })
 }
 
