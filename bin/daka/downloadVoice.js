@@ -34,7 +34,7 @@ var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
 
 wxDownloadVoicePromise({
     DOWNLOAD_DIR,
-    media: '4R5jLdLkmwkM5oA_qj_2syyg6GeMZL_3eCaszeTAnzvQS9XkJb1fWyLYIW2Scbdn'
+    mediaId: '4R5jLdLkmwkM5oA_qj_2syyg6GeMZL_3eCaszeTAnzvQS9XkJb1fWyLYIW2Scbdn'
 }).then(function (path) {
     console.log(path, 'path');
 })
