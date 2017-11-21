@@ -7,7 +7,7 @@ rule2.minute = times2;
 // 查询数据库
 var fs = require('fs');
 var UserDB = require('../../module/DB/UserDB');
-var wxDownloadVoice = require('../../module/wx/WXDownloadVoice');
+var wxDownloadVoicePromise = require('../../module/wx/WXDownloadVoice');
 
 schedule.scheduleJob(rule2, function () {
 
@@ -32,15 +32,12 @@ var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
 //     })
 // });
 
-
-wxDownloadVoice({
+wxDownloadVoicePromise({
     DOWNLOAD_DIR,
-    mediaId: 'wVkejxVfdAguUGidFrZbizSqiIJR30fMxeo8ciaAJgcULyU9T7zzykWuszDydxAz'
+    media: '4R5jLdLkmwkM5oA_qj_2syyg6GeMZL_3eCaszeTAnzvQS9XkJb1fWyLYIW2Scbdn'
 }).then(function (path) {
     console.log(path, 'path');
-}).catch(function (e) {
-    console.error(e);
-});
+})
 
 
 function getMediaIdObjList(cb) {
