@@ -3,15 +3,24 @@ var getSDKSign = require('../../module/wx/getSDKSign');
 
 var exec = require('child_process').exec;
 var fs = require('fs');
+var wxDownloadVoicePromise = function (obj = {}) {
+    return new Promise((resolve, reject) => {
+        var cb = function (path) {
+            resolve(path)
+        }
+        wxDownloadVoice(obj, cb)
+    })
+};
+
 
 function wxdownloadVoice(data = {
     mediaId: '',
     DOWNLOAD_DIR: '/'
 }, cb) {
+    console.log(data, 'data');
     var DOWNLOAD_DIR = data.DOWNLOAD_DIR;
     var mediaId = data.mediaId;
     var originalUrl = '';
-    console.log(data,'data');
     getSDKSign(originalUrl, function (wxConfig) {
         var access_token = wxConfig['TOKEN'];
         var url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + mediaId;
@@ -30,15 +39,6 @@ function wxdownloadVoice(data = {
             cb(DOWNLOAD_DIR + mediaId + '.amr');
         });
     };
-}
-
-var wxDownloadVoicePromise = function (obj = {}) {
-    return new Promise((resolve, reject) => {
-        var cb = function (path) {
-            resolve(path)
-        }
-        wxDownloadVoice(obj, cb)
-    })
 }
 
 
