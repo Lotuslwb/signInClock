@@ -5,15 +5,43 @@ var times2 = [0, 30];
 rule2.minute = times2;
 
 // 查询数据库
+var fs = require('fs');
 var UserDB = require('../../module/DB/UserDB');
 var wxDownloadVoice = require('../../module/wx/WXDownloadVoice');
 
 schedule.scheduleJob(rule2, function () {
 
 });
-getMediaIdObjList();
+
 var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
-//wxDownloadVoice()
+// getMediaIdObjList(function (MediaIdObjList) {
+//     fs.unlinkSync('access_token.txt');
+//     var MediaIdObjOutputList;
+//     MediaIdObjList.map(function (item) {
+//         item.mediaIdList.map(function (mediaId) {
+//             wxDownloadVoice({
+//                 DOWNLOAD_DIR: DOWNLOAD_DIR,
+//                 mediaId: mediaId
+//             }, function (path) {
+//                 output.push({
+//                     mediaId: mediaId,
+//                     localPath: path
+//                 })
+//             })
+//         })
+//     })
+// });
+
+
+wxDownloadVoice({
+    DOWNLOAD_DIR,
+    mediaId: 'wVkejxVfdAguUGidFrZbizSqiIJR30fMxeo8ciaAJgcULyU9T7zzykWuszDydxAz'
+}).then(function (path) {
+    console.log(path, 'path');
+}).catch(function (e) {
+    console.error(e);
+});
+
 
 function getMediaIdObjList(cb) {
     var MediaIdObjList = [];
@@ -29,13 +57,11 @@ function getMediaIdObjList(cb) {
                     return item.recordServerId;
                 }
             });
-            console.log(mediaIdList, 'mediaIdList');
             return {
                 openid: doc.openid,
                 mediaIdList: mediaIdList
             }
         })
-        console.log(MediaIdObjList, 'MediaIdObjList');
         cb && cb(MediaIdObjList);
     });
 }
