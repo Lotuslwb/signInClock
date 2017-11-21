@@ -1,36 +1,35 @@
 var getWebContent = require('../../module/tools/getWebContent');
 var getSDKSign = require('../../module/wx/getSDKSign');
 
-var DOWNLOAD_DIR = '/';
 var exec = require('child_process').exec;
 var fs = require('fs');
 
+function wxdownloadVoice(data = {
+    mediaId: '',
+    DOWNLOAD_DIR: '/'
+}, cb) {
+    var DOWNLOAD_DIR = data.DOWNLOAD_DIR;
+    var mediaId = data.mediaId;
+    var originalUrl = '';
 
-var originalUrl = '';
-var mediaId = '1Mzulsh1vcveqylz0Ir6REd9OH2RZDIU72Icl2cv1tVm57qXb4dy5Tm-n-NFgt0B';
-getSDKSign(originalUrl, function (wxConfig) {
-    var access_token = wxConfig['TOKEN'];
-    var url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + mediaId;
-    console.log(url);
-    download_file_curl(url, mediaId);
-});
-
-
-// Function to download file using curl
-var download_file_curl = function (file_url, mediaId) {
-    var doURL = 'curl -o ' + '/root/signInClock/public/files/media/' + mediaId + '.amr "' + file_url + '"';
-    console.log(doURL);
-    exec(doURL, function (err, stdout, stderr) {
-        if (err) {
-            console.log(error);
-        }
-        console.log('stderr : ' + stderr);
-    }).on('exit', function (code) {
-        // console.log('子进程已退出, 退出码 ' + code);
+    getSDKSign(originalUrl, function (wxConfig) {
+        var access_token = wxConfig['TOKEN'];
+        var url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + mediaId;
+        download_file_curl(url, mediaId);
     });
-};
 
-
-module.exports = function (data, cb) {
-
+    var download_file_curl = function (file_url, mediaId) {
+        var doURL = 'curl -o ' + DOWNLOAD_DIR + mediaId + '.amr "' + file_url + '"';
+        console.log(doURL);
+        exec(doURL, function (err, stdout, stderr) {
+            if (err) {
+                console.log(error);
+            }
+        }).on('exit', function (code) {
+            console.log('子进程已退出, 退出码 ' + code);
+        });
+    };
 }
+
+
+module.exports = wxdownloadVoice;
