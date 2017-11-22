@@ -14,30 +14,29 @@ schedule.scheduleJob(rule2, function () {
 });
 
 var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
-// getMediaIdObjList(function (MediaIdObjList) {
-//     fs.unlinkSync('access_token.txt');
-//     var MediaIdObjOutputList;
-//     MediaIdObjList.map(function (item) {
-//         item.mediaIdList.map(function (mediaId) {
-//             wxDownloadVoice({
-//                 DOWNLOAD_DIR: DOWNLOAD_DIR,
-//                 mediaId: mediaId
-//             }, function (path) {
-//                 output.push({
-//                     mediaId: mediaId,
-//                     localPath: path
-//                 })
-//             })
-//         })
-//     })
-// });
+
+getMediaIdObjList(function (MediaIdObjList) {
+    fs.unlinkSync('access_token.txt');
+    var MediaIdObjOutputList;
+    MediaIdObjList.map(function (item) {
+        var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
+            return wxDownloadVoicePromise({
+                DOWNLOAD_DIR: DOWNLOAD_DIR,
+                mediaId: mediaId
+            });
+        });
+        Promise.all(downloadPromiseArray).then(function (data) {
+            console.log(data, 'downloadPromiseArray')
+        })
+    })
+});
 
 wxDownloadVoicePromise({
     DOWNLOAD_DIR,
     mediaId: '4R5jLdLkmwkM5oA_qj_2syyg6GeMZL_3eCaszeTAnzvQS9XkJb1fWyLYIW2Scbdn'
 }).then(function (path) {
     console.log(path, 'path');
-})
+});
 
 
 function getMediaIdObjList(cb) {
