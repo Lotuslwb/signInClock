@@ -27,12 +27,17 @@ getMediaIdObjList(function (MediaIdObjList) {
         });
         return Promise.all(downloadPromiseArray).then(function (data) {
             console.log(data, 'downloadPromiseArray')
-            item.localIdList = data;
-            return item;
+            for (var i = 0; i < data.length; i++) {
+                item['readingInfo'][i]['recordLocalId'] = data[i];
+            }
+            return {
+                'openid': item.openid,
+                'readingInfo': item.readingInfo
+            };
         })
     });
     Promise.all(MediaIdObjPromiseList).then(function (allData) {
-        console.log(allData);
+        console.log(allData, 'allData');
     })
 });
 
