@@ -28,6 +28,7 @@ getMediaIdObjList(function (MediaIdObjList) {
         return Promise.all(downloadPromiseArray).then(function (data) {
             console.log(data, 'downloadPromiseArray')
             item.localIdList = data;
+            return item;
         })
     });
     Promise.all(MediaIdObjPromiseList).then(function (allData) {
