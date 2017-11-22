@@ -52,7 +52,7 @@ function getMediaIdObjList(cb) {
             return {
                 openid: doc.openid,
                 mediaIdList: mediaIdList,
-                ...doc
+                readingInfo: doc['readingInfo']
             }
         })
         cb && cb(MediaIdObjList);
