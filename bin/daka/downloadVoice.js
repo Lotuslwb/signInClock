@@ -26,19 +26,16 @@ getMediaIdObjList(function (MediaIdObjList) {
             });
         });
         return Promise.all(downloadPromiseArray).then(function (data) {
-            console.log(data, 'downloadPromiseArray')
             for (var i = 0; i < data.length; i++) {
                 item['readingInfo'][i]['recordLocalId'] = data[i];
             }
-            return {
-                'openid': item.openid,
-                'readingInfo': item.readingInfo
-            };
+
+            return UserDB.User.update({'openid': item.openid}, {'readingInfo': item.readingInfo});
         })
     });
     Promise.all(MediaIdObjPromiseList).then(function (allData) {
-        console.log(allData[0]['readingInfo'][0], 'allData');
-    })
+        console.log(allData, 'allData');
+    });
 });
 
 
