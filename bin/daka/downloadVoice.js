@@ -37,7 +37,7 @@ getMediaIdObjList(function (MediaIdObjList) {
         })
     });
     Promise.all(MediaIdObjPromiseList).then(function (allData) {
-        console.log(allData, 'allData');
+        console.log(allData[0]['readingInfo'][0], 'allData');
     })
 });
 
