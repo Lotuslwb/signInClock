@@ -25,6 +25,7 @@ getMediaIdObjList(function (MediaIdObjList) {
                 mediaId: mediaId
             });
         });
+        console.log(downloadPromiseArray,'downloadPromiseArray');
         Promise.all(downloadPromiseArray).then(function (data) {
             console.log(data, 'downloadPromiseArray')
         })
