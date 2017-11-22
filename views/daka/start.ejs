@@ -5,10 +5,10 @@
     <img src="../../../../daka/img/start-banner.jpg">
     <img src="../../../../daka/img/logo.png" class="logo">
     <div class="banner-text">
-        <div class="banner-number">DAY
-            <span>21</span>
-        </div>
-        <div class="banner-hr"></div>
+        <!--<div class="banner-number">DAY-->
+        <!--<span>21</span>-->
+        <!--</div>-->
+        <!--<div class="banner-hr"></div>-->
         <div class="banner-title">
             我和宝贝的亲子共读计划
             <%
@@ -24,7 +24,7 @@
 </div>
 
 <div class="allInList">
-    <div class="allInList-title"><%= docs.length %> 人已参加</div>
+    <div class="allInList-title"><%= docs.length > 100 ? docs.length * 2 : docs.length * 10 %> 人已参加</div>
     <div class="allInList-main clearfix">
         <% for(var i = 0;i < docs.length && i < 22;i++){ %>
         <% if(docs[i]['personInfo'].headimgurl){ %>
@@ -37,11 +37,11 @@
     <div class="startInfoList-title">我和宝贝的亲子共读计划</div>
     <div class="startInfoList-text">
         <div>活动奖品：</div>
-        <div>特等奖 – 英孚青少儿国内校外营2周课程（1个）</div>
-        <div>*每个季度进行一次大抽奖</div>
-        <div>一等奖- 英孚青少儿校内营1周课程（3个）</div>
-        <!--<div>二等奖- 语言运用俱乐部活动（10个）</div>-->
-        <!--<div>三等奖- 英孚原创周边</div>-->
+        <!--<div>特等奖 – 英孚青少儿国内校外营2周课程（1个）</div>-->
+        <!--<div>*每个季度进行一次大抽奖</div>-->
+        <div>一等奖- 英孚定制精美行李箱</div>
+        <div>二等奖- 英孚定制精美字母DIY灯箱</div>
+        <div>三等奖- 英孚定制精美保温杯</div>
         <a href="/daka/start_detail">查看详情</a>
     </div>
     <div class="join-btn">我要参加</div>
