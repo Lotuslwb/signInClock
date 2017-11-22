@@ -18,25 +18,21 @@ var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
 getMediaIdObjList(function (MediaIdObjList) {
     fs.unlinkSync('access_token.txt');
     var MediaIdObjOutputList;
-    MediaIdObjList.map(function (item) {
+    var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
         var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
             return wxDownloadVoicePromise({
                 DOWNLOAD_DIR: DOWNLOAD_DIR,
                 mediaId: mediaId
             });
         });
-        console.log(downloadPromiseArray,'downloadPromiseArray');
-        Promise.all(downloadPromiseArray).then(function (data) {
+        return Promise.all(downloadPromiseArray).then(function (data) {
             console.log(data, 'downloadPromiseArray')
+            item.localIdList = data;
         })
+    });
+    Promise.all(MediaIdObjPromiseList).then(function (allData) {
+        console.log(allData);
     })
-});
-
-wxDownloadVoicePromise({
-    DOWNLOAD_DIR,
-    mediaId: '4R5jLdLkmwkM5oA_qj_2syyg6GeMZL_3eCaszeTAnzvQS9XkJb1fWyLYIW2Scbdn'
-}).then(function (path) {
-    console.log(path, 'path');
 });
 
 
@@ -56,7 +52,8 @@ function getMediaIdObjList(cb) {
             });
             return {
                 openid: doc.openid,
-                mediaIdList: mediaIdList
+                mediaIdList: mediaIdList,
+                ...doc
             }
         })
         cb && cb(MediaIdObjList);
