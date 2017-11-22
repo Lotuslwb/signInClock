@@ -8,7 +8,6 @@ var wxDownloadVoicePromise = function (obj = {}) {
         var cb = function (path) {
             resolve(path)
         }
-        console.log(obj, 'obj');
         wxDownloadVoice(obj, cb)
     })
 };
@@ -29,13 +28,11 @@ function wxDownloadVoice(data = {
 
     var download_file_curl = function (file_url, mediaId) {
         var doURL = 'curl -o ' + DOWNLOAD_DIR + mediaId + '.amr "' + file_url + '"';
-        console.log(doURL);
         exec(doURL, function (err, stdout, stderr) {
             if (err) {
                 console.log(error);
             }
         }).on('exit', function (code) {
-            console.log('子进程已退出, 退出码 ' + code);
             cb(DOWNLOAD_DIR + mediaId + '.amr');
         });
     };
