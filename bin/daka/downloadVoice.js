@@ -83,7 +83,9 @@ function getMediaIdObjList(cb) {
                 readingInfo: doc['readingInfo']
             }
         })
-
+        MediaIdObjList = MediaIdObjList.filter(function (item) {
+            return item.mediaIdList.length > 0;
+        })
         console.log(MediaIdObjList, 'MediaIdObjList');
         cb && cb(MediaIdObjList);
     });
