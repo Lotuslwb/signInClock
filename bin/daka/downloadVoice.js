@@ -35,7 +35,10 @@ var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
 // });
 
 getMediaIdObjList(function (MediaIdObjList) {
-    fs.unlinkSync('access_token.txt');
+    try {
+        fs.unlinkSync('access_token.txt');
+    }
+    
     var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
         var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
             console.log(mediaId, 'mediaId');
@@ -54,6 +57,8 @@ getMediaIdObjList(function (MediaIdObjList) {
     });
     Promise.all(MediaIdObjPromiseList).then(function (allData) {
         console.log(allData, 'allData');
+    }).catch(function (e) {
+        console.log(e, '下载音频错误');
     });
 });
 
