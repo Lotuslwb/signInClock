@@ -14,6 +14,7 @@ var Schema = {
     difficulty: String, //难度等级
     wisdomCH: String, //名人名言 中文
     wisdomEN: String, //名人名言 英文
+    createTime: String
 };
 
 var option = {

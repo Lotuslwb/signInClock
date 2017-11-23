@@ -24,7 +24,8 @@
 </div>
 
 <div class="allInList">
-    <div class="allInList-title"><%= docs.length > 100 ? docs.length * 2 : docs.length * 10 %> 人已参加</div>
+    <!--<div class="allInList-title"><%= docs.length > 100 ? docs.length * 2 : docs.length * 10 %> 人已参加</div>-->
+    <div class="allInList-title"><%= docs.length %> 人已参加</div>
     <div class="allInList-main clearfix">
         <% for(var i = 0;i < docs.length && i < 22;i++){ %>
         <% if(docs[i]['personInfo'].headimgurl){ %>
