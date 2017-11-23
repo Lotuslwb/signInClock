@@ -38,7 +38,7 @@ var data = {
 schedule.scheduleJob(rule2, function () {
     var bookId = getBookId();
     var now = new Date();
-    var now_date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日 ' + now.getHours() + ':' + now.getMinutes();
+    var now_date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日 ' + now.getHours() + ':' + (now.getMinutes() > 9 ? now.getMinutes() : '0' + now.getMinutes());
     getBookInfoById(bookId, function (docs) {
         var bookName = docs[0].articleTitle;
         getOpenIdObjList(function (openIdObjList) {
