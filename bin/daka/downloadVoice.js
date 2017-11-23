@@ -67,7 +67,7 @@ function getMediaIdObjList(cb) {
         var docs = docs.filter(function (item) {
             return item['recodeInfo']['totalRecodeCounts'] * 1 > 0;
         });
-        
+        console.log(docs);
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = doc['readingInfo'].map(function (item) {
                 if (item.recordLocalId.length <= 0) {
