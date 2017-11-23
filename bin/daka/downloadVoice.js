@@ -10,61 +10,46 @@ var UserDB = require('../../module/DB/UserDB');
 var wxDownloadVoicePromise = require('../../module/wx/WXDownloadVoice');
 var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
 
-// schedule.scheduleJob(rule2, function () {
-//     getMediaIdObjList(function (MediaIdObjList) {
-//         fs.unlinkSync('access_token.txt');
-//         var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
-//             var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
-//                 return wxDownloadVoicePromise({
-//                     DOWNLOAD_DIR: DOWNLOAD_DIR,
-//                     mediaId: mediaId
-//                 });
-//             });
-//             return Promise.all(downloadPromiseArray).then(function (data) {
-//                 for (var i = 0; i < data.length; i++) {
-//                     item['readingInfo'][i]['recordLocalId'] = data[i];
-//                 }
-//
-//                 return UserDB.User.update({'openid': item.openid}, {'readingInfo': item.readingInfo});
-//             })
-//         });
-//         Promise.all(MediaIdObjPromiseList).then(function (allData) {
-//             console.log(allData, 'allData');
-//         });
-//     });
-// });
-
-getMediaIdObjList(function (MediaIdObjList) {
-    try {
-        fs.unlinkSync('access_token.txt');
-    } catch (e) {
-        console.error(e);
-    }
-
-    var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
-        var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
-            return wxDownloadVoicePromise({
-                DOWNLOAD_DIR: DOWNLOAD_DIR,
-                mediaId: mediaId
-            });
-        });
-        return Promise.all(downloadPromiseArray).then(function (data) {
-            // 获得下载到本地音频的path list  就是data
-            for (var i = 0; i < data.length; i++) {
-                var recordServerId = item['readingInfo'][i]['recordServerId'];
-                if (data[i].indexOf(recordServerId) > -1) {
-                    item['readingInfo'][i]['recordLocalId'] = data[i];
-                }
-            }
-            return UserDB.User.update({'openid': item.openid}, {'readingInfo': item.readingInfo});
-        })
-    });
-    Promise.all(MediaIdObjPromiseList).then(function (allData) {
-        console.log(allData, 'allData');
-    }).catch(function (e) {
-        console.log(e, '下载音频错误');
-    });
+schedule.scheduleJob(rule2, function () {
+    downloadVoice();
 });
+
+downloadVoice();
+
+
+function downloadVoice() {
+    getMediaIdObjList(function (MediaIdObjList) {
+        try {
+            fs.unlinkSync('access_token.txt');
+        } catch (e) {
+            console.error(e);
+        }
+
+        var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
+            var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
+                return wxDownloadVoicePromise({
+                    DOWNLOAD_DIR: DOWNLOAD_DIR,
+                    mediaId: mediaId
+                });
+            });
+            return Promise.all(downloadPromiseArray).then(function (data) {
+                // 获得下载到本地音频的path list  就是data
+                for (var i = 0; i < data.length; i++) {
+                    var recordServerId = item['readingInfo'][i]['recordServerId'];
+                    if (data[i].indexOf(recordServerId) > -1) {
+                        item['readingInfo'][i]['recordLocalId'] = data[i];
+                    }
+                }
+                return UserDB.User.update({'openid': item.openid}, {'readingInfo': item.readingInfo});
+            })
+        });
+        Promise.all(MediaIdObjPromiseList).then(function (allData) {
+            console.log(allData, 'allData');
+        }).catch(function (e) {
+            console.log(e, '下载音频错误');
+        });
+    });
+}
 
 
 function getMediaIdObjList(cb) {
