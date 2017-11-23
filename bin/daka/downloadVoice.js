@@ -38,6 +38,7 @@ getMediaIdObjList(function (MediaIdObjList) {
     fs.unlinkSync('access_token.txt');
     var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
         var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
+            console.log(mediaId, 'mediaId');
             return wxDownloadVoicePromise({
                 DOWNLOAD_DIR: DOWNLOAD_DIR,
                 mediaId: mediaId
@@ -47,7 +48,7 @@ getMediaIdObjList(function (MediaIdObjList) {
             for (var i = 0; i < data.length; i++) {
                 item['readingInfo'][i]['recordLocalId'] = data[i];
             }
-
+            console.log(item, 'item');
             return UserDB.User.update({'openid': item.openid}, {'readingInfo': item.readingInfo});
         })
     });
@@ -86,7 +87,7 @@ function getMediaIdObjList(cb) {
         MediaIdObjList = MediaIdObjList.filter(function (item) {
             return item.mediaIdList.length > 0;
         })
-        console.log(MediaIdObjList, 'MediaIdObjList');
+        console.log(MediaIdObjList[0]['readingInfo'][0], 'MediaIdObjList');
         cb && cb(MediaIdObjList);
     });
 }
