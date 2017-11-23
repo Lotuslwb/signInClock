@@ -71,9 +71,10 @@ function getMediaIdObjList(cb) {
         // console.log(docs);
 
         MediaIdObjList = docs.map(function (doc) {
-            var mediaIdList = doc['readingInfo'].map(function (item) {
+            var mediaIdList = [];
+            doc['readingInfo'].map(function (item) {
                 if (item.recordLocalId.length <= 0) {
-                    return item.recordServerId;
+                    mediaIdList.push(item.recordServerId);
                 }
             });
             return {
@@ -83,7 +84,7 @@ function getMediaIdObjList(cb) {
             }
         })
 
-        console.log(MediaIdObjList,'MediaIdObjList');
+        console.log(MediaIdObjList, 'MediaIdObjList');
         cb && cb(MediaIdObjList);
     });
 }
