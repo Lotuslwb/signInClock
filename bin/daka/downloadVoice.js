@@ -64,6 +64,8 @@ function getMediaIdObjList(cb) {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
+        console.log(docs,'docs');
+
         var docs = docs.filter(function (item) {
             return item['recodeInfo']['totalRecodeCounts'] * 1 > 0;
         });
