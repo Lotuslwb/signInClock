@@ -73,9 +73,9 @@ function getMediaIdObjList(cb) {
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = [];
             doc['readingInfo'].map(function (item) {
-                if (item.recordLocalId.length <= 0) {
-                    mediaIdList.push(item.recordServerId);
-                }
+                //if (item.recordLocalId.length <= 0) {
+                mediaIdList.push(item.recordServerId);
+                //}
             });
             return {
                 openid: doc.openid,
