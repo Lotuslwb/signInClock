@@ -37,8 +37,10 @@ var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
 getMediaIdObjList(function (MediaIdObjList) {
     try {
         fs.unlinkSync('access_token.txt');
+    } catch (e) {
+        console.error(e);
     }
-    
+
     var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
         var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
             console.log(mediaId, 'mediaId');
