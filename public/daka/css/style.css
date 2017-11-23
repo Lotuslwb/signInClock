@@ -149,7 +149,7 @@ select {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
-    height: 138px;
+    min-height: 90px;
     margin-bottom: 12px;
 }
 
