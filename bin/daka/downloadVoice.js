@@ -64,12 +64,12 @@ function getMediaIdObjList(cb) {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
-        console.log(docs,'docs');
 
-        var docs = docs.filter(function (item) {
-            return item['recodeInfo']['totalRecodeCounts'] * 1 > 0;
-        });
-        console.log(docs);
+        // var docs = docs.filter(function (item) {
+        //     return item['recodeInfo']['totalRecodeCounts'] * 1 > 0;
+        // });
+        // console.log(docs);
+
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = doc['readingInfo'].map(function (item) {
                 if (item.recordLocalId.length <= 0) {
@@ -83,7 +83,7 @@ function getMediaIdObjList(cb) {
             }
         })
 
-        console.log(MediaIdObjList);
+        console.log(MediaIdObjList,'MediaIdObjList');
         cb && cb(MediaIdObjList);
     });
 }
