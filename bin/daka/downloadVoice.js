@@ -49,8 +49,12 @@ getMediaIdObjList(function (MediaIdObjList) {
             });
         });
         return Promise.all(downloadPromiseArray).then(function (data) {
+            // 获得下载到本地音频的path list  就是data
             for (var i = 0; i < data.length; i++) {
-                item['readingInfo'][i]['recordLocalId'] = data[i];
+                var recordServerId = item['readingInfo'][i]['recordServerId'];
+                if (data[i].indexOf(recordServerId) > -1) {
+                    item['readingInfo'][i]['recordLocalId'] = data[i];
+                }
             }
             return UserDB.User.update({'openid': item.openid}, {'readingInfo': item.readingInfo});
         })
@@ -70,15 +74,12 @@ function getMediaIdObjList(cb) {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
-
-        // var docs = docs.filter(function (item) {
-        //     return item['recodeInfo']['totalRecodeCounts'] * 1 > 0;
-        // });
-        // console.log(docs);
+        //只考虑打过卡的用户
 
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = [];
             doc['readingInfo'].map(function (item) {
+                //如果没有下载,即没有recordLocalId,则放入mediaIdList
                 if (item.recordLocalId.length <= 0) {
                     mediaIdList.push(item.recordServerId);
                 }
@@ -92,7 +93,7 @@ function getMediaIdObjList(cb) {
         MediaIdObjList = MediaIdObjList.filter(function (item) {
             return item.mediaIdList.length > 0;
         })
-        //console.log(MediaIdObjList[0]['readingInfo'][0], 'MediaIdObjList');
+        console.log(MediaIdObjList, 'MediaIdObjList');
         cb && cb(MediaIdObjList);
     });
 }
