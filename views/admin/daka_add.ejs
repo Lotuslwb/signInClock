@@ -29,15 +29,16 @@
             </div>
 
             <div class="search-cell">
-                <span class="search-cell-title m0-left"><s>*</s>耗时(分钟)：</span>
+                <span class="search-cell-title m0-left"><s>*</s>耗时(分:秒)：</span>
                 <div class="inline">
-                    <input type="text" name="needTime" data-rules="{required : true,number:true}">
+                    <input type="text" name="needTime_1" data-rules="{required : true,number:true}"> :
+                    <input type="text" name="needTime_2" data-rules="{required : true,number:true}">
                 </div>
             </div>
 
             <div class="search-cell">
                 <span class="search-cell-title m0-left"><s>*</s>难度等级：</span>
-                <select class="search-common-cell"  name="difficulty"
+                <select class="search-common-cell" name="difficulty"
                         data-rules="{required : true}">
                     <option value="1">1颗星</option>
                     <option value="2">2颗星</option>
@@ -91,7 +92,7 @@
                 </div>
             </div>
 
-                <div class="search-cell audioURLDIV" style="display: none;">
+            <div class="search-cell audioURLDIV" style="display: none;">
                 <span class="search-cell-title m0-left">音频链接</span>
                 <div class="inline">
                     <input type="text" name="audioURL" style="width: 400px;">

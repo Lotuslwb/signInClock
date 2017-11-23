@@ -337,6 +337,8 @@ router.post('/daka/saveArticleData', function (req, res, next) {
     var data = req.body;
     console.log(data);
     data.createTime = new Date().getTime();
+    data.needTime = data.needTime_1 + ':' + data.needTime_2;
+
     saveArticleDataToDB(data, function (docs) {
         res.send(sendData('200', docs, ''));
     });
