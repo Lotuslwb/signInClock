@@ -40,6 +40,9 @@ function downloadVoice() {
                         item['readingInfo'][i]['recordLocalId'] = data[i];
                     }
                 }
+                if(item.openid=='oKdUIuDXWO5Ek3IswpcRvESoOUVI'){
+                    console.log({'readingInfo': item.readingInfo},'oKdUIuDXWO5Ek3IswpcRvESoOUVI')
+                }
                 return UserDB.User.update({'openid': item.openid}, {'readingInfo': item.readingInfo});
             })
         });
@@ -55,18 +58,15 @@ function downloadVoice() {
 function getMediaIdObjList(cb) {
     var MediaIdObjList = [];
 
-    UserDB.User.find({}, {
+    UserDB.User.find({'recodeInfo.totalRecodeCounts': {$gt: 0}}, {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
-        console.log(docs,'docs');
+        //只考虑打过卡的用户
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = [];
             doc['readingInfo'].map(function (item) {
                 //如果没有下载,即没有recordLocalId,则放入mediaIdList
-                if (item.openid == '5a03f4ac9c6664183ec05df3') {
-                    console.log(item, '5a03f4ac9c6664183ec05df3');
-                }
                 if (item.recordLocalId.length <= 0) {
                     mediaIdList.push(item.recordServerId);
                 }
