@@ -328,7 +328,7 @@
         var musicSrc = $player.data('url');
         audioElement = new Audio(musicSrc);
         audioElement.controls = false;
-        audioElement.loop = true;
+        audioElement.loop = false;
         audioElement.autoplay = false;
         audioElement.load();
         audioElement.pause();
