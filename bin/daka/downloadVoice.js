@@ -55,12 +55,10 @@ function downloadVoice() {
 function getMediaIdObjList(cb) {
     var MediaIdObjList = [];
 
-    UserDB.User.find({'recodeInfo.totalRecodeCounts': {$gt: 0}}, {
+    UserDB.User.find({}, {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
-        //只考虑打过卡的用户
-        console.log(docs,'docs');
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = [];
             doc['readingInfo'].map(function (item) {
