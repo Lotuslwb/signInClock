@@ -59,12 +59,13 @@ function getMediaIdObjList(cb) {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
+        console.log(docs,'docs');
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = [];
             doc['readingInfo'].map(function (item) {
                 //如果没有下载,即没有recordLocalId,则放入mediaIdList
                 if (item.openid == '5a03f4ac9c6664183ec05df3') {
-                    console.log(item,'5a03f4ac9c6664183ec05df3');
+                    console.log(item, '5a03f4ac9c6664183ec05df3');
                 }
                 if (item.recordLocalId.length <= 0) {
                     mediaIdList.push(item.recordServerId);
