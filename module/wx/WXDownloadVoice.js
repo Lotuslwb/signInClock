@@ -37,8 +37,8 @@ function wxDownloadVoice(data = {
                 console.log(error);
             }
         }).on('exit', function (code) {
-            console.log('下载完整');
-            ffmpeg(DOWNLOAD_DIR + mediaId + '.amr')
+            console.log('下载完成');
+            var command = ffmpeg(DOWNLOAD_DIR + mediaId + '.amr')
                 .on('end', function () {
                     console.log('file has been converted succesfully');
                     cb(DOWNLOAD_DIR + mediaId + '.mp3');
@@ -46,6 +46,8 @@ function wxDownloadVoice(data = {
                 .on('error', function (err) {
                     console.log('an error happened: ' + err.message);
                 })
+                .save(DOWNLOAD_DIR + mediaId + '.mp3');
+
         });
     };
 }
