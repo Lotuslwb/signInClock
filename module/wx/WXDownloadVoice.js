@@ -37,7 +37,7 @@ function wxDownloadVoice(data = {
                 console.log(error);
             }
         }).on('exit', function (code) {
-
+            console.log('下载完整');
             ffmpeg(DOWNLOAD_DIR + mediaId + '.amr')
                 .on('end', function () {
                     console.log('file has been converted succesfully');

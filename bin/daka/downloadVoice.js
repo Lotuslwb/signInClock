@@ -26,6 +26,9 @@ function downloadVoice() {
         }
 
         var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
+
+            console.log(item.mediaIdList, 'item');
+
             var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
                 return wxDownloadVoicePromise({
                     DOWNLOAD_DIR: DOWNLOAD_DIR,
