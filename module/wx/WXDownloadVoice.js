@@ -3,6 +3,10 @@ var getSDKSign = require('../../module/wx/getSDKSign');
 
 var exec = require('child_process').exec;
 var fs = require('fs');
+
+//媒体格式转化
+var ffmpeg = require('fluent-ffmpeg');
+
 var wxDownloadVoicePromise = function (obj = {}) {
     return new Promise((resolve, reject) => {
         var cb = function (path) {
@@ -33,7 +37,15 @@ function wxDownloadVoice(data = {
                 console.log(error);
             }
         }).on('exit', function (code) {
-            cb(DOWNLOAD_DIR + mediaId + '.amr');
+
+            ffmpeg(DOWNLOAD_DIR + mediaId + '.amr')
+                .on('end', function () {
+                    console.log('file has been converted succesfully');
+                    cb(DOWNLOAD_DIR + mediaId + '.mp3');
+                })
+                .on('error', function (err) {
+                    console.log('an error happened: ' + err.message);
+                })
         });
     };
 }
