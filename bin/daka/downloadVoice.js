@@ -34,14 +34,17 @@ function downloadVoice() {
             });
             return Promise.all(downloadPromiseArray).then(function (data) {
                 // 获得下载到本地音频的path list  就是data
+
                 for (var i = 0; i < data.length; i++) {
                     var recordServerId = item['readingInfo'][i]['recordServerId'];
                     if (data[i].indexOf(recordServerId) > -1) {
                         item['readingInfo'][i]['recordLocalId'] = data[i];
                     }
                 }
-                if(item.openid=='oKdUIuDXWO5Ek3IswpcRvESoOUVI'){
-                    console.log({'readingInfo': item.readingInfo},'oKdUIuDXWO5Ek3IswpcRvESoOUVI')
+                if (item.openid == 'oKdUIuDXWO5Ek3IswpcRvESoOUVI') {
+                    console.log(data, 'path list');
+
+                    console.log({'readingInfo': item.readingInfo}, 'oKdUIuDXWO5Ek3IswpcRvESoOUVI')
                 }
                 return UserDB.User.update({'openid': item.openid}, {'readingInfo': item.readingInfo});
             })
