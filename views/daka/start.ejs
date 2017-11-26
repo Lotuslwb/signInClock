@@ -10,7 +10,7 @@
         <!--</div>-->
         <!--<div class="banner-hr"></div>-->
         <div class="banner-title">
-            我和宝贝的亲子共读计划
+            我和孩子的英语亲子阅读
             <%
             var now_month = new Date().getMonth() * 1 + 1;
             var now_date = new Date().getDate() * 1;
@@ -24,8 +24,7 @@
 </div>
 
 <div class="allInList">
-    <!--<div class="allInList-title"><%= docs.length > 100 ? docs.length * 2 : docs.length * 10 %> 人已参加</div>-->
-    <div class="allInList-title"><%= docs.length %> 人已参加</div>
+    <div class="allInList-title"><%= docs.length * 1 + 4639 %> 人已参加</div>
     <div class="allInList-main clearfix">
         <% for(var i = 0;i < docs.length && i < 22;i++){ %>
         <% if(docs[i]['personInfo'].headimgurl){ %>
@@ -35,14 +34,14 @@
 </div>
 
 <div class="startInfoList">
-    <div class="startInfoList-title">我和宝贝的亲子共读计划</div>
+    <div class="startInfoList-title">我和孩子的英语亲子阅读</div>
     <div class="startInfoList-text">
-        <div>活动奖品：</div>
-        <!--<div>特等奖 – 英孚青少儿国内校外营2周课程（1个）</div>-->
-        <!--<div>*每个季度进行一次大抽奖</div>-->
-        <div>一等奖- 英孚定制精美行李箱</div>
-        <div>二等奖- 英孚定制精美字母DIY灯箱</div>
-        <div>三等奖- 英孚定制精美保温杯</div>
+        <div>
+            你知道吗？陪伴是最长情的告白，和孩子一起阅读的时光，也就是那么几年！<br/>
+            但是许多家长说：我们没有时间和孩子一起阅读，也缺乏经验，不知道该怎么读，读什么，更别说阅读英文书了。<br/>
+            因此，英孚青少儿英语开展了《我和孩子的英语亲子阅读》活动，每天精选一个趣味英语小故事，让孩子和外教一起朗读，帮助孩子在趣味互动中爱上英语阅读，拓宽孩子的视野！
+        </div>
+        <div>每天亲子阅读10分钟，英孚与你同行！</div>
         <a href="/daka/start_detail">查看详情</a>
     </div>
     <div class="join-btn">我要参加</div>

@@ -94,6 +94,8 @@ router.get('/callback', function (req, res) {
                 sex: chunk.sex,
                 city: chunk.city,
                 headimgurl: chunk.headimgurl,
+                startTime: new Date().getTime() * 1
+
             }, recodeInfo: {
                 lastRecodeTime: '',
                 totalRecodeCounts: 0,
@@ -102,7 +104,7 @@ router.get('/callback', function (req, res) {
             },
             couponList: [],
             clockInfo: {
-                clockTime: '20:30',
+                clockTime: '20:00',
                 clockSwitch: 'on'
             }
         }

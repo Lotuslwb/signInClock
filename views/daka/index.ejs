@@ -30,7 +30,9 @@
                         <% }} %>
                     </span></div>
                 <div class="wordsLength">词汇量：<%= bookInfo.wordLength || 0 %></div>
-                <div class="needTime">耗时：<%= bookInfo.needTime.split(':')[0] || 0 %>分<%= bookInfo.needTime.split(':')[1] || 0 %>秒</div>
+                <div class="needTime">耗时：<%= bookInfo.needTime.split(':')[0] || 0 %>
+                    分<%= bookInfo.needTime.split(':')[1] || 0 %>秒
+                </div>
                 <div class="des"><%= bookInfo.brief || '' %></div>
                 <div class="start-btn" data-id="<%= bookInfo._id %>">开始阅读</div>
             </div>
@@ -39,9 +41,10 @@
 
 
     <div class="banner">
-        <img src="../../../../daka/img/pic-banner.jpg">
+        <a href="http://nametale.ef.com.cn/mobile/?etag=EFCN_Wint18_KidsOwn-SNS-Wechat-Daka">
+            <img src="../../../../daka/img/pic-banner.jpg">
+        </a>
     </div>
-
 </div>
 
 <%- include("menu.ejs",{"type":'index'}) %>
