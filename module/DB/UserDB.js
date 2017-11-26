@@ -11,7 +11,7 @@ var Schema = {
         realname: String,
         cellphone: String,
         address: String,
-        startTime: NumberLong
+        startTime: Number
     },
     recodeInfo: {
         lastRecodeTime: String,
