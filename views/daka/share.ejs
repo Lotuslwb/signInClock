@@ -137,22 +137,56 @@
     }
 
     initWX(function () {
-        WXDownloadVoice();
+        if (recordLocalId) {
+            //音频在本地
+            var recordLocalURL = "files/media/" + recordServerId + ".mp3";
+            var audioElement;
+            musicPlayer();
+            function musicPlayer() {
+                var $player = $('.medie-player');
+                if (!$player) {
+                    return false;
+                }
 
-        $('.medie-player').click(function () {
-            if (localId) {
-                console.log(localId);
-                wx.playVoice({
-                    localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
-                });
-            } else {
-                WXDownloadVoice(function (localId) {
+                var musicSrc = recordLocalURL;
+                audioElement = new Audio(musicSrc);
+                audioElement.controls = false;
+                audioElement.loop = false;
+                audioElement.autoplay = false;
+                audioElement.load();
+                audioElement.pause();
+
+
+                //bind event
+                $player.click(function () {
+                    if ($(this).hasClass('active')) {
+                        $(this).removeClass('active');
+                        audioElement.pause();
+                    } else {
+                        $(this).addClass('active');
+                        audioElement.play();
+                    }
+                }).removeClass('active');
+
+            }
+        } else {
+            //音频还在微信服务器上
+            WXDownloadVoice();
+            $('.medie-player').click(function () {
+                if (localId) {
+                    console.log(localId);
                     wx.playVoice({
                         localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
                     });
-                })
-            }
-        });
+                } else {
+                    WXDownloadVoice(function (localId) {
+                        wx.playVoice({
+                            localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                        });
+                    })
+                }
+            });
+        }
 
         /***分享***/
         var TimelineTitleList = [
