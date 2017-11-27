@@ -169,7 +169,7 @@ function getBookInfoById(id, cb_s, cb_f) {
 }
 
 function getBookId() {
-    return '5a1a2355b90b294ae3598cbe';
+    return '5a1b7a3c91d04167f359ce4c';
 }
 
 module.exports = router;
