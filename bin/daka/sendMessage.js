@@ -49,6 +49,8 @@ schedule.scheduleJob(rule2, function () {
                 data.data.first.value = item.personInfo['nickname'] + '，今日的阅读内容已新鲜出炉！';
                 data.data.keyword1.value = bookName; //阅读内容
                 data.data.keyword2.value = now_date; //阅读时间
+
+                console.log(item['personInfo']['nickname'] + 'isReady send!!');
                 return data;
             });
             sendMessageBath(openIdList, dataList);
@@ -81,7 +83,6 @@ function getOpenIdObjList(cb) {
         'openid': 1,
         'personInfo': 1
     }).then(function (docs) {
-        console.log(docs, 'docs');
         var now = new Date();
         var now_hours = now.getHours();
         var now_minutes = now.getMinutes();
@@ -96,7 +97,6 @@ function getOpenIdObjList(cb) {
                 openIdObjList.push(doc);
             }
         }
-        console.log('getOpenIdObjList', getOpenIdObjList);
         cb && cb(openIdObjList);
     });
 }
