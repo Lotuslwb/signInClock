@@ -8,7 +8,9 @@ module.exports = function (openIdList, DataList) {
     sendTask();
 
     function getData(index) {
-        return DataList[index];
+        var returnData = DataList[index]
+        console.log('DataList[' + index + ']:', returnData);
+        return returnData;
     }
 
     function sendTask() {
@@ -28,7 +30,7 @@ module.exports = function (openIdList, DataList) {
             });
         } else {
             console.log('--- finished ---');
-            console.log(`--- send: ${index - 1}, successCount: ${successCount}条---`);
+            console.log(`---total: send: ${index - 1}, successCount: ${successCount} cases---`);
         }
     }
 };
