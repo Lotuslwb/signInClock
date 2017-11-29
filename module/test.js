@@ -1,6 +1,6 @@
 var fs = require("fs");
 var fsPath = '/root/signInClock';
-var bookId = fs.readFileSync(fsPath + '/bookId.txt');
+var bookId = fs.readFileSync(fsPath + '/bookId.txt').toString();
 var ArticleDB = require('../module/DB/ArticleDB');
 
 
