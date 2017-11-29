@@ -78,7 +78,10 @@ schedule.scheduleJob(rule2, function () {
 
 
 function getBookId() {
-    return '5a1b80352549166ef8093d17';
+    var fs = require("fs");
+    var fsPath = '/root/signInClock';
+    var bookId = fs.readFileSync(fsPath + '/bookId.txt');
+    return bookId;
 }
 
 function getBookInfoById(id, cb_s, cb_f) {

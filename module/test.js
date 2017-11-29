@@ -5,5 +5,13 @@ var ArticleDB = require('../module/DB/ArticleDB');
 
 
 ArticleDB.User.find({}, {'createTime': 1, 'articleTitle': 1}).sort({"createTime": 1}).then(function (docs) {
-    console.log(docs);
+    var idList = docs.map(function (doc) {
+        return doc._id;
+    });
+    var index = idList.indexOf(bookId);
+    var currentIndex = (++index) >= docs.length ? 0 : ++index;
+    var currentBookId = idList[currentIndex];
+    fs.writeFile(fsPath + '/bookId.txt', currentBookId, function () {
+        console.log('成功写入bookId: ' + currentBookId);
+    })
 });
