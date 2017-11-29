@@ -68,7 +68,7 @@ schedule.scheduleJob(rule2, function () {
                         }
                     }
                 };
-                console.log(item['personInfo']['nickname'] + 'isReady send!!');
+                console.log(item['personInfo']['nickname'] + ' isReady send!!');
                 return newData;
             });
             sendMessageBath(openIdList, dataList);
