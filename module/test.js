@@ -9,6 +9,7 @@ ArticleDB.User.find({}, {'createTime': 1, 'articleTitle': 1}).sort({"createTime"
         return doc._id;
     });
     var index = idList.indexOf(bookId);
+    console.log(index, 'index');
     var currentIndex = (++index) >= docs.length ? 0 : ++index;
     var currentBookId = idList[currentIndex];
     fs.writeFile(fsPath + '/bookId.txt', currentBookId, function () {
