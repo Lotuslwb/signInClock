@@ -44,14 +44,32 @@ schedule.scheduleJob(rule2, function () {
         getOpenIdObjList(function (openIdObjList) {
             var openIdList = [];
             var dataList = openIdObjList.map(function (item) {
-                openIdList.push(item.openid)
-                data.touser = item.openid;
-                data.data.first.value = item.personInfo['nickname'] + '，今日的阅读内容已新鲜出炉！';
-                data.data.keyword1.value = bookName; //阅读内容
-                data.data.keyword2.value = now_date; //阅读时间
-
+                openIdList.push(item.openid);
+                var newData = {
+                    "touser": item.openid,  //接收者openid
+                    "template_id": "puqokuG4Mn2TSNOpxif5NcRf5sNgNw_7fMK37fjN91o", //模板ID
+                    "url": "http://ma.eldesign.cn/daka/index",
+                    "data": {
+                        "first": {
+                            "value": item.personInfo['nickname'] + '，今日的阅读内容已新鲜出炉！',
+                            "color": "#173177"
+                        },
+                        "keyword1": {
+                            "value": bookName,
+                            "color": "#173177"
+                        },
+                        "keyword2": {
+                            "value": now_date,
+                            "color": "#173177"
+                        },
+                        "remark": {
+                            "value": "阅读使我快乐，点击开始今天的阅读",
+                            "color": "#173177"
+                        }
+                    }
+                };
                 console.log(item['personInfo']['nickname'] + 'isReady send!!');
-                return data;
+                return newData;
             });
             sendMessageBath(openIdList, dataList);
         });

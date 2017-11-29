@@ -1,4 +1,5 @@
 module.exports = function (openIdList, DataList) {
+    console.log(openIdList, 'openIdList');
     var fs = require("fs");
     var send = require('../module/wx/sendMessage');
 
