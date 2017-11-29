@@ -215,7 +215,7 @@
         //“分享给朋友”
         wx.onMenuShareAppMessage({
             title: AppMessageTitle, // 分享标题
-            desc: '这是TA在【英孚亲子阅读】的第' + currentRecodeCounts + '天，已经读了' + totalWordLength + '字！', // 分享描述
+            desc: '这是' + nickname + '在【英孚亲子阅读】的第' + currentRecodeCounts + '天，已经读了' + totalWordLength + '字！', // 分享描述
             link: 'http://ma.eldesign.cn/daka/share?bookId=' + bookId + '&userId=' + userId + '&readTime=' + readTime, // 分享链接
             imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
