@@ -7,7 +7,7 @@ var ArticleDB = require('../../module/DB/ArticleDB');
 //设置定时任务 变量
 var schedule = require("node-schedule");
 var rule2 = new schedule.RecurrenceRule();
-var times2 = [24];
+var times2 = [8];
 rule2.hour = times2;
 
 schedule.scheduleJob(rule2, function () {
