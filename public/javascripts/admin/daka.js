@@ -48,8 +48,8 @@ obj.prototype = {
                 autoSync: true, //保存数据时，是否自动更新数据源的数据
                 autoLoad: true, //自动加载数据
                 params: data,
-                currentPage: 10,
-                pageSize: 10,
+                currentPage: 30,
+                pageSize: 30,
                 sortInfo: {
                     field: "totalVoteCounts",
                     direction: 'DESC' //升序ASC，降序DESC
