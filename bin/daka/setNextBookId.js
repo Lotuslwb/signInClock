@@ -2,6 +2,12 @@
  * Created by lotuslwb on 17/11/30.
  */
 
+var fs = require("fs");
+var fsPath = '/root/signInClock';
+var bookId = fs.readFileSync(fsPath + '/bookId.txt').toString();
+var ArticleDB = require('../../module/DB/ArticleDB');
+
+
 setNextBookId();
 
 function setNextBookId() {
