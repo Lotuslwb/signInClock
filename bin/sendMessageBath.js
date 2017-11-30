@@ -4,7 +4,12 @@ module.exports = function (openIdList, DataList) {
 
     var index = 0;
     var successCount = 0;
-    fs.unlinkSync('access_token.txt');
+
+    try {
+        fs.unlinkSync('access_token.txt');
+    } catch (e) {
+        console.log(e);
+    }
     sendTask();
 
     function getData(index) {
