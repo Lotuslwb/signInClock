@@ -87,8 +87,9 @@ select {
 
 .index-page .index-words-cn {
     color: #585858;
-    line-height: 1.7;
+    line-height: 1.8;
     font-size: 24px;
+    padding-bottom: 20px;
 }
 
 .index-page .date-box-icon {
@@ -1006,3 +1007,18 @@ select {
     }
 }
 
+.index-words-h2 {
+    font-size: 28px;
+    color: #585858;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.index-words-h1 {
+    font-size: 28px;
+    color: #e9329c;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 10px;
+}

@@ -56,7 +56,8 @@ obj.prototype = {
 
         var E = window.wangEditor
         var editor = this.editor = new E('#editor')
-        editor.create()
+        editor.create();
+        
     },
     bindEvent: function (me) {
         var me = this;

@@ -14,12 +14,12 @@ var Schema = {
         startTime: Number
     },
     recodeInfo: {
-        lastRecodeTime: String,
-        totalRecodeCounts: String,
-        currentRecodeCounts: String,
-        currentSerialRecodeCounts: String,
-        recodeTimeArray: Array,
-        totalWordLength: String
+        lastRecodeTime: String,  //最近打卡时间
+        totalRecodeCounts: String, //合计打卡次数
+        currentRecodeCounts: String, // 当前打卡次数
+        currentSerialRecodeCounts: String,// 当前连续打卡次数
+        recodeTimeArray: Array, //打卡日期记录
+        totalWordLength: String //阅读总字数
     },
     couponList: [{
         couponStatus: String,
