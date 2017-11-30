@@ -122,7 +122,7 @@ select {
 .index-page .index-title {
     color: #e9329c;
     text-align: center;
-    font-size: 32px;
+    font-size: 30px;
 }
 
 .index-page .index-main-box {
@@ -1016,7 +1016,7 @@ select {
 }
 
 .index-words-h1 {
-    font-size: 28px;
+    font-size: 30px;
     color: #e9329c;
     text-align: center;
     font-weight: bold;
