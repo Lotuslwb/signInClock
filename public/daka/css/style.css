@@ -123,6 +123,7 @@ select {
     color: #e9329c;
     text-align: center;
     font-size: 30px;
+    font-weight: bold;
 }
 
 .index-page .index-main-box {
