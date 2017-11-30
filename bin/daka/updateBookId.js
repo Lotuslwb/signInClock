@@ -16,6 +16,7 @@ schedule.scheduleJob(rule2, function () {
 
 
 function setNextBookId() {
+    console.log('runtime: ' + new Date());
     ArticleDB.User.find({}, {'createTime': 1, 'articleTitle': 1}).sort({"createTime": 1}).then(function (docs) {
         var idList = docs.map(function (doc) {
             return doc._id.toString();
@@ -27,7 +28,7 @@ function setNextBookId() {
         var currentIndex = (index >= docs.length - 1 ? 0 : (index + 1));
         var currentBookId = idList[currentIndex];
         fs.writeFile(fsPath + '/bookId.txt', currentBookId, function () {
-            console.log('成功写入bookId: ' + currentBookId);
+            console.log('success into new bookId: ' + currentBookId);
         })
     });
 }

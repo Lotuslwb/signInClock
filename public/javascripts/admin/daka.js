@@ -35,6 +35,8 @@ obj.prototype = {
                     {
                         title: '操作', dataIndex: 'h', width: 120, sortable: false, renderer: function (value, obj) {
                         var returnStr = '';
+
+                        returnStr += ' <span class="grid-command mod-btn">修改</span>';
                         returnStr += ' <span class="grid-command remove-btn">删除</span>';
                         return returnStr;
                     }
@@ -105,69 +107,9 @@ obj.prototype = {
                     target = $(ev.domTarget); //点击的元素
 
                 if (target.hasClass('mod-btn')) {
-                    BUI.FormHelper.setFields($('#dialog-form')[0], record);
-
-                    console.log(me.dialog);
-                    me.dialog.set('title', '修改权限');
-                    me.dialog.set('success', function (e) {
-                        var thisDialog = this;
-                        if (me.dialogForm.isValid()) {
-                            data = BUI.FormHelper.serializeToObject($('#dialog-form'));
-                            changeItem(data.status, '修改状态成功', {
-                                cityNo: data.cityNo,
-                                schoolNo: data.schoolNo
-                            });
-                            me.dialog.hide();
-                        }
-                    })
-                    me.dialog.show();
+                    window.location.href = '/admin/daka/modify?bookId=' + record._id;
                 }
 
-                if (target.hasClass('comments-btn')) {
-
-                    $('.adminDialogComments-content').html('');
-                    $.ajax({
-                        url: '/admin/api/teacher/queryById',
-                        type: 'post',
-                        data: {
-                            'tel': record.cellPhone,
-                        },
-                        success: function (data) {
-                            //console.log(data);
-                            if (data.status == 200) {
-                                var studentWords = data.data.list[0].studentWords;
-                                var str = '';
-                                if (studentWords && studentWords.length > 0) {
-                                    $.each(studentWords, function (index, item) {
-                                        var words = ['人工', '拉票', '投票', '刷票', 'piao', '这女上过', '拿刀逼着投的', '色色', '造假专家'];
-                                        var flag = true;
-
-                                        for (var j = 0; j < words.length; j++) {
-                                            if (item.studentName.indexOf(words[j]) >= 0 || item.content.indexOf(words[j]) >= 0) {
-                                                flag = false;
-                                            }
-                                        }
-
-                                        if (flag) {
-                                            str += '<div class="comments-rows">';
-                                            str += '<div class="studentName">' + item.studentName + '</div>'
-                                            str += '<div class="content">' + item.content + '</div> </div>'
-                                        }
-                                    });
-                                    $('.adminDialogComments-content').html(str);
-                                } else {
-                                    $('.adminDialogComments-content').html('<div class="comments-rows"><div class="studentName">暂无数据</div></div>');
-                                }
-                            } else {
-                                BUI.Message.Alert(data.errmsg);
-                            }
-                        }
-                    })
-
-                    me.dialogComments.set('title', '查看留言');
-                    me.dialogComments.show();
-
-                }
 
                 if (target.hasClass('remove-btn')) {
                     BUI.Message.Show({
@@ -192,53 +134,7 @@ obj.prototype = {
                         ]
                     });
                 }
-                if (target.hasClass('reviewed-btn')) {
 
-                    BUI.Message.Show({
-                        msg: '确定通过审核吗?',
-                        buttons: [
-                            {
-                                text: '是',
-                                elCls: 'button button-primary',
-                                handler: function () {
-                                    this.close();
-                                    changeItem(2, '审核通过成功');
-                                }
-                            },
-                            {
-                                text: '否',
-                                elCls: 'button',
-                                handler: function () {
-                                    this.close();
-                                }
-                            }
-
-                        ]
-                    });
-                }
-                if (target.hasClass('refuse-btn')) {
-                    BUI.Message.Show({
-                        msg: '确定拒绝审核吗?',
-                        buttons: [
-                            {
-                                text: '是',
-                                elCls: 'button button-primary',
-                                handler: function () {
-                                    this.close();
-                                    changeItem(3, '审核拒绝成功');
-                                }
-                            },
-                            {
-                                text: '否',
-                                elCls: 'button',
-                                handler: function () {
-                                    this.close();
-                                }
-                            }
-
-                        ]
-                    });
-                }
 
                 function changeItem(status, msg, data) {
                     $.ajax({

@@ -4,6 +4,8 @@ var app = express();
 
 var log = require('../../module/tools/log');
 var teacherDB = require('../../module/DB/TeacherDB');
+var ArticleDB = require('../../module/DB/ArticleDB');
+
 
 var config = require('../admin/tsconfig.json');
 
@@ -68,6 +70,18 @@ router.get('/daka', function (req, res, next) {
 router.get('/daka/add', function (req, res, next) {
     var username = req.signedCookies['session'].split('"')[1];
     res.render('admin/daka_add', {username: username, routes: 'daka'});
+});
+
+router.get('/daka/modify', function (req, res, next) {
+    var username = req.signedCookies['session'].split('"')[1];
+    var bookId = req.query.bookId;
+    ArticleDB.find({_id: bookId}, function (err, docs) {
+        if (err) {
+            res.render('admin/daka_add', {username: username, routes: 'daka'});
+        } else {
+            res.render('admin/daka_modify', {username: username, routes: 'daka', doc: docs[0]});
+        }
+    });
 });
 
 function getTag() {
