@@ -24,7 +24,7 @@ function setNextBookId() {
         console.log(index, 'index');
         console.log(bookId, 'bookId');
         console.log(idList, 'idList');
-        var currentIndex = (++index) >= docs.length ? 0 : ++index;
+        var currentIndex = (index >= docs.length - 1 ? 0 : (index + 1));
         var currentBookId = idList[currentIndex];
         fs.writeFile(fsPath + '/bookId.txt', currentBookId, function () {
             console.log('成功写入bookId: ' + currentBookId);
