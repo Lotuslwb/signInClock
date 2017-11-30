@@ -10,6 +10,7 @@ module.exports = function (openIdList, DataList) {
     } catch (e) {
         console.log(e);
     }
+
     sendTask();
 
     function getData(index) {
