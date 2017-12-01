@@ -222,6 +222,7 @@
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {
                 // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享给朋友']);
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
@@ -235,6 +236,7 @@
             imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
