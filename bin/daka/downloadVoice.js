@@ -1,8 +1,10 @@
 //设置定时任务 变量
 var schedule = require("node-schedule");
 var rule2 = new schedule.RecurrenceRule();
-var times2 = [1]; // 以小时为单位,每晚1点运行
-rule2.hour = times2;
+
+rule2.hour = 21;
+rule2.minute = 20;
+rule2.second = 0;
 
 // 查询数据库
 var fs = require('fs');
@@ -11,10 +13,11 @@ var wxDownloadVoicePromise = require('../../module/wx/WXDownloadVoice');
 var DOWNLOAD_DIR = '/root/signInClock/public/files/media/';
 
 schedule.scheduleJob(rule2, function () {
+    console.log('runtime: ' + new Date());
     downloadVoice();
 });
 
-downloadVoice();
+//downloadVoice();
 
 
 function downloadVoice() {
