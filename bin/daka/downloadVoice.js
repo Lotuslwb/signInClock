@@ -2,8 +2,8 @@
 var schedule = require("node-schedule");
 var rule2 = new schedule.RecurrenceRule();
 
-rule2.hour = 21;
-rule2.minute = 20;
+rule2.hour = 1;
+rule2.minute = 10;
 rule2.second = 0;
 
 // 查询数据库

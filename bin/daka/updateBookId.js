@@ -8,8 +8,8 @@ var ArticleDB = require('../../module/DB/ArticleDB');
 var schedule = require("node-schedule");
 var rule3 = new schedule.RecurrenceRule();
 
-rule3.hour = 21;
-rule3.minute = 20;
+rule3.hour = 2;
+rule3.minute = 10;
 rule3.second = 0;
 
 
