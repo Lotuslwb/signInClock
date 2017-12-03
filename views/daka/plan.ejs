@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="/daka/css/calendar.css">
 <script src="/daka/js/calendar.js"></script>
+<script src="/javascripts/echo.min.js"></script>
 <div class="page main-page index-page plan-page active">
     <div class="date-box">
         <div class="date-box-icon">11</div>
@@ -20,7 +21,7 @@
             <% if(readingInfo[i]['readingList'] && readingInfo[i]['readingList'].bookId ){ %>
             <a class="finish-item"
                href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>&readTime=<%= readingInfo[i]['readingTimeId'] %>">
-                <img src="<%= readingInfo[i]['readingList'].bookCover %>">
+                <img src="/daka/img/empty.png" data-echo="<%= readingInfo[i]['readingList'].bookCover %>">
             </a>
             <% } %>
             <% } %>
@@ -32,6 +33,12 @@
 <%- include("menu.ejs",{"type":'plan'}) %>
 <%- include("commonjs.ejs") %>
 <script>
+
+    //初始化延时加载
+    Echo.init({
+        offset: 0,
+        throttle: 0
+    });
 
     var now = "<%= now %>";
     initFloatDate(now);
