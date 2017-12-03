@@ -39,7 +39,9 @@
 <script>
 
     //初始化延时加载
-    echo.init();
+    echo.init({
+        offset: 100
+    });
 
     var now = "<%= now %>";
     initFloatDate(now);
