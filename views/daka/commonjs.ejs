@@ -10,6 +10,20 @@
 
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
+
+    if (is_iPad()) {
+        $('body').addClass('ipad');
+    }
+    function is_iPad() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/iPad/i) == "ipad") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     /*
      * option  -- title
      * option  -- text
@@ -149,7 +163,7 @@
 </script>
 <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?863f6d9fac11c2dba54e4caba5ad7fb2";
         var s = document.getElementsByTagName("script")[0];

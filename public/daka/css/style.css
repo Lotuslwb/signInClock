@@ -6,6 +6,12 @@ html, body {
     overflow: auto;
 }
 
+body.ipad {
+    height: auto;
+    min-height: 100%;
+    overflow: auto;
+}
+
 select {
     /*很关键：将默认的select选择框样式清除*/
     appearance: none;
