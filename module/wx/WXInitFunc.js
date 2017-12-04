@@ -52,31 +52,9 @@ var WXInitFunc = function () {
                     },
                 ]
             }, {
-                'name': '胡歌@你',
-                "sub_button": [
-                    {
-                        "type": "view",
-                        "name": "在英孚遇见胡歌",
-                        "url": "https://mp.weixin.qq.com/s?__biz=MjM5MDkyMTk5MQ==&mid=2650867319&idx=1&sn=5ee48d675fb5cdd721c1f4de377f3270&mpshare=1&scene=1&srcid=0116pynOO52YazSQK0BUibiR&key=dc8f4bb13741a2a441ab0e8a59d3aad14abb3cd395a00748fc8738c710f977b3875152351929264414aaea1dfac0b8120bf6a42be805c2bea03a94a89a9cf81d3c955eae70fed9daea6db62e5e5d90e0&ascene=0&uin=MjEzMDQ1MzkwNA%3D%3D&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G31)&version=12010210&nettype=WIFI&fontScale=100&pass_ticket=h8OyVvvRfeiN2m7DiCpkKAcBaUzUQxy%2BpS8O%2FqcRsdfVoJh9V72eOrWsAc1RHKvU"
-                    },
-                    {
-                        "type": "view",
-                        "name": "最萌胡歌歌",
-                        "url": "https://mp.weixin.qq.com/s?__biz=MjM5MDkyMTk5MQ==&mid=2650867557&idx=1&sn=a80fefc49cd21e5b4bc4ec39ff0906c3&mpshare=1&scene=1&srcid=0116mTqBeMedDFxGXAPt12je&key=7bf7b0f13d9b52e8cbd1facbba778619ff0415ef7470cbf74ff0c5be0fcf6238ca77f6db130de77847a46008582c54dc1d399172aa27c379c903e2e2864d603e41bd454e24bbd2becbcf637cb94fdb4d&ascene=0&uin=MjEzMDQ1MzkwNA%3D%3D&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G31)&version=12010210&nettype=WIFI&fontScale=100&pass_ticket=h8OyVvvRfeiN2m7DiCpkKAcBaUzUQxy%2BpS8O%2FqcRsdfVoJh9V72eOrWsAc1RHKvU"
-                    }, {
-                        "type": "view",
-                        "name": "胡歌高清壁纸1",
-                        "url": "https://mp.weixin.qq.com/s?__biz=MjM5MDkyMTk5MQ==&mid=503383750&idx=1&sn=6bf11c2571411c9a045441c19c7a3b4a&mpshare=1&scene=1&srcid=0116Ssh9Ex1N30u3t4fGAqXe&key=06d84535fabd5b46a8c6c921a0757e823fec8ae66615c2576410eceb8f05c35d68442996267efe460b1d6dc0b7dc20ee8421d6738ff0c6df1248eddde6c6325ed85d34212d958a9cc004d37f5d0601d4&ascene=0&uin=MjEzMDQ1MzkwNA%3D%3D&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G31)&version=12010210&nettype=WIFI&fontScale=100&pass_ticket=h8OyVvvRfeiN2m7DiCpkKAcBaUzUQxy%2BpS8O%2FqcRsdfVoJh9V72eOrWsAc1RHKvU"
-                    }, {
-                        "type": "view",
-                        "name": "胡歌高清壁纸2",
-                        "url": "https://mp.weixin.qq.com/s?__biz=MjM5MDkyMTk5MQ==&mid=2650867546&idx=2&sn=4d1672a5908ab6eadbe7bd265c7425e7&mpshare=1&scene=1&srcid=0116LgsQnsmlo1Ob5vK7ewE1&key=06d84535fabd5b46958ce571921cc0c2a76fcc17a78cd2b4d08fc6aa981ac1229d375c5370af40c41da5fe4e96b76275faaa50200e1d94501ca652bce1d266f031d37ff5625db88e8e0f7411cf0c69d7&ascene=0&uin=MjEzMDQ1MzkwNA%3D%3D&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.6+build(15G31)&version=12010210&nettype=WIFI&fontScale=100&pass_ticket=h8OyVvvRfeiN2m7DiCpkKAcBaUzUQxy%2BpS8O%2FqcRsdfVoJh9V72eOrWsAc1RHKvU"
-                    }, {
-                        "type": "view",
-                        "name": "与胡歌同框",
-                        "url": "http://page.ctrlc.cc/yf-photo/start.php"
-                    },
-                ]
+                "type": "view",
+                "name": "阅读打卡",
+                "url": "http://ma.eldesign.cn/daka/start"
             }]
     };
     api.createMenu(Menu, function (result) {
