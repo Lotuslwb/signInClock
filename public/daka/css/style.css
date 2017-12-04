@@ -10,7 +10,7 @@ body.ipad {
     height: auto;
     min-height: 100%;
     overflow: auto;
-    padding-bottom: 160px;
+    padding-bottom: 80px;
 }
 
 .ipad .page {
