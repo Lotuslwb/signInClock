@@ -61,7 +61,7 @@ var WXInitFunc = function () {
         console.log(result);
     });
 }
-
+WXInitFunc();
 
 /*
  * {
