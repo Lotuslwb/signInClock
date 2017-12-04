@@ -68,7 +68,7 @@ var config = {
 app.use(express.query());
 app.use('/wxServer', wechat(config, wxFunc));
 
-wxInitFunc();
+//wxInitFunc();
 
 app.use('/daka', daka);
 app.use('/dakaApi', dakaApi);
