@@ -6,11 +6,6 @@ html, body {
     overflow: auto;
 }
 
-body {
-    height: auto;
-    min-height: 100%;
-}
-
 select {
     /*很关键：将默认的select选择框样式清除*/
     appearance: none;
