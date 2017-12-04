@@ -12,7 +12,10 @@ var log = require('../../module/tools/log');
 router.get('/start', function (req, res, next) {
     // res.render('daka/start', {title: '开始打卡'});
     UserDB.User.find({}, {personInfo: 1}).sort({"personInfo.startTime": -1}).then(function (docs) {
-        res.render('daka/start', {title: '开始打卡', docs: docs});
+        UserDB.User.find({}).count().then(function (counts) {
+            res.render('daka/start', {title: '开始打卡', docs: docs, counts: counts});
+        })
+
     });
 })
 

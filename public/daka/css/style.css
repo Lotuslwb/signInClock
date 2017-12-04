@@ -3,7 +3,7 @@ html, body {
     width: 100%;
     background: #ffffff;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
 }
 
 select {
@@ -50,6 +50,7 @@ select {
     background: url("../img/index-bg.jpg") no-repeat top;
     background-size: 100%;
     padding-top: 80px;
+    box-sizing: border-box;
 }
 
 .result-page {
