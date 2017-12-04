@@ -54,7 +54,7 @@ var WXInitFunc = function () {
             }, {
                 "type": "view",
                 "name": "阅读打卡",
-                "url": "http://ma.eldesign.cn/daka/start"
+                "url": "http://ma.eldesign.cn/daka/index"
             }]
     };
     api.createMenu(Menu, function (result) {
