@@ -23,8 +23,8 @@ downloadVoice();
 function downloadVoice() {
     getMediaIdObjList(function (MediaIdObjList) {
 
-        if (MediaIdObjList.length > 20) {
-            MediaIdObjList = MediaIdObjList.splice(0, 20);
+        if (MediaIdObjList.length > 50) {
+            MediaIdObjList = MediaIdObjList.splice(0, 50);
         }
         console.log(MediaIdObjList, 'MediaIdObjList');
 
