@@ -61,7 +61,7 @@ function downloadVoice() {
                 var newReadingInfo = item['readingInfo'].map(function (target) {
                     var recordServerId = target['recordServerId'];
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].indexOf(recordServerId) > -1) {
+                        if (data[i] && data[i].indexOf(recordServerId) > -1) {
                             target['recordLocalId'] = data[i];
                         }
                     }
