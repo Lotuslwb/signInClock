@@ -17,7 +17,7 @@ schedule.scheduleJob(rule2, function () {
     downloadVoice();
 });
 
-//downloadVoice();
+downloadVoice();
 
 
 function downloadVoice() {
