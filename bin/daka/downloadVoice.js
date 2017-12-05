@@ -17,7 +17,7 @@ schedule.scheduleJob(rule2, function () {
     downloadVoice();
 });
 
-downloadVoice();
+//downloadVoice();
 
 
 function downloadVoice() {
@@ -28,54 +28,35 @@ function downloadVoice() {
             console.error(e);
         }
 
-        //顺序执行任务
-        var sequenceTasks = function (tasks) {
-            function recordValue(results, value) {
-                results.push(value);
-                return results;
-            }
+        var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
 
-            var pushValue = recordValue.bind(null, []);
-            return tasks.reduce(function (promise, task) {
-                return promise.then(task).then(pushValue);
-            }, Promise.resolve());
-        };
+            console.log(item.mediaIdList, 'item');
 
-        //所有的media id
-        var mediaIdList = MediaIdObjList.reduce(function (flattenList, currentItem) {
-            return flattenList.concat(currentItem.mediaIdList);
-        }, []);
-
-        //下载任务列表
-        var downloadPromiseArray = mediaIdList.map(function (mediaId) {
-            return wxDownloadVoicePromise({
-                DOWNLOAD_DIR: DOWNLOAD_DIR,
-                mediaId: mediaId
+            var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
+                return wxDownloadVoicePromise({
+                    DOWNLOAD_DIR: DOWNLOAD_DIR,
+                    mediaId: mediaId
+                });
             });
-        });
-
-        //顺序执行下载任务
-        sequenceTasks(downloadPromiseArray).then(function (data) {
-            console.log('顺序执行下载任务', data);
-            var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
+            return Promise.all(downloadPromiseArray).then(function (data) {
+                // 获得下载到本地音频的path list  就是data
                 var newReadingInfo = item['readingInfo'].map(function (target) {
                     var recordServerId = target['recordServerId'];
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i] && data[i].indexOf(recordServerId) > -1) {
+                        if (data[i].indexOf(recordServerId) > -1) {
                             target['recordLocalId'] = data[i];
                         }
                     }
                     return target;
                 });
+
                 return UserDB.User.update({'openid': item.openid}, {'readingInfo': newReadingInfo});
-            });
-            return Promise.all(MediaIdObjPromiseList).then(function (allData) {
-                console.log(allData[1], 'allData');
-            }).catch(function (e) {
-                console.log(e, '更新数据库失败');
             })
+        });
+        Promise.all(MediaIdObjPromiseList).then(function (allData) {
+            console.log(allData, 'allData');
         }).catch(function (e) {
-            console.log(e, '下载音频失败');
+            console.log(e, '下载音频错误');
         });
     });
 }
