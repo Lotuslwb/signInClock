@@ -22,6 +22,11 @@ downloadVoice();
 
 function downloadVoice() {
     getMediaIdObjList(function (MediaIdObjList) {
+
+        if (MediaIdObjList.length > 20) {
+            MediaIdObjList = MediaIdObjList.splice(0, 20);
+        }
+
         try {
             fs.unlinkSync('access_token.txt');
         } catch (e) {
@@ -30,18 +35,12 @@ function downloadVoice() {
 
         var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
 
-            console.log(item.mediaIdList, 'item');
-
             var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
                 return wxDownloadVoicePromise({
                     DOWNLOAD_DIR: DOWNLOAD_DIR,
                     mediaId: mediaId
                 });
             });
-
-            if (downloadPromiseArray.length > 100) {
-                downloadPromiseArray = downloadPromiseArray.splice(0, 99);
-            }
 
             return Promise.all(downloadPromiseArray).then(function (data) {
                 // 获得下载到本地音频的path list  就是data
