@@ -38,6 +38,11 @@ function downloadVoice() {
                     mediaId: mediaId
                 });
             });
+
+            if (downloadPromiseArray.length > 100) {
+                downloadPromiseArray = downloadPromiseArray.splice(0, 99);
+            }
+
             return Promise.all(downloadPromiseArray).then(function (data) {
                 // 获得下载到本地音频的path list  就是data
                 var newReadingInfo = item['readingInfo'].map(function (target) {
