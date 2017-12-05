@@ -59,7 +59,7 @@ function downloadVoice() {
             })
         });
         Promise.all(MediaIdObjPromiseList).then(function (allData) {
-            console.log(allData, 'allData');
+            console.log(allData.length, 'allData');
         }).catch(function (e) {
             console.log(e, '下载音频错误');
         });
