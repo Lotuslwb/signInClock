@@ -40,6 +40,11 @@ function downloadVoice() {
             }, Promise.resolve());
         };
 
+        var mediaIdList = MediaIdObjList.reduce(function (flattenList, currentItem) {
+            return flattenList.concat(currentItem.mediaIdList);
+        }, []);
+        console.log(mediaIdList, 'all mediaIdList');
+
         var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
 
             console.log(item.mediaIdList, 'item');
@@ -69,7 +74,7 @@ function downloadVoice() {
             })
         });
         sequenceTasks(MediaIdObjPromiseList).then(function (allData) {
-            console.log(allData, 'allData');
+            console.log(allData[1], 'allData');
         }).catch(function (e) {
             console.log(e, '下载音频错误');
         });
