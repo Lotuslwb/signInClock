@@ -28,6 +28,7 @@ function downloadVoice() {
             console.error(e);
         }
 
+        //顺序执行任务
         var sequenceTasks = function (tasks) {
             function recordValue(results, value) {
                 results.push(value);
@@ -40,26 +41,23 @@ function downloadVoice() {
             }, Promise.resolve());
         };
 
+        //所有的media id
         var mediaIdList = MediaIdObjList.reduce(function (flattenList, currentItem) {
             return flattenList.concat(currentItem.mediaIdList);
         }, []);
-        console.log(mediaIdList, 'all mediaIdList');
 
-        var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
-
-            //console.log(item.mediaIdList.length, 'item');
-
-
-            var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
-                return wxDownloadVoicePromise({
-                    DOWNLOAD_DIR: DOWNLOAD_DIR,
-                    mediaId: mediaId
-                });
+        //下载任务列表
+        var downloadPromiseArray = mediaIdList.map(function (mediaId) {
+            return wxDownloadVoicePromise({
+                DOWNLOAD_DIR: DOWNLOAD_DIR,
+                mediaId: mediaId
             });
+        });
 
-
-            return sequenceTasks(downloadPromiseArray).then(function (data) {
-                // 获得下载到本地音频的path list  就是data
+        //顺序执行下载任务
+        sequenceTasks(downloadPromiseArray).then(function (data) {
+            console.log('顺序执行下载任务', data);
+            var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
                 var newReadingInfo = item['readingInfo'].map(function (target) {
                     var recordServerId = target['recordServerId'];
                     for (var i = 0; i < data.length; i++) {
@@ -69,14 +67,15 @@ function downloadVoice() {
                     }
                     return target;
                 });
-
                 return UserDB.User.update({'openid': item.openid}, {'readingInfo': newReadingInfo});
+            });
+            return Promise.all(MediaIdObjPromiseList).then(function (allData) {
+                console.log(allData[1], 'allData');
+            }).catch(function (e) {
+                console.log(e, '更新数据库失败');
             })
-        });
-        sequenceTasks(MediaIdObjPromiseList).then(function (allData) {
-            console.log(allData[1], 'allData');
         }).catch(function (e) {
-            console.log(e, '下载音频错误');
+            console.log(e, '下载音频失败');
         });
     });
 }
