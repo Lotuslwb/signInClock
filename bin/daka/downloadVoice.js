@@ -26,6 +26,7 @@ function downloadVoice() {
         if (MediaIdObjList.length > 20) {
             MediaIdObjList = MediaIdObjList.splice(0, 20);
         }
+        console.log(MediaIdObjList, 'MediaIdObjList');
 
         try {
             fs.unlinkSync('access_token.txt');
@@ -91,7 +92,6 @@ function getMediaIdObjList(cb) {
         MediaIdObjList = MediaIdObjList.filter(function (item) {
             return item.mediaIdList.length > 0;
         })
-        console.log(MediaIdObjList, 'MediaIdObjList');
         cb && cb(MediaIdObjList);
     });
 }
