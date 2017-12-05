@@ -34,7 +34,7 @@ function wxDownloadVoice(data = {
         var doURL = 'curl -o ' + DOWNLOAD_DIR + mediaId + '.amr "' + file_url + '"';
         exec(doURL, function (err, stdout, stderr) {
             if (err) {
-                console.log(error);
+                console.log(err);
             }
         }).on('exit', function (code) {
             console.log('下载完成');
