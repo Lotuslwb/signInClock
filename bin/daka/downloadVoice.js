@@ -1,10 +1,8 @@
 //设置定时任务 变量
 var schedule = require("node-schedule");
 var rule2 = new schedule.RecurrenceRule();
-
-rule2.hour = 1;
-rule2.minute = 10;
-rule2.second = 0;
+var times2 = [0, 30];
+rule2.minute = times2;
 
 // 查询数据库
 var fs = require('fs');
@@ -26,7 +24,7 @@ function downloadVoice() {
         if (MediaIdObjList.length > 50) {
             MediaIdObjList = MediaIdObjList.splice(0, 50);
         }
-        console.log(MediaIdObjList, 'MediaIdObjList');
+        //console.log(MediaIdObjList, 'MediaIdObjList');
 
         try {
             fs.unlinkSync('access_token.txt');
