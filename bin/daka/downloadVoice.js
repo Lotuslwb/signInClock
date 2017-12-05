@@ -47,7 +47,7 @@ function downloadVoice() {
 
         var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
 
-            console.log(item.mediaIdList, 'item');
+            //console.log(item.mediaIdList.length, 'item');
 
 
             var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
