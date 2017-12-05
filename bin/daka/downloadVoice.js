@@ -1,7 +1,7 @@
 //设置定时任务 变量
 var schedule = require("node-schedule");
 var rule2 = new schedule.RecurrenceRule();
-var times2 = [0, 30];
+var times2 = [15, 45];
 rule2.minute = times2;
 
 // 查询数据库
@@ -90,6 +90,7 @@ function getMediaIdObjList(cb) {
         MediaIdObjList = MediaIdObjList.filter(function (item) {
             return item.mediaIdList.length > 0;
         })
+        console.log('todoCount:' + MediaIdObjList.length);
         cb && cb(MediaIdObjList);
     });
 }
