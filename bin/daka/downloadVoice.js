@@ -28,6 +28,14 @@ function downloadVoice() {
             console.error(e);
         }
 
+        var runTask = function (tasklist) {
+            return tasklist.reduce(function (promise, task) {
+                console.log(task, 'task');
+                return promise.then(task);
+            }, Promise.resolve());
+        };
+
+
         var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
 
             console.log(item.mediaIdList, 'item');
@@ -40,12 +48,6 @@ function downloadVoice() {
                 });
             });
 
-            var runTask = function (tasklist) {
-                return tasklist.reduce(function (promise, task) {
-                    console.log(task, 'task');
-                    return promise.then(task);
-                }, Promise.resolve());
-            };
 
             return runTask(downloadPromiseArray).then(function (data) {
                 // 获得下载到本地音频的path list  就是data
@@ -62,7 +64,7 @@ function downloadVoice() {
                 return UserDB.User.update({'openid': item.openid}, {'readingInfo': newReadingInfo});
             })
         });
-        Promise.all(MediaIdObjPromiseList).then(function (allData) {
+        runTask(MediaIdObjPromiseList).then(function (allData) {
             console.log(allData, 'allData');
         }).catch(function (e) {
             console.log(e, '下载音频错误');
