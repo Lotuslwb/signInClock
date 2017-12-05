@@ -32,13 +32,23 @@ function downloadVoice() {
 
             console.log(item.mediaIdList, 'item');
 
+
             var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
                 return wxDownloadVoicePromise({
                     DOWNLOAD_DIR: DOWNLOAD_DIR,
                     mediaId: mediaId
                 });
             });
-            return Promise.all(downloadPromiseArray).then(function (data) {
+
+            var runTask = function (tasklist) {
+                return tasklist.reduce(function (promise, task) {
+                    return promise.then(()=> {
+                        return task();
+                    });
+                }, Promise.resolve());
+            };
+
+            return runTask(downloadPromiseArray).then(function (data) {
                 // 获得下载到本地音频的path list  就是data
                 var newReadingInfo = item['readingInfo'].map(function (target) {
                     var recordServerId = target['recordServerId'];
