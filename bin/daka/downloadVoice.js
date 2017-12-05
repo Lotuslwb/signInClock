@@ -42,9 +42,8 @@ function downloadVoice() {
 
             var runTask = function (tasklist) {
                 return tasklist.reduce(function (promise, task) {
-                    return promise.then(()=> {
-                        return task();
-                    });
+                    console.log(task, 'task');
+                    return promise.then(task);
                 }, Promise.resolve());
             };
 
