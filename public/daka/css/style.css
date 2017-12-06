@@ -627,6 +627,7 @@ select {
 .reading-page .reading-main p {
     color: #333333;
     font-size: 28px;
+    line-height: 1.5;
 }
 
 .result-page .banner-text {
