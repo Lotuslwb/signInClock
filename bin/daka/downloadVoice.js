@@ -1,7 +1,7 @@
 //设置定时任务 变量
 var schedule = require("node-schedule");
 var rule2 = new schedule.RecurrenceRule();
-var times2 = [5, 15, 25, 35, 45, 55];
+var times2 = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 rule2.minute = times2;
 
 // 查询数据库
@@ -43,6 +43,12 @@ function downloadVoice() {
 
             return Promise.all(downloadPromiseArray).then(function (data) {
                 // 获得下载到本地音频的path list  就是data
+                console.log('success:' + data.filter(function (item) {
+                        return item.length > 0;
+                    }).length);
+                console.log('error:' + data.filter(function (item) {
+                        return item.length <= 0;
+                    }).length);
                 var newReadingInfo = item['readingInfo'].map(function (target) {
                     var recordServerId = target['recordServerId'];
                     for (var i = 0; i < data.length; i++) {
