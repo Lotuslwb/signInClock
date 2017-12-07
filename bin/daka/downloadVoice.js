@@ -32,6 +32,7 @@ function downloadVoice() {
         //     console.error(e);
         // }
 
+        var successLen = 0, errorLen = 0;
         var MediaIdObjPromiseList = MediaIdObjList.map(function (item) {
 
             var downloadPromiseArray = item.mediaIdList.map(function (mediaId) {
@@ -43,12 +44,13 @@ function downloadVoice() {
 
             return Promise.all(downloadPromiseArray).then(function (data) {
                 // 获得下载到本地音频的path list  就是data
-                console.log('success:' + data.filter(function (item) {
-                        return item.length > 0;
-                    }).length);
-                console.log('error:' + data.filter(function (item) {
-                        return item.length <= 0;
-                    }).length);
+                successLen += data.filter(function (item) {
+                    return item.length > 0;
+                }).length;
+                errorLen += data.filter(function (item) {
+                    return item.length <= 0;
+                }).length;
+
                 var newReadingInfo = item['readingInfo'].map(function (target) {
                     var recordServerId = target['recordServerId'];
                     for (var i = 0; i < data.length; i++) {
@@ -64,6 +66,8 @@ function downloadVoice() {
         });
         Promise.all(MediaIdObjPromiseList).then(function (allData) {
             console.log(allData.length, 'allData');
+            console.log(successLen, 'successLen');
+            console.log(errorLen, 'errorLen');
         }).catch(function (e) {
             console.log(e, '下载音频错误');
         });

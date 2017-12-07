@@ -44,7 +44,7 @@ function wxDownloadVoice(data = {
                     cb(DOWNLOAD_DIR + mediaId + '.mp3');
                 })
                 .on('error', function (err) {
-                    console.log('an error happened: ' + err.message);
+                    //console.log('an error happened: ' + err.message);
                     cb('');
                 })
                 .save(DOWNLOAD_DIR + mediaId + '.mp3');
