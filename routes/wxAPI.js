@@ -104,7 +104,7 @@ router.get('/callback', function (req, res) {
             },
             couponList: [],
             clockInfo: {
-                clockTime: '20:00',
+                clockTime: '18:00',
                 clockSwitch: 'on'
             }
         }
