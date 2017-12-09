@@ -1,6 +1,5 @@
 var fs = require("fs");
 var fsPath = '/root/signInClock';
-var bookId = fs.readFileSync(fsPath + '/bookId.txt').toString();
 var ArticleDB = require('../../module/DB/ArticleDB');
 
 
@@ -20,6 +19,7 @@ schedule.scheduleJob(rule3, function () {
 
 function setNextBookId() {
     console.log('runtime: ' + new Date());
+    var bookId = fs.readFileSync(fsPath + '/bookId.txt').toString();
     ArticleDB.User.find({}, {'createTime': 1, 'articleTitle': 1}).sort({"createTime": 1}).then(function (docs) {
         var idList = docs.map(function (doc) {
             return doc._id.toString();
