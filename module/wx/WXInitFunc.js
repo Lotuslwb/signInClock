@@ -43,8 +43,8 @@ var WXInitFunc = function () {
                         "url": "http://www.ef.com.cn/englishfirst/landing/mobilelifeclub?ctr=cn&lng=cs&name=anna&pid=123&phone=110&etag=EFCN_Wint17_KidsOwn-SNS-WeChat-Nov-wclh"
                     }, {
                         "type": "view",
-                        "name": "免费下载",
-                        "url": "http://baike.ef.com.cn/archive/tag/xiazaiziliao?etag=EFCN_Wint17_KidsOwn-SNS-WeChat-Baike"
+                        "name": "你的名字也有故事",
+                        "url": "http://nametale.ef.com.cn/mobile/index.html?etag=EFCN_Wint18_KidsOwn-SNS-Nametale-WeChatbanner"
                     }, {
                         "type": "view",
                         "name": "往期精彩活动",
