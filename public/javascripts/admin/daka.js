@@ -36,7 +36,7 @@ obj.prototype = {
                         title: '操作', dataIndex: 'h', width: 120, sortable: false, renderer: function (value, obj) {
                         var returnStr = '';
 
-                        returnStr += ' <span class="grid-command mod-btn">修改</span>';
+                        returnStr += ' <span class="grid-command mod-btn">修改文章</span>';
                         returnStr += ' <span class="grid-command remove-btn">删除</span>';
                         return returnStr;
                     }
