@@ -53,7 +53,7 @@ router.get('/', function (req, res, next) {
     } else {
         //暂无openid;获取之;
         var hostname = 'ma.eldesign.cn';
-        var redirect_uri = encodeURIComponent('http://' + hostname + '/wx/callback?router=' + router);
+        var redirect_uri = encodeURIComponent('https://' + hostname + '/wx/callback?router=' + router);
         var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=' + scope + '&state=1#wechat_redirect';
         res.redirect(url);
     }
