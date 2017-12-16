@@ -20,7 +20,7 @@ router.get('/jsSDK', function (req, res, next) {
     var getSDKSign = require('../module/wx/getSDKSign');
 
     //当前URL
-    var originalUrl = 'http://' + 'ma.eldesign.cn' + '' + req.originalUrl;
+    var originalUrl = 'https://' + 'ma.eldesign.cn' + '' + req.originalUrl;
 
 
     getSDKSign(originalUrl, function (chunk) {

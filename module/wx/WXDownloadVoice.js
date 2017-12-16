@@ -37,14 +37,14 @@ function wxDownloadVoice(data = {
                 console.log(err);
             }
         }).on('exit', function (code) {
-            console.log('下载完成');
+            //console.log('下载完成');
             var command = ffmpeg(DOWNLOAD_DIR + mediaId + '.amr')
                 .on('end', function () {
-                    console.log('file has been converted succesfully');
+                    //console.log('file has been converted succesfully');
                     cb(DOWNLOAD_DIR + mediaId + '.mp3');
                 })
                 .on('error', function (err) {
-                    console.log('an error happened: ' + err.message);
+                    //console.log('an error happened: ' + err.message);
                     cb('');
                 })
                 .save(DOWNLOAD_DIR + mediaId + '.mp3');
