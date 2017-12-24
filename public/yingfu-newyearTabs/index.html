@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="HandheldFriendly" content="true">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script src="js/dpi.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <title>英孚教育</title>
+
+</head>
+<body>
+<div class="f-hide">
+    <img src="img/index-banner.jpg" id="J-banner">
+    <img src="img/index-logo.png" id="J-logo">
+    <img src="img/keyword-bg.png" id="J-keyword-bg">
+    <img src="img/qcode.png" id="J-qcode">
+    <img src="img/title.png" id="J-title">
+
+    <img src="img/keyword1.png" id="J-keyword">
+</div>
+<div class="page page-start active">
+    <div class="mid">
+        <img src="img/start-logo.jpg" class="logo">
+        <img src="img/start-banner.jpg" class="banner">
+        <div class="input">
+            <input type="date" class="date-input">
+        </div>
+        <a href="javascript:;" class="J-btn btn">确定</a>
+    </div>
+</div>
+<div class="page page-loading">
+    <div class="mid loading-txt">图片正在生成 ...</div>
+</div>
+
+<div class="page page-main">
+    <div class="mid" id="myCanvasBox"></div>
+</div>
+<canvas id="myCanvas" width="640" height="1008"></canvas>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script>
+
+    function loader(cb) {
+        var me = this;
+        var loaded = 0;
+
+        if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+            cb && cb();
+        } else {
+            var imgLoad = imagesLoaded('body');
+            imgLoad.on('progress', function (instance, image) {
+                loaded++;
+                if (loaded == instance.images.length) {
+                    cb && cb();
+                }
+            });
+        }
+    }
+
+</script>
+<script>
+
+    $('.J-btn').click(function () {
+        $('.page-start').removeClass('active').siblings('.page-loading').addClass('active');
+        loader(function () {
+            genImage();
+            $('.page-loading').removeClass('active').siblings('.page-main').addClass('active');
+        })
+    });
+
+
+    function genImage() {
+        var canvas = $('#myCanvas')[0];
+        var canvasContext = canvas.getContext("2d");
+
+        canvasContext.fillStyle = '#ffffff';
+        canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+
+        var $logo = $('#J-logo')[0];
+        var $title = $('#J-title')[0];
+        var $keywordBg = $('#J-keyword-bg')[0];
+        var $keyword = $('#J-keyword')[0];
+        var $banner = $('#J-banner')[0];
+        var $qcode = $('#J-qcode')[0];
+
+        var titleY = 70;
+        var keywordBgY = titleY + $title.height + 15;
+        var keywordY = titleY + $title.height + 20;
+        var bannerY = keywordBgY + $keywordBg.height;
+        var qcodeY = bannerY + $banner.height;
+        var textY = bannerY + $banner.height - 15;
+
+        var textStr = '长按二维码生成你与宝贝的成长关键词';
+        canvasContext.fillStyle = '#020202';
+        canvasContext.font = '24px Arial';
+
+
+        var picList = [{
+            pic: $logo,
+            x: 20,
+            y: 20
+        }, {
+            pic: $title,
+            x: getCenterX($title),
+            y: titleY
+        }, {
+            pic: $keywordBg,
+            x: getCenterX($keywordBg),
+            y: keywordBgY
+        }, {
+            pic: $keyword,
+            x: getCenterX($keyword),
+            y: keywordY
+        }, {
+            pic: $banner,
+            x: getCenterX($banner),
+            y: bannerY
+        }, {
+            pic: $qcode,
+            x: getCenterX($qcode),
+            y: qcodeY
+        }];
+
+
+        for (var i = 0; i < picList.length; i++) {
+            var item = picList[i];
+            canvasContext.drawImage(item.pic, item.x, item.y);
+        }
+        canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
+
+        var dataURL = canvas.toDataURL("image/jpeg", 0.7);
+        $('#myCanvasBox').html('<img src="' + dataURL + '">');
+
+        function getCenterX(img) {
+            return (canvas.width - img.width ) / 2;
+        }
+    }
+
+
+</script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+
+    if (is_iPad()) {
+        $('body').addClass('ipad');
+    }
+    function is_iPad() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/iPad/i) == "ipad") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    initWX(initWXSahre);
+
+
+    function initWXSahre() {
+
+        //“分享给朋友”
+        wx.onMenuShareAppMessage({
+            title: '英孚青少儿英语亲子共读训练营', // 分享标题
+            desc: '从今天起，每天和孩子一起读会英文书吧！', // 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享给朋友']);
+
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //“分享到朋友圈”
+        wx.onMenuShareTimeline({
+            title: '英孚青少儿英语亲子共读训练营', // 分享标题
+            link: '', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    }
+
+    function initWX(callback) {
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/getWxSDK',
+            data: {'originalUrl': window.location.href},
+            success: function (data) {
+                var wxConfig = data.data.wxConfig;
+
+                console.log(wxConfig);
+
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: wxConfig.appId, // 必填，公众号的唯一标识
+                    timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                    signature: wxConfig.signature,// 必填，签名，见附录1
+                    jsApiList: ['startRecord', 'stopRecord', 'playVoice', 'uploadVoice', 'downloadVoice', 'stopVoice', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+
+                wx.ready(function () {
+                    callback && callback();
+                });
+
+                wx.error(function (res) {
+                    console.log(res);
+                });
+
+
+            },
+            dataType: 'json'
+        });
+
+
+    }
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?eaa4f1d06a8a15ed79345f82d2e4118f";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>
