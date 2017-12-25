@@ -3,7 +3,7 @@ var router = express.Router();
 var app = express();
 
 var log = require('../../module/tools/log');
-var DB = require('../../module/DB/NewYear17DB');
+var UserDB = require('../../module/DB/UserDB');
 
 var WXConfig = require('../../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
