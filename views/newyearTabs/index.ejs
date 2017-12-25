@@ -40,6 +40,7 @@
     <div class="mid" id="myCanvasBox"></div>
 </div>
 <canvas id="myCanvas" width="640" height="1008"></canvas>
+<canvas id="headimgUrlCanvas" width="100" height="100"></canvas>
 
 <script src="/newyearTabs/js/jquery.min.js"></script>
 <script src="/newyearTabs/js/imagesloaded.pkgd.min.js"></script>
@@ -139,6 +140,10 @@
         var canvas = $('#myCanvas')[0];
         var canvasContext = canvas.getContext("2d");
 
+        var imgCanvas = $('#headimgUrlCanvas')[0];
+        var imgContext = imgCanvas.getContext("2d");
+
+
         canvasContext.fillStyle = '#ffffff';
         canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -159,6 +164,7 @@
         canvasContext.fillStyle = '#020202';
         canvasContext.font = '24px Arial';
 
+        imgContext.drawImage($headimgurl, 0, 0, 100, 100);
 
         var picList = [{
             pic: $logo,
@@ -185,8 +191,8 @@
         }
 
         // 创建图片纹理
-        var pattern = canvasContext.createPattern($headimgurl, "no-repeat");
-        canvasContext.arc(getCenterX($headimgurl), hearImgY, 100, 0, 2 * Math.PI);
+        var pattern = canvasContext.createPattern(imgCanvas, "no-repeat");
+        canvasContext.arc(getCenterX($headimgurl), hearImgY, 50, 0, 2 * Math.PI);
         canvasContext.fillStyle = pattern;
         canvasContext.fill();
 

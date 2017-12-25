@@ -234,3 +234,8 @@ body {
     display: none;
     background: #ffffff;
 }
+
+#headimgUrlCanvas {
+    background: #ffffff;
+    display: none;
+}
