@@ -168,10 +168,6 @@
             x: getCenterX($title),
             y: titleY
         }, {
-            pic: $headimgurl,
-            x: getCenterX($headimgurl),
-            y: hearImgY
-        }, {
             pic: $keyword,
             x: getCenterX($keyword),
             y: keywordY
@@ -179,6 +175,10 @@
             pic: $qcode,
             x: getCenterX($qcode),
             y: qcodeY
+        }, {
+            pic: $headimgurl,
+            x: getCenterX($headimgurl),
+            y: hearImgY
         }];
 
 
@@ -187,6 +187,7 @@
             canvasContext.drawImage(item.pic, item.x, item.y);
         }
         canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
+        canvasContext.fillText(nickname, (canvas.width - canvasContext.measureText(nickname).width) / 2, textY);
 
         var dataURL = canvas.toDataURL("image/jpeg", 0.7);
         $('#myCanvasBox').html('<img src="' + dataURL + '">');
