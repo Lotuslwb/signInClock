@@ -164,15 +164,6 @@
         canvasContext.fillStyle = '#020202';
         canvasContext.font = '24px Arial';
 
-        imgCanvas.width = $headimgurl.width, imgCanvas.height = $headimgurl.height;
-        // 创建圆角图片
-        imgContext.beginPath();
-        imgContext.moveTo(imgCanvas.width / 2, imgCanvas.height / 2);
-        imgContext.arc(imgCanvas.width / 2, imgCanvas.height / 2, imgCanvas.width / 2, 0, 2 * Math.PI);
-        var pattern = canvasContext.createPattern($headimgurl, "no-repeat");
-        imgContext.fillStyle = pattern;
-        imgContext.fill();
-        imgContext.closePath();
 
         var picList = [{
             pic: $logo,
@@ -199,6 +190,7 @@
         }
 
 
+        drawHeadImg();
         canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
         canvasContext.fillText(nickname, (canvas.width - canvasContext.measureText(nickname).width) / 2, nicknameY);
 
@@ -207,6 +199,19 @@
 
         function getCenterX(img) {
             return (canvas.width - img.width ) / 2;
+        }
+
+        function drawHeadImg() {
+            imgCanvas.width = $headimgurl.width, imgCanvas.height = $headimgurl.height;
+            // 创建圆角图片
+            imgContext.beginPath();
+            imgContext.moveTo(imgCanvas.width / 2, imgCanvas.height / 2);
+            imgContext.arc(imgCanvas.width / 2, imgCanvas.height / 2, imgCanvas.width / 2, 0, 2 * Math.PI);
+            var pattern = canvasContext.createPattern($headimgurl, "no-repeat");
+            imgContext.fillStyle = pattern;
+            imgContext.fill();
+            imgContext.closePath();
+            canvasContext.drawImage(imgCanvas, 0, 0, imgCanvas.width, imgCanvas.height, (canvas.width - 100) / 2, heardImgY, 100, 100);
         }
     }
 
