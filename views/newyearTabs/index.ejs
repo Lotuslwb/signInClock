@@ -190,11 +190,17 @@
             canvasContext.drawImage(item.pic, item.x, item.y);
         }
 
-        // 创建图片纹理
-        var pattern = canvasContext.createPattern(imgCanvas, "no-repeat");
+        // 创建圆角图片
+        canvasContext.beginPath();
+        canvasContext.moveTo(getCenterX($headimgurl), heardImgY);
         canvasContext.arc(getCenterX($headimgurl), heardImgY, 50, 0, 2 * Math.PI);
+
+        var pattern = canvasContext.createPattern(imgCanvas, "no-repeat");
         canvasContext.fillStyle = pattern;
         canvasContext.fill();
+
+        canvasContext.closePath();
+
 
         canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
         canvasContext.fillText(nickname, (canvas.width - canvasContext.measureText(nickname).width) / 2, nicknameY);
