@@ -122,7 +122,7 @@
     var bookId = '<%= bookInfo._id %>';
     var bookName = '<%= bookInfo.articleTitle %>';
     var bookCover = '<%= bookInfo.coverUrl %>';
-    var bookDes = '<%= bookInfo.brief %>';
+    var bookDes = <%- bookInfo.brief.toString() %>;
     var wordLength = '<%= bookInfo.wordLength %>';
     var localId = '';
 
