@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var wx = require('./routes/wxConnect');
 var wxAPI = require('./routes/wxAPI');
 
+var newyearTabs = require('./routes/newyearTabs');
+
 
 //js 调用接口
 var API = require('./routes/API');
@@ -90,6 +92,9 @@ app.use('/leads/api', leadsAPI);
 
 app.use('/newyear17', newyear17);
 app.use('/newyear17/api', newyear17API);
+
+app.use('/yingfu-newyearTabs/', newyearTabs);
+
 
 app.use('/camp', camp);
 
