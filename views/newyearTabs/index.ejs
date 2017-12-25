@@ -214,9 +214,11 @@
             imgContext.fill();
             imgContext.closePath();
             var imgDataURL = imgCanvas.toDataURL();
-            $('.f-hide').append('<img src="' + imgDataURL + '" id="J-imgCanvas">');
-            var $imgCanvas = $('#J-imgCanvas')[0];
-            canvasContext.drawImage($imgCanvas, 0, 0, imgCanvas.width, imgCanvas.height, 5 + (canvas.width - 100) / 2, heardImgY + 5, 100, 100);
+            var img = new Image();
+            img.src = imgDataURL;
+            img.onload = function () {
+                canvasContext.drawImage(img, 0, 0, imgCanvas.width, imgCanvas.height, 5 + (canvas.width - 100) / 2, heardImgY + 5, 100, 100);
+            }
         }
     }
 
