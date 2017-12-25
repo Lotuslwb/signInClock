@@ -42,6 +42,17 @@
 <canvas id="myCanvas" width="640" height="1008"></canvas>
 <canvas id="headimgUrlCanvas"></canvas>
 
+<div class="toast"></div>
+<script>
+
+    var toast = function (msg, timer) {
+        $('.toast').text(msg).fadeIn();
+        setTimeout(function () {
+            $('.toast').fadeOut();
+        }, timer || 1000)
+    }
+</script>
+
 <script src="/newyearTabs/js/jquery.min.js"></script>
 <script src="/newyearTabs/js/imagesloaded.pkgd.min.js"></script>
 <script>
@@ -82,6 +93,7 @@
         loader(function () {
             genImage();
             $('.page-loading').removeClass('active').siblings('.page-main').addClass('active');
+            toast('长按就可以把图片保存在相册里了哟');
         })
     });
 
@@ -226,6 +238,8 @@
 
 
 </script>
+
+
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
 
