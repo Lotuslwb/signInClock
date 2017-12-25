@@ -149,10 +149,11 @@
         var $headimgurl = $('#J-headimgurl')[0];
 
         var titleY = 20;
-        var hearImgY = textY + $title.height - 20;
+        var hearImgY = titleY + $title.height - 20;
         var keywordY = titleY + $title.height;
         var qcodeY = keywordY + $keyword.height + 30;
         var textY = keywordY + $keyword.height + 20;
+        var nicknameY = hearImgY + 40;
 
         var textStr = '长按二维码生成你与宝贝的成长关键词';
         canvasContext.fillStyle = '#020202';
@@ -177,7 +178,7 @@
             y: qcodeY
         }, {
             pic: $headimgurl,
-            x: getCenterX($headimgurl),
+            x: 40,
             y: hearImgY
         }];
 
@@ -187,7 +188,7 @@
             canvasContext.drawImage(item.pic, item.x, item.y);
         }
         canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
-        canvasContext.fillText(nickname, (canvas.width - canvasContext.measureText(nickname).width) / 2, textY);
+        canvasContext.fillText(nickname, (canvas.width - canvasContext.measureText(nickname).width) / 2, nicknameY);
 
         var dataURL = canvas.toDataURL("image/jpeg", 0.7);
         $('#myCanvasBox').html('<img src="' + dataURL + '">');
