@@ -195,7 +195,7 @@
         canvasContext.moveTo(getCenterX($headimgurl), heardImgY);
         canvasContext.arc(getCenterX($headimgurl), heardImgY, 50, 0, 2 * Math.PI);
 
-        var pattern = canvasContext.createPattern(imgCanvas, "no-repeat");
+        var pattern = canvasContext.createPattern($headimgurl, "no-repeat");
         canvasContext.fillStyle = pattern;
         canvasContext.fill();
 
