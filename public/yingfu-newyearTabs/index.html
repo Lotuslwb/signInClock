@@ -17,22 +17,21 @@
 </head>
 <body>
 <div class="f-hide">
-    <img src="img/index-banner.jpg" id="J-banner">
     <img src="img/index-logo.png" id="J-logo">
-    <img src="img/keyword-bg.png" id="J-keyword-bg">
     <img src="img/qcode.png" id="J-qcode">
     <img src="img/title.png" id="J-title">
 
-    <img src="img/keyword1.png" id="J-keyword">
+
 </div>
 <div class="page page-start active">
     <div class="mid">
         <img src="img/start-logo.jpg" class="logo">
         <img src="img/start-banner.jpg" class="banner">
         <div class="input">
-            <input type="date" class="date-input">
+            <input type="date" class="date-input J-input">
+            <a href="javascript:;" class="J-btn btn">确定</a>
         </div>
-        <a href="javascript:;" class="J-btn btn">确定</a>
+
     </div>
 </div>
 <div class="page page-loading">
@@ -69,6 +68,13 @@
 <script>
 
     $('.J-btn').click(function () {
+        var val = $('.J-input').val();
+        if (!val) {
+            return false;
+        }
+
+        var type = returnType(val);
+        setKeyWord(type);
         $('.page-start').removeClass('active').siblings('.page-loading').addClass('active');
         loader(function () {
             genImage();
@@ -76,6 +82,55 @@
         })
     });
 
+    function returnType(val) {
+        var valArray = val.split("-");
+        var numberVal = parseInt(valArray[1] + valArray[2]);
+        var type = 10; //摩羯座
+
+        if (inRange(numberVal, '0321', '0419')) { // 白羊座
+            type = 1;
+        }
+        if (inRange(numberVal, '0420', '0520')) { // 金牛座
+            type = 2;
+        }
+        if (inRange(numberVal, '0521', '0621')) { // 双子座
+            type = 3;
+        }
+        if (inRange(numberVal, '0622', '0722')) { // 巨蟹座
+            type = 4;
+        }
+        if (inRange(numberVal, '0723', '0822')) { // 狮子座
+            type = 5;
+        }
+        if (inRange(numberVal, '0823', '0922')) { //处女座
+            type = 6;
+        }
+        if (inRange(numberVal, '0923', '1023')) { //天平座
+            type = 7;
+        }
+        if (inRange(numberVal, '1024', '1122')) { //天蝎座
+            type = 8;
+        }
+        if (inRange(numberVal, '1123', '1221')) { //射手座
+            type = 9;
+        }
+        if (inRange(numberVal, '0120', '0218')) { //水瓶座
+            type = 11;
+        }
+        if (inRange(numberVal, '0219', '0320')) { //水瓶座
+            type = 12;
+        }
+
+        return type;
+    }
+
+    function inRange(val, min, max) {
+        return val >= min * 1 && val <= max * 1;
+    }
+
+    function setKeyWord(type) {
+        $('.f-hide').append('<img src="img/keyword_' + type + '.png" id="J-keyword">')
+    }
 
     function genImage() {
         var canvas = $('#myCanvas')[0];
@@ -86,17 +141,13 @@
 
         var $logo = $('#J-logo')[0];
         var $title = $('#J-title')[0];
-        var $keywordBg = $('#J-keyword-bg')[0];
         var $keyword = $('#J-keyword')[0];
-        var $banner = $('#J-banner')[0];
         var $qcode = $('#J-qcode')[0];
 
-        var titleY = 70;
-        var keywordBgY = titleY + $title.height + 15;
-        var keywordY = titleY + $title.height + 20;
-        var bannerY = keywordBgY + $keywordBg.height;
-        var qcodeY = bannerY + $banner.height;
-        var textY = bannerY + $banner.height - 15;
+        var titleY = 30;
+        var keywordY = titleY + $title.height;
+        var qcodeY = keywordY + $keyword.height + 30;
+        var textY = keywordY + $keyword.height + 20;
 
         var textStr = '长按二维码生成你与宝贝的成长关键词';
         canvasContext.fillStyle = '#020202';
@@ -105,24 +156,16 @@
 
         var picList = [{
             pic: $logo,
-            x: 20,
-            y: 20
+            x: 0,
+            y: 0
         }, {
             pic: $title,
             x: getCenterX($title),
             y: titleY
         }, {
-            pic: $keywordBg,
-            x: getCenterX($keywordBg),
-            y: keywordBgY
-        }, {
             pic: $keyword,
             x: getCenterX($keyword),
             y: keywordY
-        }, {
-            pic: $banner,
-            x: getCenterX($banner),
-            y: bannerY
         }, {
             pic: $qcode,
             x: getCenterX($qcode),
@@ -168,16 +211,14 @@
 
         //“分享给朋友”
         wx.onMenuShareAppMessage({
-            title: '英孚青少儿英语亲子共读训练营', // 分享标题
-            desc: '从今天起，每天和孩子一起读会英文书吧！', // 分享描述
+            title: '快来测测2018你和宝贝的成长关键词', // 分享标题
+            desc: '快来测测2018你和宝贝的成长关键词', // 分享描述
             link: '', // 分享链接
-            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            imgUrl: 'http://ma.eldesign.cn/yingfu-newyearTabs/img/logo.jpg', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {
                 // 用户确认分享后执行的回调函数
-                _hmt.push(['_trackEvent', '分享', '分享给朋友']);
-
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
@@ -186,12 +227,11 @@
 
         //“分享到朋友圈”
         wx.onMenuShareTimeline({
-            title: '英孚青少儿英语亲子共读训练营', // 分享标题
+            title: '快来测测2018你和宝贝的成长关键词', // 分享标题
             link: '', // 分享链接
             imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
-                _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
@@ -237,7 +277,7 @@
 </script>
 <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?eaa4f1d06a8a15ed79345f82d2e4118f";
         var s = document.getElementsByTagName("script")[0];

@@ -196,7 +196,7 @@ body {
 
 .page-start .input {
     background: url("../img/start-input.png") no-repeat;
-    width: 425px;
+    width: 501px;
     height: 211px;
     margin: 15px auto;
     position: relative;
@@ -209,22 +209,21 @@ body {
     height: 45px;
     line-height: 45px;
     font-size: 26px;
-    margin: 78px auto 0;
+    margin: 78px 0 0 88px;
     box-sizing: border-box;
     padding-left: 20px;
 }
 
 .page-start .btn {
     display: block;
-    width: 300px;
-    height: 70px;
-    line-height: 70px;
+    width: 140px;
+    height: 54px;
     margin: auto;
-    font-size: 26px;
-    text-align: center;
     background: #007aff;
-    color: #ffffff;
-    border-radius: 8px;
+    position: absolute;
+    right: 0;
+    top: 72px;
+    opacity: 0;
 }
 
 .page-loading .loading-txt {
