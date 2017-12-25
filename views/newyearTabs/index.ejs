@@ -209,16 +209,18 @@
             imgContext.beginPath();
             imgContext.moveTo(imgCanvas.width / 2, imgCanvas.height / 2);
             imgContext.arc(imgCanvas.width / 2, imgCanvas.height / 2, imgCanvas.width / 2, 0, 2 * Math.PI);
-            var pattern = canvasContext.createPattern($headimgurl, "no-repeat");
+            var pattern = imgContext.createPattern($headimgurl, "no-repeat");
             imgContext.fillStyle = pattern;
             imgContext.fill();
             imgContext.closePath();
-            var imgDataURL = imgCanvas.toDataURL();
-            var img = new Image();
-            img.src = imgDataURL;
-            img.onload = function () {
-                canvasContext.drawImage(img, 0, 0, imgCanvas.width, imgCanvas.height, 5 + (canvas.width - 100) / 2, heardImgY + 5, 100, 100);
-            }
+            canvasContext.drawImage(imgContext, 0, 0, imgCanvas.width, imgCanvas.height, 5 + (canvas.width - 100) / 2, heardImgY + 5, 100, 100);
+
+//            var imgDataURL = imgCanvas.toDataURL();
+//            var img = new Image();
+//            img.src = imgDataURL;
+//            img.onload = function () {
+//
+//            }
         }
     }
 
