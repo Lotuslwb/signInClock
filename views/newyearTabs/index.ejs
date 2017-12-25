@@ -164,7 +164,15 @@
         canvasContext.fillStyle = '#020202';
         canvasContext.font = '24px Arial';
 
-        imgContext.drawImage($headimgurl, 0, 0, 100, 100);
+        imgCanvas.width = $headimgurl.width(), imgCanvas.height = $headimgurl.height();
+        // 创建圆角图片
+        imgContext.beginPath();
+        imgContext.moveTo(imgCanvas.width / 2, imgCanvas.height / 2);
+        imgContext.arc(imgCanvas.width / 2, imgCanvas.height / 2, imgCanvas.width / 2, 0, 2 * Math.PI);
+        var pattern = canvasContext.createPattern($headimgurl, "no-repeat");
+        imgContext.fillStyle = pattern;
+        imgContext.fill();
+        imgContext.closePath();
 
         var picList = [{
             pic: $logo,
@@ -189,17 +197,6 @@
             var item = picList[i];
             canvasContext.drawImage(item.pic, item.x, item.y);
         }
-
-        // 创建圆角图片
-        canvasContext.beginPath();
-        canvasContext.moveTo(getCenterX($headimgurl), heardImgY);
-        canvasContext.arc(getCenterX($headimgurl), heardImgY, 50, 0, 2 * Math.PI);
-
-        var pattern = canvasContext.createPattern($headimgurl, "no-repeat");
-        canvasContext.fillStyle = pattern;
-        canvasContext.fill();
-
-        canvasContext.closePath();
 
 
         canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
