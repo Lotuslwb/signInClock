@@ -213,7 +213,13 @@
             imgContext.fillStyle = pattern;
             imgContext.fill();
             imgContext.closePath();
-            canvasContext.drawImage(imgCanvas, 0, 0, imgCanvas.width + 5, imgCanvas.height - 5, (canvas.width - 100) / 2, heardImgY, 100, 100);
+            var imgDataURL = imgCanvas.toDataURL("image/jpeg", 0.7);
+            $('.f-hide').append('<img src="' + imgDataURL + '" id="J-imgCanvas">');
+            var $imgCanvas = $('#J-imgCanvas')[0];
+            $imgCanvas.onload = function () {
+                canvasContext.drawImage($imgCanvas, 0, 0, imgCanvas.width, imgCanvas.height, 5 + (canvas.width - 100) / 2, heardImgY + 5, 100, 100);
+            }
+
         }
     }
 
