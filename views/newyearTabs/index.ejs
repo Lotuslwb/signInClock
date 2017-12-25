@@ -69,7 +69,7 @@
     var nickname = doc.nickname;
     var headimgurl = doc.headimgurl.replace('http://wx.qlogo.cn/', '/wxqlogo/');
     console.log(headimgurl);
-    
+
     $('.J-btn').click(function () {
         var val = $('.J-input').val();
         if (!val) {
@@ -156,11 +156,12 @@
         var titleY = 20;
         var heardImgY = titleY + $title.height - 95;
         var keywordY = titleY + $title.height;
-        var qcodeY = keywordY + $keyword.height + 30;
+        var qcodeY = keywordY + $keyword.height + 50;
         var textY = keywordY + $keyword.height + 20;
         var nicknameY = heardImgY + 100 + 25;
 
-        var textStr = '长按二维码生成你与宝贝的成长关键词';
+        var textStr = '长按二维码生成';
+        var textStr2 = '你与宝贝的成长关键词';
         canvasContext.fillStyle = '#020202';
         canvasContext.font = '24px Arial';
 
@@ -192,6 +193,7 @@
 
         drawHeadImg();
         canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
+        canvasContext.fillText(textStr2, (canvas.width - canvasContext.measureText(textStr2).width) / 2, textY + 25);
         canvasContext.fillText(nickname, (canvas.width - canvasContext.measureText(nickname).width) / 2, nicknameY);
 
         var dataURL = canvas.toDataURL("image/jpeg", 0.7);
@@ -211,7 +213,7 @@
             imgContext.fillStyle = pattern;
             imgContext.fill();
             imgContext.closePath();
-            canvasContext.drawImage(imgCanvas, 0, 0, imgCanvas.width, imgCanvas.height, (canvas.width - 100) / 2, heardImgY, 100, 100);
+            canvasContext.drawImage(imgCanvas, 0, 0, imgCanvas.width + 5, imgCanvas.height - 5, (canvas.width - 100) / 2, heardImgY, 100, 100);
         }
     }
 
