@@ -65,6 +65,8 @@
 <script>
 
     var doc =<%- doc %>;
+    var nickname = doc.nickname;
+    var headimgurl = doc.headimgurl;
 
     $('.J-btn').click(function () {
         var val = $('.J-input').val();
@@ -128,7 +130,8 @@
     }
 
     function setKeyWord(type) {
-        $('.f-hide').append('<img src="img/keyword_' + type + '.png" id="J-keyword">')
+        $('.f-hide').append('<img src="img/keyword_' + type + '.png" id="J-keyword">');
+        $('.f-hide').append('<img src="' + headimgurl + '" id="J-headimgurl">');
     }
 
     function genImage() {

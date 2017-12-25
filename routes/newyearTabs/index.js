@@ -28,7 +28,7 @@ router.get('/', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var openid = req.signedCookies['session'];
         getUserInfoByOpenid(openid, function (docs) {
-            res.render('newyearTabs/index', {title: 'index', doc: docs[0]});
+            res.render('newyearTabs/index', {title: 'index', doc: docs[0].personInfo});
         })
     });
 });
