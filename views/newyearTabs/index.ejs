@@ -132,7 +132,7 @@
 
     function setKeyWord(type) {
         $('.f-hide').append('<img src="/newyearTabs/img/keyword_' + type + '.png" id="J-keyword">');
-        $('.f-hide').append('<img src="' + headimgurl + '" crossOrigin="*"  id="J-headimgurl">');
+        $('.f-hide').append('<img src="' + headimgurl + '" crossOrigin="*"  width="100" height="100" id="J-headimgurl">');
     }
 
     function genImage() {
@@ -176,10 +176,6 @@
             pic: $qcode,
             x: getCenterX($qcode),
             y: qcodeY
-        }, {
-            pic: $headimgurl,
-            x: 40,
-            y: hearImgY
         }];
 
 
@@ -187,6 +183,13 @@
             var item = picList[i];
             canvasContext.drawImage(item.pic, item.x, item.y);
         }
+
+        // 创建图片纹理
+        var pattern = canvasContext.createPattern($headimgurl, "no-repeat");
+        canvasContext.arc(getCenterX($headimgurl), hearImgY, 100, 0, 2 * Math.PI);
+        canvasContext.fillStyle = pattern;
+        canvasContext.fill();
+
         canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
         canvasContext.fillText(nickname, (canvas.width - canvasContext.measureText(nickname).width) / 2, nicknameY);
 
