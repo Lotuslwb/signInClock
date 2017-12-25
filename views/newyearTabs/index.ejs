@@ -130,8 +130,8 @@
     }
 
     function setKeyWord(type) {
-        $('.f-hide').append('<img src="img/keyword_' + type + '.png" id="J-keyword">');
-        $('.f-hide').append('<img src="' + headimgurl + '" id="J-headimgurl">');
+        $('.f-hide').append('<img src="/newyearTabs/img/keyword_' + type + '.png" id="J-keyword">');
+        $('.f-hide').append('<img src="' + headimgurl + '" crossOrigin="anonymous"  id="J-headimgurl">');
     }
 
     function genImage() {
@@ -145,8 +145,10 @@
         var $title = $('#J-title')[0];
         var $keyword = $('#J-keyword')[0];
         var $qcode = $('#J-qcode')[0];
+        var $headimgurl = $('#J-headimgurl')[0];
 
         var titleY = 20;
+        var hearImgY = textY + $title.height - 20;
         var keywordY = titleY + $title.height;
         var qcodeY = keywordY + $keyword.height + 30;
         var textY = keywordY + $keyword.height + 20;
@@ -164,6 +166,10 @@
             pic: $title,
             x: getCenterX($title),
             y: titleY
+        }, {
+            pic: $headimgurl,
+            x: getCenterX($headimgurl),
+            y: hearImgY
         }, {
             pic: $keyword,
             x: getCenterX($keyword),
@@ -231,7 +237,7 @@
         wx.onMenuShareTimeline({
             title: '快来测测2018你和宝贝的成长关键词', // 分享标题
             link: '', // 分享链接
-            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            imgUrl: 'http://ma.eldesign.cn/newyearTabs/img/logo.jpg', // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
             },
