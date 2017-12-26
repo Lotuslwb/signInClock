@@ -81,7 +81,7 @@ router.get('/saveVoice', function (req, res, next) {
 
 //签到
 router.get('/setSignIn', function (req, res, next) {
-    var openid = req.signedCookies['session'].toString();
+    var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
     var readingList = {
         bookId: req.query.bookId,  //今日书籍ID
