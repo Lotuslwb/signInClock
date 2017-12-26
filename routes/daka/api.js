@@ -257,9 +257,9 @@ function isYesterday(date) {
 
 function getUserInfoFormDB(openid, callback_s, callback_f) {
 
-    if (!openid) {
-        callback_f && callback_f('***openid 不能为空***');
-    }
+    // if (!openid) {
+    //     callback_f && callback_f('***openid 不能为空***');
+    // }
     var findJSON = {
         openid: openid.split('"')[1]
     };
