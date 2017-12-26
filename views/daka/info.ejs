@@ -7,6 +7,8 @@
     .start-btn {
         margin: auto;
         margin-top: -40px;
+        position: relative;
+        z-index: 4;
     }
 </style>
 <div class="page main-page index-page active">
@@ -53,7 +55,7 @@
 
 <script>
 
-    $('.start-banner').click(function () {
+    $('.start-btn').click(function () {
         window.location.href = '/daka/index';
     })
 
