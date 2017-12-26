@@ -130,8 +130,9 @@ router.get('/setSignIn', function (req, res, next) {
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
             if (isToday(lastRecodeTime)) {
-                //上次打卡时间为今天;那么就不能再打卡了
-                res.send(sendData('990', '', '你今天已经打过卡了哦'));
+                // 上次打卡时间为今天;那么就不能再打卡了
+                // res.send(sendData('990', '', '你今天已经打过卡了哦'));
+                res.send(sendData('200', '', ''));
                 return false;
             } else {
                 //打卡逻辑
