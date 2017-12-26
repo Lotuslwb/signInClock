@@ -81,7 +81,7 @@ router.get('/saveVoice', function (req, res, next) {
 
 //签到
 router.get('/setSignIn', function (req, res, next) {
-    var openid = req.signedCookies['session'];
+    var openid = req.signedCookies['session'] + '';
     var recordServerId = req.query.serverId;
     var readingList = {
         bookId: req.query.bookId,  //今日书籍ID
@@ -93,10 +93,10 @@ router.get('/setSignIn', function (req, res, next) {
 
     console.log(openid, '******setSignIn*****');
 
-    // if (!openid) {
-    //     res.send(sendData('999', '', 'openid 不能为空'));
-    //     return false;
-    // }
+    if (!openid) {
+        res.send(sendData('999', '', '******setSignIn***** openid 不能为空'));
+        return false;
+    }
 
     getUserInfoFormDB(openid, function (docs) {
 
@@ -257,16 +257,13 @@ function isYesterday(date) {
 
 function getUserInfoFormDB(openid, callback_s, callback_f) {
 
-    // if (!openid) {
-    //     callback_f && callback_f('***openid 不能为空***');
-    // }
-    // var findJSON = {
-    //     openid: openid.split('"')[1]
-    // };
-
+    if (!openid) {
+        callback_f && callback_f('***openid 不能为空****');
+    }
     var findJSON = {
-        openid: openid
+        openid: openid.split('"')[1]
     };
+
 
     UserDB.find(findJSON).then(function (docs) {
         if (docs.length > 0) {
