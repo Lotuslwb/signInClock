@@ -94,7 +94,7 @@ router.get('/setSignIn', function (req, res, next) {
     console.log(openid, 'setSignIn');
 
     if (!openid) {
-        res.send(sendData('999', docs, 'openid 不能为空'));
+        res.send(sendData('999', '', 'openid 不能为空'));
         return false;
     }
 
