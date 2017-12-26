@@ -206,7 +206,7 @@
         drawHeadImg();
         //canvasContext.fillText(textStr, (canvas.width - canvasContext.measureText(textStr).width) / 2, textY);
         //canvasContext.fillText(textStr2, (canvas.width - canvasContext.measureText(textStr2).width) / 2, textY + 30);
-        canvasContext.fillText(nickname, 160 - canvasContext.measureText(nickname).width, 200);
+        canvasContext.fillText(nickname, 150 - canvasContext.measureText(nickname).width, 200);
 
         var dataURL = canvas.toDataURL("image/jpeg", 0.7);
         $('#myCanvasBox').html('<img src="' + dataURL + '">');
