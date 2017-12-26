@@ -80,16 +80,16 @@ router.get('/saveVoice', function (req, res, next) {
 });
 
 //签到
-router.get('/setSignIn', function (req, res, next) {
+router.post('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'] + '';
-    var recordServerId = req.query.serverId;
+    var recordServerId = req.body.serverId;
     var readingList = {
-        bookId: req.query.bookId,  //今日书籍ID
-        bookName: req.query.bookName, // 今日书籍名
-        bookCover: req.query.bookCover, //今天书籍封页
-        bookDes: req.query.bookDes //今天书籍封页
+        bookId: req.body.bookId,  //今日书籍ID
+        bookName: req.body.bookName, // 今日书籍名
+        bookCover: req.body.bookCover, //今天书籍封页
+        bookDes: req.body.bookDes //今天书籍封页
     };
-    var wordLength = req.query.wordLength;
+    var wordLength = req.body.wordLength;
 
     console.log(openid, '******setSignIn*****');
 
@@ -131,8 +131,7 @@ router.get('/setSignIn', function (req, res, next) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
             if (isToday(lastRecodeTime)) {
                 // 上次打卡时间为今天;那么就不能再打卡了
-                // res.send(sendData('990', '', '你今天已经打过卡了哦'));
-                res.send(sendData('200', '', ''));
+                res.send(sendData('990', '', '你今天已经打过卡了哦'));
                 return false;
             } else {
                 //打卡逻辑

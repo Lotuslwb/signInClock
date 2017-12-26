@@ -306,7 +306,7 @@
 
     function setSignIn(data, cb) {
         $.ajax({
-            type: 'GET',
+            type: 'post',
             data: data,
             url: '/dakaApi/setSignIn',
             success: function (data) {
