@@ -80,16 +80,16 @@ router.get('/saveVoice', function (req, res, next) {
 });
 
 //签到
-router.post('/setSignIn', function (req, res, next) {
+router.get('/setSignIn', function (req, res, next) {
     var openid = req.signedCookies['session'] + '';
-    var recordServerId = req.body.serverId;
+    var recordServerId = req.query.serverId;
     var readingList = {
-        bookId: req.body.bookId,  //今日书籍ID
-        bookName: req.body.bookName, // 今日书籍名
-        bookCover: req.body.bookCover, //今天书籍封页
-        bookDes: req.body.bookDes //今天书籍封页
+        bookId: req.query.bookId,  //今日书籍ID
+        bookName: req.query.bookName, // 今日书籍名
+        bookCover: req.query.bookCover, //今天书籍封页
+        bookDes: req.query.bookDes //今天书籍封页
     };
-    var wordLength = req.body.wordLength;
+    var wordLength = req.query.wordLength;
 
     console.log(openid, '******setSignIn*****');
 
