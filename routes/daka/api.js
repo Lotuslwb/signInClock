@@ -38,7 +38,7 @@ router.get('/saveVoice', function (req, res, next) {
 
 
     if (!openid) {
-        res.send(sendData('999', docs, 'openid 不能为空'));
+        res.send(sendData('999', '', 'openid 不能为空'));
         return false;
     }
 
@@ -91,7 +91,7 @@ router.get('/setSignIn', function (req, res, next) {
     };
     var wordLength = req.query.wordLength;
 
-    console.log(openid, 'setSignIn');
+    console.log(openid, '******setSignIn*****');
 
     if (!openid) {
         res.send(sendData('999', '', 'openid 不能为空'));
@@ -258,7 +258,7 @@ function isYesterday(date) {
 function getUserInfoFormDB(openid, callback_s, callback_f) {
 
     if (!openid) {
-        callback_f && callback_f('openid 不能为空');
+        callback_f && callback_f('***openid 不能为空***');
     }
     var findJSON = {
         openid: openid.split('"')[1]
