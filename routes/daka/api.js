@@ -159,7 +159,7 @@ router.get('/setSignIn', function (req, res, next) {
         } else {
             runDaka();
             //上次打卡时间为空 说明是第一次进来打卡
-            log('上次打卡时间为空 说明是第一次进来打卡');
+            console.log('上次打卡时间为空 说明是第一次进来打卡');
             lastRecodeTime = new Date();
             totalRecodeCounts++;
             currentSerialRecodeCounts++;
