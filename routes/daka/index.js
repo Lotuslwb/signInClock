@@ -9,12 +9,14 @@ var ArticleDB = require('../../module/DB/ArticleDB');
 var log = require('../../module/tools/log');
 
 
-router.get('/', function (req, res, next) {
-
-    res.cookie('info', 1);
-
-    // res.render('daka/info', {title: '开始打卡', now: new Date()});
-    next();
+router.get('/index', function (req, res, next) {
+    var info = req.cookies.info;
+    if (info && info == 1) {
+        next();
+    } else {
+        res.cookie('info', '1');
+        res.render('daka/info', {title: '开始打卡', now: new Date()});
+    }
 })
 
 router.get('/info', function (req, res, next) {
