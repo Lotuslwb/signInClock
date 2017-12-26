@@ -127,6 +127,8 @@ router.get('/setSignIn', function (req, res, next) {
             console.log('error', e);
         }
 
+        console.log(lastRecodeTime,'***lastRecodeTime***')
+
         if (lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
             if (isToday(lastRecodeTime)) {
