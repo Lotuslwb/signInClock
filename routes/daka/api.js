@@ -81,7 +81,7 @@ router.get('/saveVoice', function (req, res, next) {
 
 //签到
 router.get('/setSignIn', function (req, res, next) {
-    var openid = req.signedCookies['session'];
+    var openid = req.signedCookies['session'].toString();
     var recordServerId = req.query.serverId;
     var readingList = {
         bookId: req.query.bookId,  //今日书籍ID
@@ -93,10 +93,10 @@ router.get('/setSignIn', function (req, res, next) {
 
     console.log(openid, '******setSignIn*****');
 
-    // if (!openid) {
-    //     res.send(sendData('999', '', 'openid 不能为空'));
-    //     return false;
-    // }
+    if (!openid) {
+        res.send(sendData('999', '', 'openid 不能为空'));
+        return false;
+    }
 
     getUserInfoFormDB(openid, function (docs) {
 
