@@ -129,7 +129,7 @@ router.get('/setSignIn', function (req, res, next) {
 
         console.log(lastRecodeTime, '***lastRecodeTime***')
 
-        if (lastRecodeTime.length > 0) {
+        if (lastRecodeTime && lastRecodeTime.length > 0) {
             lastRecodeTime = new Date(lastRecodeTime * 1);
             if (isToday(lastRecodeTime)) {
                 // 上次打卡时间为今天;那么就不能再打卡了
