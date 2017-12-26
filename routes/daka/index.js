@@ -9,6 +9,11 @@ var ArticleDB = require('../../module/DB/ArticleDB');
 var log = require('../../module/tools/log');
 
 
+router.get('/info', function (req, res, next) {
+    res.render('daka/info', {title: '开始打卡', now: new Date()});
+})
+
+
 router.get('/start', function (req, res, next) {
     // res.render('daka/start', {title: '开始打卡'});
     UserDB.User.find({}, {personInfo: 1}).sort({"personInfo.startTime": -1}).then(function (docs) {

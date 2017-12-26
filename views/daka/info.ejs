@@ -1,0 +1,72 @@
+﻿<%- include("header.ejs",{"title": "英孚亲子共读训练营"}) %>
+<style>
+    body.ipad {
+        padding-bottom: 160px;
+    }
+
+    .start-btn {
+        margin: auto;
+        margin-top: -40px;
+    }
+</style>
+<div class="page main-page index-page active">
+    <div class="date-box">
+        <div class="date-box-icon"></div>
+        <div class="date-box-text"></div>
+    </div>
+
+    <div class="index-words">
+        <div class="index-words-cn">
+            各位家长晚上好，
+            <br/>
+            这里是今天电话快要被打爆的小E~
+            <br/>
+            12月25日晚上八点左右，我们的打卡平台受到
+            了黑客十分不友好的攻击，导致小朋友们无法
+            正常打卡。
+            <br/>
+            得知这个情况后, 小E立马联系了技术团队进行
+            排查，技术大哥们昨天连夜赶工，在第一时间
+            修复了平台的基本功能，目前所有打卡天数也
+            已经恢复，小E可以和大家保证不会影响抽奖，
+            后续也会竭尽所能找回阅读字数、打卡日期等
+            其他数据！
+            <br/>
+            有些家长告诉我们小朋友们看到记录被清空后
+            很失望，小E想要再和小朋友们说声对不起。
+            看到有这么多小朋友都在期待并且认真对待每
+            天的打卡小E很开心, 也感谢家长们在出现问题
+            后第一时间反馈给小E, 谢谢你们的支持和理解。
+            <br/>
+            小E明白目前的打卡功能还有些不足, 往后会不
+            断优化等级、音频和内容的。
+            再一次谢谢大家 :)
+            <br/>
+            <div style="text-align: right">--小E</div>
+        </div>
+        <div class="start-btn">返回</div>
+    </div>
+</div>
+
+<%- include("commonjs.ejs") %>
+
+
+<script>
+
+    $('.start-banner').click(function () {
+        window.location.href = '/daka/index';
+    })
+
+    var now = "<%= now %>";
+    initFloatDate(now);
+
+
+    initWX(function () {
+        initWXSahre();
+    });
+
+</script>
+
+
+</body>
+</html>
