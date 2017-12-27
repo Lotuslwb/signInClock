@@ -178,9 +178,10 @@ router.get('/callback2', function (req, res) {
             if (docs.length > 0) {
                 var doc = docs[0];
                 var id = doc._id;
+                console.log(doc, 'doc');
                 doc.personInfo['headimgurl'] = chunk.headimgurl;
                 delete doc._id;
-                console.log(doc, 'doc');
+                console.log(doc, 'new_doc');
                 UserDB.update(id, doc, function (err, docs) {
                     callback(docs)
                 });
