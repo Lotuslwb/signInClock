@@ -176,8 +176,10 @@ router.get('/callback2', function (req, res) {
 
         var promise = UserDB.find(findJSON).then(function (docs) {
             if (docs.length > 0) {
-                docs.personInfo['headimgurl'] = chunk.headimgurl;
-                UserDB.update(docs._id, docs, function (err, docs) {
+                var doc = docs[0];
+                doc.personInfo['headimgurl'] = chunk.headimgurl;
+                console.log(doc, 'doc');
+                UserDB.update(doc._id, doc, function (err, docs) {
                     callback(docs)
                 });
             } else {
