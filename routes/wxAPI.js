@@ -157,7 +157,6 @@ router.get('/callback2', function (req, res) {
                 city: chunk.city,
                 headimgurl: chunk.headimgurl,
                 startTime: new Date().getTime() * 1
-
             }, recodeInfo: {
                 lastRecodeTime: '',
                 totalRecodeCounts: 0,
@@ -177,12 +176,15 @@ router.get('/callback2', function (req, res) {
         var promise = UserDB.find(findJSON).then(function (docs) {
             if (docs.length > 0) {
                 var doc = docs[0];
-                var id = doc._id;
-                console.log(doc, 'doc');
-                doc.personInfo['headimgurl'] = chunk.headimgurl;
-                delete doc._id;
-                console.log(doc, 'new_doc');
-                UserDB.update(id, doc, function (err, docs) {
+
+                UserDB.update(doc._id, {
+                    personInfo: {
+                        nickname: chunk.nickname,
+                        sex: chunk.sex,
+                        city: chunk.city,
+                        headimgurl: chunk.headimgurl,
+                    }
+                }, function (err, docs) {
                     callback(docs)
                 });
             } else {
