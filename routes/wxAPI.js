@@ -129,6 +129,70 @@ router.get('/callback', function (req, res) {
 
 });
 
+router.get('/callback2', function (req, res) {
+    //获取个人信息并且保存
+    var getUserInfoByCode = require('../module/wx/getUserInfoByCode');
+    var code = req.query.code;
+    var router = req.query.router || '';
+
+
+    getUserInfoByCode({code: code, needInfo: true}, function (data) {
+        var sign = data.sign;
+        var chunk = data.chunk;
+        console.log(chunk, 'chunk');
+        res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
+        addUserToDB(chunk, function () {
+            res.redirect('/' + router);
+        })
+    });
+
+    //将用户信息加入数据库,初始化用户信息
+    function addUserToDB(chunk, callback) {
+        var UserDB = require('../module/DB/UserDB');
+        var json = {
+            openid: chunk.openid,
+            personInfo: {
+                nickname: chunk.nickname,
+                sex: chunk.sex,
+                city: chunk.city,
+                headimgurl: chunk.headimgurl,
+                startTime: new Date().getTime() * 1
+
+            }, recodeInfo: {
+                lastRecodeTime: '',
+                totalRecodeCounts: 0,
+                currentRecodeCounts: 0,
+                currentSerialRecodeCounts: 0
+            },
+            couponList: [],
+            clockInfo: {
+                clockTime: '18:00',
+                clockSwitch: 'on'
+            }
+        }
+        var findJSON = {
+            openid: chunk.openid
+        }
+
+        var promise = UserDB.find(findJSON).then(function (docs) {
+            if (docs.length > 0) {
+                docs.personInfo['headimgurl'] = chunk.headimgurl;
+                UserDB.update(docs._id, docs, function (err, docs) {
+                    callback(docs)
+                });
+            } else {
+                log('---数据库里面暂无此用户---');
+                UserDB.add(json).then(function (docs) {
+                    log('增加数据成功');
+                    callback(docs)
+                });
+            }
+        });
+    }
+
+
+});
+
 
 router.get('/wxError', function (req, res, next) {
     var ua = (req.headers['user-agent']).toLowerCase();
