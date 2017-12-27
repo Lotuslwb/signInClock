@@ -12,7 +12,6 @@ var log = require('../../module/tools/log');
 router.get('/index', function (req, res, next) {
     var info = req.cookies.info;
     if (info && info == 1) {
-        res.cookie('info', '1', {expires: new Date(Date.now() + 900000)});
         next();
     } else {
         res.cookie('info', '1', {expires: new Date(Date.now() + 900000)});
