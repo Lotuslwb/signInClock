@@ -14,7 +14,7 @@ router.get('/index', function (req, res, next) {
     if (info && info == 1) {
         next();
     } else {
-        res.cookie('info', '1');
+        res.cookie('info', '1', {expires: new Date(Date.now() + 900000)});
         res.render('daka/info', {title: '开始打卡', now: new Date()});
     }
 })
