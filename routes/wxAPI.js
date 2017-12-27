@@ -177,10 +177,11 @@ router.get('/callback2', function (req, res) {
         var promise = UserDB.find(findJSON).then(function (docs) {
             if (docs.length > 0) {
                 var doc = docs[0];
+                var id = doc._id;
                 doc.personInfo['headimgurl'] = chunk.headimgurl;
                 delete doc._id;
                 console.log(doc, 'doc');
-                UserDB.update(doc._id, doc, function (err, docs) {
+                UserDB.update(id, doc, function (err, docs) {
                     callback(docs)
                 });
             } else {
