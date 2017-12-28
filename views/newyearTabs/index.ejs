@@ -79,7 +79,10 @@
     var doc =<%- doc %>;
     var nickname = doc.nickname;
     var headimgurl = doc.headimgurl.replace('http://wx.qlogo.cn/', '/wxqlogo/');
-    console.log(headimgurl);
+
+
+    $('.f-hide').append('<img src="' + headimgurl + '" crossOrigin="*"  id="J-headimgurl">');
+    loader();
 
     $('.J-btn').click(function () {
         var val = $('.J-input').val();
@@ -145,7 +148,6 @@
 
     function setKeyWord(type) {
         $('.f-hide').append('<img src="/newyearTabs/img/keyword_' + type + '.png" id="J-keyword">');
-        $('.f-hide').append('<img src="' + headimgurl + '" crossOrigin="*"  id="J-headimgurl">');
     }
 
     function genImage() {
@@ -242,6 +244,11 @@
 
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
+
+    window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
+        alert("错误信息：" + errorMessage + ";出错行号：" + lineNumber + ';错误详情:' + json.stringify(errorObj));
+    }
+
 
     if (is_iPad()) {
         $('body').addClass('ipad');
