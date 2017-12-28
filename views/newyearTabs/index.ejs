@@ -26,7 +26,21 @@
         <img src="/newyearTabs/img/index-logo.png" class="logo">
         <img src="/newyearTabs/img/start-banner.jpg" class="banner">
         <div class="input">
-            <input type="date" class="date-input J-input">
+            <select class="month-select J-month">
+                <% for(var i = 1;i <= 12;i++){ %>
+                <option value="<%= i %>">
+                    <%= i %>月
+                </option>
+                <% } %>
+            </select>
+
+            <select class="date-select J-date">
+                <% for (var i = 1;i <= 30;i++){ %>
+                <option value="<%= i %>">
+                    <%= i %>日
+                </option>
+                <% } %>
+            </select>
             <a href="javascript:;" class="J-btn btn">确定</a>
         </div>
 
