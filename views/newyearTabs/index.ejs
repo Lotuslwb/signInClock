@@ -115,6 +115,7 @@
         }
 
         var type = returnType(val);
+        console.log('type:', type);
         setKeyWord(type);
         $('.page-start').removeClass('active').siblings('.page-loading').addClass('active');
         loader(function () {
