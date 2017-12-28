@@ -9,9 +9,8 @@ var WXConfig = require('../../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
 
 
-
 function checkOpenid(req, res, cb) {
-    var openid = req.signedCookies['session'];
+    var openid = req.cookies.openid;
     if (openid) {
         cb(openid);
     } else {
@@ -27,7 +26,7 @@ function checkOpenid(req, res, cb) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
-        var openid = req.signedCookies['session'];
+        var openid = req.cookies.openid;
         getUserInfoByOpenid(openid, function (docs) {
             res.render('newyearTabs/index', {title: 'index', doc: docs[0].personInfo});
         })

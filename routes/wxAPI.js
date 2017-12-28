@@ -140,7 +140,7 @@ router.get('/callback2', function (req, res) {
         var sign = data.sign;
         var chunk = data.chunk;
         console.log(chunk, 'chunk');
-        res.cookie('session', JSON.stringify(data.sign.openid), {signed: true});
+        res.cookie('openid', JSON.stringify(data.sign.openid), {expires: new Date(Date.now() + 1000 * 60 * 60 * 24)});
         addUserToDB(chunk, function () {
             res.redirect('/' + router);
         })
