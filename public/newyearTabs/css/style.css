@@ -267,6 +267,8 @@ body {
     left: 118px;
     padding-left: 20px;
     box-sizing: border-box;
+    background: transparent;
+    border: 0;
 }
 
 .date-select {
@@ -278,4 +280,6 @@ body {
     left: 230px;
     padding-left: 20px;
     box-sizing: border-box;
+    background: transparent;
+    border: 0;
 }

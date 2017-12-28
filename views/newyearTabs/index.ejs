@@ -127,7 +127,7 @@
     function genDay(dayLen) {
         var returnStr = '';
         for (var i = 1; i <= dayLen; i++) {
-            returnStr += '<option value="' + i > 10 ? i : ("0" + i) + '">' + i + '日</option>'
+            returnStr += ( '<option value="' + (i * 1 > 10 ? i : ("0" + i)) + '">' + i + '日</option>');
         }
         $('.J-date').html(returnStr);
     }
