@@ -257,3 +257,25 @@ body {
 
     display: none;
 }
+
+.month-select {
+    display: block;
+    height: 40px;
+    width: 110px;
+    position: absolute;
+    top: 90px;
+    left: 118px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.date-select {
+    display: block;
+    height: 40px;
+    width: 110px;
+    position: absolute;
+    top: 90px;
+    left: 230px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}

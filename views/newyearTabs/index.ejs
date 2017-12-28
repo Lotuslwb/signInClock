@@ -36,9 +36,7 @@
 
             <select class="date-select J-date">
                 <% for (var i = 1;i <= 30;i++){ %>
-                <option value="<%= i %>">
-                    <%= i %>日
-                </option>
+                <option value="<%= i %>"><%= i %>日</option>
                 <% } %>
             </select>
             <a href="javascript:;" class="J-btn btn">确定</a>
@@ -98,8 +96,20 @@
     $('.f-hide').append('<img src="' + headimgurl + '" crossOrigin="*"  id="J-headimgurl">');
     loader();
 
+    $('.J-month').change(function () {
+        var v = $(this).val();
+        var dayLen = 30;
+        if (v == 2) {
+            dayLen = 29;
+        }
+        if (v == 1 || v == 3 || v == 5 || v == 7 || v == 8 || v == 10 || v == 12) {
+            dayLen = 31;
+        }
+        genDay(dayLen);
+    });
+
     $('.J-btn').click(function () {
-        var val = $('.J-input').val();
+        var val = '2017-' + $('.J-month').val() + '-' + $('.J-date').val();
         if (!val) {
             return false;
         }
@@ -113,6 +123,14 @@
             toast('长按就可以把图片保存在相册里了哟');
         })
     });
+
+    function genDay(dayLen) {
+        var returnStr = '';
+        for (var i = 1; i <= dayLen; i++) {
+            returnStr += '<option value="' + i > 10 ? i : ("0" + i) + '">' + i + '日</option>'
+        }
+        $('.J-date').html(returnStr);
+    }
 
     function returnType(val) {
         var valArray = val.split("-");
