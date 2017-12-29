@@ -279,7 +279,9 @@
 <script>
 
     window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
-        alert("错误信息：" + errorMessage + ";出错行号：" + lineNumber + ';错误详情:' + json.stringify(errorObj));
+        //alert("错误信息：" + errorMessage + ";出错行号：" + lineNumber + ';错误详情:' + json.stringify(errorObj));
+        alert('网络异常,图片加载失败,请重试');
+        window.location.reload();
     }
 
 
