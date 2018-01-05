@@ -81,11 +81,11 @@
 
                 <div class="search-cell">
                     <span class="search-cell-title m0-left">资源类型：</span>
-                    <select class="search-common-cell" id="resourceType-select" name="tag<%= i %>">
+                    <select class="search-common-cell resourceType-select" name="tag<%= i %>">
                         <option value="video" <%= doc.articleList[index].resourceType == 'video' ? 'selected' : '' %>>
                             视频
                         </option>
-                        <option value="audio" <%= doc.articleList[index].resourceType == 'audio' ? 'selected' : '' %>>
+                        <option value="audio" selected>
                             音频
                         </option>
                     </select>

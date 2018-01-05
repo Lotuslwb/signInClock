@@ -112,6 +112,7 @@ obj.prototype = {
             data['wordLength2'] = wordLength2;
             data['coverUrl1'] = coverUrl1;
             data['coverUrl2'] = coverUrl2;
+            data['resourceType'] = $('.resourceType-select').val();
 
             console.log(data);
 
@@ -133,7 +134,7 @@ obj.prototype = {
 
         });
 
-        $('#resourceType-select').change(function () {
+        $('.resourceType-select').change(function () {
             var v = $(this).val();
             if (v == 'video') {
                 $('.videoURLDIV').show();
