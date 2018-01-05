@@ -55,9 +55,16 @@ obj.prototype = {
 
 
         var E = window.wangEditor
-        var editor = this.editor = new E('#editor')
-        editor.create();
-        editor.txt.html(editorContent)
+
+
+        var editor_part1 = this.editor1 = new E('#editor-part1')
+        editor_part1.create()
+
+        var editor_part2 = this.editor2 = new E('#editor-part2')
+        editor_part2.create();
+
+        editor_part1.txt.html(editorContent1);
+        editor_part2.txt.html(editorContent2);
 
     },
     bindEvent: function (me) {
@@ -71,37 +78,45 @@ obj.prototype = {
             }
 
             //获取正文
-            var articleText = (me.editor.txt.html());
+            var articleText1 = (me.editor1.txt.html());
             //获取词汇量
-            var wordLength = (me.editor.txt.text().split(' ').length);
+            var wordLength1 = (me.editor1.txt.text().split(' ').length);
 
-            var coverUrl = me.src;
 
-            if (!coverUrl || !coverUrl.length) {
+            //获取正文
+            var articleText2 = (me.editor2.txt.html());
+            //获取词汇量
+            var wordLength2 = (me.editor2.txt.text().split(' ').length);
+
+
+            if (!coverUrl1 || !coverUrl1.length || !coverUrl2 || !coverUrl2.length) {
                 alert('封页图片不能为空');
                 return false;
             }
 
-            if (!me.editor.txt.text().length) {
+            if (!me.editor1.txt.text().length || !me.editor2.txt.text().length) {
                 alert('正文不能为空');
                 return false;
             }
 
             var data = me.form.serializeToObject();
-            data['articleText'] = articleText;
-            data['wordLength'] = wordLength;
-            data['coverUrl'] = coverUrl;
-
+            data['articleText1'] = articleText1;
+            data['articleText2'] = articleText2;
+            data['wordLength1'] = wordLength1;
+            data['wordLength2'] = wordLength2;
+            data['coverUrl1'] = coverUrl1;
+            data['coverUrl2'] = coverUrl2;
+            data['id'] = id;
             console.log(data);
 
             $.ajax({
                 type: 'POST',
                 data: data,
-                url: '/admin/api/daka/saveArticleData',
+                url: '/admin/api/daka/updateArticleData',
                 success: function (data) {
-                    console.log(data, 'saveArticleData');
+                    console.log(data, 'updateArticleData');
                     if (data.status == '200') {
-                        alert('添加成功!');
+                        alert('修改成功!');
                         window.location.href = '/admin/daka/';
                     } else {
                         alert(data.errmsg);

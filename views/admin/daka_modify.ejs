@@ -4,7 +4,7 @@
         width: 200px;
     }
 
-    #editor {
+    .editor {
         margin-left: 120px;
     }
 
@@ -16,109 +16,107 @@
         color: red;
         text-decoration: none;
     }
+
+    .search-cell-h2 {
+        line-height: 1.5;
+        border-top: 2px solid #ccc;
+        font-size: 30px;
+    }
 </style>
 <div class="main">
 
     <div id="article" class="check-account">
         <form id="J_Form" class="pt40">
-            <!--<div class="search-cell">-->
-                <!--<span class="search-cell-title m0-left"><s>*</s>标题：</span>-->
-                <!--<div class="inline">-->
-                    <!--<input type="text" name="articleTitle" data-rules="{required : true}"-->
-                           <!--value="<%= doc.articleTitle %>">-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="search-cell">-->
-                <!--<span class="search-cell-title m0-left"><s>*</s>耗时(分:秒)：</span>-->
-                <!--<div class="inline">-->
-                    <!--<input type="text" name="needTime_1" data-rules="{required : true,number:true}"-->
-                           <!--value="<%= doc.needTime.split(':')[0] %>"> :-->
-                    <!--<input type="text" name="needTime_2" data-rules="{required : true,number:true}"-->
-                           <!--value="<%= doc.needTime.split(':')[0] %>"-->
-                    <!--&gt;-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="search-cell">-->
-                <!--<span class="search-cell-title m0-left"><s>*</s>难度等级：<%= doc.difficulty %></span>-->
-                <!--<select class="search-common-cell" name="difficulty"-->
-                        <!--data-rules="{required : true}">-->
-                    <!--<option value="1" <%- doc.difficulty * 1 == 1 ? 'selected' : '' %> >1颗星</option>-->
-                    <!--<option value="2" <%- doc.difficulty * 1 == 2 ? 'selected' : '' %> >2颗星</option>-->
-                    <!--<option value="3" <%- doc.difficulty * 1 == 3 ? 'selected' : '' %> >3颗星</option>-->
-                    <!--<option value="4" <%- doc.difficulty * 1 == 4 ? 'selected' : '' %> >4颗星</option>-->
-                    <!--<option value="5" <%- doc.difficulty * 1 == 5 ? 'selected' : '' %> >5颗星</option>-->
-                <!--</select>-->
-            <!--</div>-->
-
-            <!--<div class="search-cell">-->
-                <!--<span class="search-cell-title m0-left">上传封页</span>-->
-                <!--<div class="inline">-->
-                    <!--<div id="J_Uploader"></div>-->
-                    <!--<s>尺寸:宽高(233*311)</s>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="search-cell J-previewBox" style="display: block">-->
-                <!--<span class="search-cell-title m0-left"><s>*</s>封页预览</span>-->
-                <!--<div class="inline">-->
-                    <!--<div id="J-preview">-->
-                        <!--<img src="<%= doc.coverUrl %>" class="daka-cover-preview">-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="search-cell">-->
-                <!--<label class="search-cell-title m0-left"><s>*</s>简介：<br/>-->
-                    <!--<s>最大字数:100</s>-->
-                <!--</label>-->
-                <!--<textarea name="brief" class="control-row4 input-large"-->
-                          <!--data-rules="{required : true,maxlength:100}"><%= doc.brief %>-->
-                <!--</textarea>-->
-            <!--</div>-->
-            <!--<div class="search-cell">-->
-                <!--<label class="search-cell-title m0-left"><s>*</s>名言中文：</label>-->
-                <!--<textarea name="wisdomCH" class="control-row4 input-large"-->
-                          <!--data-rules="{required : true}"><%= doc.wisdomCH %>-->
-                <!--</textarea>-->
-            <!--</div>-->
-            <!--<div class="search-cell">-->
-                <!--<label class="search-cell-title m0-left"><s>*</s>名言英文：</label>-->
-                <!--<textarea name="wisdomEN" class="control-row4 input-large"-->
-                          <!--data-rules="{required : true}"><%= doc.wisdomEN %>-->
-                <!--</textarea>-->
-            <!--</div>-->
-
-            <!--<div class="search-cell">-->
-                <!--<% var tag = doc.audioURL && doc.audioURL.length > 0 ? 'audio' : 'video'; %>-->
-                <!--<span class="search-cell-title m0-left">资源类型：</span>-->
-                <!--<select class="search-common-cell" id="resourceType-select" name="tag">-->
-                    <!--<option value="video" <%- tag == 'video' ? 'selected' : '' %> >视频</option>-->
-                    <!--<option value="audio" <%- tag == 'audio' ? 'selected' : '' %>>音频</option>-->
-                <!--</select>-->
-            <!--</div>-->
-            <!--<div class="search-cell videoURLDIV">-->
-                <!--<span class="search-cell-title m0-left">视频链接</span>-->
-                <!--<div class="inline">-->
-                    <!--<input type="text" name="videoURL" style="width: 400px;" value="<%= doc.videoURL %>">-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="search-cell audioURLDIV" style="display: none;">-->
-                <!--<span class="search-cell-title m0-left">音频链接</span>-->
-                <!--<div class="inline">-->
-                    <!--<input type="text" name="audioURL" style="width: 400px;" value="<%= doc.audioURL %>">-->
-                <!--</div>-->
-            <!--</div>-->
-
-
             <div class="search-cell">
-                <span class="search-cell-title m0-left" style="vertical-align: top;">文章正文</span>
-                <div id="editor">
-
+                <span class="search-cell-title m0-left"><s>*</s>日期：</span>
+                <div class="inline">
+                    <input type="text" class="calendar" name="articleDate" data-rules="{required : true}"
+                           value="<%= doc.articleDate %>">
                 </div>
             </div>
+            <% for (var i = 1;i <= 2;i++){ %>
+            <% var map = ['', '3-6岁文章', '7-10岁文章'], index = i - 1; %>
+            <div class="part-<%= i %> J-articlePart">
+                <div class="search-cell search-cell-h2">
+                    <span class="m0-left"><%= map[i] %></span>
+                </div>
 
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>标题：</span>
+                    <div class="inline">
+                        <input type="text" name="articleTitle<%= i %>" data-rules="{required : true}"
+                               value="<%= doc.articleList[index].articleTitle %>">
+                    </div>
+                </div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>耗时(分:秒)：</span>
+                    <div class="inline">
+                        <input type="text" name="needTime<%= i %>_1" data-rules="{required : true,number:true}"
+                               value="<%= doc.articleList[index].needTime.split(':')[0] %>"> :
+                        <input type="text" name="needTime<%= i %>_2" data-rules="{required : true,number:true}"
+                               value="<%= doc.articleList[index].needTime.split(':')[1] %>">
+                    </div>
+                </div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>难度等级：</span>
+                    <select class="search-common-cell" name="difficulty<%= i %>"
+                            data-rules="{required : true}">
+                        <option value="1" <%= doc.articleList[index].difficulty == 1 ? 'selected' : '' %>>1颗星</option>
+                        <option value="2" <%= doc.articleList[index].difficulty == 2 ? 'selected' : '' %>>2颗星</option>
+                        <option value="3" <%= doc.articleList[index].difficulty == 3 ? 'selected' : '' %>>3颗星</option>
+                        <option value="4" <%= doc.articleList[index].difficulty == 4 ? 'selected' : '' %>>4颗星</option>
+                        <option value="5" <%= doc.articleList[index].difficulty == 5 ? 'selected' : '' %>>5颗星</option>
+                    </select>
+                </div>
+                <div class="search-cell">
+                    <label class="search-cell-title m0-left"><s>*</s>简介：<br/>
+                        <s>最大字数100<br/>请勿换行</s>
+                    </label>
+                    <input type="text" name="brief<%= i %>" class="control-row4 input-large"
+                           data-rules="{required : true,maxlength:100}"
+                           value="<%= doc.articleList[index].brief %>"/>
+                </div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left">资源类型：</span>
+                    <select class="search-common-cell" id="resourceType-select" name="tag<%= i %>">
+                        <option value="video" <%= doc.articleList[index].resourceType == 'video' ? 'selected' : '' %>>
+                            视频
+                        </option>
+                        <option value="audio" <%= doc.articleList[index].resourceType == 'audio' ? 'selected' : '' %>>
+                            音频
+                        </option>
+                    </select>
+                </div>
+
+                <% if(doc.articleList[index].resourceType == 'audio'){ %>
+                <div class="search-cell audioURLDIV">
+                    <span class="search-cell-title m0-left">音频链接</span>
+                    <div class="inline">
+                        <input type="text" name="audioURL<%= i %>" value="<%= doc.articleList[index].audioURL %>"
+                               style="width: 400px;">
+                    </div>
+                </div>
+                <% }else{ %>
+                <div class="search-cell videoURLDIV">
+                    <span class="search-cell-title m0-left">视频链接</span>
+                    <div class="inline">
+                        <input type="text" name="videoURL<%= i %>" value="<%= doc.articleList[index].videoURL %>"
+                               style="width: 400px;">
+                    </div>
+                </div>
+                <% } %>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left" style="vertical-align: top;">文章正文</span>
+                    <div id="editor-part<%= i %>" class="editor">
+
+                    </div>
+                </div>
+            </div>
+            <% } %>
 
             <div class="row">
                 <div class="form-actions text-center">
@@ -137,6 +135,13 @@
         </form>
     </div>
 </div>
+<script>
+    var editorContent1 = '<%- doc.articleList[0].articleText %>';
+    var editorContent2 = '<%- doc.articleList[1].articleText %>';
+    var id = '<%- doc._id %>';
+    var coverUrl1 = '<%- doc.articleList[0].coverUrl %>';
+    var coverUrl2 = '<%- doc.articleList[1].coverUrl %>';
+</script>
 <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
 <script src="http://g.alicdn.com/bui/bui/1.1.21/config.js"></script>
 

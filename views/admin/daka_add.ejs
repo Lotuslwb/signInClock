@@ -4,7 +4,7 @@
         width: 200px;
     }
 
-    #editor {
+    .editor {
         margin-left: 120px;
     }
 
@@ -16,94 +16,191 @@
         color: red;
         text-decoration: none;
     }
+
+    .search-cell-h2 {
+        line-height: 1.5;
+        border-top: 2px solid #ccc;
+        font-size: 30px;
+    }
 </style>
 <div class="main">
 
     <div id="article" class="check-account">
         <form id="J_Form" class="pt40">
             <div class="search-cell">
-                <span class="search-cell-title m0-left"><s>*</s>标题：</span>
+                <span class="search-cell-title m0-left"><s>*</s>日期：</span>
                 <div class="inline">
-                    <input type="text" name="articleTitle" data-rules="{required : true}">
+                    <input type="text" class="calendar" name="articleDate" data-rules="{required : true}">
                 </div>
             </div>
 
-            <div class="search-cell">
-                <span class="search-cell-title m0-left"><s>*</s>耗时(分:秒)：</span>
-                <div class="inline">
-                    <input type="text" name="needTime_1" data-rules="{required : true,number:true}"> :
-                    <input type="text" name="needTime_2" data-rules="{required : true,number:true}">
+            <div class="part-1 J-articlePart">
+                <div class="search-cell search-cell-h2">
+                    <span class="m0-left">3-6岁文章</span>
+                </div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>标题：</span>
+                    <div class="inline">
+                        <input type="text" name="articleTitle1" data-rules="{required : true}">
+                    </div>
+                </div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>耗时(分:秒)：</span>
+                    <div class="inline">
+                        <input type="text" name="needTime1_1" data-rules="{required : true,number:true}"> :
+                        <input type="text" name="needTime1_2" data-rules="{required : true,number:true}">
+                    </div>
+                </div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>难度等级：</span>
+                    <select class="search-common-cell" name="difficulty1"
+                            data-rules="{required : true}">
+                        <option value="1">1颗星</option>
+                        <option value="2">2颗星</option>
+                        <option value="3">3颗星</option>
+                        <option value="4">4颗星</option>
+                        <option value="5">5颗星</option>
+                    </select>
+                </div>
+                <div class="J_Uploader_box">
+                    <div class="search-cell">
+                        <span class="search-cell-title m0-left">上传封页</span>
+                        <div class="inline">
+                            <div class="J_Uploader"></div>
+                            <s>尺寸:宽高(233*311)</s>
+                        </div>
+                    </div>
+                    <div class="search-cell J-previewBox" style="display: none">
+                        <span class="search-cell-title m0-left"><s>*</s>封页预览</span>
+                        <div class="inline">
+                            <div class="J-preview"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-cell">
+                    <label class="search-cell-title m0-left"><s>*</s>简介：<br/>
+                        <s>最大字数100<br/>请勿换行</s>
+                    </label>
+                    <input type="text" name="brief1" class="control-row4 input-large"
+                           data-rules="{required : true,maxlength:100}"/>
+                </div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left">资源类型：</span>
+                    <select class="search-common-cell" id="resourceType-select" name="tag1">
+                        <option value="video">视频</option>
+                        <option value="audio">音频</option>
+                    </select>
+                </div>
+                <div class="search-cell videoURLDIV">
+                    <span class="search-cell-title m0-left">视频链接</span>
+                    <div class="inline">
+                        <input type="text" name="videoURL1" style="width: 400px;">
+                    </div>
+                </div>
+
+                <div class="search-cell audioURLDIV" style="display: none;">
+                    <span class="search-cell-title m0-left">音频链接</span>
+                    <div class="inline">
+                        <input type="text" name="audioURL1" style="width: 400px;">
+                    </div>
+                </div>
+
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left" style="vertical-align: top;">文章正文</span>
+                    <div id="editor-part1" class="editor">
+
+                    </div>
                 </div>
             </div>
-
-            <div class="search-cell">
-                <span class="search-cell-title m0-left"><s>*</s>难度等级：</span>
-                <select class="search-common-cell" name="difficulty"
-                        data-rules="{required : true}">
-                    <option value="1">1颗星</option>
-                    <option value="2">2颗星</option>
-                    <option value="3">3颗星</option>
-                    <option value="4">4颗星</option>
-                    <option value="5">5颗星</option>
-                </select>
-            </div>
-
-            <div class="search-cell">
-                <span class="search-cell-title m0-left">上传封页</span>
-                <div class="inline">
-                    <div id="J_Uploader"></div>
-                    <s>尺寸:宽高(233*311)</s>
+            <div class="part-2 J-articlePart">
+                <div class="search-cell search-cell-h2">
+                    <span class="m0-left">7-10岁文章</span>
                 </div>
-            </div>
-            <div class="search-cell J-previewBox" style="display: none">
-                <span class="search-cell-title m0-left"><s>*</s>封页预览</span>
-                <div class="inline">
-                    <div id="J-preview"></div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>标题：</span>
+                    <div class="inline">
+                        <input type="text" name="articleTitle2" data-rules="{required : true}">
+                    </div>
                 </div>
-            </div>
 
-            <div class="search-cell">
-                <label class="search-cell-title m0-left"><s>*</s>简介：<br/>
-                    <s>最大字数:100,请勿换行</s>
-                </label>
-                <textarea name="brief" class="control-row4 input-large"
-                          data-rules="{required : true,maxlength:100}"></textarea>
-            </div>
-            <div class="search-cell">
-                <label class="search-cell-title m0-left"><s>*</s>名言中文：</label>
-                <textarea name="wisdomCH" class="control-row4 input-large" data-rules="{required : true}"></textarea>
-            </div>
-            <div class="search-cell">
-                <label class="search-cell-title m0-left"><s>*</s>名言英文：</label>
-                <textarea name="wisdomEN" class="control-row4 input-large" data-rules="{required : true}"></textarea>
-            </div>
-
-            <div class="search-cell">
-                <span class="search-cell-title m0-left">资源类型：</span>
-                <select class="search-common-cell" id="resourceType-select" name="tag">
-                    <option value="video">视频</option>
-                    <option value="audio">音频</option>
-                </select>
-            </div>
-            <div class="search-cell videoURLDIV">
-                <span class="search-cell-title m0-left">视频链接</span>
-                <div class="inline">
-                    <input type="text" name="videoURL" style="width: 400px;">
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>耗时(分:秒)：</span>
+                    <div class="inline">
+                        <input type="text" name="needTime2_1" data-rules="{required : true,number:true}"> :
+                        <input type="text" name="needTime2_2" data-rules="{required : true,number:true}">
+                    </div>
                 </div>
-            </div>
 
-            <div class="search-cell audioURLDIV" style="display: none;">
-                <span class="search-cell-title m0-left">音频链接</span>
-                <div class="inline">
-                    <input type="text" name="audioURL" style="width: 400px;">
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left"><s>*</s>难度等级：</span>
+                    <select class="search-common-cell" name="difficulty2"
+                            data-rules="{required : true}">
+                        <option value="1">1颗星</option>
+                        <option value="2">2颗星</option>
+                        <option value="3">3颗星</option>
+                        <option value="4">4颗星</option>
+                        <option value="5">5颗星</option>
+                    </select>
                 </div>
-            </div>
+
+                <div class="J_Uploader_box">
+                    <div class="search-cell">
+                        <span class="search-cell-title m0-left">上传封页</span>
+                        <div class="inline">
+                            <div class="J_Uploader"></div>
+                            <s>尺寸:宽高(233*311)</s>
+                        </div>
+                    </div>
+                    <div class="search-cell J-previewBox" style="display: none">
+                        <span class="search-cell-title m0-left"><s>*</s>封页预览</span>
+                        <div class="inline">
+                            <div class="J-preview"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-cell">
+                    <label class="search-cell-title m0-left"><s>*</s>简介：<br/>
+                        <s>最大字数100<br/>请勿换行</s>
+                    </label>
+                    <input type="text" name="brief2" class="control-row4 input-large"
+                           data-rules="{required : true,maxlength:100}"/>
+                </div>
+
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left">资源类型：</span>
+                    <select class="search-common-cell" id="resourceType-select" name="tag2">
+                        <option value="video">视频</option>
+                        <option value="audio">音频</option>
+                    </select>
+                </div>
+                <div class="search-cell videoURLDIV">
+                    <span class="search-cell-title m0-left">视频链接</span>
+                    <div class="inline">
+                        <input type="text" name="videoURL2" style="width: 400px;">
+                    </div>
+                </div>
+
+                <div class="search-cell audioURLDIV" style="display: none;">
+                    <span class="search-cell-title m0-left">音频链接</span>
+                    <div class="inline">
+                        <input type="text" name="audioURL2" style="width: 400px;">
+                    </div>
+                </div>
 
 
-            <div class="search-cell">
-                <span class="search-cell-title m0-left" style="vertical-align: top;">文章正文</span>
-                <div id="editor">
+                <div class="search-cell">
+                    <span class="search-cell-title m0-left" style="vertical-align: top;">文章正文</span>
+                    <div id="editor-part2" class="editor">
 
+                    </div>
                 </div>
             </div>
 

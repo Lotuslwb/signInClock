@@ -26,12 +26,49 @@ obj.prototype = {
             var Grid = Grid,
                 Store = Data.Store,
                 columns = [
-                    {title: '文章标题', dataIndex: 'articleTitle', width: 200, sortable: false},
-                    {title: '阅读耗时', dataIndex: 'needTime', width: 80, sortable: false},
-                    {title: '难度等级', dataIndex: 'difficulty', width: 80, sortable: false},
-                    {title: '词汇量', dataIndex: 'wordLength', width: 80, sortable: false},
-                    {title: '视频链接', dataIndex: 'videoURL', width: 350, sortable: false},
-                    {title: '音频链接', dataIndex: 'audioURL', width: 350, sortable: false},
+                    {title: '使用时间', dataIndex: 'articleDate', width: 200, sortable: false},
+                    {
+                        title: '阅读标题',
+                        dataIndex: 'articleList',
+                        width: 400,
+                        sortable: false,
+                        renderer: function (value, obj) {
+                            var returnStr = '';
+
+                            returnStr += value[0].articleTitle;
+                            returnStr += '|';
+                            returnStr += value[1].articleTitle;
+                            return returnStr;
+                        }
+                    },
+                    {
+                        title: '难度等级',
+                        dataIndex: 'articleList',
+                        width: 100,
+                        sortable: false,
+                        renderer: function (value, obj) {
+                            var returnStr = '';
+
+                            returnStr += value[0].difficulty;
+                            returnStr += '|';
+                            returnStr += value[1].difficulty;
+                            return returnStr;
+                        }
+                    },
+                    {
+                        title: '词汇量',
+                        dataIndex: 'articleList',
+                        width: 100,
+                        sortable: false,
+                        renderer: function (value, obj) {
+                            var returnStr = '';
+
+                            returnStr += value[0].wordLength;
+                            returnStr += '|';
+                            returnStr += value[1].wordLength;
+                            return returnStr;
+                        }
+                    },
                     {
                         title: '操作', dataIndex: 'h', width: 120, sortable: false, renderer: function (value, obj) {
                         var returnStr = '';
