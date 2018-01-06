@@ -34,7 +34,11 @@
 <%- include("commonjs.ejs") %>
 <script>
 
-    var articleTime = [<%- articleTime %>];
+    var articleTime = [<%- articleTime %>].map(function (item) {
+        return item + '';
+    });
+    console.log(articleTime);
+
 
     //初始化延时加载
     echo.init({
