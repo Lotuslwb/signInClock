@@ -60,6 +60,16 @@ ul, li {
     vertical-align: sub;
 }
 
+.calendar-title span.number-disable-icon {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: sub;
+}
+
 #backToday {
     position: absolute;
     left: 70%;

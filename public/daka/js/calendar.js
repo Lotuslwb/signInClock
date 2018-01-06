@@ -111,7 +111,7 @@
 
 
             var _titleStr = '<a href="#" class="title"></a>' +
-                '<a href="javascript:;" class="number"> <span class="number-icon"></span>已读</a>' +
+                '<a href="javascript:;" class="number"> <span class="number-icon"></span>已读<br/><span class="number-disable-icon"></span>未读</a>' +
                 '<div class="info"></div>';
 
             _titleStr += '<div class="arrow">' +
