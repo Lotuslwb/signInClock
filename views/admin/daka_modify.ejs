@@ -136,8 +136,8 @@
     </div>
 </div>
 <script>
-    var editorContent1 = '<%- doc.articleList[0].articleText %>';
-    var editorContent2 = '<%- doc.articleList[1].articleText %>';
+    var editorContent1 = '<%= doc.articleList[0].articleText %>';
+    var editorContent2 = '<%= doc.articleList[1].articleText %>';
     var id = '<%- doc._id %>';
     var coverUrl1 = '<%- doc.articleList[0].coverUrl %>';
     var coverUrl2 = '<%- doc.articleList[1].coverUrl %>';

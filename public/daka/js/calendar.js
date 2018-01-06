@@ -79,6 +79,7 @@
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
             var timeArray = self.opts.TimeArray;
+            var articleTime = self.opts.articleTime;
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
 
@@ -90,7 +91,11 @@
 
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
                 if ($.inArray(allDay_str + '', timeArray) >= 0) {
+                    // 已读
                     $(this).attr('class', 'item item-curDay');
+                } else if ($.inArray(allDay_str + '', articleTime) >= 0) {
+                    // 未读
+                    $(this).attr('class', 'item item-unreadyDay');
                 } else if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
                     $(this).attr('class', 'item item-curMonth');
                 } else {

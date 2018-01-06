@@ -158,6 +158,12 @@ ul, li {
     display: block;
 }
 
+.calendar-date .item-unreadyDay,
+.calendar-date .item-unreadyDay:hover {
+    display: block;
+    background-color: #f0f0f0;
+}
+
 .calendar-date .item-curDay,
 .calendar-date .item-curDay:hover {
     color: #fff;

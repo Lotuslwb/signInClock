@@ -119,8 +119,14 @@ router.get('/level', function (req, res, next) {
 
 router.get('/plan', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
+        ArticleDB.User.find({_id: id},{}, function (err, docs) {
+            if (!err) {
+
+            }
+        });
         var openid = req.signedCookies['session'];
         getUserInfoByOpenid(openid, function (docs) {
+
             res.render('daka/plan', {title: 'index', now: new Date(), bookInfo: docs[0]});
         })
     });
