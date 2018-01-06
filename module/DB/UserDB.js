@@ -37,7 +37,8 @@ var Schema = {
             bookId: String,  //今日书籍ID
             bookName: String, // 今日书籍名
             bookCover: String, //今天书籍封页
-            bookDes: String //今天书籍描述
+            bookDes: String, //今天书籍描述
+            level: String //今天书籍描述
         }
     }],
     clockInfo: {

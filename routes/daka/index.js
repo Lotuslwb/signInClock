@@ -63,7 +63,7 @@ router.get('/reading', function (req, res, next) {
 
             res.render('daka/reading', {
                 title: 'index', bookDate: bookDate,
-                bookInfo: bookInfo, now: new Date()
+                bookInfo: bookInfo, now: new Date(), level: level
             });
         });
     } else {

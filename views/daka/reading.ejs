@@ -122,6 +122,7 @@
     var bookId = '<%= bookInfo._id %>';
     var bookName = '<%= bookInfo.articleTitle %>';
     var bookCover = '<%= bookInfo.coverUrl %>';
+    var level = '<%= level %>';
 
     try {
         var bookDes = '<%- bookInfo.brief.toString() %>';
@@ -273,7 +274,8 @@
                             bookId: bookId,
                             bookName: bookName,
                             bookCover: bookCover,
-                            wordLength: wordLength
+                            wordLength: wordLength,
+                            level: level,
                         }, function (data) {
                             console.log(data);
                             localStorage.setItem('time', now);
