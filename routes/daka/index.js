@@ -131,9 +131,13 @@ router.get('/plan', function (req, res, next) {
                         now: new Date(),
                         bookInfo: bookInfo,
                         readingInfo: bookInfo.readingInfo.map(function (item) {
-                            delete item._id;
-                            console.log(item);
-                            return item;
+                            return {
+                                readingList: {
+                                    bookId: item.readingList.bookId,
+                                    level: item.readingList.level
+                                },
+                                readingTimeId: item.readingTimeId
+                            };
                         }),
                         articleTime: articleTime,
                         articleObj: docs.map(function (item) {
