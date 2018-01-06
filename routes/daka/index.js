@@ -130,9 +130,7 @@ router.get('/plan', function (req, res, next) {
                         title: 'index',
                         now: new Date(),
                         bookInfo: bookInfo,
-                        readingInfo: bookInfo.readingInfo.map(function (item) {
-                            return 1;
-                        }),
+                        readingInfo: [1, 2, 3],
                         articleTime: articleTime,
                         articleObj: docs.map(function (item) {
                             return item._id;
