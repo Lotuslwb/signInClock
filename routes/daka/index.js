@@ -116,6 +116,7 @@ router.get('/index_test', function (req, res, next) {
             var UserInfo = docs[0];
             var level = UserInfo.level;
             if (level > -1) {
+                console.log(id, 'bookId');
                 getBookInfoById(id, function (docs) {
                     var doc = docs[0];
                     var bookInfo = doc[(level < doc.length ? level : doc.length - 1)];
