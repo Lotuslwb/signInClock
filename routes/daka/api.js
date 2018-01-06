@@ -234,6 +234,40 @@ router.get('/setClockInfo', function (req, res, next) {
 });
 
 
+//保存等级
+router.get('/setLevel', function (req, res, next) {
+    var openid = req.signedCookies['session'];
+    var level = req.query.level;
+    if (!openid) {
+        res.send(sendData('999', docs, 'openid 不能为空'));
+        return false;
+    }
+    if (!level) {
+        res.send(sendData('999', docs, 'level不能为空'));
+        return false;
+    }
+
+    getUserInfoFormDB(openid, function (docs) {
+
+        var data = docs[0];
+        var updateDate = {
+            level: level
+        }
+       
+        updateUserInfoToDB(data._id, updateDate, function (docs) {
+            //成功
+            res.send(sendData('200', updateDate, ''));
+        }, function (docs) {
+            //失败
+            res.send(sendData('999', docs, '数据库更新失败'));
+        })
+
+    }, function (docs) {
+        res.send(sendData('990', docs, '暂无此用户的信息,请刷新重试'));
+    })
+});
+
+
 function isToday(date) {
     var now = new Date();
 

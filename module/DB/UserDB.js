@@ -3,6 +3,7 @@ var log = require('../tools/log');
 var name = 'user';
 var Schema = {
     openid: String,
+    level: String,
     personInfo: {
         nickname: String,
         sex: String,

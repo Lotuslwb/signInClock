@@ -1,0 +1,72 @@
+﻿<%- include("header.ejs",{"title": "英孚亲子共读训练营"}) %>
+<style>
+    body.ipad {
+        padding-bottom: 160px;
+    }
+
+    .start-btn {
+        margin: 50px auto;
+        position: relative;
+        z-index: 4;
+        font-size: 26px;
+    }
+</style>
+<div class="page main-page level-page active">
+    <img src="/daka/img/level-text.png" class="level-text">
+    <div class="level-box">
+        <img src="/daka/img/level-0.png" class="level-select level-select-left"
+                <%= UserInfo.level && UserInfo.level == '0' ? 'active' : '' %>
+        >
+        <img src="/daka/img/level-1.png" class="level-select level-select-right"
+                <%= UserInfo.level && UserInfo.level == '1' ? 'active' : '' %>
+        >
+    </div>
+    <div class="start-btn">确定</div>
+</div>
+
+<%- include("commonjs.ejs") %>
+
+
+<script>
+    var selectValue = <%- UserInfo.level ? UserInfo.level : -1 %>;
+
+    $('.level-select').click(function () {
+        $(this).addClass('active').siblings('.level-select').removeClass('active');
+        selectValue = $(this).index();
+        console.log(selectValue);
+    })
+
+    $('.start-btn').click(function () {
+
+        if (selectValue < 0) {
+            showAlert({text: '请先选择年龄'})
+            return false;
+        }
+        var data = {
+            level: selectValue
+        };
+        $.ajax({
+            type: 'GET',
+            url: '/dakaApi/setLevel',
+            data: data,
+            success: function (data) {
+                console.log(data, 'setLevel');
+                if (data.status == '200') {
+                    cb && cb(data);
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    })
+
+    initWX(function () {
+        initWXSahre();
+    });
+
+</script>
+
+
+</body>
+</html>

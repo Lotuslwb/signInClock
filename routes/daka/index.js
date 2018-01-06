@@ -19,6 +19,7 @@ var log = require('../../module/tools/log');
 //     }
 // })
 
+
 router.get('/info', function (req, res, next) {
     res.render('daka/info', {title: '开始打卡', now: new Date()});
 })
@@ -88,6 +89,16 @@ function checkOpenid(req, res, cb) {
         res.redirect(url);
     }
 }
+
+router.get('/level', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        getUserInfoByOpenid(openid, function (docs) {
+            res.render('daka/level', {title: '开始打卡', now: new Date(), UserInfo: docs[0]});
+        })
+    });
+
+})
+
 
 router.get('/plan', function (req, res, next) {
     checkOpenid(req, res, function (openid) {

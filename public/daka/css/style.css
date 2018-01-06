@@ -64,6 +64,13 @@ select {
     box-sizing: border-box;
 }
 
+.level-page {
+    background: url("../img/level-bg.png") no-repeat top;
+    background-size: 100%;
+    padding-top: 90px;
+    box-sizing: border-box;
+}
+
 .result-page {
     background: url("../img/result-bg.jpg") no-repeat top;
     background-size: 100%;
@@ -187,7 +194,7 @@ select {
     bottom: 80px;
 }
 
-.index-page .start-btn {
+.start-btn {
     width: 276px;
     height: 64px;
     line-height: 64px;
@@ -1037,4 +1044,23 @@ select {
     text-align: center;
     font-weight: bold;
     padding-bottom: 10px;
+}
+
+.level-box {
+    width: 460px;
+    margin: 50px auto 0;
+    height: 250px;
+}
+
+.level-select-right {
+    float: right;
+}
+
+.level-select-left {
+    float: left;
+}
+
+.level-select.active {
+    transform: scale(1.2) rotate(5deg);
+    transform-origin: center;
 }
