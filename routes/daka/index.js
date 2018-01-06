@@ -76,6 +76,7 @@ router.get('/share', function (req, res, next) {
     var id = req.query.bookId;
     var userId = req.query.userId;
     var readTime = req.query.readTime;
+    var level = req.query.level;
 
     if (!id && !userId) {
         res.redirect('/daka/start');
@@ -84,7 +85,8 @@ router.get('/share', function (req, res, next) {
     getUserInfoByUserId(userId, function (docs) {
         var UserInfo = docs[0];
         getBookInfoById(id, function (docs) {
-            res.render('daka/share', {bookInfo: docs[0], UserInfo: UserInfo, readTime: readTime});
+            var bookInfo = getBookInfobyDocs(docs, level).bookInfo;
+            res.render('daka/share', {bookInfo: bookInfo, UserInfo: UserInfo, readTime: readTime});
         });
     })
 });
@@ -165,12 +167,14 @@ router.get('/result', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var id = req.query.bookId;
         var readTime = req.query.readTime;
+        var level = req.query.level;
         if (!id) {
             res.redirect('/daka/start');
             return false;
         }
         getBookInfoById(id, function (docs) {
-            res.render('daka/result', {bookInfo: docs[0], readTime: readTime});
+            var bookInfo = getBookInfobyDocs(docs, level).bookInfo;
+            res.render('daka/result', {bookInfo: bookInfo, readTime: readTime, level: level});
         });
     });
 });
@@ -189,6 +193,15 @@ router.get('/setup', function (req, res, next) {
     });
 });
 
+
+function getBookInfobyDocs(docs, level) {
+    var doc = docs[0];
+    var index = (level < doc['articleList'].length ? level : doc.length - 1);
+    var bookInfo = doc['articleList'][index];
+    var bookDate = doc['articleDate'];
+    bookInfo._id = doc._id;
+    return {bookInfo: bookInfo, bookDate: bookDate}
+}
 
 function getUserInfoByOpenid(openid, cb_s, cb_f) {
     if (!openid) {
