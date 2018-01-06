@@ -89,6 +89,8 @@
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
                 var allDay_str = returnDateStr(allDay);
                 console.log(allDay_str);
+                console.log(timeArray, 'timeArray');
+                console.log(articleTime), 'articleTime';
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
                 if ($.inArray(allDay_str + '', timeArray) >= 0) {
                     // 已读
@@ -233,8 +235,8 @@
         var month = date.getMonth() + 1;
         var day = date.getDate();
 
-        month = month < 9 ? ('0' + month) : ('' + month);
-        day = day < 9 ? ('0' + day) : ('' + day);
+        month = month <= 9 ? ('0' + month) : ('' + month);
+        day = day <= 9 ? ('0' + day) : ('' + day);
 
         return year + month + day;
     };
