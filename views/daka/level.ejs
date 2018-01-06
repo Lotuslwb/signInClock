@@ -52,7 +52,8 @@
             success: function (data) {
                 console.log(data, 'setLevel');
                 if (data.status == '200') {
-                    cb && cb(data);
+//                    window.location.href = 'daka/index';
+                    window.location.href = 'daka/index-test';
                 } else {
                     alert(data.errmsg);
                 }
