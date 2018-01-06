@@ -4,6 +4,7 @@ var name = 'user';
 var Schema = {
     openid: String,
     level: String,
+    nextLevel: String,
     personInfo: {
         nickname: String,
         sex: String,

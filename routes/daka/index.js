@@ -113,10 +113,20 @@ router.get('/index_test', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var id = getBookId();
         getUserInfoByOpenid(openid, function (docs) {
-            console.log(docs[0].level)
-            if (docs[0].level > -1) {
+            var UserInfo = docs[0];
+            var level = UserInfo.level;
+            if (level > -1) {
                 getBookInfoById(id, function (docs) {
-                    res.render('daka/index', {title: 'index', now: new Date(), bookInfo: docs[0], UserInfo: docs[0]});
+                    var doc = docs[0];
+                    var bookInfo = doc[(level < doc.length ? level : doc.length - 1)];
+                    var bookDate = doc['articleDate'];
+                    res.render('daka/index', {
+                        title: 'index',
+                        now: new Date(),
+                        bookDate: bookDate,
+                        bookInfo: bookInfo,
+                        UserInfo: UserInfo
+                    });
                 });
             } else {
                 res.redirect('/daka/level')
