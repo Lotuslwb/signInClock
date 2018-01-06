@@ -106,20 +106,13 @@
             this.$calendar_today = $('<div class="calendar-today"></div>');
 
 
-            // var _titleStr = '<a href="#" class="title"></a>' +
-            //     '<a href="javascript:;" id="backToday">T</a>' +
-            //     '<div class="arrow">' +
-            //     '<span class="arrow-prev"><</span>' +
-            //     '<span class="arrow-next">></span>' +
-            //     '</div>';
-
             var _titleStr = '<a href="#" class="title"></a>' +
                 '<a href="javascript:;" class="number"> <span class="number-icon"></span>已读</a>' +
                 '<div class="info"></div>';
-            
+
             _titleStr += '<div class="arrow">' +
-                '<span class="arrow-prev"><</span>' +
-                '<span class="arrow-next">></span>' +
+                '<img class="arrow-prev" src="/daka/img/arrow-prev.png" />' +
+                '<img class="arrow-next" src="/daka/img/arrow-next.png" />' +
                 '</div>';
 
             var _weekStr = '<li class="item">S</li>' +
@@ -180,7 +173,7 @@
 
                 this.$arrow_next.bind('click', function () {
                     var _date = dateObj.getDate();
-
+                    console.log(_date, '_date');
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() + 1, 1));
 
                     self.showCalendar();
