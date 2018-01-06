@@ -79,7 +79,6 @@
                     return articleObj[index];
                 }
             })[0];
-            debugger;
             gotoReading(bookId, level);
         }
         if ($(this).hasClass('item-curDay')) {
@@ -91,7 +90,7 @@
                     booklevel = item.level || level || 0;
                 }
             });
-            gotoReading(bookId, level);
+            gotoReading(bookId, booklevel);
         }
     })
 
