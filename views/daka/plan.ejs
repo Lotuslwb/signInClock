@@ -34,9 +34,8 @@
 <%- include("commonjs.ejs") %>
 <script>
 
-    var articleTime = [<%- articleTime %>].map(function (item) {
-        return item ? item.toString() : '';
-    });
+    var articleTime = <%- articleTime.toString() %>;
+
     console.log(articleTime);
 
 
