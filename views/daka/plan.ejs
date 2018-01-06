@@ -84,8 +84,8 @@
             var bookId, booklevel;
             readingInfo.map(function (item) {
                 if (item && item.readingTimeId == date) {
-                    bookId = item['readingList'].bookId;
-                    booklevel = item['readingList'].level || level || 0;
+                    bookId = item.bookId;
+                    booklevel = item.level || level || 0;
                 }
             });
             gotoReading(bookId, level);
