@@ -121,6 +121,7 @@ router.get('/index_test', function (req, res, next) {
                     var index = (level < doc['articleList'].length ? level : doc.length - 1);
                     var bookInfo = doc['articleList'][index];
                     var bookDate = doc['articleDate'];
+                    bookInfo._id = doc._id;
                     console.log('bookInfo', bookInfo);
                     console.log('doc', doc);
                     console.log('index', index);
