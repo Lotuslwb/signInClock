@@ -112,9 +112,16 @@ router.get('/plan', function (req, res, next) {
 router.get('/index_test', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var id = getBookId();
-        getBookInfoById(id, function (docs) {
-            res.render('daka/index', {title: 'index', now: new Date(), bookInfo: docs[0]});
-        });
+        getUserInfoByOpenid(openid, function (docs) {
+            if (docs.level != 0 && !docs.level) {
+                res.render('daka/level', {title: '开始打卡', now: new Date(), UserInfo: docs[0]});
+            } else {
+                getBookInfoById(id, function (docs) {
+                    res.render('daka/index', {title: 'index', now: new Date(), bookInfo: docs[0], UserInfo: docs[0]});
+                });
+            }
+        })
+
     });
 });
 
