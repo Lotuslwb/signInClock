@@ -113,7 +113,7 @@ router.get('/index_test', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var id = getBookId();
         getUserInfoByOpenid(openid, function (docs) {
-            if (docs.level != 0 && !docs.level) {
+            if (docs.level <= -1) {
                 res.render('daka/level', {title: '开始打卡', now: new Date(), UserInfo: docs[0]});
             } else {
                 getBookInfoById(id, function (docs) {
