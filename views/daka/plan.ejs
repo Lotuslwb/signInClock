@@ -20,7 +20,7 @@
             <% var readingInfo = bookInfo['readingInfo']; for(var i = 0;i < readingInfo.length;i++){ %>
             <% if(readingInfo[i]['readingList'] && readingInfo[i]['readingList'].bookId ){ %>
             <a class="finish-item"
-               href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>&readTime=<%= readingInfo[i]['readingTimeId'] %>">
+               href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>&readTime=<%= readingInfo[i]['readingTimeId'] %>&level=<%= readingInfo[i]['readingList'].level %>">
                 <img src="/daka/img/empty.png" data-echo="<%= readingInfo[i]['readingList'].bookCover %>">
             </a>
             <% } %>
