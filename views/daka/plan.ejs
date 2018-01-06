@@ -40,7 +40,7 @@
     var level =<%- bookInfo.level || 0 %>//目前用户的等级
     var articleObj = '<%- articleObj.toString() %>'.split(',');
     var readingInfo = "<%= readingInfoRemote %>";
-
+    readingInfo = JSON.parse(readingInfo);
     console.log(articleObj, 'articleObj')
     console.log(readingInfo, 'readingInfo')
 

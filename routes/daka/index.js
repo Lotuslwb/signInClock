@@ -131,11 +131,11 @@ router.get('/plan', function (req, res, next) {
                         now: new Date(),
                         bookInfo: bookInfo,
                         readingInfoRemote: bookInfo.readingInfo.map(function (item) {
-                            return {
+                            return JSON.stringify({
                                 bookId: item.readingList.bookId,
                                 level: item.readingList.level,
                                 readingTimeId: item.readingTimeId
-                            };
+                            });
                         }),
                         articleTime: articleTime,
                         articleObj: docs.map(function (item) {
