@@ -74,11 +74,13 @@
         var date = $(this).attr('data');
         if ($(this).hasClass('item-unreadyDay')) {
             //未读
-            var bookId = articleTime.filter(function (item, index) {
+            var bookId;
+            articleTime.map(function (item, index) {
                 if (item == date) {
-                    return articleObj[index];
+                    bookId = articleObj[index];
                 }
-            })[0];
+            });
+            console.log(bookId);
             gotoReading(bookId, level);
         } else if ($(this).hasClass('item-curDay')) {
             //已读
@@ -96,7 +98,6 @@
     function gotoReading(bookId, level) {
         console.log(bookId, 'bookId');
         console.log(level, 'level');
-        debugger;
         window.location.href = 'https://ma.eldesign.cn/daka/reading?bookId=' + bookId + '&level=' + level;
     }
 </script>
