@@ -132,10 +132,8 @@ router.get('/plan', function (req, res, next) {
                         bookInfo: bookInfo,
                         readingInfoRemote: bookInfo.readingInfo.map(function (item) {
                             return {
-                                readingList: {
-                                    bookId: item.readingList.bookId,
-                                    level: item.readingList.level
-                                },
+                                bookId: item.readingList.bookId,
+                                level: item.readingList.level,
                                 readingTimeId: item.readingTimeId
                             };
                         }),
