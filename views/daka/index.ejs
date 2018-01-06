@@ -39,7 +39,7 @@
                     分<%= bookInfo.needTime.split(':')[1] || 0 %>秒
                 </div>
                 <div class="des"><%= bookInfo.brief || '' %></div>
-                <div class="start-btn" data-id="<%= bookInfo._id %>">开始阅读</div>
+                <div class="start-btn" data-id="<%= bookInfo._id %>" data-level="<%= UserInfo.level %>">开始阅读</div>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
     initFloatDate(now);
 
     $('.start-btn').click(function () {
-        window.location.href = '/daka/reading?bookId=' + $(this).data('id');
+        window.location.href = '/daka/reading?bookId=' + $(this).data('id') + '&level=' + $(this).data('level');
     })
 
 

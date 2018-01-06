@@ -47,13 +47,28 @@ router.get('/start_detail', function (req, res, next) {
 
 router.get('/reading', function (req, res, next) {
     var id = req.query.bookId;
+    var level = req.query.level;
     if (!id) {
         res.redirect('/daka/start');
         return false;
     }
-    getBookInfoById(id, function (docs) {
-        res.render('daka/reading', {title: 'index', bookInfo: docs[0], now: new Date()});
-    });
+
+    if (level > -1) {
+        getBookInfoById(id, function (docs) {
+            var doc = docs[0];
+            var index = (level < doc['articleList'].length ? level : doc.length - 1);
+            var bookInfo = doc['articleList'][index];
+            var bookDate = doc['articleDate'];
+            bookInfo._id = doc._id;
+
+            res.render('daka/reading', {
+                title: 'index', bookDate: bookDate,
+                bookInfo: bookInfo, now: new Date()
+            });
+        });
+    } else {
+        res.redirect('/daka/level')
+    }
 
 });
 
@@ -122,9 +137,7 @@ router.get('/index_test', function (req, res, next) {
                     var bookInfo = doc['articleList'][index];
                     var bookDate = doc['articleDate'];
                     bookInfo._id = doc._id;
-                    console.log('bookInfo', bookInfo);
-                    console.log('doc', doc);
-                    console.log('index', index);
+
                     res.render('daka/index', {
                         title: 'index',
                         now: new Date(),
