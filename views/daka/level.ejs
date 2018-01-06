@@ -14,12 +14,10 @@
 <div class="page main-page level-page active">
     <img src="/daka/img/level-text.png" class="level-text">
     <div class="level-box">
-        <img src="/daka/img/level-0.png" class="level-select level-select-left"
-                <%= UserInfo.level && UserInfo.level == '0' ? 'active' : '' %>
-        >
-        <img src="/daka/img/level-1.png" class="level-select level-select-right"
-                <%= UserInfo.level && UserInfo.level == '1' ? 'active' : '' %>
-        >
+        <img src="/daka/img/level-0.png"
+             class="level-select level-select-left <%= UserInfo.level && UserInfo.level == '0' ? 'active' : '' %>">
+        <img src="/daka/img/level-1.png"
+             class="level-select level-select-right <%= UserInfo.level && UserInfo.level == '1' ? 'active' : '' %>">
     </div>
     <div class="start-btn">确定</div>
 </div>
