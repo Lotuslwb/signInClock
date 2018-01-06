@@ -79,7 +79,7 @@
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
             var timeArray = self.opts.TimeArray;
-            
+
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
 
 
@@ -106,16 +106,21 @@
             this.$calendar_today = $('<div class="calendar-today"></div>');
 
 
-            var _titleStr = '<a href="#" class="title"></a>' +
-                '<a href="javascript:;" id="backToday">T</a>' +
-                '<div class="arrow">' +
-                '<span class="arrow-prev"><</span>' +
-                '<span class="arrow-next">></span>' +
-                '</div>';
+            // var _titleStr = '<a href="#" class="title"></a>' +
+            //     '<a href="javascript:;" id="backToday">T</a>' +
+            //     '<div class="arrow">' +
+            //     '<span class="arrow-prev"><</span>' +
+            //     '<span class="arrow-next">></span>' +
+            //     '</div>';
 
             var _titleStr = '<a href="#" class="title"></a>' +
                 '<a href="javascript:;" class="number"> <span class="number-icon"></span>已读</a>' +
                 '<div class="info"></div>';
+            
+            _titleStr += '<div class="arrow">' +
+                '<span class="arrow-prev"><</span>' +
+                '<span class="arrow-next">></span>' +
+                '</div>';
 
             var _weekStr = '<li class="item">S</li>' +
                 '<li class="item">M</li>' +
