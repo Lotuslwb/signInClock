@@ -37,7 +37,10 @@
     var articleTime = "<%= articleTime.toString() %>".split(',');
     var level =<%- bookInfo.level || 0 %>//目前用户的等级
     var articleObj =<%- articleObj %>;
-    var readingInfo =<%- bookInfo.readingInfo %>;
+    var readingInfo =<%- bookInfo.readingInfo && bookInfo.readingInfo.map(function (item) {
+        delete  item._id;
+        return item;
+    }) %>;
 
     //初始化延时加载
     echo.init({

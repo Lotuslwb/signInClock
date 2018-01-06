@@ -131,7 +131,10 @@ router.get('/plan', function (req, res, next) {
                         now: new Date(),
                         bookInfo: bookInfo,
                         articleTime: articleTime,
-                        articleObj: docs[0]
+                        articleObj: docs.map(function (item) {
+                            item._id = item._id + '';
+                            return item;
+                        })
                     });
                 }
             });
