@@ -131,13 +131,7 @@ router.get('/plan', function (req, res, next) {
                         now: new Date(),
                         bookInfo: bookInfo,
                         readingInfo: bookInfo.readingInfo.map(function (item) {
-                            return {
-                                readingList: {
-                                    bookId: item.readingList.bookId,
-                                    level: item.readingList.level
-                                },
-                                readingTimeId: item.readingTimeId
-                            };
+                            return 1;
                         }),
                         articleTime: articleTime,
                         articleObj: docs.map(function (item) {
