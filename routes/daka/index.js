@@ -124,7 +124,7 @@ router.get('/plan', function (req, res, next) {
             ArticleDB.User.find({}, {articleDate: 1}, function (err, docs) {
                 if (!err) {
                     var articleTime = docs.map(function (item) {
-                        return item.articleDate ? item.articleDate.split('-').join('') || undefined;
+                        return item.articleDate ? item.articleDate.split('-').join('') : undefined;
                     });
                     res.render('daka/plan', {
                         title: 'index',
