@@ -101,7 +101,7 @@ select {
     position: relative;
     width: 584px;
     margin: auto;
-    /*padding-top: 30px;*/
+    margin-top: -14px;
 }
 
 .index-page .index-words-cn {

@@ -64,7 +64,7 @@ ul, li {
     height: 22px;
     width: 22px;
     border-radius: 50%;
-    background-color: #f0f0f0;
+    background-color: #CCCCCC;
     display: inline-block;
     margin-right: 10px;
     vertical-align: sub;
@@ -171,7 +171,7 @@ ul, li {
 .calendar-date .item-unreadyDay,
 .calendar-date .item-unreadyDay:hover {
     display: block;
-    background-color: #f0f0f0;
+    background-color: #ccc;
 }
 
 .calendar-date .item-curDay,
