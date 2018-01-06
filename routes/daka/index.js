@@ -131,7 +131,8 @@ router.get('/plan', function (req, res, next) {
                         now: new Date(),
                         bookInfo: bookInfo,
                         readingInfo: bookInfo.readingInfo.map(function (item) {
-
+                            delete item._id;
+                            console.log(item);
                             return item;
                         }),
                         articleTime: articleTime,
