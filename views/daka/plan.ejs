@@ -20,7 +20,7 @@
             <% var readingInfo = bookInfo['readingInfo']; for(var i = 0;i < readingInfo.length;i++){ %>
             <% if(readingInfo[i]['readingList'] && readingInfo[i]['readingList'].bookId ){ %>
             <a class="finish-item"
-               href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>&readTime=<%= readingInfo[i]['readingTimeId'] %>&level=<%= readingInfo[i]['readingList'].level %>">
+               href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>&readTime=<%= readingInfo[i]['readingTimeId'] %>&level=<%= readingInfo[i]['readingList'].level || 0 %>">
                 <img src="/daka/img/empty.png" data-echo="<%= readingInfo[i]['readingList'].bookCover %>">
             </a>
             <% } %>
@@ -35,6 +35,9 @@
 <script>
 
     var articleTime = "<%= articleTime.toString() %>".split(',');
+    var level =<%- bookInfo.level || 0 %>//目前用户的等级
+    var articleObj =<%- articleObj %>;
+    var readingInfo =<%- bookInfo.readingInfo %>;
 
     //初始化延时加载
     echo.init({
@@ -61,12 +64,35 @@
     })
 
     $('body').on('click', '.calendar-date .item', '', function () {
-        console.log($(this));
-        if ($(this).hasClass('item-curMonth') || $(this).hasClass('item-curDay')) {
-            var date = $(this).attr('data');
-            console.log(date, 'date');
+        var date = $(this).attr('data');
+        if ($(this).hasClass('item-unreadyDay')) {
+            //未读
+            var bookId = articleObj.filter(function (item) {
+                var articleDate = item.articleDate ? item.articleDate.split('-').join('') : undefined
+                if (articleDate == date) {
+                    return item._id;
+                }
+            })[0];
+            gotoReading(bookId, level);
+        }
+        if ($(this).hasClass('item-curDay')) {
+            //已读
+            var bookId, booklevel;
+            readingInfo.map(function (item) {
+                if (item && item.readingTimeId == date) {
+                    bookId = item['readingList'].bookId;
+                    booklevel = item['readingList'].level || level || 0;
+                }
+            });
+            gotoReading(bookId, level);
         }
     })
+
+    function gotoReading(bookId, level) {
+        console.log(bookId, 'bookId');
+        console.log(level, 'level');
+        window.location.href = 'https://ma.eldesign.cn/daka/reading?bookId=' + bookId + '&level=' + level;
+    }
 </script>
 
 </body>

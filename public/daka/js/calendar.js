@@ -88,9 +88,6 @@
                 // allDay: 得到当前列表显示的所有天数
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
                 var allDay_str = returnDateStr(allDay);
-                console.log(allDay_str);
-                console.log(timeArray, 'timeArray');
-                console.log(articleTime), 'articleTime';
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
                 if ($.inArray(allDay_str + '', timeArray) >= 0) {
                     // 已读

@@ -130,7 +130,8 @@ router.get('/plan', function (req, res, next) {
                         title: 'index',
                         now: new Date(),
                         bookInfo: bookInfo,
-                        articleTime: articleTime
+                        articleTime: articleTime,
+                        articleObj: docs[0]
                     });
                 }
             });
