@@ -17,7 +17,9 @@
     <div class="index-main">
         <div class="plan-title">已完成</div>
         <div class="finish-list">
-            <% var readingInfo = bookInfo['readingInfo']; for(var i = 0;i < readingInfo.length;i++){ %>
+            <% var readingInfo = bookInfo['readingInfo'];
+
+            for(var i = 0;i < readingInfo.length;i++){ %>
             <% if(readingInfo[i]['readingList'] && readingInfo[i]['readingList'].bookId ){ %>
             <a class="finish-item"
                href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>&readTime=<%= readingInfo[i]['readingTimeId'] %>&level=<%= readingInfo[i]['readingList'].level || 0 %>">
@@ -37,7 +39,7 @@
     var articleTime = "<%= articleTime.toString() %>".split(',');
     var level =<%- bookInfo.level || 0 %>//目前用户的等级
     var articleObj = '<%- articleObj.toString() %>'.split(',');
-    var readingInfo = [<%- readingInfo %>];
+    var readingInfo = [<%- readingInfoRemote %>];
 
     console.log(articleObj, 'articleObj')
     console.log(readingInfo, 'readingInfo')
