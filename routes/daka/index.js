@@ -123,7 +123,9 @@ router.get('/plan', function (req, res, next) {
             var bookInfo = docs[0];
             ArticleDB.User.find({}, {articleDate: 1}, function (err, docs) {
                 if (!err) {
-                    var articleTime = docs;
+                    var articleTime = docs.map(function (item) {
+                        return item.articleDate;
+                    });
                     res.render('daka/plan', {
                         title: 'index',
                         now: new Date(),
