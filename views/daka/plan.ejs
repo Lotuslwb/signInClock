@@ -37,10 +37,10 @@
     var articleTime = "<%= articleTime.toString() %>".split(',');
     var level =<%- bookInfo.level || 0 %>//目前用户的等级
     var articleObj = '<%- articleObj.toString() %>'.split(',');
-    var readingInfo = <%= bookInfo.readingInfo && bookInfo.readingInfo.map(function (item) {
-        item._id = '';
+    var readingInfo = [<%- bookInfo.readingInfo && bookInfo.readingInfo.map(function (item) {
+        item._id = item._id + '1';
         return item;
-    }) %>;
+    }) %>];
 
     console.log(articleObj, 'articleObj')
     console.log(readingInfo, 'readingInfo')
