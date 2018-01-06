@@ -80,8 +80,7 @@
                 }
             })[0];
             gotoReading(bookId, level);
-        }
-        if ($(this).hasClass('item-curDay')) {
+        } else if ($(this).hasClass('item-curDay')) {
             //已读
             var bookId, booklevel;
             readingInfo.map(function (item) {
@@ -97,6 +96,7 @@
     function gotoReading(bookId, level) {
         console.log(bookId, 'bookId');
         console.log(level, 'level');
+        debugger;
         window.location.href = 'https://ma.eldesign.cn/daka/reading?bookId=' + bookId + '&level=' + level;
     }
 </script>
