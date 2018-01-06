@@ -118,11 +118,12 @@ router.get('/index_test', function (req, res, next) {
             if (level > -1) {
                 getBookInfoById(id, function (docs) {
                     var doc = docs[0];
-                    var bookInfo = doc[(level < doc.length ? level : doc.length - 1)];
+                    var index = (level < doc['articleList'].length ? level : doc.length - 1);
+                    var bookInfo = doc['articleList'][index];
                     var bookDate = doc['articleDate'];
                     console.log('bookInfo', bookInfo);
                     console.log('doc', doc);
-                    console.log('index', (level < doc.length ? level : doc.length - 1));
+                    console.log('index', index);
                     res.render('daka/index', {
                         title: 'index',
                         now: new Date(),
