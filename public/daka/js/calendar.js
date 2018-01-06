@@ -106,12 +106,12 @@
             this.$calendar_today = $('<div class="calendar-today"></div>');
 
 
-            // var _titleStr = '<a href="#" class="title"></a>' +
-            //     '<a href="javascript:;" id="backToday">T</a>' +
-            //     '<div class="arrow">' +
-            //     '<span class="arrow-prev"><</span>' +
-            //     '<span class="arrow-next">></span>' +
-            //     '</div>';
+            var _titleStr = '<a href="#" class="title"></a>' +
+                '<a href="javascript:;" id="backToday">T</a>' +
+                '<div class="arrow">' +
+                '<span class="arrow-prev"><</span>' +
+                '<span class="arrow-next">></span>' +
+                '</div>';
 
             var _titleStr = '<a href="#" class="title"></a>' +
                 '<a href="javascript:;" class="number"> <span class="number-icon"></span>已读</a>' +
