@@ -120,6 +120,7 @@ router.get('/index_test', function (req, res, next) {
                     var doc = docs[0];
                     var bookInfo = doc[(level < doc.length ? level : doc.length - 1)];
                     var bookDate = doc['articleDate'];
+                    console.log('bookInfo', bookInfo);
                     res.render('daka/index', {
                         title: 'index',
                         now: new Date(),
