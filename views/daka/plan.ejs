@@ -39,8 +39,10 @@
     var articleTime = "<%= articleTime.toString() %>".split(',');
     var level =<%- bookInfo.level || 0 %>//目前用户的等级
     var articleObj = '<%- articleObj.toString() %>'.split(',');
-    var readingInfo = "<%= readingInfoRemote %>";
-    readingInfo = JSON.parse(readingInfo);
+    var readingInfo = "<%- readingInfoRemote.toString('***') %>".split('***');
+    readingInfo = readingInfo.map(function (item) {
+        return JSON.parse(item);
+    });
     console.log(articleObj, 'articleObj')
     console.log(readingInfo, 'readingInfo')
 
