@@ -132,8 +132,7 @@ router.get('/plan', function (req, res, next) {
                         bookInfo: bookInfo,
                         articleTime: articleTime,
                         articleObj: docs.map(function (item) {
-                            item._id = item._id + '';
-                            return item;
+                            return item._id;
                         })
                     });
                 }
