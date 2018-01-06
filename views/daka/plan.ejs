@@ -37,10 +37,10 @@
     var articleTime = "<%= articleTime.toString() %>".split(',');
     var level =<%- bookInfo.level || 0 %>//目前用户的等级
     var articleObj = '<%- articleObj.toString() %>'.split(',');
-    var readingInfo = [<%- bookInfo.readingInfo && bookInfo.readingInfo.map(function (item) {
+    var readingInfo = <%= bookInfo.readingInfo && bookInfo.readingInfo.map(function (item) {
         item._id = '';
         return item;
-    }) %>];
+    }) %>;
 
     console.log(articleObj, 'articleObj')
     console.log(readingInfo, 'readingInfo')
@@ -73,10 +73,9 @@
         var date = $(this).attr('data');
         if ($(this).hasClass('item-unreadyDay')) {
             //未读
-            var bookId = articleObj.filter(function (item) {
-                var articleDate = item.articleDate ? item.articleDate.split('-').join('') : undefined
-                if (articleDate == date) {
-                    return item._id;
+            var bookId = articleTime.filter(function (item, index) {
+                if (item == date) {
+                    return articleObj[index];
                 }
             })[0];
             gotoReading(bookId, level);
