@@ -35,8 +35,6 @@
 <script>
 
     var articleTime = "<%= articleTime.toString() %>".split(',');
-    console.log(articleTime);
-
 
     //初始化延时加载
     echo.init({
@@ -60,6 +58,14 @@
             TimeArray: recodeTimeArray,// 已读时间列表
             articleTime: articleTime,// 所有文章时间列表
         });
+    })
+
+    $('body').on('click', '.calendar-date .item', '', function () {
+        console.log($(this));
+        if ($(this).hasClass('item-curMonth') || $(this).hasClass('item-curDay')) {
+            var date = $(this).attr('data');
+            console.log(date, 'date');
+        }
     })
 </script>
 
