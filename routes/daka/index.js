@@ -113,7 +113,7 @@ router.get('/index_test', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var id = getBookId();
         getUserInfoByOpenid(openid, function (docs) {
-            if (docs.level <= -1) {
+            if (docs[0].level <= -1) {
                 res.redirect('/daka/level')
             } else {
                 getBookInfoById(id, function (docs) {
