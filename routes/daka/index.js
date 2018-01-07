@@ -110,7 +110,8 @@ function checkOpenid(req, res, cb) {
 router.get('/level', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         getUserInfoByOpenid(openid, function (docs) {
-            res.render('daka/level', {title: '开始打卡', now: new Date(), UserInfo: docs[0]});
+            var router = req.query.router;
+            res.render('daka/level', {title: '开始打卡', now: new Date(), UserInfo: docs[0], router: router});
         })
     });
 

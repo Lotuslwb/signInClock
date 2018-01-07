@@ -27,6 +27,7 @@
 
 <script>
     var selectValue = <%- UserInfo.level ? UserInfo.level : -1 %>;
+    var router = '<%- router %>';
 
     $('.level-select').click(function () {
         $(this).addClass('active').siblings('.level-select').removeClass('active');
@@ -50,8 +51,12 @@
             success: function (data) {
                 console.log(data, 'setLevel');
                 if (data.status == '200') {
+                    if (router) {
+                        window.location.href = '/daka/' + router;
+                    } else {
 //                    window.location.href = '/daka/index';
-                    window.location.href = '/daka/index_test';
+                        window.location.href = '/daka/index_test';
+                    }
                 } else {
                     alert(data.errmsg);
                 }
