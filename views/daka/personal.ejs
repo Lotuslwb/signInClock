@@ -10,9 +10,14 @@
     <div class="index-words">
         <div class="personal-title"><span class="J-nickname"></span> 欢迎您！</div>
         <ul class="personal-list">
+            <li>阅读材料： <span class="number J-levelText"></span>
+                <div class="setting-btn">设置</div>
+            </li>
             <li>已阅读： <span class="number J-currentRecodeCounts">天</span></li>
             <li>累积阅读字数： <span class="number J-totalWordLength"></span></li>
-            <!--<li>我的兑奖券： <span class="number"></span></li>-->
+            <li>徽章： <span class="number J-medalNumber"></span>
+                <div class="setting-btn">查看</div>
+            </li>
         </ul>
         <img src="../../../../daka/img/pic-logo.png" class="personal-logo">
     </div>
@@ -38,21 +43,35 @@
     var now = "<%= now %>";
     initFloatDate(now);
 
+    var medalArray = [3, 7, 14, 21, 30, 45, 60, 75, 90];
+
     getUserInfo(function (data) {
         var data = data.data[0];
         var personInfo = data['personInfo'];
         var recodeInfo = data['recodeInfo'];
         var clockInfo = data['clockInfo'];
+        var level = data['level'];
 
         var headimgurl = personInfo ? personInfo['headimgurl'] : '';
         var nickname = personInfo ? personInfo['nickname'] : '';
         var currentRecodeCounts = recodeInfo ? recodeInfo['currentRecodeCounts'] || 0 : 0;
         var totalWordLength = recodeInfo ? recodeInfo['totalWordLength'] || 0 : 0;
+        var medalNumber = 0;
         $('.J-nickname').text(nickname)
         $('.J-clockTime').text(clockInfo['clockTime']);
         $('.personal-logo').attr('src', headimgurl);
         $('.J-currentRecodeCounts').text(currentRecodeCounts + '天');
         $('.J-totalWordLength').text(totalWordLength);
+
+        $('.J-levelText').text(level > 0 ? '7岁以上' : '3-6岁');
+
+
+        medalArray.map(function (item, index) {
+            if (currentRecodeCounts >= item) {
+                medalNumber++;
+            }
+        });
+        $('.J-medalNumber').text(medalNumber + '枚');
     })
 
     $('.J-gotoSetup').click(function () {
