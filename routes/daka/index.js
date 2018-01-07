@@ -116,6 +116,15 @@ router.get('/level', function (req, res, next) {
 
 })
 
+router.get('/medal', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        getUserInfoByOpenid(openid, function (docs) {
+            var UserInfo = docs[0];
+            res.render('daka/medal', {title: '开始打卡', now: new Date(), UserInfo: UserInfo});
+        })
+    })
+});
+
 
 router.get('/plan', function (req, res, next) {
     checkOpenid(req, res, function (openid) {

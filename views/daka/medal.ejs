@@ -1,0 +1,47 @@
+﻿<%- include("header.ejs",{"title": "英孚亲子共读训练营"}) %>
+<style>
+    body.ipad {
+        padding-bottom: 160px;
+    }
+
+    .start-btn {
+        margin: 50px auto;
+        position: relative;
+        z-index: 4;
+        font-size: 26px;
+    }
+</style>
+<div class="page main-page medal-page active">
+    <div class="medal-list">
+        <% for (var i = 0; i < 9; i++) { %>
+        <img src="/daka/img/medal/medal_<%= i %>.png" class="medal-item medal-item-<%= i %> disable"/>
+        <% } %>
+    </div>
+
+    <!--<div class="start-btn">确定</div>-->
+</div>
+
+<%- include("commonjs.ejs") %>
+
+
+<script>
+    var medalArray = [3, 7, 14, 21, 30, 45, 60, 75, 90];
+    var currentRecodeCounts =<%= (UserInfo['recodeInfo'] && UserInfo['recodeInfo']['currentRecodeCounts']) || 0 %>;
+
+    medalArray.map(function (item, index) {
+        if (currentRecodeCounts >= item) {
+            $('.medal-item').index(index).removeClass('disable');
+        } else {
+            $('.medal-item').index(index).addClass('disable');
+        }
+    });
+
+    initWX(function () {
+        initWXSahre();
+    });
+
+</script>
+
+
+</body>
+</html>

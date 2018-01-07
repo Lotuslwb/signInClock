@@ -71,6 +71,13 @@ select {
     box-sizing: border-box;
 }
 
+.medal-page {
+    background: url("../img/medal-bg.png") no-repeat top;
+    background-size: cover;
+    padding-top: 90px;
+    box-sizing: border-box;
+}
+
 .result-page {
     background: url("../img/result-bg.jpg") no-repeat top;
     background-size: 100%;
@@ -1063,4 +1070,23 @@ select {
 .level-select.active {
     transform: scale(1.2) rotate(5deg);
     transform-origin: center;
+}
+
+.medal-list {
+    padding-top: 55px;
+    width: 570px;
+    margin: auto;
+    margin-right: 30px;
+}
+
+.medal-item {
+    display: inline-block;
+    margin-left: 30px;
+    margin-bottom: 65px;
+    transition: all ease 2s;
+}
+
+.medal-item.disable {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
 }
