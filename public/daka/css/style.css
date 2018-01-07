@@ -263,17 +263,17 @@ select {
     color: #333333;
     font-size: 24px;
     padding-left: 25px;
-    width: 256px;
     display: inline-block;
 }
 
 .personal-list li {
     padding-top: 25px;
+    width: 100%;
 }
 
 .personal-list li .number {
     color: #e9329c;
-    float: right;
+    display: inline-block;
 }
 
 .personal-logo {
@@ -1095,4 +1095,6 @@ select {
     color: #00a7fe;
     font-size: 24px;
     border-bottom: 2px solid #00a7fe;
+    display: inline-block;
+    margin-left: 30px;
 }
