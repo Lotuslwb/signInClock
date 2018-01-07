@@ -30,9 +30,9 @@
 
     medalArray.map(function (item, index) {
         if (currentRecodeCounts >= item) {
-            $('.medal-item').index(index).removeClass('disable');
+            $('.medal-item').eq(index).removeClass('disable');
         } else {
-            $('.medal-item').index(index).addClass('disable');
+            $('.medal-item').eq(index).addClass('disable');
         }
     });
 
