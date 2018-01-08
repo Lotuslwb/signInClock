@@ -1068,7 +1068,7 @@ select {
 }
 
 .level-select.active {
-    transform: scale(1.2) rotate(5deg);
+    transform: scale(1.2);
     transform-origin: center;
 }
 
