@@ -19,7 +19,7 @@
         <img src="/daka/img/level-1.png"
              class="level-select level-select-right <%= UserInfo.level && UserInfo.level == '1' ? 'active' : '' %>">
     </div>
-    <div class="start-btn">确定</div>
+    <!--<div class="start-btn">确定</div>-->
 </div>
 
 <%- include("commonjs.ejs") %>
@@ -32,11 +32,6 @@
     $('.level-select').click(function () {
         $(this).addClass('active').siblings('.level-select').removeClass('active');
         selectValue = $(this).index();
-        console.log(selectValue);
-    })
-
-    $('.start-btn').click(function () {
-
         if (selectValue < 0) {
             showAlert({text: '请先选择年龄'})
             return false;
@@ -63,6 +58,11 @@
             },
             dataType: 'json'
         });
+    })
+
+    $('.start-btn').click(function () {
+
+
     })
 
     initWX(function () {
