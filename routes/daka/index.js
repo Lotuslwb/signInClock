@@ -6,6 +6,7 @@ var WXConfig = require('../../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
 var UserDB = require('../../module/DB/UserDB');
 var ArticleDB = require('../../module/DB/ArticleDB');
+var ConfigDB = require('../../module/DB/ConfigDB');
 var log = require('../../module/tools/log');
 
 
@@ -163,29 +164,33 @@ router.get('/plan', function (req, res, next) {
 router.get('/index_test', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
         var id = getBookId();
-        getUserInfoByOpenid(openid, function (docs) {
-            var UserInfo = docs[0];
-            var level = UserInfo.level;
-            if (level > -1) {
-                getBookInfoById(id, function (docs) {
-                    var doc = docs[0];
-                    var index = (level < doc['articleList'].length ? level : doc.length - 1);
-                    var bookInfo = doc['articleList'][index];
-                    var bookDate = doc['articleDate'];
-                    bookInfo._id = doc._id;
+        ConfigDB.find({}, function (err, docs) {
+            var ConfigData = (docs && docs[0] ) || {};
+            getUserInfoByOpenid(openid, function (docs) {
+                var UserInfo = docs[0];
+                var level = UserInfo.level;
+                if (level > -1) {
+                    getBookInfoById(id, function (docs) {
+                        var doc = docs[0];
+                        var index = (level < doc['articleList'].length ? level : doc.length - 1);
+                        var bookInfo = doc['articleList'][index];
+                        var bookDate = doc['articleDate'];
+                        bookInfo._id = doc._id;
 
-                    res.render('daka/index', {
-                        title: 'index',
-                        now: new Date(),
-                        bookDate: bookDate,
-                        bookInfo: bookInfo,
-                        UserInfo: UserInfo
+                        res.render('daka/index', {
+                            title: 'index',
+                            now: new Date(),
+                            bookDate: bookDate,
+                            bookInfo: bookInfo,
+                            UserInfo: UserInfo,
+                            ConfigData: ConfigData
+                        });
                     });
-                });
-            } else {
-                res.redirect('/daka/level')
-            }
-        })
+                } else {
+                    res.redirect('/daka/level')
+                }
+            })
+        });
 
     });
 });

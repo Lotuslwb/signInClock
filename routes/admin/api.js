@@ -6,6 +6,7 @@ var teacherDB = require('../../module/DB/TeacherDB');
 var leadsDB = require('../../module/DB/LeadsDB');
 
 var ArticleDB = require('../../module/DB/ArticleDB');
+var ConfigDB = require('../../module/DB/ConfigDB');
 
 var config = require('../admin/tsconfig.json');
 
@@ -343,6 +344,16 @@ router.post('/daka/saveArticleData', function (req, res, next) {
     });
 });
 
+/* 打卡计划 --  保存配置信息 */
+router.post('/daka/saveConfigData', function (req, res, next) {
+    var data = req.body;
+    console.log(data);
+
+    saveConfigDataToDB(data, function (docs) {
+        res.send(sendData('200', docs, ''));
+    });
+});
+
 router.post('/daka/updateArticleData', function (req, res, next) {
     var data = req.body;
     console.log(data);
@@ -414,6 +425,43 @@ function saveArticleDataToDB(data, callback_s, callback_f) {
         } else {
             log('成功插入');
             callback_s && callback_s(docs);
+        }
+    })
+
+}
+
+
+function saveConfigDataToDB(data, callback_s, callback_f) {
+    if (!data) {
+        callback_f && callback_f('数据不能为空');
+    }
+    ConfigDB.find({}, function (err, docs) {
+        if (err) {
+            log('查找数据库失败', err);
+        } else {
+            if (docs.length > 0) {
+                var id = docs[0]._id;
+                ConfigDB.update(id, data, function (err, docs) {
+                    if (err) {
+                        log('插入数据库失败', err);
+                        callback_f && callback_f('插入数据库失败:' + err);
+                    } else {
+                        log('成功插入');
+                        callback_s && callback_s(docs);
+                    }
+                })
+            } else {
+                ConfigDB.add(data, function (err, docs) {
+                    if (err) {
+                        log('插入数据库失败', err);
+                        callback_f && callback_f('插入数据库失败:' + err);
+                    } else {
+                        log('成功插入');
+                        callback_s && callback_s(docs);
+                    }
+                })
+            }
+
         }
     })
 

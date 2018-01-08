@@ -5,6 +5,7 @@ var app = express();
 var log = require('../../module/tools/log');
 var teacherDB = require('../../module/DB/TeacherDB');
 var ArticleDB = require('../../module/DB/ArticleDB');
+var ConfigDB = require('../../module/DB/ConfigDB');
 
 
 var config = require('../admin/tsconfig.json');
@@ -70,6 +71,14 @@ router.get('/daka', function (req, res, next) {
 router.get('/daka/add', function (req, res, next) {
     var username = req.signedCookies['session'].split('"')[1];
     res.render('admin/daka_add', {username: username, routes: 'daka'});
+});
+
+router.get('/daka/config', function (req, res, next) {
+    var username = req.signedCookies['session'].split('"')[1];
+    ConfigDB.find({}, function (err, docs) {
+        var doc = (docs && docs[0] ) || {};
+        res.render('admin/daka_config', {username: username, routes: 'daka', doc: doc});
+    });
 });
 
 router.get('/daka/modify', function (req, res, next) {

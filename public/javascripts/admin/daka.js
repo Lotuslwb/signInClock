@@ -15,8 +15,11 @@ obj.prototype = {
         $('.J-query').click(function () {
             me.updateGid(me);
         });
+        $('.J-config').click(function () {
+            window.location.href = '/admin/daka/config';
+        });
         $('.J-add').click(function () {
-            window.location.href = '/admin/daka/add'
+            window.location.href = '/admin/daka/add';
         });
 
     },
