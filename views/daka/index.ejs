@@ -11,10 +11,9 @@
     </div>
 
     <div class="index-words">
-        <div class="index-words-h1">12月我们一起读</div>
-        <div class="index-words-h2">Nametale 你的名字也有故事</div>
-        <div class="index-words-cn">
-            12月英孚青少儿英语精心研发近百个趣味姓名童话，纯正地道的外教配音，相信会让孩子爱上英语阅读！现在点击屏幕下方图片，还可免费为孩子定制专属名字故事书。
+        <div class="index-words-h1"><%= ConfigData.H1Title %></div>
+        <div class="index-words-h2"><%= ConfigData.H2Title %></div>
+        <div class="index-words-cn"><%= ConfigData.Text %>
         </div>
     </div>
 
@@ -46,9 +45,9 @@
 
 
     <div class="banner">
-        <a href="http://nametale.ef.com.cn/mobile/index.html?etag=EFCN_Wint18_KidsOwn-SNS-Nametale-Daka"
+        <a href="<%= ConfigData.BannerLink %>"
            onclick="_hmt.push(['_trackEvent', '外链', '首页底部Banner']);">
-            <img src="../../../../daka/img/pic-banner.jpg">
+            <img src="<%= ConfigData.BannerImgURL %>">
         </a>
     </div>
 </div>
