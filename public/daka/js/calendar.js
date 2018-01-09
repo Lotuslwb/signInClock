@@ -84,7 +84,7 @@
                 return item * 1;
             });
             var maxTime = Math.max(...articleTimeList);
-            var minTime = Math.max(...articleTimeList);
+            var minTime = Math.min(...articleTimeList);
             console.log(maxTime, minTime);
 
             if ((year + month + '01') * 1 <= minTime) {
