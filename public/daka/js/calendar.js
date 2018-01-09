@@ -87,11 +87,11 @@
             var minTime = Math.min(...articleTimeList);
             console.log(maxTime, minTime);
 
-            if ((year + month + '01') * 1 <= minTime) {
+            if (returnDateStr(new Date(year, month - 1, 1)) * 1 <= minTime) {
                 this.$arrow_prev = this.$calendar_title.find('.arrow-prev').addClass('disable');
             }
 
-            if ((year + month + '30') * 1 >= maxTime) {
+            if (returnDateStr(new Date(year, month - 1, 30)) * 1 >= maxTime) {
                 this.$arrow_next = this.$calendar_title.find('.arrow-next').addClass('disable');
             }
 
