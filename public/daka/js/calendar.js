@@ -133,8 +133,8 @@
                 '<div class="info"></div>';
 
             _titleStr += '<div class="arrow">' +
-                '<span><img class="arrow-prev" src="/daka/img/arrow-prev.png" /><br/>上个月</span>' +
-                '<span><img class="arrow-next" src="/daka/img/arrow-next.png" /><br/>下个月</span>' +
+                '<img class="arrow-prev" src="/daka/img/arrow-prev.png" />' +
+                '<img class="arrow-next" src="/daka/img/arrow-next.png" />' +
                 '</div>';
 
             var _weekStr = '<li class="item">S</li>' +
