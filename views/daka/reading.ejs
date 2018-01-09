@@ -57,13 +57,13 @@
     </div>
     <% } %>
 
-    <div class="reading-main <%= !(!type || type != 'unread') ? 'long' : '' %>">
+    <div class="reading-main <%= !(type != 'unread' && type != 'read') ? 'long' : '' %>">
         <%- bookInfo.articleText %>
     </div>
 
-    <% if(!type || type != 'unread'){ %>
+    <% if(!type || (type != 'unread' && type != 'read')){ %>
 
-    <div class="record-btn-list <%= type == 'read' ? 'active' : '' %>">
+    <div class="record-btn-list">
         <div class="record-btn btn-item">
             <div class="J-record-btn game_time">
                 <div class="hold">
@@ -96,18 +96,10 @@
             </div>
             <div class="record-status J-playRecord-text">回放</div>
         </div>
-
-        <% if(type == 'read'){ %>
-        <div class="gotoDaka-btn btn-item btn-item2">
-            <img src="../../../../daka/img/gotoShare.png" class="record-icon J-gotoShare-btn">
-            <div class="record-status gotoShare-btn-text">分享</div>
-        </div>
-        <% }else{ %>
         <div class="gotoDaka-btn btn-item btn-item2">
             <img src="../../../../daka/img/gotoDaka.png" class="record-icon J-gotoDaka-btn">
             <div class="record-status gotoDaka-btn-text"></div>
         </div>
-        <% } %>
     </div>
 
     <% } %>
