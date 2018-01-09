@@ -80,8 +80,8 @@
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
             var timeArray = self.opts.TimeArray;
             var articleTime = self.opts.articleTime;
-            var articleTimeList = articleTime.map(function (item) {
-                return item * 1;
+            var articleTimeList = articleTime.filter(function (item) {
+                return item * 1 > 1000 ? item * 1 : false;
             });
             var maxTime = Math.max(...articleTimeList);
             var minTime = Math.min(...articleTimeList);
