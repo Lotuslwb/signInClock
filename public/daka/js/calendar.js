@@ -107,15 +107,19 @@
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
                 var allDay_str = returnDateStr(allDay);
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
-                if ($.inArray(allDay_str + '', timeArray) >= 0) {
-                    // 已读
-                    $(this).attr('class', 'item item-curDay');
-                } else if ($.inArray(allDay_str + '', articleTime) >= 0) {
-                    // 未读
-                    $(this).attr('class', 'item item-unreadyDay');
-                } else if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
-                    $(this).attr('class', 'item item-curMonth');
+                if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
+                    //当前月
+                    if ($.inArray(allDay_str + '', timeArray) >= 0) {
+                        // 已读
+                        $(this).attr('class', 'item item-curDay');
+                    } else if ($.inArray(allDay_str + '', articleTime) >= 0) {
+                        // 未读
+                        $(this).attr('class', 'item item-unreadyDay');
+                    } else {
+                        $(this).attr('class', 'item item-curMonth');
+                    }
                 } else {
+                    //非当前月
                     $(this).attr('class', 'item');
                 }
             });

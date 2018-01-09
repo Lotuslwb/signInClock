@@ -111,10 +111,12 @@ ul, li {
 
 .calendar-title .arrow-prev {
     float: left;
+    width: 45px;
 }
 
 .calendar-title .arrow-next {
     float: right;
+    width: 45px;
 }
 
 .calendar-title .arrow-next.disable, .calendar-title .arrow-prev.disable {
