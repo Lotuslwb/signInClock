@@ -1122,11 +1122,11 @@ select {
 }
 
 .medal-detail-page .text {
-    font-size: 58px;
+    font-size: 55px;
     color: #eb008b;
     position: absolute;
-    left: 325px;
+    left: 316px;
     top: 82px;
-    width: 113px;
+    width: 130px;
     text-align: center;
 }
