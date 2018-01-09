@@ -117,8 +117,15 @@ router.get('/level', function (req, res, next) {
             res.render('daka/level', {title: '开始打卡', now: new Date(), UserInfo: docs[0], router: router});
         })
     });
-
 })
+
+router.get('/level_setup', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        getUserInfoByOpenid(openid, function (docs) {
+            res.render('daka/level_setup', {title: '开始打卡', now: new Date(), UserInfo: docs[0]});
+        })
+    });
+});
 
 router.get('/medal', function (req, res, next) {
     checkOpenid(req, res, function (openid) {

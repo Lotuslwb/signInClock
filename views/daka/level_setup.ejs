@@ -1,0 +1,90 @@
+﻿<%- include("header.ejs",{"title":'英孚亲子共读训练营'}) %>
+<style>
+    label.label {
+        font-size: 26px;
+        color: #333;
+        padding-right: 20px;
+    }
+
+    .label input {
+        width: 20px;
+        height: 20px;
+    }
+
+    .index-page .index-words {
+        min-height: 300px;
+    }
+</style>
+
+<div class="page main-page index-page active">
+    <div class="date-box">
+        <div class="date-box-icon"></div>
+        <div class="date-box-text"></div>
+    </div>
+
+    <div class="index-words">
+        <div class="personal-title setup-title">选择年龄：</div>
+        <div class="setup-time">
+            <label class="label" for="level_0">
+                <input type="radio" name="level" id="level_0" value="0"
+                        <% if(UserInfo.level == 0){ %>
+                       checked
+                        <% } %>
+                /> 3-6岁</label>
+            <label class="label" for="level_1">
+                <input type="radio" name="level" id="level_1" value="1"
+                        <% if(UserInfo.level == 1){ %>
+                       checked
+                        <% } %>
+                /> 7岁以上</label>
+        </div>
+    </div>
+
+    <div class="index-main">
+        <div class="setup-btn-list">
+            <div class="btn return-btn">返 回</div>
+            <div class="btn save-btn">保 存</div>
+        </div>
+    </div>
+
+
+</div>
+
+<%- include("menu.ejs",{"type":'personal'}) %>
+<%- include("commonjs.ejs") %>
+<script>
+    var now = "<%= now %>";
+    initFloatDate(now);
+
+
+    $('.return-btn').click(function () {
+        window.history.go(-1);
+    });
+
+    $('.save-btn').click(function () {
+        var data = {
+            level: $("input[name='level']:checked").val()
+        };
+        console.log(data);
+        $.ajax({
+            type: 'GET',
+            url: '/dakaApi/setLevel',
+            data: data,
+            success: function (data) {
+                console.log(data, 'setLevel');
+                if (data.status == '200') {
+                    alert('保存成功');
+                    setTimeout(function () {
+                        window.location.href = '/daka/personal';
+                    }, 1000);
+                } else {
+                    alert(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    });
+</script>
+
+</body>
+</html>
