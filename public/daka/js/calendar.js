@@ -89,10 +89,14 @@
 
             if (returnDateStr(new Date(year, month - 1, 1)) * 1 <= minTime) {
                 this.$arrow_prev = this.$calendar_title.find('.arrow-prev').addClass('disable');
+            } else {
+                this.$arrow_prev = this.$calendar_title.find('.arrow-prev').removeClass('disable');
             }
 
             if (returnDateStr(new Date(year, month - 1, 30)) * 1 >= maxTime) {
                 this.$arrow_next = this.$calendar_title.find('.arrow-next').addClass('disable');
+            } else {
+                this.$arrow_next = this.$calendar_title.find('.arrow-next').removeClass('disable');
             }
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
