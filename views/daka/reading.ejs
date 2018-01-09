@@ -57,7 +57,7 @@
     </div>
     <% } %>
 
-    <div class="reading-main">
+    <div class="reading-main <% (!type || type != 'unread') ? 'long' : '' %>">
         <%- bookInfo.articleText %>
     </div>
 
