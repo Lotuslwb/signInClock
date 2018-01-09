@@ -87,10 +87,11 @@ ul, li {
 .calendar-title .arrow {
     position: absolute;
     top: 580px;
-    width: 300px;
+    /*width: 300px;*/
     z-index: 10;
     transform: translateX(-50%);
     left: 50%;
+    width: 98%;
 }
 
 .calendar-title .arrow span {

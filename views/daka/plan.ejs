@@ -80,8 +80,7 @@
                     bookId = articleObj[index];
                 }
             });
-            console.log(bookId);
-            gotoReading(bookId, level);
+            gotoReading(bookId, level, 'unread');
         } else if ($(this).hasClass('item-curDay')) {
             //已读
             var bookId, booklevel;
@@ -91,12 +90,12 @@
                     booklevel = item.level || level || 0;
                 }
             });
-            gotoReading(bookId, booklevel);
+            gotoReading(bookId, booklevel, 'read');
         }
     })
 
-    function gotoReading(bookId, level) {
-        window.location.href = 'https://ma.eldesign.cn/daka/reading?bookId=' + bookId + '&level=' + level;
+    function gotoReading(bookId, level, type) {
+        window.location.href = 'https://ma.eldesign.cn/daka/reading?bookId=' + bookId + '&level=' + level + '&type=' + type;
     }
 </script>
 

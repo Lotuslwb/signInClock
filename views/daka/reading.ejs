@@ -60,6 +60,9 @@
     <div class="reading-main">
         <%- bookInfo.articleText %>
     </div>
+
+    <% if(!type || type != 'unread'){ %>
+
     <div class="record-btn-list">
         <div class="record-btn btn-item">
             <div class="J-record-btn game_time">
@@ -75,6 +78,7 @@
             <div class="record-status J-record-status">点击录制</div>
             <div>可以选择你喜欢的一段进行录音</div>
         </div>
+
 
         <div class="againRecord-btn btn-item btn-item2">
             <img src="../../../../daka/img/againRecord.png" class="record-icon J-againRecord-btn">
@@ -98,6 +102,8 @@
             <div class="record-status gotoDaka-btn-text"></div>
         </div>
     </div>
+
+    <% } %>
 
     <!--<div class="banner">-->
     <!--<img src="../../../../daka/img/pic-banner.jpg">-->
@@ -283,7 +289,7 @@
                                 title: "打卡成功",
                                 text: "打卡成功！每个孩子的努力都值得被鼓励，分享到朋友圈，让更多朋友见证孩子每一天的进步！",
                                 callback: function () {
-                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + now+ '&level=' + level;
+                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + now + '&level=' + level;
                                 }
                             });
                         })
