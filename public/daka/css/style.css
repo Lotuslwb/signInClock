@@ -1083,7 +1083,6 @@ select {
     display: inline-block;
     margin-left: 30px;
     margin-bottom: 65px;
-    transition: all ease 2s;
 }
 
 .medal-item.disable {
