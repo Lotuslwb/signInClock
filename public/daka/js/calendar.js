@@ -80,6 +80,20 @@
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
             var timeArray = self.opts.TimeArray;
             var articleTime = self.opts.articleTime;
+            var articleTimeList = articleTime.map(function (item) {
+                return item * 1;
+            });
+            var maxTime = Math.max(...articleTimeList);
+            var minTime = Math.max(...articleTimeList);
+            console.log(maxTime, minTime);
+
+            if ((year + month + '01') * 1 <= minTime) {
+                this.$arrow_prev = this.$calendar_title.find('.arrow-prev').addClass('disable');
+            }
+
+            if ((year + month + '30') * 1 >= maxTime) {
+                this.$arrow_next = this.$calendar_title.find('.arrow-next').addClass('disable');
+            }
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
 
@@ -168,18 +182,20 @@
 
             if (this.opts.ifSwitch) {
                 this.$arrow_prev.bind('click', function () {
+                    if ($(this).hasClass('disable')) {
+                        return false;
+                    }
                     var _date = dateObj.getDate();
-
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() - 1, 1));
-
                     self.showCalendar();
                 });
 
                 this.$arrow_next.bind('click', function () {
+                    if ($(this).hasClass('disable')) {
+                        return false;
+                    }
                     var _date = dateObj.getDate();
-                    console.log(_date, '_date');
                     dateObj.setDate(new Date(_date.getFullYear(), _date.getMonth() + 1, 1));
-
                     self.showCalendar();
                 });
             }
