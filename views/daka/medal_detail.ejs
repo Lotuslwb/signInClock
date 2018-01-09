@@ -1,0 +1,39 @@
+﻿<%- include("header.ejs",{"title": "英孚亲子共读训练营"}) %>
+<style>
+    body.ipad {
+        padding-bottom: 160px;
+    }
+
+    .start-btn {
+        margin: 50px auto;
+        position: relative;
+        z-index: 4;
+        font-size: 26px;
+    }
+</style>
+<div class="page main-page medal-detail-page active">
+    <img src="/daka/img/medal-detail-pic.png" class="medal-detail-pic"/>
+    <div class="medal-detail-box">
+        <div class="text"><%= days || 0 %>天</div>
+        <img src="/daka/img/medal-detail-text.png" class="medal-detail-text"/>
+    </div>
+    <div class="qcode-box">
+        <img src="/daka/img/medal-detail-qcode.png" class="medal-detail-qcode"/>
+        <div class="qcode-text">长按扫码加入,看看谁坚持得更久</div>
+    </div>
+</div>
+
+<%- include("commonjs.ejs") %>
+
+
+<script>
+
+    initWX(function () {
+        initWXSahre();
+    });
+
+</script>
+
+
+</body>
+</html>

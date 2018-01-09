@@ -14,7 +14,8 @@
 <div class="page main-page medal-page active">
     <div class="medal-list">
         <% for (var i = 0; i < 9; i++) { %>
-        <img src="/daka/img/medal/medal_<%= i %>.png" class="medal-item medal-item-<%= i %> disable"/>
+        <img src="/daka/img/medal/medal_<%= i %>.png" data-index="<%= i %>"
+             class="medal-item medal-item-<%= i %> disable"/>
         <% } %>
     </div>
 
@@ -34,6 +35,11 @@
         } else {
             $('.medal-item').eq(index).addClass('disable');
         }
+    });
+
+    $('.medal-item').click(function () {
+        var index = $(this).data('index');
+        window.location.href = '/daka/medal_detail?days=' + medalArray[index];
     });
 
     initWX(function () {

@@ -1097,3 +1097,36 @@ select {
     display: inline-block;
     margin-left: 30px;
 }
+
+.medal-detail-page {
+    background: url("../img/medal-detail-bg.png") no-repeat top;
+    background-size: cover;
+    padding-top: 90px;
+    box-sizing: border-box;
+}
+
+.medal-detail-box {
+    margin-top: 34px;
+    position: relative;
+}
+
+.medal-detail-page .qcode-box {
+    margin-top: -40px;
+}
+
+.medal-detail-page .qcode-text {
+    font-size: 24px;
+    text-align: center;
+    color: #6e6f71;
+    margin-top: -38px;
+}
+
+.medal-detail-page .text {
+    font-size: 58px;
+    color: #eb008b;
+    position: absolute;
+    left: 325px;
+    top: 82px;
+    width: 113px;
+    text-align: center;
+}

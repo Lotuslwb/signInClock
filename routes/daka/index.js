@@ -45,6 +45,11 @@ router.get('/start_detail', function (req, res, next) {
     res.render('daka/start_detail', {title: 'index'});
 });
 
+router.get('/medal_detail', function (req, res, next) {
+    var days = req.query.days;
+    res.render('daka/medal_detail', {title: 'index', days: days});
+});
+
 
 router.get('/reading', function (req, res, next) {
     var id = req.query.bookId;
