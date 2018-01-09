@@ -63,7 +63,7 @@
 
     <% if(!type || type != 'unread'){ %>
 
-    <div class="record-btn-list">
+    <div class="record-btn-list <%= type == 'read' ? 'active' : '' %>">
         <div class="record-btn btn-item">
             <div class="J-record-btn game_time">
                 <div class="hold">
@@ -78,7 +78,6 @@
             <div class="record-status J-record-status">点击录制</div>
             <div>可以选择你喜欢的一段进行录音</div>
         </div>
-
 
         <div class="againRecord-btn btn-item btn-item2">
             <img src="../../../../daka/img/againRecord.png" class="record-icon J-againRecord-btn">
@@ -97,10 +96,18 @@
             </div>
             <div class="record-status J-playRecord-text">回放</div>
         </div>
+
+        <% if(type == 'read'){ %>
+        <div class="gotoDaka-btn btn-item btn-item2">
+            <img src="../../../../daka/img/gotoShare.png" class="record-icon J-gotoShare-btn">
+            <div class="record-status gotoShare-btn-text">分享</div>
+        </div>
+        <% }else{ %>
         <div class="gotoDaka-btn btn-item btn-item2">
             <img src="../../../../daka/img/gotoDaka.png" class="record-icon J-gotoDaka-btn">
             <div class="record-status gotoDaka-btn-text"></div>
         </div>
+        <% } %>
     </div>
 
     <% } %>
