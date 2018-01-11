@@ -1170,6 +1170,6 @@ select {
     display: block;
 }
 
-.record-btn-list-new.active .record-btn {
+.reading-page .record-btn-list.active .btn-item.btn-item-read.record-btn {
     display: none;
 }
