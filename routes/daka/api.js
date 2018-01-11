@@ -35,6 +35,7 @@ router.get('/getAllPersonInfo', function (req, res, next) {
 router.get('/saveVoice', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
+    var timeId = req.query.timeId;
 
 
     if (!openid) {
@@ -47,7 +48,7 @@ router.get('/saveVoice', function (req, res, next) {
         var data = docs[0];
         try {
             var readingInfo = data.readingInfo;
-            var timeId = getFormatDate();
+            var timeId = timeId || getFormatDate();
             var newReadingInfo = readingInfo.map(function (item) {
                 if (item.readingTimeId == timeId) {
                     item.recordServerId = recordServerId;

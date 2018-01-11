@@ -105,8 +105,6 @@
     <% } %>
     <% if (type && type == 'read'){ %>
     <div class="record-btn-list record-btn-list-new active">
-
-
         <div class="btn-item btn-item-read">
             <div class="J-playRecord-btn game_time">
                 <div class="hold">
@@ -129,7 +127,7 @@
                     <div class="pie pie2"></div>
                 </div>
                 <div class="bg"></div>
-                <div class="time"><img src="/daka/img/recordicon.png" class="record-icon"></div>
+                <div class="time"><img src="/daka/img/recodeicon.png" class="record-icon"></div>
             </div>
             <div class="record-status J-record-status">录制</div>
         </div>
@@ -175,6 +173,7 @@
     var bookName = '<%= bookInfo.articleTitle %>';
     var bookCover = '<%= bookInfo.coverUrl %>';
     var level = '<%= level %>';
+    var bookDate = '<%= bookDate.split('-').join('') %>';
 
 
     <%
@@ -327,7 +326,8 @@
                                     bookId: bookId,
                                     bookName: bookName,
                                     bookCover: bookCover,
-                                    wordLength: wordLength
+                                    wordLength: wordLength,
+                                    timeId: bookDate
                                 }, function (data) {
                                     console.log(data);
                                     showAlert({
@@ -373,7 +373,6 @@
                 localId: localId
             });
             $('.J-playRecord-text').text('回放');
-
             if (timeInLocal == now) {
                 //今日已经打卡
                 wx.uploadVoice({
