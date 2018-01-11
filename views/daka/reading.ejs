@@ -160,18 +160,21 @@
     var now = "<%= now %>";
     initFloatDate(now);
 
-    <%
-    var currentReadingInfo = UserInfo.readingInfo.filter(function (item) {
-        item['_id'] = [];
-        return item.readingTimeId == readTime;
-    })[0];
-    %>
-
-
     var bookId = '<%= bookInfo._id %>';
     var bookName = '<%= bookInfo.articleTitle %>';
     var bookCover = '<%= bookInfo.coverUrl %>';
     var level = '<%= level %>';
+
+
+    <%
+    var currentReadingInfo = UserInfo.readingInfo.filter(function (item) {
+        item['_id'] = [];
+        return item.readingList[bookId] == bookInfo._id;
+    })[0];
+    %>
+
+
+
 
     var recordLocalId = "<%= currentReadingInfo['recordLocalId'] %>", recordServerId = "<%= currentReadingInfo['recordServerId'] %>";
 
