@@ -1137,4 +1137,10 @@ select {
 
 .reading-page .btn-item.btn-item-read {
     display: inline-block;
+    padding: 35px;
+}
+
+.record-btn-list-new.record-btn-list {
+    transform: scale(1);
+    -webkit-transform: scale(1);
 }
