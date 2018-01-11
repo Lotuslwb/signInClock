@@ -262,6 +262,7 @@
             }
         } else {
             //音频还在微信服务器上
+            console.log(recordServerId);
             recordServerId && WXDownloadVoice();
             //播放录音  回放
             $('.J-playRecord-btn').click(function () {
@@ -373,7 +374,7 @@
                 localId: localId
             });
             $('.J-playRecord-text').text('回放');
-            if (timeInLocal == now) {
+            if (false) {
                 //今日已经打卡
                 wx.uploadVoice({
                     localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
