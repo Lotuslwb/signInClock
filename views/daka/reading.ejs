@@ -57,7 +57,7 @@
     </div>
     <% } %>
 
-    <div class="reading-main <%= !type || type == 'unread' ? 'long' : '' %>">
+    <div class="reading-main <%= type == 'unread' ? 'long' : '' %>">
         <%- bookInfo.articleText %>
     </div>
 
@@ -224,27 +224,27 @@
         if (recordLocalId) {
             //音频在本地
             var recordLocalURL = "/files/media/" + recordServerId + ".mp3";
-            var audioElement;
+            var audioElement2;
             musicPlayer();
             function musicPlayer() {
                 var musicSrc = recordLocalURL;
-                audioElement = new Audio(musicSrc);
-                audioElement.controls = false;
-                audioElement.loop = false;
-                audioElement.autoplay = false;
-                audioElement.load();
-                audioElement.pause();
+                audioElement2 = new Audio(musicSrc);
+                audioElement2.controls = false;
+                audioElement2.loop = false;
+                audioElement2.autoplay = false;
+                audioElement2.load();
+                audioElement2.pause();
 
                 //bind event
                 $('.J-playRecord-btn').click(function () {
 
                     if ($(this).hasClass('active')) {
                         $(this).removeClass('active');
-                        audioElement.pause();
+                        audioElement2.pause();
                         $('.J-playRecord-text').text('回放');
                     } else {
                         $(this).addClass('active');
-                        audioElement.play();
+                        audioElement2.play();
                         $('.J-playRecord-text').html('回放中<span class="dotting"></span>');
                     }
                 }).removeClass('active');
