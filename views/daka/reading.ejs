@@ -169,7 +169,7 @@
     <%
     var currentReadingInfo = UserInfo.readingInfo.filter(function (item) {
         item['_id'] = [];
-        return item.readingList[bookId] == bookInfo._id;
+        return item.readingList['bookId'] == bookInfo._id;
     })[0];
     %>
 
