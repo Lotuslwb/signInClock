@@ -83,6 +83,7 @@
             var articleTimeList = articleTime.filter(function (item) {
                 return item * 1 > 1000 ? item * 1 : false;
             });
+            var today = returnDateStr(new Date()) * 1;
             var maxTime = Math.max(...articleTimeList);
             var minTime = Math.min(...articleTimeList);
             console.log(maxTime, minTime);
@@ -100,8 +101,6 @@
             }
 
             this.$calendarTitle_text.text(monthEnglish[dateStr.substr(4, 2)]);
-
-
             this.$calendarDate_item.each(function (i) {
                 // allDay: 得到当前列表显示的所有天数
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
@@ -109,10 +108,10 @@
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
                 if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
                     //当前月
-                    if ($.inArray(allDay_str + '', timeArray) >= 0 && allDay_str <= dateStr * 1) {
+                    if ($.inArray(allDay_str + '', timeArray) >= 0 && allDay_str <= today) {
                         // 已读
                         $(this).attr('class', 'item item-curDay');
-                    } else if ($.inArray(allDay_str + '', articleTime) >= 0) {
+                    } else if ($.inArray(allDay_str + '', articleTime) >= 0 && allDay_str <= today) {
                         // 未读
                         $(this).attr('class', 'item item-unreadyDay');
                     } else {

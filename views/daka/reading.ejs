@@ -112,7 +112,7 @@
         </div>
 
         <div class="againRecord-btn btn-item btn-item2 btn-item-read">
-            <img src="/daka/img/replayicon.png" class="record-icon J-againRecord-btn">
+            <img src="/daka/img/recodeicon.png" class="record-icon J-againRecord-btn">
             <div class="record-status">重录</div>
         </div>
         <div class="playRecord-btn btn-item btn-item2 btn-item-read">
@@ -260,7 +260,6 @@
             }
         } else {
             //音频还在微信服务器上
-            alert(recordServerId);
             recordServerId && WXDownloadVoice();
             //播放录音  回放
             $('.J-playRecord-btn').click(function () {
@@ -320,6 +319,7 @@
                             isShowProgressTips: 1, // 默认为1，显示进度提示
                             success: function (res) {
                                 var serverId = res.serverId; // 返回音频的服务器端ID
+                                alert(bookDate);
                                 saveVoice({
                                     serverId: serverId,
                                     bookDes: bookDes,
