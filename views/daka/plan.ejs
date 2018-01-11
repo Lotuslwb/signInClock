@@ -22,7 +22,8 @@
             for(var i = 0;i < readingInfo.length;i++){ %>
             <% if(readingInfo[i]['readingList'] && readingInfo[i]['readingList'].bookId ){ %>
             <a class="finish-item"
-               href="/daka/result?bookId=<%= readingInfo[i]['readingList'].bookId %>&readTime=<%= readingInfo[i]['readingTimeId'] %>&level=<%= readingInfo[i]['readingList'].level || 0 %>">
+               href="javascript:gotoReading('<%= readingInfo[i]['readingList'].bookId %>', '<%= readingInfo[i]['readingList'].level || 0 %>', 'read');"
+            >
                 <img src="/daka/img/empty.png" data-echo="<%= readingInfo[i]['readingList'].bookCover %>">
             </a>
             <% } %>
