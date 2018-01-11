@@ -136,8 +136,8 @@
     </div>
 </div>
 <script>
-    var editorContent1 = $('<div/>').html('<%= doc.articleList[0].articleText %>').text();
-    var editorContent2 = $('<div/>').html('<%= doc.articleList[1].articleText %>').text();
+    var editorContent1 = $('<div/>').html('<%= doc.articleList[0].articleText.toString() %>').text();
+    var editorContent2 = $('<div/>').html('<%= doc.articleList[1].articleText.toString() %>').text();
     var id = '<%- doc._id %>';
     var coverUrl1 = '<%- doc.articleList[0].coverUrl %>';
     var coverUrl2 = '<%- doc.articleList[1].coverUrl %>';
