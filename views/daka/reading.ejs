@@ -244,15 +244,8 @@
                         $('.J-playRecord-text').text('回放');
                     } else {
                         $(this).addClass('active');
-                        $(this).addClass('active');
                         audioElement.play();
-                    }
-
-                    if ($(this).hasClass('active')) {
-                        $(this).removeClass('active');
-
-                    } else {
-
+                        $('.J-playRecord-text').html('回放中<span class="dotting"></span>');
                     }
                 }).removeClass('active');
 
