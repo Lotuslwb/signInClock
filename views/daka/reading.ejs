@@ -57,7 +57,7 @@
     </div>
     <% } %>
 
-    <div class="reading-main <%= !(type != 'unread' && type != 'read') ? 'long' : '' %>">
+    <div class="reading-main <%= !type || type == 'unread' ? 'long' : '' %>">
         <%- bookInfo.articleText %>
     </div>
 
@@ -102,6 +102,22 @@
         </div>
     </div>
 
+    <% } %>
+    <% if (type && type == 'read'){ %>
+    <div class="record-btn-list">
+        <div class="againRecord-btn btn-item">
+            <img src="../../../../daka/img/shareicon.png" class="record-icon">
+            <div class="record-status">分享</div>
+        </div>
+        <div class="againRecord-btn btn-item">
+            <img src="../../../../daka/img/shareicon.png" class="record-icon">
+            <div class="record-status">分享</div>
+        </div>
+        <div class="againRecord-btn btn-item">
+            <img src="../../../../daka/img/shareicon.png" class="record-icon">
+            <div class="record-status">分享</div>
+        </div>
+    </div>
     <% } %>
 
     <!--<div class="banner">-->
