@@ -114,7 +114,7 @@
             <div class="record-status">重录</div>
         </div>
         <div class="btn-item btn-item-read">
-            <img src="../../../../daka/img/shareicon.png" class="record-icon">
+            <img src="../../../../daka/img/shareicon.png" class="record-icon J-share-btn">
             <div class="record-status">分享</div>
         </div>
     </div>
@@ -125,10 +125,22 @@
     <!--</div>-->
 </div>
 
+<div class="overlay overlay-share">
+    <img src="/daka/img/shareTxt.png" class="shareTxt">
+</div>
 
 <%- include("menu.ejs",{"type":''}) %>
 <%- include("commonjs.ejs") %>
 <script>
+
+    $('.J-share-btn').click(function () {
+        $('.overlay-share').show();
+    });
+
+    $('.overlay-share').click(function () {
+        $(this).hide();
+    })
+
 
     var bodyH = $('body').height();
     if (bodyH < 1008) {
