@@ -42,7 +42,7 @@
     var articleObj = '<%- articleObj.toString() %>'.split(',');
     var readingInfo = '<%- readingInfoRemote.join('***') %>'.split('***');
     readingInfo = readingInfo.map(function (item) {
-        return JSON.parse(item);
+        return item && JSON.parse(item);
     });
     console.log(articleObj, 'articleObj')
     console.log(readingInfo, 'readingInfo')
