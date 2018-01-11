@@ -1135,6 +1135,6 @@ select {
     text-align: center;
 }
 
-.btn-item-read {
+.reading-page .btn-item.btn-item-read {
     display: inline-block;
 }
