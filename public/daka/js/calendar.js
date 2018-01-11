@@ -109,7 +109,7 @@
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
                 if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
                     //当前月
-                    if ($.inArray(allDay_str + '', timeArray) >= 0) {
+                    if ($.inArray(allDay_str + '', timeArray) >= 0 && allDay_str <= dateStr * 1) {
                         // 已读
                         $(this).attr('class', 'item item-curDay');
                     } else if ($.inArray(allDay_str + '', articleTime) >= 0) {
