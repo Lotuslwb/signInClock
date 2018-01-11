@@ -374,7 +374,7 @@
                 localId: localId
             });
             $('.J-playRecord-text').text('回放');
-            if (false) {
+            if (timeInLocal == now) {
                 //今日已经打卡
                 wx.uploadVoice({
                     localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
