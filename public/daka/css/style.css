@@ -1135,9 +1135,13 @@ select {
     text-align: center;
 }
 
-.reading-page .btn-item.btn-item-read {
+.reading-page .record-btn-list.active .btn-item.btn-item-read {
     display: inline-block;
     padding: 35px;
+}
+
+.reading-page .record-btn-list .btn-item.btn-item-read {
+    display: none;
 }
 
 .record-btn-list-new.record-btn-list {
@@ -1160,4 +1164,12 @@ select {
     height: 100%;
     background: #ffffff;
     margin: 0;
+}
+
+.record-btn-list-new .record-btn {
+    display: block;
+}
+
+.record-btn-list-new.active .record-btn {
+    display: none;
 }
