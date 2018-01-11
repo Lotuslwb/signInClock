@@ -176,7 +176,7 @@
 
 
 
-    var recordLocalId = "<%= currentReadingInfo['recordLocalId'] %>", recordServerId = "<%= currentReadingInfo['recordServerId'] %>";
+    var recordLocalId = "<%= currentReadingInfo && currentReadingInfo['recordLocalId'] %>", recordServerId = "<%= currentReadingInfo && currentReadingInfo['recordServerId'] %>";
 
 
     try {
