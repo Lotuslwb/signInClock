@@ -71,7 +71,7 @@
 
         var headimgurl = personInfo ? personInfo['headimgurl'] : '';
         var nickname = personInfo ? personInfo['nickname'] : '';
-        var currentRecodeCounts = recodeInfo ? recodeInfo['currentRecodeCounts'] || 0 : 0;
+        var currentRecodeCounts = recodeInfo ? recodeInfo['totalRecodeCounts'] || 0 : 0;
         var totalWordLength = recodeInfo ? recodeInfo['totalWordLength'] || 0 : 0;
         $('.J-nickname').text(nickname)
         $('.personal-logo').attr('src', headimgurl);

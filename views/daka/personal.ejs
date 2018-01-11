@@ -54,13 +54,13 @@
 
         var headimgurl = personInfo ? personInfo['headimgurl'] : '';
         var nickname = personInfo ? personInfo['nickname'] : '';
-        var currentRecodeCounts = recodeInfo ? recodeInfo['currentRecodeCounts'] || 0 : 0;
+        var totalRecodeCounts = recodeInfo ? recodeInfo['totalRecodeCounts'] || 0 : 0;
         var totalWordLength = recodeInfo ? recodeInfo['totalWordLength'] || 0 : 0;
         var medalNumber = 0;
         $('.J-nickname').text(nickname)
         $('.J-clockTime').text(clockInfo['clockTime']);
         $('.personal-logo').attr('src', headimgurl);
-        $('.J-currentRecodeCounts').text(currentRecodeCounts + '天');
+        $('.J-currentRecodeCounts').text(totalRecodeCounts + '天');
         $('.J-totalWordLength').text(totalWordLength);
 
         $('.J-levelText').text(level > 0 ? '7岁以上' : '3-6岁');
