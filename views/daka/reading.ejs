@@ -57,12 +57,44 @@
     </div>
     <% } %>
 
-    <div class="reading-main <%= type == 'unread' ? 'long' : '' %>">
+    <div class="reading-main">
         <%- bookInfo.articleText %>
     </div>
 
-    <% if(!type || (type != 'unread' && type != 'read')){ %>
-
+    <% if (type && type == 'read'){ %>
+    <div class="record-btn-list record-btn-list-new active">
+        <div class="btn-item btn-item-read">
+            <div class="J-playRecord-btn game_time">
+                <div class="hold">
+                    <div class="pie pie1"></div>
+                </div>
+                <div class="hold">
+                    <div class="pie pie2"></div>
+                </div>
+                <div class="bg"></div>
+                <div class="time"><img src="/daka/img/replayicon.png" class="record-icon"></div>
+            </div>
+            <div class="record-status J-playRecord-text">回放</div>
+        </div>
+        <div class="btn-item btn-item-read">
+            <div class="J-record-btn2 game_time">
+                <div class="hold">
+                    <div class="pie pie1"></div>
+                </div>
+                <div class="hold">
+                    <div class="pie pie2"></div>
+                </div>
+                <div class="bg"></div>
+                <div class="time"><img src="/daka/img/recodeicon.png" class="record-icon"></div>
+            </div>
+            <div class="record-status J-record-status">录制</div>
+        </div>
+        <div class="btn-item btn-item-read">
+            <img src="../../../../daka/img/shareicon.png" class="record-icon J-share-btn">
+            <div class="record-status">分享</div>
+        </div>
+    </div>
+    <% }else{ %>
     <div class="record-btn-list record-btn-list-new">
         <div class="record-btn btn-item btn-item-read">
             <div class="J-record-btn game_time">
@@ -99,41 +131,6 @@
         <div class="gotoDaka-btn btn-item btn-item2 btn-item-read">
             <img src="../../../../daka/img/gotoDakaIcon.png" class="record-icon J-gotoDaka-btn">
             <div class="record-status gotoDaka-btn-text"></div>
-        </div>
-    </div>
-
-    <% } %>
-    <% if (type && type == 'read'){ %>
-    <div class="record-btn-list record-btn-list-new active">
-        <div class="btn-item btn-item-read">
-            <div class="J-playRecord-btn game_time">
-                <div class="hold">
-                    <div class="pie pie1"></div>
-                </div>
-                <div class="hold">
-                    <div class="pie pie2"></div>
-                </div>
-                <div class="bg"></div>
-                <div class="time"><img src="/daka/img/replayicon.png" class="record-icon"></div>
-            </div>
-            <div class="record-status J-playRecord-text">回放</div>
-        </div>
-        <div class="btn-item btn-item-read">
-            <div class="J-record-btn2 game_time">
-                <div class="hold">
-                    <div class="pie pie1"></div>
-                </div>
-                <div class="hold">
-                    <div class="pie pie2"></div>
-                </div>
-                <div class="bg"></div>
-                <div class="time"><img src="/daka/img/recodeicon.png" class="record-icon"></div>
-            </div>
-            <div class="record-status J-record-status">录制</div>
-        </div>
-        <div class="btn-item btn-item-read">
-            <img src="../../../../daka/img/shareicon.png" class="record-icon J-share-btn">
-            <div class="record-status">分享</div>
         </div>
     </div>
     <% } %>
@@ -174,6 +171,7 @@
     var bookCover = '<%= bookInfo.coverUrl %>';
     var level = '<%= level %>';
     var bookDate = '<%= bookDate.split('-').join('') %>';
+    var type = '<%= type %>';
 
 
     <%
@@ -220,7 +218,7 @@
 
     var timeInLocal = localStorage.getItem('time');
     var now = returnDateStr(new Date());
-    if (timeInLocal == now) {
+    if (timeInLocal == now || type == 'unread') {
         //今日已经打卡
         $('.gotoDaka-btn-text').text('保存录音');
     } else {
@@ -375,7 +373,7 @@
                 localId: localId
             });
             $('.J-playRecord-text').text('回放');
-            if (timeInLocal == now) {
+            if (timeInLocal == now || type == 'unread') {
                 //今日已经打卡
                 wx.uploadVoice({
                     localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
