@@ -105,20 +105,7 @@
     <% } %>
     <% if (type && type == 'read'){ %>
     <div class="record-btn-list record-btn-list-new active">
-        <div class="record-btn btn-item btn-item-read">
-            <div class="J-record-btn game_time">
-                <div class="hold">
-                    <div class="pie pie1"></div>
-                </div>
-                <div class="hold">
-                    <div class="pie pie2"></div>
-                </div>
-                <div class="bg"></div>
-                <div class="time"><img src="../../../../daka/img/record-icon.png" class="record-icon"></div>
-            </div>
-            <div class="record-status J-record-status">点击录制</div>
-            <div>可以选择你喜欢的一段进行录音</div>
-        </div>
+
 
         <div class="btn-item btn-item-read">
             <div class="J-playRecord-btn game_time">
@@ -133,9 +120,18 @@
             </div>
             <div class="record-status J-playRecord-text">回放</div>
         </div>
-        <div class="btn-item btn-item-read J-againRecord-btn">
-            <img src="/daka/img/recodeicon.png" class="record-icon">
-            <div class="record-status">重录</div>
+        <div class="btn-item btn-item-read">
+            <div class="J-record-btn2 game_time">
+                <div class="hold">
+                    <div class="pie pie1"></div>
+                </div>
+                <div class="hold">
+                    <div class="pie pie2"></div>
+                </div>
+                <div class="bg"></div>
+                <div class="time"><img src="/daka/img/recordicon.png" class="record-icon"></div>
+            </div>
+            <div class="record-status J-record-status">录制</div>
         </div>
         <div class="btn-item btn-item-read">
             <img src="../../../../daka/img/shareicon.png" class="record-icon J-share-btn">
@@ -301,6 +297,50 @@
                 wx.stopRecord({
                     success: function (res) {
                         recordStop(res);
+                    }
+                });
+            } else {
+                wx.startRecord();
+                $(this).addClass('active');
+                $('.J-record-status').html('录音中...<span class="J-time"></span>');
+                countDown();
+            }
+        })
+        $('.J-record-btn2').click(function () {
+            audioElement.pause();
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                //已经在录音,结束录音
+                wx.stopRecord({
+                    success: function (res) {
+                        countStop();
+                        $('.J-record-status').html('录音');
+                        //今日已经打卡
+                        wx.uploadVoice({
+                            localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                            isShowProgressTips: 1, // 默认为1，显示进度提示
+                            success: function (res) {
+                                var serverId = res.serverId; // 返回音频的服务器端ID
+                                saveVoice({
+                                    serverId: serverId,
+                                    bookDes: bookDes,
+                                    bookId: bookId,
+                                    bookName: bookName,
+                                    bookCover: bookCover,
+                                    wordLength: wordLength
+                                }, function (data) {
+                                    console.log(data);
+                                    showAlert({
+                                        title: "保存成功",
+                                        text: "录音保存成功！每个孩子的努力都值得被鼓励，分享到朋友圈，让更多朋友见证孩子每一天的进步！",
+                                        callback: function () {
+                                            window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + now + '&level=' + level;
+                                        }
+                                    });
+                                })
+
+                            }
+                        });
                     }
                 });
             } else {
