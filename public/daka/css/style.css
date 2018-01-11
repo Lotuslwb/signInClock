@@ -1134,3 +1134,7 @@ select {
     width: 130px;
     text-align: center;
 }
+
+.btn-item-read {
+    display: inline-block;
+}
