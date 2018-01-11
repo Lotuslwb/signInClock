@@ -51,34 +51,6 @@ router.get('/medal_detail', function (req, res, next) {
 });
 
 
-router.get('/reading', function (req, res, next) {
-    var id = req.query.bookId;
-    var level = req.query.level;
-    var type = req.query.type;
-    if (!id) {
-        res.redirect('/daka/start');
-        return false;
-    }
-
-    if (level > -1) {
-        getBookInfoById(id, function (docs) {
-            var doc = docs[0];
-            var index = (level < doc['articleList'].length ? level : doc.length - 1);
-            var bookInfo = doc['articleList'][index];
-            var bookDate = doc['articleDate'];
-            bookInfo._id = doc._id;
-
-            res.render('daka/reading', {
-                title: 'index', bookDate: bookDate,
-                bookInfo: bookInfo, now: new Date(), level: level, type: type
-            });
-        });
-    } else {
-        res.redirect('/daka/level')
-    }
-
-});
-
 router.get('/share', function (req, res, next) {
     var id = req.query.bookId;
     var userId = req.query.userId;
@@ -115,6 +87,43 @@ function checkOpenid(req, res, cb) {
         res.redirect(url);
     }
 }
+
+
+router.get('/reading', function (req, res, next) {
+    var id = req.query.bookId;
+    var level = req.query.level;
+    var type = req.query.type;
+    if (!id) {
+        res.redirect('/daka/start');
+        return false;
+    }
+
+    if (level > -1) {
+        checkOpenid(req, res, function (openid) {
+            getUserInfoByOpenid(openid, function (docs) {
+                var UserInfo = docs[0];
+                getBookInfoById(id, function (docs) {
+                    var doc = docs[0];
+                    var index = (level < doc['articleList'].length ? level : doc.length - 1);
+                    var bookInfo = doc['articleList'][index];
+                    var bookDate = doc['articleDate'];
+                    bookInfo._id = doc._id;
+
+                    res.render('daka/reading', {
+                        title: 'index', bookDate: bookDate,
+                        bookInfo: bookInfo, now: new Date(), level: level, type: type,
+                        UserInfo: UserInfo
+                    });
+                });
+            })
+        });
+
+
+    } else {
+        res.redirect('/daka/level')
+    }
+
+});
 
 router.get('/level', function (req, res, next) {
     checkOpenid(req, res, function (openid) {

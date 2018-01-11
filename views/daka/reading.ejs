@@ -160,11 +160,21 @@
     var now = "<%= now %>";
     initFloatDate(now);
 
+    <%
+    var currentReadingInfo = UserInfo.readingInfo.filter(function (item) {
+        item['_id'] = [];
+        return item.readingTimeId == readTime;
+    })[0];
+    %>
+
 
     var bookId = '<%= bookInfo._id %>';
     var bookName = '<%= bookInfo.articleTitle %>';
     var bookCover = '<%= bookInfo.coverUrl %>';
     var level = '<%= level %>';
+
+    var recordLocalId = "<%= currentReadingInfo['recordLocalId'] %>", recordServerId = "<%= currentReadingInfo['recordServerId'] %>";
+
 
     try {
         var bookDes = '<%- bookInfo.brief.toString() %>';
@@ -208,6 +218,69 @@
     initWX(function () {
         initWXSahre();
 
+        if (recordLocalId) {
+            //音频在本地
+            var recordLocalURL = "/files/media/" + recordServerId + ".mp3";
+            var audioElement;
+            musicPlayer();
+            function musicPlayer() {
+                var musicSrc = recordLocalURL;
+                audioElement = new Audio(musicSrc);
+                audioElement.controls = false;
+                audioElement.loop = false;
+                audioElement.autoplay = false;
+                audioElement.load();
+                audioElement.pause();
+
+                //bind event
+                $('.J-playRecord-btn').click(function () {
+
+                    if ($(this).hasClass('active')) {
+                        $(this).removeClass('active');
+                        audioElement.pause();
+                        $('.J-playRecord-text').text('回放');
+                    } else {
+                        $(this).addClass('active');
+                        $(this).addClass('active');
+                        audioElement.play();
+                    }
+
+                    if ($(this).hasClass('active')) {
+                        $(this).removeClass('active');
+
+                    } else {
+
+                    }
+                }).removeClass('active');
+
+            }
+        } else {
+            //音频还在微信服务器上
+            recordServerId && WXDownloadVoice();
+            //播放录音  回放
+            $('.J-playRecord-btn').click(function () {
+                audioElement.pause();
+
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    wx.stopVoice({
+                        localId: localId
+                    });
+                    $('.J-playRecord-text').text('回放');
+                } else {
+                    $(this).addClass('active');
+                    if (localId) {
+                        wx.playVoice({
+                            localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                        });
+                        $('.J-playRecord-text').html('回放中<span class="dotting"></span>');
+                    } else {
+                        alert('没有录音');
+                    }
+                }
+            });
+        }
+
         //开始录音 或者结束录音
         $('.J-record-btn').click(function () {
             audioElement.pause();
@@ -227,28 +300,6 @@
             }
         })
 
-        //播放录音  回放
-        $('.J-playRecord-btn').click(function () {
-            audioElement.pause();
-
-            if ($(this).hasClass('active')) {
-                $(this).removeClass('active');
-                wx.stopVoice({
-                    localId: localId
-                });
-                $('.J-playRecord-text').text('回放');
-            } else {
-                $(this).addClass('active');
-                if (localId) {
-                    wx.playVoice({
-                        localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
-                    });
-                    $('.J-playRecord-text').html('回放中<span class="dotting"></span>');
-                } else {
-                    alert('没有录音');
-                }
-            }
-        });
 
         //重新录音
         $('.J-againRecord-btn').click(function () {
@@ -391,6 +442,25 @@
         day = day < 9 ? ('0' + day) : ('' + day);
 
         return year + month + day;
+    }
+
+    function WXDownloadVoice(cb) {
+        wx.downloadVoice({
+            serverId: recordServerId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
+            success: function (res) {
+                localId = res.localId; // 返回音频的本地ID
+                console.log(res);
+                //alert('下载音频成功' + JSON.stringify(res));
+                cb && cb(localId);
+            },
+            fail: function (res) {
+                alert('下载音频失败:' + JSON.stringify(res));
+            },
+            complete: function (res) {
+                //alert('complete:' + JSON.stringify(res));
+            }
+        });
     }
 
 
