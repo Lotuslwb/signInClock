@@ -18,21 +18,34 @@ schedule.scheduleJob(rule3, function () {
 
 
 function setNextBookId() {
-    console.log('runtime: ' + new Date());
-    var bookId = fs.readFileSync(fsPath + '/bookId.txt').toString();
-    ArticleDB.User.find({}, {'createTime': 1, 'articleTitle': 1}).sort({"createTime": 1}).then(function (docs) {
-        var idList = docs.map(function (doc) {
-            return doc._id.toString();
-        });
-        var index = idList.indexOf(bookId);
-        console.log(index, 'index');
-        console.log(bookId, 'bookId');
-        console.log(idList, 'idList');
-        var currentIndex = (index >= docs.length - 1 ? 0 : (index + 1));
-        var currentBookId = idList[currentIndex];
+
+    var now = new Date();
+    var today = returnDateStr(now);
+    console.log('runtime: ' + now);
+    console.log(today, 'today');
+
+    ArticleDB.User.find({'articleDate': today}, {'articleList': false}).then(function (docs) {
+
+        var currentBookId;
+        if (docs.length <= 0) {
+            currentBookId = '5a575a269ad8685dc845d64d';
+        } else {
+            currentBookId = docs[0]._id;
+        }
         fs.writeFile(fsPath + '/bookId.txt', currentBookId, function () {
             console.log('success into new bookId: ' + currentBookId);
         })
     });
 }
 
+
+function returnDateStr(date) { // 日期转字符串
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+
+    month = month <= 9 ? ('0' + month) : ('' + month);
+    day = day <= 9 ? ('0' + day) : ('' + day);
+
+    return year + '-' + month + '-' + day;
+};
