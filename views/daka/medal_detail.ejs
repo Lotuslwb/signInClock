@@ -1,5 +1,12 @@
 ﻿<%- include("header.ejs",{"title": "英孚亲子共读训练营"}) %>
 <style>
+    @font-face {
+        font-family: 'happyfont';
+        src: url('/daka/font/happyfont.ttf?#font-spider') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
     body.ipad {
         padding-bottom: 160px;
     }
@@ -10,11 +17,15 @@
         z-index: 4;
         font-size: 26px;
     }
+
+    .happyfont {
+        font-family: happyfont;
+    }
 </style>
 <div class="page main-page medal-detail-page active">
     <img src="/daka/img/medal-detail-pic.png" class="medal-detail-pic"/>
     <div class="medal-detail-box">
-        <div class="text"><%= days || 0 %>天</div>
+        <div class="text happyfont"><%= days || 0 %>天</div>
         <img src="/daka/img/medal-detail-text.png" class="medal-detail-text"/>
     </div>
     <div class="qcode-box">
