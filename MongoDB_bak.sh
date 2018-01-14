@@ -19,6 +19,7 @@ cd $OUT_DIR
 rm -rf $OUT_DIR/*
 mkdir -p $OUT_DIR/$DATE
 #备份全部数据库
+export LC_ALL=C
 $DUMP -h 127.0.0.1:27017 -d YingFu -o $OUT_DIR/$DATE
 echo "$DUMP -h 127.0.0.1:27017 -d YingFu -o $OUT_DIR/$DATE"
 #压缩为.tar.gz格式
