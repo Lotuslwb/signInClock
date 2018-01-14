@@ -2,7 +2,7 @@
 #backup MongoDB
 
 #mongodump命令路径
-DUMP=/usr/bin/mongodump
+DUMP=mongodump
 #临时备份目录
 OUT_DIR=/root/YingFu/now
 #备份存放路径
