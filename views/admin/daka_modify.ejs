@@ -28,15 +28,12 @@
     <div id="article" class="check-account">
         <form id="J_Form" class="pt40">
             <div class="search-cell">
-                <span class="search-cell-title m0-left"><s>*</s>日期：
-
+                <span class="search-cell-title m0-left"><s>*</s>日期：<br/>
+                        <s>次日生效<br/>勿修改已有用户的文章</s>
                 </span>
                 <div class="inline">
                     <input type="text" class="calendar" name="articleDate" data-rules="{required : true}"
                            value="<%= doc.articleDate %>">
-                </div>
-                <div class="inline">
-                    <s>次日生效<br/>勿修改已有用户的文章</s>
                 </div>
             </div>
             <% for (var i = 1;i <= 2;i++){ %>
