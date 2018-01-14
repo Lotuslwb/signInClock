@@ -218,7 +218,7 @@
 
     var timeInLocal = localStorage.getItem('time');
     var now = returnDateStr(new Date());
-    if (timeInLocal == now || type == 'unread') {
+    if (timeInLocal == now || (type == 'unread' && bookDate != now )) {
         //今日已经打卡
         $('.gotoDaka-btn-text').text('保存录音');
     } else {
@@ -373,7 +373,7 @@
                 localId: localId
             });
             $('.J-playRecord-text').text('回放');
-            if (timeInLocal == now || type == 'unread') {
+            if (timeInLocal == now || (type == 'unread' && bookDate != now)) {
                 //今日已经打卡
                 wx.uploadVoice({
                     localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
