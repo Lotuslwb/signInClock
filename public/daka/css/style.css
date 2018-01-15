@@ -897,8 +897,6 @@ select {
 .record-icon {
     width: 100px;
     height: 100px;
-    object-position: center;
-    object-fit: none;
 }
 
 .game_time {
