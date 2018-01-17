@@ -107,7 +107,9 @@
                 <div class="time"><img src="/daka/img/recodeicon.png" class="record-icon"></div>
             </div>
             <div class="record-status J-record-status">点击录制</div>
-            <!--<div>可以选择你喜欢的一段进行录音</div>-->
+            <% if(!bookInfo.videoURL){ %>
+            <div>可以选择你喜欢的一段进行录音</div>
+            <% } %>
         </div>
 
         <div class="againRecord-btn btn-item btn-item2 btn-item-read">
