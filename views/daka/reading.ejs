@@ -320,7 +320,7 @@
                             isShowProgressTips: 1, // 默认为1，显示进度提示
                             success: function (res) {
                                 var serverId = res.serverId; // 返回音频的服务器端ID
-//                                alert(bookDate);
+                                alert(bookDate);
                                 saveVoice({
                                     serverId: serverId,
                                     bookDes: bookDes,
@@ -333,7 +333,7 @@
                                     console.log(data);
                                     showAlert({
                                         title: "保存成功",
-                                        text: "录音保存成功！每个孩子的努力都值得被鼓励，分享到朋友圈，让更多朋友见证孩子每一天的进步！",
+                                        text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，2018英孚全球英语挑战赛全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
                                         callback: function () {
                                             window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + now + '&level=' + level;
                                         }
