@@ -532,6 +532,10 @@ select {
     overflow: auto;
 }
 
+.reading-page .reading-main.video {
+    height: 223px;
+}
+
 .reading-page .reading-main.long {
     height: 700px;
 }
@@ -961,7 +965,7 @@ select {
     width: 583px;
     display: block;
     margin: 0 auto 25px;
-    height: 380px;
+    height: 328px;
 }
 
 .iframe.active {

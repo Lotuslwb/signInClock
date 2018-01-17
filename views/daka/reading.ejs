@@ -45,9 +45,8 @@
                 src="https://v.qq.com/iframe/player.html?vid=<%= videoCode %>&tiny=0&auto=0">
         </iframe>
     </div>
-    <% } %>
+    <% }else if(bookInfo.audioURL){ %>
 
-    <% if(bookInfo.audioURL){ %>
     <div class="medie-player J-medie-player" data-url="<%= bookInfo.audioURL %>">
         <img src="/daka/img/media-player-icon.jpg" class="media-player-icon">
         <div class="articleTitle">
@@ -57,7 +56,7 @@
     </div>
     <% } %>
 
-    <div class="reading-main">
+    <div class="reading-main <%= bookInfo.videoURL ? 'video' : ''; %>">
         <%- bookInfo.articleText %>
     </div>
 
@@ -108,7 +107,7 @@
                 <div class="time"><img src="/daka/img/recodeicon.png" class="record-icon"></div>
             </div>
             <div class="record-status J-record-status">点击录制</div>
-            <div>可以选择你喜欢的一段进行录音</div>
+            <!--<div>可以选择你喜欢的一段进行录音</div>-->
         </div>
 
         <div class="againRecord-btn btn-item btn-item2 btn-item-read">
