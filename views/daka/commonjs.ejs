@@ -49,6 +49,16 @@
         option.callback && option.callback();
     }
 
+    function checkFirst(rotuer) {
+        var first = localStorage.getItem('first-' + rotuer);
+        console.log(!first);
+        return !first;
+    }
+
+    function setFirst(rotuer) {
+        localStorage.setItem('first-' + rotuer, true);
+    }
+
     function initFloatDate(now) {
         var MothString = {
             '1': 'Jan',

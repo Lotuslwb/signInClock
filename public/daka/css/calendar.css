@@ -162,7 +162,6 @@ ul, li {
     font-size: 22px;
 }
 
-.calendar-date .item:hover,
 .calendar-date .item-curMonth:hover {
     background-color: #f0f0f0;
 }

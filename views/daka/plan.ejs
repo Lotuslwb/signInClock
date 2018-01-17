@@ -44,8 +44,6 @@
     readingInfo = readingInfo.map(function (item) {
         return item && JSON.parse(item);
     });
-    console.log(articleObj, 'articleObj')
-    console.log(readingInfo, 'readingInfo')
 
     //初始化延时加载
     echo.init({
@@ -55,6 +53,14 @@
     var now = "<%= now %>";
     initFloatDate(now);
 
+
+    if (checkFirst()) {
+        setFirst();
+        showAlert({
+            title: "阅读打卡全新升级啦！",
+            text: "点击相应日期，不仅能复习读过的内容，还能查看、错过的内容、录音并保存，但是不可以补打卡，所以小E建议还是要每天打卡哟。"
+        });
+    }
 
     getUserInfo(function (data) {
         var data = data.data[0];
