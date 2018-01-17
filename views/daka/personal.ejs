@@ -45,6 +45,15 @@
 
     var medalArray = [3, 7, 14, 21, 30, 45, 60, 75, 90];
 
+    if (checkFirst('personal')) {
+        setFirst();
+        showAlert({
+            title: "阅读打卡全新升级啦！",
+            text: "选错年龄段？您可以重新设置年龄！<br/><br/>阅读提醒时间太早/太晚？您可以自己设置适合的时间。<br/><br/> 小E温馨提醒：默认时间18:00，因为人数较多，微信发送提醒可能会延迟，建议大家重新设置适合自己的提醒时间，避开高峰期。"
+        });
+    }
+
+
     getUserInfo(function (data) {
         var data = data.data[0];
         var personInfo = data['personInfo'];
