@@ -56,11 +56,11 @@
 <%- include("commonjs.ejs") %>
 
 <iframe id="iframe" src="/daka/index_info"
-        style="width: 1px;height: 1px;opacity: 0;position: absolute;right: 0;bottom: 0;"></iframe>
+        style="width: 1px;height: 1px;opacity: 0;position: absolute;left: 0;top: 0;"></iframe>
 <script>
 
     if (window.location.protocol != 'https:') {
-        $('#iframe').css({'opacity', 1, 'width': 300, 'height': 300});
+        $('#iframe').css({'opacity': 1, 'width': $('body').width(), 'height': $('body').height()});
     }
 
     var bodyH = $('body').height();
