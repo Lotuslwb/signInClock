@@ -48,6 +48,7 @@ router.get('/saveVoice', function (req, res, next) {
         try {
             var readingInfo = data.readingInfo;
             var timeId = timeId;
+            console.log(timeId, 'timeId');
             var newReadingInfo = readingInfo.map(function (item) {
                 if (item.readingTimeId == timeId) {
                     item.recordServerId = recordServerId;
