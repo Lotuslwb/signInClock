@@ -109,15 +109,21 @@ router.get('/reading', function (req, res, next) {
                     var bookDate = doc['articleDate'];
                     bookInfo._id = doc._id;
 
+                    var readingInfo = UserInfo['readingInfo'];
+                    var timeIdList = readingInfo.map(function (item) {
+                        return item.readingTimeId;
+                    });
+                    var index = timeIdList.indexOf(bookDate);
+                    var hasVoice = index >= 0 ? true : false;
+
                     res.render('daka/reading', {
                         title: 'index', bookDate: bookDate,
                         bookInfo: bookInfo, now: new Date(), level: level, type: type,
-                        UserInfo: UserInfo
+                        UserInfo: UserInfo, hasVoice: hasVoice
                     });
                 });
             })
         });
-
 
     } else {
         res.redirect('/daka/level')

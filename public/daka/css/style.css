@@ -1176,3 +1176,20 @@ select {
 .reading-page .record-btn-list.active .btn-item.btn-item-read.record-btn {
     display: none;
 }
+
+.toast {
+    position: fixed;
+    z-index: 99;
+    padding: 30px 80px;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    background: rgba(40, 40, 40, 0.75);
+    text-align: center;
+    border-radius: 10px;
+    color: #FFFFFF;
+    min-width: 200px;
+    font-size: 24px;
+
+    display: none;
+}

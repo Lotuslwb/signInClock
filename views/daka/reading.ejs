@@ -94,7 +94,7 @@
         </div>
     </div>
     <% }else{ %>
-    <div class="record-btn-list record-btn-list-new">
+    <div class="record-btn-list record-btn-list-new <%= hasVoice ? 'active' : '' %>">
         <div class="record-btn btn-item btn-item-read">
             <div class="J-record-btn game_time">
                 <div class="hold">
@@ -306,6 +306,8 @@
         })
         $('.J-record-btn2').click(function () {
             audioElement.pause();
+            $('.J-playRecord-text').text('回放');
+
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 //已经在录音,结束录音
@@ -365,9 +367,15 @@
             $('.record-btn-list').removeClass('active');
         })
 
+        //打卡||保存录音
         $('.J-gotoDaka-btn').click(function () {
+
             var timeInLocal = localStorage.getItem('time');
             var now = returnDateStr(new Date());
+
+            if (localId) {
+                toast('请先更新录音');
+            }
 
             audioElement.pause();
             wx.stopVoice({
