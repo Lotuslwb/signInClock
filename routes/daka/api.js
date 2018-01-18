@@ -59,6 +59,8 @@ router.get('/saveVoice', function (req, res, next) {
             } catch (e) {
                 console.log('error', e);
             }
+            console.log('onlyVoice', onlyVoice)
+
         } else {
             var newItem = {
                 readingList: {
@@ -74,6 +76,7 @@ router.get('/saveVoice', function (req, res, next) {
             };
             readingInfo.push(newItem);
             var newReadingInfo = readingInfo;
+            console.log('onlyVoice')
         }
 
 
