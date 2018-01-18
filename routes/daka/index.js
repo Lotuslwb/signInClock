@@ -115,6 +115,7 @@ router.get('/reading', function (req, res, next) {
                     });
                     var index = timeIdList.indexOf(bookDate);
                     var hasVoice = index >= 0 ? true : false;
+                    console.log(timeIdList, bookDate);
 
                     res.render('daka/reading', {
                         title: 'index', bookDate: bookDate,
