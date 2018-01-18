@@ -54,7 +54,7 @@ router.get('/saveVoice', function (req, res, next) {
             var index = timeIdList.indexOf(timeId);
             if (index >= 0) {
                 readingInfo[index].recordServerId = recordServerId;
-                readingInfo[index].item.recordLocalId = '';
+                readingInfo[index].recordLocalId = '';
             } else {
                 var newItem = {
                     readingList: {
