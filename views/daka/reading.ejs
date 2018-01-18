@@ -374,7 +374,7 @@
             var timeInLocal = localStorage.getItem('time');
             var now = returnDateStr(new Date());
 
-            if (localId) {
+            if (!localId) {
                 toast('请先更新录音');
             }
 
