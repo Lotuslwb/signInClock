@@ -41,6 +41,11 @@ router.get('/start', function (req, res, next) {
     // });
 })
 
+
+router.get('/index_info', function (req, res, next) {
+    res.render('daka/index_info', {title: 'index'});
+});
+
 router.get('/start_detail', function (req, res, next) {
     res.render('daka/start_detail', {title: 'index'});
 });
