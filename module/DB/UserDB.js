@@ -33,6 +33,7 @@ var Schema = {
         readingTimeId: String, //阅读日期  20170102
         recordServerId: String, // 录音,微信服务器ID
         recordLocalId: String, //录音 本地服务器ID
+        onlyVoice: Boolean,
         readingList: {
             bookId: String,  //今日书籍ID
             bookName: String, // 今日书籍名
