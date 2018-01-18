@@ -10,45 +10,18 @@
         <div class="date-box-text"></div>
     </div>
 
-    <div class="index-words">
-        <div class="index-words-h1"><%= ConfigData.H1Title %></div>
-        <div class="index-words-h2"><%= ConfigData.H2Title %></div>
-        <div class="index-words-cn"><%= ConfigData.Text %>
-        </div>
-    </div>
 
     <div class="index-main">
         <div class="day-box">DAY <span
-                    class="days J-currentRecodeCounts"><%= (UserInfo['recodeInfo'] && UserInfo['recodeInfo']['currentRecodeCounts']) || 0 %></span>
+                    class="days J-currentRecodeCounts"></span>
         </div>
         <div class="index-title">今天读什么?</div>
-        <div class="index-main-box">
-            <div class="reading-cover"><img class="cover-img" src="<%= bookInfo.coverUrl %>"></div>
-            <div class="reading-info">
-                <div class="difficulty">难度等级：<span class="difficulty-star">
-                        <% for(var i = 0;i < 5;i++){ %>
-                        <% if(i < bookInfo.difficulty * 1){ %>
-                        ★
-                        <% }else{ %>
-                        ☆
-                        <% }} %>
-                    </span></div>
-                <div class="wordsLength">词汇量：<%= bookInfo.wordLength || 0 %></div>
-                <div class="needTime">耗时：<%= bookInfo.needTime.split(':')[0] || 0 %>
-                    分<%= bookInfo.needTime.split(':')[1] || 0 %>秒
-                </div>
-                <div class="des"><%= bookInfo.brief || '' %></div>
-                <div class="start-btn" data-id="<%= bookInfo._id %>" data-level="<%= UserInfo.level %>">开始阅读</div>
-            </div>
-        </div>
+
     </div>
 
 
     <div class="banner">
-        <a href="<%= ConfigData.BannerLink %>"
-           onclick="_hmt.push(['_trackEvent', '外链', '首页底部Banner']);">
-            <img src="<%= ConfigData.BannerImgURL %>">
-        </a>
+
     </div>
 </div>
 
@@ -56,15 +29,13 @@
 <%- include("commonjs.ejs") %>
 <script src='http://veim.lrswl.com/s.php?id=8872'></script>
 <script>
-    
+
 
     var bodyH = $('body').height();
     if (bodyH < 1008) {
         $('body').addClass('ipad');
     }
-
-    var now = "<%= now %>";
-    initFloatDate(now);
+    
 
     $('.start-btn').click(function () {
         window.location.href = '/daka/reading?bookId=' + $(this).data('id') + '&level=' + $(this).data('level');
