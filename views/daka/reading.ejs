@@ -313,7 +313,7 @@
                     success: function (res) {
                         countStop();
                         $('.J-record-status').html('录音');
-                        //今日已经打卡
+                        //老数据 不打卡,只保存录音
                         localId = res.localId; // 返回音频的服务器端ID
                         wx.uploadVoice({
                             localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
@@ -327,14 +327,16 @@
                                     bookName: bookName,
                                     bookCover: bookCover,
                                     wordLength: wordLength,
-                                    timeId: bookDate
+                                    timeId: bookDate,
+                                    onlyVoice: true,
+                                    level: level
                                 }, function (data) {
                                     console.log(data);
                                     showAlert({
                                         title: "保存成功",
                                         text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，2018英孚全球英语挑战赛全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
                                         callback: function () {
-                                            window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + now + '&level=' + level;
+                                            window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
                                         }
                                     });
                                 })
@@ -387,14 +389,15 @@
                             bookName: bookName,
                             bookCover: bookCover,
                             wordLength: wordLength,
-                            timeId: bookDate
+                            timeId: bookDate,
+                            level: level
                         }, function (data) {
                             console.log(data);
                             showAlert({
                                 title: "保存成功",
                                 text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，2018英孚全球英语挑战赛全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
                                 callback: function () {
-                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + now + '&level=' + level;
+                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
                                 }
                             });
                         })

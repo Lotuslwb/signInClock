@@ -36,6 +36,7 @@ router.get('/saveVoice', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
     var timeId = req.query.timeId;
+    var onlyVoice = req.query.onlyVoice;
     console.log(req.query);
     if (!openid) {
         res.send(sendData('999', '', 'openid 不能为空'));
@@ -45,17 +46,34 @@ router.get('/saveVoice', function (req, res, next) {
     getUserInfoFormDB(openid, function (docs) {
 
         var data = docs[0];
-        try {
-            var readingInfo = data.readingInfo;
-            var newReadingInfo = readingInfo.map(function (item) {
-                if (item.readingTimeId == timeId) {
-                    item.recordServerId = recordServerId;
-                    item.recordLocalId = '';
-                }
-                return item;
-            })
-        } catch (e) {
-            console.log('error', e);
+        if (!onlyVoice) {
+            try {
+                var readingInfo = data.readingInfo;
+                var newReadingInfo = readingInfo.map(function (item) {
+                    if (item.readingTimeId == timeId) {
+                        item.recordServerId = recordServerId;
+                        item.recordLocalId = '';
+                    }
+                    return item;
+                })
+            } catch (e) {
+                console.log('error', e);
+            }
+        } else {
+            var newItem = {
+                readingList: {
+                    bookId: req.query.bookId,  //今日书籍ID
+                    bookName: req.query.bookName, // 今日书籍名
+                    bookCover: req.query.bookCover, //今天书籍封页
+                    bookDes: req.query.bookDes, //今天书籍封页
+                    level: req.query.level,//今日书籍的等级
+                },
+                readingTimeId: timeId, //阅读日期  20170102
+                recordServerId: recordServerId, // 录音,微信服务器ID
+                recordLocalId: '',//录音 本地服务器ID
+            };
+            readingInfo.push(newItem);
+            var newReadingInfo = readingInfo;
         }
 
 
