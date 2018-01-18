@@ -36,7 +36,7 @@ router.get('/saveVoice', function (req, res, next) {
     var openid = req.signedCookies['session'];
     var recordServerId = req.query.serverId;
     var timeId = req.query.timeId;
-    // console.log(req.query);
+    console.log(req.query);
     if (!openid) {
         res.send(sendData('999', '', 'openid 不能为空'));
         return false;
@@ -47,7 +47,6 @@ router.get('/saveVoice', function (req, res, next) {
         var data = docs[0];
         try {
             var readingInfo = data.readingInfo;
-            // console.log(timeId, 'timeId');
             var newReadingInfo = readingInfo.map(function (item) {
                 if (item.readingTimeId == timeId) {
                     item.recordServerId = recordServerId;
