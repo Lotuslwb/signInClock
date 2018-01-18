@@ -71,7 +71,7 @@ schedule.scheduleJob(rule2, function () {
                 console.log(item['personInfo']['nickname'] + ' isReady send!!');
                 return newData;
             });
-            var openIdListTest = ['oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA','oKdUIuI3-EXqi4WpPb_u3q0y6j9g','oKdUIuKdYE7mmw7tGSDvrLKcsUTA','oKdUIuI2BOnHiphA8wcL8-Y2K3us','oKdUIuJhuKzfKC9ltNhMGB_bOVsg'];
+            var openIdListTest = ['oKdUIuHCbs97GlnTte7V6Yj_IG34', 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA', 'oKdUIuI3-EXqi4WpPb_u3q0y6j9g', 'oKdUIuKdYE7mmw7tGSDvrLKcsUTA', 'oKdUIuI2BOnHiphA8wcL8-Y2K3us', 'oKdUIuJhuKzfKC9ltNhMGB_bOVsg'];
             sendMessageBath(openIdListTest, dataList);
         });
     })
