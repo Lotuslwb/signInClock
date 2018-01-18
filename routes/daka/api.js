@@ -71,13 +71,14 @@ router.get('/saveVoice', function (req, res, next) {
                 };
                 readingInfo.push(newItem)
             }
+
+            var updateDate = {
+                readingInfo: readingInfo
+            }
         } catch (e) {
             console.log('error', e);
         }
 
-        var updateDate = {
-            readingInfo: newReadingInfo
-        }
 
         log(updateDate);
 
