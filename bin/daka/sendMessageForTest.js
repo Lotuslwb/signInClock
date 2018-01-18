@@ -43,7 +43,11 @@ schedule.scheduleJob(rule2, function () {
         var bookName = docs[0].articleTitle;
         getOpenIdObjList(function (openIdObjList) {
             var openIdList = [];
-            var dataList = openIdObjList.map(function (item) {
+            var openIdListTest = ['oKdUIuHCbs97GlnTte7V6Yj_IG34', 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA', 'oKdUIuI3-EXqi4WpPb_u3q0y6j9g', 'oKdUIuKdYE7mmw7tGSDvrLKcsUTA', 'oKdUIuI2BOnHiphA8wcL8-Y2K3us', 'oKdUIuJhuKzfKC9ltNhMGB_bOVsg'];
+            var openIdObjListTest = openIdObjList.filter(function (item) {
+                return item.openid.indexOf(openIdListTest) >= 0;
+            })
+            var dataList = openIdObjListTest.map(function (item) {
                 openIdList.push(item.openid);
                 var newData = {
                     "touser": item.openid,  //接收者openid
@@ -68,11 +72,10 @@ schedule.scheduleJob(rule2, function () {
                         }
                     }
                 };
-                console.log(item['personInfo']['nickname'] + ' isReady send!!');
                 return newData;
             });
-            var openIdListTest = ['oKdUIuHCbs97GlnTte7V6Yj_IG34', 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA', 'oKdUIuI3-EXqi4WpPb_u3q0y6j9g', 'oKdUIuKdYE7mmw7tGSDvrLKcsUTA', 'oKdUIuI2BOnHiphA8wcL8-Y2K3us', 'oKdUIuJhuKzfKC9ltNhMGB_bOVsg'];
-            sendMessageBath(openIdListTest, dataList);
+            console.log('openIdList', openIdList);
+            sendMessageBath(openIdList, dataList);
         });
     })
 });
