@@ -53,7 +53,9 @@ function runTask() {
             var openIdObjListTest = openIdObjList.filter(function (item) {
                 return openIdListTest.indexOf(item.openid) >= 0;
             })
-            console.log(openIdObjList);
+            console.log(openIdObjList, 'openIdObjList');
+            console.log(openIdObjListTest, 'openIdObjList');
+
             var dataList = openIdObjListTest.map(function (item) {
                 openIdList.push(item.openid);
                 var newData = {
