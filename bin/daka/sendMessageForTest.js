@@ -49,12 +49,13 @@ function runTask() {
         var bookName = docs[0].articleTitle;
         getOpenIdObjList(function (openIdObjList) {
             var openIdList = [];
-            var openIdListTest = ['oKdUIuHCbs97GlnTte7V6Yj_IG34', 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA', 'oKdUIuI3-EXqi4WpPb_u3q0y6j9g', 'oKdUIuKdYE7mmw7tGSDvrLKcsUTA', 'oKdUIuI2BOnHiphA8wcL8-Y2K3us', 'oKdUIuJhuKzfKC9ltNhMGB_bOVsg'];
+            var openIdListTest = ['oKdUIuHCbs97GlnTte7V6Yj_IG34', 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA', 'oKdUIuI3-EXqi4WpPb_u3q0y6j9g', 'oKdUIuKdYE7mmw7tGSDvrLKcsUTA', 'oKdUIuI2BOnHiphA8wcL8-Y2K3us', 'oKdUIuJhuKzfKC9ltNhMGB_bOVsg', 'oKdUIuOX0B6olUPIr_iv0xCKdMFM'];
             var openIdObjListTest = openIdObjList.filter(function (item) {
                 return openIdListTest.indexOf(item.openid) >= 0;
             })
             console.log(openIdObjList, 'openIdObjList');
             console.log(openIdObjListTest, 'openIdObjList');
+
 
             var dataList = openIdObjListTest.map(function (item) {
                 openIdList.push(item.openid);
