@@ -36,6 +36,10 @@ var data = {
 };
 
 schedule.scheduleJob(rule2, function () {
+    runTask();
+});
+
+function runTask() {
     var bookId = getBookId();
     var now = new Date();
     var now_date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日 ' + now.getHours() + ':' + (now.getMinutes() > 9 ? now.getMinutes() : '0' + now.getMinutes());
@@ -47,6 +51,7 @@ schedule.scheduleJob(rule2, function () {
             var openIdObjListTest = openIdObjList.filter(function (item) {
                 return item.openid.indexOf(openIdListTest) >= 0;
             })
+            console.log(openIdObjListTest);
             var dataList = openIdObjListTest.map(function (item) {
                 openIdList.push(item.openid);
                 var newData = {
@@ -78,7 +83,7 @@ schedule.scheduleJob(rule2, function () {
             sendMessageBath(openIdList, dataList);
         });
     })
-});
+}
 
 
 function getBookId() {
