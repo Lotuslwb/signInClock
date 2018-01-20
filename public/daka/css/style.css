@@ -1195,5 +1195,5 @@ select {
 }
 
 .z-hide {
-    display: none;
+    display: none !important;
 }
