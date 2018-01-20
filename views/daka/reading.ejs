@@ -86,7 +86,7 @@
                 <div class="bg"></div>
                 <div class="time"><img src="/daka/img/recodeicon.png" class="record-icon"></div>
             </div>
-            <div class="record-status J-record-status">录制</div>
+            <div class="record-status J-record-status">重录</div>
         </div>
         <div class="btn-item btn-item-read">
             <img src="../../../../daka/img/shareicon.png" class="record-icon J-share-btn">
@@ -112,10 +112,6 @@
             <% } %>
         </div>
 
-        <div class="againRecord-btn btn-item btn-item2 btn-item-read">
-            <img src="/daka/img/recodeicon.png" class="record-icon J-againRecord-btn">
-            <div class="record-status">重录</div>
-        </div>
         <div class="playRecord-btn btn-item btn-item2 btn-item-read">
             <div class="J-playRecord-btn game_time">
                 <div class="hold">
@@ -129,9 +125,18 @@
             </div>
             <div class="record-status J-playRecord-text">回放</div>
         </div>
-        <div class="gotoDaka-btn btn-item btn-item2 btn-item-read">
+        <div class="againRecord-btn btn-item btn-item2 btn-item-read">
+            <img src="/daka/img/recodeicon.png" class="record-icon J-againRecord-btn">
+            <div class="record-status">重录</div>
+        </div>
+
+        <div class="gotoDaka-btn btn-item btn-item2 btn-item-read <%= hasVoice ? 'z-hide' : '' %>">
             <img src="../../../../daka/img/gotoDakaIcon.png" class="record-icon J-gotoDaka-btn">
             <div class="record-status gotoDaka-btn-text"></div>
+        </div>
+        <div class="gotoShare-btn btn-item btn-item-read <%= !hasVoice ? 'z-hide' : '' %>">
+            <img src="../../../../daka/img/shareicon.png" class="record-icon J-share-btn">
+            <div class="record-status">分享</div>
         </div>
     </div>
     <% } %>
@@ -360,12 +365,16 @@
         $('.J-againRecord-btn').click(function () {
 
             audioElement.pause();
+
             wx.stopVoice({
                 localId: localId
             });
             $('.J-playRecord-text').text('回放');
             $('.J-record-status').text('点击录音');
             $('.record-btn-list').removeClass('active');
+            $(this).parent().siblings('.gotoDaka-btn').removeClass('z-hide');
+            $(this).parent().siblings('.gotoShare-btn').addClass('z-hide');
+
         })
 
         //打卡||保存录音
