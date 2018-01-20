@@ -39,6 +39,8 @@ schedule.scheduleJob(rule2, function () {
     runTask();
 });
 
+runTask();
+
 function runTask() {
     var bookId = getBookId();
     var now = new Date();
