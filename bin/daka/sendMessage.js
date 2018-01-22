@@ -51,8 +51,6 @@ schedule.scheduleJob(rule2, function () {
                 } catch (e) {
                     console.log(e);
                 }
-                console.log(item.level);
-
                 var bookName = docs[0]['articleList'][level]['articleTitle'];
                 var newData = {
                     "touser": item.openid,  //接收者openid
@@ -60,7 +58,7 @@ schedule.scheduleJob(rule2, function () {
                     "url": "https://ma.eldesign.cn/daka/index",
                     "data": {
                         "first": {
-                            "value": item.personInfo['nickname'] + '，今天的阅读内容已经为你准备好了，会是什么有趣的故事呢？',
+                            "value": item.personInfo['nickname'] + '，今天的阅读已经准备好了，会是什么有趣的故事呢？',
                             "color": "#173177"
                         },
                         "keyword1": {
@@ -72,7 +70,7 @@ schedule.scheduleJob(rule2, function () {
                             "color": "#173177"
                         },
                         "remark": {
-                            "value": "第二期英孚亲子英语阅读打卡开始啦，在全新的系统上，小朋友们不仅可以选择年龄，还可以复习读过的内容，查看并朗读错过的内容！听上去是不是很棒？赶紧来参加吧，小E依然为你们准备了精美礼品哟！",
+                            "value": "第二期英孚亲子英语阅读打卡开始啦，全新系统增加分级阅读和回顾往期功能！听上去是不是很棒？赶紧来参加吧！",
                             "color": "#173177"
                         }
                     }
