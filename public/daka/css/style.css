@@ -859,7 +859,7 @@ select {
     width: 100%;
     height: 100%;
     z-index: 99;
-    background: rgba(51, 51, 51, 0.9);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .ui-alert {
@@ -870,31 +870,59 @@ select {
     top: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
-    padding: 45px 40px;
-    background: #ffffff;
+    padding: 55px 55px 160px 55px;
+    background: url("../img/ui-alert-bg.png") no-repeat;
+    background-size: 100% 100%;
     border-radius: 10px;
-    width: 550px;
+    width: 610px;
     box-sizing: border-box;
 }
 
+/*.ui-alert {*/
+/*display: none;*/
+/*position: absolute;*/
+/*z-index: 100;*/
+/*left: 50%;*/
+/*top: 50%;*/
+/*transform: translate(-50%, -50%);*/
+/*-webkit-transform: translate(-50%, -50%);*/
+/*padding: 45px 40px;*/
+/*background: #ffffff;*/
+/*border-radius: 10px;*/
+/*width: 550px;*/
+/*box-sizing: border-box;*/
+/*}*/
+
 .ui-alert-closed {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 40px;
+    top: 40px;
 }
 
 .ui-alert-title {
-    color: #e9329c;
+    color: #ffffff;
     text-align: center;
-    font-size: 30px;
+    /*font-size: 30px;*/
+    font-size: 45px;
     line-height: 45px;
+    text-align: left;
 }
 
 .ui-alert-text {
     line-height: 1.6;
-    font-size: 24px;
-    color: #585858;
+    font-size: 25px;
+    color: #ffffff;
     padding-top: 30px;
+}
+
+.ui-alert-text .heighlight {
+    color: #fff300;
+}
+
+.ui-alert-logo {
+    position: absolute;
+    right: 50px;
+    bottom: 40px;
 }
 
 /* time scroll*/

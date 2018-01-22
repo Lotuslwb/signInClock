@@ -5,9 +5,9 @@
     }
 </style>
 <script>
-    localStorage.clear();
-    var time = localStorage.getItem('time');
-    alert('本地缓存数据:' + time);
+//    localStorage.clear();
+//    var time = localStorage.getItem('time');
+//    alert('本地缓存数据:' + time);
 </script>
 <div class="page main-page index-page active">
     <div class="date-box">
@@ -49,6 +49,14 @@
 
     initWX(function () {
         initWXSahre();
+    });
+
+    showAlert({
+        title: "保存成功",
+        text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，<span class='heighlight'>2018英孚全球英语挑战赛</span>全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
+        callback: function () {
+            window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
+        }
     });
 
 </script>
