@@ -182,9 +182,10 @@
 
 
     <%
+    var bookDateStr = bookDate.split('-').join('');
     var currentReadingInfo = UserInfo.readingInfo.filter(function (item) {
         item['_id'] = [];
-        return item.readingTimeId == bookDate;
+        return item.readingTimeId == bookDateStr;
     })[0];
     %>
 
