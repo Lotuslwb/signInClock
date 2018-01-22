@@ -1,4 +1,4 @@
-db.users.find({'personInfo.nickname':'滕小乐是也'}).forEach(function (x) {
+db.users.find({'personInfo.nickname':'毛伟'}).forEach(function (x) {
     x.readingInfo = [];
     x.clockInfo = {
         clockTime: '18:00',
