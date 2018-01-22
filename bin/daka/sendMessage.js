@@ -40,11 +40,12 @@ schedule.scheduleJob(rule2, function () {
     var now = new Date();
     var now_date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日 ' + now.getHours() + ':' + (now.getMinutes() > 9 ? now.getMinutes() : '0' + now.getMinutes());
     getBookInfoById(bookId, function (docs) {
-        var bookName = docs[0].articleTitle;
         getOpenIdObjList(function (openIdObjList) {
             var openIdList = [];
             var dataList = openIdObjList.map(function (item) {
                 openIdList.push(item.openid);
+                var level = item.level >= 0 ? item.level : 0;
+                var bookName = docs[0]['articleList'][level]['articleTitle'];
                 var newData = {
                     "touser": item.openid,  //接收者openid
                     "template_id": "puqokuG4Mn2TSNOpxif5NcRf5sNgNw_7fMK37fjN91o", //模板ID
@@ -122,6 +123,18 @@ function getOpenIdObjList(cb) {
     });
 }
 
+
+function getFormatDate() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var day = now.getDate();
+
+    month = month < 9 ? ('0' + month) : ('' + month);
+    day = day < 9 ? ('0' + day) : ('' + day);
+
+    return year + month + day;
+}
 
 
 
