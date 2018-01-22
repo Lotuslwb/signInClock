@@ -51,6 +51,7 @@ schedule.scheduleJob(rule2, function () {
                 } catch (e) {
                     console.log(e);
                 }
+                console.log(item.level);
 
                 var bookName = docs[0]['articleList'][level]['articleTitle'];
                 var newData = {
