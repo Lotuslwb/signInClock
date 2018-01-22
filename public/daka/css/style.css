@@ -927,6 +927,7 @@ select {
     text-align: center;
     font-size: 30px;
     line-height: 45px;
+    font-weight: normal;
 }
 
 .ui-alert-2 .ui-alert-text {
