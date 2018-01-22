@@ -111,7 +111,8 @@ function getOpenIdObjList(cb) {
     UserDB.User.find({'clockInfo.clockSwitch': 'on'}, {
         'clockInfo': 1,
         'openid': 1,
-        'personInfo': 1
+        'personInfo': 1,
+        'level': 1,
     }).then(function (docs) {
         var now = new Date();
         var now_hours = now.getHours();
