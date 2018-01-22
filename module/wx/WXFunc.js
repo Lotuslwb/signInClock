@@ -6,7 +6,7 @@ var WXFunc = function (req, res, next) {
     if (message.Event === 'subscribe') {
         res.reply("耶，小E又交到新朋友啦！孩子在学习英语中遇到问题，可以点击<a href='http://mp.weixin.qq.com/mp/homepage?__biz=MjM5MDkyMTk5MQ==&hid=2&sn=ff4d86022b7ebc3a8358801950887e8e&scene=18#wechat_redirect'>【家长课堂】</a>，总有一款回答适合你。\n \n 第二期英孚亲子英语阅读打卡开始啦，全新系统增加分级阅读和回顾往期功能！听上去是不是很棒？赶紧来参加吧!  \n <a href='https://ma.eldesign.cn/daka/start'>【英孚亲子英语阅读】</a> ，小E依然为你们准备了精美礼品哟！ \n \n 已参加？请点击左下方【阅读打卡】！让我们一起见证孩子的点滴进步！");
     } else if (message.MsgType == 'text' && message.Content.indexOf('打卡') > -1) {
-        res.reply("第二期英孚亲子英语阅读打卡开始啦，全新系统增加分级阅读和回顾往期功能！听上去是不是很棒？赶紧来参加吧! \n \n \n <a href='https://ma.eldesign.cn/daka/start'>【英孚亲子英语阅读】</a>，小E依然为你们准备了精美礼品哟！");
+        res.reply("呐，你要的阅读打卡系统在此，快快收下！新系统不仅可以根据孩子的年龄设置相应的阅读材料，还增加了往期内容回顾，是不是很酷？现在就开始你今天的<a href='https://ma.eldesign.cn/daka/start'>【英语阅读】</a>吧!");
     } else {
         // res.reply("耶，小E又交到新朋友啦！孩子在学习英语中遇到问题，可以点击<a href='http://mp.weixin.qq.com/mp/homepage?__biz=MjM5MDkyMTk5MQ==&hid=2&sn=ff4d86022b7ebc3a8358801950887e8e&scene=18#wechat_redirect'>【家长课堂】</a>，总有一款回答适合你。\n \n 12月【英孚亲子英语阅读】打卡系统上线啦，每天精选一个趣味英语故事，让孩子跟外教一起朗读，每天3分钟培养孩子英语阅读兴趣！ \n \n 猛戳立即参加<a href='http://ma.eldesign.cn/daka/start'>【英孚亲子英语阅读】</a>  \n \n 已参加？请点击左下方【阅读打卡】！让我们一起见证孩子的点滴进步！");
         res.reply("");
