@@ -17,7 +17,7 @@ var data = {
     "url": "https://ma.eldesign.cn/daka/index",
     "data": {
         "first": {
-            "value": "XXX，今日的阅读内容已新鲜出炉！",
+            "value": "XXX，今天的阅读内容已经为你准备好了，会是什么有趣的故事呢？",
             "color": "#173177"
         },
         "keyword1": {
@@ -60,7 +60,7 @@ schedule.scheduleJob(rule2, function () {
                     "url": "https://ma.eldesign.cn/daka/index",
                     "data": {
                         "first": {
-                            "value": item.personInfo['nickname'] + '，今日的阅读内容已新鲜出炉！',
+                            "value": item.personInfo['nickname'] + '，今天的阅读内容已经为你准备好了，会是什么有趣的故事呢？',
                             "color": "#173177"
                         },
                         "keyword1": {
@@ -72,7 +72,7 @@ schedule.scheduleJob(rule2, function () {
                             "color": "#173177"
                         },
                         "remark": {
-                            "value": "阅读使我快乐，点击开始今天的阅读，连续打卡，更有机会赢取英孚青少儿英语定制精美礼品，千万不要错过啦！",
+                            "value": "第二期英孚亲子英语阅读打卡开始啦，在全新的系统上，小朋友们不仅可以选择年龄，还可以复习读过的内容，查看并朗读错过的内容！听上去是不是很棒？赶紧来参加吧，小E依然为你们准备了精美礼品哟！",
                             "color": "#173177"
                         }
                     }
