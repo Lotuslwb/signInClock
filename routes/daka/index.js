@@ -131,7 +131,7 @@ router.get('/reading', function (req, res, next) {
                     res.render('daka/reading', {
                         title: 'index', bookDate: bookDate,
                         bookInfo: bookInfo, now: new Date(), level: level, type: type,
-                        UserInfo: UserInfo, hasVoice: hasVoice
+                        UserInfo: UserInfo, hasVoice: hasVoice,
                     });
                 });
             })
