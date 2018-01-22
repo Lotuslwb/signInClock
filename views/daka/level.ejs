@@ -33,7 +33,7 @@
         $(this).addClass('active').siblings('.level-select').removeClass('active');
         selectValue = $(this).index();
         if (selectValue < 0) {
-            showAlert({text: '请先选择年龄'})
+            showAlert2({text: '请先选择年龄'})
             return false;
         }
         var data = {
