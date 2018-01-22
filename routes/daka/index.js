@@ -42,10 +42,6 @@ router.get('/start', function (req, res, next) {
 })
 
 
-router.get('/index_info', function (req, res, next) {
-    res.render('daka/index_info', {title: 'index'});
-});
-
 router.get('/start_detail', function (req, res, next) {
     res.render('daka/start_detail', {title: 'index'});
 });
@@ -98,6 +94,31 @@ function checkOpenid(req, res, cb) {
         res.redirect(url);
     }
 }
+
+
+router.get('/index_info', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        UserDB.User.update({'openid': openid}, {
+            $set: {
+                readingInfo: [],
+                recodeInfo: {
+                    lastRecodeTime: '0',
+                    totalRecodeCounts: '0',
+                    currentRecodeCounts: '0',
+                    currentSerialRecodeCounts: '0',
+                    recodeTimeArray: [],
+                    totalWordLength: '0'
+                }
+            }
+        }, function (err, docs) {
+            if (err) {
+                res.render('daka/index_info', {msg: '更新失败:' + err});
+            }
+            log('更新成功');
+            res.render('daka/index_info', {msg: '更新成功'});
+        })
+    });
+});
 
 
 router.get('/reading', function (req, res, next) {
