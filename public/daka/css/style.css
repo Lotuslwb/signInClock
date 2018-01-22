@@ -1197,3 +1197,10 @@ select {
 .z-hide {
     display: none !important;
 }
+
+.articleTitle-Text {
+    height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
