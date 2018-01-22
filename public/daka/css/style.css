@@ -874,7 +874,7 @@ select {
     background: url("../img/ui-alert-bg.png") no-repeat;
     background-size: 100% 100%;
     border-radius: 10px;
-    width: 610px;
+    width: 615px;
     box-sizing: border-box;
 }
 
@@ -906,6 +906,7 @@ select {
     font-size: 38px;
     line-height: 45px;
     text-align: left;
+    font-weight: bold;
 }
 
 .ui-alert-text {
@@ -917,6 +918,7 @@ select {
 
 .ui-alert-text .heighlight {
     color: rgb(255, 255, 0);
+    font-weight: bold;
 }
 
 .ui-alert-logo {
