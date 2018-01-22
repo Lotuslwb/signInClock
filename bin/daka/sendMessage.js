@@ -45,6 +45,13 @@ schedule.scheduleJob(rule2, function () {
             var dataList = openIdObjList.map(function (item) {
                 openIdList.push(item.openid);
                 var level = item.level >= 0 ? item.level : 0;
+                var bookName = '';
+                try {
+                    bookName = docs[0]['articleList'][level]['articleTitle'];
+                } catch (e) {
+                    console.log(e);
+                }
+
                 var bookName = docs[0]['articleList'][level]['articleTitle'];
                 var newData = {
                     "touser": item.openid,  //接收者openid
