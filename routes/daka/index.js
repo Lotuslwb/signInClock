@@ -71,7 +71,13 @@ router.get('/share', function (req, res, next) {
             var UserInfo = docs[0];
             getBookInfoById(id, function (docs) {
                 var bookInfo = getBookInfobyDocs(docs, level).bookInfo;
-                res.render('daka/share', {bookInfo: bookInfo, UserInfo: UserInfo, readTime: readTime, counts: counts});
+                res.render('daka/share', {
+                    bookInfo: bookInfo,
+                    UserInfo: UserInfo,
+                    readTime: readTime,
+                    counts: counts,
+                    level: level
+                });
             });
         });
     })
