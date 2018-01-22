@@ -903,20 +903,20 @@ select {
     color: #ffffff;
     text-align: center;
     /*font-size: 30px;*/
-    font-size: 45px;
+    font-size: 38px;
     line-height: 45px;
     text-align: left;
 }
 
 .ui-alert-text {
     line-height: 1.6;
-    font-size: 25px;
+    font-size: 24px;
     color: #ffffff;
     padding-top: 30px;
 }
 
 .ui-alert-text .heighlight {
-    color: #fff300;
+    color: rgb(255, 255, 0);
 }
 
 .ui-alert-logo {
