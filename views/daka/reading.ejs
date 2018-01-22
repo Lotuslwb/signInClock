@@ -106,7 +106,7 @@
                 <div class="bg"></div>
                 <div class="time"><img src="/daka/img/recodeicon.png" class="record-icon"></div>
             </div>
-            <div class="record-status J-record-status">点击录制</div>
+            <div class="record-status J-record-status J-record-status2">点击录制</div>
             <% if(!bookInfo.videoURL){ %>
             <div>可以选择你喜欢的一段进行录音</div>
             <% } %>
@@ -303,6 +303,8 @@
                         recordStop(res);
                     }
                 });
+                $('.J-record-status:not(".J-record-status2")').html('重录');
+                $('.J-record-status2').html('点击录制');
             } else {
                 wx.startRecord();
                 $(this).addClass('active');
