@@ -909,7 +909,7 @@ select {
     font-weight: bold;
 }
 
-.ui-alert-2 .ui-alert-title {
+.ui-alert-title {
     color: #ffffff;
     text-align: center;
     font-size: 30px;
