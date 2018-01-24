@@ -127,16 +127,16 @@ obj.prototype = {
 
         });
 
-        $('.resourceType-select').change(function () {
-            var v = $(this).val();
-            if (v == 'video') {
-                $('.videoURLDIV').show();
-                $('.audioURLDIV').hide().val('');
-            } else {
-                $('.audioURLDIV').show();
-                $('.videoURLDIV').hide().val('');
-            }
-        })
+        // $('.resourceType-select').change(function () {
+        //     var v = $(this).val();
+        //     if (v == 'video') {
+        //         $('.videoURLDIV').show();
+        //         $('.audioURLDIV').hide().val('');
+        //     } else {
+        //         $('.audioURLDIV').show();
+        //         $('.videoURLDIV').hide().val('');
+        //     }
+        // })
     },
 
     _genSelect: function (data, selector) {

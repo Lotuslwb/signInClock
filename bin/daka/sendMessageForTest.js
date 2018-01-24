@@ -14,7 +14,7 @@ var sendMessageBath = require('../sendMessageBath');
 var data = {
     "touser": '',  //接收者openid
     "template_id": "puqokuG4Mn2TSNOpxif5NcRf5sNgNw_7fMK37fjN91o", //模板ID
-    "url": "https://ma.eldesign.cn/daka/index_test",
+    "url": "https://ma.eldesign.cn/daka/index",
     "data": {
         "first": {
             "value": "XXX，今日的阅读内容已新鲜出炉！",
@@ -66,7 +66,7 @@ function runTask() {
                 var newData = {
                     "touser": item.openid,  //接收者openid
                     "template_id": "puqokuG4Mn2TSNOpxif5NcRf5sNgNw_7fMK37fjN91o", //模板ID
-                    "url": "https://ma.eldesign.cn/daka/index_test",
+                    "url": "https://ma.eldesign.cn/daka/index",
                     "data": {
                         "first": {
                             "value": item.personInfo['nickname'] + '，今日的阅读内容已新鲜出炉！',
