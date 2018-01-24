@@ -87,12 +87,12 @@
                         <option value="video" <%= doc.articleList[index].resourceType == 'video' ? 'selected' : '' %>>
                             视频
                         </option>
-                        <option value="audio" selected>
+                        <option value="audio" <%= doc.articleList[index].resourceType == 'video' ? 'selected' : '' %>>
                             音频
                         </option>
                     </select>
                 </div>
-                
+
                 <div class="search-cell audioURLDIV">
                     <span class="search-cell-title m0-left">音频链接</span>
                     <div class="inline">
