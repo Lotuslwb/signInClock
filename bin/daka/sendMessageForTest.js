@@ -53,12 +53,16 @@ function runTask() {
             var openIdObjListTest = openIdObjList.filter(function (item) {
                 return openIdListTest.indexOf(item.openid) >= 0;
             })
-            console.log(openIdObjList, 'openIdObjList');
-            console.log(openIdObjListTest, 'openIdObjList');
-
-
+            
             var dataList = openIdObjListTest.map(function (item) {
                 openIdList.push(item.openid);
+                var level = item.level >= 0 ? item.level : 0;
+                var bookName = '';
+                try {
+                    bookName = docs[0]['articleList'][level]['articleTitle'];
+                } catch (e) {
+                    console.log(e);
+                }
                 var newData = {
                     "touser": item.openid,  //接收者openid
                     "template_id": "puqokuG4Mn2TSNOpxif5NcRf5sNgNw_7fMK37fjN91o", //模板ID
@@ -116,7 +120,8 @@ function getOpenIdObjList(cb) {
     UserDB.User.find({'clockInfo.clockSwitch': 'on'}, {
         'clockInfo': 1,
         'openid': 1,
-        'personInfo': 1
+        'personInfo': 1,
+        'level': 1,
     }).then(function (docs) {
         var now = new Date();
         var now_hours = now.getHours();

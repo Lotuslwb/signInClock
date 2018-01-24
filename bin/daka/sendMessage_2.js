@@ -1,7 +1,7 @@
 //设置定时任务 变量
 var schedule = require("node-schedule");
 var rule2 = new schedule.RecurrenceRule();
-var times2 = [0];
+var times2 = [30];
 rule2.minute = times2;
 
 // 查询数据库
