@@ -239,8 +239,9 @@
 
     initWX(function () {
         initWXSahre();
-        $('.J-loadedbox').show();
+
         if (recordLocalId) {
+            $('.J-loadedbox').show();
             //音频在本地
             var recordLocalURL = "/files/media/" + recordServerId + ".mp3";
             var audioElement2;
