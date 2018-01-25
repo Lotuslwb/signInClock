@@ -60,7 +60,7 @@
         <%- bookInfo.articleText %>
     </div>
 
-    <div class="J-loadedbox" style="display: block;">
+    <div class="J-loadedbox" style="display: none;">
         <% if (type && type == 'read'){ %>
         <div class="record-btn-list record-btn-list-new active">
             <div class="btn-item btn-item-read">
@@ -272,9 +272,14 @@
             }
         } else {
             //音频还在微信服务器上
-            recordServerId && WXDownloadVoice(function () {
+            if (recordServerId) {
+                WXDownloadVoice(function () {
+                    $('.J-loadedbox').show();
+                });
+            } else {
                 $('.J-loadedbox').show();
-            });
+            }
+
             //播放录音  回放
             $('.J-playRecord-btn').click(function () {
                 audioElement.pause();
