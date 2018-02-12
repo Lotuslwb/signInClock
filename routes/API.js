@@ -110,8 +110,8 @@ function getFormatDate() {
     var month = now.getMonth() + 1;
     var day = now.getDate();
 
-    month = month < 9 ? ('0' + month) : ('' + month);
-    day = day < 9 ? ('0' + day) : ('' + day);
+    month = month <= 9 ? ('0' + month) : ('' + month);
+    day = day <= 9 ? ('0' + day) : ('' + day);
 
     return year + month + day;
 }
