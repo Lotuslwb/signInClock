@@ -11,8 +11,24 @@
 
     <script type="text/javascript" src="/javascripts/jquery.js"></script>
     <script type="text/javascript" src="/javascripts/cookie.js"></script>
+    <script src="/daka/js/jquery.cookie.js"></script>
+
 </head>
 <body>
+<style>
+    .test-tab {
+        display: none;
+        text-align: center;
+        background: red;
+        color: #ffffff;
+        line-height: 50px;
+    }
+</style>
+<div class="test-tab">测试环境</div>
+<script>
+    var testENV = $.cookie('testENV');
+    testENV == 1 ? $('.test-tab').show() : $('.test-tab').hide();
+</script>
 
 <div id="header-nav-block">
     <div id="header-nav">
