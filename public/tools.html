@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <script src="/javascripts/dpi.js"></script>
+    <script src="/daka/js/jquery.min.js"></script>
+    <script src="/daka/js/jquery.cookie.js"></script>
+    <style>
+        a {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>切换环境</h2>
+<a id="product-btn" href="javascripts:;">正式环境</a>
+<a id="daily-btn" href="javascripts:;">测试环境</a>
+<script>
+    $('#product-btn').click(function () {
+        $.cookie('testENV', null);
+        alert('已切换到正式环境')
+    });
+
+    $('#daily-btn').click(function () {
+        $.cookie('testENV', '1');
+        alert('已切换到测试环境')
+    });
+
+</script>
+</body>
+</html>
