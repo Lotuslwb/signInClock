@@ -16,6 +16,7 @@ schedule.scheduleJob(rule3, function () {
     setNextBookId();
 });
 
+setNextBookId();
 
 function setNextBookId() {
 
