@@ -24,6 +24,8 @@
 <h2>切换环境</h2>
 <a id="product-btn" href="javascripts:;">正式环境</a>
 <a id="daily-btn" href="javascripts:;">测试环境</a>
+
+<h2 id="gotoDaka">打卡首页</h2>
 <script>
     $('#product-btn').click(function () {
         $.cookie('testENV', null);
@@ -35,6 +37,9 @@
         alert('已切换到测试环境')
     });
 
+    $('#gotoDaka').click(function () {
+        window.location.href = 'http://ma.eldesign.cn/daka/index';
+    });
 </script>
 </body>
 </html>
