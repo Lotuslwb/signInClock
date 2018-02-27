@@ -321,7 +321,7 @@ function getUserInfoFormDB(openid, callback_s, callback_f) {
             log('---数据库里面已经有此用户---');
             callback_s && callback_s(docs);
         } else {
-            log('---数据库里面暂无此用户---');
+            log('---数据库里面暂无此用户1---');
             callback_f && callback_f(docs);
         }
     });
@@ -364,7 +364,7 @@ function getUserInfoByOpenid(openid, cb_s, cb_f) {
             console.log('---数据库里面已经有此用户---');
             cb_s && cb_s(docs);
         } else {
-            console.log('---数据库里面暂无此用户---');
+            console.log('---数据库里面暂无此用户2---');
             cb_f && cb_f(docs);
         }
     });
