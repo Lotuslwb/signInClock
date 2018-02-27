@@ -251,6 +251,13 @@ router.get('/index', function (req, res, next) {
                 } else {
                     res.redirect('/daka/level')
                 }
+            }, function () {
+                //如果cookie里面没有openid,获取之;
+                var hostname = req.hostname;
+                var protocol = req.protocol;
+                var redirect_uri = encodeURIComponent(protocol + '://' + hostname + '/wx/callback?router=daka' + req.path);
+                var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+                res.redirect(url);
             })
         });
 
