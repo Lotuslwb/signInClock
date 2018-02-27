@@ -363,6 +363,7 @@ function getBookId() {
     var fs = require("fs");
     var fsPath = '/root/signInClock';
     var bookId = fs.readFileSync(fsPath + '/bookId.txt');
+    console.log(bookId);
     return bookId;
 }
 
