@@ -23,3 +23,4 @@ db.users.find().limit(40000).skip(35000).forEach(function (x) {
     };
     db.getCollection('users').save(x);
 })
+
