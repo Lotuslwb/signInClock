@@ -1124,12 +1124,9 @@ select {
     height: 250px;
 }
 
-.level-select-right {
-    float: right;
-}
-
-.level-select-left {
-    float: left;
+.level-select-right, .level-select-left {
+    display: block;
+    margin-top: 40px;
 }
 
 .level-select.active {
