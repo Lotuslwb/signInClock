@@ -9,8 +9,18 @@ obj.prototype = {
         me.initPage();
         me.bindEvent(me);
     },
+    initArticlePart: function () {
+        var levelCount = $('.levelCount').val();
+        var articlePartTpl = $('#articlePart-tpl').html();
+        $('.articleBox').html('');
+        for (var i = 0; i < levelCount; i++) {
+            $('.articleBox').append(articlePartTpl);
+        }
+    },
     initPage: function () {
         var me = this;
+
+        this.initArticlePart();
 
         BUI.use('bui/form', function (Form) {
 
@@ -73,6 +83,8 @@ obj.prototype = {
     },
     bindEvent: function (me) {
         var me = this;
+
+        $('.')
 
         $('.J-submit').click(function () {
             console.log(me.form.isValid());
