@@ -37,7 +37,7 @@ jspm_packages
 .node_repl_history
 
 
-public/files
+# public/files
 access_token_.txt
 access_token.txt
 # bookId.txt
