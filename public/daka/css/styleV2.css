@@ -80,7 +80,7 @@ select {
 }
 
 .result-page {
-    background: url("../img/result-bg.jpg") no-repeat top;
+    background: url("../img/V2/result-bg.jpg") no-repeat top;
     background-size: 100%;
     padding-top: 55px;
     overflow: auto;
@@ -739,7 +739,7 @@ select {
 .result-page .book-info .title {
     text-align: center;
     padding: 20px 0;
-    color: #e9329c;
+    color: #e60012;
     font-size: 30px;
 }
 
@@ -1059,7 +1059,7 @@ select {
 
 .number-text {
     font-size: 48px;
-    color: #e9329c;
+    color: #e60012;
     text-align: center;
     display: inline-block;
     transition: all ease 1s;
