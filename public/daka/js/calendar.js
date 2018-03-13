@@ -136,8 +136,8 @@
                 '<div class="info"></div>';
 
             _titleStr += '<div class="arrow">' +
-                '<img class="arrow-prev" src="/daka/img/arrow-prev.png" />' +
-                '<img class="arrow-next" src="/daka/img/arrow-next.png" />' +
+                '<img class="arrow-prev" src="/daka/img/V2/arrow-prev.png" />' +
+                '<img class="arrow-next" src="/daka/img/V2/arrow-next.png" />' +
                 '</div>';
 
             var _weekStr = '<li class="item">S</li>' +
