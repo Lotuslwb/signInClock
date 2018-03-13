@@ -147,7 +147,7 @@ select {
 }
 
 .index-page .index-title {
-    color: #e9329c;
+    color: #ee1900;
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -193,7 +193,7 @@ select {
 .index-page .day-box .days {
     font-size: 60px;
     display: block;
-    color: #e9329c;
+    color: #ee1900;
     line-height: 0.8;
 }
 
@@ -273,7 +273,7 @@ select {
 }
 
 .personal-list li .number {
-    color: #e9329c;
+    color: #ee1900;
     display: inline-block;
 }
 
@@ -293,7 +293,7 @@ select {
 }
 
 .personal-time {
-    color: #e9329c;
+    color: #ee1900;
     font-size: 72px;
     font-weight: bold;
     line-height: 1.12;
@@ -335,7 +335,7 @@ select {
 }
 
 .plan-title {
-    color: #e9329c;
+    color: #ee1900;
     font-size: 30px;
     text-align: center;
     font-weight: bold;
@@ -371,7 +371,7 @@ select {
 .start-banner .banner-text {
     width: 583px;
     margin: auto;
-    color: #e9329c;
+    color: #ee1900;
     font-size: 24px;
     margin-top: -80px;
 }
@@ -391,7 +391,7 @@ select {
     display: inline-block;
     height: 65px;
     width: 2px;
-    background: #e9329c;
+    background: #ee1900;
     margin-left: 10px;
 }
 
@@ -728,7 +728,7 @@ select {
 
 .result-page .record-info .text {
     font-size: 48px;
-    color: #e9329c;
+    color: #ee1900;
 }
 
 .result-page .record-info .text .days {
@@ -772,7 +772,7 @@ select {
     height: 64px;
     line-height: 64px;
     border-radius: 40px;
-    background: #e9329c;
+    background: #ee1900;
     color: #ffffff;
     text-align: center;
     font-size: 26px;
@@ -923,7 +923,7 @@ select {
 }
 
 .ui-alert-2 .ui-alert-title {
-    color: #e9329c;
+    color: #ee1900;
     text-align: center;
     font-size: 30px;
     line-height: 45px;
@@ -980,7 +980,7 @@ select {
     -o-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
-    background-color: #e9329c;
+    background-color: #ee1900;
 }
 
 .pie2 {
@@ -988,7 +988,7 @@ select {
     -o-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
-    background-color: #e9329c;
+    background-color: #ee1900;
 }
 
 .hold {
@@ -1010,7 +1010,7 @@ select {
     width: 122px;
     height: 122px;
     margin: 8px 0 0 9px;
-    background-color: #e9329c;
+    background-color: #ee1900;
     border-radius: 100px;
     position: absolute;
     z-index: 1;
@@ -1033,7 +1033,7 @@ select {
 }
 
 .difficulty-star {
-    color: #e9329c;
+    color: #ee1900;
     font-size: 24px;
 }
 
@@ -1112,7 +1112,7 @@ select {
 
 .index-words-h1 {
     font-size: 30px;
-    color: #e9329c;
+    color: #ee1900;
     text-align: center;
     font-weight: bold;
     padding-bottom: 10px;
@@ -1135,15 +1135,15 @@ select {
 }
 
 .medal-list {
-    padding-top: 55px;
+    padding-top: 90px;
     width: 570px;
     margin: auto;
-    margin-right: 30px;
+    margin-right: 55px;
 }
 
 .medal-item {
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 55px;
     margin-bottom: 65px;
 }
 
@@ -1185,11 +1185,10 @@ select {
 
 .medal-detail-page .text {
     font-size: 55px;
-    color: #eb008b;
+    color: #ee1900;
     position: absolute;
-    left: 316px;
-    top: 92px;
-    width: 130px;
+    top: 107px;
+    width: 100%;
     text-align: center;
 }
 
@@ -1266,4 +1265,8 @@ select {
     background: red;
     color: #ffffff;
     line-height: 50px;
+}
+
+.medal-detail-qcode {
+    padding-top: 75px;
 }
