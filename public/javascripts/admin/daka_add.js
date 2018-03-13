@@ -84,7 +84,9 @@ obj.prototype = {
     bindEvent: function (me) {
         var me = this;
 
-        $('.')
+        $('.levelCount').change(function () {
+            this.initArticlePart();
+        })
 
         $('.J-submit').click(function () {
             console.log(me.form.isValid());
