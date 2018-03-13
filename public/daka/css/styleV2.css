@@ -874,10 +874,11 @@ select {
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     padding: 55px 55px 160px 55px;
-    background: url("../img/ui-alert-bg.png") no-repeat;
+    background: url("../img/V2/ui-alert-bg.png") no-repeat;
     background-size: 100% 100%;
     border-radius: 10px;
-    width: 615px;
+    width: 548px;
+    height: 720px;
     box-sizing: border-box;
 }
 
@@ -903,7 +904,7 @@ select {
 }
 
 .ui-alert-title {
-    color: #ffffff;
+    color: #e60012;
     text-align: center;
     /*font-size: 30px;*/
     font-size: 38px;
