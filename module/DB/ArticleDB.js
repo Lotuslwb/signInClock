@@ -4,6 +4,7 @@ var name = 'article';
 var Schema = {
     createTime: String,//创建时间
     articleDate: String,//使用日期
+    levelCount: String,//年龄分级
     articleList: [{
         wordLength: String,  //词汇量
         brief: String, //简介

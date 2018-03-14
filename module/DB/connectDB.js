@@ -47,7 +47,7 @@ obj.prototype.add = function (json, callback) {
     //保存数据库
     promise = _user.save(function (err, docs) {
         if (err) {
-            log('保存失败', err)
+            log(err, err)
             return;
         }
         log('保存成功');

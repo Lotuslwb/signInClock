@@ -9,9 +9,35 @@ obj.prototype = {
         me.initPage();
         me.bindEvent(me);
     },
-    initPage: function () {
-        var me = this;
+    initArticlePart: function (me) {
+        var levelCount = $('.levelCount').val();
+        var articlePartTpl = $('#articlePart-tpl').html();
+        $('.articleBox').html('');
+        for (var i = 0; i < levelCount; i++) {
+            $('.articleBox').append(articlePartTpl);
+        }
+        me.initEditors(me);
+        me.initForm(me);
 
+    },
+    initEditors: function (me) {
+        var E = window.wangEditor;
+        var levelCount = $('.levelCount').val();
+
+        $('#J_Form .J-articlePart').each(function (index, item) {
+            var $editor = $(this).find('.editor');
+            var $html = $(this).find('.editorContent-html');
+            var html = $('<div/>').html($html.html()).text()
+            var id = 'editor-part' + index;
+            $editor.attr('id', id);
+            var editor = new E('#' + id);
+            editor.create()
+            editor.txt.html(html);
+
+            me.editorList.push(editor);
+        });
+    },
+    initForm: function (me) {
         BUI.use('bui/form', function (Form) {
 
             me.form = new Form.Form({
@@ -19,52 +45,17 @@ obj.prototype = {
             }).render();
 
         });
-        BUI.use('bui/uploader', function (Uploader) {
-            //初始化 图片上传
-            var uploader = new Uploader.Uploader({
-                render: '#J_Uploader',
-                url: '/admin/api/daka/uploadImage',
-                isSuccess: function (result) {
-                    if (result && result.status == '200') {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                },
-                success: function (result) {
-                    console.log(result);
-                    var src = me.src = result.data.imgName.split('public')[1];
-                    $('.J-previewBox').show();
-                    $('#J-preview').html('<img src="' + src + '" class="daka-cover-preview">')
-                },
-                error: function (result) {
-                    alert(JSON.stringify(result));
-                },
-                rules: {
-                    //文的类型
-                    ext: ['.png,.jpg', '文件类型只能为{0}'],
-                    //上传的最大个数
-                    max: [1, '文件的最大个数不能超过{0}个'],
-                    //文件大小的最小值,这个单位是kb
-                    minSize: [10, '文件的大小不能小于{0}KB'],
-                    //文件大小的最大值,单位也是kb
-                    maxSize: [300, '文件大小不能大于{0}kb']
-                }
-            }).render();
-        });
+    },
+    initPage: function () {
+        var me = this;
 
+        //存放编辑器
+        me.editorList = [];
+        //存放图片SRC
+        me.srcList = [];
 
-        var E = window.wangEditor
+        me.initArticlePart(me);
 
-
-        var editor_part1 = this.editor1 = new E('#editor-part1')
-        editor_part1.create()
-
-        var editor_part2 = this.editor2 = new E('#editor-part2')
-        editor_part2.create();
-
-        editor_part1.txt.html(editorContent1);
-        editor_part2.txt.html(editorContent2);
 
     },
     bindEvent: function (me) {
@@ -77,41 +68,45 @@ obj.prototype = {
                 return false;
             }
 
-            //获取正文
-            var articleText1 = (me.editor1.txt.html());
-            //获取词汇量
-            var wordLength1 = (me.editor1.txt.text().split(' ').length);
+            var data = [];
+            $('#J_Form .J-articlePart').each(function (index, item) {
+                var dataItem = {};
+                $(this).find('input').map(function () {
+                    var name = $(this).attr('name');
+                    var val = $(this).val();
+                    dataItem[name] = val;
+                });
+                $(this).find('select').map(function () {
+                    var name = $(this).attr('name');
+                    var val = $(this).val();
+                    dataItem[name] = val;
+                });
+                var editor = me.editorList[index];
+                var coverUrl = me.srcList[index];
+                dataItem['articleText'] = editor.txt.html();
+                dataItem['wordLength'] = editor.txt.text().split(' ').length;
+                dataItem['coverUrl'] = coverUrl;
+                data.push(dataItem);
 
+            });
 
-            //获取正文
-            var articleText2 = (me.editor2.txt.html());
-            //获取词汇量
-            var wordLength2 = (me.editor2.txt.text().split(' ').length);
+            data = data.map(function (item) {
+                item.needTime = item.needTime_1 + ':' + item.needTime_2;
+                delete  item.needTime_1;
+                delete  item.needTime_2;
+                return item;
+            });
 
-
-            if (!coverUrl1 || !coverUrl1.length || !coverUrl2 || !coverUrl2.length) {
-                alert('封页图片不能为空');
-                return false;
+            var postData = {
+                id: id,
+                articleList: data,
+                articleDate: $('.articleDate').val(),
+                levelCount: $('.levelCount').val()
             }
-
-            if (!me.editor1.txt.text().length || !me.editor2.txt.text().length) {
-                alert('正文不能为空');
-                return false;
-            }
-
-            var data = me.form.serializeToObject();
-            data['articleText1'] = articleText1;
-            data['articleText2'] = articleText2;
-            data['wordLength1'] = wordLength1;
-            data['wordLength2'] = wordLength2;
-            data['coverUrl1'] = coverUrl1;
-            data['coverUrl2'] = coverUrl2;
-            data['id'] = id;
-            console.log(data);
 
             $.ajax({
                 type: 'POST',
-                data: data,
+                data: postData,
                 url: '/admin/api/daka/updateArticleData',
                 success: function (data) {
                     console.log(data, 'updateArticleData');

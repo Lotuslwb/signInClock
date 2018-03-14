@@ -11,6 +11,7 @@ var ConfigDB = require('../../module/DB/ConfigDB');
 var config = require('../admin/tsconfig.json');
 
 var fs = require('fs');
+var qs = require('qs');
 
 
 /*管理员登录*/
@@ -336,7 +337,6 @@ router.post('/daka/uploadImage', function (req, res, next) {
 /* 打卡计划 --  上传文章信息 */
 router.post('/daka/saveArticleData', function (req, res, next) {
     var data = req.body;
-    console.log(data);
 
     var result = hanldeArticleData(data);
     saveArticleDataToDB(result, function (docs) {
@@ -356,7 +356,6 @@ router.post('/daka/saveConfigData', function (req, res, next) {
 
 router.post('/daka/updateArticleData', function (req, res, next) {
     var data = req.body;
-    console.log(data);
 
     var result = hanldeArticleData(data);
     result.id = data.id;
@@ -366,28 +365,12 @@ router.post('/daka/updateArticleData', function (req, res, next) {
 });
 
 function hanldeArticleData(data) {
-    var result = {};
-    result.articleDate = data.articleDate || "2011-01-01";
-    result.createTime = new Date().getTime();
-    result.articleList = [];
-    for (var i = 1; i <= 2; i++) {
-        var articleItem = {
-            articleText: data['articleText' + i],
-            articleTitle: data['articleTitle' + i],
-            audioURL: data['audioURL' + i],
-            brief: data['brief' + i],
-            coverUrl: data['coverUrl' + i],
-            difficulty: data['difficulty' + i],
-            needTime: data['needTime' + i + '_1'] + ':' + data['needTime' + i + '_2'],
-            tag: data['tag' + i],
-            resourceType: data['tag' + i],
-            videoURL: data['videoURL' + i],
-            audioURL: data['audioURL' + i],
-            wordLength: data['wordLength' + i],
-        }
-        result.articleList.push(articleItem);
-    }
-    return result;
+    data.createTime = new Date().getTime();
+    data = qs.parse(data);
+    
+    console.log(data, '***data***');
+
+    return data;
 }
 
 /* 打卡计划 --  查询接口*/
@@ -471,7 +454,6 @@ function updateArticleDataToDB(data, callback_s, callback_f) {
     if (!data) {
         callback_f && callback_f('数据不能为空');
     }
-    console.log(data)
     var id = data.id;
     delete data.id;
 
@@ -544,7 +526,6 @@ function getUserInfoFormDB(tel, callback_s, callback_f) {
 }
 
 function updateUserInfoToDB(_id, data, callback_s, callback_f) {
-    console.log(data);
     teacherDB.update(_id, data, function (err, docs) {
         if (err) {
             log(err);
