@@ -72,8 +72,10 @@
         $('.J-currentRecodeCounts').text(totalRecodeCounts + '天');
         $('.J-totalWordLength').text(totalWordLength);
 
-        $('.J-levelText').text(level > 0 ? '7岁以上' : '3-6岁');
+//        $('.J-levelText').text(level > 0 ? '7岁以上' : '3-6岁');
 
+        var levelTextMap = ['低年级', '中年级', '高年级']
+        $('.J-levelText').text(levelTextMap[level]);
 
         medalArray.map(function (item, index) {
             if (totalRecodeCounts >= item) {
