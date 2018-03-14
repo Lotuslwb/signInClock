@@ -25,18 +25,37 @@
     <div class="index-words">
         <div class="personal-title setup-title">选择年龄：</div>
         <div class="setup-time">
+            <!--<label class="label" for="level_0">-->
+                <!--<input type="radio" name="level" id="level_0" value="0"-->
+                        <!--<% if(UserInfo.level == 0){ %>-->
+                       <!--checked-->
+                        <!--<% } %>-->
+                <!--/> 3-6岁</label>-->
+            <!--<label class="label" for="level_1">-->
+                <!--<input type="radio" name="level" id="level_1" value="1"-->
+                        <!--<% if(UserInfo.level == 1){ %>-->
+                       <!--checked-->
+                        <!--<% } %>-->
+                <!--/> 7岁以上</label>-->
+
             <label class="label" for="level_0">
                 <input type="radio" name="level" id="level_0" value="0"
                         <% if(UserInfo.level == 0){ %>
                        checked
                         <% } %>
-                /> 3-6岁</label>
+                /> 低年级</label>
             <label class="label" for="level_1">
                 <input type="radio" name="level" id="level_1" value="1"
                         <% if(UserInfo.level == 1){ %>
                        checked
                         <% } %>
-                /> 7岁以上</label>
+                /> 中年级</label>
+            <label class="label" for="level_2">
+                <input type="radio" name="level" id="level_1" value="1"
+                        <% if(UserInfo.level == 2){ %>
+                       checked
+                        <% } %>
+                /> 高年级</label>
         </div>
     </div>
 
