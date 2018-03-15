@@ -914,7 +914,6 @@ select {
 }
 
 .ui-alert-title {
-    color: #4d4d4f;
     text-align: center;
     font-size: 30px;
     line-height: 45px;
@@ -944,12 +943,12 @@ select {
 .ui-alert-text {
     line-height: 1.6;
     font-size: 24px;
-    color: #ffffff;
+    color: #4d4d4f;
     padding-top: 30px;
 }
 
 .ui-alert-text .heighlight {
-    color: rgb(255, 255, 0);
+    color: #e30920;
     font-weight: bold;
 }
 
