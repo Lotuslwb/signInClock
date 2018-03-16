@@ -366,6 +366,7 @@ select {
     width: 140px;
     height: 186px;
     object-fit: cover;
+    border: 1px #ccc solid;
 }
 
 .start-banner {
