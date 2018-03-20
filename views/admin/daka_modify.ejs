@@ -161,7 +161,8 @@
     <% for (var i = 0; i < doc.articleList; i++) {
         winSrcList.push(doc.articleList[i].coverUrl);
     } %>
-    var winSrcList = '<%- winSrcList.join('***') %>'.split('***');
+    var winSrcList = '<%- winSrcList.toString('***') %>'.split('***');
+    var winSrcList = <%= doc.articleList; %>;
 
 </script>
 <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
