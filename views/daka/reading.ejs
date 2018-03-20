@@ -232,16 +232,16 @@
 
 
     if (type && type == 'read') {
-        //已打卡
+        console.log('已打卡');
         $('#case-3').addClass('active');
     } else if (!hasVoice) {
-        // 未打卡  无录音
+        console.log('未打卡,无录音');
         $('#case-1').addClass('active');
     } else if (nowFormatDate == bookDate) {
-        //有录音  未打卡  可以打卡
+        console.log('有录音,未打卡,可以打卡');
         $('#case-2').addClass('active');
     } else {
-        //有录音 未打卡 不能打卡
+        console.log('有录音,未打卡,不能打卡');
         $('#case-4').addClass('active');
     }
 
