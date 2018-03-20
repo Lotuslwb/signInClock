@@ -159,7 +159,7 @@
 
     <% var winSrcList = []; %>
     <% for (var i = 0; i < doc.articleList; i++) {
-        winSrcList.push(doc.articleList[i].coverUrl);
+        winSrcList.push(i);
     } %>
     var winSrcList = '<%- winSrcList.join('***') %>'.split('***');
     var winSrcList = '<%- winSrcList %>';
