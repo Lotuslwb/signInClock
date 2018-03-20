@@ -37,6 +37,10 @@
     .record-btn-list.active {
         display: block;
     }
+
+    .reading-page .record-btn-list .btn-item.btn-item-read {
+        display: block;
+    }
 </style>
 <div class="page main-page reading-page index-page active">
     <div class="date-box">
@@ -69,8 +73,53 @@
     </div>
 
     <div class="J-loadedbox" style="display: none;">
-        <!--type && type == 'read'  已打卡 -->
-        <div class="record-btn-list record-btn-list-new">
+
+        <!-- 无打卡 无录音 -->
+        <div class="record-btn-list record-btn-list-new" id="case-1">
+            <div class="record-btn btn-item btn-item-read">
+                <div class="J-record-btn game_time">
+                    <div class="hold">
+                        <div class="pie pie1"></div>
+                    </div>
+                    <div class="hold">
+                        <div class="pie pie2"></div>
+                    </div>
+                    <div class="bg"></div>
+                    <div class="time"><img src="/daka/img/V2/recodeicon.png" class="record-icon"></div>
+                </div>
+                <div class="record-status J-record-status J-record-status2">点击录制</div>
+                <div>可以选择你喜欢的一段进行录音</div>
+            </div>
+        </div>
+
+        <!-- 有录音 && 可以继续打卡 -->
+        <div class="record-btn-list record-btn-list-new" id="case-2">
+            <div class="playRecord-btn btn-item btn-item2 btn-item-read">
+                <div class="J-playRecord-btn game_time">
+                    <div class="hold">
+                        <div class="pie pie1"></div>
+                    </div>
+                    <div class="hold">
+                        <div class="pie pie2"></div>
+                    </div>
+                    <div class="bg"></div>
+                    <div class="time"><img src="/daka/img/V2/replayicon.png" class="record-icon"></div>
+                </div>
+                <div class="record-status J-playRecord-text">回放</div>
+            </div>
+            <div class="againRecord-btn btn-item btn-item2 btn-item-read">
+                <img src="/daka/img/V2/recodeicon.png" class="record-icon J-againRecord-btn">
+                <div class="record-status J-record-status">重录</div>
+            </div>
+            <div class="gotoDaka-btn btn-item btn-item2 btn-item-read">
+                <img src="../../../../daka/img/V2/gotoDakaIcon.png" class="record-icon J-gotoDaka-btn">
+                <div class="record-status gotoDaka-btn-text"></div>
+            </div>
+        </div>
+
+
+        <!-- type && type == 'read'  已打卡 -->
+        <div class="record-btn-list record-btn-list-new" id="case-3">
             <div class="btn-item btn-item-read">
                 <div class="J-playRecord-btn game_time">
                     <div class="hold">
@@ -103,26 +152,9 @@
             </div>
         </div>
 
-        <!-- 未打卡 无录音 -->
-        <div class="record-btn-list record-btn-list-new">
-            <div class="record-btn btn-item btn-item-read">
-                <div class="J-record-btn game_time">
-                    <div class="hold">
-                        <div class="pie pie1"></div>
-                    </div>
-                    <div class="hold">
-                        <div class="pie pie2"></div>
-                    </div>
-                    <div class="bg"></div>
-                    <div class="time"><img src="/daka/img/V2/recodeicon.png" class="record-icon"></div>
-                </div>
-                <div class="record-status J-record-status J-record-status2">点击录制</div>
-                <div>可以选择你喜欢的一段进行录音</div>
-            </div>
-        </div>
 
-        <!-- 未打卡 有录音 -->
-        <div class="record-btn-list record-btn-list-new">
+        <!-- 未打卡 有录音 && 不能再打卡 -->
+        <div class="record-btn-list record-btn-list-new" id="case-4">
             <div class="playRecord-btn btn-item btn-item2 btn-item-read">
                 <div class="J-playRecord-btn game_time">
                     <div class="hold">
@@ -140,7 +172,7 @@
                 <img src="/daka/img/V2/recodeicon.png" class="record-icon J-againRecord-btn">
                 <div class="record-status J-record-status">重录</div>
             </div>
-            <div class="gotoShare-btn btn-item btn-item-read <%= !hasVoice ? 'z-hide' : '' %>">
+            <div class="gotoShare-btn btn-item btn-item-read">
                 <img src="/daka/img/V2/shareicon.png" class="record-icon J-share-btn">
                 <div class="record-status">分享</div>
             </div>
@@ -179,6 +211,8 @@
     var now = "<%= now %>";
     initFloatDate(now);
 
+    var nowFormatDate = getFormatDate(now);
+
     var hasVoice =<%- hasVoice %>;
     var bookId = '<%= bookInfo._id %>';
     var bookName = '<%= bookInfo.articleTitle %>';
@@ -197,6 +231,19 @@
     %>
 
 
+    if (type && type == 'read') {
+        //已打卡
+        $('#case-3').addClass('active');
+    } else if (!hasVoice) {
+        // 未打卡  无录音
+        $('#case-1').addClass('active');
+    } else if (nowFormatDate == bookDate) {
+        //有录音  未打卡  可以打卡
+        $('#case-2').addClass('active');
+    } else {
+        //有录音 未打卡 不能打卡
+        $('#case-4').addClass('active');
+    }
 
 
     var recordLocalId = "<%= currentReadingInfo && currentReadingInfo['recordLocalId'] %>", recordServerId = "<%= currentReadingInfo && currentReadingInfo['recordServerId'] %>";
@@ -239,6 +286,18 @@
         $('.gotoDaka-btn-text').text('保存录音');
     } else {
         $('.gotoDaka-btn-text').text('去打卡');
+    }
+
+    function getFormatDate(date) {
+        var now = date;
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+
+        month = month <= 9 ? ('0' + month) : ('' + month);
+        day = day <= 9 ? ('0' + day) : ('' + day);
+
+        return year + month + day;
     }
 
 
