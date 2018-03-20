@@ -131,6 +131,7 @@ obj.prototype = {
                 });
                 var editor = me.editorList[index];
                 var coverUrl = me.srcList[index];
+                debugger;
                 dataItem['articleText'] = editor.txt.html();
                 dataItem['wordLength'] = editor.txt.text().split(' ').length;
                 dataItem['coverUrl'] = coverUrl;

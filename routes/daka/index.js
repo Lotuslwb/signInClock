@@ -138,7 +138,8 @@ router.get('/reading', function (req, res, next) {
                 var UserInfo = docs[0];
                 getBookInfoById(id, function (docs) {
                     var doc = docs[0];
-                    var index = level;
+
+                    var index = level >= doc['articleList'].length - 1 ? doc['articleList'].length - 1 : level;
                     var bookInfo = doc['articleList'][index];
                     var bookDate = doc['articleDate'];
                     bookInfo._id = doc._id;

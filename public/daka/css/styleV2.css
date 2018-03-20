@@ -163,6 +163,7 @@ select {
     height: 312px;
     background-color: rgb(191, 191, 191);
     display: inline-block;
+    margin-left: 12px;
 }
 
 .index-page .reading-info {
