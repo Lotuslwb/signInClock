@@ -211,6 +211,7 @@
     } else if (canRead) {
         console.log('有录音,未打卡,可以打卡');
         $('#case-2').addClass('active');
+        (hasRead || !canRead) ? $('.gotoDaka-btn-text').text('保存录音') : $('.gotoDaka-btn-text').text('去打卡');
     } else {
         console.log('有录音,未打卡,不能打卡');
         $('#case-4').addClass('active');
@@ -348,6 +349,7 @@
                 $('.J-record-status:not(".J-record-status2")').html('重录');
                 $('.J-record-status2').html('点击录制');
                 $('#case-2').addClass('active').siblings('.record-btn-list').removeClass('active');
+                (hasRead || !canRead) ? $('.gotoDaka-btn-text').text('保存录音') : $('.gotoDaka-btn-text').text('去打卡');
             } else {
                 wx.startRecord();
                 $(this).addClass('active');
