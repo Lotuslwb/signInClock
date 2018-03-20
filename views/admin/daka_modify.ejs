@@ -157,6 +157,12 @@
 
     var id = '<%- doc._id %>';
 
+    <% var winSrcList = []; %>
+    <% for (var i = 0; i < doc.articleList; i++) {
+        winSrcList.push(doc.articleList[i].coverUrl);
+    } %>
+    var winSrcList = '<%- winSrcList.join('***') %>'.split('***');
+
 </script>
 <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
 <script src="http://g.alicdn.com/bui/bui/1.1.21/config.js"></script>

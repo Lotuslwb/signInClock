@@ -82,7 +82,7 @@ obj.prototype = {
                     dataItem[name] = val;
                 });
                 var editor = me.editorList[index];
-                var coverUrl = me.srcList[index];
+                var coverUrl = winSrcList[index];
                 dataItem['articleText'] = editor.txt.html();
                 dataItem['wordLength'] = editor.txt.text().split(' ').length;
                 dataItem['coverUrl'] = coverUrl;
