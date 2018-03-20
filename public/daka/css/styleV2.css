@@ -110,6 +110,7 @@ select {
     width: 584px;
     margin: auto;
     background: #fff;
+    padding-bottom: 30px;
 }
 
 .index-page .index-words-cn {
@@ -367,6 +368,7 @@ select {
     height: 186px;
     object-fit: cover;
     border: 1px #ccc solid;
+
 }
 
 .start-banner {
@@ -1270,6 +1272,8 @@ select {
     background: red;
     color: #ffffff;
     line-height: 50px;
+    position: absolute;
+    width: 100%;
 }
 
 .medal-detail-qcode {
