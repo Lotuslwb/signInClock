@@ -289,7 +289,7 @@
     }
 
     function getFormatDate(date) {
-        var now = date;
+        var now = new Date(date);
         var year = now.getFullYear();
         var month = now.getMonth() + 1;
         var day = now.getDate();
