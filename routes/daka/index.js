@@ -139,24 +139,23 @@ router.get('/reading', function (req, res, next) {
                 getBookInfoById(id, function (docs) {
                     var doc = docs[0];
                     var index = level;
-                    console.log(index);
-                    console.log(doc);
                     var bookInfo = doc['articleList'][index];
                     var bookDate = doc['articleDate'];
                     bookInfo._id = doc._id;
 
                     var readingInfo = UserInfo['readingInfo'];
+                    var recodeTimeArray = UserInfo['recodeInfo']['recodeTimeArray'];
                     var timeIdList = readingInfo.map(function (item) {
                         return item.readingTimeId;
                     });
                     var timeId = bookDate.split('-').join('');
-                    var index = timeIdList.indexOf(timeId);
-                    var hasVoice = index >= 0 ? true : false;
+                    var hasVoice = timeIdList.indexOf(timeId) >= 0 ? true : false;
+                    var hasRead = recodeTimeArray.indexOf(timeId) >= 0 ? true : false;
 
                     res.render('daka/reading', {
                         title: 'index', bookDate: bookDate,
                         bookInfo: bookInfo, now: new Date(), level: level, type: type,
-                        UserInfo: UserInfo, hasVoice: hasVoice,
+                        UserInfo: UserInfo, hasVoice: hasVoice, hasRead: hasRead
                     });
                 });
             })

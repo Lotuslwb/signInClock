@@ -189,6 +189,7 @@
     var level = '<%= level %>';
     var bookDate = '<%= bookDate.split('-').join('') %>';
     var type = '<%= type %>';
+    var hasRead = '<%= hasRead %>';
 
 
     <%
@@ -200,7 +201,7 @@
     %>
 
 
-    if (type && type == 'read') {
+    if (hasRead) {
         console.log('已打卡');
         $('#case-3').addClass('active');
     } else if (!hasVoice) {
