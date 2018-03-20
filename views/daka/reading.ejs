@@ -100,14 +100,7 @@
         <div class="record-btn-list record-btn-list-new" id="case-2">
             <div class="playRecord-btn btn-item btn-item2 btn-item-read">
                 <div class="J-playRecord-btn game_time">
-                    <div class="hold">
-                        <div class="pie pie1"></div>
-                    </div>
-                    <div class="hold">
-                        <div class="pie pie2"></div>
-                    </div>
-                    <div class="bg"></div>
-                    <div class="time"><img src="/daka/img/V2/replayicon.png" class="record-icon"></div>
+                    <img src="/daka/img/V2/replayicon.png" class="record-icon">
                 </div>
                 <div class="record-status J-playRecord-text">回放</div>
             </div>
@@ -126,27 +119,13 @@
         <div class="record-btn-list record-btn-list-new" id="case-3">
             <div class="btn-item btn-item-read">
                 <div class="J-playRecord-btn game_time">
-                    <div class="hold">
-                        <div class="pie pie1"></div>
-                    </div>
-                    <div class="hold">
-                        <div class="pie pie2"></div>
-                    </div>
-                    <div class="bg"></div>
-                    <div class="time"><img src="/daka/img/V2/replayicon.png" class="record-icon"></div>
+                    <img src="/daka/img/V2/replayicon.png" class="record-icon">
                 </div>
                 <div class="record-status J-playRecord-text">回放</div>
             </div>
             <div class="btn-item btn-item-read">
                 <div class="J-record-btn2 game_time">
-                    <div class="hold">
-                        <div class="pie pie1"></div>
-                    </div>
-                    <div class="hold">
-                        <div class="pie pie2"></div>
-                    </div>
-                    <div class="bg"></div>
-                    <div class="time"><img src="/daka/img/V2/recodeicon.png" class="record-icon"></div>
+                    <img src="/daka/img/V2/recodeicon.png" class="record-icon">
                 </div>
                 <div class="record-status J-record-status">重录</div>
             </div>
@@ -161,14 +140,7 @@
         <div class="record-btn-list record-btn-list-new" id="case-4">
             <div class="playRecord-btn btn-item btn-item2 btn-item-read">
                 <div class="J-playRecord-btn game_time">
-                    <div class="hold">
-                        <div class="pie pie1"></div>
-                    </div>
-                    <div class="hold">
-                        <div class="pie pie2"></div>
-                    </div>
-                    <div class="bg"></div>
-                    <div class="time"><img src="/daka/img/V2/replayicon.png" class="record-icon"></div>
+                    <img src="/daka/img/V2/replayicon.png" class="record-icon">
                 </div>
                 <div class="record-status J-playRecord-text">回放</div>
             </div>
@@ -279,7 +251,7 @@
 
     function recordStop(res) {
         localId = res.localId;
-        $('.record-btn-list').addClass('active');
+//        $('.record-btn-list').addClass('active');
         countStop();
     }
 
@@ -717,6 +689,7 @@
     showTime();
 
     var countDown = function () {
+        return false;
         //80*80px 时间进度条
         i = 0;
         j = 0;
@@ -736,6 +709,7 @@
     }
 
     var countStop = function () {
+        return false;
         clearInterval(s);
         clearInterval(t1);
         $(".pie1").css("-webkit-transform", "rotate(0deg)");
