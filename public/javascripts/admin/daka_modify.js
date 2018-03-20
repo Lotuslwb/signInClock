@@ -86,6 +86,7 @@ obj.prototype = {
                 dataItem['articleText'] = editor.txt.html();
                 dataItem['wordLength'] = editor.txt.text().split(' ').length;
                 dataItem['coverUrl'] = coverUrl;
+                debugger;
                 data.push(dataItem);
 
             });
