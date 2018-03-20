@@ -25,6 +25,7 @@ obj.prototype = {
         var E = window.wangEditor;
         var levelCount = $('.levelCount').val();
 
+        me.editorList = [];
         $('#J_Form .J-articlePart').each(function (index, item) {
             var $editor = $(this).find('.editor');
             var id = 'editor-part' + index;
@@ -36,6 +37,7 @@ obj.prototype = {
     },
     initUploader: function (me) {
         var $UploaderBox = $('#J_Form .J_Uploader_box');
+        me.srcList = [];
         $UploaderBox.each(function (index, item) {
             initUploader($(this), 'part-' + index);
         });
