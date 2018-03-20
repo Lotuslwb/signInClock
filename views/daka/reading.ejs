@@ -385,6 +385,7 @@
                 });
                 $('.J-record-status:not(".J-record-status2")').html('重录');
                 $('.J-record-status2').html('点击录制');
+                $('#case-2').addClass('active').siblings('.record-btn-list').removeClass('active');
             } else {
                 wx.startRecord();
                 $(this).addClass('active');
