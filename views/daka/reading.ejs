@@ -419,10 +419,7 @@
             });
             $('.J-playRecord-text').text('回放');
             $('.J-record-status').text('点击录音');
-            $('.record-btn-list').removeClass('active');
-            $(this).parent().siblings('.gotoDaka-btn').removeClass('z-hide');
-            $(this).parent().siblings('.gotoShare-btn').addClass('z-hide');
-
+            $('#case-1').addClass('active').siblings('.record-btn-list').removeClass('active');
         })
 
         //打卡
