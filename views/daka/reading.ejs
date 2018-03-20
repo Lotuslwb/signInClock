@@ -103,7 +103,7 @@
             </div>
             <div class="gotoDaka-btn btn-item btn-item2 btn-item-read">
                 <img src="../../../../daka/img/V2/gotoDakaIcon.png" class="record-icon J-gotoDaka-btn">
-                <div class="record-status gotoDaka-btn-text"></div>
+                <div class="record-status gotoDaka-btn-text">去打卡</div>
             </div>
         </div>
 
@@ -249,13 +249,6 @@
     }
 
     var timeInLocal = localStorage.getItem('time');
-    var now = returnDateStr(new Date());
-    if (timeInLocal == now || (type == 'unread' && bookDate != now )) {
-        //今日已经打卡
-        $('.gotoDaka-btn-text').text('保存录音');
-    } else {
-        $('.gotoDaka-btn-text').text('去打卡');
-    }
 
     function getFormatDate(date) {
         var now = new Date(date);
@@ -426,7 +419,7 @@
 
         })
 
-        //打卡||保存录音
+        //打卡
         $('.J-gotoDaka-btn').click(function () {
 
             var timeInLocal = localStorage.getItem('time');
@@ -441,70 +434,70 @@
                 localId: localId
             });
             $('.J-playRecord-text').text('回放');
-            if (timeInLocal == now || (type == 'unread' && bookDate != now)) {
-                //今日已经打卡
-                wx.uploadVoice({
-                    localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
-                    isShowProgressTips: 1, // 默认为1，显示进度提示
-                    success: function (res) {
-                        var serverId = res.serverId; // 返回音频的服务器端ID
-                        saveVoice({
-                            serverId: serverId,
-                            bookDes: bookDes,
-                            bookId: bookId,
-                            bookName: bookName,
-                            bookCover: bookCover,
-                            wordLength: wordLength,
-                            timeId: bookDate,
-                            level: level
-                        }, function (data) {
-                            console.log(data);
-                            showAlert({
-                                title: "保存成功",
+            //今日已经打卡
+            wx.uploadVoice({
+                localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                    var serverId = res.serverId; // 返回音频的服务器端ID
+                    saveVoice({
+                        serverId: serverId,
+                        bookDes: bookDes,
+                        bookId: bookId,
+                        bookName: bookName,
+                        bookCover: bookCover,
+                        wordLength: wordLength,
+                        timeId: bookDate,
+                        level: level
+                    }, function (data) {
+                        console.log(data);
+                        showAlert({
+                            title: "保存成功",
 //                                text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，<span class='heighlight'>2018英孚全球英语挑战赛</span>全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
-                                text: "赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 同时，<span class='heighlight'>2018致经典•出彩少年全国中小学英语挑战赛</span>也已全面启动，即日起至4月30日，扫描下方二维码，关注大赛微信公众号，挑选你喜爱的诗篇，上传英语诵读音频，即可报名参赛，赶快加入，与我们一起向经典致敬！",
-                                callback: function () {
-                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
-                                }
-                            });
-                        })
+                            text: "赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 同时，<span class='heighlight'>2018致经典•出彩少年全国中小学英语挑战赛</span>也已全面启动，即日起至4月30日，扫描下方二维码，关注大赛微信公众号，挑选你喜爱的诗篇，上传英语诵读音频，即可报名参赛，赶快加入，与我们一起向经典致敬！",
+                            callback: function () {
+                                window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
+                            }
+                        });
+                    })
 
-                    }
-                });
-            } else {
-                // 上传音频 和 打卡
+                }
+            });
 
-                _hmt.push(['_trackEvent', '打卡', '打卡']);
-
-                wx.uploadVoice({
-                    localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
-                    isShowProgressTips: 1, // 默认为1，显示进度提示
-                    success: function (res) {
-                        var serverId = res.serverId; // 返回音频的服务器端ID
-                        console.log(serverId);
-                        setSignIn({
-                            serverId: serverId,
-                            bookDes: bookDes,
-                            bookId: bookId,
-                            bookName: bookName,
-                            bookCover: bookCover,
-                            wordLength: wordLength,
-                            level: level,
-                        }, function (data) {
-                            console.log(data);
-                            localStorage.setItem('time', now);
-                            showAlert({
-                                title: "打卡成功",
-                                text: "赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 同时，<span class='heighlight'>2018致经典•出彩少年全国中小学英语挑战赛</span>也已全面启动，即日起至4月30日，扫描下方二维码，关注大赛微信公众号，挑选你喜爱的诗篇，上传英语诵读音频，即可报名参赛，赶快加入，与我们一起向经典致敬！",
-                                callback: function () {
-                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + now + '&level=' + level;
-                                }
-                            });
-                        })
-
-                    }
-                });
-            }
+//            {
+//                // 上传音频 和 打卡
+//
+//                _hmt.push(['_trackEvent', '打卡', '打卡']);
+//
+//                wx.uploadVoice({
+//                    localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+//                    isShowProgressTips: 1, // 默认为1，显示进度提示
+//                    success: function (res) {
+//                        var serverId = res.serverId; // 返回音频的服务器端ID
+//                        console.log(serverId);
+//                        setSignIn({
+//                            serverId: serverId,
+//                            bookDes: bookDes,
+//                            bookId: bookId,
+//                            bookName: bookName,
+//                            bookCover: bookCover,
+//                            wordLength: wordLength,
+//                            level: level,
+//                        }, function (data) {
+//                            console.log(data);
+//                            localStorage.setItem('time', now);
+//                            showAlert({
+//                                title: "打卡成功",
+//                                text: "赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 同时，<span class='heighlight'>2018致经典•出彩少年全国中小学英语挑战赛</span>也已全面启动，即日起至4月30日，扫描下方二维码，关注大赛微信公众号，挑选你喜爱的诗篇，上传英语诵读音频，即可报名参赛，赶快加入，与我们一起向经典致敬！",
+//                                callback: function () {
+//                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + now + '&level=' + level;
+//                                }
+//                            });
+//                        })
+//
+//                    }
+//                });
+//            }
         })
 
         wx.onVoiceRecordEnd({
@@ -559,8 +552,8 @@
         var month = date.getMonth() + 1;
         var day = date.getDate();
 
-        month = month < 9 ? ('0' + month) : ('' + month);
-        day = day < 9 ? ('0' + day) : ('' + day);
+        month = month <= 9 ? ('0' + month) : ('' + month);
+        day = day <= 9 ? ('0' + day) : ('' + day);
 
         return year + month + day;
     }
