@@ -1280,3 +1280,9 @@ select {
 .medal-detail-qcode {
     padding-top: 75px;
 }
+
+.alert-qcode {
+    display: block;
+    margin: auto;
+    padding-top: 15px;
+}
