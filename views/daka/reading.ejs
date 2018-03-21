@@ -409,12 +409,7 @@
         }
 
         //开始录音 或者结束录音
-
-        $('.record-icon').on('touchstart', function (e) {
-            e.preventDefault();
-        })
-
-
+        
         $('.J-record-btn').click(function (e) {
             audioElement.pause();
             if ($(this).hasClass('active')) {
