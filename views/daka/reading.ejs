@@ -336,6 +336,19 @@
         }
 
         //开始录音 或者结束录音
+
+        $('.J-record-btn').on('touchstart', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+        })
+
+        $('.J-record-btn2').on('touchstart', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+        })
+
         $('.J-record-btn').click(function (e) {
 
             e.stopPropagation();
