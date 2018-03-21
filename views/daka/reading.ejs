@@ -336,7 +336,11 @@
         }
 
         //开始录音 或者结束录音
-        $('.J-record-btn').click(function () {
+        $('.J-record-btn').click(function (e) {
+
+            e.stopPropagation();
+            e.preventDefault();
+
             audioElement.pause();
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
@@ -357,7 +361,11 @@
                 countDown();
             }
         })
-        $('.J-record-btn2').click(function () {
+        $('.J-record-btn2').click(function (e) {
+
+            e.stopPropagation();
+            e.preventDefault();
+
             audioElement.pause();
             $('.J-playRecord-text').text('回放');
 
@@ -386,14 +394,15 @@
                                     level: level
                                 }, function (data) {
                                     console.log(data);
-                                    showAlert({
-                                        title: "保存成功",
-//                                        text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，<span class='heighlight'>2018英孚全球英语挑战赛</span>全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
-                                        text: "赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 同时，<span class='heighlight'>2018致经典•出彩少年全国中小学英语挑战赛</span>也已全面启动，即日起至4月30日，扫描下方二维码，关注大赛微信公众号，挑选你喜爱的诗篇，上传英语诵读音频，即可报名参赛，赶快加入，与我们一起向经典致敬！<img class='alert-qcode' src='/daka/img/V2/alert-qcode.png'>",
-                                        callback: function () {
-                                            window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
-                                        }
-                                    });
+                                    toast('保存成功<br/>赶快分享到朋友圈，让更多朋友见证孩子的进步吧！');
+//                                    showAlert({
+//                                        title: "保存成功",
+////                                        text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，<span class='heighlight'>2018英孚全球英语挑战赛</span>全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
+//                                        text: "赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 同时，<span class='heighlight'>2018致经典•出彩少年全国中小学英语挑战赛</span>也已全面启动，即日起至4月30日，扫描下方二维码，关注大赛微信公众号，挑选你喜爱的诗篇，上传英语诵读音频，即可报名参赛，赶快加入，与我们一起向经典致敬！<img class='alert-qcode' src='/daka/img/V2/alert-qcode.png'>",
+//                                        callback: function () {
+//                                            window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
+//                                        }
+//                                    });
                                 })
 
                             }
@@ -457,14 +466,15 @@
                             level: level
                         }, function (data) {
                             console.log(data);
-                            showAlert({
-                                title: "保存成功",
-//                                text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，<span class='heighlight'>2018英孚全球英语挑战赛</span>全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
-                                text: "赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 同时，<span class='heighlight'>2018致经典•出彩少年全国中小学英语挑战赛</span>也已全面启动，即日起至4月30日，扫描下方二维码，关注大赛微信公众号，挑选你喜爱的诗篇，上传英语诵读音频，即可报名参赛，赶快加入，与我们一起向经典致敬！<img class='alert-qcode' src='/daka/img/V2/alert-qcode.png'>",
-                                callback: function () {
-                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
-                                }
-                            });
+                            toast('保存成功<br/>赶快分享到朋友圈，让更多朋友见证孩子的进步吧！');
+//                            showAlert({
+//                                title: "保存成功",
+////                                text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，<span class='heighlight'>2018英孚全球英语挑战赛</span>全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
+//                                text: "赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 同时，<span class='heighlight'>2018致经典•出彩少年全国中小学英语挑战赛</span>也已全面启动，即日起至4月30日，扫描下方二维码，关注大赛微信公众号，挑选你喜爱的诗篇，上传英语诵读音频，即可报名参赛，赶快加入，与我们一起向经典致敬！<img class='alert-qcode' src='/daka/img/V2/alert-qcode.png'>",
+//                                callback: function () {
+//                                    window.location.href = '/daka/result?bookId=' + bookId + '&readTime=' + bookDate + '&level=' + level;
+//                                }
+//                            });
                         })
 
                     }
