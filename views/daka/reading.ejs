@@ -410,13 +410,11 @@
 
         //开始录音 或者结束录音
 
-//        $('.J-record-btn').on('touchstart', function (e) {
-//            e.preventDefault();
-//        })
-//
-//        $('.J-record-btn2').on('touchstart', function (e) {
-//            e.preventDefault();
-//        })
+        $('.record-icon').on('touchstart', function (e) {
+            e.preventDefault();
+            return true;
+        })
+
 
         $('.J-record-btn').click(function (e) {
 
