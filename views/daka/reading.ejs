@@ -416,8 +416,7 @@
 
 
         $('.J-record-btn').click(function (e) {
-
-
+            e.stopPropagation();
             audioElement.pause();
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
