@@ -411,20 +411,17 @@
         //开始录音 或者结束录音
 
         $('.J-record-btn').on('touchstart', function (e) {
-            e.stopPropagation();
             e.preventDefault();
             return false;
         })
 
         $('.J-record-btn2').on('touchstart', function (e) {
-            e.stopPropagation();
             e.preventDefault();
             return false;
         })
 
         $('.J-record-btn').click(function (e) {
 
-            e.stopPropagation();
             e.preventDefault();
 
             audioElement.pause();
@@ -446,10 +443,10 @@
                 $('.J-record-status').html('录音中...<span class="J-time"></span>');
                 countDown();
             }
-        })
+        });
+
         $('.J-record-btn2').click(function (e) {
 
-            e.stopPropagation();
             e.preventDefault();
 
             audioElement.pause();
