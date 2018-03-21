@@ -878,7 +878,7 @@ select {
     top: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
-    padding: 55px 55px 160px 55px;
+    padding: 40px 55px 160px 55px;
     background: url("../img/V2/ui-alert-bg.png") no-repeat;
     background-size: 100% 100%;
     border-radius: 10px;
@@ -942,7 +942,7 @@ select {
     line-height: 1.6;
     font-size: 24px;
     color: #585858;
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 .ui-alert-text {
