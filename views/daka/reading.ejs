@@ -161,6 +161,73 @@
 <%- include("menu.ejs",{"type":''}) %>
 <%- include("commonjs.ejs") %>
 <script>
+    function initReadWXShare() {
+
+        var nickname = '<%= UserInfo['personInfo']['nickname'] %>';
+        var currentRecodeCounts = '<%= UserInfo['recodeInfo']['totalRecodeCounts'] || 0 %>';
+        var totalWordLength = ' <%= UserInfo['recodeInfo']['totalWordLength'] || 0 %>';
+        var bookId = '<%= bookInfo._id %>';
+        var userId = '<%= UserInfo._id %>';
+        var level = '<%= level %>';
+        var readTime = '<%= bookDate.split('-').join('') %>';
+
+        /***分享***/
+        var TimelineTitleList = [
+            '我家娃在【英孚亲子阅读】，快来听听TA的天籁之音，给TA支持吧！',
+            '我家娃在【英孚亲子阅读】，TA说今天的故事很有趣，想让你也听听！',
+            '我家娃在【英孚亲子阅读】又秀了英文，今天也很棒，等你来鉴定！',
+            '我家娃依然在【英孚亲子阅读】，今天有很大进步哟，你来听听！',
+            '我家娃还在【英孚亲子阅读】，TA说TA要坚持1000天，等你来监督！',
+            '我家娃在【英孚亲子阅读】读到停不下来！太有趣了，你一定要听听！',
+            '我家娃居然还在【英孚亲子阅读】，是怎么做到的呢？听听你就明白了~',
+            nickname + '在【英孚亲子英语阅读】的第' + currentRecodeCounts + '天，已读' + totalWordLength + '字，keep it up!'
+        ];
+        var TimelineTitle = currentRecodeCounts * 1 > 7 ? TimelineTitleList[7] : TimelineTitleList[currentRecodeCounts - 1];
+        var AppMessageTitleList = [
+            '我家娃秀英语啦，简直天籁，快给TA支持！',
+            '我家娃说今天的英语故事很有趣，想让你听听！',
+            '我家娃今天的英语也很棒，等你来鉴定！',
+            '我家娃今天的英语大有进步，你来听听！',
+            '我家娃说TA要坚持1000天，等你来监督！',
+            '我家娃读到停不下来！太有趣了，你一定要听听！',
+            '我家娃居然还在坚持英语阅读，是怎么做到的呢？',
+            nickname + "正在读《<%- bookInfo.articleTitle %>》"
+        ];
+        var AppMessageTitle = currentRecodeCounts * 1 > 7 ? AppMessageTitleList[7] : AppMessageTitleList[currentRecodeCounts - 1];
+
+        //“分享给朋友”
+        wx.onMenuShareAppMessage({
+            title: AppMessageTitle, // 分享标题
+            desc: '这是' + nickname + '在【英孚亲子阅读】的第' + currentRecodeCounts + '天，已经读了' + totalWordLength + '字！', // 分享描述
+            link: window.location.protocol + '//ma.eldesign.cn/daka/share?bookId=' + bookId + '&userId=' + userId + '&readTime=' + readTime + '&level=' + level, // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享给朋友']);
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //“分享到朋友圈”
+        wx.onMenuShareTimeline({
+            title: TimelineTitle, // 分享标题
+            link: window.location.protocol + '//ma.eldesign.cn/daka/share?bookId=' + bookId + '&userId=' + userId + '&readTime=' + readTime + '&level=' + level, // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    }
+</script>
+<script>
 
     $('.J-share-btn').click(function () {
         $('.overlay-share').show();
@@ -267,7 +334,13 @@
 
 
     initWX(function () {
-        initWXSahre();
+
+        if (!hasVoice && !hasRead) {
+            initWXSahre();
+        } else {
+            initReadWXShare();
+        }
+
 
         if (recordLocalId) {
             $('.J-loadedbox').show();
@@ -408,6 +481,7 @@
                                 }, function (data) {
                                     console.log(data);
                                     toast('保存成功<br/>赶快分享到朋友圈，让更多朋友见证孩子的进步吧！');
+                                    initReadWXShare();
 //                                    showAlert({
 //                                        title: "保存成功",
 ////                                        text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，<span class='heighlight'>2018英孚全球英语挑战赛</span>全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
@@ -480,6 +554,7 @@
                         }, function (data) {
                             console.log(data);
                             toast('保存成功<br/>赶快分享到朋友圈，让更多朋友见证孩子的进步吧！');
+                            initReadWXShare();
 //                            showAlert({
 //                                title: "保存成功",
 ////                                text: "录音保存成功！赶快分享到朋友圈，让更多朋友见证孩子的进步吧！<br/><br/> 还有一个好消息，<span class='heighlight'>2018英孚全球英语挑战赛</span>全面启动啦，即日起至4月30日，成功打卡即视为参加初赛，您可凭此截屏至就近英孚学校领取您的参赛证书，非英孚学员也可以领取证书哟！",
