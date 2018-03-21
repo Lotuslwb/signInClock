@@ -410,17 +410,16 @@
 
         //开始录音 或者结束录音
 
-        $('.J-record-btn').on('touchstart', function (e) {
-            e.preventDefault();
-        })
-
-        $('.J-record-btn2').on('touchstart', function (e) {
-            e.preventDefault();
-        })
+//        $('.J-record-btn').on('touchstart', function (e) {
+//            e.preventDefault();
+//        })
+//
+//        $('.J-record-btn2').on('touchstart', function (e) {
+//            e.preventDefault();
+//        })
 
         $('.J-record-btn').click(function (e) {
 
-            e.preventDefault();
 
             audioElement.pause();
             if ($(this).hasClass('active')) {
@@ -445,7 +444,6 @@
 
         $('.J-record-btn2').click(function (e) {
 
-            e.preventDefault();
 
             audioElement.pause();
             $('.J-playRecord-text').text('回放');
