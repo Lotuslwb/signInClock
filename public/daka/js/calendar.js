@@ -79,11 +79,12 @@
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
             var timeArray = self.opts.TimeArray;
+            var now = self.opts.now;
             var articleTime = self.opts.articleTime;
             var articleTimeList = articleTime.filter(function (item) {
                 return item * 1 > 1000 ? item * 1 : false;
             });
-            var today = returnDateStr(new Date()) * 1;
+            var today = returnDateStr(now) * 1;
             var maxTime = Math.max(...articleTimeList);
             var minTime = Math.min(...articleTimeList);
             console.log(maxTime, minTime);
