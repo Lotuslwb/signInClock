@@ -14,7 +14,7 @@
         <div class="personal-title setup-title">提醒时间：</div>
         <div class="setup-time">
             <select class="setup-select J-select-hours">
-                <% for(var i = 1;i <= 24;i++){ %>
+                <% for(var i = 0;i <= 23;i++){ %>
                 <option value="<%= i < 10 ? '0' + i : i %>"><%= i < 10 ? '0' + i : i %></option>
                 <% } %>
             </select>
