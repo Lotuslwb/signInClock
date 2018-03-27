@@ -79,7 +79,7 @@
             var dateStr = returnDateStr(dateObj.getDate());
             var firstDay = new Date(year, month - 1, 1); // 当前月的第一天
             var timeArray = self.opts.TimeArray;
-            var now = self.opts.now;
+            var now = new Date(self.opts.now);
             var articleTime = self.opts.articleTime;
             var articleTimeList = articleTime.filter(function (item) {
                 return item * 1 > 1000 ? item * 1 : false;
