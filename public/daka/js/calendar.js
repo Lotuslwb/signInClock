@@ -106,6 +106,7 @@
                 var allDay = new Date(year, month - 1, i + 1 - firstDay.getDay());
                 var allDay_str = returnDateStr(allDay);
                 $(this).text(allDay.getDate()).attr('data', allDay_str);
+                debugger;
                 if (returnDateStr(firstDay).substr(0, 6) === allDay_str.substr(0, 6)) {
                     //当前月
                     if ($.inArray(allDay_str + '', timeArray) >= 0 && allDay_str <= today) {
