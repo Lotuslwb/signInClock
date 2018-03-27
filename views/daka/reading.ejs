@@ -510,7 +510,7 @@
         $('.J-gotoDaka-btn').click(function () {
 
             var timeInLocal = localStorage.getItem('time');
-            var now = returnDateStr(now);
+            var now = returnDateStr(new Date(now));
 
             if (!localId) {
                 toast('请先录音');

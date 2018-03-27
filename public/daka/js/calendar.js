@@ -252,7 +252,6 @@
     })();
 
     function returnDateStr(date) { // 日期转字符串
-        debugger;
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var day = date.getDate();
