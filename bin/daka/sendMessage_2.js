@@ -47,6 +47,8 @@ schedule.scheduleJob(rule2, function () {
                 return openIdListTest.indexOf(item.openid) >= 0;
             })
 
+            console.log(openIdObjList, openIdObjList.length);
+
             var dataList = openIdObjList.map(function (item) {
                 openIdList.push(item.openid);
                 var level = item.level >= 0 ? item.level : 0;
