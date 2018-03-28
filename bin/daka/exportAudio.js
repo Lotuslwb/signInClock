@@ -1,10 +1,27 @@
 // 查询数据库
 var UserDB = require('../../module/DB/UserDB');
-var UserNameList = ['Wmm', 'Cherry', '「」jiang', '株株', 'AJack·GB', '吴晓静', 'Catherine', '冰清', 'izumi', 'Alicia', 'nicole', '咕哩咕哩', '懿', '疏影横斜', 'Luluzhuo', '红英落秋', '王卉', 'lika', 'penny', 'Emma', 'tony'];
+var UserOpenIdList = [
+    "oKdUIuGB97gFcBHSn7T-zmKa-p8M",
+    "oKdUIuL0FV8avA37RVYHeAU13NNI",
+    "oKdUIuCStz-Xo_kMxwGWZgDK7Fx8",
+    "oKdUIuNSOeNEzm3QYEwCpwo6yajY",
+    "oKdUIuETiycJkPtvKGDIzW6Ze8Gc",
+    "oKdUIuI9J55-KrP4uLLJrd6XV5m4",
+    "oKdUIuGWivHa2d1wtx8ejZ7cXJ1w",
+    "oKdUIuGC3_0GnzmH7oqktoK23dng",
+    "oKdUIuIa39WqzSgoh84c0Xr2wR1s",
+    "oKdUIuBRAkywnkxTAGtWLmGsZKbw",
+    "oKdUIuDGsoXKd29Ccu2wGn1tfv_E",
+    "oKdUIuOVpPGNaj_nBzORmTp_mvHQ",
+    "oKdUIuPWTy8WGHWzCEFSiqOkvySw",
+    "oKdUIuHlu6cQsYIXU8T96Gk6l26k",
+    "oKdUIuLQT2JdzWxQosCAbd5722iA",
+    "oKdUIuEHs3IMbA6dQH8K7CnG7tZs"];
 
-var taskList = UserNameList.map(function (nickname) {
-    return getPersonInfo(nickname).then(function (data) {
-        console.log(data.length, nickname);
+
+var taskList = UserOpenIdList.map(function (openid) {
+    return getPersonInfo(openid).then(function (data) {
+        console.log(data.length, openid);
     }).catch(function (e) {
         console.log(e);
     });
@@ -17,8 +34,8 @@ Promise.all(taskList).then(function () {
 });
 
 
-function getPersonInfo(nickname) {
-    return UserDB.User.find({'personInfo.nickname': eval("/" + nickname + "/")}, {
+function getPersonInfo(openid) {
+    return UserDB.User.find({'openid': openid}, {
         'openid': 1,
         'personInfo': 1,
         'readingInfo': 1,
