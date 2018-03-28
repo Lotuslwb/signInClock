@@ -12,7 +12,7 @@ UserNameList.map(function (nickname) {
 
 
 function getPersonInfo(nickname) {
-    return UserDB.User.find({'personInfo.nickname': eval("/" + nickname + "/i")}, {
+    return UserDB.User.find({'personInfo.nickname': eval("^/" + nickname + "/i")}, {
         'openid': 1,
         'personInfo': 1,
         'readingInfo': 1,
