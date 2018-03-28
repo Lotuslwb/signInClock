@@ -12,11 +12,12 @@ UserNameList.map(function (nickname) {
 
 
 function getPersonInfo(nickname) {
-    return UserDB.User.find({'personInfo.nickname': /^nickname/}, {
+    return UserDB.User.find({'personInfo.nickname': eval('^/' + nickname + '/')}, {
         'openid': 1,
         'personInfo': 1,
         'readingInfo': 1,
     }).then(function (docs) {
+        console.log(docs)
         var personInfo = docs.personInfo;
         var recordIdList = docs.readingInfo.map(function (item) {
             return item.recordLocalId;
