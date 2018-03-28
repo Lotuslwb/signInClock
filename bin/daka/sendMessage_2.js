@@ -44,7 +44,7 @@ schedule.scheduleJob(rule2, function () {
             console.log('openIdObjList', openIdObjList.length);
 
             var openIdList = [];
-            var openIdListTest = ['oKdUIuKS96bqWMgOkm7TSbqelrOo', 'oKdUIuMWmw_mpwWUqOoqUD-syUhU', 'oKdUIuHCbs97GlnTte7V6Yj_IG34', 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA', 'oKdUIuI3-EXqi4WpPb_u3q0y6j9g', 'oKdUIuKdYE7mmw7tGSDvrLKcsUTA', 'oKdUIuI2BOnHiphA8wcL8-Y2K3us', 'oKdUIuJhuKzfKC9ltNhMGB_bOVsg', 'oKdUIuOX0B6olUPIr_iv0xCKdMFM'];
+            var openIdListTest = ['oKdUIuNprsKFLBcBRZ0R3pj8aYR8', 'oKdUIuKS96bqWMgOkm7TSbqelrOo', 'oKdUIuMWmw_mpwWUqOoqUD-syUhU', 'oKdUIuHCbs97GlnTte7V6Yj_IG34', 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA', 'oKdUIuI3-EXqi4WpPb_u3q0y6j9g', 'oKdUIuKdYE7mmw7tGSDvrLKcsUTA', 'oKdUIuI2BOnHiphA8wcL8-Y2K3us', 'oKdUIuJhuKzfKC9ltNhMGB_bOVsg', 'oKdUIuOX0B6olUPIr_iv0xCKdMFM'];
             var openIdObjList = openIdObjList.filter(function (item) {
                 return openIdListTest.indexOf(item.openid) >= 0;
             })
