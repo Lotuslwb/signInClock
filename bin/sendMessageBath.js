@@ -27,7 +27,7 @@ module.exports = function (openIdList, DataList) {
                 if (response.body.errcode == '0') {
                     successCount++;
                     console.log('openid:' + openid + ' has sent success!');
-                    console.log(`--- send: ${index - 1}, successCount: ${successCount}条---`);
+                    console.log(`--- send: ${index}, successCount: ${successCount}条---`);
                 } else {
                     console.log(response.body, 'sent error');
                 }

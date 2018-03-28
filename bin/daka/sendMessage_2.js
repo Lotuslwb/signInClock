@@ -41,55 +41,54 @@ schedule.scheduleJob(rule2, function () {
     var now_date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日 ' + now.getHours() + ':' + (now.getMinutes() > 9 ? now.getMinutes() : '0' + now.getMinutes());
     getBookInfoById(bookId, function (docs) {
         getOpenIdObjList(function (openIdObjList) {
+            console.log('openIdObjList', openIdObjList.length);
+
             var openIdList = [];
             var openIdListTest = ['oKdUIuKS96bqWMgOkm7TSbqelrOo', 'oKdUIuMWmw_mpwWUqOoqUD-syUhU', 'oKdUIuHCbs97GlnTte7V6Yj_IG34', 'oKdUIuDXWO5Ek3IswpcRvESoOUVI', 'oKdUIuGKA6IovcrP0ooeNA1_BUFA', 'oKdUIuI3-EXqi4WpPb_u3q0y6j9g', 'oKdUIuKdYE7mmw7tGSDvrLKcsUTA', 'oKdUIuI2BOnHiphA8wcL8-Y2K3us', 'oKdUIuJhuKzfKC9ltNhMGB_bOVsg', 'oKdUIuOX0B6olUPIr_iv0xCKdMFM'];
             var openIdObjList = openIdObjList.filter(function (item) {
                 return openIdListTest.indexOf(item.openid) >= 0;
             })
 
-            console.log(openIdObjList, openIdObjList.length);
+            console.log('openIdObjList', openIdObjList.length);
 
-            if (openIdObjList.length <= 0) {
-                return false;
-            }
-
-            var dataList = openIdObjList.map(function (item) {
-                openIdList.push(item.openid);
-                var level = item.level >= 0 ? item.level : 0;
-                var bookName = '';
-                try {
-                    bookName = docs[0]['articleList'][level]['articleTitle'];
-                } catch (e) {
-                    console.log(e);
-                }
-                var newData = {
-                    "touser": item.openid,  //接收者openid
-                    "template_id": "puqokuG4Mn2TSNOpxif5NcRf5sNgNw_7fMK37fjN91o", //模板ID
-                    "url": "https://ma.eldesign.cn/daka/index",
-                    "data": {
-                        "first": {
-                            "value": item.personInfo['nickname'] + '，今天的阅读已经准备好了，会是什么有趣的故事呢？',
-                            "color": "#173177"
-                        },
-                        "keyword1": {
-                            "value": bookName,
-                            "color": "#173177"
-                        },
-                        "keyword2": {
-                            "value": now_date,
-                            "color": "#173177"
-                        },
-                        "remark": {
-                            "value": "第二期英孚亲子英语阅读打卡开始啦，全新系统增加分级阅读和回顾往期功能！听上去是不是很棒？赶紧来参加吧！",
-                            "color": "#173177"
-                        }
+            if (openIdObjList.length > 0) {
+                var dataList = openIdObjList.map(function (item) {
+                    openIdList.push(item.openid);
+                    var level = item.level >= 0 ? item.level : 0;
+                    var bookName = '';
+                    try {
+                        bookName = docs[0]['articleList'][level]['articleTitle'];
+                    } catch (e) {
+                        console.log(e);
                     }
-                };
-                console.log(item['personInfo']['nickname'] + ' isReady send!!');
-                return newData;
-            });
-
-            sendMessageBath(openIdList, dataList);
+                    var newData = {
+                        "touser": item.openid,  //接收者openid
+                        "template_id": "puqokuG4Mn2TSNOpxif5NcRf5sNgNw_7fMK37fjN91o", //模板ID
+                        "url": "https://ma.eldesign.cn/daka/index",
+                        "data": {
+                            "first": {
+                                "value": item.personInfo['nickname'] + '，今天的阅读已经准备好了，会是什么有趣的故事呢？',
+                                "color": "#173177"
+                            },
+                            "keyword1": {
+                                "value": bookName,
+                                "color": "#173177"
+                            },
+                            "keyword2": {
+                                "value": now_date,
+                                "color": "#173177"
+                            },
+                            "remark": {
+                                "value": "第二期英孚亲子英语阅读打卡开始啦，全新系统增加分级阅读和回顾往期功能！听上去是不是很棒？赶紧来参加吧！",
+                                "color": "#173177"
+                            }
+                        }
+                    };
+                    console.log(item['personInfo']['nickname'] + ' isReady send!!');
+                    return newData;
+                });
+                sendMessageBath(openIdList, dataList);
+            }
         });
     })
 });
