@@ -2,12 +2,18 @@
 var UserDB = require('../../module/DB/UserDB');
 var UserNameList = ['Wmm', 'Cherry', '「」jiang', '株株', 'AJack·GB', '吴晓静', 'Catherine', '冰清', 'izumi', 'Alicia', 'nicole', '咕哩咕哩', '懿', '疏影横斜', 'Luluzhuo', '红英落秋', '王卉', 'lika', 'penny', 'Emma', 'tony'];
 
-UserNameList.map(function (nickname) {
-    getPersonInfo(nickname).then(function (data) {
+var taskList = UserNameList.map(function (nickname) {
+    return getPersonInfo(nickname).then(function (data) {
         console.log(data);
     }).catch(function (e) {
         console.log(e);
-    })
+    });
+});
+
+Promise.all(taskList).then(function () {
+    console.log('finish');
+}).catch(function (e) {
+    console.log(e);
 });
 
 
