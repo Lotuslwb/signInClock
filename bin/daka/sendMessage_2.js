@@ -49,6 +49,10 @@ schedule.scheduleJob(rule2, function () {
 
             console.log(openIdObjList, openIdObjList.length);
 
+            if (openIdObjList.length <= 0) {
+                return false;
+            }
+
             var dataList = openIdObjList.map(function (item) {
                 openIdList.push(item.openid);
                 var level = item.level >= 0 ? item.level : 0;
