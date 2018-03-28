@@ -4,7 +4,7 @@ var UserNameList = ['Wmm', 'Cherry', '「」jiang', '株株', 'AJack·GB', '吴�
 
 var taskList = UserNameList.map(function (nickname) {
     return getPersonInfo(nickname).then(function (data) {
-        console.log(data);
+        console.log(data.length, nickname);
     }).catch(function (e) {
         console.log(e);
     });
