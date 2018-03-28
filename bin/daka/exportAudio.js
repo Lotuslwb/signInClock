@@ -27,6 +27,8 @@ function getPersonInfo(nickname) {
             var personInfo = doc.personInfo;
             var recordIdList = doc.readingInfo.map(function (item) {
                 return item.recordLocalId;
+            }).filter(function (item) {
+                return item.length > 0;
             });
             return {
                 nickname: personInfo.nickname,
