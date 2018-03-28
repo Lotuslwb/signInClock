@@ -31,7 +31,7 @@ function getPersonInfo(nickname) {
             return {
                 nickname: personInfo.nickname,
                 headimgurl: personInfo.headimgurl,
-                openid: openid,
+                openid: doc.openid,
                 recordIdList: recordIdList
             };
         })
