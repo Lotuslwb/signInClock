@@ -5,6 +5,8 @@ var UserNameList = ['Wmm', 'Cherry'];
 UserNameList.map(function (nickname) {
     getPersonInfo(nickname).then(function (data) {
         console.log(data);
+    }).catch(function (e) {
+        console.log(e);
     })
 });
 
