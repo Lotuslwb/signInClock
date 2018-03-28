@@ -37,7 +37,7 @@ function getPersonInfo(nickname) {
                 recordIdList: recordIdList
             };
         })
-        data.filter(function (item) {
+        data = data.filter(function (item) {
             return item.recordIdList.length > 0;
         })
         return data;
