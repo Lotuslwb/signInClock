@@ -90,9 +90,9 @@ function getMediaIdObjList(cb) {
             var mediaIdList = [];
             doc['readingInfo'].map(function (item, index) {
                 var timeString = item.readingTimeId.substr(0, 4) + '-' + item.readingTimeId.substr(4, 2) + '-' + item.readingTimeId.substr(6, 2);
-                var timeDate = new Date(timeString) * 1;
+                var timeDate = new Date(timeString);
 
-                if (timeDate < new Date() * 1 - 3 * 24 * 3600 * 1000) {
+                if (timeDate * 1 < new Date() * 1 - 3 * 24 * 3600 * 1000) {
                     return false;
                 }
 
