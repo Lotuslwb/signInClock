@@ -19,8 +19,9 @@ downloadVoice();
 
 
 function downloadVoice() {
+    console.log('runtime: ' + new Date());
     getMediaIdObjList().then(function (MediaIdObjList) {
-        
+
         // try {
         //     fs.unlinkSync('access_token.txt');
         // } catch (e) {
