@@ -21,14 +21,27 @@ var UserOpenIdList = [
 var fs = require('fs-extra');
 
 
-var taskList = UserOpenIdList.map(function (openid, index) {
-    fs.ensureDir('/root/exportAudio').then(()=> {
-        console.log('根目录准备好了')
-    }).catch(err => {
-        console.error(err)
-    });
-    return getPersonInfo(openid).then(function (data) {
+fs.ensureDir('/root/exportAudio').then(()=> {
+    console.log('根目录准备好了')
+}).catch(err => {
+    console.error(err)
+});
 
+var taskList = UserOpenIdList.map(function (openid, index) {
+    return getPersonInfo(openid).then(function (data) {
+        var dest = '/root/exportAudio/' + data.openid
+        fs.ensureDir(dest).then(()=> {
+            console.log('子目录准备好了');
+            return data.recordIdList.map((recordId, i)=> {
+                fs.copy(recordId, dest + '/' + data.recordTimeList[i] + '.mp3').then(()=> {
+                    console.log('成功复制:' + recordId)
+                }).catch(err => {
+                    console.error(err)
+                });
+            })
+        }).catch(err => {
+            console.error(err)
+        });
     }).catch(function (e) {
         console.log(e);
     });
