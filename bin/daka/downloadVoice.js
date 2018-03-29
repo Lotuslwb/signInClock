@@ -75,7 +75,7 @@ function downloadVoice() {
 
 function getMediaIdObjList(cb) {
 
-    return UserDB.User.find({'recodeInfo.totalRecodeCounts': {$gt: 0}}, {
+    return UserDB.User.find({'recodeInfo.totalRecodeCounts': {$gt: 0}, 'openid': 'oKdUIuCStz-Xo_kMxwGWZgDK7Fx8'}, {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
@@ -88,6 +88,7 @@ function getMediaIdObjList(cb) {
                 if (index <= doc['readingInfo'].length - 3) {
                     return false;
                 }
+                console.log('readingTimeId:' + item.readingTimeId);
                 //如果没有下载,即没有recordLocalId,则放入mediaIdList
                 if (item.recordLocalId.length <= 0) {
                     mediaIdList.push(item.recordServerId);
