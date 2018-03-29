@@ -19,8 +19,8 @@ var UserOpenIdList = [
     "oKdUIuEHs3IMbA6dQH8K7CnG7tZs"];
 
 
-var taskList = UserOpenIdList.map(function (openid) {
-    return getPersonInfo(openid).then(function (data, index) {
+var taskList = UserOpenIdList.map(function (openid, index) {
+    return getPersonInfo(openid).then(function (data) {
         if (index == 0) console.log(data, openid);
     }).catch(function (e) {
         console.log(e);
