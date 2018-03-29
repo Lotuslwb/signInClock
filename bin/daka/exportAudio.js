@@ -20,8 +20,8 @@ var UserOpenIdList = [
 
 
 var taskList = UserOpenIdList.map(function (openid) {
-    return getPersonInfo(openid).then(function (data) {
-        console.log(data.recordIdList[0], openid);
+    return getPersonInfo(openid).then(function (data, index) {
+        if (index == 0) console.log(data, openid);
     }).catch(function (e) {
         console.log(e);
     });
@@ -42,7 +42,9 @@ function getPersonInfo(openid) {
     }).then(function (docs) {
         var data = docs.map(function (doc) {
             var personInfo = doc.personInfo;
+            var recordTimeList = [];
             var recordIdList = doc.readingInfo.map(function (item) {
+                recordTimeList.push(item.readingTimeId);
                 return item.recordLocalId;
             }).filter(function (item) {
                 return item.length > 0;
@@ -51,7 +53,8 @@ function getPersonInfo(openid) {
                 nickname: personInfo.nickname,
                 headimgurl: personInfo.headimgurl,
                 openid: doc.openid,
-                recordIdList: recordIdList
+                recordIdList: recordIdList,
+                recordTimeList: recordTimeList
             };
         })
         data = data.filter(function (item) {
