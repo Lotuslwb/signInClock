@@ -21,7 +21,7 @@ var UserOpenIdList = [
 
 var taskList = UserOpenIdList.map(function (openid, index) {
     return getPersonInfo(openid).then(function (data) {
-        if (index == 0) console.log(data, openid);
+        if (index == 0) console.log(data.recordIdList.length, data.recordTimeList.length, openid);
     }).catch(function (e) {
         console.log(e);
     });
