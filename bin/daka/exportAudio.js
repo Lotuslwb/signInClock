@@ -18,10 +18,15 @@ var UserOpenIdList = [
     "oKdUIuLQT2JdzWxQosCAbd5722iA",
     "oKdUIuEHs3IMbA6dQH8K7CnG7tZs"];
 
+var fs = require('fs-extra');
+
 
 var taskList = UserOpenIdList.map(function (openid, index) {
+    fs.ensureDir('/root/exportAudio').catch(err => {
+        console.error(err)
+    });
     return getPersonInfo(openid).then(function (data) {
-        if (index == 0) console.log(data.recordIdList.length, data.recordTimeList.length, openid);
+
     }).catch(function (e) {
         console.log(e);
     });
@@ -47,7 +52,7 @@ function getPersonInfo(openid) {
             }).map(function (item) {
                 return item.readingTimeId;
             });
-            
+
             var recordIdList = doc.readingInfo.filter(function (item) {
                 return item.recordLocalId.length > 0;
             }).map(function (item) {
