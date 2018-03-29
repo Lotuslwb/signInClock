@@ -67,21 +67,26 @@ function downloadVoice() {
         }).catch(function (e) {
             console.log(e, '下载音频错误');
         });
+    }).catch(function (e) {
+        console.log(e);
     });
 }
 
 
 function getMediaIdObjList(cb) {
-    var MediaIdObjList = [];
 
     return UserDB.User.find({'recodeInfo.totalRecodeCounts': {$gt: 0}}, {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
+        var MediaIdObjList = [];
         //只考虑打过卡的用户
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = [];
-            doc['readingInfo'].map(function (item) {
+            doc['readingInfo'].map(function (item, index) {
+                if (index <= doc['readingInfo'].length - 3) {
+                    return false;
+                }
                 //如果没有下载,即没有recordLocalId,则放入mediaIdList
                 if (item.recordLocalId.length <= 0) {
                     mediaIdList.push(item.recordServerId);
