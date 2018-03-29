@@ -57,7 +57,7 @@ function getPersonInfo(openid) {
         data = data.filter(function (item) {
             return item.recordIdList.length > 0;
         })
-        return data;
+        return data[0];
     });
 }
 
