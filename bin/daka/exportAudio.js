@@ -42,9 +42,12 @@ function getPersonInfo(openid) {
     }).then(function (docs) {
         var data = docs.map(function (doc) {
             var personInfo = doc.personInfo;
-            var recordTimeList = [];
+            var recordTimeList = doc.readingInfo.map(function (item) {
+                return item.readingTimeId;
+            }).filter(function (item) {
+                return item.length > 0;
+            });
             var recordIdList = doc.readingInfo.map(function (item) {
-                recordTimeList.push(item.readingTimeId);
                 return item.recordLocalId;
             }).filter(function (item) {
                 return item.length > 0;
