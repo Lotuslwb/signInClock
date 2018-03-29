@@ -22,7 +22,9 @@ var fs = require('fs-extra');
 
 
 var taskList = UserOpenIdList.map(function (openid, index) {
-    fs.ensureDir('/root/exportAudio').catch(err => {
+    fs.ensureDir('/root/exportAudio').then(()=> {
+        console.log('根目录准备好了')
+    }).catch(err => {
         console.error(err)
     });
     return getPersonInfo(openid).then(function (data) {
