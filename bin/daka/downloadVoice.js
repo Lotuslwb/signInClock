@@ -19,12 +19,8 @@ downloadVoice();
 
 
 function downloadVoice() {
-    getMediaIdObjList(function (MediaIdObjList) {
-
-        if (MediaIdObjList.length > 40) {
-            MediaIdObjList = MediaIdObjList.splice(0, 40);
-        }
-
+    getMediaIdObjList().then(function (MediaIdObjList) {
+        
         // try {
         //     fs.unlinkSync('access_token.txt');
         // } catch (e) {
@@ -77,7 +73,7 @@ function downloadVoice() {
 function getMediaIdObjList(cb) {
     var MediaIdObjList = [];
 
-    UserDB.User.find({'recodeInfo.totalRecodeCounts': {$gt: 0}}, {
+    return UserDB.User.find({'recodeInfo.totalRecodeCounts': {$gt: 0}}, {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
@@ -99,8 +95,15 @@ function getMediaIdObjList(cb) {
         MediaIdObjList = MediaIdObjList.filter(function (item) {
             return item.mediaIdList.length > 0;
         })
+
+        if (MediaIdObjList.length > 40) {
+            MediaIdObjList = MediaIdObjList.splice(0, 40);
+        }
+
         console.log('todoCount:' + MediaIdObjList.length);
-        cb && cb(MediaIdObjList);
+
+
+        return MediaIdObjList;
     });
 }
 
