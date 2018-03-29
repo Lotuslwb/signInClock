@@ -75,25 +75,11 @@ function downloadVoice() {
 
 function getMediaIdObjList(cb) {
 
-    var UserOpenIdList = [
-        "oKdUIuGB97gFcBHSn7T-zmKa-p8M",
-        "oKdUIuL0FV8avA37RVYHeAU13NNI",
-        "oKdUIuCStz-Xo_kMxwGWZgDK7Fx8",
-        "oKdUIuNSOeNEzm3QYEwCpwo6yajY",
-        "oKdUIuETiycJkPtvKGDIzW6Ze8Gc",
-        "oKdUIuI9J55-KrP4uLLJrd6XV5m4",
-        "oKdUIuGWivHa2d1wtx8ejZ7cXJ1w",
-        "oKdUIuGC3_0GnzmH7oqktoK23dng",
-        "oKdUIuIa39WqzSgoh84c0Xr2wR1s",
-        "oKdUIuBRAkywnkxTAGtWLmGsZKbw",
-        "oKdUIuDGsoXKd29Ccu2wGn1tfv_E",
-        "oKdUIuOVpPGNaj_nBzORmTp_mvHQ",
-        "oKdUIuPWTy8WGHWzCEFSiqOkvySw",
-        "oKdUIuHlu6cQsYIXU8T96Gk6l26k",
-        "oKdUIuLQT2JdzWxQosCAbd5722iA",
-        "oKdUIuEHs3IMbA6dQH8K7CnG7tZs"];
 
-    return UserDB.User.find({'recodeInfo.totalRecodeCounts': {$gt: 0}, 'openid': {"$in": UserOpenIdList}}, {
+    return UserDB.User.find({
+        'recodeInfo.totalRecodeCounts': {$gt: 0},
+        'recodeInfo.lastRecodeTime': {$gt: new Date() * 1 - 3 * 24 * 3600 * 1000}
+    }, {
         'readingInfo': 1,
         'openid': 1,
     }).then(function (docs) {
