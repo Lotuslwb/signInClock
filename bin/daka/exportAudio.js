@@ -42,16 +42,18 @@ function getPersonInfo(openid) {
     }).then(function (docs) {
         var data = docs.map(function (doc) {
             var personInfo = doc.personInfo;
-            var recordTimeList = doc.readingInfo.map(function (item) {
+            var recordTimeList = doc.readingInfo.filter(function (item) {
+                return item.recordLocalId.length > 0;
+            }).map(function (item) {
                 return item.readingTimeId;
-            }).filter(function (item) {
-                return item.length > 0;
             });
-            var recordIdList = doc.readingInfo.map(function (item) {
+            
+            var recordIdList = doc.readingInfo.filter(function (item) {
+                return item.recordLocalId.length > 0;
+            }).map(function (item) {
                 return item.recordLocalId;
-            }).filter(function (item) {
-                return item.length > 0;
             });
+
             return {
                 nickname: personInfo.nickname,
                 headimgurl: personInfo.headimgurl,
