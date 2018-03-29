@@ -89,10 +89,14 @@ function getMediaIdObjList(cb) {
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = [];
             doc['readingInfo'].map(function (item, index) {
-                if (index <= doc['readingInfo'].length - 4) {
+                var timeString = item.readingTimeId.substr(0, 4) + '-' + item.readingTimeId.substr(4, 2) + '-' + item.readingTimeId.substr(6, 2);
+                var timeDate = new Date(timeString) * 1;
+
+                if (timeDate < new Date() * 1 - 3 * 24 * 3600 * 1000) {
                     return false;
                 }
-                console.log('readingTimeId:' + item.readingTimeId);
+
+                console.log('readingTimeId:' + timeDate.toDateString());
                 //如果没有下载,即没有recordLocalId,则放入mediaIdList
                 if (item.recordLocalId.length <= 0) {
                     mediaIdList.push(item.recordServerId);
