@@ -85,7 +85,7 @@ function getMediaIdObjList(cb) {
     }).then(function (docs) {
         var MediaIdObjList = [];
         //只考虑打过卡的用户
-        console.log('只考虑打过卡的用户');
+        console.log('只考虑打过卡的用户', docs.length);
         MediaIdObjList = docs.map(function (doc) {
             var mediaIdList = [];
             doc['readingInfo'].map(function (item, index) {
