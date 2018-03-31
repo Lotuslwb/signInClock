@@ -1176,23 +1176,27 @@ select {
 }
 
 .medal-detail-page .qcode-box {
-    margin-top: -40px;
+    margin-top: -55px;
+}
+
+.medal-detail-page .medal-detail-qcode {
+    width: 150px;
 }
 
 .medal-detail-page .qcode-text {
     font-size: 24px;
     text-align: center;
     color: #6e6f71;
-    margin-top: -38px;
+    margin-top: 10px;
 }
 
 .medal-detail-page .text {
-    font-size: 55px;
+    font-size: 45px;
     color: #eb008b;
     position: absolute;
     left: 316px;
-    top: 92px;
-    width: 130px;
+    top: 101px;
+    width: 134px;
     text-align: center;
 }
 
