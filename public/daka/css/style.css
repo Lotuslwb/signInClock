@@ -1181,6 +1181,7 @@ select {
 
 .medal-detail-page .medal-detail-qcode {
     width: 150px;
+    border-radius: 50%;
 }
 
 .medal-detail-page .qcode-text {
