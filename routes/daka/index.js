@@ -23,7 +23,7 @@ var log = require('../../module/tools/log');
 
 router.get('/info', function (req, res, next) {
     res.render('daka/info', {title: '开始打卡', now: new Date()});
-})
+});
 
 // router.get('/index', function (req, res, next) {
 //     res.render('daka/info', {title: '开始打卡', now: new Date()});
@@ -96,6 +96,17 @@ function checkOpenid(req, res, cb) {
     }
 }
 
+router.get('/medal_detail2', function (req, res, next) {
+    checkOpenid(req, res, function (openid) {
+        getUserInfoByOpenid(openid, function (docs) {
+            var doc = docs[0];
+            var days = doc && doc['recodeInfo']['currentRecodeCounts'] || 0;
+            var nickname = doc && doc['personInfo']['nickname'];
+            var headimgurl = doc && doc['personInfo']['headimgurl'];
+            res.render('daka/medal_detail2', {title: 'index', days: days, nickname: nickname, headimgurl: headimgurl});
+        })
+    });
+});
 
 router.get('/index_info', function (req, res, next) {
     checkOpenid(req, res, function (openid) {
