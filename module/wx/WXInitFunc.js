@@ -36,15 +36,11 @@ var WXInitFunc = function () {
                     {
                         "type": "view",
                         "name": "最新优惠",
-                        "url": "http://www.ef.com.cn/englishfirst/landing/mobilewinter17b?pid=c8cd260e2a5196a3675ac5f5b9aa9c3f&etag=EFCN_Wint17_KidsOwn-SNS-WeChat-Menu-Freecourse-testcn_mobilewinter17B"
+                        "url": "http://www.ef.com.cn/englishfirst/landing/mobilespring18c?pid=b707f6cdbcaa49748f4353fe77d9dfe4&etag=EFCN_Spring18_KidsOwn-SNS-Wechat-serviceaccount-menu-testcn_own_spring18C"
                     }, {
                         "type": "view",
                         "name": "预约免费活动课",
-                        "url": "http://www.ef.com.cn/englishfirst/landing/mobilelifeclub?ctr=cn&lng=cs&name=anna&pid=123&phone=110&etag=EFCN_Wint17_KidsOwn-SNS-WeChat-Nov-wclh"
-                    }, {
-                        "type": "view",
-                        "name": "你的名字也有故事",
-                        "url": "http://nametale.ef.com.cn/mobile/index.html?etag=EFCN_Wint18_KidsOwn-SNS-Nametale-WeChatbanner"
+                        "url": "http://www.ef.com.cn/englishfirst/landing/mobilelifeclub?ctr=cn&lng=cs&name=anna&pid=123&phone=110&etag=EFCN_Spr18_KidsOwn-SNS-WeChat-serviceaccount-April-wclh"
                     }, {
                         "type": "view",
                         "name": "往期精彩活动",
@@ -53,8 +49,8 @@ var WXInitFunc = function () {
                 ]
             }, {
                 "type": "view",
-                "name": "阅读打卡",
-                "url": "https://ma.eldesign.cn/daka/index"
+                "name": "火热夏令营",
+                "url": "http://mp.weixin.qq.com/mp/homepage?__biz=MjM5MDkyMTk5MQ==&hid=6&sn=88a6bfdc07a936f1f39a79e353292288#wechat_redirect"
             }]
     };
     api.createMenu(Menu, function (result) {
