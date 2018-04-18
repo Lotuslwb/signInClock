@@ -167,125 +167,125 @@
 </div>
 
 
-<!--<script>-->
-    <!--var number = 1;-->
-    <!--var $number = $('.number');-->
-    <!--var timer = setInterval(function () {-->
-        <!--number += Math.floor(2 * Math.random());-->
-        <!--if (number <= 100) {-->
-            <!--$number.text(number + '%');-->
-        <!--} else {-->
-            <!--clearInterval(timer);-->
-            <!--$('.video-page').addClass('active').siblings('.page').removeClass('active');-->
-        <!--}-->
-    <!--}, 1000 / 60)-->
+<script>
+    var number = 1;
+    var $number = $('.number');
+    var timer = setInterval(function () {
+        number += Math.floor(2 * Math.random());
+        if (number <= 100) {
+            $number.text(number + '%');
+        } else {
+            clearInterval(timer);
+            $('.video-page').addClass('active').siblings('.page').removeClass('active');
+        }
+    }, 1000 / 60)
 
-    <!--$('#video').get(0).load();-->
-
-
-    <!--var isIphone = navigator.userAgent.toLowerCase().indexOf('iphone') >= 0;-->
-    <!--var ld = vd = 0;-->
-
-    <!--$('#video').get(0).addEventListener('canplaythrough', function () {-->
-        <!--vd = 1;-->
-    <!--})-->
+    $('#video').get(0).load();
 
 
-    <!--$('#video').on('ended', function () {-->
-        <!--$('.result-page').addClass('active').siblings('.page').removeClass('active');-->
-    <!--})-->
+    var isIphone = navigator.userAgent.toLowerCase().indexOf('iphone') >= 0;
+    var ld = vd = 0;
+
+    $('#video').get(0).addEventListener('canplaythrough', function () {
+        vd = 1;
+    })
 
 
-    <!--$('#masker').on('touchend', function () {-->
-        <!--$('#masker').fadeOut();-->
-        <!--$('#video').get(0).play();-->
-    <!--})-->
+    $('#video').on('ended', function () {
+        $('.result-page').addClass('active').siblings('.page').removeClass('active');
+    })
 
 
-    <!--document.addEventListener('touchmove', function (e) {-->
-        <!--e.preventDefault();-->
-    <!--})-->
-<!--</script>-->
-<!--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
-<!--<script>-->
-    <!--function initWXSahre() {-->
-
-        <!--//“分享给朋友”-->
-        <!--wx.onMenuShareAppMessage({-->
-            <!--title: '11.11剁手的瞬间，接到了老王的来电……', // 分享标题-->
-            <!--desc: '又到又到11.11购物季！\n Young lady young mom，准备好了吗？', // 分享描述-->
-            <!--link: 'http://ma.eldesign.cn/mp4.html', // 分享链接-->
-            <!--imgUrl: 'http://ma.eldesign.cn/mp4/logo.jpg', // 分享图标-->
-            <!--type: '', // 分享类型,music、video或link，不填默认为link-->
-            <!--dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空-->
-            <!--success: function () {-->
-                <!--// 用户确认分享后执行的回调函数-->
-            <!--},-->
-            <!--cancel: function () {-->
-                <!--// 用户取消分享后执行的回调函数-->
-            <!--}-->
-        <!--});-->
-
-        <!--//“分享到朋友圈”-->
-        <!--wx.onMenuShareTimeline({-->
-            <!--title: '11.11剁手的瞬间，接到了老王的来电……', // 分享标题-->
-            <!--desc: '又到又到11.11购物季！\n Young lady young mom，准备好了吗？', // 分享描述-->
-            <!--link: 'http://ma.eldesign.cn/mp4.html', // 分享链接-->
-            <!--imgUrl: 'http://ma.eldesign.cn/mp4/logo.jpg', // 分享图标-->
-            <!--success: function () {-->
-                <!--// 用户确认分享后执行的回调函数-->
-            <!--},-->
-            <!--cancel: function () {-->
-                <!--// 用户取消分享后执行的回调函数-->
-            <!--}-->
-        <!--});-->
-    <!--}-->
-
-    <!--function initWX(callback) {-->
-
-        <!--$.ajax({-->
-            <!--type: 'GET',-->
-            <!--url: '/api/getWxSDK',-->
-            <!--data: {'originalUrl': window.location.href},-->
-            <!--success: function (data) {-->
-                <!--var wxConfig = data.data.wxConfig;-->
-
-                <!--wx.config({-->
-                    <!--debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。-->
-                    <!--appId: wxConfig.appId, // 必填，公众号的唯一标识-->
-                    <!--timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳-->
-                    <!--nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串-->
-                    <!--signature: wxConfig.signature,// 必填，签名，见附录1-->
-                    <!--jsApiList: ['startRecord', 'stopRecord', 'playVoice', 'uploadVoice', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2-->
-                <!--});-->
-
-                <!--wx.ready(function () {-->
-                    <!--callback && callback();-->
-                <!--});-->
-
-                <!--wx.error(function (res) {-->
-                    <!--console.log(res);-->
-                <!--});-->
+    $('#masker').on('touchend', function () {
+        $('#masker').fadeOut();
+        $('#video').get(0).play();
+    })
 
 
-            <!--},-->
-            <!--dataType: 'json'-->
-        <!--});-->
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    })
+</script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    function initWXSahre() {
+
+        //“分享给朋友”
+        wx.onMenuShareAppMessage({
+            title: '11.11剁手的瞬间，接到了老王的来电……', // 分享标题
+            desc: '又到又到11.11购物季！\n Young lady young mom，准备好了吗？', // 分享描述
+            link: 'http://ma.eldesign.cn/mp4.html', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/mp4/logo.jpg', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //“分享到朋友圈”
+        wx.onMenuShareTimeline({
+            title: '11.11剁手的瞬间，接到了老王的来电……', // 分享标题
+            desc: '又到又到11.11购物季！\n Young lady young mom，准备好了吗？', // 分享描述
+            link: 'http://ma.eldesign.cn/mp4.html', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/mp4/logo.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    }
+
+    function initWX(callback) {
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/getWxSDK',
+            data: {'originalUrl': window.location.href},
+            success: function (data) {
+                var wxConfig = data.data.wxConfig;
+
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: wxConfig.appId, // 必填，公众号的唯一标识
+                    timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                    signature: wxConfig.signature,// 必填，签名，见附录1
+                    jsApiList: ['startRecord', 'stopRecord', 'playVoice', 'uploadVoice', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+
+                wx.ready(function () {
+                    callback && callback();
+                });
+
+                wx.error(function (res) {
+                    console.log(res);
+                });
 
 
-    <!--}-->
+            },
+            dataType: 'json'
+        });
 
-    <!--initWX(initWXSahre);-->
-<!--</script>-->
-<!--<script>-->
-    <!--var _hmt = _hmt || [];-->
-    <!--(function () {-->
-        <!--var hm = document.createElement("script");-->
-        <!--hm.src = "https://hm.baidu.com/hm.js?12246994d53b9ff1941d7b70e7e32a41";-->
-        <!--var s = document.getElementsByTagName("script")[0];-->
-        <!--s.parentNode.insertBefore(hm, s);-->
-    <!--})();-->
-<!--</script>-->
+
+    }
+
+    initWX(initWXSahre);
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?12246994d53b9ff1941d7b70e7e32a41";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
 </body>
 </html>
