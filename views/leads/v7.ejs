@@ -15,7 +15,6 @@
         padding-top: 135px;
         box-sizing: border-box;
     }
-    
 
     .form {
         width: 450px;
@@ -35,7 +34,7 @@
         width: 100%;
     }
 
-    .submit {
+    .form .submit {
         background: #cd007f;
         line-height: 48px;
         color: #ffffff;
@@ -50,11 +49,15 @@
     }
 
     .city {
-        width: 40%;
+        width: 45%;
+        box-sizing: border-box;
+        border-right: 1px solid #908c8b;
     }
 
     .type {
-        width: 60%;
+        width: 55%;
+        box-sizing: border-box;
+        padding-left: 25px;
     }
 
     input::-webkit-input-placeholder {
@@ -65,15 +68,22 @@
 <img class="pic" src="/images/leads/v7/pic1.png"/>
 <div class="form-wrap">
     <div class="form">
-        <input type="number" placeholder="学生姓名" class="input" name="realName"/>
+        <input type="text" placeholder="学生姓名" class="input" name="realName"/>
         <input type="tel" placeholder="联系电话" class="input" name="cellPhone"/>
         <input type="number" placeholder="学生年龄" class="input" name="age"/>
         <div class="input">
             <select class="select city" name="city">
                 <option value="">城市</option>
+                <option value="上海浦西中心">上海浦西中心</option>
+                <option value="广州中环中心">广州中环中心</option>
+                <option value="深圳世纪汇中心">深圳世纪汇中心</option>
             </select>
             <select class="select type" name="type">
                 <option value="">测试类别</option>
+                <option value="托福">托福</option>
+                <option value="雅思">雅思</option>
+                <option value="SAT">SAT</option>
+                <option value="CEFR通用英语测试">CEFR通用英语测试</option>
             </select>
         </div>
         <a href="#" class="submit">免费领取</a>
@@ -92,6 +102,8 @@
             realName: $form.find("[name='realName']").val(),
             cellPhone: $form.find("[name='cellPhone']").val(),
             age: $form.find("[name='age']").val(),
+            cityName: $form.find("[name='city']").val(),
+            others: $form.find("[name='type']").val(),
             tag: 'v7'
         }
         var v = true;
@@ -126,7 +138,7 @@
                 loadingHide();
                 if (data.status == '200') {
                     toast('提交成功');
-                    $('.form').hide();
+                    $('.form-wrap').hide();
                 } else {
                     toast(data.errmsg);
                 }
