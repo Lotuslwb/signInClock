@@ -1,0 +1,154 @@
+<%- include("header.ejs",{"title":'英孚国际留学 备考'}) %>
+
+<style>
+
+
+    .form-wrap {
+        background: url("/images/leads/v7/formbg.jpg") no-repeat;
+        background-size: 640px auto;
+        width: 100%;
+        height: 374px;
+        color: #000;
+        font-family: Arial, serif;
+        font-size: 28px;
+        line-height: 40px;
+        padding-top: 135px;
+        box-sizing: border-box;
+    }
+
+    .form {
+        width: 450px;
+        margin: auto;
+    }
+
+    .form .input {
+        background: #e6e7e7;
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid #908c8b;
+        line-height: 40px;
+        height: 40px;
+    }
+
+    .pic {
+        width: 100%;
+    }
+
+    .submit {
+        background: #cd007f;
+        line-height: 48px;
+        color: #ffffff;
+        text-align: center;
+        display: block;
+        margin-top: 20px;
+    }
+
+    .select {
+        float: left;
+        background: none;
+    }
+
+    .city {
+        width: 40%;
+    }
+
+    .type {
+        width: 60%;
+    }
+
+    input::-webkit-input-placeholder {
+        color: #000000;
+    }
+</style>
+
+<img class="pic" src="/images/leads/v7/pic1.png"/>
+<div class="form-wrap">
+    <div class="form">
+        <input type="number" placeholder="学生姓名" class="input" name="realName"/>
+        <input type="tel" placeholder="联系电话" class="input" name="cellPhone"/>
+        <input type="number" placeholder="学生年龄" class="input" name="age"/>
+        <div class="input">
+            <select class="select city" name="city">
+                <option value="">城市</option>
+            </select>
+            <select class="select type" name="type">
+                <option value="">测试类别</option>
+            </select>
+        </div>
+        <a href="#" class="submit">免费领取</a>
+    </div>
+</div>
+<img class="pic" src="/images/leads/v7/pic2.jpg"/>
+<img class="pic" src="/images/leads/v7/pic3.jpg"/>
+
+<script src="/javascripts/jquery.js"></script>
+
+<script>
+
+    $('.submit').click(function () {
+        var $form = $(this).parents('.form');
+        var data = {
+            realName: $form.find("[name='realName']").val(),
+            cellPhone: $form.find("[name='cellPhone']").val(),
+            age: $form.find("[name='age']").val(),
+            tag: 'v7'
+        }
+        var v = true;
+        $.each(data, function (i, t) {
+            if (t.length <= 0 && v) {
+                toast('选项不能为空');
+                v = false;
+            }
+        })
+
+        if (!v) {
+            return false;
+        }
+
+        if (data.cellPhone && !checkTel(data.cellPhone)) {
+            toast('手机号码格式有误');
+            return false;
+        }
+
+        if (data.age && !(data.age < 99 && data.age > 1)) {
+            toast('年龄不在范围内');
+            return false;
+        }
+
+        loadingShow();
+        $.ajax({
+            type: 'POST',
+            url: '/leads/api/addLeads',
+            data: data,
+            success: function (data) {
+                console.log(data);
+                loadingHide();
+                if (data.status == '200') {
+                    toast('提交成功');
+                    $('.form').hide();
+                } else {
+                    toast(data.errmsg);
+                }
+            },
+            dataType: 'json'
+        });
+    })
+
+    function checkTel(tel) {
+        var reg = /^0?1[3|4|5|7|8|9][0-9]\d{8}$/;
+        return reg.test(tel);
+    }
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?3bdcd19ea5a52ab4ee3aecc0635fefce";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</body>
+</html>

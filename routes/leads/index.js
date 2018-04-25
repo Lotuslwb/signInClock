@@ -30,6 +30,10 @@ router.get('/v6', function (req, res, next) {
     res.render('leads/v6', {});
 })
 
+router.get('/v7', function (req, res, next) {
+    res.render('leads/v7', {});
+})
+
 
 module.exports = router;
 
