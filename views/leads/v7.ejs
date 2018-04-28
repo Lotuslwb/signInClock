@@ -39,6 +39,8 @@
         text-align: center;
         display: block;
         margin-top: 20px;
+        transition: all 1s ease;
+        -webkit-transition: all 1s ease;
     }
 
     .select {
@@ -70,6 +72,41 @@
     .pic4 {
         margin: auto;
     }
+
+    .footer {
+        display: none;
+        line-height: 72px;
+        text-align: center;
+        color: #FFFFFF;
+        background: #ED008C;
+        font-size: 26px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .privacy_main_cs {
+        font-size: 24px;
+    }
+
+    .privacy_main_cs a {
+        color: #1e7bbb;
+        text-decoration: underline;
+    }
+
+    .privacy_check_cs {
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        -webkit-appearance: checkbox;
+        margin-top: 10px;
+    }
+
+    .submit.disable {
+        -webkit-filter: grayscale(100%);
+        pointer-events: none;
+        cursor: pointer;
+    }
 </style>
 
 <img class="pic" src="/images/leads/v7/pic1.png"/>
@@ -95,15 +132,30 @@
                 <option value="CEFR英语测试">CEFR英语测试</option>
             </select>
         </div>
+        <label class="privacy_main_cs">
+            <input type="checkbox" class="privacy_check_cs" checked>
+            我已阅读并同意<a rel="nofollow" target="_blank" href="http://cnce1m2.ef.cn/officialsite/cn/privacy/privacy.pdf">英孚隐私政策</a>       </span>
+            ,并同意接收EF推送的商业性信息。
+        </label>
+
         <a href="#" class="submit">免费领取</a>
     </div>
 </div>
 <img class="pic" src="/images/leads/v7/pic2.jpg"/>
 <img class="pic" src="/images/leads/v7/pic3.jpg"/>
-
+<div style="height: 72px"></div>
+<div class="footer">本月注册立获500元学习大礼包!</div>
 <script src="/javascripts/jquery.js"></script>
 
 <script>
+
+    $('.privacy_main_cs').click(function () {
+        if (!$('.privacy_check_cs:checked').length) {
+            $('.submit').addClass('disable');
+        } else {
+            $('.submit').removeClass('disable');
+        }
+    })
 
     $('.submit').click(function () {
         var $form = $(this).parents('.form');
@@ -155,6 +207,18 @@
             dataType: 'json'
         });
     })
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('.footer').fadeIn();
+        } else {
+            $('.footer').fadeOut();
+        }
+    });
+    $('.footer').click(function () {
+        $('html, body').animate({scrollTop: '0px'}, 800);
+        return false;
+    });
 
     function checkTel(tel) {
         var reg = /^0?1[3|4|5|7|8|9][0-9]\d{8}$/;
