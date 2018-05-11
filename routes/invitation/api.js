@@ -14,6 +14,7 @@ router.post('/addInvitation', function (req, res, next) {
     var data = req.body;
     log(data);
     functions.addInvitation(data).then(function (docs) {
+        log(docs);
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
         console.log(e);
