@@ -10,7 +10,7 @@ var APPID = WXConfig.APPID;
 
 
 router.get('/index', function (req, res, next) {
-    res.render('invitation/index');
+    res.render('Invitation/index');
 });
 
 module.exports = router;
