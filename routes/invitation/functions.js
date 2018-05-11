@@ -3,10 +3,16 @@ var log = require('../../module/tools/log');
 
 
 var addInvitation = function (data) {
-    return InvitationDB.add(data).then(function (docs) {
-        log('增加数据成功');
-        return docs;
+    var promise = new Promise(function (resolve, reject) {
+        InvitationDB.add(data, function (err, docs) {
+            if (err) {
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        });
     });
+    return promise;
 };
 
 
