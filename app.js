@@ -39,6 +39,10 @@ var newyear17API = require('./routes/newyear17/api');
 //夏令营计划
 var camp = require('./routes/camp/index');
 
+//
+var invitation = require('./routes/invitation/index');
+var invitationAPI = require('./routes/invitation/api');
+
 var app = express();
 
 // view engine setup
@@ -49,7 +53,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser('it is a sb'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -97,6 +101,10 @@ app.use('/yingfu-newyearTabs/', newyearTabs);
 
 
 app.use('/camp', camp);
+
+app.use('/invitation', invitation);
+app.use('/invitation/api', invitationAPI);
+
 
 
 // catch 404 and forward to error handler
