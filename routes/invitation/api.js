@@ -134,4 +134,16 @@ router.post('/setAttend', function (req, res, next) {
 });
 
 
+// 删除消息
+router.post('/removeMessage', function (req, res, next) {
+    var data = req.body;
+    log(data);
+    functions.removeMessage(data.openid, data.removeId).then(function (docs) {
+        res.send(sendData('200', docs, ''));
+    }).catch(function (e) {
+        console.log(e);
+    });
+});
+
+
 module.exports = router;

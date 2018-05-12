@@ -1,0 +1,81 @@
+﻿<%- include("../daka/header.ejs",{"title": "英孚亲子共读训练营"}) %>
+<style>
+    body.ipad {
+        padding-bottom: 160px;
+    }
+
+    h2 {
+        font-size: 36px !important;
+        color: #00a7fe !important;
+    }
+
+    .list {
+        color: #0D0D0D;
+        font-size: 26px;
+    }
+</style>
+<div class="page main-page index-page active">
+    <h2>祝福列表</h2>
+    <div class="list">
+        <% for (var i = 0; i < data.wishesList.length; i++){  var item = data.wishesList[i]; %>
+        <div class="item" data-id="<%= item['wishId'] %>"> 祝福人：<%= item['wishName'] %> <br/>
+            祝福内容：<%= item['wishText'] %><br/>
+            祝福时间：<%= item['createTime'] %><br/>
+            <a href="#" class="J-remove">删除</a>
+            <br/> <br/> <br/>
+        </div>
+        <% } %>
+    </div>
+
+
+    <h2>赴约列表</h2>
+    <div class="list">
+        <% for (var i = 0; i < data.attendList.length; i++){  var item = data.attendList[i]; %>
+        <div class="item" data-id="<%= item['attendId'] %>"> 赴约人：<%= item['attendName'] %> <br/>
+            赴约内容：<%= item['attendText'] %><br/>
+            人数：<%= item['attendNumber'] %><br/>
+            赴约时间：<%= item['createTime'] %><br/>
+            <a href="#" class="J-remove">删除</a>
+            <br/> <br/> <br/>
+        </div>
+        <% } %>
+    </div>
+
+
+    <h2>待定列表</h2>
+    <div class="list">
+        <% for (var i = 0; i < data.indeterminateList.length; i++){  var item = data.indeterminateList[i]; %>
+        <div class="item" data-id="<%= item['indeterminateId'] %>"> 待定人：<%= item['indeterminateName'] %> <br/>
+            待定内容：<%= item['indeterminateText'] %><br/>
+            待定时间：<%= item['createTime'] %><br/>
+            <a href="#" class="J-remove">删除</a>
+            <br/> <br/> <br/>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+
+<script>
+    $('.J-remove').click(function () {
+        var removeId = $(this).parents('.item').data('id');
+        $.ajax({
+            type: 'POST',
+            url: '/invitation/api/removeMessage',
+            data: {
+                openid: 'openId1212',
+                removeId: removeId
+            },
+            success: function (data) {
+                console.log(data);
+                window.location.reload();
+            },
+            dataType: 'json'
+        });
+    });
+
+</script>
+
+
+</body>
+</html>
