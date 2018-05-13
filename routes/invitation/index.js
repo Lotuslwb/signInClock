@@ -26,7 +26,13 @@ router.get('/message', function (req, res, next) {
     functions.getMessage(openid).then(function (data) {
         res.render('Invitation/message', {data: data});
     });
+});
 
+router.get('/invitationlist', function (req, res, next) {
+    var openid = 'openId1212';
+    functions.getInvitationList(openid).then(function (data) {
+        res.render('Invitation/invitationlist', {data: data});
+    });
 });
 
 

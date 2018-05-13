@@ -4,7 +4,7 @@ var log = require('../../module/tools/log');
 var WXConfig = require('../../module/wx/WXConfig');
 var APPID = WXConfig.APPID;
 
-
+/**  邀请函 增删改查 **/
 var addInvitation = function (data) {
     var promise = new Promise(function (resolve, reject) {
         InvitationDB.add(data, function (err, docs) {
@@ -36,6 +36,41 @@ var getInvitation = function (findJson, fieldJson, sortJSON) {
     return InvitationDB.User.find(findJson || {}, fieldJson || {}).sort(sortJSON || {});
 }
 
+var getInvitationList = function (openid) {
+    return getInvitation({'ownerId': openid}, {
+        templateId: 1,
+        templateInfo: 1,
+        templateForm: 1
+    }).then(function (docs) {
+        return docs;
+    });
+}
+
+var getInvitationDetail = function (invitationId) {
+    return getInvitation({'_id': invitationId}, {
+        templateId: 1,
+        templateInfo: 1,
+        templateForm: 1
+    }).then(function (docs) {
+        return docs;
+    });
+}
+
+var removeInvitation = function (openid, invitationId) {
+    var promise = new Promise(function (resolve, reject) {
+        InvitationDB.remove({_id: invitationId, ownerId: openid}, function (err, docs) {
+            if (err) {
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        });
+    });
+    return promise;
+}
+
+
+/** 消息 增删改查 **/
 var getMessage = function (openid) {
     return getInvitation({'ownerId': openid}, {
         wishesList: 1,
@@ -107,7 +142,6 @@ var removeMessage = function (openid, removeId) {
     });
 }
 
-
 var checkOpenid = function (req, res) {
     var promise = new Promise(function (resolve, reject) {
         var openInfo = req.signedCookies['session'];
@@ -132,7 +166,12 @@ module.exports = {
     addInvitation: addInvitation,
     updateInvitation: updateInvitation,
     getInvitation: getInvitation,
+    getInvitationList: getInvitationList,
+    getInvitationDetail: getInvitationDetail,
+    removeInvitation: removeInvitation,
+
     getMessage: getMessage,
     removeMessage: removeMessage,
+
     checkOpenid: checkOpenid,
 };

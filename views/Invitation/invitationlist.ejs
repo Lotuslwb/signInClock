@@ -1,0 +1,59 @@
+﻿<%- include("../daka/header.ejs",{"title": "英孚亲子共读训练营"}) %>
+<style>
+    body.ipad {
+        padding-bottom: 160px;
+    }
+
+    h2 {
+        font-size: 36px !important;
+        color: #00a7fe !important;
+    }
+
+    .list {
+        color: #0D0D0D;
+        font-size: 26px;
+    }
+</style>
+<div class="page main-page index-page active">
+    <h2>邀请函列表</h2>
+    <div class="list">
+        <% for (var i = 0; i < data.length; i++){  var item = data[i]; %>
+        <div class="item" data-id="<%= item['_id'] %>">
+            模板ID：<%= item['templateId'] %> <br/>
+            新娘：<%= item['templateForm']['brideName'] %> <br/>
+            新郎：<%= item['templateForm']['groomName'] %><br/>
+            结婚时间：<%= item['templateForm']['marriageTime'] %><br/>
+            结婚地址：<%= item['templateForm']['marriageAddress'] %><br/>
+            <a href="#" class="J-remove">删除</a>
+            <br/> <br/> <br/>
+        </div>
+        <% } %>
+    </div>
+
+
+</div>
+
+
+<script>
+    $('.J-remove').click(function () {
+        var removeId = $(this).parents('.item').data('id');
+        $.ajax({
+            type: 'POST',
+            url: '/invitation/api/removeInvitation',
+            data: {
+                openid: 'openId1212',
+                removeId: removeId
+            },
+            success: function (data) {
+                console.log(data);
+                window.location.reload();
+            },
+            dataType: 'json'
+        });
+    });
+
+</script>
+
+
+</body>
+</html>

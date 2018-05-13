@@ -145,5 +145,16 @@ router.post('/removeMessage', function (req, res, next) {
     });
 });
 
+// 删除邀请函
+router.post('/removeInvitation', function (req, res, next) {
+    var data = req.body;
+    log(data);
+    functions.removeInvitation(data.openid, data.removeId).then(function (docs) {
+        res.send(sendData('200', docs, ''));
+    }).catch(function (e) {
+        console.log(e);
+    });
+});
+
 
 module.exports = router;
