@@ -107,16 +107,13 @@ var removeMessage = function (openid, removeId) {
     });
 }
 
-var getOpenInfo = function (req) {
-
-}
 
 var checkOpenid = function (req, res) {
     var promise = new Promise(function (resolve, reject) {
-        var openid = req.signedCookies['session'];
-        log(openid)
-        if (openid) {
-            resolve(openid);
+        var openInfo = req.signedCookies['session'];
+        log(openInfo)
+        if (openInfo) {
+            resolve(openInfo);
         } else {
             //如果cookie里面没有openid,获取之;
             var hostname = req.hostname;

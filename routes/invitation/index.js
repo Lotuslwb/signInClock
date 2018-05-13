@@ -12,9 +12,13 @@ var functions = require('../invitation/functions');
 
 
 router.get('/index', function (req, res, next) {
-    functions.checkOpenid(req, res).then(function (openid) {
-        console.log(openid, 'openid');
-        res.render('Invitation/index');
+    res.render('Invitation/index');
+});
+
+router.get('/getInfo', function (req, res, next) {
+    functions.checkOpenid(req, res).then(function (openInfo) {
+        console.log(openInfo, 'openInfo');
+        res.render('Invitation/getInfo', {openInfo: openInfo});
     })
 });
 
