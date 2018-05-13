@@ -111,9 +111,8 @@ var removeMessage = function (openid, removeId) {
 var checkOpenid = function (req, res) {
     var promise = new Promise(function (resolve, reject) {
         var openInfo = req.signedCookies['session'];
-        log(openInfo)
         if (openInfo) {
-            resolve(openInfo);
+            resolve(JSON.parse(openInfo));
         } else {
             //如果cookie里面没有openid,获取之;
             var hostname = req.hostname;

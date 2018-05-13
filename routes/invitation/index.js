@@ -17,8 +17,7 @@ router.get('/index', function (req, res, next) {
 
 router.get('/getInfo', function (req, res, next) {
     functions.checkOpenid(req, res).then(function (openInfo) {
-        console.log(openInfo, 'openInfo');
-        res.render('Invitation/getInfo', {openInfo: JSON.parse(openInfo)});
+        res.render('Invitation/getInfo', {openInfo: openInfo});
     })
 });
 
