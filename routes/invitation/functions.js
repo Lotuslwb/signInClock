@@ -1,6 +1,9 @@
 var InvitationDB = require('../../module/DB/InvitationDB');
 var log = require('../../module/tools/log');
 
+var WXConfig = require('../../module/wx/WXConfig');
+var APPID = WXConfig.APPID;
+
 
 var addInvitation = function (data) {
     var promise = new Promise(function (resolve, reject) {
@@ -14,7 +17,6 @@ var addInvitation = function (data) {
     });
     return promise;
 };
-
 
 var updateInvitation = function (id, data) {
     var promise = new Promise(function (resolve, reject) {
@@ -105,6 +107,30 @@ var removeMessage = function (openid, removeId) {
     });
 }
 
+var getOpenInfo = function (req) {
+
+}
+
+var checkOpenid = function (req, res) {
+    var promise = new Promise(function (resolve, reject) {
+        var openid = req.signedCookies['session'];
+        log(openid)
+        if (openid) {
+            resolve(openid);
+        } else {
+            //如果cookie里面没有openid,获取之;
+            var hostname = req.hostname;
+            var protocol = req.protocol;
+            var redirect_uri = encodeURIComponent(protocol + '://' + hostname + '/invitation/callback?router=invitation' + req.path);
+            var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+            res.redirect(url);
+        }
+    }).catch(function (e) {
+        console.log(e);
+    });
+    return promise;
+}
+
 
 module.exports = {
     addInvitation: addInvitation,
@@ -112,4 +138,5 @@ module.exports = {
     getInvitation: getInvitation,
     getMessage: getMessage,
     removeMessage: removeMessage,
+    checkOpenid: checkOpenid,
 };

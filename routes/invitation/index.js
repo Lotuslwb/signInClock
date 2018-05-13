@@ -12,7 +12,10 @@ var functions = require('../invitation/functions');
 
 
 router.get('/index', function (req, res, next) {
-    res.render('Invitation/index');
+    functions.checkOpenid(req, res).then(function (openid) {
+        console.log(openid, 'openid');
+        res.render('Invitation/index');
+    })
 });
 
 router.get('/message', function (req, res, next) {
@@ -22,5 +25,21 @@ router.get('/message', function (req, res, next) {
     });
 
 });
+
+
+router.get('/callback', function (req, res) {
+    //获取个人信息
+    var getUserInfoByCode = require('../../module/wx/getUserInfoByCode');
+    var code = req.query.code;
+    var router = req.query.router || '';
+    getUserInfoByCode({code: code, needInfo: true}, function (data) {
+        var sign = data.sign;
+        var chunk = data.chunk;
+        console.log(chunk, 'chunk');
+        res.cookie('session', JSON.stringify({openid: chunk.openid, nickname: chunk.nickname}), {signed: true});
+        res.redirect('/' + router);
+    });
+});
+
 
 module.exports = router;
