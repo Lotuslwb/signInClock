@@ -10,8 +10,8 @@
     }
 </style>
 <div class="page main-page index-page active">
-    <h2>OpenId:<%= openInfo.openid %></h2>
-    <h2>nickname:<%= openInfo.nickname %></h2>
+    <h2>OpenId:<%= openInfo %></h2>
+    <h2>nickname:<%= openInfo %></h2>
 </div>
 
 <!--上传图片 专用JS-->
@@ -19,151 +19,7 @@
 
 
 <script>
-    var _id;
-    // 新建邀请函
-    /**  其他操作之前  一定要先点这个 不然_id 为空 会报错  **/
-    $('.addInvitation').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/addInvitation',
-            data: {
-                templateId: '1',
-                ownerId: 'openId1212', // 归属人的OPENID
-                ownerName: '李文字彬', // 归属人的nickname
-            },
-            success: function (data) {
-                console.log(data);
-                _id = data.data._id;
-            },
-            dataType: 'json'
-        });
-    })
 
-    // 增加邀请函的表单信息
-    $('.updateInvitationForm').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/updateInvitationForm',
-            data: {
-                _id: _id || '5af5511e34e60926e93addcc', // 邀请函ID
-                templateForm: {
-                    groomName: '男神思密达', // 新郎名字
-                    brideName: '魅力的女神大人', // 新娘名字
-                    marriageTime: new Date() * 1, // 结婚时间
-                    marriageAddress: '长沙市五一大道201', // 结婚地址
-                },
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    })
-
-    // 增加邀请函的其他信息
-    $('.updateInvitationInfo').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/updateInvitationInfo',
-            data: {
-                _id: _id || '5af5511e34e60926e93addcc',
-                templateInfo: [{
-                    tag: 'pic1',
-                    value: '/aaa/aa/a.png'
-                }, {
-                    tag: 'text1',
-                    value: '啦啦啦，豆腐渣'
-                }]
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    })
-
-    // 上传图片 获取URL 接口
-    $('.uploadImg').change(function () {
-        console.log(this);
-        lrz(this.files[0])
-            .then(function (rst) {
-                rst.formData.append('fileLen', rst.fileLen);
-                $.ajax({
-                    url: '/invitation/api/upload',
-                    data: rst.formData,
-                    processData: false,
-                    contentType: false,
-                    type: 'POST',
-                    success: function (data) {
-                        console.log(data);
-                        $('.showImg').html('<img src="/files/' + data.data.name + '" />');
-                    }
-                });
-            })
-            .catch(function (err) {
-                // 处理失败会执行
-            })
-            .always(function () {
-                // 不管是成功失败，都会执行
-            });
-    });
-
-    // 发送祝福
-    $('.sendWish').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/sendWish',
-            data: {
-                _id: _id,
-                wish: {
-                    wishName: '李文彬',
-                    wishOpenId: 'openid_Liwenbin',
-                    wishText: '大吉大利，今晚吃鸡',
-                }
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    });
-
-    // 待定
-    $('.setIndeterminate').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/setIndeterminate',
-            data: {
-                _id: _id,
-                indeterminate: {
-                    indeterminateName: "专业放水的全哥"
-                }
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    });
-
-    // 确定赴约
-    $('.setAttend').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/setAttend',
-            data: {
-                _id: _id,
-                attend: {
-                    attendName: '专业赴约的弟弟兄', // 赴宴的名字
-                    attendNumber: '233', // 人数
-                }
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    });
 </script>
 
 
