@@ -10,7 +10,6 @@ var APPID = WXConfig.APPID;
 
 var functions = require('../invitation/functions');
 
-
 router.get('/index', function (req, res, next) {
     res.render('Invitation/index');
 });
@@ -48,6 +47,10 @@ router.get('/callback', function (req, res) {
         res.cookie('session', JSON.stringify({openid: chunk.openid, nickname: chunk.nickname}), {signed: true});
         res.redirect('/' + router);
     });
+});
+
+router.get('/login', function (req, res, next) {
+    res.render('Invitation/login');
 });
 
 

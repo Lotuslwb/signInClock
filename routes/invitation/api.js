@@ -157,4 +157,48 @@ router.post('/removeInvitation', function (req, res, next) {
 });
 
 
+// 发送短信
+router.post('/sendSMS', function (req, res, next) {
+    var data = req.body;
+    var tel = data.tel;
+    if (!checkTel(tel)) {
+        res.send(sendData('999', '无效手机号码', ''));
+    } else {
+        functions.smsSend(data.tel).then(function (data) {
+            res.send(sendData('200', data, ''));
+        }).catch(function (e) {
+            console.log(e);
+        });
+    }
+
+});
+
+router.post('/login', function (req, res, next) {
+    var data = req.body;
+    var tel = data.tel;
+    var code = data.code;
+    var route = data.route || 'index';
+    if (!checkTel(tel)) {
+        res.send(sendData('999', '无效手机号码', ''));
+    } else {
+        functions.checkSMS(tel, code).then(function (result) {
+            if (result) {
+                res.cookie('session', JSON.stringify({tel: tel}), {signed: true});
+                res.send(sendData('200', {result: result, route: route}, ''));
+            } else {
+                res.send(sendData('999', '验证码不正确', ''));
+            }
+        }).catch(function (e) {
+            console.log(e);
+        });
+    }
+
+});
+
+
+function checkTel(tel) {
+    var reg = /^0?1[3|4|5|7|8|9][0-9]\d{8}$/;
+    return reg.test(tel);
+}
+
 module.exports = router;

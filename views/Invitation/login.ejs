@@ -1,0 +1,86 @@
+﻿<%- include("../daka/header.ejs",{"title": "英孚亲子共读训练营"}) %>
+<style>
+    body.ipad {
+        padding-bottom: 160px;
+    }
+
+    h2 {
+        font-size: 36px !important;
+        color: #00a7fe !important;
+    }
+</style>
+<div class="page main-page index-page active">
+    <input type="text" class="J-tel">
+    <h2 class="sendSMS">发送验证码</h2>
+    <br/><br/>
+
+    <input type="text" class="J-code">
+    <h2 class="login">提交验证码</h2>
+</div>
+
+<script>
+    function urlParam() {
+        var name, value;
+        var retrunObj = {};
+        var str = location.href; //取得整个地址栏
+        var num = str.indexOf("?");
+        str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+
+        var arr = str.split("&"); //各个参数放到数组里
+        for (var i = 0; i < arr.length; i++) {
+            num = arr[i].indexOf("=");
+            if (num > 0) {
+                name = arr[i].substring(0, num);
+                value = arr[i].substr(num + 1);
+                retrunObj[name] = value;
+            }
+        }
+        return retrunObj;
+    }
+</script>
+<script>
+
+
+    var route = urlParam().route;
+
+    $('.sendSMS').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/invitation/api/sendSMS',
+            data: {
+                tel: $('.J-tel').val(),
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            dataType: 'json'
+        });
+    });
+
+    $('.login').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/invitation/api/login',
+            data: {
+                tel: $('.J-tel').val(),
+                code: $('.J-code').val(),
+                route: route
+            },
+            success: function (data) {
+                if (data.status == 200) {
+                    alert('登录成功');
+                    window.location.href = '/invitation/' + data.data.route;
+                } else {
+                    alert(data.data);
+                }
+            },
+            dataType: 'json'
+        });
+    });
+
+
+</script>
+
+
+</body>
+</html>

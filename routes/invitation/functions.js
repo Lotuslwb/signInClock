@@ -142,6 +142,8 @@ var removeMessage = function (openid, removeId) {
     });
 }
 
+/*  用微信认证 登录 */
+
 var checkOpenid = function (req, res) {
     var promise = new Promise(function (resolve, reject) {
         var openInfo = req.signedCookies['session'];
@@ -162,6 +164,60 @@ var checkOpenid = function (req, res) {
 }
 
 
+/*  用手机和验证码登录 */
+var SMSDB = require('../../module/DB/SMSDB');
+var smsSendFunctions = require('../../module/sms/InvitationSMS');
+
+var smsDBAdd = function (json) {
+    var promise = new Promise(function (resolve, reject) {
+        SMSDB.add(json, function (err, docs) {
+            if (err) {
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        });
+    });
+    return promise;
+}
+
+var smsSend = function (tel) {
+    var code = genCode(6);
+    return smsDBAdd({
+        SMSTel: tel,
+        code: code,
+        createTime: new Date(),
+        tag: 'invitation'
+    }).then(function () {
+        return smsSendFunctions(code, tel)
+    });
+}
+var checkSMS = function (tel, code) {
+    var promise = new Promise(function (resolve, reject) {
+        SMSDB.find({SMSTel: tel, code: code, tag: 'invitation'}, function (err, docs) {
+            if (err) {
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        })
+    }).then(function (docs) {
+        //  docs 大于0 证明验证码匹配成功了
+        return docs.length > 0
+    });
+    return promise;
+}
+
+// 生成验证码
+function genCode(len) {
+    var code = '';
+    for (var i = 0; i < len; i++) {
+        code = code + Math.floor(1 + Math.random() * 9).toString();
+    }
+    return code;
+}
+
+
 module.exports = {
     addInvitation: addInvitation,
     updateInvitation: updateInvitation,
@@ -174,4 +230,8 @@ module.exports = {
     removeMessage: removeMessage,
 
     checkOpenid: checkOpenid,
+
+    smsSend: smsSend,
+    smsDBAdd: smsDBAdd,
+    checkSMS: checkSMS,
 };

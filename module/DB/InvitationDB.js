@@ -16,6 +16,7 @@ Schema = {
         brideName: String, // 新娘名字
         marriageTime: String, // 结婚时间
         marriageAddress: String, // 结婚地址
+        marriageAddressInfo: String // 结婚地址经纬度 "经度,纬度";
     },
     wishesList: [{  // 祝福语列表
         wishId: String,
