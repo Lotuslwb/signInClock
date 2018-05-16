@@ -125,6 +125,10 @@ video {
     clear: both;
 }
 
+img[src=""] {
+    opacity: 0 !important;
+}
+
 .toast {
     position: fixed;
     z-index: 99;
@@ -763,6 +767,7 @@ video {
     width: 100%;
     position: absolute;
     bottom: 50px;
+    z-index: 10;
 }
 
 .template-container .page7 .btn-reply img {
@@ -1001,7 +1006,7 @@ video {
     height: 625px;
 }
 
-.swiper-container.tpl1-container .page5 .img-top .upload-mask {
+.swiper-container.tpl1-container .page .backgroundFFF {
     background-color: #fff;
 }
 
@@ -1547,7 +1552,7 @@ video {
 }
 
 .blessing {
-    display: none;
+    /*display: none;*/
 }
 
 .blessing .blessing-wrapper {

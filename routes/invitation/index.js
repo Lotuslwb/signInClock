@@ -48,8 +48,22 @@ router.get('/edit/:templateId', function (req, res, next) {
         return functions.getInvitation({'ownerId': tel, '_id': _id})
     }).then(function (docs) {
         log(docs);
-        res.render('Invitation/template_' + templateId, {doc: docs[0]});
+        res.render('Invitation/template_' + templateId, {doc: docs[0], Info: handleInfo(docs[0]['templateInfo'])});
     }).catch(function (e) {
+        console.log(e);
+    });
+});
+
+router.get('/result/:templateId', function (req, res, next) {
+    var templateId = req.params.templateId;
+    var _id = req.query.id;
+
+
+    functions.getInvitation({'_id': _id})
+        .then(function (docs) {
+            log(docs);
+            res.render('Invitation/result_' + templateId, {doc: docs[0], Info: handleInfo(docs[0]['templateInfo'])});
+        }).catch(function (e) {
         console.log(e);
     });
 });
@@ -97,5 +111,16 @@ router.get('/apis', function (req, res, next) {
         res.render('Invitation/apis', {data: data});
     });
 });
+
+function handleInfo(data) {
+    if (!data) {
+        return {};
+    }
+    var returnObj = {};
+    data.map(function (item, index) {
+        returnObj[item.tag] = item.value;
+    })
+    return returnObj;
+}
 
 module.exports = router;

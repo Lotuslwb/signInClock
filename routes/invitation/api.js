@@ -39,7 +39,9 @@ router.post('/updateInvitationForm', function (req, res, next) {
 router.post('/updateInvitationInfo', function (req, res, next) {
     var data = req.body;
     log(data);
-    functions.updateInvitation(data._id, {templateInfo: data.templateInfo}).then(function (docs) {
+    functions.checkLogin(function (tel) {
+        return functions.updateInvitation(data._id, {templateInfo: data.templateInfo})
+    }).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
         console.log(e);
