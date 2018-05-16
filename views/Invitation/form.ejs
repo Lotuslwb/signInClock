@@ -1,0 +1,188 @@
+﻿<%- include("header.ejs",{"title": "结婚邀请函"}) %>
+<style>
+    body .tangram-suggestion-main {
+        /* 覆盖地图样式 */
+        transform: scale(2);
+        transform-origin: left top;
+        width: 210px !important;
+        overflow: hidden !important;
+    }
+</style>
+
+<div class="page form-page">
+    <div class="top-title">
+        <span>填写信息</span>
+        <img class="J-back" src="./img/icon-left.png" alt="">
+    </div>
+    <form class="form">
+        <div class="row"><label for="male-name">新郎姓名：</label> <input type="text" id="male-name" name="groomName"
+                                                                     data-required="true"
+                                                                     data-message="请输入新郎姓名"></div>
+        <div class="row"><label for="female-name">新娘姓名：</label> <input type="text" id="female-name" name="brideName"
+                                                                       data-required="true"
+                                                                       data-message="请输入新娘姓名"></div>
+        <div class="row"><label for="time">婚礼时间：</label>
+            <input type="text" id="time" name="marriageTime"
+                   data-options="{'type':'YYYY-MM-DD hh:mm','beginYear':2010,'endYear':2088}"
+                   data-required="true" data-message="请选择婚礼时间">
+            <img src="./img/icon-right.png" alt=""></div>
+        <div class="row"><label for="address">婚礼地址：</label> <input type="text" id="address" name="address"
+                                                                   placeholder="请输入地址" data-required="true"
+                                                                   data-message="请填写婚礼地址"><img src="./img/icon-map.png"
+                                                                                               alt=""></div>
+        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+        <div class="row"><input type="text" name="addressDetail" placeholder="详细地址"></div>
+    </form>
+    <div class="map" id="map"></div>
+    <div class="action-btn">
+        <a class="btn J-submit-btn" href="javascript:;">保存</a>
+    </div>
+</div>
+
+<%- include("commonjs.ejs") %>
+<script src="http://api.map.baidu.com/getscript?v=2.0&ak=2eed95cd0a38f5605d4b885b55211634&services=&t=20170511202040"></script>
+<script src="/invitation/js/jquery.date.js"></script>
+
+<script>
+
+    var templateId =<%= templateId %>
+        function Page() {
+            this.init();
+        }
+
+    Page.prototype = {
+        init: function () {
+            this.initMap();
+            this.bindEvent();
+        },
+        // 绑定事件
+        bindEvent: function () {
+            var self = this;
+            // 后退
+            $('.J-back').click(function () {
+                window.location.href = './choose-template.html';
+            })
+            // 初始化时间控件
+            $.date('#time');
+            postData();
+
+            // 提交用户填写的信息
+            function postData() {
+                $('.J-submit-btn').click(function () {
+                    if (window.mPZ.checkForm($('.form'))) {
+                        var groomName = $('input[name=groomName]').val();
+                        var brideName = $('input[name=brideName]').val();
+                        var marriageTime = $('input[name=marriageTime]').val();
+                        var address = $('input[name=address]').val();
+                        var addressDetail = $('input[name=addressDetail]').val() || '';
+                        var marriageAddress = address + addressDetail;
+                        var marriageAddressInfo = self.pointer;
+                        var data = {
+                            templateId: templateId,
+                            templateForm: {
+                                groomName: groomName,
+                                brideName: brideName,
+                                marriageTime: marriageTime,
+                                marriageAddress: marriageAddress,
+                                marriageAddressInfo: marriageAddressInfo
+                            }
+                        }
+                        $.ajax({
+                            url: '/invitation/api/addInvitation',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: data,
+                            beforeSend: function () {
+                                // 禁用按钮防止重复提交
+                                $('.J-submit-btn').attr({disabled: "disabled"});
+                            },
+                            success: function (res) {
+                                if (res.status == 200) {
+                                    $('.J-submit-btn').removeAttr("disabled");
+                                    window.mPZ.toast('提交成功');
+                                    setTimeout(function () {
+                                        var _id = res.data['_id'];
+                                        window.location.href = '/invitation/edit/' + templateId + '?id=' + _id;
+                                    }, 1000);
+                                } else {
+                                    window.mPZ.toast(data.data);
+                                }
+                            },
+                            error: function (data) {
+                                window.mPZ.toast("服务器正忙，请稍后再试");
+                            }
+                        })
+                    }
+                });
+            }
+        },
+        initMap: function () {
+            var self = this;
+
+            // 初始化地图
+            function G(id) {
+                return document.getElementById(id);
+            }
+
+            var map = new BMap.Map("map");
+            map.centerAndZoom("北京", 12);                   // 初始化地图,设置城市和地图级别。
+
+            var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+                {
+                    "input": "address",
+                    "location": map
+                });
+
+            ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
+                var str = "";
+                var _value = e.fromitem.value;
+                var value = "";
+                if (e.fromitem.index > -1) {
+                    value = _value.province + _value.city + _value.district + _value.street + _value.business;
+                }
+                str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+                value = "";
+                if (e.toitem.index > -1) {
+                    _value = e.toitem.value;
+                    value = _value.province + _value.city + _value.district + _value.street + _value.business;
+                }
+                str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+                G("searchResultPanel").innerHTML = str;
+            });
+
+            var myValue;
+            ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
+                var _value = e.item.value;
+                myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+                G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+                setPlace();
+            });
+
+            function setPlace() {
+                map.clearOverlays();    //清除地图上所有覆盖物
+                function myFun() {
+                    var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+                    console.log(pp.lng);
+                    console.log(pp.lat);
+                    self.pointer = pp.lng + ',' + pp.lat;
+                    map.centerAndZoom(pp, 20);
+                    map.addOverlay(new BMap.Marker(pp));    //添加标注
+                }
+
+                var local = new BMap.LocalSearch(map, { //智能搜索
+                    onSearchComplete: myFun
+                });
+                local.search(myValue);
+            }
+        }
+    }
+</script>
+<script>
+    new Page();
+</script>
+
+
+</body>
+</html>

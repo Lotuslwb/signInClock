@@ -1,0 +1,43 @@
+﻿<%- include("header.ejs",{"title": "结婚邀请函"}) %>
+<div class="page index-page">
+    <div class="page choose-page">
+        <div class="top-title">
+            <span>选择模板</span>
+            <img class="J-back" src="./img/icon-left.png" alt="">
+        </div>
+        <div class="tpl-list">
+            <img class="tpl-item J-tpl-item" src="./img/choose-tpl1.png" alt="" data-template="1">
+            <img class="tpl-item J-tpl-item" src="./img/choose-tpl2.png" alt="" data-template="2">
+        </div>
+    </div>
+</div>
+<%- include("commonjs.ejs") %>
+<script>
+    function Page() {
+        this.init();
+    }
+
+    Page.prototype = {
+        init: function () {
+            this.bindEvent();
+        },
+        // 绑定事件
+        bindEvent: function () {
+            // 返回
+            $('.J-back').click(function () {
+                window.location.href = '/invitation/index';
+            })
+            $('.page').on('click', '.J-tpl-item', function () {
+                var template = $(this).data('template');
+                window.location.href = '/invitation/form?templateId=' + template;
+            })
+        },
+    }
+</script>
+<script>
+    new Page();
+</script>
+
+
+</body>
+</html>

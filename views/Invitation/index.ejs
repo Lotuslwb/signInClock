@@ -1,203 +1,35 @@
-﻿<%- include("../daka/header.ejs",{"title": "英孚亲子共读训练营"}) %>
-<style>
-    body.ipad {
-        padding-bottom: 160px;
-    }
-
-    h2 {
-        font-size: 36px !important;
-        color: #00a7fe !important;
-    }
-</style>
-<div class="page main-page index-page active">
-    <div class="date-box">
-        <div class="date-box-icon"></div>
-        <div class="date-box-text"></div>
+﻿<%- include("header.ejs",{"title": "结婚邀请函"}) %>
+<div class="page index-page">
+    <div class="empty J-empty active">
+        <div class="title">我的请柬</div>
+        <div class="content">
+            <img src="/invitation/img/text-empty.png" alt="">
+        </div>
+        <div class="action-btn J-make">
+            <img src="/invitation/img/make-btn.png" alt="">
+        </div>
     </div>
-    <h2 class="addInvitation">addInvitation</h2>
-
-    <h2 class="updateInvitationForm">updateInvitationForm</h2>
-
-
-    <h2 class="updateInvitationInfo">updateInvitationInfo</h2>
-
-    <h2><input class="uploadImg" type="file" accept="image/*"/>
-        <div class="showImg"></div>
-    </h2>
-
-    <h2 class="sendWish">sendWish</h2>
-
-
-    <h2 class="setIndeterminate">setIndeterminate</h2>
-
-
-    <h2 class="setAttend">setAttend</h2>
-
-
-    <h2 class=""><a href="/invitation/message#">消息列表</a></h2>
-
-    <h2 class=""><a href="/invitation/invitationlist">邀请列表</a></h2>
-
-
-    <h2 class=""><a href="/invitation/getInfo#">获取用户信息 -- 微信中打开 </a></h2>
-
-
-    <h2><a href="/invitation/login">登录</a></h2>
-
-
 </div>
-
-<!--上传图片 专用JS-->
-<script src="/javascripts/lrz.all.bundle.js"></script>
-
-
+<%- include("commonjs.ejs") %>
 <script>
-    var _id;
-    // 新建邀请函
-    /**  其他操作之前  一定要先点这个 不然_id 为空 会报错  **/
-    $('.addInvitation').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/addInvitation',
-            data: {
-                templateId: '1',
-                ownerId: 'openId1212', // 归属人的OPENID
-                ownerName: '李文字彬', // 归属人的nickname
-            },
-            success: function (data) {
-                console.log(data);
-                _id = data.data._id;
-            },
-            dataType: 'json'
-        });
-    })
+    function Page() {
+        this.init();
+    }
 
-    // 增加邀请函的表单信息
-    $('.updateInvitationForm').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/updateInvitationForm',
-            data: {
-                _id: _id || '5af5511e34e60926e93addcc', // 邀请函ID
-                templateForm: {
-                    groomName: '男神思密达', // 新郎名字
-                    brideName: '魅力的女神大人', // 新娘名字
-                    marriageTime: new Date() * 1, // 结婚时间
-                    marriageAddress: '长沙市五一大道201', // 结婚地址
-                    marriageAddressInfo: '201,30', // 结婚地址经纬度
-                },
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    })
-
-    // 增加邀请函的其他信息
-    $('.updateInvitationInfo').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/updateInvitationInfo',
-            data: {
-                _id: _id || '5af5511e34e60926e93addcc',
-                templateInfo: [{
-                    tag: 'pic1',
-                    value: '/aaa/aa/a.png'
-                }, {
-                    tag: 'text1',
-                    value: '啦啦啦，豆腐渣'
-                }]
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    })
-
-    // 上传图片 获取URL 接口
-    $('.uploadImg').change(function () {
-        console.log(this);
-        lrz(this.files[0])
-            .then(function (rst) {
-                rst.formData.append('fileLen', rst.fileLen);
-                $.ajax({
-                    url: '/invitation/api/upload',
-                    data: rst.formData,
-                    processData: false,
-                    contentType: false,
-                    type: 'POST',
-                    success: function (data) {
-                        console.log(data);
-                        $('.showImg').html('<img src="/files/' + data.data.name + '" />');
-                    }
-                });
+    Page.prototype = {
+        init: function () {
+            this.bindEvent();
+        },
+        // 绑定事件
+        bindEvent: function () {
+            $('.J-make').click(function () {
+                window.location.href = '/invitation/template';
             })
-            .catch(function (err) {
-                // 处理失败会执行
-            })
-            .always(function () {
-                // 不管是成功失败，都会执行
-            });
-    });
-
-    // 发送祝福
-    $('.sendWish').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/sendWish',
-            data: {
-                _id: _id,
-                wish: {
-                    wishName: '李文彬',
-                    wishOpenId: 'openid_Liwenbin',
-                    wishText: '大吉大利，今晚吃鸡',
-                }
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    });
-
-    // 待定
-    $('.setIndeterminate').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/setIndeterminate',
-            data: {
-                _id: _id,
-                indeterminate: {
-                    indeterminateName: "专业放水的全哥"
-                }
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    });
-
-    // 确定赴约
-    $('.setAttend').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/setAttend',
-            data: {
-                _id: _id,
-                attend: {
-                    attendName: '专业赴约的弟弟兄', // 赴宴的名字
-                    attendNumber: '233', // 人数
-                }
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    });
+        },
+    }
+</script>
+<script>
+    new Page();
 </script>
 
 

@@ -1,79 +1,190 @@
-﻿<%- include("../daka/header.ejs",{"title": "英孚亲子共读训练营"}) %>
-<style>
-    body.ipad {
-        padding-bottom: 160px;
-    }
-
-    h2 {
-        font-size: 36px !important;
-        color: #00a7fe !important;
-    }
-
-    .list {
-        color: #0D0D0D;
-        font-size: 26px;
-    }
-</style>
-<div class="page main-page index-page active">
-    <h2>祝福列表</h2>
-    <div class="list">
-        <% for (var i = 0; i < data.wishesList.length; i++){  var item = data.wishesList[i]; %>
-        <div class="item" data-id="<%= item['wishId'] %>"> 祝福人：<%= item['wishName'] %> <br/>
-            祝福内容：<%= item['wishText'] %><br/>
-            祝福时间：<%= item['createTime'] %><br/>
-            <a href="#" class="J-remove">删除</a>
-            <br/> <br/> <br/>
+﻿<%- include("header.ejs",{"title": "结婚邀请函"}) %>
+<div class="page message-page">
+    <div class="top-title">
+        <span>消息</span>
+        <img class="J-back" src="./img/icon-left.png" alt="">
+    </div>
+    <div class="nav-list">
+        <div class="nav-item J-blessing-nav active">祝福</div>
+        <div class="nav-item  J-attend-nav">赴宴</div>
+        <div class="nav-item J-notsure-nav">待定</div>
+    </div>
+    <div class="nav-content blessing-list J-blessing-content active">
+        <% if(data.wishesList.length > 0){ %>
+        <% for(var i = 0; i < data.wishesList.length; i++){  var item = data.wishesList[i]; %>
+        <div class="blessing-item-wrapper" data-id="<%= item['wishId'] %>">
+            <div class="blessing-item">
+                <div class="title">
+                    <div class="J-name"><%= item['wishName'] %></div>
+                    <div class="J-time"><%= item['createTime'] %></div>
+                </div>
+                <div class="content"><%= item['wishText'] %></div>
+                <img class="action-icon J-action-icon" src="./img/icon-message-circle.png" alt="">
+            </div>
+            <div class="btn-wrapper">
+                <a class="btn J-delete-btn">删除</a>
+            </div>
+        </div>
+        <% } %>
+        <% }else{ %>
+        <div class="attend-empty">
+            <div>暂无宾客回复</div>
+            <div>请柬发送后的回复，可在此查看</div>
         </div>
         <% } %>
     </div>
-
-
-    <h2>赴约列表</h2>
-    <div class="list">
-        <% for (var i = 0; i < data.attendList.length; i++){  var item = data.attendList[i]; %>
-        <div class="item" data-id="<%= item['attendId'] %>"> 赴约人：<%= item['attendName'] %> <br/>
-            赴约内容：<%= item['attendText'] %><br/>
-            人数：<%= item['attendNumber'] %><br/>
-            赴约时间：<%= item['createTime'] %><br/>
-            <a href="#" class="J-remove">删除</a>
-            <br/> <br/> <br/>
+    <div class="nav-content attend-content J-attend-content">
+        <div class="attend-total">共<%= data.attendList ? data.attendList.reduce((prev, current) => {
+                return prev + current.attendNumber * 1;
+            }, 0) : 0 %>人赴宴
         </div>
-        <% } %>
+        <div class="attend-list">
+            <% if(data.attendList.length > 0){ %>
+            <% for (var i = 0; i < data.attendList.length; i++){  var item = data.attendList[i]; %>
+            <div class="attend-item">
+                <div class="name J-name"><%= item['attendName'] %></div>
+                <div class="info">
+                    <div class="J-time"><%= item['createTime'] %></div>
+                    <div class="J-count"><%= item['attendNumber'] %>人赴宴</div>
+                </div>
+            </div>
+            <% } %>
+            <% }else{ %>
+            <div class="attend-empty">
+                <div>暂无宾客回复</div>
+                <div>请柬发送后的回复，可在此查看</div>
+            </div>
+            <% } %>
+        </div>
     </div>
-
-
-    <h2>待定列表</h2>
-    <div class="list">
-        <% for (var i = 0; i < data.indeterminateList.length; i++){  var item = data.indeterminateList[i]; %>
-        <div class="item" data-id="<%= item['indeterminateId'] %>"> 待定人：<%= item['indeterminateName'] %> <br/>
-            待定内容：<%= item['indeterminateText'] %><br/>
-            待定时间：<%= item['createTime'] %><br/>
-            <a href="#" class="J-remove">删除</a>
-            <br/> <br/> <br/>
+    <div class="nav-content attend-content J-notsure-content">
+        <div class="attend-total">共<%= data.indeterminateList ? data.indeterminateList.reduce((prev, current) => {
+                return prev + current.indeterminateNumber * 1;
+            }, 0) : 0 %>人待定
         </div>
-        <% } %>
+        <div class="attend-list">
+            <% if(data.attendList.length > 0){ %>
+            <% for (var i = 0; i < data.indeterminateList.length; i++){  var item = data.indeterminateList[i]; %>
+            <div class="attend-item">
+                <div class="name J-name"><%= item['indeterminateName'] %></div>
+                <div class="info">
+                    <div class="J-time"><%= item['createTime'] %></div>
+                    <div class="J-count"><%= item['indeterminateNumber'] %>人赴宴</div>
+                </div>
+            </div>
+            <% } %>
+            <% }else{ %>
+            <div class="attend-empty">
+                <div>暂无宾客回复</div>
+                <div>请柬发送后的回复，可在此查看</div>
+            </div>
+            <% } %>
+        </div>
     </div>
 </div>
-
-
+<%- include("commonjs.ejs") %>
 <script>
-    $('.J-remove').click(function () {
-        var removeId = $(this).parents('.item').data('id');
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/removeMessage',
-            data: {
-                openid: 'openId1212',
-                removeId: removeId
-            },
-            success: function (data) {
-                console.log(data);
-                window.location.reload();
-            },
-            dataType: 'json'
-        });
-    });
+    function Page() {
+        this.init();
+    }
 
+    Page.prototype = {
+        init: function () {
+            this.bindEvent();
+        },
+        // 绑定事件
+        bindEvent: function () {
+            // 返回
+            $('.J-back').click(function () {
+                window.location.href = './index';
+            })
+            // 切换tab
+            $('.J-blessing-nav, .J-attend-nav, .J-notsure-nav').click(function () {
+                $(this).addClass('active').siblings().removeClass('active');
+                $('.nav-content').removeClass('active');
+            })
+            $('.J-blessing-nav').click(function () {
+                $('.J-blessing-content').addClass('active');
+            })
+            $('.J-attend-nav').click(function () {
+                $('.J-attend-content').addClass('active');
+            })
+            $('.J-notsure-nav').click(function () {
+                $('.J-notsure-content').addClass('active');
+            })
+            // 显示删除祝福div
+            $('.J-action-icon').click(function () {
+                var $item = $(this).closest('.blessing-item-wrapper').find('.btn-wrapper');
+                if ($item.hasClass('active')) {
+                    $item.removeClass('active');
+                } else {
+                    $item.addClass('active');
+                }
+
+            })
+            // 删除祝福
+            $('.J-delete-btn').click(function () {
+                var $item = $(this).closest('.blessing-item-wrapper');
+                var removeId = $item.data('id');
+                $.ajax({
+                    type: 'POST',
+                    url: '/invitation/api/removeMessage',
+                    data: {
+                        removeId: removeId
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.status == 200) {
+                            $item.remove();
+                        } else {
+                            window.mPz.toast(data.data);
+                        }
+                    },
+                    dataType: 'json'
+                });
+            })
+            // 编辑请柬
+            $('.J-edit').click(function () {
+                // 根据id跳转到对应的template页
+                var $item = $(this).closest('.swiper-slide');
+                var template = $item.data('template');
+                var id = $item.data('id');
+                window.location.href = './template' + template + '.html?id=' + id;
+            })
+
+            // 确认删除请柬
+            $('.J-delete').click(function () {
+                $('.J-confirm-modal').addClass('active');
+            })
+
+            // 进行删除请柬操作
+            $('.J-confirm-btn').click(function () {
+                // TODO 删除请柬
+                $.ajax({
+                    url: '/invitation/api/updateInvitationForm',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    success: function (res) {
+                        // 后端直接刷新页面
+                        setTimeout(function () {
+                            window.location.href = './index.html';
+                        }, 1000);
+                    },
+                    error: function (data) {
+                        window.mPZ.toast("服务器正忙，请稍后再试");
+                    }
+                })
+            })
+            // 取消删除或关闭确认框
+            $('.J-cancel-btn, .J-modal-close').click(function () {
+                $('.J-confirm-modal').removeClass('active');
+            })
+        },
+    }
+</script>
+<script>
+    new Page();
 </script>
 
 

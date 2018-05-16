@@ -1,23 +1,25 @@
-﻿<%- include("../daka/header.ejs",{"title": "英孚亲子共读训练营"}) %>
-<style>
-    body.ipad {
-        padding-bottom: 160px;
-    }
+﻿<%- include("header.ejs",{"title": "结婚邀请函"}) %>
 
-    h2 {
-        font-size: 36px !important;
-        color: #00a7fe !important;
-    }
-</style>
-<div class="page main-page index-page active">
-    <input type="text" class="J-tel">
-    <h2 class="sendSMS">发送验证码</h2>
-    <br/><br/>
-
-    <input type="text" class="J-code">
-    <h2 class="login">提交验证码</h2>
+<div class="page login-page">
+    <div class="mid">
+        <img src="./img/login-title.png" class="title" alt="">
+        <form class="form">
+            <div class="row">
+                <label for="login-tel"></label>
+                <input type="text" id="login-tel" name="tel" placeholder="手机号" data-required="true"
+                       data-message="请输入手机号">
+            </div>
+            <div class="row">
+                <label for="login-code"></label>
+                <input type="text" id="login-code" name="code" placeholder="验证码" data-required="true"
+                       data-message="请输入验证码">
+                <a class="get-code-btn J-sendSMS">获取验证码</a>
+            </div>
+        </form>
+        <img src="./img/login-btn.png" class="login-btn J-login" alt="">
+    </div>
 </div>
-
+<%- include("commonjs.ejs") %>
 <script>
     function urlParam() {
         var name, value;
@@ -39,46 +41,110 @@
     }
 </script>
 <script>
-
-
     var route = urlParam().route;
 
-    $('.sendSMS').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/sendSMS',
-            data: {
-                tel: $('.J-tel').val(),
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            dataType: 'json'
-        });
-    });
+    function Page() {
+        this.countdown = 60;
+        this.timer = null;
+        this.init();
+    }
 
-    $('.login').click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/invitation/api/login',
-            data: {
-                tel: $('.J-tel').val(),
-                code: $('.J-code').val(),
-                route: route
-            },
-            success: function (data) {
-                if (data.status == 200) {
-                    alert('登录成功');
-                    window.location.href = '/invitation/' + data.data.route;
-                } else {
-                    alert(data.data);
+    Page.prototype = {
+        init: function () {
+            this.bindEvent();
+        },
+        // 绑定事件
+        bindEvent: function () {
+            var self = this;
+            // 获取验证码
+            $('.J-sendSMS').click(function () {
+                var $self = $(this);
+                if ($self.hasClass('disabled')) {
+                    return false;
                 }
-            },
-            dataType: 'json'
-        });
-    });
+                var tel = $('input[name=tel]').val();
+                if (!tel) {
+                    window.mPZ.toast('请输入手机号');
+                    return false;
+                }
+                if (!/^1[3|4|5|7|8|9][0-9]{9}$/.test(tel)) {
+                    window.mPZ.toast('请输入正确的手机号');
+                    return false;
+                }
+                startTimer();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/invitation/api/sendSMS',
+                    data: {
+                        tel: tel,
+                    },
+                    success: function (data) {
+                        if (data.status == 200) {
+                            window.mPZ.toast('短信发送成功');
+                        } else {
+                            window.mPZ.toast(data.data);
+                        }
+                    },
+                    dataType: 'json'
+                });
+            });
+
+            // 登录
+            $('.J-login').click(function () {
+                if (window.mPZ.checkForm($('.form'))) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/invitation/api/login',
+                        data: {
+                            tel: $('input[name=tel]').val(),
+                            code: $('input[name=code]').val(),
+                            route: route
+                        },
+                        success: function (data) {
+                            if (data.status == 200) {
+                                window.mPZ.toast('登录成功');
+                                setTimeout(function () {
+                                    window.location.href = '/invitation/' + data.data.route;
+                                }, 500);
+                            } else {
+                                window.mPZ.toast(data.data);
+                            }
+                        },
+                        dataType: 'json'
+                    });
+                }
+            });
 
 
+            function startTimer() {
+                var $self = $('.J-sendSMS');
+                var countdown = self.countdown;
+
+                $self.text('重新发送(' + countdown + 's)')
+                $self.addClass('disabled');
+
+                self.timer = setInterval(function () {
+                    countdown -= 1;
+                    $self.text('重新发送(' + countdown + 's)')
+                    $self.addClass('disabled');
+                    if (countdown <= 0) {
+                        stopTimer();
+                    }
+                }, 1000);
+            }
+
+            function stopTimer() {
+                var $self = $('.J-sendSMS');
+                clearInterval(self.timer);
+                $self.text('获取验证码')
+                $self.removeClass('disabled');
+            }
+        },
+    }
+</script>
+<script>
+    new Page();
 </script>
 
 

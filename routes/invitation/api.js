@@ -13,9 +13,12 @@ var uuid = require('node-uuid');
 router.post('/addInvitation', function (req, res, next) {
     var data = req.body;
     log(data);
-    functions.addInvitation(data).then(function (docs) {
-        log(docs);
-        res.send(sendData('200', docs, ''));
+    functions.checkLogin(req, res).then(function (tel) {
+        data['ownerId'] = tel;
+        return functions.addInvitation(data);
+    }).then(function (doc) {
+        log(doc);
+        res.send(sendData('200', doc, ''));
     }).catch(function (e) {
         console.log(e);
     })
@@ -138,7 +141,9 @@ router.post('/setAttend', function (req, res, next) {
 router.post('/removeMessage', function (req, res, next) {
     var data = req.body;
     log(data);
-    functions.removeMessage(data.openid, data.removeId).then(function (docs) {
+    functions.checkLogin(req, res).then(function (tel) {
+        return functions.removeMessage(tel, data.removeId);
+    }).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
         console.log(e);
@@ -148,8 +153,9 @@ router.post('/removeMessage', function (req, res, next) {
 // 删除邀请函
 router.post('/removeInvitation', function (req, res, next) {
     var data = req.body;
-    log(data);
-    functions.removeInvitation(data.openid, data.removeId).then(function (docs) {
+    functions.checkLogin(req, res).then(function (tel) {
+        return functions.removeInvitation(tel, data.deleteId)
+    }).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
         console.log(e);
@@ -164,10 +170,21 @@ router.post('/sendSMS', function (req, res, next) {
     if (!checkTel(tel)) {
         res.send(sendData('999', '无效手机号码', ''));
     } else {
-        functions.smsSend(data.tel).then(function (data) {
+        functions.smsDBFind({SMSTel: tel, tag: 'invitation'}).then(function (docs) {
+            var doc = docs[docs.length - 1];
+            var createTime = doc && doc['createTime'] * 1;
+            var now = new Date() * 1;
+            var diffTime = doc && (now - createTime);
+            if (doc && diffTime < 60 * 1000) {
+                res.send(sendData('999', '发送短信太频繁了~', ''));
+            } else {
+                return functions.smsSend(data.tel);
+            }
+        }).then(function (data) {
             res.send(sendData('200', data, ''));
         }).catch(function (e) {
             console.log(e);
+            res.send(sendData('999', '发送短信太频繁了', ''));
         });
     }
 

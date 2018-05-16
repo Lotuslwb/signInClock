@@ -56,9 +56,9 @@ var getInvitationDetail = function (invitationId) {
     });
 }
 
-var removeInvitation = function (openid, invitationId) {
+var removeInvitation = function (tel, invitationId) {
     var promise = new Promise(function (resolve, reject) {
-        InvitationDB.remove({_id: invitationId, ownerId: openid}, function (err, docs) {
+        InvitationDB.remove({_id: invitationId, ownerId: tel}, function (err, docs) {
             if (err) {
                 return reject(docs);
             } else {
@@ -162,6 +162,23 @@ var checkOpenid = function (req, res) {
     });
     return promise;
 }
+var checkLogin = function (req, res) {
+    var promise = new Promise(function (resolve, reject) {
+        var openInfo = req.signedCookies['session'];
+        if (openInfo) {
+            var tel = JSON.parse(openInfo)['tel'];
+            resolve(tel);
+        } else {
+            //如果cookie里面没有openInfo
+            var hostname = req.hostname;
+            var protocol = req.protocol;
+            res.redirect('/invitation/login?router=invitation' + req.path);
+        }
+    }).catch(function (e) {
+        console.log(e);
+    });
+    return promise;
+}
 
 
 /*  用手机和验证码登录 */
@@ -180,6 +197,18 @@ var smsDBAdd = function (json) {
     });
     return promise;
 }
+var smsDBFind = function (json) {
+    var promise = new Promise(function (resolve, reject) {
+        SMSDB.find(json, function (err, docs) {
+            if (err) {
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        })
+    });
+    return promise;
+}
 
 var smsSend = function (tel) {
     var code = genCode(6);
@@ -193,19 +222,10 @@ var smsSend = function (tel) {
     });
 }
 var checkSMS = function (tel, code) {
-    var promise = new Promise(function (resolve, reject) {
-        SMSDB.find({SMSTel: tel, code: code, tag: 'invitation'}, function (err, docs) {
-            if (err) {
-                return reject(docs);
-            } else {
-                return resolve(docs);
-            }
-        })
-    }).then(function (docs) {
+    return smsDBFind({SMSTel: tel, code: code, tag: 'invitation'}).then(function (docs) {
         //  docs 大于0 证明验证码匹配成功了
         return docs.length > 0
-    });
-    return promise;
+    })
 }
 
 // 生成验证码
@@ -230,8 +250,10 @@ module.exports = {
     removeMessage: removeMessage,
 
     checkOpenid: checkOpenid,
+    checkLogin: checkLogin,
 
-    smsSend: smsSend,
     smsDBAdd: smsDBAdd,
+    smsDBFind: smsDBFind,
+    smsSend: smsSend,
     checkSMS: checkSMS,
 };

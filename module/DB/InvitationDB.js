@@ -34,6 +34,7 @@ Schema = {
     indeterminateList: [{  // 待定列表
         indeterminateId: String,  // 待定ID
         indeterminateName: String, // 待定的名字
+        indeterminateNumber: String, // 待定的名字
         createTime: String, // 创建时间
     }]
 };
