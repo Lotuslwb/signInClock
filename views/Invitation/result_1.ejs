@@ -172,7 +172,9 @@
 <!--评论区域-->
 <div class="blessing J-blessing">
     <div class="blessing-wrapper active">
+        <% if(doc.wishesList.length > 0){ %>
         <img class="btn-close J-btn-close" src="/invitation/img/icon-close.png" alt="">
+        <% } %>
         <div class="live-blessing-wrapper">
             <ul class="live-blessing-list">
                 <% for(var i = 0;i < doc.wishesList.length;i++){  var item = doc.wishesList[i]; %>
