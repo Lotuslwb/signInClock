@@ -247,6 +247,8 @@
                 }
             }
 
+            $('body').on('touchstart', onTouchStart);
+
             $(".u-globalAudio").on('touchstart', function () {
                 if (music_key == 1) {
                     audioElement.pause();
