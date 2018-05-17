@@ -129,7 +129,8 @@
                     type: "POST",
                     success: function (data) {
                         console.log(data);
-                        $result.src = '/files/' + data.data.name;
+                        $result.src = rst.base64;
+                        $($result).data('src', '/files/' + data.data.name)
                         // $selector.html('<img src="/files/' + data.data.name + '" />');
                     }
                 });
