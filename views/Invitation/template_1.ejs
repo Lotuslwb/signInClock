@@ -244,7 +244,7 @@
 
             $('body').one('touchstart', onTouchStart);
 
-            $(".u-globalAudio").on('touchstart', function (e) {
+            $(".u-globalAudio").on('click', function (e) {
                 e.stopPropagation();
                 if ($(this).hasClass('z-play')) {
                     audioElement.pause();
