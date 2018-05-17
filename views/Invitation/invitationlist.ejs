@@ -13,7 +13,8 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <% for (var i = 0; i < data.length; i++){  var item = data[i]; %>
-                <div class="swiper-slide" data-id="<%= item['_id'] %>" data-template="<%= item['templateId'] %>">
+                <div class="swiper-slide" data-id="<%= item['_id'] %>" data-template="<%= item['templateId'] %>"
+                     style="width: 400px;">
                     <div class="action-group">
                         <img class="icon J-edit" src="/invitation/img/icon-edit.png" alt="">
                         <img class="icon J-delete" src="/invitation/img/icon-delete.png" alt="">
