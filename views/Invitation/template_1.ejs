@@ -331,35 +331,7 @@
         // 分享
         shareEvent: function (self) {
             $('.J-send').click(function () {
-                //“分享给朋友”
-                wx.onMenuShareAppMessage({
-                    title: '制作婚礼请帖', // 分享标题
-                    desc: '记录一生唯一真爱承诺，迫不及待向世界宣告我们的爱', // 分享描述
-                    link: 'http://ma.eldesign.cn/invitation/result/' + templateId + '?id=' + id, // 分享链接
-                    imgUrl: '', // 分享图标
-                    type: '', // 分享类型,music、video或link，不填默认为link
-                    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                    success: function () {
-                        // 用户确认分享后执行的回调函数
-
-                    },
-                    cancel: function () {
-                        // 用户取消分享后执行的回调函数
-                    }
-                });
-
-                //“分享到朋友圈”
-                wx.onMenuShareTimeline({
-                    title: '制作婚礼请帖', // 分享标题
-                    link: 'http://ma.eldesign.cn/invitation/result/' + templateId + '?id=' + id, // 分享链接
-                    imgUrl: '', // 分享图标
-                    success: function () {
-                        // 用户确认分享后执行的回调函数
-                    },
-                    cancel: function () {
-                        // 用户取消分享后执行的回调函数
-                    }
-                });
+                self.resultShare();
                 // $('.J-send-modal').addClass('active');
                 window.mPZ.toast('点击右上角分享');
             });
@@ -398,12 +370,11 @@
             })
         },
         resultShare: function () {
-            alert(1);
             //“分享给朋友”
             wx.onMenuShareAppMessage({
                 title: '制作婚礼请帖', // 分享标题
                 desc: '记录一生唯一真爱承诺，迫不及待向世界宣告我们的爱', // 分享描述
-                link: '/invitation/result/' + templateId + '?id=' + id, // 分享链接
+                link: 'http://ma.eldesign.cn/invitation/result/' + templateId + '?id=' + id, // 分享链接
                 imgUrl: '', // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -419,7 +390,7 @@
             //“分享到朋友圈”
             wx.onMenuShareTimeline({
                 title: '制作婚礼请帖', // 分享标题
-                link: '/invitation/result/' + templateId + '?id=' + id, // 分享链接
+                link: 'http://ma.eldesign.cn/invitation/result/' + templateId + '?id=' + id, // 分享链接
                 imgUrl: '', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
