@@ -198,6 +198,7 @@
 <script>
 
     var id = "<%= doc['_id']; %>";
+    var templateId = "<%= doc['templateId']; %>";
     var Info =<%- JSON.stringify(Info) %>;
 
     function Page() {
@@ -286,10 +287,38 @@
                 $('.J-settings-modal').addClass('active');
             })
             $('.J-delete').click(function () {
-                // TODO 删除请帖
+                $.ajax({
+                    type: 'POST',
+                    url: '/invitation/api/removeInvitation',
+                    data: {
+                        deleteId: id
+                    },
+                    success: function (data) {
+                        if (data.status == 200) {
+                            window.location.href = '/invitation/index';
+                        } else {
+                            window.mPZ.toast(data.data);
+                        }
+                    },
+                    dataType: 'json'
+                });
             })
             $('.J-remake').click(function () {
-                // TODO 重新制作，先调用删除的接口，再跳转到选择模板的页面
+                $.ajax({
+                    type: 'POST',
+                    url: '/invitation/api/removeInvitation',
+                    data: {
+                        deleteId: id
+                    },
+                    success: function (data) {
+                        if (data.status == 200) {
+                            window.location.href = '/invitation/template';
+                        } else {
+                            window.mPZ.toast(data.data);
+                        }
+                    },
+                    dataType: 'json'
+                });
             })
             $('.J-settings-modal .J-cancel').click(function () {
                 $('.J-settings-modal').removeClass('active');
@@ -297,9 +326,11 @@
         },
         // 分享
         shareEvent: function () {
+            var self = this;
             $('.J-send').click(function () {
-                $('.J-send-modal').addClass('active');
-                // TODO 分享
+                // $('.J-send-modal').addClass('active');
+                self.resultShare();
+                window.mPZ.toast('点击右上角分享');
             });
             $('.J-send-modal .J-btn-cancel').click(function () {
                 $('.J-send-modal').removeClass('active');
@@ -307,6 +338,7 @@
         },
         // 保存
         saveEvent: function () {
+            var self = this;
             $('.J-save').click(function () {
                 var templateInfo = [];
                 $('.J-uploaded-img').each(function () {
@@ -325,6 +357,7 @@
                     success: function (data) {
                         console.log(data);
                         if (data.status == 200) {
+                            self.resultShare();
                             window.mPZ.toast('保存成功');
                         } else {
                             window.mPZ.toast(data.data);
@@ -333,6 +366,37 @@
                     dataType: 'json'
                 });
             })
+        },
+        resultShare: function () {
+            //“分享给朋友”
+            wx.onMenuShareAppMessage({
+                title: '制作婚礼请帖', // 分享标题
+                desc: '记录一生唯一真爱承诺，迫不及待向世界宣告我们的爱', // 分享描述
+                link: '/invitation/result/' + templateId + '?id=' + id, // 分享链接
+                imgUrl: '', // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            //“分享到朋友圈”
+            wx.onMenuShareTimeline({
+                title: '制作婚礼请帖', // 分享标题
+                link: '/invitation/result/' + templateId + '?id=' + id, // 分享链接
+                imgUrl: '', // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
         }
     }
 </script>

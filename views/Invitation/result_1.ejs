@@ -201,6 +201,7 @@
 
     var id = "<%= doc['_id']; %>";
     var Info =<%- JSON.stringify(Info) %>;
+    var marriageAddressInfo = '<%- doc["templateForm"]["marriageAddressInfo"] %>'.split(',');
 
     function Page() {
         this.init();
@@ -284,9 +285,9 @@
         initMap: function () {
             // 初始化地图
             var map = new BMap.Map("map");
-            var point = new BMap.Point(112.991, 28.218);
+            var point = new BMap.Point(marriageAddressInfo[0], marriageAddressInfo[1]);
             map.centerAndZoom(point, 16);
-            // TODO 根据地址查（建议直接存经纬度，因为详细地址是地图上没有，比如房间号）
+            map.enableScrollWheelZoom();
         },
         // 回复
         replyEvent: function () {
