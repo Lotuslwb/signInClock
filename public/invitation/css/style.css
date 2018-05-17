@@ -228,6 +228,7 @@ img[src=""] {
 .page .main .photo {
     margin-top: 6.4em;
     position: relative;
+    overflow: auto;
 }
 
 .page .main .photo img {
