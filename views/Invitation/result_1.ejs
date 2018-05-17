@@ -217,6 +217,11 @@
             this.blessingEvent();
             this.replyEvent();
             this.initDate();
+
+            var self = this;
+            initWX(function () {
+                self.resultShare();
+            })
         },
         // 绑定事件
         bindEvent: function () {
@@ -467,6 +472,38 @@
                     }
                 })
             })
+        },
+        resultShare: function () {
+            //“分享给朋友”
+            wx.onMenuShareAppMessage({
+                title: "<%= doc['templateForm']['groomName'] %>和<%= doc['templateForm']['brideName'] %>的婚姻邀请", // 分享标题
+                desc: '我们要结婚啦！一生一次的婚姻承诺邀请您一起见证', // 分享描述
+                link: 'http://ma.eldesign.cn/invitation/result/' + templateId + '?id=' + id, // 分享链接
+                imgUrl: $('.J-uploaded-img')[0].src, // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            //“分享到朋友圈”
+            wx.onMenuShareTimeline({
+                title: "<%= doc['templateForm']['groomName'] %>和<%= doc['templateForm']['brideName'] %>的婚姻邀请", // 分享标题
+                desc: '我们要结婚啦！一生一次的婚姻承诺邀请您一起见证', // 分享描述
+                link: 'http://ma.eldesign.cn/invitation/result/' + templateId + '?id=' + id, // 分享链接
+                imgUrl: $('.J-uploaded-img')[0].src, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
         }
     }
 </script>
