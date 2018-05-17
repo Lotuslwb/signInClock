@@ -246,6 +246,7 @@
 
             $(".u-globalAudio").on('click', function (e) {
                 e.stopPropagation();
+                e.preventDefault();
                 if ($(this).hasClass('z-play')) {
                     audioElement.pause();
                     $(this).addClass('z-pause').removeClass('z-play');
