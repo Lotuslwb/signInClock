@@ -121,6 +121,7 @@
         lrz($selector.files[0])
             .then(function (rst) {
                 rst.formData.append("fileLen", rst.fileLen);
+                $result.src = rst.base64;
                 $.ajax({
                     url: "/invitation/api/upload",
                     data: rst.formData,
@@ -129,7 +130,6 @@
                     type: "POST",
                     success: function (data) {
                         console.log(data);
-                        $result.src = rst.base64;
                         $($result).data('src', '/files/' + data.data.name)
                         // $selector.html('<img src="/files/' + data.data.name + '" />');
                     }
