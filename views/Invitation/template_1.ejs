@@ -250,12 +250,12 @@
             $('body').on('touchstart', onTouchStart);
 
             $(".u-globalAudio").on('touchstart', function () {
+                once = 1;
                 if (music_key == 1) {
                     audioElement.pause();
                     music_key = 0;
                     $(this).addClass('z-pause').removeClass('z-play');
                 } else {
-                    once = 1;
                     audioElement.play();
                     music_key = 1;
                     $(this).addClass('z-play').removeClass('z-pause');
