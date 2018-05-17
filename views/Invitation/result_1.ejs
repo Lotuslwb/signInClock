@@ -256,8 +256,11 @@
                     once = 1;
                     audioElement.play();
                     music_key = 1;
+                    alert(1);
                 }
             }
+
+            $('body').on('touchstart', onTouchStart);
 
             $(".u-globalAudio").on('touchstart', function () {
                 if (music_key == 1) {
