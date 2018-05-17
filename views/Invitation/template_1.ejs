@@ -211,8 +211,8 @@
             this.initMap();
             this.bindEvent();
             this.settingsEvent();
-            this.shareEvent();
-            this.saveEvent();
+            this.shareEvent(this);
+            this.saveEvent(this);
             this.initDate();
         },
         // 绑定事件
@@ -325,8 +325,7 @@
             })
         },
         // 分享
-        shareEvent: function () {
-            var self = this;
+        shareEvent: function (self) {
             $('.J-send').click(function () {
                 // $('.J-send-modal').addClass('active');
                 self.resultShare();
@@ -337,8 +336,7 @@
             })
         },
         // 保存
-        saveEvent: function () {
-            var self = this;
+        saveEvent: function (self) {
             $('.J-save').click(function () {
                 var templateInfo = [];
                 $('.J-uploaded-img').each(function () {
