@@ -249,6 +249,10 @@ img[src=""] {
     position: relative;
 }
 
+.page2.page .main .info {
+    margin-top: 20px;
+}
+
 .page .main .info .name img {
     display: inline-block;
 }
@@ -832,6 +836,7 @@ img[src=""] {
 
 .swiper-container.tpl1-container .page1 .main .photo {
     height: 640px;
+    overflow: hidden;
 }
 
 .swiper-container.tpl1-container .page1 .main .photo img {
@@ -841,6 +846,7 @@ img[src=""] {
 .swiper-container.tpl1-container .page2 .main .photo {
     margin-top: 68px;
     height: 724px;
+    overflow: hidden;
 }
 
 .swiper-container.tpl1-container .page2 .main .photo .ant-right-top {
@@ -1037,6 +1043,7 @@ img[src=""] {
 
 .swiper-container.tpl1-container .page6 {
     position: relative;
+    overflow: hidden;
 }
 
 .swiper-container.tpl1-container .page6 .text {
@@ -1377,7 +1384,7 @@ img[src=""] {
 }
 
 .modal {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     position: absolute;
     top: 0;
     bottom: 0;

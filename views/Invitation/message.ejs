@@ -16,7 +16,8 @@
             <div class="blessing-item">
                 <div class="title">
                     <div class="J-name"><%= item['wishName'] %></div>
-                    <div class="J-time"><%= item['createTime'] %></div>
+                    <div class="J-time" data-time="<%= item['createTime'] %>"></div>
+
                 </div>
                 <div class="content"><%= item['wishText'] %></div>
                 <img class="action-icon J-action-icon" src="./img/icon-message-circle.png" alt="">
@@ -44,7 +45,7 @@
             <div class="attend-item">
                 <div class="name J-name"><%= item['attendName'] %></div>
                 <div class="info">
-                    <div class="J-time"><%= item['createTime'] %></div>
+                    <div class="J-time" data-time="<%= item['createTime'] %>"></div>
                     <div class="J-count"><%= item['attendNumber'] %>人赴宴</div>
                 </div>
             </div>
@@ -68,7 +69,7 @@
             <div class="attend-item">
                 <div class="name J-name"><%= item['indeterminateName'] %></div>
                 <div class="info">
-                    <div class="J-time"><%= item['createTime'] %></div>
+                    <div class="J-time" data-time="<%= item['createTime'] %>"></div>
                     <div class="J-count"><%= item['indeterminateNumber'] %>人赴宴</div>
                 </div>
             </div>
@@ -91,6 +92,13 @@
     Page.prototype = {
         init: function () {
             this.bindEvent();
+            this.initDate();
+        },
+        initDate: function () {
+            $('[data-time]').each(function () {
+                var time = moment($(this).data('time')).format('YYYY-MM-DD hh:mm');
+                $(this).text(time);
+            })
         },
         // 绑定事件
         bindEvent: function () {

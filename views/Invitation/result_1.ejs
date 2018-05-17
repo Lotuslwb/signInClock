@@ -16,9 +16,7 @@
                     <img class="J-uploaded-img" data-tag="tmp1-pic1" src="" alt="photo">
                     <img class="photo-wrapper" src="/invitation/img/tpl1-photo-wrapper-1.png"
                          alt="">
-                    <div class="upload-mask">
-                        <input type="file">
-                    </div>
+
                 </div>
                 <div class="info">
                     <div class="name">
@@ -26,7 +24,7 @@
                         <img src="/invitation/img/icon-and.png" alt="">
                         <span><%= doc['templateForm']['brideName'] %></span>
                     </div>
-                    <div class="time"><%= doc['templateForm']['marriageTime'] %></div>
+                    <div class="time" data-time="<%= doc['templateForm']['marriageTime'] %>"></div>
                     <div class="address"><%= doc['templateForm']['marriageAddress'] %></div>
                 </div>
             </div>
@@ -38,9 +36,7 @@
                     <img class="photo-wrapper" src="/invitation/img/tpl1-photo-wrapper-2.png" alt="">
                     <img class="ant-right-top" src="/invitation/img/tpl1-photo-wrapper-2-ani-right.png" alt="">
                     <img class="ani-left-bottom" src="/invitation/img/tpl1-photo-wrapper-2-ani-left.png" alt="">
-                    <div class="upload-mask">
-                        <input type="file">
-                    </div>
+
                 </div>
                 <div class="info">
                     <div>从你为我戴上婚戒那一刻开始</div>
@@ -53,15 +49,10 @@
             <div class="content">
                 <div class="img-wrapper">
                     <img class="J-uploaded-img" data-tag="tmp1-pic3" src=""/>
-                    <div class="upload-mask">
-                        <input type="file">
-                    </div>
+
                 </div>
                 <div class="img-wrapper">
                     <img class="J-uploaded-img" data-tag="tmp1-pic4" src=""/>
-                    <div class="upload-mask">
-                        <input type="file">
-                    </div>
                 </div>
             </div>
             <img class="ani-left-top" src="/invitation/img/tpl1-photo-wrapper-3-ani-left-top.png" alt="">
@@ -72,15 +63,11 @@
             <img class="text" src="/invitation/img/tpl1-4-text.png" alt="">
             <div class="img-wrapper">
                 <img class="J-uploaded-img" data-tag="tmp1-pic5" src=""/>
-                <div class="upload-mask">
-                    <input type="file">
-                </div>
+
             </div>
             <div class="img-wrapper">
                 <img class="J-uploaded-img" data-tag="tmp1-pic6" src=""/>
-                <div class="upload-mask">
-                    <input type="file">
-                </div>
+
             </div>
             <img class="ani-left" src="/invitation/img/tpl1-photo-wrapper-4-ani-left.png" alt="">
             <img class="ani-right-top" src="/invitation/img/tpl1-photo-wrapper-4-ani-right-top.png" alt="">
@@ -89,15 +76,11 @@
             <img class="text" src="/invitation/img/tpl1-5-text.png" alt="">
             <div class="img-wrapper img-top backgroundFFF">
                 <img class="J-uploaded-img " data-tag="tmp1-pic7" src=""/>
-                <div class="upload-mask">
-                    <input type="file">
-                </div>
+
             </div>
             <div class="img-wrapper img-bottom">
                 <img class="J-uploaded-img" data-tag="tmp1-pic8" src=""/>
-                <div class="upload-mask">
-                    <input type="file">
-                </div>
+
             </div>
             <img class="ani-right-bottom" src="/invitation/img/tpl1-photo-wrapper-5-ani-right-bottom.png" alt="">
         </div>
@@ -106,16 +89,12 @@
             <div class="img-wrapper img-top">
                 <div class="img-bg"></div>
                 <img class="J-uploaded-img" data-tag="tmp1-pic9" src=""/>
-                <div class="upload-mask">
-                    <input type="file">
-                </div>
+
             </div>
             <div class="img-wrapper img-bottom">
                 <div class="img-bg"></div>
                 <img class="J-uploaded-img" data-tag="tmp1-pic10" src=""/>
-                <div class="upload-mask">
-                    <input type="file">
-                </div>
+
             </div>
             <img class="ani-right-top" src="/invitation/img/tpl1-photo-wrapper-6-ani-right-top.png" alt="">
             <img class="ani-bottom" src="/invitation/img/tpl1-photo-wrapper-6-ani-bottom.png" alt="">
@@ -125,15 +104,13 @@
                 <div class="portrait">
                     <div class="img-wrapper">
                         <img class="J-uploaded-img" data-tag="tmp1-logo" src=""/>
-                        <div class="upload-mask">
-                            <input type="file">
-                        </div>
+
                     </div>
                 </div>
                 <img class="text" src="/invitation/img/tpl1-7-text.png" alt="">
                 <div class="map" id="map"></div>
                 <div class="info">
-                    <div class="time"><%= doc['templateForm']['marriageTime'] %></div>
+                    <div class="time" data-time="<%= doc['templateForm']['marriageTime'] %>"></div>
                     <div class="address"><%= doc['templateForm']['marriageAddress'] %></div>
                 </div>
             </div>
@@ -141,6 +118,13 @@
                 <img src="/invitation/img/tpl1-btn-reply.png" alt="">
             </div>
             <div class="modal J-reply-modal">
+            </div>
+        </div>
+        <div class="swiper-slide page tpl1-page page8">
+            <div class="mid">
+                <img class="vcode" src="/invitation/img/page8-vcode.png" alt="">
+                <img class="text" src="/invitation/img/page8-text1.png" alt="">
+                <img class="btn-do J-btn-do" src="/invitation/img/page8-btn.png" alt="">
             </div>
         </div>
     </div>
@@ -153,7 +137,7 @@
 
 <!-- popup -->
 <!--宾客回复-->
-<div class="modal-form">
+<div class="modal-form J-modal-form">
     <form class="J-form">
         <div class="input-wrapper">
             <label class="label" for="reply-modal-name">来宾姓名：</label>
@@ -171,7 +155,7 @@
             </div>
         </div>
         <div class="input-wrapper J-attend-wrapper">
-            <div class="label">赴宴人数：</div>
+            <div class="label">人数：</div>
             <div class="count-wrapper">
                 <div class="btn-cnt-action J-minus">-</div>
                 <div class="attend-cnt">1</div>
@@ -191,12 +175,11 @@
         <img class="btn-close J-btn-close" src="/invitation/img/icon-close.png" alt="">
         <div class="live-blessing-wrapper">
             <ul class="live-blessing-list">
+                <% for(var i = 0;i < doc.wishesList.length;i++){  var item = doc.wishesList[i]; %>
                 <li>
-                    <div><span>李文字彬：</span>啦啦啦</div>
+                    <div><span><%= item['wishName'] %>：</span><%= item['wishText'] %></div>
                 </li>
-                <li>
-                    <div><span class="myself">我：</span>哈哈哈</div>
-                </li>
+                <% } %>
             </ul>
         </div>
         <div class="live-write">
@@ -214,8 +197,6 @@
 <%- include("commonjs.ejs") %>
 <script src="http://api.map.baidu.com/getscript?v=2.0&ak=2eed95cd0a38f5605d4b885b55211634&services=&t=20170511202040"></script>
 <script src="/invitation/js/swiper-3.3.1.jquery.min.js"></script>
-<script src="/invitation/js/lrz.all.bundle"></script>
-
 <script>
 
     var id = "<%= doc['_id']; %>";
@@ -232,6 +213,7 @@
             this.bindEvent();
             this.blessingEvent();
             this.replyEvent();
+            this.initDate();
         },
         // 绑定事件
         bindEvent: function () {
@@ -242,12 +224,19 @@
 
             // 制作请帖
             $('.J-btn-do').click(function () {
-                window.location.href = 'index';
+                window.location.href = '/invitation/index';
             })
 
             // 初始化swiper
             var mySwiper = new Swiper('.swiper-container', {
                 direction: 'vertical',
+                onSlideChangeEnd: function (swiper) {
+                    if (swiper.slides.length - swiper.activeIndex > 2) {
+                        $('.J-blessing').show();
+                    } else {
+                        $('.J-blessing').hide();
+                    }
+                }
             })
             // 背景音乐
             var music_key, once = 0;
@@ -279,17 +268,17 @@
                 }
                 return false;
             });
-            // 上传图片
-            $('.upload-mask').change(function () {
-                var $selector = $(this).find('input[type=file]');
-                var $result = $(this).parents('.img-wrapper').find('.J-uploaded-img');
-                window.mPZ.uploadImg($selector[0], $result[0]);
-            })
         },
         initInfo: function () {
             $('.J-uploaded-img').each(function () {
                 var tag = $(this).data('tag');
                 $(this).attr('src', Info[tag] || '');
+            })
+        },
+        initDate: function () {
+            $('[data-time]').each(function () {
+                var time = moment($(this).data('time')).format('YYYY年MM月DD日 hh:mm');
+                $(this).text(time);
             })
         },
         initMap: function () {
@@ -310,14 +299,6 @@
             $('body').on('click', '.J-reply-modal', function () {
                 $formPopup.removeClass('active');
                 $('.J-reply-modal').remove();
-            })
-            $('input[type=radio]').change(function () {
-                var type = $(this).val();
-                if (type == '0') {
-                    $('.J-attend-wrapper').css('display', 'none');
-                } else {
-                    $('.J-attend-wrapper').css('display', 'block');
-                }
             })
             // 增加宾客数量
             $('.J-plus').click(function () {
@@ -349,26 +330,27 @@
             $('.J-submit-btn').click(function () {
                 if (window.mPZ.checkForm($('.J-form'))) {
                     var name = $('input[name=name]').val();
-                    var attendNumber = $('.attend-cnt').text();
+                    var number = $('.attend-cnt').text();
                     var url = '';
                     var data = {};
                     // type==1代表赴宴，type==0代表待定
-                    var type = $('input[name=isAttend]').val();
+                    var type = $('input[name=isAttend]:checked').val();
                     if (type == '1') {
                         url = '/invitation/api/setAttend';
                         data = {
-                            _id: 'xxx',
+                            _id: id,
                             attend: {
                                 attendName: name, // 赴宴的名字
-                                attendNumber: attendNumber, // 人数
+                                attendNumber: number, // 人数
                             }
                         }
                     } else {
                         url = '/invitation/api/setIndeterminate';
                         data = {
-                            _id: 'xxx',
+                            _id: id,
                             indeterminate: {
-                                indeterminateName: name
+                                indeterminateName: name,
+                                indeterminateNumber: number
                             }
                         }
                     }
@@ -383,9 +365,14 @@
                             $('.J-submit-btn').attr({disabled: "disabled"});
                         },
                         success: function (res) {
-                            $('.J-submit-btn').removeAttr("disabled");
-                            $('.J-reply-modal').removeClass('active');
-                            window.mPZ.toast('发送成功');
+                            if (res.status = 200) {
+                                $('.J-submit-btn').removeAttr("disabled");
+                                $('.J-reply-modal').removeClass('active');
+                                $('.J-modal-form').removeClass('active');
+                                window.mPZ.toast('发送成功');
+                            } else {
+                                window.mPZ.toast(res.data);
+                            }
                         },
                         error: function (data) {
                             window.mPZ.toast("服务器正忙，请稍后再试");
@@ -415,7 +402,7 @@
                 }
                 startDo = setInterval(function () {
                     linum = theRQ.find('li').length;
-                    console.log('linum', linum);
+                    // console.log('linum', linum);
                     if (i < linum - 2) {
                         $('.live-blessing-list').animate({'marginTop': -(i * lihei) + 'px'}, 500);
                         i++;

@@ -26,7 +26,7 @@
                         <img src="/invitation/img/icon-and.png" alt="">
                         <span><%= doc['templateForm']['brideName'] %></span>
                     </div>
-                    <div class="time"><%= doc['templateForm']['marriageTime'] %></div>
+                    <div class="time" data-time="<%= doc['templateForm']['marriageTime'] %>"></div>
                     <div class="address"><%= doc['templateForm']['marriageAddress'] %></div>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                 <img class="text" src="/invitation/img/tpl1-7-text.png" alt="">
                 <div class="map" id="map"></div>
                 <div class="info">
-                    <div class="time"><%= doc['templateForm']['marriageTime'] %></div>
+                    <div class="time" data-time="<%= doc['templateForm']['marriageTime'] %>"></div>
                     <div class="address"><%= doc['templateForm']['marriageAddress'] %></div>
                 </div>
             </div>
@@ -212,6 +212,7 @@
             this.settingsEvent();
             this.shareEvent();
             this.saveEvent();
+            this.initDate();
         },
         // 绑定事件
         bindEvent: function () {
@@ -264,6 +265,12 @@
             $('.J-uploaded-img').each(function () {
                 var tag = $(this).data('tag');
                 $(this).attr('src', Info[tag] || '');
+            })
+        },
+        initDate: function () {
+            $('[data-time]').each(function () {
+                var time = moment($(this).data('time')).format('YYYY年MM月DD日 hh:mm');
+                $(this).text(time);
             })
         },
         initMap: function () {
