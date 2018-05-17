@@ -197,6 +197,9 @@
 
 <script>
 
+</script>
+<script>
+
     var id = "<%= doc['_id']; %>";
     var templateId = "<%= doc['templateId']; %>";
     var Info =<%- JSON.stringify(Info) %>;
@@ -207,12 +210,13 @@
 
     Page.prototype = {
         init: function () {
+            var self = this;
             this.initInfo();
             this.initMap();
             this.bindEvent();
             this.settingsEvent();
-            this.shareEvent(this);
-            this.saveEvent(this);
+            this.shareEvent(self);
+            this.saveEvent(self);
             this.initDate();
         },
         // 绑定事件
@@ -327,8 +331,8 @@
         // 分享
         shareEvent: function (self) {
             $('.J-send').click(function () {
-                // $('.J-send-modal').addClass('active');
                 self.resultShare();
+                // $('.J-send-modal').addClass('active');
                 window.mPZ.toast('点击右上角分享');
             });
             $('.J-send-modal .J-btn-cancel').click(function () {
@@ -366,6 +370,7 @@
             })
         },
         resultShare: function () {
+            alert(1);
             //“分享给朋友”
             wx.onMenuShareAppMessage({
                 title: '制作婚礼请帖', // 分享标题
