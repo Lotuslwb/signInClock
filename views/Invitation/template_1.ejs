@@ -253,6 +253,7 @@
                 if (music_key == 1) {
                     audioElement.pause();
                     music_key = 0;
+                    once = 1;
                     $(this).addClass('z-pause').removeClass('z-play');
                 } else {
                     audioElement.play();
