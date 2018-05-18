@@ -236,6 +236,7 @@ img[src=""] {
 .page .main .photo img {
   object-fit: cover;
   object-position: center;
+  height: 30em;
   width: 100%;
 }
 
@@ -824,16 +825,12 @@ img[src=""] {
   background-size: cover;
 }
 
-.tpl1-container .page1 .main .photo {
+.swiper-container.tpl1-container .page1 .main .photo {
   width: 640px;
   height: 640px;
   overflow: hidden;
 }
 
-.index-page .main{
-    transform: scale(0.625);
-    transform-origin: top left;
-}
 
 .swiper-container.tpl1-container .page2 .main .photo {
   margin-top: 68px;

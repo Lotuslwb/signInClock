@@ -295,8 +295,8 @@
                 var others = Info[tag] && Info[tag].split('###')[1];
                 $(this).attr('src', src || '');
                 $(this).css({
-                    top: others && others.split(',')[0],
-                    left: others && others.split(',')[1],
+                    top: others.split(',')[0],
+                    left: others.split(',')[1],
                 });
                 if (src) {
                     $(this).siblings('.upload-mask').addClass('uploaded');

@@ -830,10 +830,6 @@ img[src=""] {
   overflow: hidden;
 }
 
-.index-page .main{
-    transform: scale(0.625);
-    transform-origin: top left;
-}
 
 .swiper-container.tpl1-container .page2 .main .photo {
   margin-top: 68px;

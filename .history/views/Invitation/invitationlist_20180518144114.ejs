@@ -13,40 +13,39 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <% for (var i = 0; i < data.length; i++){  var item = data[i]; %>
-                <div class="swiper-slide tpl<%= item['templateId'] %>-container" data-id="<%= item['_id'] %>" data-template="<%= item['templateId'] %>"
+                <div class="swiper-slide" data-id="<%= item['_id'] %>" data-template="<%= item['templateId'] %>"
                      style="width: 400px;">
                     <div class="action-group">
                         <img class="icon J-edit" src="/invitation/img/icon-edit.png" alt="">
                         <img class="icon J-delete" src="/invitation/img/icon-delete.png" alt="">
                     </div>
-                    <div class='page1'>
                     <div class="main J-edit" style='background: url("/invitation/img/tpl1-1.jpg ") no-repeat center;background-size:cover'>
-                        <div class="title">
-                            <div class="title-en">
-                                <img src="/invitation/img/text-title-en.png" alt="">
-                            </div>
-                            <div class="title-ch">婚礼邀请函</div>
-                            <div class="title-text">一生一世一对人</div>
+                    <div class="title">
+                        <div class="title-en">
+                            <img src="/invitation/img/text-title-en.png" alt="">
                         </div>
-                        <div class="photo img-wrapper">
-                            <img class="J-uploaded-img" data-tag="tmp1-pic1" style="top:<%=item['templateInfo'][0] && item['templateInfo'][0].others.split(',')[0]%>;left:<%=item['templateInfo'][0] && item['templateInfo'][0].others.split(',')[1]%>;" src="<%= item['templateInfo'][0] && item['templateInfo'][0].value %>" alt="photo">
-                            <img class="photo-wrapper" src="/invitation/img/tpl1-photo-wrapper-1.png"
-                                alt="">
-                            <div class="upload-mask">
-                                <input type="file">
-                            </div>
-                        </div>
-                        <div class="info">
-                            <div class="name">
-                            <span><%= item['templateForm']['groomName'] %></span>
-                            <img src="/invitation/img/icon-and.png" alt="">
-                            <span><%= item['templateForm']['brideName'] %> </span>
-                            </div>
-                            <div class="time"><%= item['templateForm']['marriageTime'] %></div>
-                            <div class="address"><%= item['templateForm']['marriageAddress'] %></div>
+                        <div class="title-ch">婚礼邀请函</div>
+                        <div class="title-text">一生一世一对人</div>
+                    </div>
+                    <div class="photo img-wrapper">
+                        <img class="J-uploaded-img" data-tag="tmp1-pic1" src="" alt="photo">
+                        <img class="photo-wrapper" src="<%= item['templateInfo'][0] && item['templateInfo'][0].value %>"
+                             alt="">
+                        <div class="upload-mask">
+                            <input type="file">
                         </div>
                     </div>
+                    <div class="info">
+                        <div class="name">
+                        <span><%= item['templateForm']['groomName'] %></span>
+                        <img src="/invitation/img/icon-and.png" alt="">
+                        <span><%= item['templateForm']['brideName'] %> </span>
+                        </div>
+                        <div class="time"><%= item['templateForm']['marriageTime'] %></div>
+                        <div class="address"><%= item['templateForm']['marriageAddress'] %></div>
                     </div>
+                </div>
+
                 </div>
                 <% } %>
             </div>
