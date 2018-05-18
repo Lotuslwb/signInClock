@@ -283,7 +283,13 @@
         initInfo: function () {
             $('.J-uploaded-img').each(function () {
                 var tag = $(this).data('tag');
-                $(this).attr('src', Info[tag] || '');
+                var src = Info[tag] && Info[tag].split('###')[0];
+                var others = Info[tag] && Info[tag].split('###')[1];
+                $(this).attr('src', src || '');
+                $(this).css({
+                    top: others.split(',')[0],
+                    left: others.split(',')[1],
+                });
             })
         },
         initDate: function () {

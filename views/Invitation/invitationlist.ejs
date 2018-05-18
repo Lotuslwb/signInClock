@@ -28,10 +28,11 @@
                             <div class="title-ch">婚礼邀请函</div>
                             <div class="title-text">一生一世一对人</div>
                         </div>
-                        <div class="photo">
-                            <img class="J-uploaded-img" data-tag="tmp1-pic1"
+                        <div class="photo list-photo">
+                            <img class="J-uploaded-img  list-uploaded-img" data-tag="tmp1-pic1"
                                  src="<%= item['templateInfo'][0] && item['templateInfo'][0].value || '' %>"
-                                 alt="photo">
+                                 alt="photo"
+                                 style="top:<%= parseInt(item['templateInfo'][0] && item['templateInfo'][0].others.split(',')[0]) * 0.625 || '' %>px; left: <%= parseInt(item['templateInfo'][0] && item['templateInfo'][0].others.split(',')[1]) * 0.625 || '' %>px;">
                             <img class="photo-wrapper" src="/invitation/img/tpl1-photo-wrapper-1.png" alt="">
                         </div>
                         <div class="info">

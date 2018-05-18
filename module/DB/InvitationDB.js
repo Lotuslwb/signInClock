@@ -10,6 +10,7 @@ Schema = {
     templateInfo: [{  // 模板填写的信息
         value: String, // 取值，可能是URL 也可能是 文字
         tag: String, // 标记，用于区分
+        others: String, // 图片 放top,left,scale
     }],
     templateForm: {
         groomName: String, // 新郎名字

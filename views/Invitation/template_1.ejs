@@ -122,12 +122,10 @@
         </div>
         <div class="swiper-slide page  tpl1-page page7">
             <div class="mid">
-                <div class="portrait">
-                    <div class="img-wrapper">
-                        <img class="J-uploaded-img" data-tag="tmp1-logo" src=""/>
-                        <div class="upload-mask">
-                            <input type="file">
-                        </div>
+                <div class="portrait img-wrapper">
+                    <img class="J-uploaded-img" data-tag="tmp1-logo" src=""/>
+                    <div class="upload-mask">
+                        <input type="file">
                     </div>
                 </div>
                 <img class="text" src="/invitation/img/tpl1-7-text.png" alt="">
@@ -194,6 +192,8 @@
 <script src="http://api.map.baidu.com/getscript?v=2.0&ak=2eed95cd0a38f5605d4b885b55211634&services=&t=20170511202040"></script>
 <script src="/invitation/js/swiper-3.3.1.jquery.min.js"></script>
 <script src="/invitation/js/lrz.all.bundle"></script>
+<script src="/javascripts/jquery.pep.js"></script>
+<script src="/javascripts/touch-0.2.13.min.js"></script>
 
 <script>
 
@@ -211,24 +211,39 @@
     Page.prototype = {
         init: function () {
             var self = this;
+
+            //初始化信息
             this.initInfo();
-            this.initMap();
-            this.bindEvent();
-            this.settingsEvent();
-            this.shareEvent(self);
-            this.saveEvent(self);
+            // 初始化日期格式
             this.initDate();
+
+            this.bindEvent();
         },
         // 绑定事件
         bindEvent: function () {
+            var self = this;
+
+
+            this.initSwiper();
+            this.initUploadImg();
+            this.initMusic();
+            this.settingsEvent();
+            this.shareEvent(self);
+            this.saveEvent(self);
+            this.initMap();
             // 后退
             $('.J-back').click(function () {
                 window.history.back();
             })
+
+        },
+        initSwiper: function () {
             // 初始化swiper
             var mySwiper = new Swiper('.swiper-container', {
                 direction: 'vertical',
             })
+        },
+        initMusic: function () {
             // 背景音乐
             var audioElement = document.createElement('audio');
             audioElement.setAttribute('src', '/invitation/mp3/1.mp3');
@@ -256,17 +271,39 @@
                 }
                 return false;
             });
+        },
+        initUploadImg: function () {
+
             // 上传图片
             $('.upload-mask').change(function () {
                 var $selector = $(this).find('input[type=file]');
                 var $result = $(this).parents('.img-wrapper').find('.J-uploaded-img');
                 window.mPZ.uploadImg($selector[0], $result[0]);
-            })
+            });
+
+            var $UploadedImg = $('.J-uploaded-img');
+            $UploadedImg.pep({
+                shouldEase: false,
+                useCSSTranslation: false,
+                // constrainTo: "window"
+            });
         },
         initInfo: function () {
             $('.J-uploaded-img').each(function () {
                 var tag = $(this).data('tag');
-                $(this).attr('src', Info[tag] || '');
+                var src = Info[tag] && Info[tag].split('###')[0];
+                var others = Info[tag] && Info[tag].split('###')[1];
+                $(this).attr('src', src || '');
+                $(this).css({
+                    top: others.split(',')[0],
+                    left: others.split(',')[1],
+                });
+                if (src) {
+                    $(this).siblings('.upload-mask').addClass('uploaded');
+                } else {
+                    $(this).siblings('.upload-mask').removeClass('uploaded');
+                }
+
             })
         },
         initDate: function () {
@@ -343,7 +380,8 @@
                 $('.J-uploaded-img').each(function () {
                     templateInfo.push({
                         tag: $(this).data('tag'),
-                        value: $(this).data('src')
+                        value: $(this).data('src'),
+                        others: [$(this).css('top'), $(this).css('left')].toString()
                     });
                 })
                 $.ajax({

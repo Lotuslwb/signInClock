@@ -118,7 +118,7 @@ function handleInfo(data) {
     }
     var returnObj = {};
     data.map(function (item, index) {
-        returnObj[item.tag] = item.value;
+        returnObj[item.tag] = item.value + '###' + item.others;
     })
     return returnObj;
 }

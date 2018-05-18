@@ -242,12 +242,31 @@ img[src=""] {
     position: absolute;
     top: 0;
     left: 0;
+    pointer-events: none;
 }
 
 .page .main .info {
     font-size: 25px;
     line-height: 1.5em;
     position: relative;
+}
+
+.upload-mask.uploaded {
+    display: none;
+}
+
+.page .J-uploaded-img {
+    position: absolute !important;
+    transform: scale(1.5);
+}
+
+.list-photo {
+    height: 390px;
+}
+
+.page .main .photo img.list-uploaded-img {
+    height: 30em;
+    width: auto;
 }
 
 .page2.page .main .info {
@@ -294,6 +313,8 @@ img[src=""] {
 
 .swiper-slide-active .img-wrapper {
     animation: zoomIn 2s both;
+    position: relative;
+    overflow: hidden;
 }
 
 .swiper-slide-active .content {
@@ -343,15 +364,14 @@ img[src=""] {
 
 .login-page .form .row input:not(.get-code-btn) {
     width: 100%;
-    font-size: 22px;
+    font-size: 26px;
 }
 
 .login-page .form .row .get-code-btn {
-    width: 90px;
     position: absolute;
     right: 0;
-    bottom: 12px;
-    font-size: 14px;
+    bottom: 7px;
+    font-size: 24px;
 }
 
 .login-page .login-btn {
@@ -827,6 +847,7 @@ img[src=""] {
 
 .swiper-container.tpl1-container .swiper-slide-active img,
 .swiper-container.tpl1-container .swiper-slide-active .img-wrapper {
+    position: relative;
     opacity: 1;
 }
 
@@ -850,22 +871,24 @@ img[src=""] {
     overflow: hidden;
 }
 
-.swiper-container.tpl1-container .page2 .main .photo .ant-right-top {
+.swiper-container.tpl1-container .swiper-slide-active.page2 .main .photo .ant-right-top {
     position: absolute;
     right: 0;
     top: 0;
     width: 364px;
     height: 318px;
-    animation: swing 5s infinite;
+    animation: swing 5s 99;
+    pointer-events: none;
 }
 
-.swiper-container.tpl1-container .page2 .main .photo .ani-left-bottom {
+.swiper-container.tpl1-container .swiper-slide-active.page2 .main .photo .ani-left-bottom {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 390px;
     height: 324px;
-    animation: swing 5s infinite 2s;
+    animation: swing 5s 99 2s;
+    pointer-events: none;
 }
 
 .swiper-container.tpl1-container .page3,
@@ -1621,7 +1644,7 @@ img[src=""] {
     width: 100%;
     box-sizing: border-box;
     height: 45px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 0 90px 0 6px;
 }
 
@@ -1654,7 +1677,7 @@ img[src=""] {
     line-height: 45px;
     text-align: center;
     font-size: 25px;
-    color: #c9caca;
+    color: #4b4c4e;
     background: #fff;
     border: 1px solid;
     border-radius: 14px;
@@ -1701,7 +1724,7 @@ img[src=""] {
 }
 
 .u-globalAudio.z-play .icon-music {
-    animation: reverseRotataZ 1.2s linear infinite;
+    animation: reverseRotataZ 1.2s linear 99;
 }
 
 .u-globalAudio.z-pause .icon-music {
