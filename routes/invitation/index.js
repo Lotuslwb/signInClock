@@ -48,7 +48,11 @@ router.get('/edit/:templateId', function (req, res, next) {
     functions.checkLogin(req, res).then(function (tel) {
         return functions.getInvitation({'ownerId': tel, '_id': _id})
     }).then(function (docs) {
-        res.render('Invitation/template_' + templateId, {doc: docs[0], Info: handleInfo(docs[0]['templateInfo'])});
+        if (docs.length > 0) {
+            res.render('Invitation/template_' + templateId, {doc: docs[0], Info: handleInfo(docs[0]['templateInfo'])});
+        } else {
+            res.render('Invitation/index');
+        }
     }).catch(function (e) {
         logger.error([req.path, e].toString());
     });
@@ -61,7 +65,14 @@ router.get('/result/:templateId', function (req, res, next) {
 
     functions.getInvitation({'_id': _id})
         .then(function (docs) {
-            res.render('Invitation/result_' + templateId, {doc: docs[0], Info: handleInfo(docs[0]['templateInfo'])});
+            if (docs.length > 0) {
+                res.render('Invitation/result_' + templateId, {
+                    doc: docs[0],
+                    Info: handleInfo(docs[0]['templateInfo'])
+                });
+            } else {
+                res.render('Invitation/404');
+            }
         }).catch(function (e) {
         logger.error([req.path, JSON.stringify(e)].toString());
     });
