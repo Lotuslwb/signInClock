@@ -257,6 +257,7 @@ img[src=""] {
     background-size: cover;
     width: 58px;
     height: 56px;
+    z-index: 9;
 }
 
 .tpl1-page.page .upload-mask.uploaded {
@@ -951,11 +952,14 @@ img[src=""] {
     bottom: 0;
 }
 
+.ani-right-bottom {
+    pointer-events: none;
+}
+
 .swiper-container.tpl1-container .page3 .ani-right-bottom {
     position: absolute;
     right: 0;
     top: 540px;
-    pointer-events: none;
 }
 
 .swiper-container.tpl1-container .page3.swiper-slide-active .text {
@@ -1109,7 +1113,7 @@ img[src=""] {
     position: absolute;
     top: -10px;
     left: -10px;
-    clip-path: polygon(7% 0%, 100% 0%, 100% 90%, 92% 100%, 0% 100%, 0% 8%);
+    /*clip-path: polygon(7% 0%, 100% 0%, 100% 90%, 92% 100%, 0% 100%, 0% 8%);*/
 }
 
 .swiper-container.tpl1-container .page6 .img-bottom {
