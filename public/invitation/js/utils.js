@@ -118,6 +118,7 @@
     }
 
     function uploadImg($selector, $result) {
+        if ($selector.files.length === 0) return false;
         lrz($selector.files[0])
             .then(function (rst) {
                 rst.formData.append("fileLen", rst.fileLen);
@@ -140,6 +141,16 @@
             })
             .catch(function (err) {
                 // 处理失败会执行
+                toast('图片上传失败');
+                $.ajax({
+                    url: "/invitation/api/catchError",
+                    data: 'uploadImg' + '**' + err,
+                    processData: false,
+                    contentType: false,
+                    type: "POST",
+                    success: function (data) {
+                    }
+                });
             })
             .always(function () {
                 // 不管是成功失败，都会执行

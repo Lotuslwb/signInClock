@@ -952,7 +952,7 @@ img[src=""] {
     bottom: 0;
 }
 
-.ani-right-bottom {
+.ani-right-bottom, .ani-right-top {
     pointer-events: none;
 }
 
