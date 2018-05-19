@@ -132,7 +132,7 @@
                         console.log(data);
 
                         $result.src = '/files/' + data.data.name;
-                        $($result).data('src', '/files/' + data.data.name)
+                        // $($result).data('src', '/files/' + data.data.name)
                         $($selector).parent().addClass('uploaded');
                         // $selector.html('<img src="/files/' + data.data.name + '" />');
                     }

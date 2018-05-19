@@ -390,7 +390,7 @@
                 $('.J-uploaded-img').each(function () {
                     templateInfo.push({
                         tag: $(this).data('tag'),
-                        value: $(this).data('src'),
+                        value: $(this).attr('src'),
                         others: [$(this).css('top'), $(this).css('left')].toString()
                     });
                 })
