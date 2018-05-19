@@ -285,6 +285,9 @@
             $UploadedImg.pep({
                 shouldEase: false,
                 useCSSTranslation: false,
+                startPos: [0, 0],
+                place: false,
+                // allowDragEventPropagation: false,
                 // constrainTo: "window"
             });
         },
@@ -293,7 +296,12 @@
                 var tag = $(this).data('tag');
                 var src = Info[tag] && Info[tag].split('###')[0];
                 var others = Info[tag] && Info[tag].split('###')[1];
-                $(this).attr('src', src || '');
+
+                if (!src || src == "undefined" || src == "null") {
+                    src = '';
+                }
+
+                $(this).attr('src', src);
                 $(this).css({
                     top: others && others.split(',')[0],
                     left: others && others.split(',')[1],
@@ -415,7 +423,7 @@
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
                     // 用户确认分享后执行的回调函数
-
+                    _hmt.push(['_trackEvent', '分享', '分享给朋友']);
                 },
                 cancel: function () {
                     // 用户取消分享后执行的回调函数
@@ -430,6 +438,7 @@
                 imgUrl: $('.J-uploaded-img')[0].src, // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
+                    _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
                 },
                 cancel: function () {
                     // 用户取消分享后执行的回调函数

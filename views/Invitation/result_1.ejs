@@ -101,11 +101,8 @@
         </div>
         <div class="swiper-slide page  tpl1-page page7">
             <div class="mid">
-                <div class="portrait">
-                    <div class="img-wrapper">
-                        <img class="J-uploaded-img" data-tag="tmp1-logo" src=""/>
-
-                    </div>
+                <div class="portrait img-wrapper">
+                    <img class="J-uploaded-img" data-tag="tmp1-logo" src=""/>
                 </div>
                 <img class="text" src="/invitation/img/tpl1-7-text.png" alt="">
                 <div class="map" id="map"></div>
@@ -285,7 +282,12 @@
                 var tag = $(this).data('tag');
                 var src = Info[tag] && Info[tag].split('###')[0];
                 var others = Info[tag] && Info[tag].split('###')[1];
-                $(this).attr('src', src || '');
+
+                if (!src || src == "undefined" || src == "null") {
+                    src = '';
+                }
+
+                $(this).attr('src', src);
                 $(this).css({
                     top: others.split(',')[0],
                     left: others.split(',')[1],
@@ -491,7 +493,7 @@
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
                     // 用户确认分享后执行的回调函数
-
+                    _hmt.push(['_trackEvent', '分享', '分享给朋友']);
                 },
                 cancel: function () {
                     // 用户取消分享后执行的回调函数
@@ -506,6 +508,7 @@
                 imgUrl: $('.J-uploaded-img')[0].src, // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
+                    _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
                 },
                 cancel: function () {
                     // 用户取消分享后执行的回调函数

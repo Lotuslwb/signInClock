@@ -259,6 +259,23 @@ img[src=""] {
     height: 56px;
 }
 
+.tpl1-page.page .upload-mask.uploaded {
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 0;
+}
+
+.tpl1-page.page1 .upload-mask.uploaded {
+    top: 435px;
+    left: 135px;
+}
+
+.tpl1-page.page2 .upload-mask.uploaded {
+    top: 475px;
+    left: 100px;
+}
+
 .page .J-uploaded-img {
     position: absolute !important;
     transform: scale(1.5);
@@ -692,7 +709,7 @@ img[src=""] {
     text-align: center;
 }
 
-.template-container .page7 .mid .portrait {
+.portrait {
     width: 115px;
     height: 115px;
     border-radius: 50%;
@@ -707,6 +724,10 @@ img[src=""] {
     border-radius: 50%;
     margin: auto;
     object-fit: cover;
+}
+
+.template-container .page7 .mid .portrait img.J-uploaded-img {
+    border-radius: 0;
 }
 
 .template-container .page7 .mid .text {
