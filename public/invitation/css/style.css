@@ -172,9 +172,9 @@ img[src=""] {
 
 .page .upload-mask img {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     position: absolute;
-    object-fit: contain;
+    /*object-fit: contain;*/
 }
 
 .page .top-title {
@@ -234,7 +234,7 @@ img[src=""] {
 }
 
 .page .main .photo img {
-    object-fit: contain;
+    /*object-fit: contain;*/
     object-position: center;
     width: 100%;
 }
@@ -720,10 +720,10 @@ img[src=""] {
 .template-container .page7 .mid .portrait img {
     padding-top: 8px;
     width: 100px;
-    height: 100px;
+    /*height: 100px;*/
     border-radius: 50%;
     margin: auto;
-    object-fit: contain;
+    /*object-fit: contain;*/
 }
 
 .template-container .page7 .mid .portrait img.J-uploaded-img {
@@ -911,9 +911,9 @@ img[src=""] {
 .swiper-container.tpl1-container .page4 .img-wrapper img,
 .swiper-container.tpl1-container .page5 .img-wrapper img,
 .swiper-container.tpl1-container .page6 .img-wrapper img {
-    height: 100%;
+    /*height: 100%;*/
     width: 100%;
-    object-fit: contain;
+    /*object-fit: contain;*/
 }
 
 .swiper-container.tpl1-container .page3 {
@@ -1217,9 +1217,9 @@ img[src=""] {
 .swiper-container.tpl2-container .page2 .content img,
 .swiper-container.tpl2-container .page3 .content img {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     position: absolute;
-    object-fit: contain;
+    /*object-fit: contain;*/
 }
 
 .swiper-container.tpl2-container .page2 .content .upload-mask,
@@ -1270,8 +1270,8 @@ img[src=""] {
 .swiper-container.tpl2-container .page4 .content .img-left img,
 .swiper-container.tpl2-container .page4 .content .img-right img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    /*height: 100%;*/
+    /*object-fit: contain;*/
 }
 
 .swiper-container.tpl2-container .page4 .content .img-left .upload-mask,
@@ -1334,8 +1334,8 @@ img[src=""] {
 .swiper-container.tpl2-container .page5 .content .img-left img,
 .swiper-container.tpl2-container .page5 .content .img-right img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    /*height: 100%;*/
+    /*object-fit: contain;*/
 }
 
 .swiper-container.tpl2-container .page5 .content .img-left .upload-mask,
@@ -1392,9 +1392,9 @@ img[src=""] {
 
 .swiper-container.tpl2-container .page6 .content img {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     position: absolute;
-    object-fit: contain;
+    /*object-fit: contain;*/
 }
 
 .swiper-container.tpl2-container .page6 .content .upload-mask {
