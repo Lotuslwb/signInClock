@@ -7,44 +7,41 @@ var InvitationDB = require('../../module/DB/InvitationDB');
 var functions = require('../invitation/functions');
 
 var uuid = require('node-uuid');
+var logger = require('../../module/tools/log4').logger;
 
 
 // 新增邀请函
 router.post('/addInvitation', function (req, res, next) {
     var data = req.body;
-    log(data);
     functions.checkLogin(req, res).then(function (tel) {
         data['ownerId'] = tel;
         return functions.addInvitation(data);
     }).then(function (doc) {
-        log(doc);
         res.send(sendData('200', doc, ''));
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     })
 });
 
 // 增加邀请函的表单信息
 router.post('/updateInvitationForm', function (req, res, next) {
     var data = req.body;
-    log(data.templateForm);
     functions.updateInvitation(data._id, {templateForm: data.templateForm}).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     })
 });
 
 // 增加邀请函的其他信息
 router.post('/updateInvitationInfo', function (req, res, next) {
     var data = req.body;
-    log(data);
     functions.checkLogin(req, res).then(function (tel) {
         return functions.updateInvitation(data._id, {templateInfo: data.templateInfo})
     }).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     })
 });
 
@@ -62,6 +59,7 @@ router.post('/upload', function (req, res, next) {
 
         if (err) {
             res.send(sendData('999', err, '上传错误'));
+            logger.error([req.path, JSON.stringify(err)].toString());
         } else {
             log(files);
             var inputFile = files.file[0];
@@ -73,6 +71,7 @@ router.post('/upload', function (req, res, next) {
             fs.rename(uploadedPath, dstPath, function (err) {
                 if (err) {
                     res.send(sendData('999', '', '重命名错误'));
+                    logger.error([req.path, JSON.stringify(err)].toString());
                 } else {
                     res.send(sendData('200', {'name': theName}, ''));
                 }
@@ -84,7 +83,6 @@ router.post('/upload', function (req, res, next) {
 // 发送祝福
 router.post('/sendWish', function (req, res, next) {
     var data = req.body;
-    log(data);
     functions.getInvitation({_id: data._id}, {wishesList: 1}).then(function (docs) {
         var wishesList = docs[0].wishesList;
         data.wish.createTime = new Date().getTime();
@@ -93,17 +91,16 @@ router.post('/sendWish', function (req, res, next) {
         functions.updateInvitation(data._id, {wishesList: wishesList}).then(function (docs) {
             res.send(sendData('200', docs, ''));
         }).catch(function (e) {
-            console.log(e);
+            logger.error([req.path, JSON.stringify(e)].toString());
         });
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     })
 });
 
 // 增加待定
 router.post('/setIndeterminate', function (req, res, next) {
     var data = req.body;
-    log(data);
     functions.getInvitation({_id: data._id}, {indeterminateList: 1}).then(function (docs) {
         var indeterminateList = docs[0].indeterminateList;
         data.indeterminate.createTime = new Date().getTime();
@@ -112,10 +109,10 @@ router.post('/setIndeterminate', function (req, res, next) {
         functions.updateInvitation(data._id, {indeterminateList: indeterminateList}).then(function (docs) {
             res.send(sendData('200', docs, ''));
         }).catch(function (e) {
-            console.log(e);
+            logger.error([req.path, JSON.stringify(e)].toString());
         });
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     })
 });
 
@@ -131,10 +128,10 @@ router.post('/setAttend', function (req, res, next) {
         functions.updateInvitation(data._id, {attendList: attendList}).then(function (docs) {
             res.send(sendData('200', docs, ''));
         }).catch(function (e) {
-            console.log(e);
+            logger.error([req.path, JSON.stringify(e)].toString());
         });
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     })
 });
 
@@ -148,7 +145,7 @@ router.post('/removeMessage', function (req, res, next) {
     }).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     });
 });
 
@@ -160,7 +157,7 @@ router.post('/removeInvitation', function (req, res, next) {
     }).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     });
 });
 
@@ -185,7 +182,7 @@ router.post('/sendSMS', function (req, res, next) {
         }).then(function (data) {
             res.send(sendData('200', data, ''));
         }).catch(function (e) {
-            console.log(e);
+            logger.error([req.path, JSON.stringify(e)].toString());
             res.send(sendData('999', '发送短信太频繁了', ''));
         });
     }
@@ -208,10 +205,21 @@ router.post('/login', function (req, res, next) {
                 res.send(sendData('999', '验证码不正确', ''));
             }
         }).catch(function (e) {
-            console.log(e);
+            logger.error([req.path, JSON.stringify(e)].toString());
         });
     }
 
+});
+
+
+router.post('/catchError', function (req, res, next) {
+    var openInfo = req.signedCookies['session'];
+    var tel = '';
+    if (openInfo) {
+        tel = JSON.parse(openInfo)['tel'];
+    }
+    logger.error([req.path, req.body.error, tel].toString());
+    res.send(sendData('200', '', ''));
 });
 
 

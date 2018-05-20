@@ -5,15 +5,15 @@
 
         //“分享给朋友”
         wx.onMenuShareAppMessage({
-            title: '制作婚礼请帖', // 分享标题
+            title: '定制我们的专属婚礼请柬', // 分享标题
             desc: '记录一生唯一真爱承诺，迫不及待向世界宣告我们的爱', // 分享描述
             link: '', // 分享链接
-            imgUrl: '', // 分享图标
+            imgUrl: 'http://ma.eldesign.cn/invitation/img/logo.jpeg', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {
                 // 用户确认分享后执行的回调函数
-
+                _hmt.push(['_trackEvent', '分享', '分享给朋友']);
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
@@ -22,11 +22,12 @@
 
         //“分享到朋友圈”
         wx.onMenuShareTimeline({
-            title: '制作婚礼请帖', // 分享标题
+            title: '定制我们的专属婚礼请柬', // 分享标题
             link: '', // 分享链接
-            imgUrl: '', // 分享图标
+            imgUrl: 'http://ma.eldesign.cn/invitation/img/logo.jpeg', // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
             },
             cancel: function () {
                 // 用户取消分享后执行的回调函数
@@ -72,3 +73,20 @@
 
     initWX(initWXSahre);
 </script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?434447b38715b89faf44eac19d1416c0";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol +
+        "hm.baidu.com/h.js%3F01234567890ABCDEF01234567890ABCDEF' type='text/javascript'%3E%3C/script%3E"));
+</script>
+

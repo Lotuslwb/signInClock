@@ -9,6 +9,7 @@ var addInvitation = function (data) {
     var promise = new Promise(function (resolve, reject) {
         InvitationDB.add(data, function (err, docs) {
             if (err) {
+                logger.error(['addInvitation', JSON.stringify(err)].toString());
                 return reject(docs);
             } else {
                 return resolve(docs);
@@ -22,6 +23,7 @@ var updateInvitation = function (id, data) {
     var promise = new Promise(function (resolve, reject) {
         InvitationDB.update(id, data, function (err, docs) {
             if (err) {
+                logger.error(['updateInvitation', JSON.stringify(err)].toString());
                 return reject(docs);
             } else {
                 return resolve(docs);
@@ -60,6 +62,7 @@ var removeInvitation = function (tel, invitationId) {
     var promise = new Promise(function (resolve, reject) {
         InvitationDB.remove({_id: invitationId, ownerId: tel}, function (err, docs) {
             if (err) {
+                logger.error(['removeInvitation', JSON.stringify(err)].toString());
                 return reject(docs);
             } else {
                 return resolve(docs);
@@ -135,10 +138,9 @@ var removeMessage = function (openid, removeId) {
         });
         return currentData;
     }).then(function (data) {
-        console.log(data.data, 'currentData');
         return updateInvitation(data.id, data.data);
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     });
 }
 
@@ -158,7 +160,7 @@ var checkOpenid = function (req, res) {
             res.redirect(url);
         }
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     });
     return promise;
 }
@@ -175,7 +177,7 @@ var checkLogin = function (req, res) {
             res.redirect('/invitation/login?router=invitation' + req.path);
         }
     }).catch(function (e) {
-        console.log(e);
+        logger.error([req.path, JSON.stringify(e)].toString());
     });
     return promise;
 }
@@ -189,6 +191,7 @@ var smsDBAdd = function (json) {
     var promise = new Promise(function (resolve, reject) {
         SMSDB.add(json, function (err, docs) {
             if (err) {
+                logger.error(['smsDBAdd', JSON.stringify(err)].toString());
                 return reject(docs);
             } else {
                 return resolve(docs);
@@ -201,6 +204,7 @@ var smsDBFind = function (json) {
     var promise = new Promise(function (resolve, reject) {
         SMSDB.find(json, function (err, docs) {
             if (err) {
+                logger.error(['smsDBFind', JSON.stringify(err)].toString());
                 return reject(docs);
             } else {
                 return resolve(docs);
