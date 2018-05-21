@@ -239,7 +239,7 @@ img[src=""] {
     width: 100%;
 }
 
-.page .main .photo .photo-wrapper {
+.page .photo-wrapper {
     position: absolute;
     top: 0;
     left: 0;
@@ -834,18 +834,30 @@ img[src=""] {
 }
 
 .swiper-container.tpl1-container .swiper-slide img,
-.swiper-container.tpl1-container .swiper-slide .img-wrapper {
+.swiper-container.tpl1-container .swiper-slide .img-wrapper,
+.swiper-container.tpl2-container .swiper-slide img,
+.swiper-container.tpl2-container .swiper-slide .img-wrapper,
+.swiper-container.tpl2-container .swiper-slide .content {
     opacity: 0;
 }
 
+
 .swiper-container.tpl1-container .swiper-slide-active img,
-.swiper-container.tpl1-container .swiper-slide-active .img-wrapper {
+.swiper-container.tpl1-container .swiper-slide-active .img-wrapper,
+.swiper-container.tpl2-container .swiper-slide-active img,
+.swiper-container.tpl2-container .swiper-slide-active .img-wrapper,
+.swiper-container.tpl2-container .swiper-slide-active .content {
     position: relative;
     opacity: 1;
 }
 
 .swiper-container.tpl1-container .tpl1-page {
     background: url("../img/tpl1-1.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.swiper-container.tpl2-container .tpl1-page {
+    background: url("../img/tpl2-1.jpg") no-repeat center;
     background-size: cover;
 }
 
@@ -1181,21 +1193,32 @@ img[src=""] {
     height: 100%;
 }
 
-.swiper-container.tpl2-container .page1 .main .title {
+.tpl2-container .page1 .main .title {
     top: 12.2em;
 }
 
-.swiper-container.tpl2-container .page1 .main .title .title-en {
+.tpl2-container .page1 .main .title .title-en {
     margin-bottom: 1em;
 }
 
-.swiper-container.tpl2-container .page1 .main .info {
+.tpl2-container .page1 .main .info {
     margin-top: 100%;
 }
 
 .swiper-container.tpl2-container .page2,
 .swiper-container.tpl2-container .page3 {
     position: relative;
+}
+.swiper-container.tpl2-container .page2 .upload-mask {
+    top: -100px;
+}
+.swiper-container.tpl2-container .page2 .upload-mask.uploaded {
+    top: 100px;
+    left: 100px;
+}
+.swiper-container.tpl2-container .page3 .upload-mask.uploaded {
+    top: 140px;
+    left: 90px;
 }
 
 .swiper-container.tpl2-container .page2 .text-wrapper,
@@ -1236,9 +1259,16 @@ img[src=""] {
 }
 
 .swiper-container.tpl2-container .page2 {
-    background: url("../img/tpl2-bg-2.jpg") no-repeat center;
+    background: none;
 }
-
+.swiper-container.tpl2-container .page2 .photo-wrapper,
+.swiper-container.tpl2-container .page3 .photo-wrapper {
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 .swiper-container.tpl2-container .page2,
 .swiper-container.tpl2-container .page3 {
     background-color: #e7f2f7;
@@ -1250,7 +1280,7 @@ img[src=""] {
 }
 
 .swiper-container.tpl2-container .page4 {
-    background: url("../img/tpl2-photo-wrapper-4.png") no-repeat center;
+    background: url("../img/tpl2-bg-4.jpg") no-repeat center;
     background-size: cover;
     position: relative;
 }
@@ -1269,6 +1299,12 @@ img[src=""] {
 .swiper-container.tpl2-container .page4 .content .img-left,
 .swiper-container.tpl2-container .page4 .content .img-right {
     position: absolute;
+    background: #b0b0ba;
+    /*clip-path: polygon(0% 0%, 100% 0%, 100% 92%, 92% 100%, 0% 100%, 0% 8%);*/
+
+}
+.swiper-container.tpl2-container .page4 .content .img-right {
+    border: 5px solid #fff;
 }
 
 .swiper-container.tpl2-container .page4 .content .img-left img,
@@ -1309,7 +1345,7 @@ img[src=""] {
 }
 
 .swiper-container.tpl2-container .page5 {
-    background: url("../img/tpl2-photo-wrapper-5.png") no-repeat center;
+    background: url("../img/tpl2-bg-5.jpg") no-repeat center;
     background-size: cover;
     position: relative;
 }
@@ -1333,6 +1369,25 @@ img[src=""] {
 .swiper-container.tpl2-container .page5 .content .img-left,
 .swiper-container.tpl2-container .page5 .content .img-right {
     position: absolute;
+    background: #fff;
+}
+
+.swiper-container.tpl2-container .page5 .content .img-left-bg {
+    background: #fff;
+    position: absolute;
+    top: 176px;
+    left: 36px;
+    width: 280px;
+    height: 520px;
+}
+
+.swiper-container.tpl2-container .page5 .content .img-right-bg {
+    background: #fff;
+    position: absolute;
+    top: 165px;
+    left: 330px;
+    width: 280px;
+    height: 520px;
 }
 
 .swiper-container.tpl2-container .page5 .content .img-left img,
@@ -1778,3 +1833,4 @@ span.myself {
 #d-confirm {
     background: #e7abbd !important;
 }
+
