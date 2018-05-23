@@ -68,18 +68,22 @@
                 <img class="text" src="/invitation/img/tpl2-5-text.png" alt="">
             </div>
             <div class="content">
-                <div class="img-left-bg"></div>
-                <div class="img-left img-wrapper">
-                    <img class="J-uploaded-img" data-tag="tmp2-pic5" src="" alt="photo" />
-                    <div class="upload-mask">
-                        <input type="file">
+                <div class="img-ani-wrapper img-ani-wrapper-left">
+                    <div class="img-left-bg"></div>
+                    <div class="img-left img-wrapper">
+                        <img class="J-uploaded-img" data-tag="tmp2-pic5" src="" alt="photo" />
+                        <div class="upload-mask">
+                            <input type="file">
+                        </div>
                     </div>
                 </div>
-                <div class="img-right-bg"></div>
-                <div class="img-right img-wrapper">
-                    <img class="J-uploaded-img" data-tag="tmp2-pic6" src="" alt="photo" />
-                    <div class="upload-mask">
-                        <input type="file">
+                <div class="img-ani-wrapper img-ani-wrapper-right">
+                    <div class="img-right-bg"></div>
+                    <div class="img-right img-wrapper">
+                        <img class="J-uploaded-img" data-tag="tmp2-pic6" src="" alt="photo" />
+                        <div class="upload-mask">
+                            <input type="file">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -288,10 +292,14 @@
                     top: others && others.split(',')[0],
                     left: others && others.split(',')[1],
                 });
+                var $uploadMask = $(this).siblings('.upload-mask');
+                if (!$uploadMask.length) {
+                    $uploadMask = $(this).parent().siblings('.upload-mask');
+                }
                 if (src) {
-                    $(this).siblings('.upload-mask').addClass('uploaded');
+                    $uploadMask.addClass('uploaded');
                 } else {
-                    $(this).siblings('.upload-mask').removeClass('uploaded');
+                    $uploadMask.removeClass('uploaded');
                 }
 
             })

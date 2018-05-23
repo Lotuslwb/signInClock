@@ -324,11 +324,18 @@ img[src=""] {
 .swiper-slide-active .main .title {
     animation: fadeInDown 2s both;
 }
-
+.swiper-slide-active .upload-mask {
+    transition: opacity 2s;
+}
 .swiper-slide-active .main .photo {
     animation: zoomIn 2s both;
 }
-
+.swiper-slide-active .img-ani-wrapper {
+    animation: zoomIn 2s both;
+}
+.swiper-slide-active .img-ani-wrapper .img-wrapper {
+    animation: none;
+}
 .swiper-slide-active .main .info {
     animation: fadeInUp 2s both;
 }
@@ -837,7 +844,9 @@ img[src=""] {
 .swiper-container.tpl1-container .swiper-slide .img-wrapper,
 .swiper-container.tpl2-container .swiper-slide img,
 .swiper-container.tpl2-container .swiper-slide .img-wrapper,
-.swiper-container.tpl2-container .swiper-slide .content {
+.swiper-container.tpl2-container .swiper-slide .content,
+.swiper-container.tpl2-container .swiper-slide .info,
+.swiper-container.tpl2-container .swiper-slide .upload-mask{
     opacity: 0;
 }
 
@@ -846,8 +855,10 @@ img[src=""] {
 .swiper-container.tpl1-container .swiper-slide-active .img-wrapper,
 .swiper-container.tpl2-container .swiper-slide-active img,
 .swiper-container.tpl2-container .swiper-slide-active .img-wrapper,
-.swiper-container.tpl2-container .swiper-slide-active .content {
-    position: relative;
+.swiper-container.tpl2-container .swiper-slide-active .content,
+.swiper-container.tpl2-container .swiper-slide-active .info,
+.swiper-container.tpl2-container .swiper-slide-active .upload-mask{
+    /*position: relative;*/
     opacity: 1;
 }
 
@@ -1226,6 +1237,7 @@ img[src=""] {
     position: absolute;
     bottom: 200px;
     width: 100%;
+    z-index: 1;
 }
 
 .swiper-container.tpl2-container .page2 .text-wrapper .text,
@@ -1295,6 +1307,9 @@ img[src=""] {
 .swiper-container.tpl2-container .page4 .content {
     position: relative;
 }
+.swiper-container.tpl2-container .page4.swiper-slide-active .img-right{
+    animation: fadeInRight 2s .3s both;
+}
 
 .swiper-container.tpl2-container .page4 .content .img-left,
 .swiper-container.tpl2-container .page4 .content .img-right {
@@ -1343,7 +1358,12 @@ img[src=""] {
     top: 0;
     left: 0;
 }
-
+.swiper-container.tpl2-container .page5.swiper-slide-active .img-ani-wrapper-left{
+    animation: fadeInLeft 2s both;
+}
+.swiper-container.tpl2-container .page5.swiper-slide-active .img-ani-wrapper-right{
+    animation: fadeInRight 2s both;
+}
 .swiper-container.tpl2-container .page5 {
     background: url("../img/tpl2-bg-5.jpg") no-repeat center;
     background-size: cover;

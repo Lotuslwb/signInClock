@@ -55,13 +55,17 @@
                 <img class="text" src="/invitation/img/tpl2-5-text.png" alt="">
             </div>
             <div class="content">
-                <div class="img-left-bg"></div>
-                <div class="img-left img-wrapper">
-                    <img class="J-uploaded-img" data-tag="tmp2-pic5" src="" alt="photo" />
+                <div class="img-ani-wrapper img-ani-wrapper-left">
+                    <div class="img-left-bg"></div>
+                    <div class="img-left img-wrapper">
+                        <img class="J-uploaded-img" data-tag="tmp2-pic5" src="" alt="photo" />
+                    </div>
                 </div>
-                <div class="img-right-bg"></div>
-                <div class="img-right img-wrapper">
-                    <img class="J-uploaded-img" data-tag="tmp2-pic6" src="" alt="photo" />
+                <div class="img-ani-wrapper img-ani-wrapper-right">
+                    <div class="img-right-bg"></div>
+                    <div class="img-right img-wrapper">
+                        <img class="J-uploaded-img" data-tag="tmp2-pic6" src="" alt="photo" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,49 +90,10 @@
                     <div class="address"><%= doc['templateForm']['marriageAddress'] %></div>
                 </div>
             </div>
-            <div class="bottom">
-                <div class="item J-settings">
-                    <img src="/invitation/img/icon-settings.png" alt="">
-                    <span>设置</span>
-                </div>
-                <div class="item J-save">
-                    <img src="/invitation/img/icon-save.png" alt="">
-                    <span>保存</span>
-                </div>
-                <div class="item J-send">
-                    <img src="/invitation/img/icon-send.png" alt="">
-                    <span>发送</span>
-                </div>
+            <div class="btn-reply J-btn-reply">
+                <img src="/invitation/img/tpl2-btn-reply.png" alt="">
             </div>
-            <div class="modal J-settings-modal">
-                <div class="btn-groups">
-                    <a href="javascript:;" class="btn primary-btn J-delete">删除请帖</a>
-                    <a href="javascript:;" class="btn primary-btn J-remake">重新制作</a>
-                    <a href="javascript:;" class="btn J-cancel">取消</a>
-                </div>
-            </div>
-            <div class="modal J-send-modal">
-                <div class="share-groups">
-                    <div class="item">
-                        <img src="/invitation/img/wechart.png" alt="">
-                        <span>微信好友</span>
-                    </div>
-                    <div class="item">
-                        <img src="/invitation/img/sina.png" alt="">
-                        <span>新浪微博</span>
-                    </div>
-                    <div class="item">
-                        <img src="/invitation/img/qq-zone.png" alt="">
-                        <span>QQ空间</span>
-                    </div>
-                    <div class="item">
-                        <img src="/invitation/img/douban.png" alt="">
-                        <span>豆瓣</span>
-                    </div>
-                </div>
-                <div class="btn-wrapper">
-                    <img class="btn-cancel J-btn-cancel" src="/invitation/img/icon-close.png" alt="">
-                </div>
+            <div class="modal J-reply-modal">
             </div>
         </div>
         <div class="swiper-slide page tpl2-page page8">
