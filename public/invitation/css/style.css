@@ -329,43 +329,45 @@ img[src=""] {
     transition: opacity 2s;
 }
 
-/*.swiper-slide-active .main .photo {*/
-    /*animation: zoomIn 2s both;*/
-/*}*/
+.swiper-slide-active .main .photo {
+    animation: zoomIn 2s both;
+}
 
-/*.tpl1-page.page2.swiper-slide-active .main .photo {*/
-    /*animation: zoomIn 2s both;*/
-/*}*/
+.tpl1-page.page2.swiper-slide-active .main .photo {
+    animation: zoomIn 2s both;
+}
 
-/*.swiper-slide-active .img-ani-wrapper {*/
-    /*animation: zoomIn 2s both;*/
-/*}*/
+.swiper-slide-active .img-ani-wrapper {
+    animation: zoomIn 2s both;
+}
 
-/*.swiper-slide-active .img-ani-wrapper .img-wrapper {*/
-    /*animation: none;*/
-/*}*/
+.swiper-slide-active .img-ani-wrapper .img-wrapper {
+    animation: none;
+}
 
-/*.swiper-slide-active .main .info {*/
-    /*animation: fadeInUp 2s both;*/
-/*}*/
+.swiper-slide-active .main .info {
+    animation: fadeInUp 2s both;
+}
 
-/*.swiper-slide-active .img-wrapper {*/
-    /*animation: zoomIn 2s both;*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
-/*}*/
+.swiper-slide-active .img-wrapper {
+    animation: zoomIn 2s both;
+    position: relative;
+    overflow: hidden;
+}
 
-/*.swiper-slide-active .content {*/
-    /*animation: zoomIn 2s both;*/
-/*}*/
+.swiper-slide-active .content {
+    animation: zoomIn 2s both;
+}
 
-/*.tpl2-page.page2 .swiper-slide-active .img-wrapper.content {*/
-    /*animation: none;*/
-/*}*/
 
-/*.tpl2-page.page3 .swiper-slide-active .img-wrapper.content {*/
-    /*animation: none;*/
-/*}*/
+
+.tpl2-page.page2 .swiper-slide-active .img-wrapper.content {
+    animation: none;
+}
+
+.tpl2-page.page3 .swiper-slide-active .img-wrapper.content {
+    animation: none;
+}
 
 .swiper-slide-active .text-wrapper {
     animation: fadeInUpBig 2s both;
