@@ -342,29 +342,29 @@ img[src=""] {
 }
 
 .swiper-slide-active .main .info {
-    animation: slideInUp 2s both;
+    animation: fadeInUp 2s both;
 }
 
 .swiper-slide-active .img-wrapper {
-    animation: slideInUp 2s both;
+    animation: zoomIn 2s both;
     position: relative;
     overflow: hidden;
 }
 
 .swiper-slide-active .content {
-    animation: fadeIn 2s both;
+    animation: zoomIn 2s both;
 }
 
-.tpl2-page.page3.swiper-slide-active .img-wrapper.content {
+.tpl2-page.page2 .swiper-slide-active .img-wrapper.content {
     animation: none;
 }
 
-.tpl2-page.page2.swiper-slide-active .img-wrapper.content {
+.tpl2-page.page3 .swiper-slide-active .img-wrapper.content {
     animation: none;
 }
 
 .swiper-slide-active .text-wrapper {
-    animation: fadeInUp 2s both;
+    animation: fadeInUpBig 2s both;
 }
 
 .swiper-slide-active .text {
