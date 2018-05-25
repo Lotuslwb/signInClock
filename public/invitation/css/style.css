@@ -346,13 +346,21 @@ img[src=""] {
 }
 
 .swiper-slide-active .img-wrapper {
-    /*animation: zoomIn 2s both;*/
+    animation: zoomIn 2s both;
     position: relative;
     overflow: hidden;
 }
 
 .swiper-slide-active .content {
-    /*animation: zoomIn 2s both;*/
+    animation: zoomIn 2s both;
+}
+
+.tpl2-page.page3.swiper-slide-active .img-wrapper.content {
+    animation: none;
+}
+
+.tpl2-page.page2.swiper-slide-active .img-wrapper.content {
+    animation: none;
 }
 
 .swiper-slide-active .text-wrapper {
