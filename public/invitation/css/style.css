@@ -356,11 +356,11 @@ img[src=""] {
 }
 
 .tpl2-page.page3.swiper-slide-active .img-wrapper.content {
-    animation: slideInDown 2s both;
+    animation: none;
 }
 
 .tpl2-page.page2.swiper-slide-active .img-wrapper.content {
-    animation: bounceInDown 2s both;
+    animation: none;
 }
 
 .swiper-slide-active .text-wrapper {
