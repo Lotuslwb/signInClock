@@ -317,9 +317,9 @@ video {
     background: #e7abbd;
 }
 
-.swiper-slide-active .img-wrapper {
+.img-wrapper {
     position: relative;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 .login-page {
