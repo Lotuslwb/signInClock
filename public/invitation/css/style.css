@@ -355,6 +355,14 @@ img[src=""] {
     animation: zoomIn 2s both;
 }
 
+.tpl2-page.page2.swiper-slide-active .content {
+    animation: none;
+}
+
+.tpl2-page.page2.swiper-slide-active .J-uploaded-img {
+    animation: zoomIn 2s both;
+}
+
 .swiper-slide-active .text-wrapper {
     animation: fadeInUpBig 2s both;
 }
@@ -1255,8 +1263,8 @@ img[src=""] {
 
 .swiper-container.tpl2-container .page2 .content,
 .swiper-container.tpl2-container .page3 .content {
-    margin-top: 105px;
-    height: 600px;
+    padding-top: 105px;
+    height: 100%;
     position: relative;
 }
 
