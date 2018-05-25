@@ -1,0 +1,211 @@
+/* html,body,div,span,h1,h2,h3,p,blockquote,em,img,dl,dt,dd,ol,ul,li,form,label,input{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-family:'\5FAE\8F6F\96C5\9ED1';font-size:12px;vertical-align:baseline;} */
+body, h1, h2, h3, p, dl, ul, ol, form {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #646464;
+    /*font-family:'\5FAE\8F6F\96C5\9ED1';*/
+}
+
+dd {
+    margin-left: 0;
+}
+
+:focus {
+    outline: 0;
+}
+
+ol, ul {
+    list-style-type: none;
+}
+
+.clear-both {
+    clear: both;
+    height: 0;
+    overflow: hidden
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+    display: block;
+}
+
+em, var {
+    font-style: normal;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+html, body {
+    height: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    overflow: hidden;
+}
+
+i {
+    font-style: normal;
+}
+
+table, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+}
+
+select {
+    -webkit-appearance: none !important;
+}
+
+.f-hide {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+}
+
+.mid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -50%, 0);
+}
+
+.swiper-container {
+    width: 750px;
+    height: 100%;
+}
+
+.page1 {
+    background: url("../img/1.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.page2 {
+    background: url("../img/2.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.page3 {
+    background: url("../img/3.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.page4 {
+    background: url("../img/4.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.page5 {
+
+}
+.page5 .video{
+    width: 100%;
+}
+
+.page6 {
+    background: url("../img/6.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.page7 {
+    background: url("../img/7.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.page7 .pic {
+
+}
+
+.page7 .btn {
+    margin: auto;
+    padding-top: 30px;
+}
+
+.page8 {
+    width: 750px;
+    height: 100%;
+    background: url("../img/form.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.page8 .form-title {
+    margin: auto;
+    padding-top: 135px;
+}
+
+.page8 .form {
+    padding-top: 195px;
+    width: 500px;
+    margin: auto;
+    font-size: 28px;
+    color: #ffffff;
+}
+
+.page8 .form .row {
+    padding-bottom: 30px;
+}
+
+.page8 .form input {
+    width: 377px;
+    height: 60px;
+    line-height: 60px;
+    background: url("../img/input-bg.png") no-repeat;
+    background-size: 100% 100%;
+    border: none;
+    display: inline-block;
+    font-size: 28px;
+    color: #ffffff;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.page8 .form label {
+    line-height: 60px;
+    width: 100px;
+    display: inline-block;
+    vertical-align: -webkit-baseline-middle;
+}
+
+.page8 .form-submit {
+    margin: auto;
+    padding-top: 30px;
+}
+
+.page8 .info {
+    padding-top: 85px;
+}
+

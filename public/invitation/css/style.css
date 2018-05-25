@@ -321,18 +321,6 @@ video {
     position: relative;
     overflow: hidden;
 }
-/*.swiper-slide-active .text-wrapper {*/
-    /*animation: fadeInUpBig 2s both;*/
-/*}*/
-
-/*.swiper-slide-active .text {*/
-    /*animation: fadeInDown 2s both;*/
-/*}*/
-
-/*.swiper-slide-active.page7 .text {*/
-    /*animation: none;*/
-
-/*}*/
 
 .login-page {
     background: url("../img/login-bg.jpg") no-repeat center;
@@ -1330,7 +1318,7 @@ video {
 
 .swiper-container.tpl2-container .page5 .text-wrapper {
     position: absolute;
-    bottom: 100px;
+    top: 800px;
     width: 100%;
     z-index: 1;
 }

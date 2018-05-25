@@ -1,0 +1,29 @@
+Fri Dec 22 19:23:48.397 [initandlisten] MongoDB starting : pid=1565 port=27017 dbpath=/var/lib/mongodb/ 64-bit host=iZ94tu73ma9Z
+Fri Dec 22 19:23:48.398 [initandlisten] db version v2.4.9
+Fri Dec 22 19:23:48.398 [initandlisten] git version: nogitversion
+Fri Dec 22 19:23:48.398 [initandlisten] build info: Linux orlo 3.2.0-58-generic #88-Ubuntu SMP Tue Dec 3 17:37:58 UTC 2013 x86_64 BOOST_LIB_VERSION=1_54
+Fri Dec 22 19:23:48.398 [initandlisten] allocator: tcmalloc
+Fri Dec 22 19:23:48.398 [initandlisten] options: { dbpath: "/var/lib/mongodb/", logpath: "-fork" }
+Fri Dec 22 19:23:48.404 [initandlisten] journal dir=/var/lib/mongodb/journal
+Fri Dec 22 19:23:48.404 [initandlisten] recover : no journal files present, no recovery needed
+Fri Dec 22 19:23:48.417 [initandlisten] waiting for connections on port 27017
+Fri Dec 22 19:23:48.418 [websvr] admin web console waiting for connections on port 28017
+Fri Dec 22 19:23:54.678 [signalProcessingThread] got signal 2 (Interrupt), will terminate after current cmd ends
+Fri Dec 22 19:23:54.678 [signalProcessingThread] now exiting
+Fri Dec 22 19:23:54.678 dbexit: 
+Fri Dec 22 19:23:54.678 [signalProcessingThread] shutdown: going to close listening sockets...
+Fri Dec 22 19:23:54.678 [signalProcessingThread] closing listening socket: 9
+Fri Dec 22 19:23:54.678 [signalProcessingThread] closing listening socket: 10
+Fri Dec 22 19:23:54.678 [signalProcessingThread] closing listening socket: 11
+Fri Dec 22 19:23:54.678 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+Fri Dec 22 19:23:54.678 [signalProcessingThread] shutdown: going to flush diaglog...
+Fri Dec 22 19:23:54.678 [signalProcessingThread] shutdown: going to close sockets...
+Fri Dec 22 19:23:54.678 [signalProcessingThread] shutdown: waiting for fs preallocator...
+Fri Dec 22 19:23:54.678 [signalProcessingThread] shutdown: lock for final commit...
+Fri Dec 22 19:23:54.678 [signalProcessingThread] shutdown: final commit...
+Fri Dec 22 19:23:54.678 [signalProcessingThread] shutdown: closing all files...
+Fri Dec 22 19:23:54.679 [signalProcessingThread] closeAllFiles() finished
+Fri Dec 22 19:23:54.679 [signalProcessingThread] journalCleanup...
+Fri Dec 22 19:23:54.679 [signalProcessingThread] removeJournalFiles
+Fri Dec 22 19:23:54.710 [signalProcessingThread] shutdown: removing fs lock...
+Fri Dec 22 19:23:54.710 dbexit: really exiting now
