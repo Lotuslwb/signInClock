@@ -364,7 +364,7 @@ img[src=""] {
 }
 
 .swiper-slide-active .text-wrapper {
-    animation: fadeInUpBig 2s both;
+    animation: fadeInUp 2s both;
 }
 
 .swiper-slide-active .text {
