@@ -352,7 +352,7 @@ img[src=""] {
 }
 
 .swiper-slide-active .content {
-    animation: zoomIn 2s both;
+    /*animation: zoomIn 2s both;*/
 }
 
 .swiper-slide-active .text-wrapper {
