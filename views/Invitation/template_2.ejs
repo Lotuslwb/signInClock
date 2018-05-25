@@ -21,18 +21,15 @@
                 </div>
             </div>
         </div>
-        <div class="swiper-slide page tpl2-page page2">
+        <div class="swiper-slide page tpl1-page page2">
             <div class="text-wrapper">
                 <img class="text" src="/invitation/img/tpl2-2-text.png" alt="">
             </div>
+            <div class="content img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
+                <img class="J-uploaded-img" data-tag="tmp2-pic1" src="" alt="photo" />
 
-            <div class="content img-wrapper">
-                <img class="J-uploaded-img" data-tag="tmp2-pic1" src="" alt="photo"/>
             </div>
-
             <img class="photo-wrapper" src="/invitation/img/tpl2-photo-wrapper-2.png" alt="">
-
-
             <div class="upload-mask">
                 <input type="file">
             </div>
@@ -42,7 +39,7 @@
                 <img class="text" src="/invitation/img/tpl2-3-text.png" alt="">
             </div>
             <div class="content img-wrapper">
-                <img class="J-uploaded-img" data-tag="tmp2-pic2" src="" alt="photo"/>
+                <img class="J-uploaded-img" data-tag="tmp2-pic2" src="" alt="photo" />
             </div>
             <img class="photo-wrapper" src="/invitation/img/tpl2-photo-wrapper-3.png" alt="">
             <div class="upload-mask">
@@ -53,13 +50,13 @@
             <img class="text" src="/invitation/img/tpl2-4-text.png" alt="">
             <div class="content">
                 <div class="img-left img-wrapper">
-                    <img class="J-uploaded-img" data-tag="tmp2-pic3" src="" alt="photo"/>
+                    <img class="J-uploaded-img" data-tag="tmp2-pic3" src="" alt="photo" />
                     <div class="upload-mask">
                         <input type="file">
                     </div>
                 </div>
                 <div class="img-right img-wrapper">
-                    <img class="J-uploaded-img" data-tag="tmp2-pic4" src="" alt="photo"/>
+                    <img class="J-uploaded-img" data-tag="tmp2-pic4" src="" alt="photo" />
                     <div class="upload-mask">
                         <input type="file">
                     </div>
@@ -74,7 +71,7 @@
                 <div class="img-ani-wrapper img-ani-wrapper-left">
                     <div class="img-left-bg"></div>
                     <div class="img-left img-wrapper">
-                        <img class="J-uploaded-img" data-tag="tmp2-pic5" src="" alt="photo"/>
+                        <img class="J-uploaded-img" data-tag="tmp2-pic5" src="" alt="photo" />
                         <div class="upload-mask">
                             <input type="file">
                         </div>
@@ -83,7 +80,7 @@
                 <div class="img-ani-wrapper img-ani-wrapper-right">
                     <div class="img-right-bg"></div>
                     <div class="img-right img-wrapper">
-                        <img class="J-uploaded-img" data-tag="tmp2-pic6" src="" alt="photo"/>
+                        <img class="J-uploaded-img" data-tag="tmp2-pic6" src="" alt="photo" />
                         <div class="upload-mask">
                             <input type="file">
                         </div>
@@ -96,7 +93,7 @@
                 <img class="text" src="/invitation/img/tpl2-6-text.png" alt="">
             </div>
             <div class="content img-wrapper">
-                <img class="J-uploaded-img" data-tag="tmp2-pic7" src="" alt="photo"/>
+                <img class="J-uploaded-img" data-tag="tmp2-pic7" src="" alt="photo" />
                 <img class="photo-wrapper" src="/invitation/img/tpl2-photo-wrapper-6.png" alt="">
                 <div class="upload-mask">
                     <input type="file">
@@ -174,6 +171,7 @@
 <%- include("commonjs.ejs") %>
 <script src="http://api.map.baidu.com/getscript?v=2.0&ak=2eed95cd0a38f5605d4b885b55211634&services=&t=20170511202040"></script>
 <script src="/invitation/js/swiper-3.3.1.jquery.min.js"></script>
+<script src="/invitation/js/swiper.animate1.0.2.min.js"></script>
 <script src="/invitation/js/lrz.all.bundle"></script>
 <script src="/javascripts/jquery.pep.js"></script>
 <script src="/javascripts/touch-0.2.13.min.js"></script>
@@ -226,6 +224,13 @@
             // 初始化swiper
             var mySwiper = new Swiper('.swiper-container', {
                 direction: 'vertical',
+                onInit: function (swiper) { //Swiper2.x的初始化是onFirstInit
+                    swiperAnimateCache(swiper); //隐藏动画元素
+                    swiperAnimate(swiper); //初始化完成开始动画
+                },
+                onSlideChangeEnd: function (swiper) {
+                    swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+                }
             })
         },
         initMusic: function () {
