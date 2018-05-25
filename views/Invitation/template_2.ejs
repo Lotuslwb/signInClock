@@ -25,11 +25,8 @@
             <div class="text-wrapper ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                 <img class="text" src="/invitation/img/tpl2-2-text.png" alt="">
             </div>
-            <div class="content img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
+            <div class="content img-wrapper ani" swiper-animate-effect="slideInDown" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp2-pic1" src="" alt="photo" />
-
-            <div class="content img-wrapper ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="2s">
-                <img class="J-uploaded-img" data-tag="tmp2-pic1" src="" alt="photo"/>
             </div>
             <img class="photo-wrapper" src="/invitation/img/tpl2-photo-wrapper-2.png" alt="">
             <div class="upload-mask">
@@ -40,7 +37,7 @@
             <div class="text-wrapper ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                 <img class="text" src="/invitation/img/tpl2-3-text.png" alt="">
             </div>
-            <div class="content img-wrapper ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="2s">
+            <div class="content img-wrapper ani" swiper-animate-effect="slideInDown" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp2-pic2" src="" alt="photo"/>
             </div>
             <img class="photo-wrapper" src="/invitation/img/tpl2-photo-wrapper-3.png" alt="">
@@ -226,21 +223,12 @@
             // 初始化swiper
             var mySwiper = new Swiper('.swiper-container', {
                 direction: 'vertical',
-<<<<<<< HEAD
                 onSlideChangeEnd: function (swiper) {
                     swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
                 },
                 onInit: function (swiper) { //Swiper2.x的初始化是onFirstInit
                     swiperAnimateCache(swiper); //隐藏动画元素
                     swiperAnimate(swiper); //初始化完成开始动画
-=======
-                onInit: function (swiper) { //Swiper2.x的初始化是onFirstInit
-                    swiperAnimateCache(swiper); //隐藏动画元素
-                    swiperAnimate(swiper); //初始化完成开始动画
-                },
-                onSlideChangeEnd: function (swiper) {
-                    swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
->>>>>>> f81dce23be908d6eeabe7962840be6408c92375d
                 }
             })
         },
