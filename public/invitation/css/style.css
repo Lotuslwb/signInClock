@@ -319,7 +319,7 @@ video {
 
 .swiper-slide-active .img-wrapper {
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .login-page {
