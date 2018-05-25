@@ -342,11 +342,11 @@ img[src=""] {
 }
 
 .swiper-slide-active .main .info {
-    animation: fadeInUp 2s both;
+    animation: slideInUp 2s both;
 }
 
 .swiper-slide-active .img-wrapper {
-    animation: fadeIn 2s both;
+    animation: slideInUp 2s both;
     position: relative;
     overflow: hidden;
 }
