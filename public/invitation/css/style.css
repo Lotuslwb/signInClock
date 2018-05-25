@@ -333,6 +333,10 @@ img[src=""] {
     animation: zoomIn 2s both;
 }
 
+.tpl1-page.page2.swiper-slide-active .main .photo {
+    animation: zoomIn 2s both;
+}
+
 .swiper-slide-active .img-ani-wrapper {
     animation: zoomIn 2s both;
 }
