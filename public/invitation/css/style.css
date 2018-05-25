@@ -1244,7 +1244,7 @@ img[src=""] {
     position: absolute;
     bottom: 200px;
     width: 100%;
-    z-index: 1;
+    z-index: 10;
 }
 
 .swiper-container.tpl2-container .page2 .text-wrapper .text,
@@ -1258,6 +1258,9 @@ img[src=""] {
     margin-top: 105px;
     height: 600px;
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .swiper-container.tpl2-container .page2 .content img,
