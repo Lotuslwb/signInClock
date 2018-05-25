@@ -346,7 +346,7 @@ img[src=""] {
 }
 
 .swiper-slide-active .img-wrapper {
-    animation: zoomIn 2s both;
+    /*animation: zoomIn 2s both;*/
     position: relative;
     overflow: hidden;
 }
