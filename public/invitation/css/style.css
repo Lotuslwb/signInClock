@@ -125,10 +125,6 @@ video {
     clear: both;
 }
 
-img[src=""] {
-    opacity: 0 !important;
-}
-
 .toast {
     position: fixed;
     z-index: 99;
@@ -321,64 +317,22 @@ img[src=""] {
     background: #e7abbd;
 }
 
-.swiper-slide-active .main .title {
-    animation: fadeInDown 2s both;
-}
-
-.swiper-slide-active .upload-mask {
-    transition: opacity 2s;
-}
-
-.swiper-slide-active .main .photo {
-    animation: zoomIn 2s both;
-}
-
-.tpl1-page.page2.swiper-slide-active .main .photo {
-    animation: zoomIn 2s both;
-}
-
-.swiper-slide-active .img-ani-wrapper {
-    animation: zoomIn 2s both;
-}
-
-.swiper-slide-active .img-ani-wrapper .img-wrapper {
-    animation: none;
-}
-
-.swiper-slide-active .main .info {
-    animation: fadeInUp 2s both;
-}
-
 .swiper-slide-active .img-wrapper {
-    animation: zoomIn 2s both;
     position: relative;
     overflow: hidden;
 }
+/*.swiper-slide-active .text-wrapper {*/
+    /*animation: fadeInUpBig 2s both;*/
+/*}*/
 
-.swiper-slide-active .content {
-    animation: zoomIn 2s both;
-}
+/*.swiper-slide-active .text {*/
+    /*animation: fadeInDown 2s both;*/
+/*}*/
 
-.tpl2-page.page2 .swiper-slide-active .img-wrapper.content {
-    animation: none;
-}
+/*.swiper-slide-active.page7 .text {*/
+    /*animation: none;*/
 
-.tpl2-page.page3 .swiper-slide-active .img-wrapper.content {
-    animation: none;
-}
-
-.swiper-slide-active .text-wrapper {
-    animation: fadeInUpBig 2s both;
-}
-
-.swiper-slide-active .text {
-    animation: fadeInDown 2s both;
-}
-
-.swiper-slide-active.page7 .text {
-    animation: none;
-
-}
+/*}*/
 
 .login-page {
     background: url("../img/login-bg.jpg") no-repeat center;
@@ -858,27 +812,6 @@ img[src=""] {
     margin: 20px auto 135px;
 }
 
-.swiper-container.tpl1-container .swiper-slide img,
-.swiper-container.tpl1-container .swiper-slide .img-wrapper,
-.swiper-container.tpl2-container .swiper-slide img,
-.swiper-container.tpl2-container .swiper-slide .img-wrapper,
-.swiper-container.tpl2-container .swiper-slide .content,
-.swiper-container.tpl2-container .swiper-slide .info,
-.swiper-container.tpl2-container .swiper-slide .upload-mask {
-    opacity: 0;
-}
-
-.swiper-container.tpl1-container .swiper-slide-active img,
-.swiper-container.tpl1-container .swiper-slide-active .img-wrapper,
-.swiper-container.tpl2-container .swiper-slide-active img,
-.swiper-container.tpl2-container .swiper-slide-active .img-wrapper,
-.swiper-container.tpl2-container .swiper-slide-active .content,
-.swiper-container.tpl2-container .swiper-slide-active .info,
-.swiper-container.tpl2-container .swiper-slide-active .upload-mask {
-    /*position: relative;*/
-    opacity: 1;
-}
-
 .swiper-container.tpl1-container .tpl1-page {
     background: url("../img/tpl1-1.jpg") no-repeat center;
     background-size: cover;
@@ -1204,14 +1137,6 @@ img[src=""] {
     animation: fadeInUp 2s 2s both;
 }
 
-.swiper-container.tpl2-container .swiper-slide img {
-    opacity: 0;
-}
-
-.swiper-container.tpl2-container .swiper-slide-active img {
-    opacity: 1;
-}
-
 .swiper-container.tpl2-container .tpl2-page {
     background: url("../img/tpl2-1.jpg") no-repeat center;
     background-size: cover;
@@ -1255,7 +1180,7 @@ img[src=""] {
 .swiper-container.tpl2-container .page2 .text-wrapper,
 .swiper-container.tpl2-container .page3 .text-wrapper {
     position: absolute;
-    bottom: 200px;
+    top: 800px;
     width: 100%;
     z-index: 10;
 }

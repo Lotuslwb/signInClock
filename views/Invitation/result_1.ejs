@@ -5,20 +5,20 @@
     <div class="swiper-wrapper">
         <div class="swiper-slide page tpl1-page page1">
             <div class="main">
-                <div class="title">
+                <div class="title ant" swiper-animate-effect="fadeInDown" swiper-animate-duration="2s">
                     <div class="title-en">
                         <img src="/invitation/img/text-title-en.png" alt="">
                     </div>
                     <div class="title-ch">婚礼邀请函</div>
                     <div class="title-text">一生一世一对人</div>
                 </div>
-                <div class="photo img-wrapper">
+                <div class="photo img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                     <img class="J-uploaded-img" data-tag="tmp1-pic1" src="" alt="photo">
                     <img class="photo-wrapper" src="/invitation/img/tpl1-photo-wrapper-1.png"
                          alt="">
 
                 </div>
-                <div class="info">
+                <div class="info ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                     <div class="name">
                         <span><%= doc['templateForm']['groomName'] %></span>
                         <img src="/invitation/img/icon-and.png" alt="">
@@ -31,27 +31,27 @@
         </div>
         <div class="swiper-slide page tpl1-page page2">
             <div class="main">
-                <div class="photo img-wrapper">
+                <div class="photo img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                     <img class="J-uploaded-img" data-tag="tmp1-pic2" src="" alt="photo">
                     <img class="photo-wrapper" src="/invitation/img/tpl1-photo-wrapper-2.png" alt="">
                     <img class="ant-right-top" src="/invitation/img/tpl1-photo-wrapper-2-ani-right.png" alt="">
                     <img class="ani-left-bottom" src="/invitation/img/tpl1-photo-wrapper-2-ani-left.png" alt="">
 
                 </div>
-                <div class="info">
+                <div class="info ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                     <div>从你为我戴上婚戒那一刻开始</div>
                     <div>“我”就变成了“我们”</div>
                 </div>
             </div>
         </div>
         <div class="swiper-slide page tpl1-page page3">
-            <img class="text" src="/invitation/img/tpl1-3-text.png" alt="">
+            <img class="text ani" src="/invitation/img/tpl1-3-text.png" alt="" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
             <div class="content">
-                <div class="img-wrapper">
+                <div class="img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                     <img class="J-uploaded-img" data-tag="tmp1-pic3" src=""/>
 
                 </div>
-                <div class="img-wrapper">
+                <div class="img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                     <img class="J-uploaded-img" data-tag="tmp1-pic4" src=""/>
                 </div>
             </div>
@@ -61,11 +61,11 @@
         </div>
         <div class="swiper-slide page tpl1-page page4">
             <img class="text" src="/invitation/img/tpl1-4-text.png" alt="">
-            <div class="img-wrapper">
+            <div class="img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp1-pic5" src=""/>
 
             </div>
-            <div class="img-wrapper">
+            <div class="img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp1-pic6" src=""/>
 
             </div>
@@ -74,11 +74,11 @@
         </div>
         <div class="swiper-slide page tpl1-page page5">
             <img class="text" src="/invitation/img/tpl1-5-text.png" alt="">
-            <div class="img-wrapper img-top backgroundFFF">
+            <div class="img-wrapper img-top backgroundFFF ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                 <img class="J-uploaded-img " data-tag="tmp1-pic7" src=""/>
 
             </div>
-            <div class="img-wrapper img-bottom">
+            <div class="img-wrapper img-bottom ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp1-pic8" src=""/>
 
             </div>
@@ -86,12 +86,12 @@
         </div>
         <div class="swiper-slide page tpl1-page page6">
             <img class="text" src="/invitation/img/tpl1-6-text.png" alt="">
-            <div class="img-wrapper img-top">
+            <div class="img-wrapper img-top ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                 <div class="img-bg"></div>
                 <img class="J-uploaded-img" data-tag="tmp1-pic9" src=""/>
 
             </div>
-            <div class="img-wrapper img-bottom">
+            <div class="img-wrapper img-bottom ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                 <div class="img-bg"></div>
                 <img class="J-uploaded-img" data-tag="tmp1-pic10" src=""/>
 
@@ -101,7 +101,7 @@
         </div>
         <div class="swiper-slide page  tpl1-page page7">
             <div class="mid">
-                <div class="portrait img-wrapper">
+                <div class="portrait img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                     <img class="J-uploaded-img" data-tag="tmp1-logo" src=""/>
                 </div>
                 <img class="text" src="/invitation/img/tpl1-7-text.png" alt="">
@@ -196,6 +196,7 @@
 <%- include("commonjs.ejs") %>
 <script src="http://api.map.baidu.com/getscript?v=2.0&ak=2eed95cd0a38f5605d4b885b55211634&services=&t=20170511202040"></script>
 <script src="/invitation/js/swiper-3.3.1.jquery.min.js"></script>
+<script src="/invitation/js/swiper.animate1.0.2.min.js"></script>
 <script>
 
     var id = "<%= doc['_id']; %>";
@@ -242,6 +243,11 @@
                     } else {
                         $('.J-blessing').hide();
                     }
+                    swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+                },
+                onInit: function (swiper) { //Swiper2.x的初始化是onFirstInit
+                    swiperAnimateCache(swiper); //隐藏动画元素
+                    swiperAnimate(swiper); //初始化完成开始动画
                 }
             })
             // 背景音乐

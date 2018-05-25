@@ -5,12 +5,12 @@
     <div class="swiper-wrapper">
         <div class="swiper-slide page tpl2-page page1">
             <div class="main">
-                <div class="title">
+                <div class="title ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="2s">
                     <div class="title-en">
                         <img src="/invitation/img/tpl2-1-title.png" alt="">
                     </div>
                 </div>
-                <div class="info">
+                <div class="info ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                     <div class="name">
                         <span><%= doc['templateForm']['groomName'] %></span>
                         <img src="/invitation/img/icon-and.png" alt="">
@@ -22,46 +22,46 @@
             </div>
         </div>
         <div class="swiper-slide page tpl2-page page2">
-            <div class="text-wrapper">
+            <div class="text-wrapper ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                 <img class="text" src="/invitation/img/tpl2-2-text.png" alt="">
             </div>
-            <div class="content img-wrapper">
+            <div class="content img-wrapper ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp2-pic1" src="" alt="photo" />
             </div>
             <img class="photo-wrapper" src="/invitation/img/tpl2-photo-wrapper-2.png" alt="">
         </div>
         <div class="swiper-slide page tpl2-page page3">
-            <div class="text-wrapper">
+            <div class="text-wrapper ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                 <img class="text" src="/invitation/img/tpl2-3-text.png" alt="">
             </div>
-            <div class="content img-wrapper">
+            <div class="content img-wrapper ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp2-pic2" src="" alt="photo" />
             </div>
             <img class="photo-wrapper" src="/invitation/img/tpl2-photo-wrapper-3.png" alt="">
         </div>
         <div class="swiper-slide page tpl2-page page4">
-            <img class="text" src="/invitation/img/tpl2-4-text.png" alt="">
+            <img class="text ani" src="/invitation/img/tpl2-4-text.png" alt="" swiper-animate-effect="fadeInDown" swiper-animate-duration="2s" swiper-animate-delay="1s">
             <div class="content">
-                <div class="img-left img-wrapper">
+                <div class="img-left img-wrapper ani" swiper-animate-effect="slideInLeft" swiper-animate-duration="2s">
                     <img class="J-uploaded-img" data-tag="tmp2-pic3" src="" alt="photo" />
                 </div>
-                <div class="img-right img-wrapper">
+                <div class="img-right img-wrapper ani" swiper-animate-effect="slideInRight" swiper-animate-duration="2s" swiper-animate-delay="0.5s">
                     <img class="J-uploaded-img" data-tag="tmp2-pic4" src="" alt="photo" />
                 </div>
             </div>
         </div>
         <div class="swiper-slide page tpl2-page page5">
-            <div class="text-wrapper">
+            <div class="text-wrapper ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                 <img class="text" src="/invitation/img/tpl2-5-text.png" alt="">
             </div>
             <div class="content">
-                <div class="img-ani-wrapper img-ani-wrapper-left">
+                <div class="img-ani-wrapper img-ani-wrapper-left ani" swiper-animate-effect="slideInLeft" swiper-animate-duration="2s">
                     <div class="img-left-bg"></div>
                     <div class="img-left img-wrapper">
                         <img class="J-uploaded-img" data-tag="tmp2-pic5" src="" alt="photo" />
                     </div>
                 </div>
-                <div class="img-ani-wrapper img-ani-wrapper-right">
+                <div class="img-ani-wrapper img-ani-wrapper-right ani" swiper-animate-effect="slideInRight" swiper-animate-duration="2s">
                     <div class="img-right-bg"></div>
                     <div class="img-right img-wrapper">
                         <img class="J-uploaded-img" data-tag="tmp2-pic6" src="" alt="photo" />
@@ -70,17 +70,17 @@
             </div>
         </div>
         <div class="swiper-slide page tpl2-page page6">
-            <div class="text-wrapper">
+            <div class="text-wrapper ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s">
                 <img class="text" src="/invitation/img/tpl2-6-text.png" alt="">
             </div>
-            <div class="content img-wrapper">
+            <div class="content img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp2-pic7" src="" alt="photo" />
                 <img class="photo-wrapper" src="/invitation/img/tpl2-photo-wrapper-6.png" alt="">
             </div>
         </div>
         <div class="swiper-slide page  tpl2-page page7">
             <div class="mid">
-                <div class="portrait img-wrapper">
+                <div class="portrait img-wrapper ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                     <img class="J-uploaded-img" data-tag="tmp2-logo" src=""/>
                 </div>
                 <img class="text" src="/invitation/img/tpl1-7-text.png" alt="">
@@ -175,6 +175,7 @@
 <%- include("commonjs.ejs") %>
 <script src="http://api.map.baidu.com/getscript?v=2.0&ak=2eed95cd0a38f5605d4b885b55211634&services=&t=20170511202040"></script>
 <script src="/invitation/js/swiper-3.3.1.jquery.min.js"></script>
+<script src="/invitation/js/swiper.animate1.0.2.min.js"></script>
 <script>
 
     var id = "<%= doc['_id']; %>";
@@ -221,7 +222,13 @@
                     } else {
                         $('.J-blessing').hide();
                     }
+                    swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+                },
+                onInit: function (swiper) { //Swiper2.x的初始化是onFirstInit
+                    swiperAnimateCache(swiper); //隐藏动画元素
+                    swiperAnimate(swiper); //初始化完成开始动画
                 }
+
             })
             // 背景音乐
             var music_key, once = 0;
