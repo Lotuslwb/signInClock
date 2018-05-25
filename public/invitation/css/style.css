@@ -359,6 +359,8 @@ img[src=""] {
     animation: zoomIn 2s both;
 }
 
+
+
 .tpl2-page.page2 .swiper-slide-active .img-wrapper.content {
     animation: none;
 }
