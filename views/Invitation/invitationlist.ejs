@@ -13,7 +13,7 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <% for (var i = 0; i < data.length; i++){  var item = data[i]; %>
-                <div class="swiper-slide tpl<%= item['templateId'] %>-container" data-id="<%= item['_id'] %>"
+                <div class="swiper-slide template-container tpl<%= item['templateId'] %>-container" data-id="<%= item['_id'] %>"
                      data-template="<%= item['templateId'] %>"
                      style="width: 400px;">
                     <div class="action-group">
@@ -21,15 +21,10 @@
                         <img class="icon J-delete" src="/invitation/img/icon-delete.png" alt="">
                     </div>
                     <div class='page1'>
-                        <div class="main J-edit"
-                             style='background: url("/invitation/img/tpl<%= item['templateId'] %>-1.jpg ") no-repeat center;background-size:cover'>
-                            <div class="title">
-                                <div class="title-en">
-                                    <img src="/invitation/img/tpl<%= item['templateId'] %>-1-title.png" alt="">
-                                </div>
-                            </div>
+                        <div class="cover-wrapper small J-edit" style='background: url("/invitation/img/tpl<%= item['templateId'] %>-1.jpg ") no-repeat center;background-size:cover'>
+                            <img class="title" src="/invitation/img/tpl<%= item['templateId'] %>-1-title.png" alt="" >
                             <% if (item['templateId'] == 1) { %>
-                            <div class="photo img-wrapper">
+                            <div class="img-wrapper">
                                 <img class="J-uploaded-img" data-tag="tmp1-pic1"
                                      style="top:<%= item['templateInfo'][0] && item['templateInfo'][0].others.split(',')[0] %>;left:<%= item['templateInfo'][0] && item['templateInfo'][0].others.split(',')[1] %>;"
                                      src="<%= item['templateInfo'][0] && item['templateInfo'][0].value %>" alt="photo">
@@ -37,11 +32,10 @@
                                      alt="">
                             </div>
                             <% } %>
-
                             <div class="info">
                                 <div class="name">
                                     <span><%= item['templateForm']['groomName'] %></span>
-                                    <img src="/invitation/img/icon-and.png" alt="">
+                                    <img class="and-icon" src="/invitation/img/icon-and.png" alt="">
                                     <span><%= item['templateForm']['brideName'] %> </span>
                                 </div>
                                 <div class="time"><%= item['templateForm']['marriageTime'] %></div>
