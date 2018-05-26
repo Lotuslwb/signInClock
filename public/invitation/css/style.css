@@ -602,13 +602,11 @@ video {
     height: 100%;
     position: relative;
 }
+
 .template-container .cover-wrapper {
     overflow: auto;
     width: 640px;
     height: 1008px;
-}
-.template-container .img-wrapper {
-    position: relative;
 }
 .template-container .img-wrapper img {
     width: 100%;
