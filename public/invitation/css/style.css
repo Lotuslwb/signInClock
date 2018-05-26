@@ -642,7 +642,8 @@ video {
     width: 115px;
     height: 115px;
     border-radius: 50%;
-    background: #fff;
+    border: 7px solid #fff;
+    background: #ccc;
     margin: auto;
 }
 
