@@ -70,7 +70,7 @@ input {
     padding: 0;
 }
 
-.mid {
+.center {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -206,10 +206,10 @@ video {
 }
 
 .tpl1-page.page .upload-mask.uploaded {
-    top: auto;
+    top: 0;
     left: auto;
     right: 0;
-    bottom: 0;
+    bottom: auto;
 }
 
 .tpl1-page.page1 .upload-mask.uploaded {
@@ -221,7 +221,12 @@ video {
     top: 475px;
     left: 100px;
 }
-
+.tpl1-page.page3 .upload-mask.uploaded {
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: auto;
+}
 .page .J-uploaded-img {
     position: absolute !important;
     transform: scale(1.5);
@@ -343,7 +348,7 @@ video {
 }
 
 .index-page .empty .action-btn {
-    bottom: 230px;
+    top: 700px;
 }
 
 .index-page .empty.active {
@@ -399,7 +404,7 @@ video {
 }
 
 .index-page .done .action-btn {
-    bottom: 80px;
+    top: 880px;
 }
 
 .index-page .done.active {
@@ -630,7 +635,7 @@ video {
 }
 .template-container .page7 .mid {
     width: 500px;
-    margin: 0 auto;
+    margin: 77px auto 0;
     border: 1px solid #aa9ca2;
     box-shadow: 2px 2px 20px 5px rgba(0, 0, 0, 0.2);
     padding: 25px 40px;
@@ -639,16 +644,16 @@ video {
 }
 
 .portrait {
-    width: 115px;
-    height: 115px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     border: 7px solid #fff;
     background: #ccc;
     margin: auto;
+    box-sizing: border-box;
 }
 
 .template-container .page7 .mid .portrait img {
-    padding-top: 8px;
     width: 100px;
     /*height: 100px;*/
     border-radius: 50%;
@@ -661,7 +666,7 @@ video {
 }
 
 .template-container .page7 .mid .text {
-    margin: 20px auto 35px;
+    margin: 15px auto 25px;
 }
 
 .template-container .page7 .mid .map {
@@ -671,7 +676,7 @@ video {
 }
 
 .template-container .page7 .mid .info {
-    margin-top: 40px;
+    margin-top: 30px;
     font-size: 25px;
     line-height: 1.5em;
 }
@@ -713,7 +718,7 @@ video {
 .template-container .page7 .btn-reply {
     width: 100%;
     position: absolute;
-    bottom: 50px;
+    top: 850px;
     z-index: 10;
 }
 
@@ -1041,6 +1046,11 @@ video {
 .tpl2-container .page3 .upload-mask.uploaded {
     top: 140px;
     left: 90px;
+}
+.tpl2-container .page6 .upload-mask.uploaded {
+    bottom: 0;
+    left:0;
+    top: auto;
 }
 
 .tpl2-container .page2 .text {
