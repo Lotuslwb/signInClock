@@ -754,16 +754,16 @@ video {
     margin: auto;
 }
 
-.template-container .page8 .mid {
+.template-container .page8 .center {
     width: 100%;
     text-align: center;
 }
 
-.template-container .page8 .mid img {
+.template-container .page8 .center img {
     margin: auto;
 }
 
-.template-container .page8 .mid .text {
+.template-container .page8 .center .text {
     margin: 20px auto 135px;
 }
 
