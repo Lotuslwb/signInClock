@@ -221,12 +221,24 @@ video {
     top: 475px;
     left: 100px;
 }
+
 .tpl1-page.page3 .upload-mask.uploaded {
     top: 0;
     left: 0;
     right: auto;
     bottom: auto;
 }
+
+.tpl1-page.page7 .upload-mask.uploaded {
+    width: 45px;
+    height: 48px;
+}
+.tpl2-page.page7 .upload-mask.uploaded {
+    width: 45px;
+    height: 48px;
+}
+
+
 .page .J-uploaded-img {
     position: absolute !important;
     transform: scale(1.5);
