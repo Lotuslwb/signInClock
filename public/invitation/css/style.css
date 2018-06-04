@@ -150,6 +150,7 @@ video {
     background-size: cover;
     position: relative;
 }
+
 .page .top-title {
     text-align: center;
     height: 94px;
@@ -167,6 +168,7 @@ video {
     top: 32px;
     left: 40px;
 }
+
 .page .upload-mask {
     width: 100%;
     height: 100%;
@@ -196,7 +198,6 @@ video {
     pointer-events: none;
 }
 
-
 .upload-mask.uploaded {
     background: url("../img/upload.png") no-repeat;
     background-size: cover;
@@ -220,6 +221,15 @@ video {
 .tpl1-page.page2 .upload-mask.uploaded {
     top: 475px;
     left: 100px;
+}
+
+.tpl2-page.page7 .upload-mask.uploaded {
+    width: 45px;
+    height: 47px;
+}
+.tpl1-page.page7 .upload-mask.uploaded {
+    width: 45px;
+    height: 47px;
 }
 
 .page .J-uploaded-img {
@@ -608,9 +618,11 @@ video {
     width: 640px;
     height: 1008px;
 }
+
 .template-container .img-wrapper img {
     width: 100%;
 }
+
 .template-container .small {
     transform: scale(0.625);
     transform-origin: top left;
@@ -621,13 +633,16 @@ video {
     text-align: center;
     line-height: 1.6;
 }
+
 .template-container .page1 .name {
     display: flex;
     justify-content: center;
 }
+
 .template-container .page1 .and-icon {
     margin: 0 10px;
 }
+
 .template-container .page7 .mid {
     width: 500px;
     margin: 0 auto;
@@ -780,15 +795,18 @@ video {
     right: 0;
     z-index: 1;
 }
+
 .tpl1-container .page1 .img-wrapper {
     margin-top: 150px;
     width: 640px;
     height: 640px;
 }
+
 .tpl1-container .page2 .img-wrapper {
     margin-top: 68px;
     height: 724px;
 }
+
 .tpl1-container .page2 .text {
     position: absolute;
     left: 0;
@@ -846,9 +864,11 @@ video {
     margin: auto;
     margin-bottom: 30px;
 }
+
 .tpl1-container .page3 .top-img-wrapper {
     margin-top: 230px;
 }
+
 .tpl1-container .page3 .ani-left-top {
     position: absolute;
     left: 0;
@@ -870,7 +890,6 @@ video {
     right: 0;
     top: 540px;
 }
-
 
 .tpl1-container .page4 .text {
     position: absolute;
@@ -906,7 +925,6 @@ video {
     top: 0;
 }
 
-
 .tpl1-container .page5 .text {
     position: absolute;
     bottom: 145px;
@@ -933,6 +951,7 @@ video {
     box-sizing: border-box;
     transform: rotate(22deg);
 }
+
 .tpl1-container .page5 .ani-right-bottom {
     position: absolute;
     right: 0;
@@ -952,6 +971,7 @@ video {
 .tpl1-container .page6 .img-wrapper {
     background: transparent;
 }
+
 .tpl1-container .page6 .img-top {
     position: relative;
     width: 355px;
@@ -1021,10 +1041,12 @@ video {
     background: url("../img/tpl2-1.jpg") no-repeat center;
     background-size: cover;
 }
+
 .tpl2-container .page1 .title {
     margin: auto;
     margin-top: 285px;
 }
+
 .tpl2-container .page1 .info {
     margin-top: 175px;
 }
@@ -1051,6 +1073,7 @@ video {
     right: 0;
     margin: auto;
 }
+
 .tpl2-container .page3 .text {
     position: absolute;
     top: 730px;
@@ -1145,6 +1168,7 @@ video {
     background: url("../img/tpl2-bg-5.jpg") no-repeat center;
     background-size: cover;
 }
+
 .tpl2-container .page5 .text {
     position: absolute;
     top: 750px;
@@ -1153,7 +1177,6 @@ video {
     right: 0;
     margin: auto;
 }
-
 
 .tpl2-container .page5 .img-wrapper {
     position: absolute;
@@ -1202,6 +1225,7 @@ video {
     background: url("../img/tpl2-bg-6.jpg") no-repeat center;
     background-size: cover;
 }
+
 .tpl2-container .page6 .text {
     position: absolute;
     top: 760px;
@@ -1211,7 +1235,7 @@ video {
     margin: auto;
 }
 
-.tpl2-container .page6 .img-wrapper{
+.tpl2-container .page6 .img-wrapper {
     height: 725px;
 }
 
