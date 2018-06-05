@@ -626,7 +626,7 @@ video {
     height: 1008px;
 }
 .template-container .img-wrapper img {
-    width: 103%;
+    width: 100%;
 }
 .template-container .small {
     transform: scale(0.625);
