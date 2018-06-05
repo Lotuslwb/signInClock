@@ -59,9 +59,6 @@
             </div>
             <div class="img-wrapper img-bottom ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s">
                 <img class="J-uploaded-img" data-tag="tmp1-pic8" src=""/>
-                <div class="upload-mask">
-                    <input type="file">
-                </div>
             </div>
             <img class="ani-right-bottom ani" src="/invitation/img/tpl1-photo-wrapper-5-ani-right-bottom.png" alt="" swiper-animate-effect="fadeInUp" swiper-animate-duration="2s" swiper-animate-delay="2s">
         </div>
@@ -265,7 +262,6 @@
         initInfo: function () {
             $('.J-uploaded-img').each(function () {
                 var tag = $(this).data('tag');
-                console.log(Info);
                 var src = Info[tag] && Info[tag].split('###')[0];
                 var others = Info[tag] && Info[tag].split('###')[1];
 
@@ -422,7 +418,6 @@
                         i++;
                         $('.live-blessing-list').animate({'marginTop': -(i * lihei + 10) + 'px'}, 500);
                     }
-                    console.log(i)
                 }, 3000);
             }
 

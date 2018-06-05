@@ -626,7 +626,7 @@ video {
     height: 1008px;
 }
 .template-container .img-wrapper img {
-    width: 100%;
+    width: 103%;
 }
 .template-container .small {
     transform: scale(0.625);
@@ -800,7 +800,7 @@ video {
 .tpl1-container .page1 .img-wrapper {
     margin-top: 150px;
     width: 640px;
-    height: 640px;
+    height: 646px;
 }
 .tpl1-container .page2 .img-wrapper {
     margin-top: 68px;
