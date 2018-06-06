@@ -31,13 +31,13 @@ router.get('/info', function (req, res, next) {
 
 
 router.get('/start', function (req, res, next) {
-    res.render('daka/info', {title: '开始打卡', now: new Date()});
-    // UserDB.User.find({}, {personInfo: 1}).sort({"personInfo.startTime": -1}).then(function (docs) {
-    //     UserDB.User.find({}).count().then(function (counts) {
-    //         res.render('daka/start', {title: '开始打卡', docs: docs, counts: counts});
-    //     })
-    //
-    // });
+    //res.render('daka/info', {title: '开始打卡', now: new Date()});
+    UserDB.User.find({}, {personInfo: 1}).sort({"personInfo.startTime": -1}).then(function (docs) {
+        UserDB.User.find({}).count().then(function (counts) {
+            res.render('daka/start', {title: '开始打卡', docs: docs, counts: counts});
+        })
+
+    });
 })
 
 
@@ -235,46 +235,46 @@ router.get('/plan', function (req, res, next) {
 
 router.get('/index', function (req, res, next) {
 
-    res.render('daka/info', {title: '开始打卡', now: new Date()});
+    // res.render('daka/info', {title: '开始打卡', now: new Date()});
 
-    // checkOpenid(req, res, function (openid) {
-    //     var id = getBookId();
-    //     ConfigDB.find({}, function (err, docs) {
-    //         var ConfigData = (docs && docs[0] ) || {};
-    //         getUserInfoByOpenid(openid, function (docs) {
-    //             var UserInfo = docs[0];
-    //             var level = UserInfo.level;
-    //             if (level > -1) {
-    //                 getBookInfoById(id, function (docs) {
-    //                     var doc = docs[0];
-    //                     var index = (level < doc['articleList'].length ? level : doc.length - 1);
-    //                     var bookInfo = doc['articleList'][index];
-    //                     var bookDate = doc['articleDate'];
-    //                     bookInfo._id = doc._id;
-    //
-    //                     res.render('daka/index', {
-    //                         title: 'index',
-    //                         now: new Date(),
-    //                         bookDate: bookDate,
-    //                         bookInfo: bookInfo,
-    //                         UserInfo: UserInfo,
-    //                         ConfigData: ConfigData
-    //                     });
-    //                 });
-    //             } else {
-    //                 res.redirect('/daka/level')
-    //             }
-    //         }, function () {
-    //             //如果cookie里面没有openid,获取之;
-    //             var hostname = req.hostname;
-    //             var protocol = req.protocol;
-    //             var redirect_uri = encodeURIComponent(protocol + '://' + hostname + '/wx/callback?router=daka' + req.path);
-    //             var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
-    //             res.redirect(url);
-    //         })
-    //     });
-    //
-    // });
+    checkOpenid(req, res, function (openid) {
+        var id = getBookId();
+        ConfigDB.find({}, function (err, docs) {
+            var ConfigData = (docs && docs[0] ) || {};
+            getUserInfoByOpenid(openid, function (docs) {
+                var UserInfo = docs[0];
+                var level = UserInfo.level;
+                if (level > -1) {
+                    getBookInfoById(id, function (docs) {
+                        var doc = docs[0];
+                        var index = (level < doc['articleList'].length ? level : doc.length - 1);
+                        var bookInfo = doc['articleList'][index];
+                        var bookDate = doc['articleDate'];
+                        bookInfo._id = doc._id;
+
+                        res.render('daka/index', {
+                            title: 'index',
+                            now: new Date(),
+                            bookDate: bookDate,
+                            bookInfo: bookInfo,
+                            UserInfo: UserInfo,
+                            ConfigData: ConfigData
+                        });
+                    });
+                } else {
+                    res.redirect('/daka/level')
+                }
+            }, function () {
+                //如果cookie里面没有openid,获取之;
+                var hostname = req.hostname;
+                var protocol = req.protocol;
+                var redirect_uri = encodeURIComponent(protocol + '://' + hostname + '/wx/callback?router=daka' + req.path);
+                var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APPID + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+                res.redirect(url);
+            })
+        });
+
+    });
 });
 
 
