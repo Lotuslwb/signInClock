@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="/StressTest/js/dpi.js"></script>
+    <link rel="stylesheet" href="/StressTest/css/animate.css">
+    <link rel="stylesheet" href="/StressTest/css/main.css">
+    <link rel="stylesheet" href="/StressTest/css/style.css">
+    <link rel="stylesheet" href="/swiper/swiper-3.3.1.min.css">
+
+</head>
+
+<body>
+    <!--需要预加载的images-->
+    <div class="f-hide" id="f-hide">
+        <% for(var i=1;i<=10;i++){ %>
+            <img src="/StressTest/img/page1-pic<%=i%>.png">
+        <% } %>
+    </div>
+
+
+    <div class="page loading-page active">
+        <img src="/StressTest/img/loading-img.png" class="loading-img" />
+        <div class="loading-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <div class="page swiper-page">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide page1 swiper-no-swiping">
+                    <div class="mid">
+                        <img src="/StressTest/img/page1-title.png" class="page1-title">
+                        <div class="page1-info">一分钟灵魂拷问</div>
+                        <div class="page1-pic"></div>
+                        <div class="btn page1-btn J-page1-btn">
+                            <div class="biggerFont">开始拷问</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide page2 swiper-no-swiping">
+                    <div class="mid">
+                        <img src="/StressTest/img/page1-title.png" class="page1-title">
+                        <div class="page2-form">
+                            <div class="Q-title">你的性别？</div>
+                            <div class="Q-options">
+                                <div class="Q-option">
+                                    <div class="option-icon"></div>
+                                    男
+                                </div>
+                                <div class="Q-option Q-option-right">
+                                    <div class="option-icon"></div>
+                                    女
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn page1-btn J-slideNext">
+                            <div>确定</div>
+                        </div>
+                    </div>
+                </div> 
+                <% for(var i=1;i<=data.length;i++){  var item=data[i-1]; %>
+                <div class="swiper-slide Q<%=i%>-page swiper-no-swiping">
+                    <div class="Q-header">
+                        <img src="/StressTest/img/Qheader-pic<%=i%>.png" class="Qheader-pic" />
+                    </div>
+                    <div class="Q-main">
+                        <div class="mid">
+                            <div class="Q-form">
+                                <div class="Q-title">
+                                    <img src="/StressTest/img/Q<%=i%>-icon.png" class="Q-title-icon">
+                                    <div class="Q-title-text"><%=item['title']%></div>
+                                </div>
+                                <div class="Q-options">
+                                    <% for(var j=0;j<item['options'].length;j++){%>
+                                    <div class="Q-option" data-value="<%=item['options'][j].value%>"><%=item['options'][j].text%></div>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <div class="btn page-btn-select <%= i==data.length?'J-finishQ':'J-slideNext'%>  biggerFont">
+                                <div class="biggerFont">下一题</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <div class="swiper-slide  page2 page11 swiper-no-swiping">
+                    <div class="mid">
+                        <img src="/StressTest/img/page1-title.png" class="page1-title">
+                        <div class="page11-form">
+                            <div class="Q-title">填表查看你的人生掏空指数</div>
+                            <div class="Q-options">
+                                <input class="Q-option" type='text' placeholder="请输入您的姓名" />                                    
+                                <input class="Q-option" type='tel' placeholder="请输入您的手机号" />                                    
+                                <select class="Q-option">
+                                    <option value="1">上海</option>
+                                </select> 
+                                <input class="Q-option date" type='date' placeholder="请输入您的生日" />                                                             
+                            </div>
+                        </div>
+                        <div class="btn page1-btn J-slideNext">
+                            <div>确定</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide page-result swiper-no-swiping">
+                    <img src="" class='result-pic' />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
+    <script>
+        var resultList="<%- resultList %>".split(',');
+        Number.prototype.range=function(min,max){
+            return this>=min && this<=max;
+        }
+
+        Array.prototype.random=function(){
+            var index=Math.floor(Math.random()*this.length)
+            return this[index];
+        }
+
+        if (typeof Array.prototype.filter != "function") {
+            Array.prototype.filter = function (fn, context) {
+                var arr = [];
+                if (typeof fn === "function") {
+                for (var k = 0, length = this.length; k < length; k++) {
+                    fn.call(context, this[k], k, this) && arr.push(this[k]);
+                }
+                }
+                return arr;
+            };
+        }
+
+        function initMySwiper() {
+            var mySwiper = new Swiper('.swiper-container', {
+                noSwiping: true
+            })
+
+            return mySwiper;
+        }
+    </script>
+    <script>
+        var mySwiper;
+        var timer;
+
+        function indexHanlder() {
+            this.init();
+        }
+
+        indexHanlder.prototype = {
+            init: function () {
+                this.bindEvnet(this);
+                this.initMain();
+            },
+            initMain: function () {
+                var h = $('body').height();
+                var Qh = $('.Q-header').height();
+                $('.Q-main').height(h - Qh);
+            },
+            bindEvnet: function () {
+                var me = this;
+                $('.J-page1-btn').click(function () {
+                    timer && clearInterval(timer);
+                    mySwiper.slideNext();
+                })
+                $('.J-slideNext').click(function () {
+                    if ($(this).hasClass('active')) {
+                        mySwiper.slideNext();
+                    }
+                })
+                $('.J-finishQ').click(function () {
+                    if ($(this).hasClass('active')) {
+                        mySwiper.slideNext();
+                        me.getResult();
+                    }
+                })
+
+                $('.Q-option').click(function () {
+                    if($(this).parents('.page11').length) return true;
+
+                    $(this).addClass('active').siblings('.Q-option').removeClass('active');
+                    $(this).parents('.swiper-slide').find('.btn').addClass('active');
+                })
+
+                $(".page11 .Q-option").on("change",function(){
+                    console.log(checkVal());
+                   if(checkVal()){
+                        $(this).parents('.swiper-slide').find('.btn').addClass('active');
+                   }else{
+                        $(this).parents('.swiper-slide').find('.btn').removeClass('active');
+                   }
+                });
+
+                function checkVal(){
+                    var result=true;
+                    $('.page11 .Q-option').each(function(){
+                        if(!$(this).val()) result=false;
+                    })
+                    return result;
+                }
+            },
+            getResult:function(){
+                var sex=$('.page2-form').find('.Q-option.active').index();  // 0 为男， 1为女
+                var totalScore=0;
+                $('.Q-form').each(function(){
+                    totalScore+=$(this).find('.Q-option.active').data('value')*1;
+                });
+                var filterStr=(sex==0?"male":"female") + "_"+ this.getScoreLevel(totalScore);
+                console.log(filterStr);
+                var result=resultList.filter(function(item){
+                    return item.indexOf(filterStr)>=0;
+                }).random();
+                console.log(result);
+                var resultURL='/StressTest/img/result/'+result;
+                var img=new Image();
+                img.src=resultURL;
+                $('.result-pic').attr('src',resultURL);
+            },
+            getScoreLevel:function(score){
+                var level=0;
+                if(score.range(10,15)){
+                    level=1;
+                }else if(score.range(16,22)){
+                    level=2;
+                }else if(score.range(23,29)){
+                    level=3;
+                }else if(score.range(30,100)){
+                    level=4;
+                }
+                return level;
+            }
+        }
+        var page = new indexHanlder();
+    </script>
+    <script>
+        var loaded = false;
+        var loaded_ani = false;
+
+
+        //预加载器
+        function loader() {
+            this.init();
+        }
+
+        loader.prototype = {
+            init: function () {
+                var me = this;
+                var loaded = 0;
+
+                if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+                    me.onLoaded();
+                } else {
+                    var imgLoad = imagesLoaded('body');
+                    imgLoad.on('progress', function (instance, image) {
+                        loaded++;
+                        if (loaded == instance.images.length) {
+                            me.onLoaded();
+                        }
+                    });
+                }
+            },
+            onLoaded: function () {
+
+            }
+        }
+
+        var loader = new loader();
+        loader.onLoaded = function () {
+            loaded = true;
+            $('.loading-page').fadeOut();
+            $('.swiper-page').addClass('active');
+            var $btn = $('.J-page1-btn');
+            timer = setInterval(function () {
+                $btn.hasClass('active') ? $btn.removeClass('active') : $btn.addClass('active');
+            }, 1500)
+            mySwiper = initMySwiper();
+        }
+    </script>
+
+
+</body>
+
+</html>

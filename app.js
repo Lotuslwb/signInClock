@@ -13,6 +13,7 @@ var wx = require('./routes/wxConnect');
 var wxAPI = require('./routes/wxAPI');
 
 var newyearTabs = require('./routes/newyearTabs');
+var StressTest = require('./routes/StressTest');
 
 
 //js 调用接口
@@ -101,6 +102,9 @@ app.use('/newyear17', newyear17);
 app.use('/newyear17/api', newyear17API);
 
 app.use('/yingfu-newyearTabs/', newyearTabs);
+
+
+app.use('/StressTest/', StressTest);
 
 
 app.use('/camp', camp);
