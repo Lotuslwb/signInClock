@@ -16,7 +16,8 @@
     "log4js": "^2.6.1",
     "morgan": "~1.6.1",
     "node-uuid": "^1.4.8",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "alidayu-node": "^1.0.3",

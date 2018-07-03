@@ -18,7 +18,9 @@ router.post('/login', function (req, res, next) {
     var res = res;
     var data = req.body;
     if (data.username == config.username && data.password == config.password) {
-        res.cookie('session', JSON.stringify(data.username), {signed: true});
+        res.cookie('session', JSON.stringify(data.username), {
+            signed: true
+        });
         res.send(sendData('200', true, ''));
     } else {
         res.send(sendData('201', false, '用户名或者密码错误,请重试'));
@@ -67,7 +69,9 @@ router.post('/teacher/query', function (req, res, next) {
         sortJSON['VoteInfo.status'] = direction == 'ASC' ? 1 : -1;
     }
 
-    teacherDB.User.find(queryJSON, {IPArray: 0}, function (err, docs) {
+    teacherDB.User.find(queryJSON, {
+        IPArray: 0
+    }, function (err, docs) {
         var totalCount = docs.length;
         queryUserInfoFormDB(queryJSON, start, limit, sortJSON, function (docs) {
             for (var i = 0; i < docs.length; i++) {
@@ -76,7 +80,10 @@ router.post('/teacher/query', function (req, res, next) {
                 docs[i]['studentWords'] = [];
                 docs[i]['IPOBJ'] = [];
             }
-            res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
+            res.send(sendData('200', {
+                list: docs,
+                totalCount: totalCount
+            }, ''));
         });
     });
 
@@ -95,7 +102,9 @@ router.post('/teacher/queryById', function (req, res, next) {
                 docs[i]['IPOBJ'] = [];
             }
         }
-        res.send(sendData('200', {list: docs}, ''));
+        res.send(sendData('200', {
+            list: docs
+        }, ''));
     });
 
 });
@@ -126,7 +135,9 @@ router.post('/teacher/reviewed', function (req, res, next) {
         return false;
     }
 
-    updateUserInfoToDB(_id, {'VoteInfo.status': '2'}, function (docs) {
+    updateUserInfoToDB(_id, {
+        'VoteInfo.status': '2'
+    }, function (docs) {
         res.send(sendData('200', true, ''));
     }, function (docs, err) {
         res.send(sendData('201', false, err));
@@ -149,7 +160,9 @@ router.post('/teacher/changeStatus', function (req, res, next) {
         res.send(sendData('201', false, 'status不能为空'));
         return false;
     }
-    var findJSON = {'VoteInfo.status': status};
+    var findJSON = {
+        'VoteInfo.status': status
+    };
 
     if (cityNo) {
         findJSON['teacherInfo.cityNo'] = cityNo;
@@ -198,7 +211,9 @@ router.post('/teacher/changeStatusBath', function (req, res, next) {
     updates(0);
 
     function updates(index) {
-        updateUserInfoToDB(_idArray[index], {'VoteInfo.status': status}, function (docs) {
+        updateUserInfoToDB(_idArray[index], {
+            'VoteInfo.status': status
+        }, function (docs) {
             if (index < _idArray.length) {
                 index++;
                 updates(index);
@@ -236,7 +251,8 @@ router.post('/teacher/smsSend', function (req, res, next) {
 
 /*收集leads 查询接口*/
 router.post('/leads/query', function (req, res, next) {
-    var tag = req.body.tag;
+    // var tag = req.body.tag;
+    var tag = 'v7';
     var realName = req.body.realName;
     var cellPhone = req.body.cellPhone;
     var limit = req.body.limit * 1;
@@ -269,7 +285,10 @@ router.post('/leads/query', function (req, res, next) {
     leadsDB.User.find(queryJSON, function (err, docs) {
         var totalCount = docs.length;
         queryDataFormDB(leadsDB, queryJSON, start, limit, sortJSON, function (docs) {
-            res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
+            res.send(sendData('200', {
+                list: docs,
+                totalCount: totalCount
+            }, ''));
         });
     });
 
@@ -297,7 +316,12 @@ router.post('/leads/export', function (req, res, next) {
 
     leadsDB.User.find(queryJSON, function (err, docs) {
         log(docs);
-        var data = [[1, 2, 3], [true, false, null, 'sheetjs'], ['foo', 'bar', new Date('2014-02-19T14:30Z'), '0.3'], ['baz', null, 'qux']];
+        var data = [
+            [1, 2, 3],
+            [true, false, null, 'sheetjs'],
+            ['foo', 'bar', new Date('2014-02-19T14:30Z'), '0.3'],
+            ['baz', null, 'qux']
+        ];
 
         var buffer = xlsx.build(data);
         fs.writeFileSync('b.xlsx', buffer, 'binary');
@@ -315,7 +339,9 @@ router.post('/daka/uploadImage', function (req, res, next) {
     var fs = require('fs');
 
     //生成multiparty对象，并配置上传目标路径
-    var form = new multiparty.Form({uploadDir: './public/files/daka'});
+    var form = new multiparty.Form({
+        uploadDir: './public/files/daka'
+    });
     //上传完成后处理
     form.parse(req, function (err, fields, files) {
         var filesTmp = JSON.stringify(files, null, 2);
@@ -326,7 +352,9 @@ router.post('/daka/uploadImage', function (req, res, next) {
             log(files);
             var inputFile = files['Filedata'][0];
             var uploadedPath = inputFile.path;
-            res.send(sendData('200', {'imgName': uploadedPath}, ''));
+            res.send(sendData('200', {
+                'imgName': uploadedPath
+            }, ''));
         }
 
 
@@ -394,7 +422,10 @@ function hanldeArticleData(data) {
 router.post('/daka/query', function (req, res, next) {
     ArticleDB.find({}, function (err, docs) {
         var totalCount = docs.length;
-        res.send(sendData('200', {list: docs, totalCount: totalCount}, ''));
+        res.send(sendData('200', {
+            list: docs,
+            totalCount: totalCount
+        }, ''));
     });
 });
 /*打卡计划 删除接口*/

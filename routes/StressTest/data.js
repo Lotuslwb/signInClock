@@ -74,7 +74,7 @@ const data = [{
         value: 1
     }, ]
 }, {
-    title: '你还有一头飘逸的选发吗？',
+    title: '你还有一头飘逸的秀发吗？',
     options: [{
         text: "A.	有啊，我每天都保养我的秀发",
         value: 1

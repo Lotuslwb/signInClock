@@ -76,7 +76,7 @@
                     </div>
                 </div> 
                 <% for(var i=1;i<=data.length;i++){  var item=data[i-1]; %>
-                <div class="swiper-slide Q<%=i%>-page swiper-no-swiping">
+                 <div class="swiper-slide Q<%=i%>-page swiper-no-swiping">
                     <div class="Q-header">
                         <img src="/StressTest/img/Qheader-pic<%=i%>.png" class="Qheader-pic" />
                     </div>
@@ -106,15 +106,17 @@
                         <div class="page11-form">
                             <div class="Q-title">填表查看你的人生掏空指数</div>
                             <div class="Q-options">
-                                <input class="Q-option" type='text' placeholder="请输入您的姓名" />                                    
-                                <input class="Q-option" type='tel' placeholder="请输入您的手机号" />                                    
-                                <select class="Q-option">
-                                    <option value="1">上海</option>
+                                <input class="Q-option J-name" type='text' placeholder="请输入您的姓名" />                                    
+                                <input class="Q-option J-tel" type='tel' placeholder="请输入您的手机号" />                                    
+                                <select class="Q-option J-city">
+                                    <% for(var i=0;i<StateRegion.length;i++){%>
+                                        <option value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
+                                    <%}%>
                                 </select> 
-                                <input class="Q-option date" type='date' placeholder="请输入您的生日" />                                                             
+                                <input class="Q-option date J-date" type='date' placeholder="请输入您的生日" />                                                             
                             </div>
                         </div>
-                        <div class="btn page1-btn J-slideNext">
+                        <div class="btn page1-btn J-submit">
                             <div>确定</div>
                         </div>
                     </div>
@@ -217,11 +219,83 @@
 
                 function checkVal(){
                     var result=true;
+                    var tel=$('.J-tel').val();
                     $('.page11 .Q-option').each(function(){
                         if(!$(this).val()) result=false;
                     })
                     return result;
                 }
+
+
+                $('.J-submit').click(function () {
+                    if (!$(this).hasClass('active') || !checkVal()) {
+                        return false;
+                    }
+
+                    if(!me.checkTel($('.J-tel').val())){
+                        toast('手机号格式有误');
+                        return false;
+                    }
+
+                    mySwiper.slideNext();
+                    //The main object to be sent with the submission request
+                    var submissionData = new Object();
+                    //Individual properties of the main object
+                    var customer = new Object();
+                    var extendedDetail = new Object();
+                    var weChatData = new Object();
+                    var trackingData = new Object();
+                    var campaigndata = new Object();
+            
+
+                    customer.FirstName = $('.J-name').val().substr(1,$('.J-name').val().length-1);
+                    customer.LastName = $('.J-name').val().substr(0,1);
+                    customer.MobilePhone = $('.J-tel').val();
+                    customer.DateOfBirth = new Date($('.J-date').val()); // January 9th, 1975 (0-based index for months)
+                    customer.StateRegionName = $('.J-city').find("option:selected").text();
+                    customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
+                    customer.CountryOfResidence = "CN";
+                    customer.Gender = $('.page2-form').find('.Q-option.active').index()==0?"M":"F";
+                    customer.Comments = '压力程度:'+me.level;
+                    customer.Email = customer.MobilePhone + "@noemail.com";
+
+
+                    // Tracking
+                    trackingData.Etag =  "test01"+"_Restart";
+                    trackingData.EntrySourceCode = "007278";
+
+                    //Campaign Data
+                    campaigndata.CampaignName = "Restart";
+                    campaigndata.CampaignAllocationPrograms = "ILS,LY";
+                    campaigndata.CampaignAllocationCode = "mixed";
+
+                    //Extended Details
+                    extendedDetail.WantsMoreInfo = true;
+                    extendedDetail.WantsBrochure = true;
+
+
+
+                    //Assigning individual classes to the main object
+                    submissionData.customer = customer;
+                    submissionData.extendedDetail = extendedDetail;
+                    submissionData.tracking = trackingData;
+                    submissionData.weChat = weChatData;
+                    submissionData.campaignData = campaigndata;
+            
+
+                    console.log(submissionData);
+                    $.ajax({
+                        url: '/StressTest/form',
+                        dataType: 'json',
+                        crossDomain: true,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(submissionData),
+                        success: function (res) {
+                            console.log(res);
+                        }
+                    });
+                });
             },
             getResult:function(){
                 var sex=$('.page2-form').find('.Q-option.active').index();  // 0 为男， 1为女
@@ -229,12 +303,14 @@
                 $('.Q-form').each(function(){
                     totalScore+=$(this).find('.Q-option.active').data('value')*1;
                 });
-                var filterStr=(sex==0?"male":"female") + "_"+ this.getScoreLevel(totalScore);
+                var level=this.getScoreLevel(totalScore);
+                var filterStr=(sex==0?"male":"female") + "_"+ level;
                 console.log(filterStr);
                 var result=resultList.filter(function(item){
                     return item.indexOf(filterStr)>=0;
                 }).random();
                 console.log(result);
+                this.level=level;
                 var resultURL='/StressTest/img/result/'+result;
                 var img=new Image();
                 img.src=resultURL;
@@ -252,11 +328,15 @@
                     level=4;
                 }
                 return level;
+            },
+            checkTel:function(tel){
+                var reg = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+                return reg.test(tel);
             }
         }
         var page = new indexHanlder();
     </script>
-    <script>
+    <script>    
         var loaded = false;
         var loaded_ani = false;
 
@@ -301,7 +381,100 @@
         }
     </script>
 
+    <div class="toast"></div>
+    <script>
+        var toast = function (msg, timer) {
+            $('.toast').text(msg).fadeIn();
+            setTimeout(function () {
+                $('.toast').fadeOut();
+            }, timer || 1000)
+        }
+    </script>
 
+
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+    function initWXSahre() {
+
+        //“分享给朋友”
+        wx.onMenuShareAppMessage({
+            title: '英孚青少儿英语亲子共读训练营', // 分享标题
+            desc: '从今天起，每天和孩子一起读会英文书吧！', // 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享给朋友']);
+
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //“分享到朋友圈”
+        wx.onMenuShareTimeline({
+            title: '英孚青少儿英语亲子共读训练营', // 分享标题
+            link: '', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    }
+
+    function initWX(callback) {
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/getWxSDK',
+            data: {'originalUrl': window.location.href},
+            success: function (data) {
+                var wxConfig = data.data.wxConfig;
+
+                console.log(wxConfig);
+
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: wxConfig.appId, // 必填，公众号的唯一标识
+                    timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                    signature: wxConfig.signature,// 必填，签名，见附录1
+                    jsApiList: ['startRecord', 'stopRecord', 'playVoice', 'uploadVoice', 'downloadVoice', 'stopVoice', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+
+                wx.ready(function () {
+                    callback && callback();
+                });
+
+                wx.error(function (res) {
+                    console.log(res);
+                });
+
+
+            },
+            dataType: 'json'
+        });
+    }
+
+    initWX(initWXSahre);
+    </script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a0e9e1cce678aef060f414bcd2beb467";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    
 </body>
 
 </html>
