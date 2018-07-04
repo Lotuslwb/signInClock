@@ -536,6 +536,16 @@ select {
 .page-result .result-pic {
   width: 100%;
 }
+.page-result .result-text {
+  font-size: 24px;
+  color: #ffffff;
+  line-height: 40px;
+  background: rgba(41, 41, 41, 0.3);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  text-align: center;
+}
 .toast {
   position: fixed;
   z-index: 99;

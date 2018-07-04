@@ -132,6 +132,7 @@
                 </div>
 
                 <div class="swiper-slide page-result swiper-no-swiping">
+                    <div class="result-text">长按保存结果，分享你的目的地</div>
                     <img src="" class='result-pic' />
                 </div>
 
@@ -145,6 +146,8 @@
     <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
     <script>
         var resultList="<%- resultList %>".split(',');
+        var channel="<%- channel %>";
+
         Number.prototype.range=function(min,max){
             return this>=min && this<=max;
         }
@@ -270,7 +273,7 @@
 
 
                     // Tracking
-                    trackingData.Etag =  "test01"+"_Restart";
+                    trackingData.Etag =  channel+"_Restart";
                     trackingData.EntrySourceCode = "007278";
 
                     //Campaign Data
@@ -410,7 +413,7 @@
             title: '压力是不可能有的', // 分享标题
             desc: '这辈子也不可能有！', // 分享描述
             link: '', // 分享链接
-            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            imgUrl: 'http://ma.eldesign.cn/StressTest/img/logo.jpg', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {
@@ -428,7 +431,7 @@
             title: '压力是不可能有的', // 分享标题
             desc: '这辈子也不可能有！', // 分享描述
             link: '', // 分享链接
-            imgUrl: 'http://ma.eldesign.cn/daka/img/sharelogo.jpg', // 分享图标
+            imgUrl: 'http://ma.eldesign.cn/StressTest/img/logo.jpg', // 分享图标
             success: function () {
                 // 用户确认分享后执行的回调函数
                 _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
@@ -456,7 +459,7 @@
                     timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
                     nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
                     signature: wxConfig.signature,// 必填，签名，见附录1
-                    jsApiList: ['startRecord', 'stopRecord', 'playVoice', 'uploadVoice', 'downloadVoice', 'stopVoice', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                 });
 
                 wx.ready(function () {
