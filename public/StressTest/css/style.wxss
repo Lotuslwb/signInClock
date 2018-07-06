@@ -587,8 +587,11 @@ select {
   font-size: 24px;
   display: none;
 }
+::-webkit-input-placeholder {
+  color: #acacac;
+}
 input[type="date"]:before {
-  color: #757575;
+  color: #acacac;
   content: attr(placeholder);
 }
 input[type="date"].full:before {

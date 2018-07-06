@@ -441,15 +441,18 @@ select {
     display: none;
 }
 
-input[type="date"]:before{
-    color:#757575;
-    content:attr(placeholder);
+::-webkit-input-placeholder {
+    color: #acacac;
 }
 
+input[type="date"]:before {
+    color: #acacac;
+    content: attr(placeholder);
+}
 
 input[type="date"].full:before {
-    color:black;
-    content:""!important;
+    color: black;
+    content: "" !important;
 }
 
 @keyframes dot1Ani {
