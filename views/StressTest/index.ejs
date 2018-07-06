@@ -54,18 +54,17 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide page1 swiper-no-swiping">
-                    <div class="mid">
                         <img src="/StressTest/img/page1-title.png" class="page1-title">
-                        <div class="page1-info">一分钟灵魂拷问</div>
-                        <div class="page1-pic"></div>
-                        <div class="btn page1-btn J-page1-btn">
-                            <div class="biggerFont">开始拷问</div>
+                        <div class="page1-form">
+                            <div class="page1-info">一分钟灵魂拷问</div>
+                            <div class="page1-pic"></div>
                         </div>
-                    </div>
+                        <div class="btn page1-btn J-page1-btn">
+                                <div class="biggerFont">开始拷问</div>
+                        </div>
                 </div>
                 <div class="swiper-slide page2 swiper-no-swiping">
-                    <div class="mid">
-                        <img src="/StressTest/img/page1-title.png" class="page1-title">
+                        <img src="/StressTest/img/page1-title.png" class="page2-title">
                         <div class="page2-form">
                             <div class="Q-title">你的性别？</div>
                             <div class="Q-options">
@@ -80,9 +79,8 @@
                             </div>
                         </div>
                         <div class="btn page1-btn J-slideNext">
-                            <div>确定</div>
+                            <div class="biggerFont">确定</div>
                         </div>
-                    </div>
                 </div> 
                 <% for(var i=1;i<=data.length;i++){  var item=data[i-1]; %>
                  <div class="swiper-slide Q<%=i%>-page swiper-no-swiping">
@@ -90,7 +88,7 @@
                         <img src="/StressTest/img/Qheader-pic<%=i%>.png" class="Qheader-pic" />
                     </div>
                     <div class="Q-main">
-                        <div class="mid">
+                        
                             <div class="Q-form">
                                 <div class="Q-title">
                                     <img src="/StressTest/img/Q<%=i%>-icon.png" class="Q-title-icon">
@@ -103,14 +101,14 @@
                                 </div>
                             </div>
                             <div class="btn page-btn-select <%= i==data.length?'J-finishQ':'J-slideNext'%>  biggerFont">
-                                <div class="biggerFont">下一题</div>
+                                <div class="">下一题</div>
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <% } %>
                 <div class="swiper-slide  page2 page11 swiper-no-swiping">
-                    <div class="mid">
+                    
                         <img src="/StressTest/img/page1-title.png" class="page1-title">
                         <div class="page11-form">
                             <div class="Q-title">填表查看你的人生掏空指数</div>
@@ -122,13 +120,13 @@
                                         <option value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
                                     <%}%>
                                 </select> 
-                                <input class="Q-option date J-date" type='date' placeholder="请输入您的生日" value="2018-7-5" />                                                             
+                                <input class="Q-option date J-date" type='date' placeholder="请输入您的生日" value="" />                                                             
                             </div>
                         </div>
                         <div class="btn page1-btn J-submit">
-                            <div>确定</div>
+                            <div class="biggerFont">确定</div>
                         </div>
-                    </div>
+                    
                 </div>
 
                 <div class="swiper-slide page-result swiper-no-swiping">
@@ -197,6 +195,16 @@
             },
             bindEvnet: function () {
                 var me = this;
+
+                $(".J-date").on("input",function(){
+                    if($(this).val().length>0){
+                        $(this).addClass("full");
+                    }
+                    else{
+                        $(this).removeClass("full");
+                    }
+                });
+
                 $('.J-page1-btn').click(function () {
                     timer && clearInterval(timer);
                     mySwiper.slideNext();
@@ -248,6 +256,11 @@
                         toast('手机号格式有误');
                         return false;
                     }
+
+                    $('.loading-page').fadeIn();
+                    setTimeout(function(){
+                        $('.loading-page').fadeOut();
+                    },3000)
 
                     mySwiper.slideNext();
                     //The main object to be sent with the submission request
@@ -410,8 +423,8 @@
 
         //“分享给朋友”
         wx.onMenuShareAppMessage({
-            title: '压力是不可能有的', // 分享标题
-            desc: '这辈子也不可能有！', // 分享描述
+            title: '一分钟灵魂拷问……', // 分享标题
+            desc: '敢不敢来测一测？', // 分享描述
             link: '', // 分享链接
             imgUrl: 'http://ma.eldesign.cn/StressTest/img/logo.jpg', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
@@ -428,8 +441,8 @@
 
         //“分享到朋友圈”
         wx.onMenuShareTimeline({
-            title: '压力是不可能有的', // 分享标题
-            desc: '这辈子也不可能有！', // 分享描述
+            title: '一分钟灵魂拷问……', // 分享标题
+            desc: '敢不敢来测一测？', // 分享描述
             link: '', // 分享链接
             imgUrl: 'http://ma.eldesign.cn/StressTest/img/logo.jpg', // 分享图标
             success: function () {

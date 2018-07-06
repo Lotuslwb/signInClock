@@ -3,7 +3,7 @@ var router = express.Router();
 
 var data = require('./data');
 var StateRegion = require('./StateRegion');
-var resultList = 'female_1_1.png,female_2_3.png,female_3_4.png,male_1_1.png,male_4_1.png,female_1_2.png,female_3_1.png,female_4_1.png,male_2_1.png,female_2_1.png,female_3_2.png,female_4_2.png,male_3_1.png,female_2_2.png,female_3_3.png,female_4_3.png,male_3_2.png';
+var resultList = 'female_1_1.jpg,female_2_3.jpg,female_3_4.jpg,male_1_1.jpg,male_4_1.jpg,female_1_2.jpg,female_3_1.jpg,female_4_1.jpg,male_2_1.jpg,female_2_1.jpg,female_3_2.jpg,female_4_2.jpg,male_3_1.jpg,female_2_2.jpg,female_3_3.jpg,female_4_3.jpg,male_3_2.jpg';
 /* GET home page. */
 router.get('/', function (req, res, next) {
     var channel = req.query.channel;
