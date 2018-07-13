@@ -333,7 +333,7 @@
                 var filterStr=(sex==0?"male":"female") + "_"+ level;
                 console.log(filterStr);
                 var result=resultList.filter(function(item){
-                    return item.indexOf(filterStr)>=0;
+                    return item.indexOf(filterStr)==0;
                 }).random();
                 console.log(result);
                 this.level=level;
