@@ -571,6 +571,14 @@ select {
   top: 0;
   text-align: center;
 }
+.page-result .mask {
+  position: absolute;
+  background: #fff;
+  width: 180px;
+  height: 100px;
+  top: 859px;
+  right: 153px;
+}
 .toast {
   position: fixed;
   z-index: 99;
