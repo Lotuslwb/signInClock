@@ -1112,10 +1112,6 @@ video {
     position: absolute;
 }
 
-.tpl2-container .page2 {
-    background: none;
-}
-
 .tpl2-container .page2 .photo-wrapper,
 .tpl2-container .page3 .photo-wrapper {
     position: absolute;
