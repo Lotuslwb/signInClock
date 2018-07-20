@@ -146,6 +146,7 @@
     <script>
         var resultList="<%- resultList %>".split(',');
         var channel="<%- channel %>";
+        var SourceCode="<%- SourceCode %>";
 
         Number.prototype.range=function(min,max){
             return this>=min && this<=max;
@@ -288,7 +289,7 @@
 
                     // Tracking
                     trackingData.Etag =  channel+"_Restart";
-                    trackingData.EntrySourceCode = "007278";
+                    trackingData.EntrySourceCode = SourceCode;
 
                     //Campaign Data
                     campaigndata.CampaignName = "Restart";

@@ -7,11 +7,13 @@ var resultList = 'female_1_1.jpg,female_2_3.jpg,female_3_4.jpg,male_1_1.jpg,male
 /* GET home page. */
 router.get('/', function (req, res, next) {
     var channel = req.query.channel;
+    var SourceCode = req.query.SourceCode;
     res.render('StressTest/index', {
         data,
         resultList,
         StateRegion,
-        channel
+        channel,
+        SourceCode
     });
 });
 
