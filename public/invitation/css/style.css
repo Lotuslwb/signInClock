@@ -641,6 +641,11 @@ video {
     text-align: center;
     line-height: 1.6;
 }
+.tpl1-container .page1 .info {
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+}
 
 .template-container .page1 .name {
     display: flex;
@@ -820,7 +825,8 @@ video {
     left: 0;
     right: 0;
     margin: auto;
-    top: 830px;
+    bottom: 100px;
+    z-index: 77;
 }
 
 .tpl1-container
@@ -1063,12 +1069,7 @@ video {
     top: -100px;
 }
 
-.tpl2-container .page2 .upload-mask.uploaded {
-    top: 100px;
-    left: 100px;
-}
-
-.tpl2-container .page3 .upload-mask.uploaded {
+.tpl2-container .page2 .upload-mask.uploaded, .tpl2-container .page3 .upload-mask.uploaded {
     top: 140px;
     left: 90px;
 }
