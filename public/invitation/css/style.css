@@ -81,6 +81,9 @@ input {
     transform: scale(0.7);
 }
 
+img[src=""],img:not([src]){opacity:0;}
+
+
 html,
 body {
     height: 100%;
@@ -947,6 +950,8 @@ video {
     position: absolute;
     bottom: 145px;
     left: 35px;
+    z-index: 2;
+    pointer-events: none;
 }
 
 .tpl1-container .page5 .img-top {
