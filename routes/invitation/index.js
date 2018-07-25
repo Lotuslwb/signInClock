@@ -13,10 +13,14 @@ var functions = require('../invitation/functions');
 
 router.get('/index', function (req, res, next) {
     functions.checkLogin(req, res).then(function (tel) {
-        return functions.getInvitation({'ownerId': tel})
+        return functions.getInvitation({
+            'ownerId': tel
+        })
     }).then(function (docs) {
         if (docs.length > 0) {
-            res.render('Invitation/invitationlist', {data: docs});
+            res.render('Invitation/invitationlist', {
+                data: docs
+            });
         } else {
             res.render('Invitation/index');
         }
@@ -36,7 +40,9 @@ router.get('/template', function (req, res, next) {
 router.get('/form', function (req, res, next) {
     var templateId = req.query.templateId;
     functions.checkLogin(req, res).then(function (tel) {
-        res.render('Invitation/form', {templateId: templateId});
+        res.render('Invitation/form', {
+            templateId: templateId
+        });
     }).catch(function (e) {
         logger.error([req.path, JSON.stringify(e)].toString());
     });
@@ -46,10 +52,16 @@ router.get('/edit/:templateId', function (req, res, next) {
     var templateId = req.params.templateId;
     var _id = req.query.id;
     functions.checkLogin(req, res).then(function (tel) {
-        return functions.getInvitation({'ownerId': tel, '_id': _id})
+        return functions.getInvitation({
+            'ownerId': tel,
+            '_id': _id
+        })
     }).then(function (docs) {
         if (docs.length > 0) {
-            res.render('Invitation/template_' + templateId, {doc: docs[0], Info: handleInfo(docs[0]['templateInfo'])});
+            res.render('Invitation/template_' + templateId, {
+                doc: docs[0],
+                Info: handleInfo(docs[0]['templateInfo'])
+            });
         } else {
             res.render('Invitation/index');
         }
@@ -63,7 +75,9 @@ router.get('/result/:templateId', function (req, res, next) {
     var _id = req.query.id;
 
 
-    functions.getInvitation({'_id': _id})
+    functions.getInvitation({
+            '_id': _id
+        })
         .then(function (docs) {
             if (docs.length > 0) {
                 res.render('Invitation/result_' + templateId, {
@@ -74,8 +88,8 @@ router.get('/result/:templateId', function (req, res, next) {
                 res.render('Invitation/404');
             }
         }).catch(function (e) {
-        logger.error([req.path, JSON.stringify(e)].toString());
-    });
+            logger.error([req.path, JSON.stringify(e)].toString());
+        });
 });
 
 
@@ -83,7 +97,9 @@ router.get('/message', function (req, res, next) {
     functions.checkLogin(req, res).then(function (tel) {
         return functions.getMessage(tel)
     }).then(function (data) {
-        res.render('Invitation/message', {data: data});
+        res.render('Invitation/message', {
+            data: data
+        });
     }).catch(function (e) {
         logger.error([req.path, JSON.stringify(e)].toString());
     });
@@ -93,7 +109,9 @@ router.get('/message', function (req, res, next) {
 router.get('/invitationlist', function (req, res, next) {
     var openid = 'openId1212';
     functions.getInvitationList(openid).then(function (data) {
-        res.render('Invitation/invitationlist', {data: data});
+        res.render('Invitation/invitationlist', {
+            data: data
+        });
     }).catch(function (e) {
         logger.error([req.path, JSON.stringify(e)].toString());
     });
@@ -105,11 +123,19 @@ router.get('/callback', function (req, res) {
     var getUserInfoByCode = require('../../module/wx/getUserInfoByCode');
     var code = req.query.code;
     var router = req.query.router || '';
-    getUserInfoByCode({code: code, needInfo: true}, function (data) {
+    getUserInfoByCode({
+        code: code,
+        needInfo: true
+    }, function (data) {
         var sign = data.sign;
         var chunk = data.chunk;
         console.log(chunk, 'chunk');
-        res.cookie('session', JSON.stringify({openid: chunk.openid, nickname: chunk.nickname}), {signed: true});
+        res.cookie('session', JSON.stringify({
+            openid: chunk.openid,
+            nickname: chunk.nickname
+        }), {
+            signed: true
+        });
         res.redirect('/' + router);
     }).catch(function (e) {
         logger.error([req.path, JSON.stringify(e)].toString());
@@ -117,14 +143,22 @@ router.get('/callback', function (req, res) {
 });
 
 router.get('/login', function (req, res, next) {
-    res.render('Invitation/login');
+    var openInfo = req.signedCookies['session'];
+    var router = req.query.router || 'invitation/index';
+    if (openInfo) {
+        res.redirect("/" + router);
+    } else {
+        res.render('Invitation/login');
+    }
 });
 
 
 router.get('/apis', function (req, res, next) {
     var openid = 'openId1212';
     functions.getMessage(openid).then(function (data) {
-        res.render('Invitation/apis', {data: data});
+        res.render('Invitation/apis', {
+            data: data
+        });
     }).catch(function (e) {
         logger.error([req.path, JSON.stringify(e)].toString());
     });

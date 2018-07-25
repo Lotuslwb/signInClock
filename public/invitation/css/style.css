@@ -243,6 +243,7 @@ video {
 .page .J-uploaded-img {
     position: absolute !important;
     transform: scale(1.5);
+    -webkit-transform: scale(1.5);
     width: 100%;
 }
 
@@ -484,9 +485,7 @@ video {
     line-height: 1.2;
 }
 
-.message-page
-.blessing-item
-.action-icon {
+.message-page .blessing-item .action-icon {
     position: absolute;
     top: 95px;
     right: 45px;
@@ -641,6 +640,7 @@ video {
     text-align: center;
     line-height: 1.6;
 }
+
 .tpl1-container .page1 .info {
     position: absolute;
     bottom: 80px;
@@ -829,9 +829,7 @@ video {
     z-index: 77;
 }
 
-.tpl1-container
-.swiper-slide-active.page2
-.ani-right-top {
+.tpl1-container .swiper-slide-active.page2 .ani-right-top {
     position: absolute;
     right: 0;
     top: 0;
@@ -841,9 +839,7 @@ video {
     pointer-events: none;
 }
 
-.tpl1-container
-.swiper-slide-active.page2
-.ani-left-bottom {
+.tpl1-container .swiper-slide-active.page2 .ani-left-bottom {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -895,7 +891,8 @@ video {
     bottom: 0;
 }
 
-.ani-right-bottom, .ani-right-top {
+.ani-right-bottom,
+.ani-right-top {
     pointer-events: none;
 }
 
@@ -1069,7 +1066,8 @@ video {
     top: -100px;
 }
 
-.tpl2-container .page2 .upload-mask.uploaded, .tpl2-container .page3 .upload-mask.uploaded {
+.tpl2-container .page2 .upload-mask.uploaded,
+.tpl2-container .page3 .upload-mask.uploaded {
     top: 140px;
     left: 90px;
 }
@@ -1151,7 +1149,6 @@ video {
     position: absolute;
     background: #b0b0ba;
     /*clip-path: polygon(0% 0%, 100% 0%, 100% 92%, 92% 100%, 0% 100%, 0% 8%);*/
-
 }
 
 .tpl2-container .page4 .img-left-wrapper {
@@ -1487,13 +1484,7 @@ video {
     border: 2px solid #e7abbd;
 }
 
-.blessing
-.blessing-wrapper
-.live-blessing-wrapper
-.live-blessing-list
-li
-div
-span.myself {
+.blessing .blessing-wrapper .live-blessing-wrapper .live-blessing-list li div span.myself {
     color: #e7abbd;
 }
 
