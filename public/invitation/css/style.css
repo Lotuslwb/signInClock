@@ -245,6 +245,13 @@ video {
     transform: scale(1.5);
     -webkit-transform: scale(1.5);
     width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.tpl1-page.page4 .J-uploaded-img {
+    transform: scale(1.8);
+    -webkit-transform: scale(1.8);
 }
 
 .list-photo {
