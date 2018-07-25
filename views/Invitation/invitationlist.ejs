@@ -4,7 +4,7 @@
     <div class="done J-done active">
         <div class="top-title">
             <span>我的请柬</span>
-            <img src="/invitation/img/icon-left.png" alt="">
+            <img class='J-exit' src="/invitation/img/icon-left.png" alt="">
         </div>
         <div class="message J-message">
             <img src="/invitation/img/message.png" alt="">
@@ -65,7 +65,31 @@
 </div>
 <%- include("commonjs.ejs") %>
 <script src="/invitation/js/swiper-3.3.1.jquery.min.js"></script>
+<script>
+//设置cookie
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires+";path=/";
+}
+//获取cookie
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+//清除cookie  
+function clearCookie(name) {  
+    setCookie(name, "", -1);  
+}  
 
+</script>
 <script>
     function Page() {
         this.init();
@@ -78,11 +102,17 @@
         // 绑定事件
         bindEvent: function () {
             // 初始化swiper
+            var me=this;
             var swiper = new Swiper('.swiper-container', {
                 slidesPerView: 'auto',
                 spaceBetween: 70
             });
 
+            $('.J-exit').click(function(){
+                clearCookie('session');
+                window.location.href = '/invitation/login';
+            })
+            
 
             $('.J-make').click(function () {
                 window.location.href = '/invitation/template';
@@ -129,7 +159,7 @@
             $('.J-cancel-btn, .J-modal-close').click(function () {
                 $('.J-confirm-modal').removeClass('active');
             })
-        },
+        }
     }
 </script>
 <script>

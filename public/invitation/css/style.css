@@ -1284,6 +1284,7 @@ video {
 .modal .btn-groups {
     position: absolute;
     bottom: 155px;
+    left: 0;
 }
 
 .modal .modal-confirm {
