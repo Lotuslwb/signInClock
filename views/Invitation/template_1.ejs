@@ -184,9 +184,22 @@
 <script src="/javascripts/jquery.pep.js"></script>
 <script src="/javascripts/touch-0.2.13.min.js"></script>
 
-<script>
 
+
+
+<img class="leader-mask J-leader-mask" src="/invitation/img/leader-04.png" />
+<img class="leader-mask J-leader-mask-02" src="/invitation/img/leader-03.png" />
+<script>
+    var path='/invitation/edit';
+    if(getCookie(path)!='1'){
+        setCookie(path,1);
+        $('.J-leader-mask').show();
+    }
+    $('.leader-mask').click(function(){
+        $(this).hide();
+    })
 </script>
+
 <script>
 
     var id = "<%= doc['_id']; %>";
@@ -234,6 +247,13 @@
                 direction: 'vertical',
                 onSlideChangeEnd: function (swiper) {
                     swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+                    if(swiper.isEnd){
+                        var path='/invitation/edit_end';
+                        if(getCookie(path)!='1'){
+                            setCookie(path,1);
+                            $('.J-leader-mask-02').show();
+                        }
+                    }
                 },
                 onInit: function (swiper) { //Swiper2.x的初始化是onFirstInit
                     swiperAnimateCache(swiper); //隐藏动画元素

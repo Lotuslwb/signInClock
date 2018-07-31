@@ -81,8 +81,10 @@ input {
     transform: scale(0.7);
 }
 
-img[src=""],img:not([src]){opacity:0;}
-
+img[src=""],
+img:not([src]) {
+    opacity: 0;
+}
 
 html,
 body {
@@ -1635,4 +1637,17 @@ video {
     position: relative;
     margin-top: 5px;
     margin-left: 5px;
+}
+
+.leader-mask {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    object-position: top;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    top: 0;
+    left: 0;
 }

@@ -11,6 +11,20 @@
     </div>
 </div>
 <%- include("commonjs.ejs") %>
+
+
+<img class="leader-mask" src="/invitation/img/leader-02.png" />
+<script>
+    var path=window.location.pathname;
+    if(getCookie(path)!='1'){
+        setCookie(path,1);
+        $('.leader-mask').show();
+    }
+    $('.leader-mask').click(function(){
+        $(this).hide();
+    })
+</script>
+
 <script>
     function Page() {
         this.init();
