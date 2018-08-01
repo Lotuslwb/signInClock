@@ -456,7 +456,7 @@
         resultShare: function () {
             //“分享给朋友”
             wx.onMenuShareAppMessage({
-                title: "<%= doc['templateForm']['groomName'] %>和<%= doc['templateForm']['brideName'] %>的婚姻邀请", // 分享标题
+                title: "<%= doc['templateForm']['groomName'] %>和<%= doc['templateForm']['brideName'] %>的婚礼邀请", // 分享标题
                 desc: '我们要结婚啦！一生一次的婚姻承诺邀请您一起见证', // 分享描述
                 link: 'http://ma.eldesign.cn/invitation/result/' + templateId + '?id=' + id, // 分享链接
                 imgUrl: $('.J-uploaded-img')[0].src, // 分享图标
@@ -473,7 +473,7 @@
 
             //“分享到朋友圈”
             wx.onMenuShareTimeline({
-                title: "<%= doc['templateForm']['groomName'] %>和<%= doc['templateForm']['brideName'] %>的婚姻邀请", // 分享标题
+                title: "<%= doc['templateForm']['groomName'] %>和<%= doc['templateForm']['brideName'] %>的婚礼邀请", // 分享标题
                 desc: '我们要结婚啦！一生一次的婚姻承诺邀请您一起见证', // 分享描述
                 link: 'http://ma.eldesign.cn/invitation/result/' + templateId + '?id=' + id, // 分享链接
                 imgUrl: $('.J-uploaded-img')[0].src, // 分享图标
