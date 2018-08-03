@@ -26,7 +26,9 @@ router.post('/addInvitation', function (req, res, next) {
 // 增加邀请函的表单信息
 router.post('/updateInvitationForm', function (req, res, next) {
     var data = req.body;
-    functions.updateInvitation(data._id, {templateForm: data.templateForm}).then(function (docs) {
+    functions.updateInvitation(data._id, {
+        templateForm: data.templateForm
+    }).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
         logger.error([req.path, JSON.stringify(e)].toString());
@@ -37,7 +39,9 @@ router.post('/updateInvitationForm', function (req, res, next) {
 router.post('/updateInvitationInfo', function (req, res, next) {
     var data = req.body;
     functions.checkLogin(req, res).then(function (tel) {
-        return functions.updateInvitation(data._id, {templateInfo: data.templateInfo})
+        return functions.updateInvitation(data._id, {
+            templateInfo: data.templateInfo
+        })
     }).then(function (docs) {
         res.send(sendData('200', docs, ''));
     }).catch(function (e) {
@@ -52,7 +56,9 @@ router.post('/upload', function (req, res, next) {
     var fs = require('fs');
 
     //生成multiparty对象，并配置上传目标路径
-    var form = new multiparty.Form({uploadDir: './public/files/'});
+    var form = new multiparty.Form({
+        uploadDir: './public/files/'
+    });
     //上传完成后处理
     form.parse(req, function (err, fields, files) {
         var filesTmp = JSON.stringify(files, null, 2);
@@ -73,7 +79,9 @@ router.post('/upload', function (req, res, next) {
                     res.send(sendData('999', '', '重命名错误'));
                     logger.error([req.path, JSON.stringify(err)].toString());
                 } else {
-                    res.send(sendData('200', {'name': theName}, ''));
+                    res.send(sendData('200', {
+                        'name': theName
+                    }, ''));
                 }
             });
         }
@@ -83,12 +91,18 @@ router.post('/upload', function (req, res, next) {
 // 发送祝福
 router.post('/sendWish', function (req, res, next) {
     var data = req.body;
-    functions.getInvitation({_id: data._id}, {wishesList: 1}).then(function (docs) {
+    functions.getInvitation({
+        _id: data._id
+    }, {
+        wishesList: 1
+    }).then(function (docs) {
         var wishesList = docs[0].wishesList;
         data.wish.createTime = new Date().getTime();
         data.wish.wishId = uuid.v1();
         wishesList.push(data.wish);
-        functions.updateInvitation(data._id, {wishesList: wishesList}).then(function (docs) {
+        functions.updateInvitation(data._id, {
+            wishesList: wishesList
+        }).then(function (docs) {
             res.send(sendData('200', docs, ''));
         }).catch(function (e) {
             logger.error([req.path, JSON.stringify(e)].toString());
@@ -101,12 +115,18 @@ router.post('/sendWish', function (req, res, next) {
 // 增加待定
 router.post('/setIndeterminate', function (req, res, next) {
     var data = req.body;
-    functions.getInvitation({_id: data._id}, {indeterminateList: 1}).then(function (docs) {
+    functions.getInvitation({
+        _id: data._id
+    }, {
+        indeterminateList: 1
+    }).then(function (docs) {
         var indeterminateList = docs[0].indeterminateList;
         data.indeterminate.createTime = new Date().getTime();
         data.indeterminate.indeterminateId = uuid.v1();
         indeterminateList.push(data.indeterminate);
-        functions.updateInvitation(data._id, {indeterminateList: indeterminateList}).then(function (docs) {
+        functions.updateInvitation(data._id, {
+            indeterminateList: indeterminateList
+        }).then(function (docs) {
             res.send(sendData('200', docs, ''));
         }).catch(function (e) {
             logger.error([req.path, JSON.stringify(e)].toString());
@@ -120,12 +140,18 @@ router.post('/setIndeterminate', function (req, res, next) {
 router.post('/setAttend', function (req, res, next) {
     var data = req.body;
     log(data);
-    functions.getInvitation({_id: data._id}, {attendList: 1}).then(function (docs) {
+    functions.getInvitation({
+        _id: data._id
+    }, {
+        attendList: 1
+    }).then(function (docs) {
         var attendList = docs[0].attendList;
         data.attend.createTime = new Date().getTime();
         data.attend.attendId = uuid.v1();
         attendList.push(data.attend);
-        functions.updateInvitation(data._id, {attendList: attendList}).then(function (docs) {
+        functions.updateInvitation(data._id, {
+            attendList: attendList
+        }).then(function (docs) {
             res.send(sendData('200', docs, ''));
         }).catch(function (e) {
             logger.error([req.path, JSON.stringify(e)].toString());
@@ -169,7 +195,10 @@ router.post('/sendSMS', function (req, res, next) {
     if (!checkTel(tel)) {
         res.send(sendData('999', '无效手机号码', ''));
     } else {
-        functions.smsDBFind({SMSTel: tel, tag: 'invitation'}).then(function (docs) {
+        functions.smsDBFind({
+            SMSTel: tel,
+            tag: 'invitation'
+        }).then(function (docs) {
             var doc = docs[docs.length - 1];
             var createTime = doc && doc['createTime'] * 1;
             var now = new Date() * 1;
@@ -199,8 +228,16 @@ router.post('/login', function (req, res, next) {
     } else {
         functions.checkSMS(tel, code).then(function (result) {
             if (result) {
-                res.cookie('session', JSON.stringify({tel: tel}), {signed: true});
-                res.send(sendData('200', {result: result, route: route}, ''));
+                res.cookie('session', JSON.stringify({
+                    tel: tel
+                }), {
+                    expires: new Date(Date.now() + 90000000),
+                    signed: true
+                });
+                res.send(sendData('200', {
+                    result: result,
+                    route: route
+                }, ''));
             } else {
                 res.send(sendData('999', '验证码不正确', ''));
             }
