@@ -231,7 +231,7 @@ router.post('/login', function (req, res, next) {
                 res.cookie('session', JSON.stringify({
                     tel: tel
                 }), {
-                    expires: new Date(Date.now() + 90000000),
+                    expires: new Date(Date.now() * 1 + 24 * 60 * 60 * 1000 * 365),
                     signed: true
                 });
                 res.send(sendData('200', {
