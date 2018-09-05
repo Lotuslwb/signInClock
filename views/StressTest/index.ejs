@@ -120,7 +120,7 @@
                                         <option value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
                                     <%}%>
                                 </select> 
-                                <input class="Q-option date J-date" type='date' defaultValue='1990-01-01' placeholder="" value="" />                                                             
+                                <input class="Q-option date J-date" type='date' defaultValue='1990-01-01' placeholder="请输入您的生日" value="" />                                                             
                             </div>
                         </div>
                         <div class="btn page1-btn J-submit">
@@ -144,7 +144,7 @@
     <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
     <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
     <script>
-        $('.J-date')[0].defaultValue='1990-01-01'
+        // $('.J-date')[0].defaultValue='1990-01-01'
 
         var resultList="<%- resultList %>".split(',');
         var channel="<%- channel %>";
