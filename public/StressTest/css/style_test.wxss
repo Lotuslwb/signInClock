@@ -556,8 +556,6 @@ select {
   background: url(../img/select-icon.png) no-repeat;
   background-position: center right 20px;
   text-align: center;
-  text-align-last: center;
-  padding: 0;
 }
 .page11 .select {
   background: url(../img/select-icon.png) no-repeat;
@@ -569,19 +567,19 @@ select {
   color: #f5a600;
   display: inline-block;
   text-align: center;
-  text-align-last: center;
 }
 .page11 .year-select {
-  width: 190px;
+  width: 145px;
 }
 .page11 .month-select {
-  width: 150px;
+  width: 145px;
+  padding-left: 50px;
 }
 .page11 .date-select {
-  width: 150px;
+  width: 145px;
+  padding-left: 50px;
 }
 .page11 .select-wrap {
-  padding: 0;
   line-height: 0;
   text-align: left;
 }
