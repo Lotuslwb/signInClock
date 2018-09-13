@@ -8,7 +8,7 @@ body {
 }
 select {
   -webkit-appearance: none !important;
-  appearance: none !important;
+          appearance: none !important;
 }
 .f-hide {
   display: none;
@@ -27,7 +27,7 @@ select {
   left: 50%;
   top: 50%;
   -webkit-transform: translate3d(-50%, -50%, 0);
-  transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
 }
 .page {
   width: 100%;
@@ -61,6 +61,7 @@ select {
   font-size: 30px;
   position: relative;
   z-index: 10;
+  -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
 .btn::before {
@@ -74,6 +75,7 @@ select {
   left: 50%;
   margin-left: -132px;
   margin-top: 24px;
+  -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
 .loading-page {
@@ -100,23 +102,23 @@ select {
   margin-right: 38px;
   background-color: #ff8688;
   -webkit-animation: dot1Ani 3s step-start both 999;
-  animation: dot1Ani 3s step-start both 999;
+          animation: dot1Ani 3s step-start both 999;
 }
 .page.active .loading-dots .dot:nth-of-type(2) {
   background-color: #fbb600;
   -webkit-animation: dot2Ani 3s step-start both 999;
-  animation: dot2Ani 3s step-start both 999;
+          animation: dot2Ani 3s step-start both 999;
 }
 .page.active .loading-dots .dot:nth-of-type(3) {
   background-color: #5ac4d9;
   -webkit-animation: dot3Ani 3s step-start both 999;
-  animation: dot3Ani 3s step-start both 999;
+          animation: dot3Ani 3s step-start both 999;
 }
 .page.active .loading-dots .dot:nth-of-type(4) {
   background-color: #b4c940;
   margin-right: 0;
   -webkit-animation: dot4Ani 3s step-start both 999;
-  animation: dot4Ani 3s step-start both 999;
+          animation: dot4Ani 3s step-start both 999;
 }
 .page1 .page1-title {
   margin: auto;
@@ -137,7 +139,7 @@ select {
   height: 420px;
   background: url(../img/page1-pic1.png) no-repeat center bottom;
   -webkit-animation: page1Pic 5s step-start both 999;
-  animation: page1Pic 5s step-start both 999;
+          animation: page1Pic 5s step-start both 999;
 }
 .page1-btn {
   margin-top: 0;
@@ -175,7 +177,8 @@ select {
   margin: auto;
   overflow: auto;
 }
-.page2 .Q-option {
+.page2 .Q-option,
+.page2 .Q-option-css {
   position: relative;
   font-size: 36px;
   padding-left: 65px;
@@ -218,6 +221,7 @@ select {
 }
 .swiper-slide.swiper-slide-active .Qheader-pic {
   opacity: 1;
+  -webkit-transition: all 2000ms ease 100ms;
   transition: all 2000ms ease 100ms;
 }
 .swiper-slide .Q-main {
@@ -241,7 +245,7 @@ select {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
-  align-items: center;
+          align-items: center;
   height: 100%;
   font-size: 30px;
   line-height: 1.3;
@@ -258,7 +262,7 @@ select {
 }
 .swiper-slide .Q-form .Q-option.active {
   -webkit-animation: QoptionAni 1s ease both;
-  animation: QoptionAni 1s ease both;
+          animation: QoptionAni 1s ease both;
 }
 .swiper-slide .page-btn-select {
   margin-top: 40px;
@@ -525,10 +529,10 @@ select {
 }
 .page11 .page1-title {
   margin: auto;
-  padding-top: 15.6%;
+  padding-top: 70px;
 }
 .page11 .Q-title {
-  padding-top: 90px;
+  padding-top: 0;
 }
 .page11 .page11-form {
   width: 534px;
@@ -536,9 +540,10 @@ select {
 }
 .page11 .Q-options {
   width: auto;
-  padding-top: 90px;
+  padding-top: 25px;
 }
-.page11 .Q-option {
+.page11 .Q-option,
+.page11 .Q-option-css {
   font-size: 30px;
   width: 534px;
   border: 3px solid #000000;
@@ -550,13 +555,44 @@ select {
   margin-bottom: 18px;
   background: none;
 }
-.page11 select.Q-option,
-.page11 .date.Q-option {
+.page11 select.Q-option {
   background: url(../img/select-icon.png) no-repeat;
   background-position: center right 20px;
+  text-align: center;
+  text-align-last: center;
+  padding: 0;
+}
+.page11 .select {
+  background: url(../img/select-icon.png) no-repeat;
+  background-position: center right;
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  color: #f5a600;
+  display: inline-block;
+  text-align: center;
+  text-align-last: center;
+}
+.page11 .year-select {
+  width: 190px;
+}
+.page11 .month-select {
+  width: 150px;
+}
+.page11 .date-select {
+  width: 150px;
+}
+.page11 .select-wrap {
+  padding: 0;
+  line-height: 0;
+  text-align: left;
 }
 .page11 .btn {
-  margin-top: 100px;
+  margin-top: 35px;
+}
+.page11 .page11-info {
+  margin: auto;
 }
 .page-result .result-pic {
   width: 100%;
@@ -586,7 +622,7 @@ select {
   left: 50%;
   top: 40%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   background: rgba(40, 40, 40, 0.75);
   text-align: center;
   border-radius: 10px;
@@ -839,28 +875,28 @@ input[type="date"].full:before {
 @-webkit-keyframes QoptionAni {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(0, -6px, 0);
-    transform: translate3d(0, -6px, 0);
+            transform: translate3d(0, -6px, 0);
   }
   100% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }
 @keyframes QoptionAni {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(0, -6px, 0);
-    transform: translate3d(0, -6px, 0);
+            transform: translate3d(0, -6px, 0);
   }
   100% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }

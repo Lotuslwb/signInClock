@@ -1,0 +1,716 @@
+﻿<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="/StressTest/js/dpi.js"></script>
+    <link rel="stylesheet" href="/tourTest/css/animate.css">
+    <link rel="stylesheet" href="/tourTest/css/main.css">
+    <link rel="stylesheet" href="/tourTest/css/style.css">
+    <link rel="stylesheet" href="/swiper/swiper-3.3.1.min.css">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a0e9e1cce678aef060f414bcd2beb467";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    
+</head>
+
+<body>
+    <!--需要预加载的images-->
+    <div class="f-hide" id="f-hide">
+        <img src="/tourTest/img/bg.png" />
+        <img src="/tourTest/img/loading-img-1.png" />
+        <img src="/tourTest/img/loading-img-2.png" />
+        <img src="/tourTest/img/startpage-bg.png" />
+    </div>
+
+
+    <div class="page loading-page active">
+        <div class="loading-img dog"></div>
+        <div class="loading-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <div class="page swiper-page">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide start-page swiper-no-swiping">
+                    <img src="/tourTest/img/startpage-music.png" class="startpage-music">
+                    <div class="btn withDog J-slideNext active">开始测试</div>
+                </div>
+                <div class="swiper-slide gender-page swiper-no-swiping">
+                    <img src="/tourTest/img/genderpage-pic1.png" class="pic">
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <span class="radio"></span>
+                            <span class="label">男</span>
+                        </div>
+                        <div class="Q-item">
+                            <span class="radio"></span>
+                            <span class="label">女</span>
+                        </div>
+                    </div>
+                    <div class="btn J-slideNext">确定</div>
+                </div>
+                <!-- Q1 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">如果有一个可以马上出国的机会，你会选择？</div>
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">立刻定完酒店和机票，我才安心</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">先让我发条朋友圈，看有没有要代购的</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">认真研究旅游攻略才是旅行的第一步</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img class="Q-pic" src="/tourTest/img/Q-pic-1.png" alt="">
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">如果要选一本书做旅游攻略，你会选择？</div>
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">《孤独星球》、《米其林指南》等各种砖头旅游书</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">《搭车去柏林》、《背包十年》等旅行故事书</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">现在谁还看书，穷游或者马蜂窝上拷贝一份攻略直接出发啦</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img class="Q-pic" src="/tourTest/img/Q-pic-2.png" alt="">
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">出门旅行，你会选择带几双鞋子？</div>
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">两双运动鞋，轻便好走路</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">出门去玩就是要打扮美美拍硬照啊！高跟鞋、平底鞋、运动鞋都不能少</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">一双人字拖走天下</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img class="Q-pic" src="/tourTest/img/Q-pic-3.png" alt="">
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">哪种音乐更能唤起你的好心情?请点击播放</div>
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio music-radio"></span>
+                                <span class="music">
+                                    <span class="pross" style="width:230px;"><img src="/tourTest/img/music-pross-icon.png" class="pross-icon">
+                                    </span>
+                                    <span class="readIcon"></span>
+                                    <span class="timer">10</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio music-radio"></span>
+                                <span class="music">
+                                    <span class="pross" style="width:295px;"><img src="/tourTest/img/music-pross-icon.png" class="pross-icon">
+                                    </span>
+                                    <span class="readIcon"></span>
+                                    <span class="timer">13</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio music-radio"></span>
+                                <span class="music">
+                                    <span class="pross" style="width:260px;"><img src="/tourTest/img/music-pross-icon.png" class="pross-icon">
+                                    </span>
+                                    <span class="readIcon"></span>
+                                    <span class="timer">12</span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img class="Q-pic" src="/tourTest/img/Q-pic-4.png" alt="">
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">每天早上起床，你是什么状态？</div>
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">7：05，7：15，7：25，7：35……设了那么多闹钟，还是起不来</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">闹钟一响我就能起床</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">每天都要睡到自然醒才起床</span>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="Q-pic" src="/tourTest/img/Q-pic-5.png" alt="">
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">推开门，你希望看到什么景象？</div>
+                    <div class="Q-list">
+                        <div class="Q-item imageItem">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">落日余晖 <img class="image" src="/tourTest/img/Q6-option-1.png" /></span>
+                            </div>
+                        </div>
+                        <div class="Q-item imageItem">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">碧空万里 <img class="image" src="/tourTest/img/Q6-option-2.png" /></span>
+                            </div>
+                        </div>
+                        <div class="Q-item imageItem">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">繁星满天 <img class="image" src="/tourTest/img/Q6-option-3.png" /> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">哪句诗句最能唤起你的向往？</div>
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">大漠孤烟直，长河落日圆</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">海边日影静犹长，烟里渔船接杳茫</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">坐看云卷云舒，静听花开花落</span>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="Q-pic" src="/tourTest/img/Q-pic-7.png" alt="">
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">怎么样的行程安排会让你觉得放松和舒适？</div>
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">拿着相机走遍大街小巷，寻找不曾被人发现的角落</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">找一个地方躺着放空就最舒适了</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">漂流、潜水、跳伞，越刺激越好</span>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="Q-pic" src="/tourTest/img/Q-pic-8.png" alt="">
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="swiper-slide Question-page swiper-no-swiping">
+                    <div class="Q-title">假期即将结束，你的心情更符合？</div>
+                    <div class="Q-list">
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">好累，想赶紧回家</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">还没玩够！希望下次假期赶紧到来！</span>
+                            </div>
+                        </div>
+                        <div class="Q-item">
+                            <div class="Q-itemWrap">
+                                <span class="radio"></span>
+                                <span class="label">电量满格，回去好好做人</span>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="Q-pic" src="/tourTest/img/Q-pic-9.png" alt="">
+                    <div class="btn J-slideNext">下一题</div>
+                </div>
+
+                <!-- leads -->
+                <div class="swiper-slide leads-page swiper-no-swiping">
+                    <img class="leads-title" src="/tourTest/img/leads-title.png" />
+                    <div class="form">
+                        <input type="text" class="input nickname" placeholder="请输入您的昵称">
+                        <input type="tel" class="input tel" placeholder="请输入您的手机号">
+                        <div class="selectWrap">
+                            <select class="city-select select">
+                                <option value="sh">上海</option>
+                            </select>
+                        </div>
+                        <div class="selectWrap">
+                            <select class="year-select select">
+                                <option value="2018">2018</option>
+                            </select>
+                            <select class="month-select select">
+                                <option value="11">11</option>
+                            </select>
+                            <select class="date-select select">
+                                <option value="11">11</option>
+                            </select>
+                        </div>
+                    </div>
+                    <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt="">
+                    <div class="btn J-slideNext">确认</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
+    <script>
+
+        var resultList="<%- resultList %>".split(',');
+        var channel="<%- channel %>";
+        var SourceCode="<%- SourceCode %>";
+
+        Number.prototype.range=function(min,max){
+            return this>=min && this<=max;
+        }
+
+        Array.prototype.random=function(){
+            var index=Math.floor(Math.random()*this.length)
+            return this[index];
+        }
+
+        if (typeof Array.prototype.filter != "function") {
+            Array.prototype.filter = function (fn, context) {
+                var arr = [];
+                if (typeof fn === "function") {
+                for (var k = 0, length = this.length; k < length; k++) {
+                    fn.call(context, this[k], k, this) && arr.push(this[k]);
+                }
+                }
+                return arr;
+            };
+        }
+
+        function initMySwiper() {
+            var mySwiper = new Swiper('.swiper-container', {
+                noSwiping: true
+            })
+
+            return mySwiper;
+        }
+    </script>
+    <script>
+        var mySwiper;
+        var timer;
+
+        function indexHanlder() {
+            this.init();
+        }
+
+        indexHanlder.prototype = {
+            init: function () {
+                this.bindEvnet(this);
+                this.initMain();
+            },
+            initMain: function () {
+                var h = $('body').height();
+                var Qh = $('.Q-header').height();
+                $('.Q-main').height(h - Qh);
+            },
+            bindEvnet: function () {
+                var me = this;
+
+                $('.J-page1-btn').click(function () {
+                    timer && clearInterval(timer);
+                    mySwiper.slideNext();
+                })
+                $('.J-slideNext').click(function () {
+                    if ($(this).hasClass('active')) {
+                        mySwiper.slideNext();
+                    }
+                })
+                $('.J-finishQ').click(function () {
+                    if ($(this).hasClass('active')) {
+                        mySwiper.slideNext();
+                        me.getResult();
+                    }
+                })
+
+                $('.Q-item').click(function () {
+                    if($(this).parents('.page11').length) return true;
+
+                    $(this).addClass('active').siblings('.Q-item').removeClass('active');
+                    $(this).parents('.swiper-slide').find('.btn').addClass('active');
+                })
+
+                $(".page11 .Q-item").on("change",function(){
+                    console.log(checkVal());
+                   if(checkVal()){
+                        $(this).parents('.swiper-slide').find('.btn').addClass('active');
+                   }else{
+                        $(this).parents('.swiper-slide').find('.btn').removeClass('active');
+                   }
+                });
+
+                function checkVal(){
+                    var result=true;
+                    var tel=$('.J-tel').val();
+                    $('.page11 .Q-option').each(function(){
+                        if(!$(this).val()) result=false;
+                    })
+                    return result;
+                }
+
+
+                $('.J-submit').click(function () {
+                    if (!$(this).hasClass('active') || !checkVal()) {
+                        return false;
+                    }
+
+                    if(!me.checkTel($('.J-tel').val())){
+                        toast('手机号格式有误');
+                        return false;
+                    }
+
+                    $('.loading-page').fadeIn();
+                    setTimeout(function(){
+                        $('.loading-page').fadeOut();
+                    },3000)
+
+                    mySwiper.slideNext();
+                    //The main object to be sent with the submission request
+                    var submissionData = new Object();
+                    //Individual properties of the main object
+                    var customer = new Object();
+                    var extendedDetail = new Object();
+                    var weChatData = new Object();
+                    var trackingData = new Object();
+                    var campaigndata = new Object();
+            
+
+                    customer.FirstName = $('.J-name').val().substr(1,$('.J-name').val().length-1);
+                    customer.LastName = $('.J-name').val().substr(0,1);
+                    customer.MobilePhone = $('.J-tel').val();
+                    customer.DateOfBirth = new Date($('.J-date').val()); // January 9th, 1975 (0-based index for months)
+                    customer.StateRegionName = $('.J-city').find("option:selected").text();
+                    customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
+                    customer.CountryOfResidence = "CN";
+                    customer.Gender = $('.page2-form').find('.Q-option.active').index()==0?"M":"F";
+                    customer.Comments = '压力程度:'+me.level;
+                    customer.Email = customer.MobilePhone + "@noemail.com";
+
+
+                    // Tracking
+                    trackingData.Etag =  channel+"_Restart";
+                    trackingData.EntrySourceCode = SourceCode;
+
+                    //Campaign Data
+                    campaigndata.CampaignName = "Restart";
+                    campaigndata.CampaignAllocationPrograms = "ILS,LY";
+                    campaigndata.CampaignAllocationCode = "mixed";
+
+                    //Extended Details
+                    extendedDetail.WantsMoreInfo = true;
+                    extendedDetail.WantsBrochure = true;
+
+
+
+                    //Assigning individual classes to the main object
+                    submissionData.customer = customer;
+                    submissionData.extendedDetail = extendedDetail;
+                    submissionData.tracking = trackingData;
+                    submissionData.weChat = weChatData;
+                    submissionData.campaignData = campaigndata;
+            
+
+                    console.log(submissionData);
+                    $.ajax({
+                        url: '/StressTest/form',
+                        dataType: 'json',
+                        crossDomain: true,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(submissionData),
+                        success: function (res) {
+                            console.log(res);
+                        }
+                    });
+                });
+            },
+            getResult:function(){
+                var sex=$('.page2-form').find('.Q-option.active').index();  // 0 为男， 1为女
+                var totalScore=0;
+                $('.Q-form').each(function(){
+                    totalScore+=$(this).find('.Q-option.active').data('value')*1;
+                });
+                var level=this.getScoreLevel(totalScore);
+                var filterStr=(sex==0?"male":"female") + "_"+ level;
+                console.log(filterStr);
+                var result=resultList.filter(function(item){
+                    return item.indexOf(filterStr)==0;
+                }).random();
+                console.log(result);
+                this.level=level;
+                var resultURL='/tourTest/img/result/'+result;
+                var img=new Image();
+                img.src=resultURL;
+                $('.result-pic').attr('src',resultURL);
+            },
+            getScoreLevel:function(score){
+                var level=0;
+                if(score.range(10,15)){
+                    level=1;
+                }else if(score.range(16,22)){
+                    level=2;
+                }else if(score.range(23,29)){
+                    level=3;
+                }else if(score.range(30,100)){
+                    level=4;
+                }
+                return level;
+            },
+            checkTel:function(tel){
+                var reg = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+                return reg.test(tel);
+            }
+        }
+        var page = new indexHanlder();
+    </script>
+    <script>    
+        var loaded = false;
+        var loaded_ani = false;
+
+
+        //预加载器
+        function loader() {
+            this.init();
+        }
+
+        loader.prototype = {
+            init: function () {
+                var me = this;
+                var loaded = 0;
+
+                if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+                    me.onLoaded();
+                } else {
+                    var imgLoad = imagesLoaded('body');
+                    imgLoad.on('progress', function (instance, image) {
+                        loaded++;
+                        if (loaded == instance.images.length) {
+                            me.onLoaded();
+                        }
+                    });
+                }
+            },
+            onLoaded: function () {
+
+            }
+        }
+
+        var loader = new loader();
+        loader.onLoaded = function () {
+            loaded = true;
+            $('.loading-page').fadeOut();
+            $('.swiper-page').addClass('active');
+            var $btn = $('.J-page1-btn');
+            timer = setInterval(function () {
+                $btn.hasClass('active') ? $btn.removeClass('active') : $btn.addClass('active');
+            }, 1500)
+            mySwiper = initMySwiper();
+        }
+    </script>
+
+    <div class="toast"></div>
+    <script>
+        var toast = function (msg, timer) {
+            $('.toast').text(msg).fadeIn();
+            setTimeout(function () {
+                $('.toast').fadeOut();
+            }, timer || 1000)
+        }
+    </script>
+
+
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+    function initWXSahre() {
+
+        //“分享给朋友”
+        wx.onMenuShareAppMessage({
+            title: '一分钟灵魂拷问……', // 分享标题
+            desc: '敢不敢来测一测？', // 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/StressTest/tourTest/img/logo.jpg', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享给朋友']);
+
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        //“分享到朋友圈”
+        wx.onMenuShareTimeline({
+            title: '一分钟灵魂拷问……', // 分享标题
+            desc: '敢不敢来测一测？', // 分享描述
+            link: '', // 分享链接
+            imgUrl: 'http://ma.eldesign.cn/StressTest/tourTest/img/logo.jpg', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+                _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    }
+
+    function initWX(callback) {
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/getWxSDK',
+            data: {'originalUrl': window.location.href},
+            success: function (data) {
+                var wxConfig = data.data.wxConfig;
+
+                console.log(wxConfig);
+
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: wxConfig.appId, // 必填，公众号的唯一标识
+                    timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                    signature: wxConfig.signature,// 必填，签名，见附录1
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+
+                wx.ready(function () {
+                    callback && callback();
+                });
+
+                wx.error(function (res) {
+                    console.log(res);
+                });
+
+
+            },
+            dataType: 'json'
+        });
+    }
+
+    initWX(initWXSahre);
+    </script>
+    
+    
+</body>
+
+</html>

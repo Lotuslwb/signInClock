@@ -2,34 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 var data = require('./data');
-var date = require('./date');
 var StateRegion = require('./StateRegion');
 var resultList = 'female_1_1.jpg,female_2_3.jpg,female_3_4.jpg,male_1_1.jpg,male_4_1.jpg,female_1_2.jpg,female_3_1.jpg,female_4_1.jpg,male_2_1.jpg,female_2_1.jpg,female_3_2.jpg,female_4_2.jpg,male_3_1.jpg,female_2_2.jpg,female_3_3.jpg,female_4_3.jpg,male_3_2.jpg';
 /* GET home page. */
 router.get('/', function (req, res, next) {
     var channel = req.query.channel;
     var SourceCode = req.query.SourceCode;
-    res.render('StressTest/index', {
+    console.log(1212);
+    res.render('tourTest/index', {
         data,
         resultList,
         StateRegion,
         channel,
         SourceCode
-    });
-});
-
-router.get('/test', function (req, res, next) {
-    var channel = req.query.channel;
-    var SourceCode = req.query.SourceCode;
-    res.render('StressTest/test', {
-        data,
-        resultList,
-        StateRegion,
-        channel,
-        SourceCode,
-        year: date.year,
-        month: date.month,
-        date: date.date,
     });
 });
 

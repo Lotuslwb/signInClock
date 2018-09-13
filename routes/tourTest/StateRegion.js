@@ -1,0 +1,97 @@
+const StateRegion = [{
+    'text': '北京',
+    'value': '11'
+}, {
+    'text': '天津',
+    'value': '12'
+}, {
+    'text': '上海',
+    'value': '31'
+}, {
+    'text': '重庆',
+    'value': '50'
+}, {
+    'text': '河北',
+    'value': '13'
+}, {
+    'text': '河南',
+    'value': '41'
+}, {
+    'text': '云南',
+    'value': '53'
+}, {
+    'text': '辽宁',
+    'value': '21'
+}, {
+    'text': '黑龙江',
+    'value': '23'
+}, {
+    'text': '湖南',
+    'value': '43'
+}, {
+    'text': '安徽',
+    'value': '34'
+}, {
+    'text': '山东',
+    'value': '37'
+}, {
+    'text': '新疆',
+    'value': '65'
+}, {
+    'text': '江苏',
+    'value': '32'
+}, {
+    'text': '浙江',
+    'value': '33'
+}, {
+    'text': '江西',
+    'value': '36'
+}, {
+    'text': '湖北',
+    'value': '42'
+}, {
+    'text': '广西',
+    'value': '45'
+}, {
+    'text': '甘肃',
+    'value': '62'
+}, {
+    'text': '山西',
+    'value': '14'
+}, {
+    'text': '内蒙古',
+    'value': '15'
+}, {
+    'text': '陕西',
+    'value': '61'
+}, {
+    'text': '吉林',
+    'value': '22'
+}, {
+    'text': '福建',
+    'value': '35'
+}, {
+    'text': '贵州',
+    'value': '52'
+}, {
+    'text': '广东',
+    'value': '44'
+}, {
+    'text': '青海',
+    'value': '63'
+}, {
+    'text': '西藏',
+    'value': '54'
+}, {
+    'text': '四川',
+    'value': '51'
+}, {
+    'text': '宁夏',
+    'value': '64'
+}, {
+    'text': '海南',
+    'value': '46'
+}];
+
+
+module.exports = StateRegion;
