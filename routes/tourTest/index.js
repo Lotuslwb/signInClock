@@ -3,13 +3,28 @@ var router = express.Router();
 
 var date = require('./date');
 var StateRegion = require('./StateRegion');
-var resultList = 'female_1_1.jpg,female_1_2.jpg,female_2_1.jpg,female_2_2.jpg,female_3_1.jpg,female_4_1.jpg,male_1_1.jpg,male_2_1.jpg,male_3_1.jpg,male_4_1.jpg';
+var resultListV1 = 'female_1_1.jpg,female_1_2.jpg,female_2_1.jpg,female_2_2.jpg,female_3_1.jpg,female_4_1.jpg,male_1_1.jpg,male_2_1.jpg,male_3_1.jpg,male_4_1.jpg';
+var resultListV2 = 'female_1_1.jpg,female_1_2.jpg,female_1_3.jpg,female_2_1.jpg,female_2_2.jpg,female_2_3.jpg,female_3_1.jpg,female_3_2.jpg,female_4_1.jpg,female_4_2.jpg,male_1_1.jpg,male_1_2.jpg,male_1_3.jpg,male_2_1.jpg,male_2_2.jpg,male_2_3.jpg,male_3_1.jpg,male_3_2.jpg,male_4_1.jpg,male_4_2.jpg';
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/v1', function (req, res, next) {
     var channel = req.query.channel;
     var SourceCode = req.query.SourceCode;
     res.render('tourTest/index', {
-        resultList,
+        resultList: resultListV1,
+        StateRegion,
+        channel,
+        SourceCode,
+        year: date.year,
+        month: date.month,
+        date: date.date,
+    });
+});
+
+router.get('/v2', function (req, res, next) {
+    var channel = req.query.channel;
+    var SourceCode = req.query.SourceCode;
+    res.render('tourTest/indexV2', {
+        resultList: resultListV2,
         StateRegion,
         channel,
         SourceCode,
