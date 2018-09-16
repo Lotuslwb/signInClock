@@ -171,7 +171,11 @@ select {
   right: 58px;
 }
 .start-page .btn {
-  margin-top: 800px;
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
 }
 .start-page.swiper-slide-active .startpage-music {
   -webkit-animation: OpAni 1s ease both 999;
@@ -223,11 +227,12 @@ select {
 }
 .Question-page .Q-list .Q-item .label {
   width: 500px;
-  padding-left: 10px;
+  padding-left: 15px;
   box-sizing: border-box;
 }
 .Question-page .Q-list .Q-item .radio {
-  vertical-align: top;
+  float: left;
+  margin-top: 8px;
 }
 .Question-page .Q-list .Q-item .radio.music-radio {
   vertical-align: super;
@@ -346,6 +351,9 @@ select {
 }
 .result-page .result-pic {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 .toast {
   position: fixed;
