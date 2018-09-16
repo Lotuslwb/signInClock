@@ -86,6 +86,12 @@ select {
     transition: all 500ms ease;
 }
 
+.swiper-slide-active {
+    .btn.withDog::before {
+        animation: dogImgAni 1s step-start both 999;
+    }
+}
+
 .btn.withDog::before {
     content: "";
     display: block;
@@ -112,7 +118,7 @@ select {
 
 .loading-page.page.active {
     .loading-img {
-        animation: loadingImgAni 1s step-start both 999;
+        animation: dogImgAni 1s step-start both 999;
     }
 }
 
@@ -246,7 +252,7 @@ select {
                 vertical-align: top;
             }
             .radio.music-radio {
-                vertical-align: baseline;
+                vertical-align: super;
             }
             .image {
                 display: inline-block;
@@ -257,6 +263,7 @@ select {
             }
             .music {
                 padding-left: 20px;
+                display: inline-block;
                 .pross {
                     width: 295px;
                     height: 42px;
@@ -268,6 +275,9 @@ select {
                     margin-top: 7px;
                     margin-left: 16px;
                 }
+                &.play .pross-icon {
+                    animation: OpAni 2s ease-out both 999;
+                }
                 .readIcon {
                     display: inline-block;
                     width: 10px;
@@ -275,6 +285,9 @@ select {
                     border-radius: 50%;
                     background: #dc475b;
                     vertical-align: top;
+                }
+                &.done .readIcon {
+                    filter: grayscale(1);
                 }
                 .timer {
                     color: #ef9348;
@@ -346,6 +359,48 @@ select {
         width: 100px;
         padding-right: 40px;
     }
+}
+
+.result-page {
+    .result-text {
+        font-size: 24px;
+        color: #ffffff;
+        line-height: 40px;
+        background: rgba(41, 41, 41, 0.3);
+        width: 100%;
+        position: absolute;
+        top: 0;
+        text-align: center;
+    }
+    .result-pic {
+        width: 100%;
+    }
+}
+
+.toast {
+    position: fixed;
+    z-index: 99;
+    padding: 30px 80px;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: rgba(40, 40, 40, 0.75);
+    text-align: center;
+    border-radius: 10px;
+    color: #FFFFFF;
+    min-width: 200px;
+    font-size: 24px;
+    display: none;
+}
+
+#myCanvas {
+    display: none;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: #fff;
+    z-index: 1000;
 }
 
 @keyframes dot1Ani {
@@ -432,7 +487,7 @@ select {
     }
 }
 
-@keyframes loadingImgAni {
+@keyframes dogImgAni {
     0%,
     100% {
         background: url(../img/loading-img-1.png) no-repeat;
