@@ -164,10 +164,27 @@ select {
   background: url(../img/startpage-bg.png) no-repeat center;
   background-size: cover;
 }
+.start-page.start-page-v2 {
+  background: url(../img/startpage-v2-bg.png) no-repeat center;
+  background-size: cover;
+}
+.start-page.start-page-v2 .btn {
+  bottom: 80px;
+}
 .start-page .startpage-music {
   position: absolute;
   top: 440px;
   right: 58px;
+}
+.start-page .startpage-icon1 {
+  position: absolute;
+  left: 76px;
+  top: 30px;
+}
+.start-page .startpage-icon2 {
+  position: absolute;
+  left: 328px;
+  top: 67px;
 }
 .start-page .btn {
   position: absolute;
@@ -180,18 +197,29 @@ select {
   -webkit-animation: OpAni 1s ease both 999;
           animation: OpAni 1s ease both 999;
 }
+.start-page.swiper-slide-active .startpage-icon1 {
+  -webkit-animation: OpAni 1s ease both 999;
+          animation: OpAni 1s ease both 999;
+}
+.start-page.swiper-slide-active .startpage-icon2 {
+  -webkit-animation: OpAni 1s ease both 999;
+          animation: OpAni 1s ease both 999;
+}
 .gender-page .pic {
   margin: 155px auto 0;
 }
 .gender-page .Q-list {
-  width: 335px;
+  width: 447px;
   margin: auto;
   padding-top: 50px;
   padding-bottom: 100px;
+  display: -webkit-box;
+  display: flex;
 }
 .gender-page .Q-item {
-  width: 45%;
-  display: inline-block;
+  width: 50%;
+  -webkit-box-flex: 1;
+          flex: 1;
 }
 .gender-page .Q-item .radio,
 .gender-page .Q-item .label {
@@ -199,10 +227,15 @@ select {
   margin: 20px auto 0;
   text-align: center;
 }
+.h45 {
+  height: 45px !important;
+}
+.mb45 {
+  margin-bottom: 45px !important;
+}
 .Question-page .Q-title {
   color: #ef9348;
   width: 550px;
-  height: 85px;
   margin: 70px auto 35px;
   font-size: 36px;
   box-sizing: border-box;
@@ -225,9 +258,10 @@ select {
   font-size: 30px;
 }
 .Question-page .Q-list .Q-item .label {
-  width: 500px;
   padding-left: 15px;
   box-sizing: border-box;
+  position: absolute;
+  width: 530px;
 }
 .Question-page .Q-list .Q-item .radio {
   float: left;
@@ -242,6 +276,14 @@ select {
 }
 .Question-page .Q-list .Q-item.imageItem {
   height: 200px;
+}
+.Question-page .Q-list .Q-item.imageItem .label {
+  position: relative;
+  width: 500px;
+}
+.Question-page .Q-list .Q-item.imageItem .radio {
+  float: none;
+  margin-top: 0;
 }
 .Question-page .Q-list .Q-item .music {
   padding-left: 20px;
@@ -338,6 +380,9 @@ select {
   width: 100px;
   padding-right: 40px;
 }
+.result-page.result-v2 {
+  background: url('../img/result-v2-bg.jpg') repeat top;
+}
 .result-page .result-text {
   font-size: 24px;
   color: #ffffff;
@@ -352,7 +397,7 @@ select {
   width: 100%;
   height: 100%;
   object-fit: none;
-  object-position: center;
+  object-position: bottom;
 }
 .toast {
   position: fixed;
@@ -377,6 +422,69 @@ select {
   position: absolute;
   background: #fff;
   z-index: 1000;
+}
+.result-txt {
+  position: absolute;
+  bottom: 51px;
+  right: 158px;
+}
+.result-v2 .result-txt.female_1_1,
+.result-v2 .result-txt.female_1_2,
+.result-v2 .result-txt.female_1_3,
+.result-v2 .result-txt.male_1_1,
+.result-v2 .result-txt.male_1_2,
+.result-v2 .result-txt.male_1_3 {
+  background: #da9b2c;
+}
+.result-v2 .result-txt.female_2_1,
+.result-v2 .result-txt.female_2_2,
+.result-v2 .result-txt.female_2_3,
+.result-v2 .result-txt.male_2_1,
+.result-v2 .result-txt.male_2_2,
+.result-v2 .result-txt.male_2_3 {
+  background: #7c7c94;
+}
+.result-v2 .result-txt.female_3_1,
+.result-v2 .result-txt.female_3_2,
+.result-v2 .result-txt.male_3_1,
+.result-v2 .result-txt.male_3_2 {
+  background: #7b4140;
+}
+.result-v2 .result-txt.female_4_1,
+.result-v2 .result-txt.female_4_2,
+.result-v2 .result-txt.male_4_1,
+.result-v2 .result-txt.male_4_2 {
+  background: #496661;
+}
+.result-v1 .female_1_1 {
+  background: #7bc4d3;
+}
+.result-v1 .female_1_2 {
+  background: #a48a7d;
+}
+.result-v1 .female_2_1 {
+  background: #519570;
+}
+.result-v1 .female_2_2 {
+  background: #7c7c94;
+}
+.result-v1 .female_3_1 {
+  background: #c74a4e;
+}
+.result-v1 .female_4_1 {
+  background: #486761;
+}
+.result-v1 .male_1_1 {
+  background: #a48a7d;
+}
+.result-v1 .male_2_1 {
+  background: #7c7c94;
+}
+.result-v1 .male_3_1 {
+  background: #7b4140;
+}
+.result-v1 .male_4_1 {
+  background: #da9a2c;
 }
 @-webkit-keyframes dot1Ani {
   0% {

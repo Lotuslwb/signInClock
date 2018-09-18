@@ -60,6 +60,8 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide start-page swiper-no-swiping">
                     <img src="/tourTest/img/startpage-music.png" class="startpage-music">
+                    <img src="/tourTest/img/startpage-icon1.png" class="startpage-icon1">
+                    <img src="/tourTest/img/startpage-icon2.png" class="startpage-icon2">
                     <div class="btn withDog J-slideNext active">开始测试</div>
                 </div>
                 <div class="swiper-slide gender-page swiper-no-swiping">
@@ -143,7 +145,7 @@
                             </div>
                         </div>
 
-                        <div class="Q-item" data-value=2 data-tag='3-2'>
+                        <div class="Q-item mb45" data-value=2 data-tag='3-2'>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
                                 <span class="label">出门去玩就是要打扮美美拍硬照啊！高跟鞋、平底鞋、运动鞋都不能少</span>
@@ -209,7 +211,7 @@
                 <div class="swiper-slide Question-page swiper-no-swiping">
                     <div class="Q-title">每天早上起床，你是什么状态？</div>
                     <div class="Q-list">
-                        <div class="Q-item" data-value=2 data-tag='5-1'>
+                        <div class="Q-item mb45" data-value=2 data-tag='5-1'>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
                                 <span class="label">7：05，7：15，7：25，7：35……设了那么多闹钟，还是起不来</span>
@@ -255,6 +257,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class='h45'></div>
                     <div class="btn J-slideNext">下一题</div>
                 </div>
 
@@ -282,6 +285,7 @@
                         </div>
                     </div>
                     <img class="Q-pic" src="/tourTest/img/Q-pic-7.png" alt="">
+                    <div class='h45'></div>
                     <div class="btn J-slideNext">下一题</div>
                 </div>
 
@@ -309,6 +313,8 @@
                         </div>
                     </div>
                     <img class="Q-pic" src="/tourTest/img/Q-pic-8.png" alt="">
+                    <div class='h45'></div>
+
                     <div class="btn J-slideNext">下一题</div>
                 </div>
 
@@ -338,6 +344,8 @@
                         </div>
                     </div>
                     <img class="Q-pic" src="/tourTest/img/Q-pic-9.png" alt="">
+                    <div class='h45'></div>
+
                     <div class="btn J-finishQ">下一题</div>
                 </div>
 
@@ -349,6 +357,7 @@
                         <input type="tel" class="input tel J-tel leads-Q" placeholder="请输入您的手机号">
                         <div class="selectWrap">
                             <select class="city-select J-city select leads-Q">
+                            <option value=''>请选择城市</option>
                             <% for(var i=0;i<StateRegion.length;i++){%>
                                 <option value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
                             <%}%>
@@ -357,17 +366,17 @@
                         <div class="selectWrap">
                             <select class="year-select select leads-Q">
                             <% for(var i=0;i<year.length;i++){%>
-                                <option value="<%= year[i].value %>"  <%=(year[i].value=='1990'?'selected':'')%> ><%= year[i].text %></option>
+                                <option value="<%= year[i].value %>"  <%=(year[i].value==new Date().getFullYear()?'selected':'')%> ><%= year[i].text %></option>
                             <%}%>
                             </select>
                             <select class="month-select select leads-Q">
                                 <% for(var i=0;i<month.length;i++){%>
-                                    <option value="<%= month[i].value %>"><%= month[i].text %></option>
+                                    <option value="<%= month[i].value %>" <%=(month[i].value==new Date().getMonth()+1?'selected':'')%> ><%= month[i].text %></option>
                                 <%}%>
                             </select>
                             <select class="date-select select leads-Q">
                                 <% for(var i=0;i<date.length;i++){%>
-                                <option value="<%= date[i].value %>"><%= date[i].text %></option>
+                                <option value="<%= date[i].value %>" <%=(date[i].value==new Date().getDate()?'selected':'')%> ><%= date[i].text %></option>
                                 <%}%>
                             </select>
                         </div>
@@ -375,8 +384,9 @@
                     <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt="">
                     <div class="btn J-submit">确认</div>
                 </div>
-                <div class="swiper-slide result-page swiper-no-swiping">
+                <div class="swiper-slide result-page result-v1 swiper-no-swiping">
                     <img src="" class="result-pic">
+                    <img src='/tourTest/img/result-text.png' class='result-txt'>
                 </div>
             </div>
         </div>
@@ -689,7 +699,8 @@
                 img.src=resultURL;
                 img.onload=function(){
                     var tagImg=me.genTagImg(tagList,img,result);
-                    $('.result-pic').attr('src',tagImg);
+                    $('.result-pic').attr('src',tagImg).parents('.result-page').css('background','url(/tourTest/img/v1/bg/'+result+')');
+                    $('.result-txt').addClass(result.split('.')[0]);
                 }
             },
             genTagImg:function(tagList,img,result){
