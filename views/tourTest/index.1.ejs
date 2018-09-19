@@ -365,21 +365,18 @@
                         </div>
                         <div class="selectWrap">
                             <select class="year-select select leads-Q">
-                                <option value=''>出生年</option>
                             <% for(var i=0;i<year.length;i++){%>
-                                <option value="<%= year[i].value %>" ><%= year[i].text %></option>
+                                <option value="<%= year[i].value %>"  <%=(year[i].value==new Date().getFullYear()?'selected':'')%> ><%= year[i].text %></option>
                             <%}%>
                             </select>
                             <select class="month-select select leads-Q">
-                                <option value=''>月</option>
                                 <% for(var i=0;i<month.length;i++){%>
-                                    <option value="<%= month[i].value %>" ><%= month[i].text %></option>
+                                    <option value="<%= month[i].value %>" <%=(month[i].value==new Date().getMonth()+1?'selected':'')%> ><%= month[i].text %></option>
                                 <%}%>
                             </select>
                             <select class="date-select select leads-Q">
-                                <option value=''>日</option>
                                 <% for(var i=0;i<date.length;i++){%>
-                                    <option value="<%= date[i].value %>" ><%= date[i].text %></option>
+                                <option value="<%= date[i].value %>" <%=(date[i].value==new Date().getDate()?'selected':'')%> ><%= date[i].text %></option>
                                 <%}%>
                             </select>
                         </div>
@@ -758,7 +755,7 @@
                 return reg.test(tel);
             },
             genDates:function(days){
-                var html="<option value=''>日</option>";
+                var html='';
                 for(var i=1;i<=days;i++){
                     html+='<option value="'+i+'">'+i+'</option>';
                 }
