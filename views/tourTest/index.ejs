@@ -496,13 +496,14 @@
                 this.initMusic();
                 this.bindEvnet(this);
 
-                // var me=this;
-                // var tagList=["1-3", "3-3", "4-2", "5-3", "8-3"];
-                // var img=new Image();
-                // img.src='/tourTest/img/v1/male_3_1.jpg';
-                // img.onload=()=>{
-                //     me.genTagImg(tagList,img,'male_3_1.jpg');
-                // }  
+                var me=this;
+                var tagList=["1-3", "3-3", "4-2", "5-3", "8-3"];
+                var img=new Image();
+                img.src='/tourTest/img/v1/female_2_1.jpg';
+                img.onload=()=>{
+                    me.genTagImg(tagList,img,'female_2_1.jpg');
+                }  
+                $('#myCanvas').show();
             },
             initMain: function () {
                 var h = $('body').height();
@@ -635,16 +636,16 @@
                     customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.gender-page').find('.Q-item.active').index()==0?"M":"F";
-                    customer.Comments = '压力程度:'+me.level;
+                    customer.Comments = '类型:'+me.level;
                     customer.Email = customer.MobilePhone + "@noemail.com";
 
 
                     // Tracking
-                    trackingData.Etag =  channel+"_Restart";
+                    trackingData.Etag =  channel+"_Travel_IDV1";
                     trackingData.EntrySourceCode = SourceCode;
 
                     //Campaign Data
-                    campaigndata.CampaignName = "Restart";
+                    campaigndata.CampaignName = "Travel_ID";
                     campaigndata.CampaignAllocationPrograms = "ILS,LY";
                     campaigndata.CampaignAllocationCode = "mixed";
 
