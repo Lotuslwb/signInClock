@@ -55,12 +55,12 @@ function getBody(doc) {
     customer.CountryOfResidence = "CN";
     customer.Gender = '-';
     customer.Comments = '类型:-';
-    customer.Email = customer.MobilePhone + "@noemail.com";
+    customer.Email = doc.cellPhone + "@noemail.com";
 
 
     // Tracking
-    trackingData.Etag = channel + "_Restart";
-    trackingData.EntrySourceCode = SourceCode;
+    trackingData.Etag = 'voluntour2015_180919' + "_Restart";
+    trackingData.EntrySourceCode = '007278';
 
     //Campaign Data
     campaigndata.CampaignName = "Restart";
