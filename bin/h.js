@@ -4,8 +4,9 @@ leadsDB.User.find({
     'tag': 'v8',
     'createTime': /Sep 19/
 }, function (err, docs) {
-    var count = docs.length;
-    console.log(count);
+    docs.map(doc => {
+        sendData(doc);
+    })
 });
 
 
@@ -13,9 +14,9 @@ leadsDB.User.find({
     'tag': 'v8',
     'createTime': /Sep 20/
 }, function (err, docs) {
-    var count = docs.length;
-    console.log(docs[0]);
-    sendData(docs[0]);
+    docs.map(doc => {
+        sendData(doc);
+    })
 });
 
 function sendData(doc) {
