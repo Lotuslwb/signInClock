@@ -119,22 +119,26 @@
                             <input class="Q-option J-name" type='text' placeholder="请输入您的姓名" />                                    
                             <input class="Q-option J-tel" type='tel' placeholder="请输入您的手机号" />                                    
                             <select class="Q-option J-city">
+                                <option value=''>请选择城市</option>
                                 <% for(var i=0;i<StateRegion.length;i++){%>
                                     <option value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
                                 <%}%>
                             </select> 
                             <div class="Q-option-css date select-wrap">
                                 <select class="year-select select">
+                                    <option value=''>出生年</option>
                                     <% for(var i=0;i<year.length;i++){%>
                                         <option value="<%= year[i].value %>"  <%=(year[i].value=='1990'?'selected':'')%> ><%= year[i].text %></option>
                                     <%}%>
                                 </select>
                                 <select class="month-select select">
+                                    <option value=''>月</option>
                                     <% for(var i=0;i<month.length;i++){%>
                                     <option value="<%= month[i].value %>"><%= month[i].text %></option>
                                     <%}%>
                                 </select>
                                 <select class="date-select select">
+                                    <option value=''>日</option>
                                     <% for(var i=0;i<date.length;i++){%>
                                     <option value="<%= date[i].value %>"><%= date[i].text %></option>
                                     <%}%>
@@ -383,7 +387,7 @@
                 return reg.test(tel);
             },
             genDates:function(days){
-                var html='';
+                var html="<option value=''>日</option>";
                 for(var i=1;i<=days;i++){
                     html+='<option value="'+i+'">'+i+'</option>';
                 }
