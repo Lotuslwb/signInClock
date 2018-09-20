@@ -35,8 +35,11 @@ router.get('/v2', function (req, res, next) {
 });
 
 router.post('/form', function (req, res, next) {
-    // var host = 'https://stg-efcom-lb.eflangtech.com/';  
-    var host = 'https://services.ef.com/';
+    // For Test
+    var host = 'https://stg-efcom-lb.eflangtech.com/';  
+
+    // For Online 
+    // var host = 'https://services.ef.com/';
     var submissionURL = host + 'secureformsapi/Campaignsubmission';
     var superagent = require('superagent');
 
