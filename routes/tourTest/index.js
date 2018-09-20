@@ -36,10 +36,10 @@ router.get('/v2', function (req, res, next) {
 
 router.post('/form', function (req, res, next) {
     // For Test
-    var host = 'https://stg-efcom-lb.eflangtech.com/';  
+    // var host = 'https://stg-efcom-lb.eflangtech.com/';  
 
     // For Online 
-    // var host = 'https://services.ef.com/';
+    var host = 'https://services.ef.com/';
     var submissionURL = host + 'secureformsapi/Campaignsubmission';
     var superagent = require('superagent');
 
