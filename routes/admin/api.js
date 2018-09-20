@@ -252,7 +252,7 @@ router.post('/teacher/smsSend', function (req, res, next) {
 /*收集leads 查询接口*/
 router.post('/leads/query', function (req, res, next) {
     // var tag = req.body.tag;
-    var tag = 'v7';
+    var tag = 'v8';
     var realName = req.body.realName;
     var cellPhone = req.body.cellPhone;
     var limit = req.body.limit * 1;
