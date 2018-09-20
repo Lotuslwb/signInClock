@@ -39,17 +39,17 @@ router.post('/form', function (req, res, next) {
 
     // For Online 
     var host = 'https://services.ef.com/';
-    
+
     var submissionURL = host + 'secureformsapi/Campaignsubmission';
     var superagent = require('superagent');
 
     superagent.post(submissionURL).send(req.body).then((res) => {
         console.log(res.body);
         return superagent.post('http://ma.eldesign.cn/leads/api/addLeads').send({
-            realName: req.body.customer.LastName,
+            realName: req.body.customer.LastName + req.body.customer.FirstName,
             cellPhone: req.body.customer.MobilePhone,
             cityName: req.body.customer.StateRegionName,
-            others: res.body.FormId,
+            others: JSON.stringify(res.body),
             age: req.body.customer.score,
             tag: 'v8',
         });
