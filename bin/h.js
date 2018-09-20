@@ -51,7 +51,7 @@ function getBody(doc) {
     customer.MobilePhone = doc.cellPhone;
     customer.DateOfBirth = null; // January 9th, 1975 (0-based index for months)
     customer.StateRegionName = doc.cityName;
-    customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
+    customer.StateRegionCode = "CN-";
     customer.CountryOfResidence = "CN";
     customer.Gender = '-';
     customer.Comments = '类型:-';
