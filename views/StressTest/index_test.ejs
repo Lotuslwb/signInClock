@@ -17,9 +17,7 @@
     <script src="/StressTest/js/dpi.js"></script>
     <link rel="stylesheet" href="/StressTest/css/animate.css">
     <link rel="stylesheet" href="/StressTest/css/main.css">
-
-    <link rel="stylesheet" href="/StressTest/css/style_test.css">
-
+    <link rel="stylesheet" href="/StressTest/css/style.css">
     <link rel="stylesheet" href="/swiper/swiper-3.3.1.min.css">
     <script>
     var _hmt = _hmt || [];
@@ -55,7 +53,6 @@
     <div class="page swiper-page">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-            
                 <div class="swiper-slide page1 swiper-no-swiping">
                         <img src="/StressTest/img/page1-title.png" class="page1-title">
                         <div class="page1-form">
@@ -66,7 +63,6 @@
                                 <div class="biggerFont">开始拷问</div>
                         </div>
                 </div>
-                              
                 <div class="swiper-slide page2 swiper-no-swiping">
                         <img src="/StressTest/img/page1-title.png" class="page2-title">
                         <div class="page2-form">
@@ -113,44 +109,26 @@
                 <% } %>
                 <div class="swiper-slide  page2 page11 swiper-no-swiping">
                     
-                    <img src="/StressTest/img/page11-title.png" class="page1-title" />
-                    <div class="page11-form">
-                        <div class="Q-options">
-                            <input class="Q-option J-name" type='text' placeholder="请输入您的姓名" />                                    
-                            <input class="Q-option J-tel" type='tel' placeholder="请输入您的手机号" />                                    
-                            <select class="Q-option J-city">
-                                <option value=''>请选择城市</option>
-                                <% for(var i=0;i<StateRegion.length;i++){%>
-                                    <option value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
-                                <%}%>
-                            </select> 
-                            <div class="Q-option-css date select-wrap">
-                                <select class="year-select select">
-                                    <option value=''>出生年</option>
-                                    <% for(var i=0;i<year.length;i++){%>
-                                        <option value="<%= year[i].value %>"><%= year[i].text %></option>
+                        <img src="/StressTest/img/page1-title.png" class="page1-title">
+                        <div class="page11-form">
+                            <div class="Q-title">填表查看你的人生掏空指数</div>
+                            <div class="Q-options">
+                                <input class="Q-option J-name" type='text' placeholder="请输入您的姓名" />                                    
+                                <input class="Q-option J-tel" type='tel' placeholder="请输入您的手机号" />                                    
+                                <select class="Q-option J-city">
+                                    <% for(var i=0;i<StateRegion.length;i++){%>
+                                        <option value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
                                     <%}%>
-                                </select>
-                                <select class="month-select select">
-                                    <option value=''>月</option>
-                                    <% for(var i=0;i<month.length;i++){%>
-                                    <option value="<%= month[i].value %>"><%= month[i].text %></option>
-                                    <%}%>
-                                </select>
-                                <select class="date-select select">
-                                    <option value=''>日</option>
-                                    <% for(var i=0;i<date.length;i++){%>
-                                    <option value="<%= date[i].value %>"><%= date[i].text %></option>
-                                    <%}%>
-                                </select>
+                                </select> 
+                                <input class="Q-option date J-date" type='date' defaultValue='1990-01-01' placeholder="请输入您的生日" value="" />                                                             
                             </div>
                         </div>
-                    </div>
-                    <img src="/StressTest/img/page11-info.png" class="page11-info">
-                    <div class="btn page1-btn J-submit">
-                        <div class="biggerFont">出结果</div>
-                    </div>
-                </div>  
+                        <div class="btn page1-btn J-submit">
+                            <div class="biggerFont">确定</div>
+                        </div>
+                    
+                </div>
+
                 <div class="swiper-slide page-result swiper-no-swiping">
                     <div class="result-text">长按保存结果，分享你的目的地</div>
                     <div class="mask"></div>
@@ -166,6 +144,7 @@
     <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
     <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
     <script>
+        // $('.J-date')[0].defaultValue='1990-01-01'
 
         var resultList="<%- resultList %>".split(',');
         var channel="<%- channel %>";
@@ -221,17 +200,15 @@
             bindEvnet: function () {
                 var me = this;
 
-
-                $('.month-select').change(function(){
-                    var month=$(this).val();
-                    var days=31;
-                    if(month=='2'){
-                        days=28;
-                    }else if(month=='4'||month=="6"||month=="9"||month=="11"){
-                        days=30
+                $(".J-date").on("input",function(){
+                    if($(this).val().length>0){
+                        $(this).addClass("full");
                     }
-                    me.genDates(days);
-                })
+                    else{
+                        $(this).removeClass("full");
+                    }
+                });
+
                 $('.J-page1-btn').click(function () {
                     timer && clearInterval(timer);
                     mySwiper.slideNext();
@@ -250,6 +227,7 @@
 
                 $('.Q-option').click(function () {
                     if($(this).parents('.page11').length) return true;
+
                     $(this).addClass('active').siblings('.Q-option').removeClass('active');
                     $(this).parents('.swiper-slide').find('.btn').addClass('active');
                 })
@@ -265,6 +243,7 @@
 
                 function checkVal(){
                     var result=true;
+                    var tel=$('.J-tel').val();
                     $('.page11 .Q-option').each(function(){
                         if(!$(this).val()) result=false;
                     })
@@ -296,21 +275,19 @@
                     var weChatData = new Object();
                     var trackingData = new Object();
                     var campaigndata = new Object();
-                    
-                    var year=$('.year-select').val();
-                    var month=$('.month-select').val();
-                    var date=$('.date-select').val();
+            
 
                     customer.FirstName = $('.J-name').val().substr(1,$('.J-name').val().length-1);
                     customer.LastName = $('.J-name').val().substr(0,1);
                     customer.MobilePhone = $('.J-tel').val();
-                    customer.DateOfBirth = new Date(year+'-'+month+'-'+date); // January 9th, 1975 (0-based index for months)
+                    customer.DateOfBirth = new Date($('.J-date').val()); // January 9th, 1975 (0-based index for months)
                     customer.StateRegionName = $('.J-city').find("option:selected").text();
                     customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.page2-form').find('.Q-option.active').index()==0?"M":"F";
                     customer.Comments = '压力程度:'+me.level;
                     customer.Email = customer.MobilePhone + "@noemail.com";
+
 
                     // Tracking
                     trackingData.Etag =  channel+"_Restart";
@@ -384,13 +361,6 @@
             checkTel:function(tel){
                 var reg = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
                 return reg.test(tel);
-            },
-            genDates:function(days){
-                var html="<option value=''>日</option>";
-                for(var i=1;i<=days;i++){
-                    html+='<option value="'+i+'">'+i+'</option>';
-                }
-                $('.date-select').html(html);
             }
         }
         var page = new indexHanlder();
