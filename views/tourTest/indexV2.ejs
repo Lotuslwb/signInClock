@@ -398,52 +398,28 @@
     <script src="/tourTest/js/tplTagStyle.js?12"></script>
 
     <script>
-        var tagData = [{
-                tagId: '1-1',
-                text: '手刀行动派'
-            }, {
-                tagId: '1-2',
-                text: '勤俭持家派'
-            }, {
-                tagId: '1-3',
-                text: '周密计划派'
-            }, {
-                tagId: '3-1',
-                text: '质朴老实人'
-            }, {
-                tagId: '3-2',
-                text: '凹造型大帝'
-            }, {
-                tagId: '3-3',
-                text: '人字拖无敌'
-            }, {
-                tagId: '4-1',
-                text: '热情似火'
-            }, {
-                tagId: '4-2',
-                text: '深沉如你'
-            }, {
-                tagId: '4-3',
-                text: '自由活泼'
-            }, {
-                tagId: '5-1',
-                text: '拖延症患者'
-            }, {
-                tagId: '5-2',
-                text: '极度自律'
-            }, {
-                tagId: '5-3',
-                text: '随心所欲'
-            }, , {
-                tagId: '8-1',
-                text: '另辟蹊径'
-            }, {
-                tagId: '8-2',
-                text: '度假=放空'
-            }, {
-                tagId: '8-3',
-                text: '极限挑战'
-            }, ];
+        var levelMap ={
+            'female_1_1.jpg':'适应型旅行者，推荐目的地:布莱顿',
+            'female_1_2.jpg':'适应型旅行者，推荐目的地:马耳他',
+            'female_1_3.jpg':'适应型旅行者，推荐目的地:迈阿密',
+            'female_2_1.jpg':'收集型旅行者，推荐目的地:马德里',
+            'female_2_2.jpg':'收集型旅行者，推荐目的地:首尔',
+            'female_2_3.jpg':'收集型旅行者，推荐目的地:巴黎',
+            'female_3_1.jpg':'思考型旅行者，推荐目的地:东京',
+            'female_3_2.jpg':'思考型旅行者，推荐目的地:罗马',
+            'female_4_1.jpg':'自律型旅行者，推荐目的地:加拿大',
+            'female_4_2.jpg':'自律型旅行者，推荐目的地:美西',
+            'male_1_1.jpg':'适应型旅行者，推荐目的地:布莱顿',
+            'male_1_2.jpg':'适应型旅行者，推荐目的地:马耳他',
+            'male_1_3.jpg':'适应型旅行者，推荐目的地:迈阿密',
+            'male_2_1.jpg':'收集型旅行者，推荐目的地:巴塞罗那',
+            'male_2_2.jpg':'收集型旅行者，推荐目的地:新加坡',
+            'male_2_3.jpg':'收集型旅行者，推荐目的地:巴黎',
+            'male_3_1.jpg':'思考型旅行者，推荐目的地:柏林',
+            'male_3_2.jpg':'思考型旅行者，推荐目的地:曼切斯特',
+            'male_4_1.jpg':'自律型旅行者，推荐目的地:新西兰',
+            'male_4_2.jpg':'自律型旅行者，推荐目的地:美西',
+        }
     </script>
     <script>
 
@@ -633,7 +609,7 @@
                     customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.gender-page').find('.Q-item.active').index()==0?"M":"F";
-                    customer.Comments = '压力程度:'+me.level;
+                    customer.Comments = levelMap[me.result];
                     customer.Email = customer.MobilePhone + "@noemail.com";
 
 
@@ -688,7 +664,7 @@
                 var level=this.getScoreLevel(totalScore);
                 var filterStr=(sex==0?"male":"female") + "_"+ level;
                 console.log(filterStr);
-                var result=resultList.filter(function(item){
+                var result=this.result=resultList.filter(function(item){
                     return item.indexOf(filterStr)==0;
                 }).random();
                 console.log(result);
@@ -761,8 +737,8 @@
         var loader = new loader();
         loader.onLoaded = function () {
             loaded = true;
-            $('.loading-page').fadeOut();
             $('.swiper-page').addClass('active');
+            $('.loading-page').fadeOut();
             var $btn = $('.J-page1-btn');
             timer = setInterval(function () {
                 $btn.hasClass('active') ? $btn.removeClass('active') : $btn.addClass('active');

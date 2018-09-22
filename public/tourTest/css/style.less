@@ -4,7 +4,6 @@
 }
 
 body {
-    background: #FFFFFF;
     font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif
 }
 
@@ -182,6 +181,7 @@ select {
 }
 
 .start-page {
+    max-height: 1086px;
     background: url(../img/startpage-bg.png) no-repeat center;
     background-size: cover;
     &.start-page-v2 {
@@ -207,6 +207,10 @@ select {
         top: 67px;
     }
     .btn {
+        background: url(../img/btn_1.png);
+        width: 379px;
+        height: 68px;
+        line-height: 68px;
         position: absolute;
         bottom: 140px;
         left: 50%;
@@ -221,6 +225,9 @@ select {
         }
         .startpage-icon2 {
             animation: OpAni 1s ease both 999;
+        }
+        .btn {
+            animation: btnAni 1s step-end both 999;
         }
     }
 }
@@ -616,6 +623,18 @@ select {
     }
     50% {
         background: url(../img/loading-img-2.png) no-repeat;
+    }
+}
+
+@keyframes btnAni {
+    0%,
+    100% {
+        background: url(../img/btn_1.png) no-repeat;
+        color: #fff;
+    }
+    50% {
+        background: url(../img/btn_2.png) no-repeat;
+        color: #ef9348;
     }
 }
 

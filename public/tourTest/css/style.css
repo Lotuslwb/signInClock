@@ -3,7 +3,6 @@
   src: url('../font/1.ttf');
 }
 body {
-  background: #FFFFFF;
   font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;
 }
 select {
@@ -162,6 +161,7 @@ select {
           animation: dot4Ani 3s step-start both 999;
 }
 .start-page {
+  max-height: 1086px;
   background: url(../img/startpage-bg.png) no-repeat center;
   background-size: cover;
 }
@@ -188,6 +188,10 @@ select {
   top: 67px;
 }
 .start-page .btn {
+  background: url(../img/btn_1.png);
+  width: 379px;
+  height: 68px;
+  line-height: 68px;
   position: absolute;
   bottom: 140px;
   left: 50%;
@@ -205,6 +209,10 @@ select {
 .start-page.swiper-slide-active .startpage-icon2 {
   -webkit-animation: OpAni 1s ease both 999;
           animation: OpAni 1s ease both 999;
+}
+.start-page.swiper-slide-active .btn {
+  -webkit-animation: btnAni 1s step-end both 999;
+          animation: btnAni 1s step-end both 999;
 }
 .gender-page .pic {
   margin: 155px auto 0;
@@ -663,6 +671,28 @@ select {
   }
   50% {
     background: url(../img/loading-img-2.png) no-repeat;
+  }
+}
+@-webkit-keyframes btnAni {
+  0%,
+  100% {
+    background: url(../img/btn_1.png) no-repeat;
+    color: #fff;
+  }
+  50% {
+    background: url(../img/btn_2.png) no-repeat;
+    color: #ef9348;
+  }
+}
+@keyframes btnAni {
+  0%,
+  100% {
+    background: url(../img/btn_1.png) no-repeat;
+    color: #fff;
+  }
+  50% {
+    background: url(../img/btn_2.png) no-repeat;
+    color: #ef9348;
   }
 }
 @-webkit-keyframes OpAni {

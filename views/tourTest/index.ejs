@@ -446,9 +446,10 @@
                 tagId: '8-3',
                 text: '极限挑战'
             }, ];
+        var levelMap=['','你的旅行属性为：休闲懒散派，适合海滨城市如布莱顿、马耳他、迈阿密等','你的旅行属性为：逛吃逛吃党，适合饮食丰富，特色小店、手工艺店比较多的城市，如巴黎、巴塞罗那、新加坡、首尔、马德里等','你的旅行属性为：城市暴走族，适合去面积不大，但到处都有景点、风景和历史建筑的城市，比如罗马、东京、曼城、柏林','你的旅行属性为：打卡狂魔，适合大山大河、需要自驾的地方，如美西、加拿大、新西兰等'];
     </script>
     <script>
-
+        
         var resultList="<%- resultList %>".split(',');
         var channel="<%- channel %>";
         var SourceCode="<%- SourceCode %>";
@@ -636,7 +637,7 @@
                     customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.gender-page').find('.Q-item.active').index()==0?"M":"F";
-                    customer.Comments = '类型:'+me.level;
+                    customer.Comments = levelMap[me.level];
                     customer.Email = customer.MobilePhone + "@noemail.com";
 
 
