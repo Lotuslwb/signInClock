@@ -355,12 +355,17 @@
                         <input type="tel" class="input tel J-tel leads-Q" placeholder="请输入您的手机号">
                         <div class="selectWrap">
                             <select class="city-select J-city select leads-Q">
-                            <option value=''>请选择城市</option>
+                            <option value=''>请选择您的省份</option>
                             <% for(var i=0;i<StateRegion.length;i++){%>
-                                <option value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
+                                <option data-id="<%= StateRegion[i].id %>" value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
                             <%}%>
                             </select>
                         </div>
+                        <div class="selectWrap">
+                            <select class="city-select J-city-child select leads-Q">
+                            <option value=''>请选择您的城市</option>
+                            </select>
+                        </div>                        
                         <div class="selectWrap">
                             <select class="year-select select leads-Q">
                                 <option value=''>出生年</option>
@@ -382,7 +387,7 @@
                             </select>
                         </div>
                     </div>
-                    <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt="">
+                    <!-- <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt=""> -->
                     <div class="btn J-submit">确认</div>
                 </div>
                 <div class="swiper-slide result-page result-v1 swiper-no-swiping">
@@ -599,6 +604,28 @@
                     return result;
                 }
 
+                $('.J-city').change(function(){
+                    var id=$(this).find("option:selected").data('id');
+                    $.ajax({
+                        url: '/tourTest/queryCity',
+                        dataType: 'json',
+                        crossDomain: true,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({id:id}),
+                        success: function (res) {
+                            console.log(res);
+                            var data=res.data[0].map(item=>{
+                                return {
+                                    value:item.id,
+                                    text:item.name
+                                }
+                            });
+                            var str=genOptions(data);
+                            $(".J-city-child").html(str);
+                        }
+                    });
+                })
 
                 $('.J-submit').click(function () {
                     if (!$(this).hasClass('active') || !checkVal()) {
@@ -638,6 +665,7 @@
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.gender-page').find('.Q-item.active').index()==0?"M":"F";
                     customer.Comments = levelMap[me.level];
+                    customer.City = $('.J-city-child').find("option:selected").text();
                     customer.Email = customer.MobilePhone + "@noemail.com";
 
 
@@ -809,6 +837,15 @@
                 $btn.hasClass('active') ? $btn.removeClass('active') : $btn.addClass('active');
             }, 1500)
             mySwiper = initMySwiper();
+        }
+
+
+        function genOptions(data){
+            var returnStr='';
+            data.map(item=>{
+                returnStr+='<option value="'+item.value+'">'+item.text+'</option>';
+            });
+            return returnStr;
         }
     </script>
 

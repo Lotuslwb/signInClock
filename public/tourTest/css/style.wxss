@@ -340,7 +340,7 @@ select {
   object-position: center;
 }
 .leads-page .leads-title {
-  margin: 60px auto 0;
+  margin: 100px auto 0;
 }
 .leads-page .leads-pic {
   margin: 15px auto 40px;
@@ -348,7 +348,7 @@ select {
 .leads-page .form {
   width: 470px;
   margin: auto;
-  padding: 20px 0;
+  padding: 75px 0;
 }
 .leads-page .input {
   text-align: center;
@@ -362,7 +362,7 @@ select {
   height: 60px;
   line-height: 60px;
   font-size: 30px;
-  margin-top: 20px;
+  margin-bottom: 25px;
   color: #ef9348;
 }
 .leads-page .select {
@@ -387,6 +387,9 @@ select {
 .leads-page .date-select {
   width: 100px;
   padding-right: 40px;
+}
+.leads-page .btn {
+  margin-top: 25px;
 }
 .result-page {
   max-height: 1086px;
