@@ -258,8 +258,6 @@ select {
   margin-bottom: 15px;
   display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
-          align-items: center;
 }
 .Question-page .Q-list .Q-item .radio,
 .Question-page .Q-list .Q-item .label {
