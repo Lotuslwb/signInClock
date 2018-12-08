@@ -1,0 +1,33 @@
+﻿<%- include("header.ejs",{"title":'参赛篇目'}) %>
+
+<div class='page list-page active'>
+    <div class='header'>
+        <div class="title">
+
+            <% if(leave==0){%>幼儿组 3-6岁
+            <%}%>
+            <% if(leave==1){%>小学组 7-12岁
+            <%}%>
+            <% if(leave==2){%>中学组 13-18岁
+            <%}%>
+
+        </div>
+        <div class="info">请选择参赛篇目</div>
+    </div>
+    <div class="list">
+        <% for(var i=0;i<docs.length;i++){  var item=docs[i] %>
+        <div class="item J-gotoDetail" data-id='<%=item._id %>'>
+            <%=item.index %>.
+            <%=item.arName %>
+        </div>
+        <%}%>
+    </div>
+</div>
+
+<script>
+    $('.J-gotoDetail').click(function () {
+        var id = $(this).data('id');
+        window.location.href = '/ximalaya/record?id=' + id;
+    })
+</script>
+<%- include("footer.ejs") %>

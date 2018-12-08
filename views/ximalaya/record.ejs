@@ -1,0 +1,20 @@
+﻿<%- include("header.ejs",{"title":'参赛篇目'}) %>
+
+<div class='page recode-page active'>
+    <div class="title"><%- doc.arName %></div>
+    <img src="/ximalaya/img/origin-play.png" class="origin-play" />
+    <div class="content">
+        <%- doc.arText %>
+    </div>
+    <div class="actions">
+        <img src="/ximalaya/img/record-btn.png" class="action">
+        <!-- <img src="/ximalaya/img/palying-btn.png" class="action"> -->
+        <!-- <img src="/ximalaya/img/replay-btn.png" class="action">
+        <img src="/ximalaya/img/again-record-btn.png" class="action bw">
+        <img src="/ximalaya/img/record-submit-btn.png" class="action"> -->
+    </div>
+</div>
+
+<script src="/javascripts/jquery.js"></script>
+
+<%- include("footer.ejs") %>

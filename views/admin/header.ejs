@@ -35,9 +35,10 @@
         <div id="logo">
         </div>
         <ul id="nav-list">
-
-            <li class="nav-item yummy-handms  <% if(routes == 'daka'){ %> nav-item-active  <% } %> >"><a
-                        href="/admin/daka">打卡计划</a></li>
+            <%  if(needNav){ %>
+            <li class="nav-item yummy-handms  <% if(routes == 'ximaArticle'){ %> nav-item-active  <% } %> >"><a
+                        href="/admin/ximaArticle">文章管理</a></li>
+            <%}%>            
         </ul>
     </div>
 </div>

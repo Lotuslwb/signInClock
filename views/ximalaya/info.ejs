@@ -1,0 +1,19 @@
+﻿<%- include("header.ejs",{"title":'结果页'}) %>
+
+<div class='page info-page active'>
+    <img src='/ximalaya/img/success-icon.png' class="icon" />
+    <% if(type=='login'){%>
+    <div class="info">登录成功！</div>
+    <%}else{%>
+    <div class="info">报名成功！</div>
+    <div class="tips">赶紧录制作品吧</div>
+    <%}%>
+    <div class="btn J-gotoList">录制作品</div>
+</div>
+
+<script>
+    $('.J-gotoList').click(function () {
+        window.location.href = '/ximalaya/list';
+    })
+</script>
+<%- include("footer.ejs") %>

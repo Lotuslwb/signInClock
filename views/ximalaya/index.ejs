@@ -1,0 +1,77 @@
+﻿<%- include("header.ejs",{"title":'首页'}) %>
+
+<div class='page index-page active'>
+    <div class="content">
+        <img src="/ximalaya/img/index-play-btn.png" class="play-btn mid">
+        <img src="/ximalaya/img/index-title.png" class="title">
+        <div class="game-des-box">
+            <img src="/ximalaya/img/index-game-des.png" class="game-des">
+        </div>
+    </div>
+    <img src="/ximalaya/img/index-btn.png" class="index-btn J-gotoRegistry">
+    <div class="info J-gotoRule">活动详情</div>
+</div>
+
+<div class="rule-page">
+    <div class="title">赛程安排和奖品</div>
+    <div class="p-box">
+        <div class="p-title ">全国总决赛 5月16日-6月1日</div>
+        <img src="/ximalaya/img/rule-banner.png" class="rule-banner-1">
+        <div class="info">
+            * 特等奖获奖者将从中学组中选出 <br />
+            * 本次大奖的“奖学金”均以英孚课程券的形式予以发放，<br />
+            &nbsp;&nbsp; 可抵用英孚常规课程
+        </div>
+    </div>
+    <div class="p-box">
+        <div class="p-title ">区域决赛 5月1日-5月15日</div>
+        <img src="/ximalaya/img/rule-banner2.png" class="rule-banner-1">
+    </div>
+    <div class="p-box">
+        <div class="p-title ">网络初赛 1月8日-4月30日</div>
+        <img src="/ximalaya/img/rule-banner3.png" class="rule-banner-3">
+    </div>
+</div>
+
+<div class="rank-page">
+    <div class="title">排行榜</div>
+    <div class="search-box">
+        <input type="text" placeholder="请输入选手姓名">
+    </div>
+    <div class="rank-box">
+        <div class="tabs">
+            <div class="tab active">幼儿组</div>
+            <div class="tab">小学组</div>
+            <div class="tab">中学组</div>
+        </div>
+        <div class="list">
+            <div class="item">
+                <div class="no">1</div>
+                <img src="/ximalaya/img/nickpic.png" class="nickpic">
+                <div class="text-box">
+                    <div class="product-name">作品名</div>
+                    <div class="info">选手名 7005个赞</div>
+                    <div class="actions">
+                        <div class="help">为TA拉票</div>
+                        <div class="vote">投票</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="more-btn">查看全部作品</div>
+        <img src="/ximalaya/img/rank-banner-1.png" class="rank-banner">
+    </div>
+</div>
+
+<script src="/javascripts/jquery.js"></script>
+<script>
+    $('.J-gotoRule').click(function () {
+        window.location.href = '/ximalaya/ruleTxt';
+    });
+
+    $('.J-gotoRegistry').click(function () {
+        window.location.href = '/ximalaya/registry';
+    });
+</script>
+
+<%- include("footer.ejs") %>

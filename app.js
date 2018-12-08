@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var wx = require('./routes/wxConnect');
 var wxAPI = require('./routes/wxAPI');
 
+//  压力测试
 var newyearTabs = require('./routes/newyearTabs');
 var StressTest = require('./routes/StressTest');
 var tourTest = require('./routes/tourTest');
@@ -42,9 +43,13 @@ var newyear17API = require('./routes/newyear17/api');
 //夏令营计划
 var camp = require('./routes/camp/index');
 
-//
+// 邀请函
 var invitation = require('./routes/invitation/index');
 var invitationAPI = require('./routes/invitation/api');
+
+// EF + 喜马拉雅
+var ximalaya = require('./routes/ximalaya/index');
+var ximalayaAPI = require('./routes/ximalaya/api');
 
 var app = express();
 
@@ -58,7 +63,9 @@ log4js.use(app);
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(cookieParser('it is a sb'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -101,6 +108,9 @@ app.use('/leads/api', leadsAPI);
 
 app.use('/newyear17', newyear17);
 app.use('/newyear17/api', newyear17API);
+
+app.use('/ximalaya', ximalaya);
+app.use('/ximalaya/api', ximalayaAPI);
 
 app.use('/yingfu-newyearTabs/', newyearTabs);
 
