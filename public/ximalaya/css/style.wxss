@@ -444,6 +444,9 @@ select {
   font-size: 32px;
   margin-top: 10px;
 }
+.recode-page .action {
+  display: none;
+}
 .recode-page .actions {
   display: -webkit-box;
   display: flex;
