@@ -291,7 +291,7 @@ select {
             background: url(../img/arrow.png) no-repeat center right 30px;
         }
         .input-withBtn {
-            width: auto;
+            width: 330px;
         }
         .qcode-btn {
             width: 225px;
@@ -549,5 +549,21 @@ select {
     .info {
         font-size: 24px;
         line-height: 33px;
+    }
+}
+
+.toolbar {
+    display: none;
+    position: absolute;
+    z-index: 99;
+    bottom: 0;
+    right: 0;
+    font-size: 36px;
+    background: #FFFFFF;
+    &.active {
+        display: block;
+    }
+    a {
+        padding: 20px;
     }
 }

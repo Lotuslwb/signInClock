@@ -1,8 +1,10 @@
 ﻿<%- include("header.ejs",{"title":'参赛篇目'}) %>
 
-<div class='page recode-page active'>
-    <div class="title"><%- doc.arName %></div>
-    <img src="/ximalaya/img/origin-play.png" class="origin-play" />
+<div class='page recode-page'>
+    <div class="title">
+        <%- doc.arName %>
+    </div>
+    <img src="/ximalaya/img/origin-play.png" class="J-music origin-play" />
     <div class="content">
         <%- doc.arText %>
     </div>
@@ -13,8 +15,96 @@
         <img src="/ximalaya/img/again-record-btn.png" class="action bw">
         <img src="/ximalaya/img/record-submit-btn.png" class="action"> -->
     </div>
+    <div class="musicUrl" data-src="<%= doc.arRecord %>"></div>
 </div>
 
-<script src="/javascripts/jquery.js"></script>
 
+<!-- debug -->
+<div class='toolbar active'>
+    <a href="http://ma.eldesign.cn/xmjssdk/demo.html">DEMO</a>
+    <a href="javascript:window.location.reload();">刷新</a>
+</div>
+<script src="/xmjssdk/vconsole.min.js?v=16"></script>
+<script> var vConsole = new VConsole();    </script>
+
+<input type="file" id="file">
+<script src="/javascripts/qiniu.min.js"></script>
+<script>
+    var token;
+    $.ajax({
+        type: 'get',
+        url: '/qiniu/api/getToken',
+        success: function (data) {
+            if (data.status == 200) {
+                token = data.data.uploadToken;
+                console.log(token);
+            } else {
+                window.mPZ.toast(data.data);
+            }
+        },
+        dataType: 'json'
+    });
+    $('#file').change(function (e) {
+        var file = this.files[0]; //获取图片
+        console.log(file);
+        var observable = qiniu.upload(file, new Date() * 1, token, {}, {
+            useCdnDomain: false,
+            region: qiniu.region.z0
+        })
+        var subscription = observable.subscribe({
+            next(res) {
+                console.log(res);
+            },
+            error(err) {
+                console.log(err);
+            },
+            complete(res) {
+                console.log(res, 'complete');
+            }
+        }) // 上传开始
+    })
+
+    function Page() {
+        this.init();
+    }
+
+    Page.prototype = {
+        init: function () {
+            this.initMusic();
+            this.bindEvent();
+        },
+        bindEvent: function () {
+            var me = this;
+            $('.J-music').click(function (e) {
+                if ($(this).hasClass('play')) {
+                    me.stopMusic();
+                } else {
+                    me.playMusic();
+                }
+            })
+        },
+        initMusic: function () {
+            var audioElement = this.audioElement = document.createElement('audio');
+            audioElement.controls = true;
+            audioElement.loop = false;
+            audioElement.autoplay = false;
+            audioElement.onended = function () {
+                $('.J-music').removeClass('play');
+            };
+
+            var src = $('.musicUrl').data('src');
+            audioElement.setAttribute('src', src);
+            audioElement.load();
+        },
+        playMusic: function () {
+            this.audioElement.play();
+            $('.J-music').addClass('play');
+        },
+        stopMusic: function () {
+            this.audioElement.pause();
+            $('.J-music').removeClass('play');
+        },
+    }
+    new Page();
+</script>
 <%- include("footer.ejs") %>

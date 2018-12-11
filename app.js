@@ -51,6 +51,9 @@ var invitationAPI = require('./routes/invitation/api');
 var ximalaya = require('./routes/ximalaya/index');
 var ximalayaAPI = require('./routes/ximalaya/api');
 
+// 七牛云存储
+var qiniuApi = require('./routes/qiniu/api');
+
 var app = express();
 
 // view engine setup
@@ -124,6 +127,9 @@ app.use('/camp', camp);
 
 app.use('/invitation', invitation);
 app.use('/invitation/api', invitationAPI);
+
+
+app.use('/qiniu/api', qiniuApi);
 
 
 // catch 404 and forward to error handler

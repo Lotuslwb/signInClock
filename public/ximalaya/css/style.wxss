@@ -286,7 +286,7 @@ select {
   background: url(../img/arrow.png) no-repeat center right 30px;
 }
 .registry-page .rows .input-withBtn {
-  width: auto;
+  width: 330px;
 }
 .registry-page .rows .qcode-btn {
   width: 225px;
@@ -549,4 +549,19 @@ select {
 .share-page .info {
   font-size: 24px;
   line-height: 33px;
+}
+.toolbar {
+  display: none;
+  position: absolute;
+  z-index: 99;
+  bottom: 0;
+  right: 0;
+  font-size: 36px;
+  background: #FFFFFF;
+}
+.toolbar.active {
+  display: block;
+}
+.toolbar a {
+  padding: 20px;
 }
