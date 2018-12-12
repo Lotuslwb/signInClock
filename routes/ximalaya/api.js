@@ -219,7 +219,8 @@ router.post('/saveAudio', function (req, res, next) {
                 console.log('下载成功');
                 var res_key = res.respBody.key;
                 productRecordAmr = 'http://pjgcuhtbw.bkt.clouddn.com/' + res_key;
-                return qiniuFunctions.amr2mp3('xmly', res_key, 'xmly_audio').then(function (ret) {
+                var mp3Callback = 'http://ma.eldesign.cn/ximalaya/api/mp3Callback?tab=mp3Callback';
+                return qiniuFunctions.amr2mp3('xmly', res_key, 'xmly_audio', mp3Callback).then(function (ret) {
                     console.log('转码任务提交');
                     return ret.respBody.persistentId;
                 });

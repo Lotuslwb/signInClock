@@ -56,7 +56,7 @@ var fetchUrl = function (resUrl, bucket, key) {
  * 要转码的文件所在的空间和文件名  bucket  key
  * 转码所使用的队列名称。  pipleline
  *  */
-var amr2mp3 = function (srcBucket, srcKey, pipeline) {
+var amr2mp3 = function (srcBucket, srcKey, pipeline, persistentNotifyUrl) {
 
     var promise = initOperManager().then(function (operManager) {
         return new Promise(function (resolve, reject) {
@@ -65,6 +65,9 @@ var amr2mp3 = function (srcBucket, srcKey, pipeline) {
                 'force': false,
             };
             var fops = ['avthumb/mp3/ab/128k/ar/44100/acodec/libmp3lame'];
+            var options = {
+                'persistentNotifyUrl': persistentNotifyUrl,
+            };
             //持久化数据处理返回的是任务的persistentId，可以根据这个id查询处理状态
             operManager.pfop(srcBucket, srcKey, fops, pipeline, options, function (err, respBody, respInfo) {
                 if (err) {
