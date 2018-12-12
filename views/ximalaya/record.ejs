@@ -46,6 +46,18 @@
         },
         dataType: 'json'
     });
+
+    // $.ajax({
+    //     type: 'post',
+    //     url: '/ximalaya/api/mp3Callback',
+    //     data: {
+    //         url: url
+    //     },
+    //     success: function (data) {
+    //         debugger;
+    //     },
+    //     dataType: 'json'
+    // });
     $('#file').change(function (e) {
         var file = this.files[0]; //获取图片
         console.log(file);
