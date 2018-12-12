@@ -164,8 +164,7 @@
                                 productName: productName,
                             },
                             success: function (data) {
-                                // todo 
-                                if (data.status == 200) {
+                                if (data.status == '200') {
                                     var recordId = data.data._id;
                                     console.log(recordId);
                                     window.location.href =

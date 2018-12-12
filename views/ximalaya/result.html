@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>提交完成</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="HandheldFriendly" content="true">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script src="/javascripts/dpi750.js"></script>
+    <link rel='stylesheet' href='/ximalaya/css/main.css' />
+    <link rel='stylesheet' href='/ximalaya/css/style.css' />
+    <script src="/invitation/js/jquery.min.js"></script>
+    <script src="/invitation/js/utils.js"></script>
+</head>
+
+<body>
+    <!-- debug -->
+    <div class='toolbar active'>
+        <a href="http://ma.eldesign.cn/xmjssdk/demo.html">DEMO</a>
+        <a href="javascript:window.location.reload();">刷新</a>
+    </div>
+
+    <script src="/xmjssdk/vconsole.min.js?v=16"></script>
+    <script>
+        var vConsole = new VConsole();
+    </script>
+
+
+
+
+    <div class="toast"></div>
+    <style>
+        .toast {
+            position: fixed;
+            z-index: 99;
+            padding: 30px 80px;
+            left: 50%;
+            top: 40%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background: rgba(40, 40, 40, 0.75);
+            text-align: center;
+            border-radius: 10px;
+            color: #FFFFFF;
+            min-width: 300px;
+            font-size: 36px;
+            display: none;
+        }
+    </style>
+
+
+
+
+    <div class='page result-page active'>
+        <div class="info">作品已递交成功，分享海报为自己拉票吧</div>
+        <div class="banner-box">
+            <div class="personal">
+                <img src="/ximalaya/img/nickpic.png" class="nickpic">
+                <div class="text">
+                    <div class="name">
+                        11
+                    </div>
+                    <!-- <div class="des">长按识别二维码投票</div> -->
+                </div>
+                <!-- <img src="/ximalaya/img/qcode.png" class="qcode"> -->
+            </div>
+        </div>
+        <div class="share-btns">
+            <img src="/ximalaya/img/Timeline.png" class="timeline-btn J-share" data-ch='weixinGroup'>
+            <img src="/ximalaya/img/wx.png" class="wx-btn J-share" data-ch="weixin">
+            <img src="/ximalaya/img/weibo.png" class="weibo-btn J-share" data-ch="tSina">
+        </div>
+    </div>
+
+    <!-- xmly  SDK -->
+    <script src="/xmjssdk/xmjssdk.js?v=20"></script>
+
+    <script>
+        function tips(msg) {
+            console.log(msg);
+        }
+        var _id = '5c112342ffb48b42b6ce21ea';
+
+        function Page() {
+            this.init();
+        }
+
+        Page.prototype = {
+            init: function () {
+                this.initYa();
+            },
+            initYa: function (cb) {
+                var self = this;
+                ya.ready(function () {
+                    cb && cb();
+                    console.log(11);
+                    $('.J-share').click(function () {
+                        var channel = $(this).data('ch');
+                        console.log(channel);
+                        var linkUrl = 'https://ma.eldesign.cn/ximalaya/share?id=' + _id;
+                        self.shareHandle({
+                            channel,
+                            linkUrl
+                        })
+                    })
+                });
+            },
+            /** channel,linkUrl, */
+            shareHandle: function (obj) {
+                ya.multiShare({
+                    channel: obj.channel,
+                    title: 'test~！#喜马拉雅#',
+                    desc: 'test~！#喜马拉雅#',
+                    link: obj.linkUrl,
+                    imgUrl: 'http://fdfs.xmcdn.com/group17/M06/96/91/wKgJKVexhljjCyxYAAebo16E6Yw923_mobile_large.jpg',
+                    type: 'link',
+                }, function (res) {
+                    // 成功
+                    if (res.ret == 0) {
+                        ya.toast('分享成功！');
+                        console.log(JSON.stringify('分享到成功！'));
+                    } else {
+                        console.log(res.msg);
+                    }
+                });
+            }
+        }
+        new Page();
+    </script>
+
+
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        function initWXSahre() {
+
+            //“分享给朋友”
+            wx.onMenuShareAppMessage({
+                title: '一分钟灵魂拷问……', // 分享标题
+                desc: '敢不敢来测一测？', // 分享描述
+                link: '', // 分享链接
+                imgUrl: 'http://ma.eldesign.cn/StressTest/img/logo.jpg', // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                    _hmt.push(['_trackEvent', '分享', '分享给朋友']);
+
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            //“分享到朋友圈”
+            wx.onMenuShareTimeline({
+                title: '一分钟灵魂拷问……', // 分享标题
+                desc: '敢不敢来测一测？', // 分享描述
+                link: '', // 分享链接
+                imgUrl: 'http://ma.eldesign.cn/StressTest/img/logo.jpg', // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                    _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        }
+
+        function initWX(callback) {
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/getWxSDK',
+                data: {
+                    'originalUrl': window.location.href
+                },
+                success: function (data) {
+                    var wxConfig = data.data.wxConfig;
+
+                    console.log(wxConfig);
+
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: wxConfig.appId, // 必填，公众号的唯一标识
+                        timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                        signature: wxConfig.signature, // 必填，签名，见附录1
+                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
+
+                    wx.ready(function () {
+                        callback && callback();
+                    });
+
+                    wx.error(function (res) {
+                        console.log(res);
+                    });
+
+
+                },
+                dataType: 'json'
+            });
+        }
+
+        initWX(initWXSahre);
+    </script>
+
+
+</body>
+
+</html>
