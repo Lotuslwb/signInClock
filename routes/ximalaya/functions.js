@@ -1,5 +1,6 @@
 var XiMaUserDB = require('../../module/DB/XiMaUserDB');
 var XiMaArticleDB = require('../../module/DB/XiMaArticleDB');
+var XiMalayaDB = require('../../module/DB/XiMalayaDB');
 var logger = require('../../module/tools/log4').logger;
 
 var WXConfig = require('../../module/wx/WXConfig');
@@ -82,6 +83,22 @@ var updateArticle = function (id, data) {
 };
 
 
+
+/** 录音管理 */
+
+var addRecord = function (data) {
+    var promise = new Promise(function (resolve, reject) {
+        XiMalayaDB.add(data).then(function (docs, err) {
+            if (err) {
+                logger.error(['addRecord', JSON.stringify(err)].toString());
+                return reject(err);
+            } else {
+                return resolve(docs);
+            }
+        });
+    });
+    return promise;
+};
 
 /*  用户 注册登录和认证 */
 var checkOpenid = function (req, res) {
@@ -226,6 +243,8 @@ module.exports = {
     queryArticle: queryArticle,
     queryArticleById: queryArticleById,
     queryArticleByLeave: queryArticleByLeave,
+
+    addRecord: addRecord,
 
     checkOpenid: checkOpenid,
     checkLogin: checkLogin,

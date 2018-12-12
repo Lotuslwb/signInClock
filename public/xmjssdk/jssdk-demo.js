@@ -21,6 +21,7 @@ var hide = function (el) {
 var $tips = el('.tips');
 var timer = null;
 var tips = function (str) {
+
   clearTimeout(timer);
   $tips.style.opacity = '1';
   $tips.innerHTML = '<span class="tips-txt">' + str + '</span>';

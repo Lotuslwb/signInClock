@@ -6,7 +6,7 @@ var sendData = require('../../module/tools/sendData');
 var functions = require('../ximalaya/functions');
 var moment = require('moment');
 var logger = require('../../module/tools/log4').logger;
-
+var qiniuFunctions = require('../qiniu/functions');
 
 // 新增文章
 router.post('/addArticle', function (req, res, next) {
@@ -203,6 +203,64 @@ router.post('/registry', function (req, res, next) {
     }
 
 });
+
+// 新建 record
+router.post('/saveAudio', function (req, res, next) {
+    var data = req.body;
+    var url = data.url;
+    var productName = data.productName;
+    var productRecordAmr;
+    if (!url) {
+        res.send(sendData('999', 'url不能为空', ''));
+    } else {
+        functions.checkLogin(req, res).then(function (tel) {
+            var key = new Date() * 1 + '_' + tel + '.amr';
+            var AudioPromise = qiniuFunctions.fetchUrl(url, 'xmly', key).then(res => {
+                console.log('下载成功');
+                var res_key = res.respBody.key;
+                productRecordAmr = 'http://pjgcuhtbw.bkt.clouddn.com/' + res_key;
+                return qiniuFunctions.amr2mp3('xmly', res_key, 'xmly_audio').then(function (ret) {
+                    console.log('转码任务提交');
+                    return ret.respBody.persistentId;
+                });
+            });
+            var UserPromise = functions.queryUserByTel(tel).then(function (doc) {
+                return doc;
+            });
+
+            Promise.all([AudioPromise, UserPromise]).then(function (dataArry) {
+                var persistentId = dataArry[0],
+                    doc = dataArry[1];
+                var recordData = {
+                    telPhone: doc.telPhone,
+                    nickName: doc.nickName,
+                    imgPic: doc.imgPic,
+                    leave: doc.leave,
+                    createTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+                    productName: productName,
+                    productRecordAmr: productRecordAmr,
+                    persistentId: persistentId
+                }
+                return functions.addRecord(recordData).then(function (data) {
+                    res.send(sendData('200', data, ''));
+                })
+            });
+        }).catch(function (e) {
+            logger.error([req.path, JSON.stringify(e)].toString());
+        });
+    }
+});
+
+// 转mp3 回调
+router.get('/mp3Callback', function (req, res, next) {
+    console.log(req.query);
+    res.send(JSON.stringify(req.query));
+});
+
+
+
+
+
 
 
 router.post('/catchError', function (req, res, next) {

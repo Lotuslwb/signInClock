@@ -4,7 +4,10 @@ var log = require('../tools/log');
 var name = 'XiMaUser';
 var Schema;
 Schema = {
-    imgPic:String, //用户头像
+    imgPic: {
+        type: String,
+        default: '/ximalaya/img/nickpic.png',
+    }, //用户头像
     nickName: String, // 参加者姓名
     age: String, // 年龄
     cityCode: String, // 城市编码

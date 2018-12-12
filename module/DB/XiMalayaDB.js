@@ -22,8 +22,13 @@ Schema = {
     /**作品数据 */
     createTime: String, // 创建时间
     productName: String, // 作品名
-    productRecord: String, // 作品录音
-    status: String, // 作品状态， 0为正常，1为下线
+    productRecordAmr: String, // 作品录音 amr格式
+    productRecordMp3: String, // 作品录音 mp3格式
+    persistentId: String, // amr 转码mp3 任务id
+    status: {
+        type: String,
+        default: 0,
+    }, // 作品状态， 0为正常，1为下线
 };
 
 var option = {
