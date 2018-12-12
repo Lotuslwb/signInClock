@@ -11,7 +11,10 @@ Schema = {
     leave: String, // 组别
 
     /**投票数据 */
-    voteNumber: Number, // 投票总数
+    voteNumber: {
+        type: Number,
+        default: 0,
+    }, // 投票总数
     lastVoteTime: String, //上次投票时间
     IPArray: [{
         voteDay: String, // 投票日期

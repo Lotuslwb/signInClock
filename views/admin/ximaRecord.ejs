@@ -1,0 +1,33 @@
+<%- include("header.ejs",{"title":username,"routes":routes,needNav:true}) %>
+
+<div class="main">
+
+    <div id="article" class="check-account">
+        <form id="J-search-form" class="pt40">
+            <div class="search-cell"></div>
+            <div class="row">
+                <div class="form-actions text-center">
+                    <!-- <a class="button button-primary J-config">配置</a> -->
+                    <!-- <a class="button m0-left J-add" href="javascript:;">新增</a> -->
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div id="article-content">
+        <div id="record-list">
+            <div id="record-list-title"></div>
+            <table class="table" id="record-table">
+
+            </table>
+        </div>
+    </div>
+
+
+    <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+    <script src="http://g.alicdn.com/bui/bui/1.1.21/config.js"></script>
+
+    <script type="text/javascript" src="/javascripts/admin/ximaRecord.js"></script>
+
+    <%- include("footer.ejs") %>

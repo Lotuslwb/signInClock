@@ -1,16 +1,83 @@
 ﻿<%- include("header.ejs",{"title":'提交完成'}) %>
 
 <div class='page share-page active'>
-    <img src="/ximalaya/img/nickpic.png" class="nickpic">
-    <img src="/ximalaya/img/share-play-icon.png" class="share-play">
-    <div class="title">作品标题</div>
-    <div class="text">姓名</div>
-    <div class="text">年龄组</div>
-    <img src="/ximalaya/img/share-vote-btn.png" class="vote-btn">
+    <img src="<%= doc.imgPic %>" class="nickpic">
+    <% if(doc.productRecordMp3){ %>
+    <img src="/ximalaya/img/share-play-icon.png" class="J-music share-play" data-src='<%= doc.productRecordMp3 %>'>
+    <% } %>
+    <div class="title">
+        <%= doc.productName%>
+    </div>
+    <div class="text">
+        <%= doc.nickName %>
+    </div>
+    <div class="text">
+        <%= doc.leaveText %>
+    </div>
+    <img src="/ximalaya/img/share-vote-btn.png" class="vote-btn J-vote">
     <img src="/ximalaya/img/music-icon.png" class="music-icon">
-    <div class="info">已有XXXXXX人参与了本次活动， <br />赶快加入用英语讲中国故事，学做块文化小使者</div>
+    <div class="info">已有
+        <%= count + 1212 %>人参与了本次活动， <br />赶快加入用英语讲中国故事，学做块文化小使者
+    </div>
 </div>
 
-<script src="/javascripts/jquery.js"></script>
+<script>
+    var id = '<%- doc._id %>';
 
+    function Page() {
+        this.init();
+    }
+    Page.prototype = {
+        init: function () {
+            this.initMusic();
+            this.bindEvent();
+        },
+        bindEvent: function () {
+            var self = this;
+            $('.J-music').click(function () {
+                if ($(this).hasClass('play')) {
+                    self.stopMusic();
+                } else {
+                    self.playMusic();
+                }
+            })
+
+            $('.J-vote').click(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '/ximalaya/api/vote',
+                    data: {
+                        id: id,
+                    },
+                    success: function (data) {
+                        mPZ.toast('投票成功');
+                    },
+                    dataType: 'json'
+                });
+            })
+        },
+        initMusic: function () {
+            var audioElement = this.audioElement = document.createElement('audio');
+            audioElement.controls = true;
+            audioElement.loop = false;
+            audioElement.autoplay = false;
+            audioElement.onended = function () {
+                $('.J-music').removeClass('play');
+            };
+
+            var src = $('.J-music').data('src');
+            audioElement.setAttribute('src', src);
+            audioElement.load();
+        },
+        playMusic: function () {
+            this.audioElement.play();
+            $('.J-music').addClass('play');
+        },
+        stopMusic: function () {
+            this.audioElement.pause();
+            $('.J-music').removeClass('play');
+        },
+    }
+    new Page();
+</script>
 <%- include("footer.ejs") %>

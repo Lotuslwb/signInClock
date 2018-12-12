@@ -515,6 +515,16 @@ select {
   width: 80px;
   height: 80px;
 }
+.result-page .share-btns {
+  width: 640px;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 25px 45px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
 .share-page {
   background: url(../img/share-bg.png) no-repeat top 145px center;
   background-size: 100% auto;

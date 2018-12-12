@@ -15,13 +15,6 @@ obj.prototype = {
         $('.J-query').click(function () {
             me.updateGid(me);
         });
-        $('.J-config').click(function () {
-            window.location.href = '/admin/daka/config';
-        });
-        $('.J-add').click(function () {
-            window.location.href = '/admin/ximaArticle/add';
-        });
-
     },
     initGid: function (me, cb) {
         var gridObj = {};
@@ -29,14 +22,14 @@ obj.prototype = {
             var Grid = Grid,
                 Store = Data.Store,
                 columns = [{
-                        title: '作品名',
-                        dataIndex: 'arName',
+                        title: '作者名',
+                        dataIndex: 'nickName',
                         width: 200,
                         sortable: false
                     },
                     {
                         title: '作品组别',
-                        dataIndex: 'arLeave',
+                        dataIndex: 'leave',
                         width: 200,
                         sortable: false,
                         renderer: function (value, obj) {
@@ -44,16 +37,28 @@ obj.prototype = {
                             return textArry[value];
                         }
                     }, {
-                        title: '索引',
-                        dataIndex: 'index',
+                        title: '总票数',
+                        dataIndex: 'voteNumber',
                         width: 200,
                         sortable: false
                     },
                     {
-                        title: '更新时间',
-                        dataIndex: 'updateTime',
+                        title: '创建时间',
+                        dataIndex: 'createTime',
                         width: 200,
                         sortable: false
+                    },
+                    {
+                        title: '音频文件',
+                        dataIndex: 'productRecordMp3',
+                        width: 200,
+                        sortable: false,
+                        renderer: function (value, obj) {
+                            console.log(obj);
+                            var url = obj['productRecordMp3'] ? obj.productRecordMp3 : obj.productRecordAmr;
+                            var returnStr = '<a href="' + url + '">查看</a>'
+                            return returnStr;
+                        }
                     },
                     {
                         title: '状态',
@@ -72,7 +77,6 @@ obj.prototype = {
                         sortable: false,
                         renderer: function (value, obj) {
                             var returnStr = '';
-                            returnStr += ' <span class="grid-command mod-btn">修改文章</span>';
                             returnStr += ' <span class="grid-command status-btn">上下线</span>';
                             returnStr += ' <span style="display:none;" class="grid-command remove-btn">删除</span>';
                             return returnStr;
@@ -87,18 +91,14 @@ obj.prototype = {
                 autoSync: true, //保存数据时，是否自动更新数据源的数据
                 autoLoad: true, //自动加载数据
                 params: data,
-                currentPage: 30,
-                pageSize: 30,
-                sortInfo: {
-                    field: "totalVoteCounts",
-                    direction: 'DESC' //升序ASC，降序DESC
-                },
+                currentPage: 0,
+                pageSize: 20,
                 remoteSort: true,
                 root: 'data.list', //存放数据的字段名
                 totalProperty: 'data.totalCount', //存放记录总数的字段名(results)
                 proxy: {
                     pageStart: 1,
-                    url: '/ximalaya/api/queryArticle',
+                    url: '/ximalaya/api/queryRecordByPage',
                     method: 'post',
                     dataType: 'json'
                 }
@@ -156,7 +156,7 @@ obj.prototype = {
 
                 if (target.hasClass('remove-btn')) {
                     BUI.Message.Show({
-                        msg: '确定删除吗? ',
+                        msg: '确定删除吗?',
                         buttons: [{
                                 text: '是',
                                 elCls: 'button button-primary',
@@ -181,7 +181,7 @@ obj.prototype = {
                 function changeItem() {
                     var status = record.status == 1 ? '0' : '1';
                     $.ajax({
-                        url: '/ximalaya/api/updateArticleStatus',
+                        url: '/ximalaya/api/updateRecordStatus',
                         type: 'post',
                         data: {
                             '_id': record._id,
@@ -201,7 +201,7 @@ obj.prototype = {
 
                 function removeItem() {
                     $.ajax({
-                        url: '/ximalaya/api/delArticle',
+                        url: '/ximalaya/api/delRecord',
                         type: 'post',
                         data: {
                             '_id': record._id

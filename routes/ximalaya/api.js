@@ -251,12 +251,50 @@ router.post('/saveAudio', function (req, res, next) {
         });
     }
 });
-
-// 转mp3 回调
-router.get('/mp3Callback', function (req, res, next) {
-    console.log('mp3Callback Get')
-    res.send(JSON.stringify(req.query));
+// 查Record
+router.post('/queryRecordByPage', function (req, res, next) {
+    var data = req.body;
+    var start = data.start * 1;
+    var limit = data.limit * 1;
+    Promise.all([functions.getRecordTotal(), functions.queryRecordByPage(start, limit)]).then(function (dataArry) {
+        var totalCount = dataArry[0];
+        var list = dataArry[1];
+        res.send(sendData('200', {
+            list: list,
+            totalCount: totalCount,
+        }, ''));
+    })
 });
+
+// 更新音频状态
+router.post('/updateRecordStatus', function (req, res, next) {
+    // 0 正常； 1 下线
+    var _id = req.body._id;
+    var status = req.body.status;
+    updateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+    functions.updateRecord(_id, {
+        status: status,
+        updateTime: updateTime,
+    }).then(function (docs) {
+        res.send(sendData('200', docs, ''));
+    }).catch(function (e) {
+        logger.error([req.path, JSON.stringify(e)].toString());
+        res.send(sendData('999', e, ''));
+    });
+});
+
+
+// 删除音频
+router.post('/delRecord', function (req, res, next) {
+    var data = req.body;
+    functions.delRecord(data._id).then(function (docs) {
+        res.send(sendData('200', docs, ''));
+    }).catch(function (e) {
+        logger.error([req.path, JSON.stringify(e)].toString());
+        res.send(sendData('999', e, ''));
+    });
+});
+
 // 转mp3 回调
 router.post('/mp3Callback', function (req, res, next) {
     console.log(' 转mp3 回调 Post');
@@ -264,10 +302,11 @@ router.post('/mp3Callback', function (req, res, next) {
 });
 
 
-
-
-
-
+// 投票
+router.post('/vote', function (req, res, next) {
+    var ip = functions.getClientIP(req);
+    console.log(ip);
+});
 
 router.post('/catchError', function (req, res, next) {
     var openInfo = req.signedCookies['session'];

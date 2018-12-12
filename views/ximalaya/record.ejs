@@ -28,36 +28,24 @@
 <script>
     var vConsole = new VConsole();
 </script>
-
 <!-- 图片上传 -->
 <!-- <input type="file" id="file"> -->
 <script src="/javascripts/qiniu.min.js"></script>
 <script>
-    var url = 'http://fdfs.xmcdn.com/group52/M03/74/60/wKgLcFwPxzmgRNUBAAAsBqJPOmQ300.amr';
-    var productName = '<%- doc.arName %>';
+    var token;
     $.ajax({
-        type: 'post',
-        url: '/ximalaya/api/saveAudio',
-        data: {
-            url: url
-        },
+        type: 'get',
+        url: '/qiniu/api/getToken',
         success: function (data) {
-            debugger;
+            if (data.status == 200) {
+                token = data.data.uploadToken;
+                console.log(token);
+            } else {
+                window.mPZ.toast(data.data);
+            }
         },
         dataType: 'json'
     });
-
-    // $.ajax({
-    //     type: 'post',
-    //     url: '/ximalaya/api/mp3Callback',
-    //     data: {
-    //         url: url
-    //     },
-    //     success: function (data) {
-    //         debugger;
-    //     },
-    //     dataType: 'json'
-    // });
     $('#file').change(function (e) {
         var file = this.files[0]; //获取图片
         console.log(file);
@@ -77,23 +65,48 @@
             }
         }) // 上传开始
     })
+</script>
+
+<!-- xmly  SDK -->
+<script src="/xmjssdk/xmjssdk.js?v=20"></script>
+<script>
+    function tips(msg) {
+        console.log(msg);
+    }
+    var productName = '<%- doc.arName %>';
 
     function Page() {
         this.init();
+        this.initMusic();
+        this.bindEvent();
     }
-
     Page.prototype = {
         init: function () {
-            this.initMusic();
-            this.bindEvent();
+            var self = this;
+            self.initYa(function () {
+                self.YaBindEvent();
+            });
+            // 录音状态控制
+            self.recordStatusCode = {
+                READY: 'READY', // 准备
+                RECORDING: 'RECORDING', // 录音中
+                PAUSED: 'PAUSED', // 暂停录音
+                STOP: 'STOP', // 停止录音
+                PLAYING: 'PLAYING', // 播放
+                PLAYPAUSED: 'PLAYPAUSED', // 暂停播放
+                PALYSTOP: 'PALYSTOP', // 播放停止
+                ERROR: 'ERROR' // 错误
+            };
+            self.recordStatusChange(self.recordStatusCode.READY);
+
         },
         bindEvent: function () {
-            var me = this;
+            var self = this;
             $('.J-music').click(function (e) {
                 if ($(this).hasClass('play')) {
-                    me.stopMusic();
+                    self.stopMusic();
                 } else {
-                    me.playMusic();
+                    self.playMusic();
                 }
             })
         },
@@ -109,6 +122,8 @@
             var src = $('.musicUrl').data('src');
             audioElement.setAttribute('src', src);
             audioElement.load();
+            this.audioElement.play();
+            this.audioElement.pause();
         },
         playMusic: function () {
             this.audioElement.play();
@@ -118,7 +133,156 @@
             this.audioElement.pause();
             $('.J-music').removeClass('play');
         },
+        YaBindEvent: function () {
+            var self = this;
+            $('.recode-action').click(function () {
+                self.recordStatusChange(self.recordStatusCode.RECORDING);
+            });
+            $('.playing-action').click(function () {
+                self.recordStatusChange(self.recordStatusCode.STOP);
+            });
+            $('.replay-action').click(function () {
+                console.log(self.recordStatus, 'replay-action');
+                if (self.recordStatus == self.recordStatusCode.PLAYING) {
+                    self.recordStatusChange(self.recordStatusCode.PALYSTOP);
+                } else {
+                    self.recordStatusChange(self.recordStatusCode.PLAYING);
+                }
+            })
+            $('.again-action').click(function () {
+                self.recordStatusChange(self.recordStatusCode.READY);
+            })
+
+            $('.submit-action').click(function () {
+                ya.recorder.uploadVoice(self.localId, function (res) {
+                    var obj = JSON.parse(res);
+                    // 客户端上传
+                    if (obj.ret == 0) {
+                        var url = obj.data.url;
+                        // 服务器处理
+                        $.ajax({
+                            type: 'post',
+                            url: '/ximalaya/api/saveAudio',
+                            data: {
+                                url: url,
+                                productName: productName,
+                            },
+                            success: function (data) {
+                                // todo 
+                                if (data.status == 200) {
+                                    var recordId = data.data._id;
+                                    console.log(recordId);
+                                    window.location.href =
+                                        '/ximalaya/result?recordId=' + recordId;
+                                } else {
+                                    console.log(data);
+                                }
+                            },
+                            dataType: 'json'
+                        });
+                        console.log('成功', obj.data.url);
+                    } else {
+                        ya.toast('音频上传失败' + JSON.stringify(obj));
+                        console.log('失败：', obj);
+                    }
+                });
+            })
+        },
+        initYa: function (cb) {
+            var self = this;
+            ya.ready(function () {
+                cb && cb();
+                self.recordCallbacks();
+            });
+        },
+        recordStatusChange: function (recordStatus) {
+            var self = this;
+            var recordStatusCode = self.recordStatusCode;
+            switch (recordStatus) {
+                case recordStatusCode.READY:
+                    $('.recode-action').show().siblings().hide();
+                    self.recordStatus = recordStatus;
+                    break;
+                case recordStatusCode.RECORDING:
+                    self.stopMusic();
+                    ya.recorder.startRecord(function () {
+                        ya.toast('开始录音：');
+                        $('.playing-action').show().siblings().hide();
+                        self.recordStatus = recordStatus;
+                    });
+                    break;
+                case recordStatusCode.PLAYING:
+                    if (!self.localId) {
+                        ya.toast('请先录制一段音频！');
+                        return false;
+                    }
+                    ya.recorder.playVoice(self.localId, function (localId) {
+                        self.recordStatus = recordStatus;
+                        console.log(self.recordStatus);
+                        $('.replay-action').attr('src', '/ximalaya/img/replay-btn-2.png');
+                    });
+                    break;
+                case recordStatusCode.PALYSTOP:
+                    ya.recorder.stopVoice(self.localId, function (localId) {
+                        self.recordStatus = recordStatus;
+                    });
+                    break;
+                case recordStatusCode.STOP:
+                    ya.recorder.stopRecord(function (localId) {
+                        self.recordStatus = recordStatus;
+                        self.localId = localId;
+                        $('.action').hide();
+                        $('.action-group').show();
+                    });
+                    break;
+            }
+        },
+        recordCallbacks: function () {
+            var self = this;
+            ya.recorder.bind({
+                onAudioStatusChange: function (obj) {
+                    tips('音频状态改变' + JSON.stringify(obj));
+                },
+                onRecordStart: function (milliseconds) {
+                    tips('录音开始:' + milliseconds);
+                },
+                onRecording: function (milliseconds) {
+                    // 避免用toast，会产生toast延迟
+                    // ya.toast();
+                    tips('录音中:' + milliseconds);
+                },
+                onRecordPause: function (milliseconds) {
+                    tips('录音暂停:' + milliseconds);
+                },
+                onRecordResume: function (milliseconds) {
+                    tips('录音恢复:' + milliseconds);
+                },
+                onRecordEnd: function (obj) {
+                    $('.action').hide();
+                    $('.action-group').show();
+                    tips('录音结束:' + JSON.stringify(obj));
+                },
+                onPlayStart: function (obj) {
+                    tips('播放开始:' + JSON.stringify(obj));
+                },
+                onPlaying: function (obj) {
+                    // 避免用toast，会产生toast延迟
+                    tips('播放中:' + JSON.stringify(obj));
+                },
+                onPlayPause: function (obj) {
+                    tips('暂停:' + JSON.stringify(obj));
+                },
+                onPlayResume: function (obj) {
+                    tips('恢复播放:' + JSON.stringify(obj));
+                },
+                onPlayEnd: function (obj) {
+                    $('.replay-action').attr('src', '/ximalaya/img/replay-btn.png');
+                    tips('播放结束:' + JSON.stringify(obj));
+                }
+            });
+        }
     }
+
     new Page();
 </script>
 

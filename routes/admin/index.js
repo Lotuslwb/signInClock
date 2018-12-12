@@ -54,6 +54,14 @@ router.get('/ximaArticle', function (req, res, next) {
     });
 });
 
+router.get('/ximaRecord', function (req, res, next) {
+    var username = req.signedCookies['session'].split('"')[1];
+    res.render('admin/ximaRecord', {
+        username: username,
+        routes: 'ximaRecord'
+    });
+});
+
 router.get('/ximaArticle/add', function (req, res, next) {
     var username = req.signedCookies['session'].split('"')[1];
     res.render('admin/ximaArticle_add', {

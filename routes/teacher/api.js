@@ -67,7 +67,9 @@ router.post('/uploading', function (req, res, next) {
     var tel = req.signedCookies['session'].split('"')[1];
 
     //生成multiparty对象，并配置上传目标路径
-    var form = new multiparty.Form({uploadDir: './public/files/'});
+    var form = new multiparty.Form({
+        uploadDir: './public/files/'
+    });
     //上传完成后处理
     form.parse(req, function (err, fields, files) {
         var filesTmp = JSON.stringify(files, null, 2);
@@ -86,7 +88,9 @@ router.post('/uploading', function (req, res, next) {
                 if (err) {
                     res.send(sendData('999', '', '重命名错误'));
                 } else {
-                    res.send(sendData('200', {'imgName': theName}, ''));
+                    res.send(sendData('200', {
+                        'imgName': theName
+                    }, ''));
                 }
             });
         }
@@ -112,7 +116,9 @@ router.post('/register', function (req, res, next) {
         log('---用户不存在---');
         teacherDB.add(json).then(function (doc) {
             log(doc);
-            res.cookie('session', JSON.stringify(data.cellPhone), {signed: true});
+            res.cookie('session', JSON.stringify(data.cellPhone), {
+                signed: true
+            });
             res.send(sendData('200', true, ''));
         });
     })
@@ -131,7 +137,9 @@ router.post('/login', function (req, res, next) {
     getUserInfoFormDB(data.cellPhone, function (docs) {
         log('---用户已存在---');
         if (docs[0].teacherInfo.passWord = data.passWord) {
-            res.cookie('session', JSON.stringify(data.cellPhone), {signed: true});
+            res.cookie('session', JSON.stringify(data.cellPhone), {
+                signed: true
+            });
             res.send(sendData('200', true, ''));
         } else {
             res.send(sendData('201', false, '密码错误,请重试'));
@@ -157,7 +165,9 @@ router.post('/vote', function (req, res, next) {
         return false;
     }
 
-    teacherDB.find({_id: id}).then(function (docs) {
+    teacherDB.find({
+        _id: id
+    }).then(function (docs) {
         if (docs.length > 0) {
             var data = docs[0];
             var everyDay = true;
@@ -191,7 +201,9 @@ router.post('/vote', function (req, res, next) {
                     log(updateData);
 
                     updateUserInfoToDB(id, updateData, function (docs) {
-                        res.send(sendData('200', {counts: updateData['VoteData'].totalVoteCounts}, ''));
+                        res.send(sendData('200', {
+                            counts: updateData['VoteData'].totalVoteCounts
+                        }, ''));
                     }, function () {
 
                     })
@@ -217,7 +229,9 @@ router.post('/vote', function (req, res, next) {
                     log(updateData);
 
                     updateUserInfoToDB(id, updateData, function (docs) {
-                        res.send(sendData('200', {counts: updateData['VoteData'].totalVoteCounts}, ''));
+                        res.send(sendData('200', {
+                            counts: updateData['VoteData'].totalVoteCounts
+                        }, ''));
                     }, function () {
 
                     })
@@ -292,7 +306,9 @@ router.post('/content', function (req, res, next) {
     var item = req.body.data && JSON.parse(req.body.data);
     console.log(item, 'item')
 
-    teacherDB.find({_id: id}).then(function (docs) {
+    teacherDB.find({
+        _id: id
+    }).then(function (docs) {
         if (docs.length > 0) {
             var data = docs[0];
 
@@ -306,7 +322,9 @@ router.post('/content', function (req, res, next) {
             log(updateData);
 
             updateUserInfoToDB(id, updateData, function (docs) {
-                res.send(sendData('200', {studentWords: data.studentWords}, ''));
+                res.send(sendData('200', {
+                    studentWords: data.studentWords
+                }, ''));
             }, function () {
 
             });
@@ -371,8 +389,6 @@ var getClientIP = function (req) {
     if (!ipAddress) {
         ipAddress = req.connection.remoteAddress;
     }
-
-    const os = require('os');
     return ipAddress;
 }
 

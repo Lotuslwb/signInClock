@@ -70,11 +70,41 @@ router.get('/record', function (req, res, next) {
 });
 
 router.get('/result', function (req, res, next) {
-    res.render('ximalaya/result');
+    var id = req.query.recordId;
+    functions.queryRecordById(id).then(function (docs) {
+        var doc = docs[0];
+        console.log(doc);
+        res.render('ximalaya/result', {
+            doc: doc
+        });
+    })
 });
 
 router.get('/share', function (req, res, next) {
-    res.render('ximalaya/share');
+    var leaveMap = {
+        '0': '幼儿组',
+        '1': '小学组',
+        '2': '中学组',
+    }
+    var id = req.query.recordId;
+    Promise.all([functions.getUserTotal(), functions.queryRecordById(id)]).then(function (dataArry) {
+        var count = dataArry[0];
+        var doc = dataArry[1][0];
+        doc['leaveText'] = leaveMap[doc.leave];
+        if (!doc.productRecordMp3) {
+            functions.setRecordMp3(doc).then(function (newdoc) {
+                res.render('ximalaya/share', {
+                    doc: newdoc,
+                    count: count,
+                });
+            });
+        } else {
+            res.render('ximalaya/share', {
+                doc: doc,
+                count: count,
+            });
+        }
+    })
 });
 
 

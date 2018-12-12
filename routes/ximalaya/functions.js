@@ -67,6 +67,7 @@ var delArticle = function (_id) {
     });
     return promise;
 }
+
 var updateArticle = function (id, data) {
     var promise = new Promise(function (resolve, reject) {
         XiMaArticleDB.update(id, data, function (err, docs) {
@@ -78,14 +79,31 @@ var updateArticle = function (id, data) {
             }
         });
     });
-
     return promise;
 };
 
 
 
 /** 录音管理 */
+var getRecordTotal = function () {
+    return XiMalayaDB.User.find({}).count();
+}
 
+var delRecord = function (_id) {
+    var promise = new Promise(function (resolve, reject) {
+        XiMalayaDB.remove({
+            _id: _id,
+        }, function (err, docs) {
+            if (err) {
+                logger.error(['delRecord', JSON.stringify(err)].toString());
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        });
+    });
+    return promise;
+}
 var addRecord = function (data) {
     var promise = new Promise(function (resolve, reject) {
         XiMalayaDB.add(data).then(function (docs, err) {
@@ -99,6 +117,62 @@ var addRecord = function (data) {
     });
     return promise;
 };
+var getRecord = function (findJson, fieldJson, sortJSON) {
+    return XiMalayaDB.User.find(findJson || {}, fieldJson || {}).sort(sortJSON || {});
+}
+
+var queryRecordById = function (_id) {
+    return getRecord({
+        _id: _id,
+    }).then(function (docs) {
+        return docs;
+    });
+}
+var queryRecordByPage = function (start, limit) {
+    return XiMalayaDB.User.find({}, {
+        IPArray: false
+    }).skip(start).limit(limit).sort({
+        voteNumber: 1
+    });
+}
+
+var updateRecord = function (id, data) {
+    var promise = new Promise(function (resolve, reject) {
+        XiMalayaDB.update(id, data, function (err, docs) {
+            if (err) {
+                logger.error(['updateRecord', JSON.stringify(err)].toString());
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        });
+    });
+    return promise;
+};
+
+
+
+var setRecordMp3 = function (doc) {
+    var persistentId = doc.persistentId;
+    var superagent = require('superagent');
+    var submissionURL = 'http://api.qiniu.com/status/get/prefop?id=' + persistentId;
+    return superagent.get(submissionURL).then(function (res) {
+        var data = res.body;
+        if (data.code == 0) {
+            // 转码已经完成
+            var key = data.items[0].key;
+            var productRecordMp3 = 'http://pjgcuhtbw.bkt.clouddn.com/' + key;
+            return updateRecord(doc._id, {
+                productRecordMp3: productRecordMp3
+            }).then(function (info) {
+                doc['productRecordMp3'] = productRecordMp3;
+                return doc;
+            });
+        } else {
+            return doc;
+        }
+    })
+}
 
 /*  用户 注册登录和认证 */
 var checkOpenid = function (req, res) {
@@ -162,6 +236,10 @@ var addUser = function (data) {
 var getUser = function (findJson, fieldJson, sortJSON) {
     return XiMaUserDB.User.find(findJson || {}, fieldJson || {}).sort(sortJSON || {});
 }
+var getUserTotal = function () {
+    return XiMaUserDB.User.find({}).count();
+}
+
 var queryUserByTel = function (tel) {
     return getUser({
         telPhone: tel,
@@ -235,6 +313,22 @@ function genCode(len) {
 }
 
 
+/** 其他 */
+// 获取ip
+var getClientIP = function (req) {
+    var ipAddress;
+    var headers = req.headers;
+    var forwardedIpsStr = headers['x-real-ip'] || headers['x-forwarded-for'];
+    forwardedIpsStr ? ipAddress = forwardedIpsStr : ipAddress = null;
+    if (!ipAddress) {
+        ipAddress = req.connection.remoteAddress;
+    }
+    return ipAddress;
+}
+
+
+
+
 module.exports = {
 
     addArticle: addArticle,
@@ -245,15 +339,24 @@ module.exports = {
     queryArticleByLeave: queryArticleByLeave,
 
     addRecord: addRecord,
+    delRecord: delRecord,
+    getRecordTotal: getRecordTotal,
+    queryRecordById: queryRecordById,
+    queryRecordByPage: queryRecordByPage,
+    updateRecord: updateRecord,
+    setRecordMp3: setRecordMp3,
 
     checkOpenid: checkOpenid,
     checkLogin: checkLogin,
     addUser: addUser,
     getUser: getUser,
+    getUserTotal: getUserTotal,
     queryUserByTel: queryUserByTel,
 
     smsDBAdd: smsDBAdd,
     smsDBFind: smsDBFind,
     smsSend: smsSend,
     checkSMS: checkSMS,
+
+    getClientIP: getClientIP,
 };
