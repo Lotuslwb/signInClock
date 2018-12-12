@@ -254,12 +254,12 @@ router.post('/saveAudio', function (req, res, next) {
 
 // 转mp3 回调
 router.get('/mp3Callback', function (req, res, next) {
-    console.log(req.query);
+    console.log('mp3Callback Get')
     res.send(JSON.stringify(req.query));
 });
 // 转mp3 回调
 router.post('/mp3Callback', function (req, res, next) {
-    console.log(req.body);
+    console.log('mp3Callback Post');
     res.send(JSON.stringify(req.body));
 });
 
