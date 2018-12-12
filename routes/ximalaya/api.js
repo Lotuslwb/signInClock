@@ -256,6 +256,11 @@ router.get('/mp3Callback', function (req, res, next) {
     console.log(req.query);
     res.send(JSON.stringify(req.query));
 });
+// 转mp3 回调
+router.post('/mp3Callback', function (req, res, next) {
+    console.log(req.body);
+    res.send(JSON.stringify(req.body));
+});
 
 
 
