@@ -15,14 +15,64 @@
         </div>
     </div>
     <div class="share-btns">
-        <img src="/ximalaya/img/Timeline.png" class="timeline-btn">
-        <img src="/ximalaya/img/wx.png" class="wx-btn">
-        <img src="/ximalaya/img/weibo.png" class="weibo-btn">
+        <img src="/ximalaya/img/Timeline.png" class="timeline-btn J-share" data-ch='weixinGroup'>
+        <img src="/ximalaya/img/wx.png" class="wx-btn J-share" data-ch="weixin">
+        <img src="/ximalaya/img/weibo.png" class="weibo-btn J-share" data-ch="tSina">
     </div>
 </div>
 
+<!-- xmly  SDK -->
+<script src="/xmjssdk/xmjssdk.js?v=20"></script>
+
 <script>
+    function tips(msg) {
+        console.log(msg);
+    }
     var _id = '<%- doc._id %>';
+
+    function Page() {
+        this.init();
+    }
+
+    Page.prototype = {
+        init: function () {
+            this.initYa();
+        },
+        initYa: function (cb) {
+            var self = this;
+            ya.ready(function () {
+                cb && cb();
+                $('.J-share').click(function () {
+                    var channel = $(this).data('channel');
+                    var linkUrl = 'https://ma.eldesign.cn/ximalaya/result?id=' + _id;
+                    self.shareHandle({
+                        channel,
+                        linkUrl
+                    })
+                })
+            });
+        },
+        /** channel,linkUrl, */
+        shareHandle: function (obj) {
+            ya.multiShare({
+                channel: obj.channel,
+                title: 'test~！#喜马拉雅#',
+                desc: 'test~！#喜马拉雅#',
+                link: obj.linkUrl,
+                imgUrl: 'http://fdfs.xmcdn.com/group17/M06/96/91/wKgJKVexhljjCyxYAAebo16E6Yw923_mobile_large.jpg',
+                type: 'link',
+            }, function (res) {
+                // 成功
+                if (res.ret == 0) {
+                    ya.toast('分享到【' + channel + '】成功！');
+                    console.log(JSON.stringify('分享到【' + channel + '】成功！'));
+                } else {
+                    console.log(res.msg);
+                }
+            });
+        }
+    }
+    new Page();
 </script>
 
 <%- include("footer.ejs") %>

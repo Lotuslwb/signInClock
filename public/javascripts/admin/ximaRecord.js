@@ -39,7 +39,7 @@ obj.prototype = {
                     }, {
                         title: '总票数',
                         dataIndex: 'voteNumber',
-                        width: 200,
+                        width: 100,
                         sortable: false
                     },
                     {
