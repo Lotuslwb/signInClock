@@ -1,3 +1,6 @@
+.f-hide {
+  display: none;
+}
 body {
   background: #FFFFFF;
   font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;

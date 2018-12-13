@@ -20,7 +20,11 @@
         <img src="/ximalaya/img/weibo.png" class="weibo-btn J-share" data-ch="tSina">
     </div>
 </div>
-
+<div class='J-share-title'>英孚全球英语挑战赛</div>
+<div class='J-share-des'>
+    <%= doc.nickName %>英孚全球英语挑战赛中完成了《
+    <%= doc.productName %>》的英文朗读，快来为TA投票点赞把！
+</div>
 <!-- xmly  SDK -->
 <script src="/xmjssdk/xmjssdk.js?v=20"></script>
 
@@ -57,10 +61,10 @@
         shareHandle: function (obj) {
             ya.multiShare({
                 channel: obj.channel,
-                title: 'test~！#喜马拉雅#',
-                desc: 'test~！#喜马拉雅#',
+                title: $('.J-share-title').text(),
+                desc: $('.J-share-des').text(),
                 link: obj.linkUrl,
-                imgUrl: 'http://fdfs.xmcdn.com/group17/M06/96/91/wKgJKVexhljjCyxYAAebo16E6Yw923_mobile_large.jpg',
+                imgUrl: 'http://pjgcuhtbw.bkt.clouddn.com/EF_share_logo.jpeg',
                 type: 'link',
             }, function (res) {
                 // 成功
