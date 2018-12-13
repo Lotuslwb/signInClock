@@ -66,19 +66,19 @@
             this.bindEvent();
         },
         initYa: function (cb) {
-            var self = this;
-            ya.ready(function () {
-                console.log(ya.device);
-                if (!ya.device.token) {
-                    //未登录
-                    self.imgPic = '/ximalaya/img/nickpic.png'
-                } else {
-                    ya.login(function (res) {
-                        console.log(res);
-                        self.imgPic = res.imgUrl;
-                    });
-                }
-            });
+            // var self = this;
+            // ya.ready(function () {
+            //     console.log(ya.device);
+            //     if (!ya.device.token) {
+            //         //未登录
+            //         self.imgPic = '/ximalaya/img/nickpic.png'
+            //     } else {
+            //         ya.login(function (res) {
+            //             console.log(res);
+            //             self.imgPic = res.imgUrl;
+            //         });
+            //     }
+            // });
         },
         bindEvent: function () {
             var self = this;
