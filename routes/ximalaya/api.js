@@ -311,6 +311,7 @@ router.post('/vote', function (req, res, next) {
     var _id = req.body.id;
     var today = moment().format('YYYY-MM-DD');
     var ip = functions.getClientIP(req);
+    console.log(ip);
     functions.queryRecordById(_id).then(function (docs) {
         var doc = docs[0];
         var IPArray = doc['IPArray'] || [];
