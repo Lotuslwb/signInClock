@@ -90,6 +90,12 @@ select {
 .rank-page {
     background: #FFFFFF;
     color: #003C64;
+    position: relative;
+    min-height: 1186px;
+    .rank-banner {
+        position: absolute;
+        bottom: 0;
+    }
     .title {
         font-size: 48px;
         line-height: 67px;
@@ -129,15 +135,20 @@ select {
             width: 100px;
             text-align: center;
         }
-        .tab.active::after {
+        .tab::after {
             content: '';
             display: block;
             width: 100px;
             height: 5px;
+            transition: all ease 500ms;
+            background: rgba(255, 255, 255, 1);
+        }
+        .tab.active::after {
             background: rgba(180, 27, 33, 1);
         }
     }
     .list {
+        padding-bottom: 180px;
         .item {
             height: 195px;
             border-bottom: 1px solid #E5E5E5;

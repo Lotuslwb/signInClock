@@ -78,6 +78,12 @@ select {
 .rank-page {
   background: #FFFFFF;
   color: #003C64;
+  position: relative;
+  min-height: 1186px;
+}
+.rank-page .rank-banner {
+  position: absolute;
+  bottom: 0;
 }
 .rank-page .title {
   font-size: 48px;
@@ -121,12 +127,20 @@ select {
   width: 100px;
   text-align: center;
 }
-.rank-page .tabs .tab.active::after {
+.rank-page .tabs .tab::after {
   content: '';
   display: block;
   width: 100px;
   height: 5px;
+  -webkit-transition: all ease 500ms;
+  transition: all ease 500ms;
+  background: #ffffff;
+}
+.rank-page .tabs .tab.active::after {
   background: #b41b21;
+}
+.rank-page .list {
+  padding-bottom: 180px;
 }
 .rank-page .list .item {
   height: 195px;

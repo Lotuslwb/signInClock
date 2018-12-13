@@ -102,7 +102,7 @@
                     $('.J-share').click(function () {
                         var channel = $(this).data('ch');
                         console.log(channel);
-                        var linkUrl = 'https://ma.eldesign.cn/ximalaya/share?id=' + _id;
+                        var linkUrl = 'https://ma.eldesign.cn/ximalaya/share?recordId=' + _id;
                         self.shareHandle({
                             channel,
                             linkUrl
@@ -122,7 +122,6 @@
                 }, function (res) {
                     // 成功
                     if (res.ret == 0) {
-                        ya.toast('分享成功！');
                         console.log(JSON.stringify('分享到成功！'));
                     } else {
                         console.log(res.msg);

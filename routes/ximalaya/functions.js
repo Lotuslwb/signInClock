@@ -128,11 +128,11 @@ var queryRecordById = function (_id) {
         return docs;
     });
 }
-var queryRecordByPage = function (start, limit) {
-    return XiMalayaDB.User.find({}, {
+var queryRecordByPage = function (start, limit, findJson) {
+    return XiMalayaDB.User.find(findJson || {}, {
         IPArray: false
     }).skip(start).limit(limit).sort({
-        voteNumber: 1
+        voteNumber: -1
     });
 }
 

@@ -13,6 +13,10 @@ router.get('/ruletxt', function (req, res, next) {
     res.render('ximalaya/ruletxt');
 });
 
+router.get('/rank', function (req, res, next) {
+    res.render('ximalaya/rank');
+});
+
 router.get('/registry', function (req, res, next) {
     functions.checkLogin(req, res).then(function (tel) {
         if (tel) {

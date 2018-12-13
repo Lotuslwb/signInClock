@@ -50,7 +50,11 @@
                         id: id,
                     },
                     success: function (data) {
-                        mPZ.toast('投票成功');
+                        if (data.status == '200') {
+                            mPZ.toast('投票成功');
+                        } else {
+                            mPZ.toast(data.errmsg);
+                        }
                     },
                     dataType: 'json'
                 });

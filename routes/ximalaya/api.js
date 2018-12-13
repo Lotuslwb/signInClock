@@ -256,7 +256,11 @@ router.post('/queryRecordByPage', function (req, res, next) {
     var data = req.body;
     var start = data.start * 1;
     var limit = data.limit * 1;
-    Promise.all([functions.getRecordTotal(), functions.queryRecordByPage(start, limit)]).then(function (dataArry) {
+    var findJson = data.findJson || {};
+    if (findJson['nickName']) {
+        findJson['nickName'] = new RegExp(findJson['nickName'])
+    }
+    Promise.all([functions.getRecordTotal(), functions.queryRecordByPage(start, limit, findJson)]).then(function (dataArry) {
         var totalCount = dataArry[0];
         var list = dataArry[1];
         res.send(sendData('200', {
@@ -304,8 +308,34 @@ router.post('/mp3Callback', function (req, res, next) {
 
 // 投票
 router.post('/vote', function (req, res, next) {
+    var _id = req.body.id;
+    var today = moment().format('YYYY-MM-DD');
     var ip = functions.getClientIP(req);
-    console.log(ip);
+    functions.queryRecordById(_id).then(function (docs) {
+        var doc = docs[0];
+        var IPArray = doc['IPArray'] || [];
+        var iplist = IPArray.filter(function (item) {
+            return item.ip == ip && item.voteDay == today;
+        });
+        if (iplist.length > 0) {
+            res.send(sendData('999', '', '今天已经投过票了'));
+        } else {
+            var lastVoteTime = moment().format('YYYY-MM-DD HH:mm:ss');
+            var voteNumber = doc['voteNumber'] || 0;
+            voteNumber++;
+            IPArray.push({
+                voteDay: today, // 投票日期
+                voteTime: new Date() * 1, // 投票时间
+                ip: ip, // 投票IP
+            })
+            functions.updateRecord(_id, {
+                IPArray: IPArray,
+                voteNumber: voteNumber,
+                lastVoteTime: lastVoteTime,
+            });
+            res.send(sendData('200', '', ''));
+        }
+    })
 });
 
 router.post('/catchError', function (req, res, next) {
