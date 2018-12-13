@@ -85,9 +85,7 @@
     new Page();
 </script>
 <div class='J-share-title f-hide'>英孚全球英语挑战赛</div>
-<div class='J-share-des f-hide'>
-    <%= doc.nickName %>英孚全球英语挑战赛中完成了《
-    <%= doc.productName %>》的英文朗读，快来为TA投票点赞把！
+<div class='J-share-des f-hide'><%= doc.nickName %>英孚全球英语挑战赛中完成了《<%= doc.productName %>》的英文朗读，快来为TA投票点赞把！
 </div>
 
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -96,8 +94,8 @@ function initWXSahre() {
 
     //“分享给朋友”
     wx.onMenuShareAppMessage({
-        title: $('.J-share-title').text(), // 分享标题
-        desc: $('.J-share-des').text(), // 分享描述
+        title: $('.J-share-title').text().trim(), // 分享标题
+        desc: $('.J-share-des').text().trim(), // 分享描述
         link: '', // 分享链接
         imgUrl: 'http://pjgcuhtbw.bkt.clouddn.com/EF_share_logo.jpeg', // 分享图标
         type: '', // 分享类型,music、video或link，不填默认为link
@@ -114,8 +112,8 @@ function initWXSahre() {
 
     //“分享到朋友圈”
     wx.onMenuShareTimeline({
-        title: $('.J-share-title').text(), // 分享标题
-        desc: $('.J-share-des').text(), // 分享描述
+        title: $('.J-share-title').text().trim(), // 分享标题
+        desc: $('.J-share-des').text().trim(), // 分享描述
         link: '', // 分享链接
         imgUrl: 'http://pjgcuhtbw.bkt.clouddn.com/EF_share_logo.jpeg', // 分享图标
         success: function () {

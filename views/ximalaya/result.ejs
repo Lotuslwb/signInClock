@@ -61,8 +61,8 @@
         shareHandle: function (obj) {
             ya.multiShare({
                 channel: obj.channel,
-                title: $('.J-share-title').text(),
-                desc: $('.J-share-des').text(),
+                title: $('.J-share-title').text().trim(),
+                desc: $('.J-share-des').text().trim(),
                 link: obj.linkUrl,
                 imgUrl: 'http://pjgcuhtbw.bkt.clouddn.com/EF_share_logo.jpeg',
                 type: 'link',
