@@ -60,7 +60,23 @@
     }
     Page.prototype = {
         init: function () {
+            this.initYa();
             this.bindEvent();
+        },
+        initYa: function (cb) {
+            var self = this;
+            ya.ready(function () {
+                consone.log(ya.device);
+                if (!ya.device.token) {
+                    //未登录
+                    self.imgPic = '/ximalaya/img/nickpic.png'
+                } else {
+                    ya.login(function (res) {
+                        console.log(res);
+                        self.imgPic = res.imgUrl;
+                    });
+                }
+            });
         },
         bindEvent: function () {
             var self = this;
@@ -134,6 +150,7 @@
                         type: 'POST',
                         url: '/ximalaya/api/registry',
                         data: {
+                            imgPic: self.imgPic,
                             telPhone: $('input[name=tel]').val(),
                             code: $('input[name=qcode]').val(),
                             nickName: $('input[name=nickName]').val(),
