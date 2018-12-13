@@ -20,11 +20,12 @@
         <div class="text">手机号</div>
         <input class="input" type="text" name="tel" data-required=true data-message="请检查您的手机号">
     </label>
-    <div class='rows'>
+    <label class='rows'>
         <div class="text">验证号</div>
         <input class="input input-withBtn" type="text" name="qcode" data-required=true data-message="请输入验证码">
         <div class="qcode-btn J-sendSMS">发送验证码</div>
-    </div>
+    </label>
+
     <label class='rows radio-row'>
         <div class="text">选择组别</div>
         <div class="radio-group">
@@ -51,6 +52,8 @@
         3.如录制提交多个作品，个人得票数最高的作品进入排行榜统计</div>
 </div>
 
+<!-- xmly  SDK -->
+<script src="/xmjssdk/xmjssdk.js?v=20"></script>
 <script>
     function Page() {
         this.countdown = 60;
