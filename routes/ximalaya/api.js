@@ -312,27 +312,50 @@ router.post('/vote', function (req, res, next) {
     var today = moment().format('YYYY-MM-DD');
     var ip = functions.getClientIP(req);
     console.log(ip);
+
+    // cookie 检测
+    var localArry = req.signedCookies['localArry'] ? JSON.parse(req.signedCookies['localArry']) : [];
+    console.log(localArry);
+    var localArryList = localArry.filter(function (item) {
+        return item.ip == ip && item.voteDay == today;
+    });
+    if (localArryList.length > 0) {
+        res.send(sendData('999', '', '今天已经投票了'));
+        return false;
+    }
+
     functions.queryRecordById(_id).then(function (docs) {
         var doc = docs[0];
         var IPArray = doc['IPArray'] || [];
         var iplist = IPArray.filter(function (item) {
             return item.ip == ip && item.voteDay == today;
         });
+
+
+
         if (iplist.length > 0) {
             res.send(sendData('999', '', '今天已经投过票了'));
         } else {
             var lastVoteTime = moment().format('YYYY-MM-DD HH:mm:ss');
-            var voteNumber = doc['voteNumber'] || 0;
-            voteNumber++;
-            IPArray.push({
+            var ipObj = {
                 voteDay: today, // 投票日期
                 voteTime: new Date() * 1, // 投票时间
                 ip: ip, // 投票IP
-            })
+            }
+            var voteNumber = doc['voteNumber'] || 0;
+            voteNumber++;
+            IPArray.push(ipObj);
             functions.updateRecord(_id, {
                 IPArray: IPArray,
                 voteNumber: voteNumber,
                 lastVoteTime: lastVoteTime,
+            });
+            
+            // cookie 更新
+            localArry.push(ipObj);
+            res.cookie('localArry', JSON.stringify(localArry), {
+                expires: new Date(Date.now() * 1 + 24 * 60 * 60 * 1000 * 365),
+                signed: true
             });
             res.send(sendData('200', '', ''));
         }

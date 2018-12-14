@@ -2,6 +2,10 @@
 
 <div class='page index-page active'>
     <div class="content">
+        <video controls class="video J-video">
+            <source src="http://pjgcuhtbw.bkt.clouddn.com/EF%20Challenge%20Season%205%20Promo.mov" type="video/mp4">
+            对不起；您的浏览器不支持HTML5视频在WebM和VP8 / VP9或MP4
+        </video>
         <img src="/ximalaya/img/index-play-btn.png" class="play-btn mid">
         <img src="/ximalaya/img/index-title.png" class="title">
         <div class="game-des-box">
@@ -64,6 +68,15 @@
         },
         bindEvent: function () {
             var self = this;
+
+            $('.J-video').click(function () {
+                $(this).addClass('show');
+            })
+
+            $('.play-btn').click(function () {
+                $('.J-video').addClass('show');
+            })
+
             $('.J-input').on('input', function () {
                 var v = self.name = $(this).val();
                 self.renderList(self.leave, v);

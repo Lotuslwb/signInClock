@@ -59,6 +59,16 @@ select {
     .content {
         position: relative;
         height: 970px;
+        display: flex;
+    }
+    .video {
+        width: 100%;
+        position: relative;
+        z-index: 10;
+        opacity: 0;
+    }
+    .video.show {
+        opacity: 1;
     }
     .play-btn {
         width: 120px;
