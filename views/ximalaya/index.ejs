@@ -69,12 +69,9 @@
         bindEvent: function () {
             var self = this;
 
-            $('.J-video').click(function () {
-                $(this).addClass('show');
-            })
-
             $('.play-btn').click(function () {
                 $('.J-video').addClass('show');
+                $('.J-video')[0].play()
             })
 
             $('.J-input').on('input', function () {
