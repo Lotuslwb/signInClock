@@ -146,10 +146,14 @@
                 }
             })
             $('.again-action').click(function () {
+                // 先停止播放
+                self.recordStatusChange(self.recordStatusCode.PALYSTOP);
                 self.recordStatusChange(self.recordStatusCode.READY);
             })
 
             $('.submit-action').click(function () {
+                // 先停止播放
+                self.recordStatusChange(self.recordStatusCode.PALYSTOP);
                 ya.recorder.uploadVoice(self.localId, function (res) {
                     var obj = JSON.parse(res);
                     // 客户端上传
