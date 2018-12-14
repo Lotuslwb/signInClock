@@ -197,13 +197,13 @@
         recordStatusChange: function (recordStatus) {
             var self = this;
             var recordStatusCode = self.recordStatusCode;
+            self.stopMusic();
             switch (recordStatus) {
                 case recordStatusCode.READY:
                     $('.recode-action').show().siblings().hide();
                     self.recordStatus = recordStatus;
                     break;
                 case recordStatusCode.RECORDING:
-                    self.stopMusic();
                     ya.recorder.startRecord(function () {
                         ya.toast('开始录音：');
                         $('.playing-action').show().siblings().hide();
