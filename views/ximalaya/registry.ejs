@@ -67,15 +67,16 @@
         },
         initYa: function (cb) {
             var self = this;
+            self.imgPic = '/ximalaya/img/nickpic.png'
             ya.ready(function () {
                 console.log(ya.device);
-                if (!ya.device.token) {
-                    //未登录
-                    self.imgPic = '/ximalaya/img/nickpic.png'
-                } else {
+                if (ya.device.token) {
+                    // 登录
                     ya.login(function (res) {
                         console.log(res);
-                        self.imgPic = res.imgUrl;
+                        if (res.imgUrl.length > 0) {
+                            self.imgPic = res.imgUrl;
+                        }
                     });
                 }
             });
