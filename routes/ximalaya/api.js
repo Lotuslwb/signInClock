@@ -317,7 +317,7 @@ router.post('/vote', function (req, res, next) {
     var localArry = req.signedCookies['localArry'] ? JSON.parse(req.signedCookies['localArry']) : [];
     console.log(localArry);
     var localArryList = localArry.filter(function (item) {
-        return item.ip == ip && item.voteDay == today;
+        return item._id == _id && item.voteDay == today;
     });
     if (localArryList.length > 0) {
         res.send(sendData('999', '', '今天已经投票了'));
@@ -350,9 +350,13 @@ router.post('/vote', function (req, res, next) {
                 voteNumber: voteNumber,
                 lastVoteTime: lastVoteTime,
             });
-            
+
             // cookie 更新
-            localArry.push(ipObj);
+            localArry.push({
+                voteDay: today, // 投票日期
+                voteTime: new Date() * 1, // 投票时间
+                _id: _id
+            });
             res.cookie('localArry', JSON.stringify(localArry), {
                 expires: new Date(Date.now() * 1 + 24 * 60 * 60 * 1000 * 365),
                 signed: true
