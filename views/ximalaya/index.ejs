@@ -73,6 +73,9 @@
                 $('.J-video').addClass('show');
                 $('.J-video')[0].play()
             })
+            $('.J-video')[0].onended = function () {
+                $('.J-video').removeClass('show');
+            };
 
             $('.J-input').on('input', function () {
                 var v = self.name = $(this).val();
@@ -120,7 +123,7 @@
 
             $('body').on('click', '.J-help', function () {
                 var id = $(this).data('id');
-                window.location.href = '/ximalaya/share?recordId=' + id;
+                window.location.href = '/ximalaya/result?recordId=' + id;
             })
         },
         renderList: function (leave, nickName) {

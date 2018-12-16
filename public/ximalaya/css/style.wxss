@@ -44,10 +44,11 @@ select {
 .index-page {
   background: url(../img/index-bg.png) no-repeat center right;
   background-size: cover;
+  height: 100%;
 }
 .index-page .content {
   position: relative;
-  height: 970px;
+  height: 80%;
   display: -webkit-box;
   display: flex;
 }

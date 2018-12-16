@@ -15,6 +15,9 @@
     <div class="text">
         <%= doc.leaveText %>
     </div>
+    <div class="text">
+        <span class='J-voteNumber'><%= doc.voteNumber %></span>票
+    </div>
     <img src="/ximalaya/img/share-vote-btn.png" class="vote-btn J-vote">
     <img src="/ximalaya/img/music-icon.png" class="music-icon">
     <div class="info">已有
@@ -53,6 +56,23 @@
                     success: function (data) {
                         if (data.status == '200') {
                             mPZ.toast('投票成功');
+                            $.ajax({
+                                type: 'post',
+                                url: '/ximalaya/api/queryRecordById',
+                                data: {
+                                    _id: id,
+                                },
+                                success: function (data) {
+                                    if (data.status == '200') {
+                                       var voteNumber=data.data[0].voteNumber;
+                                       $('.J-voteNumber').text(voteNumber);
+                                       window.location.href='/ximalaya';
+                                    } else {
+                                        mPZ.toast(data.errmsg);
+                                    }
+                                },
+                                dataType: 'json'
+                            });
                         } else {
                             mPZ.toast(data.errmsg);
                         }
@@ -86,7 +106,7 @@
     new Page();
 </script>
 <div class='J-share-title f-hide'>英孚全球英语挑战赛</div>
-<div class='J-share-des f-hide'><%= doc.nickName %>英孚全球英语挑战赛中完成了《<%= doc.productName %>》的英文朗读，快来为TA投票点赞把！
+<div class='J-share-des f-hide'><%= doc.nickName %>在英孚全球英语挑战赛中完成了《<%= doc.productName %>》的英文朗读，快来为TA投票点赞把！
 </div>
 
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>

@@ -298,6 +298,18 @@ router.post('/delRecord', function (req, res, next) {
         res.send(sendData('999', e, ''));
     });
 });
+router.post('/queryRecordById', function (req, res, next) {
+    var data = req.body;
+    functions.queryRecordById(data._id).then(function (docs) {
+        res.send(sendData('200', docs, ''));
+    }).catch(function (e) {
+        logger.error([req.path, JSON.stringify(e)].toString());
+        res.send(sendData('999', e, ''));
+    });
+});
+
+
+
 
 // 转mp3 回调
 router.post('/mp3Callback', function (req, res, next) {
