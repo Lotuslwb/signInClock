@@ -3,7 +3,7 @@
 <div class='page index-page active'>
     <div class="content">
         <video controls class="video J-video">
-            <source src="http://pjgcuhtbw.bkt.clouddn.com/EF%20Challenge%20Season%205%20Promo.mov" type="video/mp4">
+            <source src="http://pjt7gvrrv.bkt.clouddn.com/index-vedio.mp4" type="video/mp4">
             对不起；您的浏览器不支持HTML5视频在WebM和VP8 / VP9或MP4
         </video>
         <img src="/ximalaya/img/index-play-btn.png" class="play-btn mid">
@@ -20,7 +20,7 @@
     <div class="title">赛程安排和奖品</div>
     <div class="p-box">
         <div class="p-title ">全国总决赛 5月16日-6月1日</div>
-        <img src="/ximalaya/img/rule-banner.png" class="rule-banner-1 J-gotoRegistry">
+        <img src="http://pjt7gvrrv.bkt.clouddn.com/rule-banner.png" class="rule-banner-1 J-gotoRegistry">
         <div class="info">
             * 特等奖获奖者将从中学组中选出 <br />
             * 本次大奖的“奖学金”均以英孚课程券的形式予以发放，<br />
@@ -31,10 +31,11 @@
         <div class="p-title ">区域决赛 5月1日-5月15日</div>
         <img src="/ximalaya/img/rule-banner2.png" class="rule-banner-1">
     </div>
-    <div class="p-box">
+    <div class="p-box p-box-more">
         <div class="p-title ">网络初赛 1月8日-4月30日</div>
         <img src="/ximalaya/img/rule-banner3.png" class="rule-banner-3">
     </div>
+    <div class="more-btn J-Pizza"> + 更多奖品</div>
 </div>
 
 <div class="rank-page">
@@ -50,7 +51,7 @@
         </div>
         <div class="list">
             <div class="J-Ranklist"></div>
-            <div class="more-btn">查看全部作品</div>
+            <div class="J-gotoRank more-btn">查看全部作品</div>
         </div>
         <img src="/ximalaya/img/rank-banner-1.png" class="rank-banner">
     </div>
@@ -68,7 +69,16 @@
         },
         bindEvent: function () {
             var self = this;
+            $('.J-Pizza').click(function () {
+                $('.p-box-more').toggleClass('active');
+                $('.J-Pizza').toggleClass('active');
 
+                if ($('.p-box-more').hasClass('active')) {
+                    $('.J-Pizza').html('- 更多奖品')
+                } else {
+                    $('.J-Pizza').html('+ 更多奖品')
+                }
+            })
             $('.play-btn').click(function () {
                 $('.J-video').addClass('show');
                 $('.J-video')[0].play()
@@ -103,7 +113,7 @@
 
             });
 
-            $('.more-btn').click(function () {
+            $('.J-gotoRank').click(function () {
                 window.location.href = '/ximalaya/rank'
             })
 

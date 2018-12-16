@@ -3,16 +3,14 @@
 <div class='page result-page active'>
     <div class="info">作品已递交成功，分享海报为自己拉票吧</div>
     <div class="banner-box">
-        <div class="personal">
+        <div class='personal'>
             <img src="<%= doc.imgPic %>" class="nickpic">
-            <div class="text">
-                <div class="name">
-                    <%= doc.nickName %>
-                </div>
-                <!-- <div class="des">长按识别二维码投票</div> -->
+            <div class="name">
+            <%= doc.nickName %>
             </div>
-            <!-- <img src="/ximalaya/img/qcode.png" class="qcode"> -->
         </div>
+        <div class='des'>我在英孚全球英语挑战赛中完成了<br/> 《<%= doc.productName %>》 <br/>的英文朗读</div>
+        <img src="/ximalaya/img/qcode.png" class="qcode">
     </div>
     <div class="share-btns">
         <img src="/ximalaya/img/Timeline.png" class="timeline-btn J-share" data-ch='weixinGroup'>
@@ -64,7 +62,7 @@
                 title: $('.J-share-title').text().trim(),
                 desc: $('.J-share-des').text().trim(),
                 link: obj.linkUrl,
-                imgUrl: 'http://pjgcuhtbw.bkt.clouddn.com/EF_share_logo.jpeg',
+                imgUrl: 'http://pjt7gvrrv.bkt.clouddn.com/EF_share_logo.jpeg',
                 type: 'link',
             }, function (res) {
                 // 成功
