@@ -20,7 +20,7 @@
     <div class="title">赛程安排和奖品</div>
     <div class="p-box">
         <div class="p-title ">全国总决赛 5月16日-6月1日</div>
-        <img src="/ximalaya/img/rule-banner.png" class="rule-banner-1">
+        <img src="/ximalaya/img/rule-banner.png" class="rule-banner-1 J-gotoRegistry">
         <div class="info">
             * 特等奖获奖者将从中学组中选出 <br />
             * 本次大奖的“奖学金”均以英孚课程券的形式予以发放，<br />
@@ -94,7 +94,13 @@
             });
 
             $('.J-gotoRegistry').click(function () {
-                window.location.href = '/ximalaya/registry';
+                var u = navigator.userAgent;
+                if (u.indexOf('iting') > -1) {
+                    window.location.href = '/ximalaya/registry';
+                } else {
+                    window.location.href = 'http://m.ximalaya.com/applink';
+                }
+
             });
 
             $('.more-btn').click(function () {
