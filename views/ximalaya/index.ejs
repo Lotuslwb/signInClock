@@ -38,7 +38,7 @@
     <div class="more-btn J-Pizza"> + 更多奖品</div>
 </div>
 
-<div class="rank-page">
+<div class="rank-page" id="rank-page">
     <div class="title">排行榜</div>
     <div class="search-box">
         <input type="text" class="J-input" placeholder="请输入选手姓名">
@@ -59,11 +59,6 @@
 
 <!-- xmly  SDK -->
 <script src="/xmjssdk/xmjssdk.js?v=20"></script>
-<style>
-    .J-vote {
-        background: red !important;
-    }
-</style>
 <script>
     function Page() {
         this.init();
@@ -134,7 +129,7 @@
                 window.location.href = '/ximalaya/rank'
             })
 
-            $('body').on('click', '.J-vote', function () {
+            $('#rank-page').on('click', '.J-vote', function () {
                 console.log('J-vote click')
                 var id = $(this).data('id');
                 $.ajax({
@@ -155,7 +150,7 @@
                 });
             })
 
-            $('body').on('click', '.J-help', function () {
+            $('#rank-page').on('click', '.J-help', function () {
                 var id = $(this).data('id');
                 window.location.href = '/ximalaya/result?recordId=' + id;
             })
