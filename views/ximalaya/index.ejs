@@ -73,7 +73,11 @@
         initYa: function (cb) {
             var self = this;
             ya.ready(function () {
-                ya.audio.pause();
+                try{
+                    ya.audio.pause();
+                }catch(e){
+                    console.error(e);
+                }
             });
         },
         bindEvent: function () {
