@@ -5,6 +5,7 @@ body {
   background: #FFFFFF;
   font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 select {
   -webkit-appearance: none !important;
