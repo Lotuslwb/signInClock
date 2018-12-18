@@ -59,7 +59,11 @@
 
 <!-- xmly  SDK -->
 <script src="/xmjssdk/xmjssdk.js?v=20"></script>
-
+<style>
+    .J-vote {
+        background: red;
+    }
+</style>
 <script>
     function Page() {
         this.init();
@@ -73,11 +77,11 @@
         initYa: function (cb) {
             var self = this;
             ya.ready(function () {
-                // try{
-                //     ya.audio.pause();
-                // }catch(e){
-                //     console.error(e);
-                // }
+                try {
+                    ya.audio.pause();
+                } catch (e) {
+                    console.error(e);
+                }
             });
         },
         bindEvent: function () {
@@ -131,6 +135,7 @@
             })
 
             $('body').on('click', '.J-vote', function () {
+                console.log('J-vote click')
                 var id = $(this).data('id');
                 $.ajax({
                     type: 'post',
