@@ -65,7 +65,7 @@ var amr2mp3 = function (srcBucket, srcKey, saveName, pipeline, persistentNotifyU
                 'notifyURL': 'http://api.example.com/pfop/callback',
                 'force': false,
             };
-            var fops = ['avthumb/mp3/ab/128k/ar/44100/acodec/libmp3lame|saveas/' + qiniu.util.urlsafeBase64Encode(srcBucket + saveName + ":xmly.mp3")];
+            var fops = ['avthumb/mp3/ab/128k/ar/44100/acodec/libmp3lame|saveas/' + qiniu.util.urlsafeBase64Encode(srcBucket + ":" + saveName + ".mp3")];
             var options = {
                 'persistentNotifyUrl': persistentNotifyUrl,
             };
