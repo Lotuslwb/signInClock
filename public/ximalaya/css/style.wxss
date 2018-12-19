@@ -517,6 +517,22 @@ select {
 .recode-page .actions .bw {
   margin: 0 80px;
 }
+.recode-page .action-txt {
+  padding-top: 10px;
+  font-size: 26px;
+  color: #999999;
+  line-height: 37px;
+}
+.recode-page .recode-action,
+.recode-page .playing-action {
+  width: 100%;
+}
+.recode-page .action-img {
+  margin: auto;
+}
+.recode-page .red {
+  color: #a20619;
+}
 .result-page {
   background: #efefef;
 }

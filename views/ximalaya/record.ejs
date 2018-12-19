@@ -9,8 +9,14 @@
         <%- doc.arText %>
     </div>
     <div class="actions">
-        <img src="/ximalaya/img/record-btn.png" class="action recode-action">
-        <img src="/ximalaya/img/palying-btn.png" class="action playing-action">
+        <div class="action recode-action">
+            <img class="action-img" src="/ximalaya/img/record-btn.png">
+            <div class="action-txt"> 录音(1分钟内)</div>
+        </div>
+        <div class="action playing-action">
+            <img class="action-img" src="/ximalaya/img/palying-btn.png">
+            <div class="action-txt red"> 录音中 <span class="timer J-timer">60</span>s</div>
+        </div>
         <img src="/ximalaya/img/replay-btn.png" class="action action-group replay-action">
         <img src="/ximalaya/img/again-record-btn.png" class="action action-group bw again-action">
         <img src="/ximalaya/img/record-submit-btn.png" class="action action-group submit-action">
@@ -207,6 +213,9 @@
                     ya.recorder.startRecord(function () {
                         ya.toast('开始录音：');
                         $('.playing-action').show().siblings().hide();
+                        self.startTimer(function () {
+                            self.recordStatusChange(recordStatusCode.STOP)
+                        })
                         self.recordStatus = recordStatus;
                     });
                     break;
@@ -228,6 +237,7 @@
                     });
                     break;
                 case recordStatusCode.STOP:
+                    self.stopTimer();
                     ya.recorder.stopRecord(function (localId) {
                         self.recordStatus = recordStatus;
                         self.localId = localId;
@@ -280,10 +290,23 @@
                     tips('播放结束:' + JSON.stringify(obj));
                 }
             });
+        },
+        startTimer: function (cb) {
+            this.timer = setInterval(function () {
+                var text = $('.J-timer').text() * 1 - 1;
+                if (text >= 0) {
+                    $('.J-timer').text(text);
+                } else {
+                    cb && cb()
+                }
+            }, 1000)
+        },
+        stopTimer: function () {
+            clearInterval(this.timer);
         }
     }
 
-    new Page();
+    var page = new Page();
 </script>
 
 
