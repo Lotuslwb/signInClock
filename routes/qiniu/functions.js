@@ -53,10 +53,11 @@ var fetchUrl = function (resUrl, bucket, key) {
 
 
 /**
- * 要转码的文件所在的空间和文件名  bucket  key
+ * 要转码的文件所在的空间和文件名  srcBucket  srcBucket
  * 转码所使用的队列名称。  pipleline
+ * 转码后文件名  saveName
  *  */
-var amr2mp3 = function (srcBucket, srcKey, pipeline, persistentNotifyUrl) {
+var amr2mp3 = function (srcBucket, srcKey, saveName, pipeline, persistentNotifyUrl) {
 
     var promise = initOperManager().then(function (operManager) {
         return new Promise(function (resolve, reject) {
@@ -64,7 +65,7 @@ var amr2mp3 = function (srcBucket, srcKey, pipeline, persistentNotifyUrl) {
                 'notifyURL': 'http://api.example.com/pfop/callback',
                 'force': false,
             };
-            var fops = ['avthumb/mp3/ab/128k/ar/44100/acodec/libmp3lame'];
+            var fops = ['avthumb/mp3/ab/128k/ar/44100/acodec/libmp3lame|saveas/' + qiniu.util.urlsafeBase64Encode(srcBucket + saveName + ":xmly.mp3")];
             var options = {
                 'persistentNotifyUrl': persistentNotifyUrl,
             };
