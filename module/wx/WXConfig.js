@@ -16,7 +16,7 @@
 //英孚 服务号
 var WXConfig = {
     APPID: 'wx48668a118d818bde',
-    APPSECRET: '4cf7b218b3caa648683b7fb542daac40',
+    APPSECRET: '56df55fb3dfb8de3c8776be3e621424a',
     token: 'icloudsoft',
     encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
 }
