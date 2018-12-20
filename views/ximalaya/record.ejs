@@ -86,6 +86,10 @@
         init: function () {
             var self = this;
             self.initYa(function () {
+                // 必须登录喜马拉雅才可以使用
+                ya.login(function (res) {
+                    console.log(res);
+                });
                 self.YaBindEvent();
             });
             // 录音状态控制

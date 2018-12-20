@@ -70,15 +70,13 @@
             self.imgPic = '/ximalaya/img/nickpic.png'
             ya.ready(function () {
                 console.log(ya.device);
-                if (ya.device.token) {
-                    // 登录
-                    ya.login(function (res) {
-                        console.log(res);
-                        if (res.imgUrl.length > 0) {
-                            self.imgPic = res.imgUrl;
-                        }
-                    });
-                }
+                // 必须登录喜马拉雅才可以使用
+                ya.login(function (res) {
+                    console.log(res);
+                    if (res.imgUrl.length > 0) {
+                        self.imgPic = res.imgUrl;
+                    }
+                });
             });
         },
         bindEvent: function () {

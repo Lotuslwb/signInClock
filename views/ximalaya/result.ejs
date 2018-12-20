@@ -16,7 +16,7 @@
 
         </div>
     </div>
-    <div class="share-btns">
+    <div class="share-btns" style="display:none;">
         <img src="/ximalaya/img/Timeline.png" class="timeline-btn J-share" data-ch='weixinGroup'>
         <img src="/ximalaya/img/wx.png" class="wx-btn J-share" data-ch="weixin">
         <img src="/ximalaya/img/weibo.png" class="weibo-btn J-share" data-ch="tSina">
@@ -32,6 +32,8 @@
 <script src="/xmjssdk/xmjssdk.js?v=20"></script>
 <script src="/javascripts/html2canvas.min.js"></script>
 <script src="/javascripts/qrcode.min.js"></script>
+<script src="/javascripts/qiniu.min.js"></script>
+
 <script>
     function tips(msg) {
         console.log(msg);
@@ -48,23 +50,14 @@
             this.initBanner();
         },
         initBanner: function () {
-            var banner = document.getElementById('banner');
-
-            // 生成二维码
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: 'https://ma.eldesign.cn/ximalaya/share?recordId=' + _id,
-                width: 84,
-                height: 84,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-
-            // 生成截图
-            html2canvas(banner, {
-                allowTaint: true,
-            }).then(function (canvas) {
-                $('.canvas').append(canvas)
+            var self = this;
+            self.genQrcode();
+            self.genPic(self, function (cvs) {
+                self.uploadPic(cvs, function (imgUrl) {
+                    self.imgUrl = imgUrl;
+                    console.log(imgUrl);
+                    $('.share-btns').show();
+                })
             })
         },
         initYa: function (cb) {
@@ -82,24 +75,105 @@
                 })
             });
         },
+        genQrcode: function () {
+            // 生成二维码
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: 'https://ma.eldesign.cn/ximalaya/share?recordId=' + _id,
+                width: 84,
+                height: 84,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+        },
+        genPic: function (self, cb) {
+            // 生成截图
+            var banner = document.getElementById('banner');
+            html2canvas(banner, {
+                allowTaint: false,
+                useCORS: true,
+            }).then(function (canvas) {
+                $('.canvas').append(canvas);
+                cb && cb(canvas);
+            })
+        },
+        uploadPic: function (cvs, cb) {
+            // 截图上传
+            $.ajax({
+                type: 'get',
+                data: {
+                    scope: 'xmly'
+                },
+                url: '/qiniu/api/getToken',
+                success: function (data) {
+                    if (data.status == 200) {
+                        var token = data.data.uploadToken;
+                        cvs.toBlob(function (blob) {
+                            var observable = qiniu.upload(blob, new Date() * 1, token, {}, {
+                                useCdnDomain: false,
+                                region: qiniu.region.z0
+                            })
+                            var subscription = observable.subscribe({
+                                next(res) {
+                                    console.log(res);
+                                },
+                                error(err) {
+                                    console.log(err);
+                                },
+                                complete(res) {
+                                    console.log(res, 'complete');
+                                    var imgUrl =
+                                        'http://pjgcuhtbw.bkt.clouddn.com/' + res.key;
+                                    cb && cb(imgUrl);
+                                }
+                            }) // 上传开始
+                        })
+                    } else {
+                        window.mPZ.toast(data.data);
+                    }
+                },
+                dataType: 'json'
+            });
+        },
         /** channel,linkUrl, */
         shareHandle: function (obj) {
-            ya.multiShare({
-                channel: obj.channel,
-                title: $('.J-share-title').text().trim(),
-                desc: $('.J-share-des').text().trim(),
-                link: obj.linkUrl,
-                imgUrl: 'http://pjt7gvrrv.bkt.clouddn.com/EF_share_logo.jpeg',
-                type: 'link',
-            }, function (res) {
-                // 成功
-                if (res.ret == 0) {
-                    ya.toast('分享到【' + channel + '】成功！');
-                    console.log(JSON.stringify('分享到【' + channel + '】成功！'));
-                } else {
-                    console.log(res.msg);
-                }
-            });
+            if (obj.channel == 'tSina') {
+                ya.multiShare({
+                    channel: obj.channel,
+                    title: $('.J-share-title').text().trim(),
+                    desc: $('.J-share-des').text().trim(),
+                    link: obj.linkUrl,
+                    imgUrl: 'http://pjt7gvrrv.bkt.clouddn.com/EF_share_logo.jpeg',
+                    type: 'link',
+                }, function (res) {
+                    // 成功
+                    if (res.ret == 0) {
+                        ya.toast('分享到【' + channel + '】成功！');
+                        console.log(JSON.stringify('分享到【' + channel + '】成功！'));
+                    } else {
+                        console.log(res.msg);
+                    }
+                });
+            } else {
+                ya.share({
+                    channel: obj.channel,
+                    title: $('.J-share-title').text().trim(),
+                    desc: $('.J-share-des').text().trim(),
+                    link: obj.linkUrl,
+                    imgUrl: 'http://pjt7gvrrv.bkt.clouddn.com/EF_share_logo.jpeg',
+                    type: 'picture',
+                }, function (res) {
+                    // 成功
+                    if (res.ret == 0) {
+                        ya.toast('分享到【' + channel + '】成功！');
+                        console.log(JSON.stringify('分享到【' + channel + '】成功！'));
+                    } else {
+                        console.log(res.msg);
+                    }
+                });
+            }
+
         }
     }
     new Page();
