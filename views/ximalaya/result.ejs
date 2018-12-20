@@ -48,6 +48,8 @@
             this.initBanner();
         },
         initBanner: function () {
+            var banner = document.getElementById('banner');
+
             // 生成二维码
             var qrcode = new QRCode(document.getElementById("qrcode"), {
                 text: 'https://ma.eldesign.cn/ximalaya/share?recordId=' + _id,
@@ -101,8 +103,6 @@
         }
     }
     new Page();
-
-    var banner = document.getElementById('banner');
 </script>
 
 <%- include("footer.ejs") %>
