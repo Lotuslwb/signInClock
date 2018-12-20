@@ -164,7 +164,9 @@
             $('.submit-action').click(function () {
                 // 先停止播放
                 self.recordStatusChange(self.recordStatusCode.PALYSTOP);
+                console.log(self.localId);
                 ya.recorder.uploadVoice(self.localId, function (res) {
+                    console.log(res);
                     var obj = JSON.parse(res);
                     // 客户端上传
                     if (obj.ret == 0) {

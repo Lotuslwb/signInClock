@@ -138,6 +138,7 @@
         },
         /** channel,linkUrl, */
         shareHandle: function (obj) {
+            var self=this;
             if (obj.channel == 'tSina') {
                 ya.multiShare({
                     channel: obj.channel,
@@ -161,7 +162,7 @@
                     title: $('.J-share-title').text().trim(),
                     desc: $('.J-share-des').text().trim(),
                     link: obj.linkUrl,
-                    imgUrl: 'http://pjt7gvrrv.bkt.clouddn.com/EF_share_logo.jpeg',
+                    imgUrl: self.imgUrl,
                     type: 'picture',
                 }, function (res) {
                     // 成功
