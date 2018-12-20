@@ -1,7 +1,6 @@
-
-try{
+try {
   var vConsole = new VConsole();
-}catch(e){}
+} catch (e) {}
 
 window.onerror = function (msg) {
   console.log(JSON.stringify(msg));
@@ -22,6 +21,7 @@ var hide = function (el) {
 var $tips = el('.tips');
 var timer = null;
 var tips = function (str) {
+
   clearTimeout(timer);
   $tips.style.opacity = '1';
   $tips.innerHTML = '<span class="tips-txt">' + str + '</span>';
@@ -68,36 +68,29 @@ el('#closeWebView').onclick = function () {
   ya.closeWebView();
 };
 
-//  暂停全局播放
-el('#pauseAudio').onclick = function () {
-  ya.audio.pause();
-};
-
-
-
 var showSharebtn = false;
 // 右上角分享
 el('#onShare').onclick = function () {
   showSharebtn = !showSharebtn;
-  if(showSharebtn){
+  if (showSharebtn) {
     console.log('右上角分享')
-    ya.onShare(function(){
+    ya.onShare(function () {
       ya.share({
-          channel:['weixinGroup','weixin'], 
-          title: '分享标题 ',
-          desc: '分享描述',
-          link: location.href,
-          imgUrl: '分享图标', //分享图标
-          type: 'link', // 分享类型,music、video或link，不填默认为link
-       },function(res){
-          // res 分享回调参数 ，格式见multiShare
+        channel: ['weixinGroup', 'weixin'],
+        title: '分享标题 ',
+        desc: '分享描述',
+        link: location.href,
+        imgUrl: '分享图标', //分享图标
+        type: 'link', // 分享类型,music、video或link，不填默认为link
+      }, function (res) {
+        // res 分享回调参数 ，格式见multiShare
       });
     });
-    
-  }else{
+
+  } else {
     ya.onShare(false);
   }
-  
+
 };
 
 // 登录接口
@@ -126,11 +119,10 @@ el('#multiShare').onclick = function (e) {
   // 如果是声音分享到新浪微博
   // 分享到新浪微博 不判断dataUrl
   if (channel == 'tSina') {
-    if(type == 'music') {
+    if (type == 'music') {
       linkUrl = 'http://www.ximalaya.com/thirdparty/linkcard/7801955';
     }
-  }
-  else{
+  } else {
     if (type == 'music') {
       dataUrl = 'http://audio.xmcdn.com/group20/M0B/95/69/wKgJLFexhpezbxt8AIjBPJ6ev40085.m4a';
     }
@@ -188,42 +180,42 @@ var recordLocalId = ''; //  录音localId
   // 录音
   $record.onclick = function (e) {
     switch (voiceStatus) {
-    case recordStatus.READY:
-      recordSet(this);
-      ya.recorder.startRecord(function () {
-        ya.toast('开始录音：');
-      });
-      break;
-    case recordStatus.RECORDING:
-      // this.innerHTML = '继续';
-      ya.recorder.pauseRecord(function (localId) {
-        recordLocalId = localId;
-        ya.toast('暂停录音：' + localId);
-      });
-      show($againRecord);
-      show($stopRecord);
-      show($voicePanel);
-      break;
-    case recordStatus.PAUSED:
-      if (!recordLocalId) {
-        console.log('请先录制一段音频！');
-        return;
-      }
-      recordSet(this);
-      ya.recorder.resumeRecord(recordLocalId, function (localId) {
-        ya.toast('恢复录音:' + localId);
-      });
-      break;
-    case recordStatus.STOP:
-      if (!recordLocalId) {
-        console.log('请先录制一段音频！');
-        return;
-      }
-      recordSet(this);
-      ya.recorder.startRecord(function () {
-        ya.toast('开始录音：');
-      });
-      break;
+      case recordStatus.READY:
+        recordSet(this);
+        ya.recorder.startRecord(function () {
+          ya.toast('开始录音：');
+        });
+        break;
+      case recordStatus.RECORDING:
+        // this.innerHTML = '继续';
+        ya.recorder.pauseRecord(function (localId) {
+          recordLocalId = localId;
+          ya.toast('暂停录音：' + localId);
+        });
+        show($againRecord);
+        show($stopRecord);
+        show($voicePanel);
+        break;
+      case recordStatus.PAUSED:
+        if (!recordLocalId) {
+          console.log('请先录制一段音频！');
+          return;
+        }
+        recordSet(this);
+        ya.recorder.resumeRecord(recordLocalId, function (localId) {
+          ya.toast('恢复录音:' + localId);
+        });
+        break;
+      case recordStatus.STOP:
+        if (!recordLocalId) {
+          console.log('请先录制一段音频！');
+          return;
+        }
+        recordSet(this);
+        ya.recorder.startRecord(function () {
+          ya.toast('开始录音：');
+        });
+        break;
     }
   };
 
@@ -234,31 +226,31 @@ var recordLocalId = ''; //  录音localId
       return;
     }
     switch (playStatus) {
-    case recordStatus.PLAYING:
-      ya.recorder.pauseVoice(recordLocalId, function (localId) {
-        ya.toast('暂停播放:' + localId);
-      });
-      break;
-    case recordStatus.PLAYPAUSED:
-      ya.recorder.resumeVoice(recordLocalId, function (localId) {
-        ya.toast('恢复播放:' + localId);
-      });
-      break;
-    case recordStatus.PALYSTOP:
-      ya.recorder.playVoice(recordLocalId, function (localId) {
-        ya.toast('开始播放: ' + localId);
-      });
-      show($againVoice);
-      show($stopVoice);
-      break;
-    case recordStatus.ERROR:
-      break;
-    default:
-      ya.recorder.playVoice(recordLocalId, function (localId) {
-        ya.toast('开始播放: ' + localId);
-      });
-      show($againVoice);
-      show($stopVoice);
+      case recordStatus.PLAYING:
+        ya.recorder.pauseVoice(recordLocalId, function (localId) {
+          ya.toast('暂停播放:' + localId);
+        });
+        break;
+      case recordStatus.PLAYPAUSED:
+        ya.recorder.resumeVoice(recordLocalId, function (localId) {
+          ya.toast('恢复播放:' + localId);
+        });
+        break;
+      case recordStatus.PALYSTOP:
+        ya.recorder.playVoice(recordLocalId, function (localId) {
+          ya.toast('开始播放: ' + localId);
+        });
+        show($againVoice);
+        show($stopVoice);
+        break;
+      case recordStatus.ERROR:
+        break;
+      default:
+        ya.recorder.playVoice(recordLocalId, function (localId) {
+          ya.toast('开始播放: ' + localId);
+        });
+        show($againVoice);
+        show($stopVoice);
     }
   };
 
@@ -371,3 +363,37 @@ var recordLocalId = ''; //  录音localId
   });
 
 })();
+
+
+// var a = {
+//   "contentType": "application/octet-stream",
+//   "source": "audio",
+//   "callerSource": "thirdparty",
+//   "fileExtName": "amr",
+//   "processResult": {
+//     "duration": 38,
+//     "qualityLevel": 2,
+//     "sampling": 8000,
+//     "quality": 35,
+//     "bitrate": 12,
+//     "fileFormat": "amr"
+//   },
+//   "fileName": "x1544513538779.amr",
+//   "uploadTrack": {
+//     "id": 151795710,
+//     "uid": 141161080,
+//     "type": 1,
+//     "url": "group52/M01/63/75/wKgLe1wPaGXAIDdMAADyBlU3R88341.amr",
+//     "fileName": "x1544513538779.amr",
+//     "fileSize": 61958
+//   },
+//   "fileSize": 61958,
+//   "ip": "180.167.36.194",
+//   "uid": 141161080,
+//   "dfsId": "group52/M01/63/75/wKgLe1wPaGXAIDdMAADyBlU3R88341.amr",
+//   "url": "http://fdfs.xmcdn.com/group52/M01/63/75/wKgLe1wPaGXAIDdMAADyBlU3R88341.amr",
+//   "localTempFile": "/tmp/dffb124a4a2a4ba9a847e391caa64f88.amr",
+//   "isBackend": false,
+//   "osType": "android",
+//   "fdfsClusterId": 0
+// }
