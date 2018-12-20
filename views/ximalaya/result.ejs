@@ -2,21 +2,26 @@
 
 <div class='page result-page active'>
     <div class="info">作品已递交成功，分享海报为自己拉票吧</div>
-    <div class="banner-box">
+    <div class="banner-box" id="banner">
+        <div class="canvas"></div>
         <div class='personal'>
             <img src="<%= doc.imgPic %>" class="nickpic">
             <div class="name">
-            <%= doc.nickName %>
+                <%= doc.nickName %>
             </div>
         </div>
-        <div class='des'>我在英孚全球英语挑战赛中完成了<br/> 《<%= doc.productName %>》 <br/>的英文朗读</div>
-        <img src="/ximalaya/img/qcode.png" class="qcode">
+        <div class='des'>我在英孚全球英语挑战赛中完成了<br /> 《
+            <%= doc.productName %>》 <br />的英文朗读</div>
+        <div class="qcode" id="qrcode">
+
+        </div>
     </div>
     <div class="share-btns">
         <img src="/ximalaya/img/Timeline.png" class="timeline-btn J-share" data-ch='weixinGroup'>
         <img src="/ximalaya/img/wx.png" class="wx-btn J-share" data-ch="weixin">
         <img src="/ximalaya/img/weibo.png" class="weibo-btn J-share" data-ch="tSina">
     </div>
+
 </div>
 <div class='J-share-title f-hide'>英孚全球英语挑战赛</div>
 <div class='J-share-des f-hide'>
@@ -25,7 +30,8 @@
 </div>
 <!-- xmly  SDK -->
 <script src="/xmjssdk/xmjssdk.js?v=20"></script>
-
+<script src="/javascripts/html2canvas.min.js"></script>
+<script src="/javascripts/qrcode.min.js"></script>
 <script>
     function tips(msg) {
         console.log(msg);
@@ -39,6 +45,25 @@
     Page.prototype = {
         init: function () {
             this.initYa();
+            this.initBanner();
+        },
+        initBanner: function () {
+            // 生成二维码
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: 'https://ma.eldesign.cn/ximalaya/share?recordId=' + _id,
+                width: 84,
+                height: 84,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            // 生成截图
+            html2canvas(banner, {
+                allowTaint: true,
+            }).then(function (canvas) {
+                $('.canvas').append(canvas)
+            })
         },
         initYa: function (cb) {
             var self = this;
@@ -76,6 +101,8 @@
         }
     }
     new Page();
+
+    var banner = document.getElementById('banner');
 </script>
 
 <%- include("footer.ejs") %>

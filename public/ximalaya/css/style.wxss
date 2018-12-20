@@ -550,6 +550,14 @@ select {
   background: url(../img/result-banner.png) no-repeat;
   position: relative;
 }
+.result-page .banner-box .canvas {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .result-page .banner-box .personal {
   padding-top: 48px;
 }
