@@ -132,7 +132,7 @@
                                     cb && cb(imgUrl);
                                 }
                             }) // 上传开始
-                        })
+                        },'image/jpeg', 0.8)
                     } else {
                         window.mPZ.toast(data.data);
                     }
