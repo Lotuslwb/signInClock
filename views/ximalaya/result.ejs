@@ -101,12 +101,13 @@
                 // $('.canvas').append(canvas);
                 console.log('生成截图 成功')
                 cb && cb(cvs);
-            }).catch(function(e){
+            }).catch(function (e) {
                 console.log('生成截图 失败')
                 console.log(e);
             })
         },
         uploadPic: function (cvs, cb) {
+            var self = this;
             // 截图上传
             $.ajax({
                 type: 'get',
@@ -117,26 +118,26 @@
                 success: function (data) {
                     if (data.status == 200) {
                         var token = data.data.uploadToken;
-                        cvs.toBlob(function (blob) {
-                            var observable = qiniu.upload(blob, 'share_'+new Date() * 1, token, {}, {
-                                useCdnDomain: false,
-                                region: qiniu.region.z0
-                            })
-                            var subscription = observable.subscribe({
-                                next(res) {
-                                    console.log(res);
-                                },
-                                error(err) {
-                                    console.log(err);
-                                },
-                                complete(res) {
-                                    console.log(res, '上传图片成功');
-                                    var imgUrl =
-                                        'http://pjgcuhtbw.bkt.clouddn.com/' + res.key;
-                                    cb && cb(imgUrl);
-                                }
-                            }) // 上传开始
-                        },'image/jpeg', 0.5)
+                        var dataURL = cvs.toDataURL('image/jpeg', 0.5);
+                        var blob = self.dataURItoBlob(dataURL);
+                        var observable = qiniu.upload(blob, 'share_' + new Date() * 1, token, {}, {
+                            useCdnDomain: false,
+                            region: qiniu.region.z0
+                        })
+                        var subscription = observable.subscribe({
+                            next(res) {
+                                console.log(res);
+                            },
+                            error(err) {
+                                console.log(err);
+                            },
+                            complete(res) {
+                                console.log(res, '上传图片成功');
+                                var imgUrl =
+                                    'http://pjgcuhtbw.bkt.clouddn.com/' + res.key;
+                                cb && cb(imgUrl);
+                            }
+                        }) // 上传开始
                     } else {
                         window.mPZ.toast(data.data);
                     }
@@ -144,9 +145,31 @@
                 dataType: 'json'
             });
         },
+
+        dataURItoBlob: function (dataURI) {
+            // convert base64/URLEncoded data component to raw binary data held in a string
+            var byteString;
+            if (dataURI.split(',')[0].indexOf('base64') >= 0)
+                byteString = atob(dataURI.split(',')[1]);
+            else
+                byteString = unescape(dataURI.split(',')[1]);
+
+            // separate out the mime component
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+            // write the bytes of the string to a typed array
+            var ia = new Uint8Array(byteString.length);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+
+            return new Blob([ia], {
+                type: mimeString
+            });
+        },
         /** channel,linkUrl, */
         shareHandle: function (obj) {
-            var self=this;
+            var self = this;
             if (obj.channel == 'tSina') {
                 ya.multiShare({
                     channel: obj.channel,
