@@ -16,10 +16,13 @@
 
         </div>
     </div>
-    <div class="share-btns" style="display:none;">
+    <div class="share-btns J-share-btns" style="display:none;">
         <img src="/ximalaya/img/Timeline.png" class="timeline-btn J-share" data-ch='weixinGroup'>
         <img src="/ximalaya/img/wx.png" class="wx-btn J-share" data-ch="weixin">
         <img src="/ximalaya/img/weibo.png" class="weibo-btn J-share" data-ch="tSina">
+    </div>
+    <div class="share-btns J-loading">
+        正在生成分享海报...
     </div>
 
 </div>
@@ -56,7 +59,8 @@
                 self.uploadPic(cvs, function (imgUrl) {
                     self.imgUrl = imgUrl;
                     console.log(imgUrl);
-                    $('.share-btns').show();
+                    $('.J-share-btns').show();
+                    $('.J-loading').hide();
                 })
             })
         },
