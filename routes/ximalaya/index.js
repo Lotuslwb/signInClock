@@ -78,6 +78,8 @@ router.get('/result', function (req, res, next) {
     functions.queryRecordById(id).then(function (docs) {
         var doc = docs[0];
         console.log(doc);
+        //处理img 跨域合成图片问题
+        doc.imgPic = doc.imgPic.replace('http://fdfs.xmcdn.com', '/yaProxy');
         res.render('ximalaya/result', {
             doc: doc
         });
@@ -110,6 +112,5 @@ router.get('/share', function (req, res, next) {
         }
     })
 });
-
 
 module.exports = router;

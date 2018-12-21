@@ -77,6 +77,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/wxServer', wx);
 
 
+
+
 var wxConfig = require('./module/wx/WXConfig');
 var wxFunc = require('./module/wx/WXFunc');
 var wxInitFunc = require('./module/wx/WXInitFunc');
