@@ -118,7 +118,7 @@
                 success: function (data) {
                     if (data.status == 200) {
                         var token = data.data.uploadToken;
-                        var dataURL = cvs.toDataURL('image/jpeg', 0.8);
+                        var dataURL = cvs.toDataURL('image/png', 0.8);
                         var blob = self.dataURItoBlob(dataURL);
                         var observable = qiniu.upload(blob, 'share_' + new Date() * 1, token, {}, {
                             useCdnDomain: false,
