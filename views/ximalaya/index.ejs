@@ -53,7 +53,7 @@
             <div class="J-Ranklist"></div>
             <div class="J-gotoRank more-btn">查看全部作品</div>
         </div>
-        <img src="/ximalaya/img/rank-banner-1.png" class="rank-banner">
+        <img src="/ximalaya/img/rank-banner-1.png" class="rank-banner J-rank-banner J-gotoRegistry">
     </div>
 </div>
 
@@ -81,6 +81,17 @@
         },
         bindEvent: function () {
             var self = this;
+            var $body = $('body');
+            var $rank = $('.J-rank-banner');
+            var bodyH = $body.height();
+            $('body').scroll(function () {
+                if ($body.scrollTop() > bodyH) {
+                    $rank.addClass('fixed');
+                } else {
+                    $rank.removeClass('fixed');
+                }
+            });
+
             $('.J-Pizza').click(function () {
                 $('.p-box-more').toggleClass('active');
                 $('.J-Pizza').toggleClass('active');
@@ -96,6 +107,9 @@
                 $('.J-video')[0].play()
             })
             $('.J-video')[0].onended = function () {
+                $('.J-video').removeClass('show');
+            };
+            $('.J-video')[0].onpause = function () {
                 $('.J-video').removeClass('show');
             };
 

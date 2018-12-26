@@ -104,6 +104,9 @@ select {
   position: absolute;
   bottom: 0;
 }
+.rank-page .fixed {
+  position: fixed;
+}
 .rank-page .title {
   font-size: 48px;
   line-height: 67px;
@@ -544,12 +547,20 @@ select {
   text-align: center;
   padding: 24px 0;
 }
+.result-page .result-banner-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .result-page .banner-box {
   margin: auto;
   width: 622px;
   height: 924px;
-  background: url(../img/result-banner.png) no-repeat;
   position: relative;
+}
+.result-page .banner-box div {
+  position: relative;
+  z-index: 2;
 }
 .result-page .banner-box .canvas {
   position: absolute;
@@ -602,10 +613,20 @@ select {
           justify-content: space-between;
 }
 .share-page {
-  background: url(../img/share-bg.png) no-repeat top 145px center;
+  background: #FFFFFF;
   background-size: 100% auto;
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
+}
+.share-page .share-btn {
+  background: url(../img/share-gotoIndex-btn.png);
+  width: 398px;
+  line-height: 142px;
+  height: 142px;
+  margin: 35px auto 0;
+  text-align: center;
+  font-size: 32px;
+  color: #FFFFFF;
 }
 .share-page .h60 {
   height: 60px;
@@ -630,10 +651,6 @@ select {
   font-size: 28px;
   line-height: 40px;
   padding-top: 6px;
-}
-.share-page .vote-btn {
-  padding-top: 64px;
-  margin: auto;
 }
 .share-page .music-icon {
   margin: 55px auto 36px;

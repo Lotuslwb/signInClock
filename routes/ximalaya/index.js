@@ -18,11 +18,14 @@ router.get('/rank', function (req, res, next) {
 });
 
 router.get('/registry', function (req, res, next) {
+    var city = require('./city');
     functions.checkLogin(req, res).then(function (tel) {
         if (tel) {
             res.redirect('/ximalaya/list');
         } else {
-            res.render('ximalaya/registry');
+            res.render('ximalaya/registry', {
+                cityList: city.cityList
+            });
         }
     })
 });

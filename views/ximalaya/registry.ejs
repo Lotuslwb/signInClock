@@ -13,7 +13,9 @@
     <label class='rows'>
         <div class="text">选择城市</div>
         <select class="select J-city" name="city" data-required=true data-message="请选择城市">
-            <option value="sh">上海</option>
+            <%for(var i=0;i<cityList.length;i++){  var item=cityList[i];%>
+            <option value="<%= item %>"><%= item %></option>
+            <%}%>
         </select>
     </label>
     <label class='rows'>

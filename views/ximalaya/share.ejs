@@ -18,11 +18,12 @@
     <div class="text">
         <span class='J-voteNumber'><%= doc.voteNumber %></span>票
     </div>
-    <img src="/ximalaya/img/share-vote-btn.png" class="vote-btn J-vote">
+    <div class="share-btn J-vote">为他投票</div>
     <img src="/ximalaya/img/music-icon.png" class="music-icon">
     <div class="info">已有
-        <%= count + 1212 %>人参与了本次活动， <br />赶快加入用英语讲中国故事，学做块文化小使者
+        <%= count + 1212 %>人参与了本次活动， <br />赶快加入用英语讲中国故事，学做跨文化小使者
     </div>
+    <div class="share-btn J-gotoIndex">我要参加</div>
 </div>
 
 <script>
@@ -44,6 +45,10 @@
                 } else {
                     self.playMusic();
                 }
+            })
+
+            $('.J-gotoIndex').click(function(){
+                window.location.href='/ximalaya';
             })
 
             $('.J-vote').click(function () {
