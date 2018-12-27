@@ -43,6 +43,8 @@ var queryArticleByLeave = function (leave) {
     return getArticle({
         arLeave: leave,
         status: 0,
+    }, {}, {
+        index: 1
     }).then(function (docs) {
         console.log(docs);
         return docs;
