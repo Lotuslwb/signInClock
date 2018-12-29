@@ -152,15 +152,21 @@ router.post('/login', function (req, res, next) {
     } else {
         functions.checkSMS(tel, code).then(function (result) {
             if (result) {
-                res.cookie('session', JSON.stringify({
-                    tel: tel
-                }), {
-                    expires: new Date(Date.now() * 1 + 24 * 60 * 60 * 1000 * 365),
-                    signed: true
+                functions.queryUserByTel(tel).then(function (doc) {
+                    if (!doc) {
+                        res.send(sendData('999', '请先注册再登录', ''));
+                    } else {
+                        res.cookie('session', JSON.stringify({
+                            tel: tel
+                        }), {
+                            expires: new Date(Date.now() * 1 + 24 * 60 * 60 * 1000 * 365),
+                            signed: true
+                        });
+                        res.send(sendData('200', {
+                            result: result,
+                        }, ''));
+                    }
                 });
-                res.send(sendData('200', {
-                    result: result,
-                }, ''));
             } else {
                 res.send(sendData('999', '验证码不正确', ''));
             }
