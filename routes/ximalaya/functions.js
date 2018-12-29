@@ -254,7 +254,7 @@ var queryUserByTel = function (tel) {
 
 /*  用手机和验证码登录 */
 var SMSDB = require('../../module/DB/SMSDB');
-var smsSendFunctions = require('../../module/sms/InvitationSMS');
+var smsSendFunctions = require('../../module/sms/xmlySMS');
 
 var smsDBAdd = function (json) {
     var promise = new Promise(function (resolve, reject) {
