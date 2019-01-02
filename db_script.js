@@ -1,9 +1,17 @@
-db.users.find({'personInfo.nickname': '必嘎啾'})
+db.users.find({
+    'personInfo.nickname': '必嘎啾'
+})
 
-db.users.find({'personInfo.nickname': /CC.G/});
+db.users.find({
+    'personInfo.nickname': /CC.G/
+});
 
-db.users.find({'personInfo.nickname': '天晴'}).skip(1)
-db.users.find({'personInfo.nickname': '珠珠子'}).forEach(function (x) {
+db.users.find({
+    'personInfo.nickname': '天晴'
+}).skip(1)
+db.users.find({
+    'personInfo.nickname': '珠珠子'
+}).forEach(function (x) {
     var recodeInfo = x.recodeInfo;
     x.recodeInfo.currentRecodeCounts = recodeInfo.currentRecodeCounts * 1 + 1;
     x.recodeInfo.currentSerialRecodeCounts = recodeInfo.currentSerialRecodeCounts * 1 + 1;
@@ -12,13 +20,25 @@ db.users.find({'personInfo.nickname': '珠珠子'}).forEach(function (x) {
     db.getCollection('users').save(x);
 });
 
-db.users.find({'personInfo.nickname': '珠珠子'}).forEach(function (x) {
+db.users.find({
+    'personInfo.nickname': '珠珠子'
+}).forEach(function (x) {
     var recodeInfo = x.recodeInfo;
     var recodeTimeArray = recodeInfo.recodeTimeArray;
     recodeTimeArray.push('20180122')
     x.recodeInfo.recodeTimeArray = recodeTimeArray;
     db.getCollection('users').save(x);
 });
+
+
+db.ximaarticles.find().forEach(function (item) {
+    var url = 'http://xmcdn.eldesign.cn/';
+    var arRecord = item.arRecord;
+    var arry = arRecord.split('/');
+    var name = arry[arry.length - 1];
+    item.arRecord = url + name;
+    db.getCollection('ximaarticles').save(item);
+})
 
 
 var a = {
@@ -46,7 +66,10 @@ var a = {
         "audioURL": null,
         "difficulty": null
     }],
-    "clockInfo": {"clockTime": "17:30", "clockSwitch": "on"},
+    "clockInfo": {
+        "clockTime": "17:30",
+        "clockSwitch": "on"
+    },
     "level": "1",
     "openid": "oKdUIuFzFxpjUGvDzdNvlehoDY0A",
     "personInfo": {
@@ -267,5 +290,3 @@ var a = {
         "totalWordLength": "2411"
     }
 }
-
-

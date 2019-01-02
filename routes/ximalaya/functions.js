@@ -163,7 +163,7 @@ var setRecordMp3 = function (doc) {
         if (data.code == 0) {
             // 转码已经完成
             var key = data.items[0].key;
-            var productRecordMp3 = 'http://pjgcuhtbw.bkt.clouddn.com/' + key;
+            var productRecordMp3 = 'http://xmly.eldesign.cn/' + key;
             return updateRecord(doc._id, {
                 productRecordMp3: productRecordMp3
             }).then(function (info) {

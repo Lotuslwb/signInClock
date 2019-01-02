@@ -224,7 +224,7 @@ router.post('/saveAudio', function (req, res, next) {
             var AudioPromise = qiniuFunctions.fetchUrl(url, 'xmly', key).then(res => {
                 console.log('下载成功');
                 var res_key = res.respBody.key;
-                productRecordAmr = 'http://pjgcuhtbw.bkt.clouddn.com/' + res_key;
+                productRecordAmr = 'http://xmly.eldesign.cn/' + res_key;
                 var mp3Callback = 'http://ma.eldesign.cn/ximalaya/api/mp3Callback?tab=mp3Callback';
                 var saveName = key;
                 return qiniuFunctions.amr2mp3('xmly', res_key, saveName, 'xmly_audio', mp3Callback).then(function (ret) {
