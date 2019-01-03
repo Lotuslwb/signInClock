@@ -112,7 +112,8 @@ var getSDKSignFormWX = function (originalUrl, callback) {
         var TOKEN = chunk.access_token;
         var expiresTime = chunk.expires_in;
 
-        var signUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + TOKEN + '&type=jsapi';
+        // var signUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + TOKEN + '&type=jsapi';
+        var signUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
         load(loadWay, signUrl, function (chunk) {
             log('获取access_token');
             log(chunk)
