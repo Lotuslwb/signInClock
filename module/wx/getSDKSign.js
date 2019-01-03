@@ -119,12 +119,12 @@ var getSDKSignFormWX = function (originalUrl, callback) {
             chunk.TOKEN = TOKEN;
             chunk.expiresTime = expiresTime;
             chunk.timestamp = new Date().getTime() / 1000;
-            // var wxConfig = sign(chunk.ticket, originalUrl);
-            // wxConfig.appId = APPID;
-            // wxConfig.expiresTime = expiresTime;
-            // wxConfig.access_token = TOKEN;
-            //log('最后的chunk')
-            //log(chunk);
+            var wxConfig = sign(chunk.ticket, originalUrl);
+            wxConfig.appId = APPID;
+            wxConfig.expiresTime = expiresTime;
+            wxConfig.access_token = TOKEN;
+            log('最后的chunk')
+            log(chunk);
             callback && callback(chunk);
         })
 
