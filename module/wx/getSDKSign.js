@@ -107,24 +107,25 @@ var getSDKSignFormWX = function (originalUrl, callback) {
     var getTokenUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
 
     load(loadWay, getTokenUrl, function (chunk) {
-        //log('获取token');
-        //log(chunk);
+        log('获取token');
+        log(chunk);
         var TOKEN = chunk.access_token;
         var expiresTime = chunk.expires_in;
 
-        var signUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + TOKEN + '&type=jsapi';
+        // var signUrl = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + TOKEN + '&type=jsapi';
+        var signUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
         load(loadWay, signUrl, function (chunk) {
-            // log('获取access_token');
-            // log(chunk)
+            log('获取access_token');
+            log(chunk)
             chunk.TOKEN = TOKEN;
             chunk.expiresTime = expiresTime;
             chunk.timestamp = new Date().getTime() / 1000;
-            // var wxConfig = sign(chunk.ticket, originalUrl);
-            // wxConfig.appId = APPID;
-            // wxConfig.expiresTime = expiresTime;
-            // wxConfig.access_token = TOKEN;
-            //log('最后的chunk')
-            //log(chunk);
+            var wxConfig = sign(chunk.ticket, originalUrl);
+            wxConfig.appId = APPID;
+            wxConfig.expiresTime = expiresTime;
+            wxConfig.access_token = TOKEN;
+            log('最后的chunk')
+            log(chunk);
             callback && callback(chunk);
         })
 
