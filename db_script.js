@@ -31,13 +31,10 @@ db.users.find({
 });
 
 
-db.ximaarticles.find().forEach(function (item) {
-    var url = 'http://xmcdn.eldesign.cn/';
-    var arRecord = item.arRecord;
-    var arry = arRecord.split('/');
-    var name = arry[arry.length - 1];
-    item.arRecord = url + name;
-    db.getCollection('ximaarticles').save(item);
+db.ximalayas.find().forEach(function (item) {
+    if (item.productRecordAmr) item.productRecordAmr = item.productRecordAmr.replace('pjgcuhtbw.bkt.clouddn.com', 'xmly.eldesign.cn');
+    if (item.productRecordMp3) item.productRecordMp3 = item.productRecordMp3.replace('pjgcuhtbw.bkt.clouddn.com', 'xmly.eldesign.cn');
+    db.getCollection('ximalayas').save(item);
 })
 
 
