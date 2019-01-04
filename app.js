@@ -80,17 +80,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 var wxConfig = require('./module/wx/WXConfig');
-var wxFunc = require('./module/wx/WXFunc');
-var wxInitFunc = require('./module/wx/WXInitFunc');
-var wechat = require('wechat');
+// var wxFunc = require('./module/wx/WXFunc');
+// var wxInitFunc = require('./module/wx/WXInitFunc');
+// var wechat = require('wechat');
 var config = {
     token: wxConfig.token,
     appid: wxConfig.APPID,
     encodingAESKey: wxConfig.encodingAESKey
 };
 app.use(express.query());
-app.use('/wxServer', wechat(config, wxFunc));
 
+// app.use('/wxServer', wechat(config, wxFunc));
 //wxInitFunc();
 
 app.use('/daka', daka);
