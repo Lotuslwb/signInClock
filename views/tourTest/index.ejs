@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/tourTest/css/style.css">
     <link rel="stylesheet" href="/swiper/swiper-3.3.1.min.css">
     <script>
-    var _hmt = _hmt || [];
+        var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
       hm.src = "https://hm.baidu.com/hm.js?a0e9e1cce678aef060f414bcd2beb467";
@@ -28,7 +28,7 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
-    
+
 </head>
 
 <body>
@@ -172,7 +172,8 @@
                             <div class="Q-itemWrap">
                                 <span class="radio music-radio"></span>
                                 <span class="music" data-src='/tourTest/mp3/1.mp3'>
-                                    <span class="pross J-music" style="width:230px;"><img src="/tourTest/img/music-pross-icon.png" class="pross-icon">
+                                    <span class="pross J-music" style="width:230px;"><img src="/tourTest/img/music-pross-icon.png"
+                                            class="pross-icon">
                                     </span>
                                     <span class="readIcon"></span>
                                     <span class="timer">10</span>
@@ -183,7 +184,8 @@
                             <div class="Q-itemWrap">
                                 <span class="radio music-radio"></span>
                                 <span class="music" data-src='/tourTest/mp3/2.mp3'>
-                                    <span class="pross J-music"  style="width:295px;"><img src="/tourTest/img/music-pross-icon.png" class="pross-icon">
+                                    <span class="pross J-music" style="width:295px;"><img src="/tourTest/img/music-pross-icon.png"
+                                            class="pross-icon">
                                     </span>
                                     <span class="readIcon"></span>
                                     <span class="timer">13</span>
@@ -194,7 +196,8 @@
                             <div class="Q-itemWrap">
                                 <span class="radio music-radio"></span>
                                 <span class="music" data-src='/tourTest/mp3/3.mp3'>
-                                    <span class="pross J-music"  style="width:260px;"><img src="/tourTest/img/music-pross-icon.png" class="pross-icon">
+                                    <span class="pross J-music" style="width:260px;"><img src="/tourTest/img/music-pross-icon.png"
+                                            class="pross-icon">
                                     </span>
                                     <span class="readIcon"></span>
                                     <span class="timer">12</span>
@@ -238,22 +241,23 @@
                 <div class="swiper-slide Question-page swiper-no-swiping">
                     <div class="Q-title">推开门，你希望看到什么景象？</div>
                     <div class="Q-list">
-                        <div class="Q-item imageItem" data-value=3 >
+                        <div class="Q-item imageItem" data-value=3>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
                                 <span class="label">落日余晖 <img class="image" src="/tourTest/img/Q6-option-1.png" /></span>
                             </div>
                         </div>
-                        <div class="Q-item imageItem" data-value=2 >
+                        <div class="Q-item imageItem" data-value=2>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
                                 <span class="label">碧空万里 <img class="image" src="/tourTest/img/Q6-option-2.png" /></span>
                             </div>
                         </div>
-                        <div class="Q-item imageItem" data-value=1 >
+                        <div class="Q-item imageItem" data-value=1>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
-                                <span class="label">繁星满天 <img class="image" src="/tourTest/img/Q6-option-3.png" /> </span>
+                                <span class="label">繁星满天 <img class="image" src="/tourTest/img/Q6-option-3.png" />
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -265,19 +269,19 @@
                 <div class="swiper-slide Question-page swiper-no-swiping">
                     <div class="Q-title">哪句诗句最能唤起你的向往？</div>
                     <div class="Q-list">
-                        <div class="Q-item" data-value=3 >
+                        <div class="Q-item" data-value=3>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
                                 <span class="label">大漠孤烟直，长河落日圆</span>
                             </div>
                         </div>
-                        <div class="Q-item" data-value=2 >
+                        <div class="Q-item" data-value=2>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
                                 <span class="label">海边日影静犹长，烟里渔船接杳茫</span>
                             </div>
                         </div>
-                        <div class="Q-item" data-value=1 >
+                        <div class="Q-item" data-value=1>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
                                 <span class="label">坐看云卷云舒，静听花开花落</span>
@@ -352,37 +356,49 @@
                     <img class="leads-title" src="/tourTest/img/leads-title.png" />
                     <div class="form">
                         <input type="text" class="input nickname J-name leads-Q" placeholder="请输入您的昵称">
-                        <input type="tel" class="input tel J-tel leads-Q" placeholder="请输入您的手机号">
+                        <input type="tel" class="input tel J-tel leads-Q" name="telPhone" placeholder="请输入您的手机号">
+                        <div class="selectWrap inputWrap">
+                            <input type="text" class="input qcode-input leads-Q" placeholder="请输入验证码">
+                            <div class="qcode-btn J-sendSMS">获取验证码</div>
+                        </div>
                         <div class="selectWrap">
                             <select class="city-select J-city select leads-Q">
-                            <option value=''>请选择您的省份</option>
-                            <% for(var i=0;i<StateRegion.length;i++){%>
-                                <option data-id="<%= StateRegion[i].id %>" value="<%= StateRegion[i].value %>"><%= StateRegion[i].text %></option>
-                            <%}%>
+                                <option value=''>请选择您的省份</option>
+                                <% for(var i=0;i<StateRegion.length;i++){%>
+                                <option data-id="<%= StateRegion[i].id %>" value="<%= StateRegion[i].value %>">
+                                    <%= StateRegion[i].text %>
+                                </option>
+                                <%}%>
                             </select>
                         </div>
                         <div class="selectWrap">
                             <select class="city-select J-city-child select leads-Q">
-                            <option value=''>请选择您的城市</option>
+                                <option value=''>请选择您的城市</option>
                             </select>
-                        </div>                        
+                        </div>
                         <div class="selectWrap">
                             <select class="year-select select leads-Q">
                                 <option value=''>出生年</option>
-                            <% for(var i=0;i<year.length;i++){%>
-                                <option value="<%= year[i].value %>" ><%= year[i].text %></option>
-                            <%}%>
+                                <% for(var i=0;i<year.length;i++){%>
+                                <option value="<%= year[i].value %>">
+                                    <%= year[i].text %>
+                                </option>
+                                <%}%>
                             </select>
                             <select class="month-select select leads-Q">
                                 <option value=''>月</option>
                                 <% for(var i=0;i<month.length;i++){%>
-                                    <option value="<%= month[i].value %>" ><%= month[i].text %></option>
+                                <option value="<%= month[i].value %>">
+                                    <%= month[i].text %>
+                                </option>
                                 <%}%>
                             </select>
                             <select class="date-select select leads-Q">
                                 <option value=''>日</option>
                                 <% for(var i=0;i<date.length;i++){%>
-                                    <option value="<%= date[i].value %>" ><%= date[i].text %></option>
+                                <option value="<%= date[i].value %>">
+                                    <%= date[i].text %>
+                                </option>
                                 <%}%>
                             </select>
                         </div>
@@ -397,7 +413,7 @@
             </div>
         </div>
     </div>
-    <canvas id='myCanvas' width='640' height='1008'></canvas> 
+    <canvas id='myCanvas' width='640' height='1008'></canvas>
 
     <script src="/javascripts/jquery.js"></script>
     <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
@@ -406,65 +422,67 @@
 
     <script>
         var tagData = [{
-                tagId: '1-1',
-                text: '手刀行动派'
-            }, {
-                tagId: '1-2',
-                text: '勤俭持家派'
-            }, {
-                tagId: '1-3',
-                text: '周密计划派'
-            }, {
-                tagId: '3-1',
-                text: '质朴老实人'
-            }, {
-                tagId: '3-2',
-                text: '凹造型大帝'
-            }, {
-                tagId: '3-3',
-                text: '人字拖无敌'
-            }, {
-                tagId: '4-1',
-                text: '热情似火'
-            }, {
-                tagId: '4-2',
-                text: '深沉如你'
-            }, {
-                tagId: '4-3',
-                text: '自由活泼'
-            }, {
-                tagId: '5-1',
-                text: '拖延症患者'
-            }, {
-                tagId: '5-2',
-                text: '极度自律'
-            }, {
-                tagId: '5-3',
-                text: '随心所欲'
-            }, , {
-                tagId: '8-1',
-                text: '另辟蹊径'
-            }, {
-                tagId: '8-2',
-                text: '度假=放空'
-            }, {
-                tagId: '8-3',
-                text: '极限挑战'
-            }, ];
-        var levelMap=['','你的旅行属性为：休闲懒散派，适合海滨城市如布莱顿、马耳他、迈阿密等','你的旅行属性为：逛吃逛吃党，适合饮食丰富，特色小店、手工艺店比较多的城市，如巴黎、巴塞罗那、新加坡、首尔、马德里等','你的旅行属性为：城市暴走族，适合去面积不大，但到处都有景点、风景和历史建筑的城市，比如罗马、东京、曼城、柏林','你的旅行属性为：打卡狂魔，适合大山大河、需要自驾的地方，如美西、加拿大、新西兰等'];
+            tagId: '1-1',
+            text: '手刀行动派'
+        }, {
+            tagId: '1-2',
+            text: '勤俭持家派'
+        }, {
+            tagId: '1-3',
+            text: '周密计划派'
+        }, {
+            tagId: '3-1',
+            text: '质朴老实人'
+        }, {
+            tagId: '3-2',
+            text: '凹造型大帝'
+        }, {
+            tagId: '3-3',
+            text: '人字拖无敌'
+        }, {
+            tagId: '4-1',
+            text: '热情似火'
+        }, {
+            tagId: '4-2',
+            text: '深沉如你'
+        }, {
+            tagId: '4-3',
+            text: '自由活泼'
+        }, {
+            tagId: '5-1',
+            text: '拖延症患者'
+        }, {
+            tagId: '5-2',
+            text: '极度自律'
+        }, {
+            tagId: '5-3',
+            text: '随心所欲'
+        }, , {
+            tagId: '8-1',
+            text: '另辟蹊径'
+        }, {
+            tagId: '8-2',
+            text: '度假=放空'
+        }, {
+            tagId: '8-3',
+            text: '极限挑战'
+        }, ];
+        var levelMap = ['', '你的旅行属性为：休闲懒散派，适合海滨城市如布莱顿、马耳他、迈阿密等',
+            '你的旅行属性为：逛吃逛吃党，适合饮食丰富，特色小店、手工艺店比较多的城市，如巴黎、巴塞罗那、新加坡、首尔、马德里等',
+            '你的旅行属性为：城市暴走族，适合去面积不大，但到处都有景点、风景和历史建筑的城市，比如罗马、东京、曼城、柏林', '你的旅行属性为：打卡狂魔，适合大山大河、需要自驾的地方，如美西、加拿大、新西兰等'
+        ];
     </script>
     <script>
-        
-        var resultList="<%- resultList %>".split(',');
-        var channel="<%- channel %>";
-        var SourceCode="<%- SourceCode %>";
+        var resultList = "<%- resultList %>".split(',');
+        var channel = "<%- channel %>";
+        var SourceCode = "<%- SourceCode %>";
 
-        Number.prototype.range=function(min,max){
-            return this>=min && this<=max;
+        Number.prototype.range = function (min, max) {
+            return this >= min && this <= max;
         }
 
-        Array.prototype.random=function(){
-            var index=Math.floor(Math.random()*this.length)
+        Array.prototype.random = function () {
+            var index = Math.floor(Math.random() * this.length)
             return this[index];
         }
 
@@ -472,9 +490,9 @@
             Array.prototype.filter = function (fn, context) {
                 var arr = [];
                 if (typeof fn === "function") {
-                for (var k = 0, length = this.length; k < length; k++) {
-                    fn.call(context, this[k], k, this) && arr.push(this[k]);
-                }
+                    for (var k = 0, length = this.length; k < length; k++) {
+                        fn.call(context, this[k], k, this) && arr.push(this[k]);
+                    }
                 }
                 return arr;
             };
@@ -498,6 +516,9 @@
 
         indexHanlder.prototype = {
             init: function () {
+                this.countdown = 60;
+                this.timer = null;
+
                 this.initMain();
                 this.initMusic();
                 this.bindEvnet(this);
@@ -516,50 +537,51 @@
                 var Qh = $('.Q-header').height();
                 $('.Q-main').height(h - Qh);
             },
-            initMusic:function(){
-                var audioElement=this.audioElement = document.createElement('audio');
+            initMusic: function () {
+                var audioElement = this.audioElement = document.createElement('audio');
                 audioElement.controls = true;
                 audioElement.loop = false;
                 audioElement.autoplay = 'autoplay';
-                audioElement.onended = function() {
+                audioElement.onended = function () {
                     $('.music').removeClass('play');
                 };
             },
-            playMusic:function($music){
-                var audioElement=this.audioElement;
-                var src=$music.data('src');
-                audioElement.setAttribute('src',src);
+            playMusic: function ($music) {
+                var audioElement = this.audioElement;
+                var src = $music.data('src');
+                audioElement.setAttribute('src', src);
                 audioElement.load();
                 audioElement.play();
                 $('.music').removeClass('play');
                 $music.addClass('play').addClass('done');
             },
-            stopMusic:function(){
-                var audioElement=this.audioElement;
+            stopMusic: function () {
+                var audioElement = this.audioElement;
                 audioElement.pause();
                 $('.music').removeClass('play');
             },
-            bindEvnet:function () {
+            bindEvnet: function () {
                 var me = this;
+                var self = this;
 
-                $('.month-select').change(function(){
-                    var month=$(this).val();
-                    var days=31;
-                    if(month=='2'){
-                        days=28;
-                    }else if(month=='4'||month=="6"||month=="9"||month=="11"){
-                        days=30
+                $('.month-select').change(function () {
+                    var month = $(this).val();
+                    var days = 31;
+                    if (month == '2') {
+                        days = 28;
+                    } else if (month == '4' || month == "6" || month == "9" || month == "11") {
+                        days = 30
                     }
                     me.genDates(days);
                 })
 
-                $('.J-music').click(function(e){
+                $('.J-music').click(function (e) {
                     // e.stopPropagation();
-                    var $music=$(this).parents('.music');
-                    
-                    if($music.hasClass('play')){
+                    var $music = $(this).parents('.music');
+
+                    if ($music.hasClass('play')) {
                         me.stopMusic();
-                    }else{
+                    } else {
                         me.playMusic($music);
                     }
                 })
@@ -581,47 +603,107 @@
                 })
 
                 $('.Q-item').click(function () {
-                    if($(this).parents('.leads-page').length) return true;
+                    if ($(this).parents('.leads-page').length) return true;
 
                     $(this).addClass('active').siblings('.Q-item').removeClass('active');
                     $(this).parents('.swiper-slide').find('.btn').addClass('active');
                 })
 
-                $(".leads-page .leads-Q").on("change",function(){
+                $(".leads-page .leads-Q").on("change", function () {
                     console.log(checkVal());
-                   if(checkVal()){
+                    if (checkVal()) {
                         $(this).parents('.swiper-slide').find('.btn').addClass('active');
-                   }else{
+                    } else {
                         $(this).parents('.swiper-slide').find('.btn').removeClass('active');
-                   }
+                    }
                 });
 
-                function checkVal(){
-                    var result=true;
-                    $('.leads-page .leads-Q').each(function(){
-                        if(!$(this).val()) result=false;
+                // 获取验证码
+                $('.J-sendSMS').click(function () {
+                    var $self = $(this);
+                    if ($self.parent().hasClass('disabled')) {
+                        return false;
+                    }
+                    var tel = $('input[name=telPhone]').val();
+                    if (!tel) {
+                        toast('请输入手机号');
+                        return false;
+                    }
+                    if (!/^1[3|4|5|7|8|9][0-9]{9}$/.test(tel)) {
+                        toast('请输入正确的手机号');
+                        return false;
+                    }
+                    startTimer();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/tourTest/api/sendSMS',
+                        data: {
+                            tel: tel,
+                        },
+                        success: function (data) {
+                            if (data.status == 200) {
+                                toast('短信发送成功');
+                            } else {
+                                toast(data.data);
+                            }
+                        },
+                        dataType: 'json'
+                    });
+                });
+
+                function startTimer() {
+                    var $self = $('.J-sendSMS');
+                    var countdown = self.countdown;
+
+                    $self.text('已发送(' + countdown + 's)')
+                    $self.parent().addClass('disabled');
+
+                    self.timer = setInterval(function () {
+                        countdown -= 1;
+                        $self.text('已发送(' + countdown + 's)')
+                        $self.parent().addClass('disabled');
+                        if (countdown <= 0) {
+                            stopTimer();
+                        }
+                    }, 1000);
+                }
+
+                function stopTimer() {
+                    var $self = $('.J-sendSMS');
+                    clearInterval(self.timer);
+                    $self.text('获取验证码')
+                    $self.parent().removeClass('disabled');
+                }
+
+                function checkVal() {
+                    var result = true;
+                    $('.leads-page .leads-Q').each(function () {
+                        if (!$(this).val()) result = false;
                     })
                     return result;
                 }
 
-                $('.J-city').change(function(){
-                    var id=$(this).find("option:selected").data('id');
+                $('.J-city').change(function () {
+                    var id = $(this).find("option:selected").data('id');
                     $.ajax({
                         url: '/tourTest/queryCity',
                         dataType: 'json',
                         crossDomain: true,
                         type: 'POST',
                         contentType: 'application/json',
-                        data: JSON.stringify({id:id}),
+                        data: JSON.stringify({
+                            id: id
+                        }),
                         success: function (res) {
                             console.log(res);
-                            var data=res.data[0].map(item=>{
+                            var data = res.data[0].map(item => {
                                 return {
-                                    value:item.id,
-                                    text:item.name
+                                    value: item.id,
+                                    text: item.name
                                 }
                             });
-                            var str=genOptions(data);
+                            var str = genOptions(data);
                             $(".J-city-child").html(str);
                         }
                     });
@@ -632,17 +714,14 @@
                         return false;
                     }
 
-                    if(!me.checkTel($('.J-tel').val())){
+                    if (!me.checkTel($('.J-tel').val())) {
                         toast('手机号格式有误');
                         return false;
                     }
 
-                    $('.loading-page').fadeIn();
-                    setTimeout(function(){
-                        $('.loading-page').fadeOut();
-                    },3000)
 
-                    mySwiper.slideNext();
+
+
                     //The main object to be sent with the submission request
                     var submissionData = new Object();
                     //Individual properties of the main object
@@ -652,25 +731,26 @@
                     var trackingData = new Object();
                     var campaigndata = new Object();
 
-                    var year=$('.year-select').val();
-                    var month=$('.month-select').val();
-                    var date=$('.date-select').val();
+                    var year = $('.year-select').val();
+                    var month = $('.month-select').val();
+                    var date = $('.date-select').val();
+                    var qcode = $('.qcode-input').val();
 
-                    customer.FirstName = $('.J-name').val().substr(1,$('.J-name').val().length-1);
-                    customer.LastName = $('.J-name').val().substr(0,1);
+                    customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
+                    customer.LastName = $('.J-name').val().substr(0, 1);
                     customer.MobilePhone = $('.J-tel').val();
-                    customer.DateOfBirth = new Date(year+'-'+month+'-'+date); // January 9th, 1975 (0-based index for months)
+                    customer.DateOfBirth = new Date(year + '-' + month + '-' + date); // January 9th, 1975 (0-based index for months)
                     customer.StateRegionName = $('.J-city').find("option:selected").text();
                     customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
-                    customer.Gender = $('.gender-page').find('.Q-item.active').index()==0?"M":"F";
+                    customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
                     customer.Comments = levelMap[me.level];
                     customer.City = $('.J-city-child').find("option:selected").text();
                     customer.Email = customer.MobilePhone + "@noemail.com";
 
 
                     // Tracking
-                    trackingData.Etag =  channel+"_Travel_IDV1";
+                    trackingData.Etag = channel + "_Travel_IDV1";
                     trackingData.EntrySourceCode = SourceCode;
 
                     //Campaign Data
@@ -690,11 +770,12 @@
                     submissionData.tracking = trackingData;
                     submissionData.weChat = weChatData;
                     submissionData.campaignData = campaigndata;
-            
+                    submissionData.qcode = $('.qcode-input').val();
+
 
                     console.log(submissionData);
                     $.ajax({
-                        url: '/StressTest/form',
+                        url: '/tourTest/form',
                         dataType: 'json',
                         crossDomain: true,
                         type: 'POST',
@@ -702,100 +783,113 @@
                         data: JSON.stringify(submissionData),
                         success: function (res) {
                             console.log(res);
+                            if (res.status == 999) {
+                                toast(res.data)
+                            } else {
+                                $('.loading-page').fadeIn();
+                                setTimeout(function () {
+                                    $('.loading-page').fadeOut();
+                                }, 3000)
+                                mySwiper.slideNext();
+                            }
                         }
                     });
                 });
             },
-            getResult:function(){
-                var me=this;
-                var sex=$('.gender-page').find('.Q-item.active').index();  // 0 为男， 1为女
-                var totalScore=0;
-                var tagList=[];
-                $('.Question-page .Q-list').each(function(){
-                    var $Qitem=$(this).find('.Q-item.active');
-                    var tag=$Qitem.data('tag');
-                    totalScore+=$Qitem.data('value')*1;
+            getResult: function () {
+                var me = this;
+                var sex = $('.gender-page').find('.Q-item.active').index(); // 0 为男， 1为女
+                var totalScore = 0;
+                var tagList = [];
+                $('.Question-page .Q-list').each(function () {
+                    var $Qitem = $(this).find('.Q-item.active');
+                    var tag = $Qitem.data('tag');
+                    totalScore += $Qitem.data('value') * 1;
                     tag && tagList.push(tag);
                 });
-                var level=this.getScoreLevel(totalScore);
-                var filterStr=(sex==0?"male":"female") + "_"+ level;
+                var level = this.getScoreLevel(totalScore);
+                var filterStr = (sex == 0 ? "male" : "female") + "_" + level;
                 console.log(filterStr);
-                var result=resultList.filter(function(item){
-                    return item.indexOf(filterStr)==0;
+                var result = resultList.filter(function (item) {
+                    return item.indexOf(filterStr) == 0;
                 }).random();
                 console.log(result);
-                this.level=level;
-                var resultURL='/tourTest/img/v1/'+result;
-                var img=new Image();
-                img.src=resultURL;
-                img.onload=function(){
-                    var tagImg=me.genTagImg(tagList,img,result);
-                    $('.result-pic').attr('src',tagImg).parents('.result-page').css('background','url(/tourTest/img/v1/bg/'+result+')');
+                this.level = level;
+                var resultURL = '/tourTest/img/v1/' + result;
+                var img = new Image();
+                img.src = resultURL;
+                img.onload = function () {
+                    var tagImg = me.genTagImg(tagList, img, result);
+                    $('.result-pic').attr('src', tagImg).parents('.result-page').css('background',
+                        'url(/tourTest/img/v1/bg/' + result + ')');
                     $('.result-txt').addClass(result.split('.')[0]);
                 }
             },
-            genTagImg:function(tagList,img,result){
+            genTagImg: function (tagList, img, result) {
                 var tagImg;
-                var tagTxtList=tagList.map(item=>{
-                    tagObj=tagData.find(it=>it && it.tagId==item)
+                var tagTxtList = tagList.map(item => {
+                    tagObj = tagData.find(it => it && it.tagId == item)
                     return tagObj.text;
                 })
-                var myCanvas=$('#myCanvas')[0];
-                var ctx=myCanvas.getContext('2d');
-                ctx.drawImage(img,0,0);
-                tagTxtList.map((text,index)=>{
-                    var styleObj=tplTagStyle[result][index];
-                    drawTag(text,styleObj);
+                var myCanvas = $('#myCanvas')[0];
+                var ctx = myCanvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                tagTxtList.map((text, index) => {
+                    var styleObj = tplTagStyle[result][index];
+                    drawTag(text, styleObj);
                 })
 
-                tagImg=myCanvas.toDataURL("image/png");
+                tagImg = myCanvas.toDataURL("image/png");
                 return tagImg;
 
-                function drawTag(text,styleObj){
+                function drawTag(text, styleObj) {
                     console.log(styleObj);
-                    var tagW=170,tagH=50,x=styleObj.x,y=styleObj.y;
+                    var tagW = 170,
+                        tagH = 50,
+                        x = styleObj.x,
+                        y = styleObj.y;
                     ctx.beginPath();
-                    ctx.rect(x,y,tagW,tagH);
-                    ctx.fillStyle='#FFFFFF';
+                    ctx.rect(x, y, tagW, tagH);
+                    ctx.fillStyle = '#FFFFFF';
                     ctx.fill();
-                    ctx.lineWidth="4";
-                    ctx.strokeStyle=styleObj.borderColor;
-                    ctx.rect(x,y,tagW,tagH);
+                    ctx.lineWidth = "4";
+                    ctx.strokeStyle = styleObj.borderColor;
+                    ctx.rect(x, y, tagW, tagH);
                     ctx.stroke();
-                    ctx.textAlign="center";  
-                    ctx.fillStyle='#4d4d4d';
-                    ctx.font="28px MHEIPRCHEAVY"; 
-                    ctx.fillText(text, x+tagW/2, y+36,tagW);
+                    ctx.textAlign = "center";
+                    ctx.fillStyle = '#4d4d4d';
+                    ctx.font = "28px MHEIPRCHEAVY";
+                    ctx.fillText(text, x + tagW / 2, y + 36, tagW);
                 }
             },
-            getScoreLevel:function(score){
-                var level=0;
-                if(score.range(9,13)){
-                    level=1;
-                }else if(score.range(14,19)){
-                    level=2;
-                }else if(score.range(20,24)){
-                    level=3;
-                }else if(score.range(25,27)){
-                    level=4;
+            getScoreLevel: function (score) {
+                var level = 0;
+                if (score.range(9, 13)) {
+                    level = 1;
+                } else if (score.range(14, 19)) {
+                    level = 2;
+                } else if (score.range(20, 24)) {
+                    level = 3;
+                } else if (score.range(25, 27)) {
+                    level = 4;
                 }
                 return level;
             },
-            checkTel:function(tel){
+            checkTel: function (tel) {
                 var reg = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
                 return reg.test(tel);
             },
-            genDates:function(days){
-                var html="<option value=''>日</option>";
-                for(var i=1;i<=days;i++){
-                    html+='<option value="'+i+'">'+i+'</option>';
+            genDates: function (days) {
+                var html = "<option value=''>日</option>";
+                for (var i = 1; i <= days; i++) {
+                    html += '<option value="' + i + '">' + i + '</option>';
                 }
                 $('.date-select').html(html);
             }
         }
         var page = new indexHanlder();
     </script>
-    <script>    
+    <script>
         var loaded = false;
         var loaded_ani = false;
 
@@ -840,10 +934,10 @@
         }
 
 
-        function genOptions(data){
-            var returnStr='';
-            data.map(item=>{
-                returnStr+='<option value="'+item.value+'">'+item.text+'</option>';
+        function genOptions(data) {
+            var returnStr = '';
+            data.map(item => {
+                returnStr += '<option value="' + item.value + '">' + item.text + '</option>';
             });
             return returnStr;
         }
@@ -862,80 +956,82 @@
 
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
-    function initWXSahre() {
+        function initWXSahre() {
 
-        //“分享给朋友”
-        wx.onMenuShareAppMessage({
-            title: '测测你的隐藏旅行属性', // 分享标题
-            desc: '你是打卡狂魔，还是逛吃逛吃党？', // 分享描述
-            link: '', // 分享链接
-            imgUrl: 'http://ma.eldesign.cn/tourTest/img/share_logo.jpg', // 分享图标
-            type: '', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function () {
-                // 用户确认分享后执行的回调函数
-                _hmt.push(['_trackEvent', '分享', '分享给朋友']);
+            //“分享给朋友”
+            wx.onMenuShareAppMessage({
+                title: '测测你的隐藏旅行属性', // 分享标题
+                desc: '你是打卡狂魔，还是逛吃逛吃党？', // 分享描述
+                link: '', // 分享链接
+                imgUrl: 'http://ma.eldesign.cn/tourTest/img/share_logo.jpg', // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                    _hmt.push(['_trackEvent', '分享', '分享给朋友']);
 
-            },
-            cancel: function () {
-                // 用户取消分享后执行的回调函数
-            }
-        });
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
 
-        //“分享到朋友圈”
-        wx.onMenuShareTimeline({
-            title: '测测你的隐藏旅行属性', // 分享标题
-            desc: '你是打卡狂魔，还是逛吃逛吃党？', // 分享描述
-            link: '', // 分享链接
-            imgUrl: 'http://ma.eldesign.cn/tourTest/img/share_logo.jpg', // 分享图标
-            success: function () {
-                // 用户确认分享后执行的回调函数
-                _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
-            },
-            cancel: function () {
-                // 用户取消分享后执行的回调函数
-            }
-        });
-    }
+            //“分享到朋友圈”
+            wx.onMenuShareTimeline({
+                title: '测测你的隐藏旅行属性', // 分享标题
+                desc: '你是打卡狂魔，还是逛吃逛吃党？', // 分享描述
+                link: '', // 分享链接
+                imgUrl: 'http://ma.eldesign.cn/tourTest/img/share_logo.jpg', // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                    _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        }
 
-    function initWX(callback) {
+        function initWX(callback) {
 
-        $.ajax({
-            type: 'GET',
-            url: '/api/getWxSDK',
-            data: {'originalUrl': window.location.href},
-            success: function (data) {
-                var wxConfig = data.data.wxConfig;
+            $.ajax({
+                type: 'GET',
+                url: '/api/getWxSDK',
+                data: {
+                    'originalUrl': window.location.href
+                },
+                success: function (data) {
+                    var wxConfig = data.data.wxConfig;
 
-                console.log(wxConfig);
+                    console.log(wxConfig);
 
-                wx.config({
-                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                    appId: wxConfig.appId, // 必填，公众号的唯一标识
-                    timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
-                    nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
-                    signature: wxConfig.signature,// 必填，签名，见附录1
-                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-                });
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: wxConfig.appId, // 必填，公众号的唯一标识
+                        timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                        signature: wxConfig.signature, // 必填，签名，见附录1
+                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
 
-                wx.ready(function () {
-                    callback && callback();
-                });
+                    wx.ready(function () {
+                        callback && callback();
+                    });
 
-                wx.error(function (res) {
-                    console.log(res);
-                });
+                    wx.error(function (res) {
+                        console.log(res);
+                    });
 
 
-            },
-            dataType: 'json'
-        });
-    }
+                },
+                dataType: 'json'
+            });
+        }
 
-    initWX(initWXSahre);
+        initWX(initWXSahre);
     </script>
-    
-    
+
+
 </body>
 
 </html>

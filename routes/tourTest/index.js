@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var logger = require('../../module/tools/log4').logger;
+var sendData = require('../../module/tools/sendData');
 
 var date = require('./date');
 var {
@@ -59,5 +61,141 @@ router.post('/queryCity', function (req, res, next) {
         console.log(e);
     });
 })
+
+router.post('/form', function (req, res, next) {
+    // For Test
+    // var host = 'https://stg-efcom-lb.eflangtech.com/';  
+
+    // For Online 
+    var host = 'https://services.ef.com/';
+
+    var submissionURL = host + 'secureformsapi/Campaignsubmission';
+    var superagent = require('superagent');
+    var qcode = req.body.qcode;
+    var tel = req.body.customer.MobilePhone;
+    checkSMS(tel, qcode).then(function (result) {
+        if (result) {
+            superagent.post(submissionURL).send(req.body).then((res) => {
+                console.log(res.body);
+                return superagent.post('http://ma.eldesign.cn/leads/api/addLeads').send({
+                    realName: req.body.customer.LastName + req.body.customer.FirstName,
+                    cellPhone: req.body.customer.MobilePhone,
+                    cityName: req.body.customer.StateRegionName,
+                    others: JSON.stringify(res.body),
+                    age: req.body.customer.score,
+                    tag: 'v8',
+                });
+            }).then((res) => {
+                console.log(res.body);
+            }).catch((e) => {
+                console.log(e);
+            });
+            res.send({
+                status: 200,
+                data: req.body
+            });
+        } else {
+            res.send(sendData('999', '验证码不正确', ''));
+        }
+    });
+})
+
+// 发送短信
+router.post('/api/sendSMS', function (req, res, next) {
+    var data = req.body;
+    var tel = data.tel;
+    if (!checkTel(tel)) {
+        res.send(sendData('999', '无效手机号码', ''));
+    } else {
+        smsDBFind({
+            SMSTel: tel,
+            tag: 'tourTest'
+        }).then(function (docs) {
+            var doc = docs[docs.length - 1];
+            var createTime = doc && doc['createTime'] * 1;
+            var now = new Date() * 1;
+            var diffTime = doc && (now - createTime);
+            if (doc && diffTime < 60 * 1000) {
+                res.send(sendData('999', '发送短信太频繁了~', ''));
+            } else {
+                return smsSend(data.tel);
+            }
+        }).then(function (data) {
+            res.send(sendData('200', data, ''));
+        }).catch(function (e) {
+            logger.error([req.path, JSON.stringify(e)].toString());
+            res.send(sendData('999', '发送短信太频繁了', ''));
+        });
+    }
+
+});
+
+/*  用手机和验证码登录 */
+var SMSDB = require('../../module/DB/SMSDB');
+var smsSendFunctions = require('../../module/sms/yxSMS');
+
+var smsDBAdd = function (json) {
+    var promise = new Promise(function (resolve, reject) {
+        SMSDB.add(json, function (err, docs) {
+            if (err) {
+                logger.error(['smsDBAdd', JSON.stringify(err)].toString());
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        });
+    });
+    return promise;
+}
+var smsDBFind = function (json) {
+    var promise = new Promise(function (resolve, reject) {
+        SMSDB.find(json, function (err, docs) {
+            if (err) {
+                logger.error(['smsDBFind', JSON.stringify(err)].toString());
+                return reject(docs);
+            } else {
+                return resolve(docs);
+            }
+        })
+    });
+    return promise;
+}
+
+var smsSend = function (tel) {
+    var code = genCode(6);
+    return smsDBAdd({
+        SMSTel: tel,
+        code: code,
+        createTime: new Date(),
+        tag: 'invitation'
+    }).then(function () {
+        return smsSendFunctions(code, tel)
+    });
+}
+var checkSMS = function (tel, code) {
+    return smsDBFind({
+        SMSTel: tel,
+        code: code,
+        tag: 'invitation'
+    }).then(function (docs) {
+        //  docs 大于0 证明验证码匹配成功了
+        return docs.length > 0
+    })
+}
+
+// 生成验证码
+function genCode(len) {
+    var code = '';
+    for (var i = 0; i < len; i++) {
+        code = code + Math.floor(1 + Math.random() * 9).toString();
+    }
+    return code;
+}
+
+function checkTel(tel) {
+    var reg = /^0?1[3|4|5|7|8|9][0-9]\d{8}$/;
+    return reg.test(tel);
+}
+
 
 module.exports = router;

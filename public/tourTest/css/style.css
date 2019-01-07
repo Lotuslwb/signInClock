@@ -347,7 +347,7 @@ select {
 .leads-page .form {
   width: 470px;
   margin: auto;
-  padding: 75px 0;
+  padding: 70px 0;
 }
 .leads-page .input {
   text-align: center;
@@ -363,6 +363,24 @@ select {
   font-size: 30px;
   margin-bottom: 25px;
   color: #ef9348;
+}
+.leads-page .inputWrap {
+  background: url(../img/input-code-bg.png) no-repeat center;
+}
+.leads-page .inputWrap.disabled {
+  background: url(../img/input-code-disable-bg.png) no-repeat center;
+}
+.leads-page .qcode-btn {
+  height: 100%;
+  width: 210px;
+  text-align: center;
+  color: #ffffff;
+  float: left;
+}
+.leads-page .qcode-input {
+  width: 260px;
+  float: left;
+  background: none;
 }
 .leads-page .select {
   background: url(../img/select-icon.png) no-repeat right 20px center;
