@@ -1,12 +1,12 @@
 ﻿<%- include("header.ejs",{"title":'首页'}) %>
-<div id="body">
+<div id="body_div">
     <div class='page index-page active'>
         <div class="content">
-            <video controls class="video J-video">
+            <!-- <video controls class="video J-video">
                 <source src="http://xmcdn.eldesign.cn/index-vedio.mp4" type="video/mp4">
                 对不起；您的浏览器不支持HTML5视频在WebM和VP8 / VP9或MP4
-            </video>
-            <img src="/ximalaya/img/index-play-btn.png" class="play-btn mid">
+            </video> -->
+            <!-- <img src="/ximalaya/img/index-play-btn.png" class="play-btn mid"> -->
             <img src="/ximalaya/img/index-title.png" class="title">
             <div class="game-des-box">
                 <img src="/ximalaya/img/index-game-des.png" class="game-des">
@@ -81,16 +81,22 @@
         },
         bindEvent: function () {
             var self = this;
-            var $body = $('#body');
+            var $body = $('#body_div');
             var $rank = $('.J-rank-banner');
             var bodyH = $body.height();
-            // $('#body').scroll(function () {
-            //     if ($body.scrollTop() > bodyH) {
-            //         $rank.addClass('fixed');
-            //     } else {
-            //         $rank.removeClass('fixed');
-            //     }
-            // });
+
+            $('.J-gotoRule').click(function () {
+                window.location.href = '/ximalaya/ruleTxt';
+            });
+
+            
+            $body.scroll(function () {
+                if ($body.scrollTop() > bodyH) {
+                    $rank.addClass('fixed');
+                } else {
+                    $rank.removeClass('fixed');
+                }
+            });
 
             $('.J-Pizza').click(function () {
                 $('.p-box-more').toggleClass('active');
@@ -124,10 +130,6 @@
                 $(this).addClass('active').siblings().removeClass('active');
                 self.renderList(leave);
             })
-
-            $('.J-gotoRule').click(function () {
-                window.location.href = '/ximalaya/ruleTxt';
-            });
 
             $('.J-gotoRegistry').click(function () {
                 var u = navigator.userAgent;
