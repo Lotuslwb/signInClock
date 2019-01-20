@@ -61,6 +61,8 @@
 <script src="/xmjssdk/xmjssdk.js?v=20"></script>
 
 <script>
+    var userAgent = navigator.userAgent;
+
     function Page() {
         this.init();
     }
@@ -72,9 +74,9 @@
         },
         initYa: function () {
             try {
-                setTimeout(function(){
-                    ya.audio.pause();    
-                },200)
+                setTimeout(function () {
+                    ya.audio.pause();
+                }, 200)
             } catch (e) {
                 console.log(e);
             }
@@ -83,13 +85,13 @@
             var self = this;
             var $body = $('#body_div');
             var $rank = $('.J-rank-banner');
-            var bodyH = $body.height();
-
+            var bodyH = $(window).height();
+            $body.height(bodyH);
             $('.J-gotoRule').click(function () {
                 window.location.href = '/ximalaya/ruleTxt';
             });
 
-            
+
             $body.scroll(function () {
                 if ($body.scrollTop() > bodyH) {
                     $rank.addClass('fixed');
@@ -132,8 +134,10 @@
             })
 
             $('.J-gotoRegistry').click(function () {
-                var u = navigator.userAgent;
-                if (u.indexOf('iting') > -1) {
+                console.log(userAgent);
+                window.location.href = 'http://m.ximalaya.com/applink';
+
+                if (userAgent && userAgent.indexOf('iting') > -1) {
                     window.location.href = '/ximalaya/registry';
                 } else {
                     window.location.href = 'http://m.ximalaya.com/applink';
