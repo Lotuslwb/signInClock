@@ -8,7 +8,7 @@
     <div class="content">
         <%- doc.arText %>
     </div>
-    <div class="actions" style="opacity: 0;">
+    <div class="actions" style="display:none;">
         <div class="action recode-action">
             <img class="action-img" src="/ximalaya/img/record-btn.png">
             <div class="action-txt"> 录音(1分钟内)</div>
@@ -70,10 +70,6 @@
 </script>
 
 <script>
-    setTimeout(function () {
-        $('.actions').css('opacity', 1);
-    }, 1000)
-
     function tips(msg) {
         console.log(msg);
     }
@@ -103,10 +99,9 @@
                 ya.login(function (res) {
                     console.log(res);
                     self.YaBindEvent();
+                    self.recordStatusChange(self.recordStatusCode.READY);
                 });
             });
-            self.recordStatusChange(self.recordStatusCode.READY);
-
         },
         bindEvent: function () {
             var self = this;
@@ -130,8 +125,6 @@
             var src = $('.musicUrl').data('src');
             audioElement.setAttribute('src', src);
             audioElement.load();
-            this.audioElement.play();
-            this.audioElement.pause();
         },
         playMusic: function () {
             this.audioElement.play();
@@ -217,7 +210,7 @@
                     self.recordStatus = recordStatus;
                     break;
                 case recordStatusCode.RECORDING:
-                    // self.stopMusic();
+                    self.stopMusic();
                     ya.recorder.startRecord(function () {
                         ya.toast('开始录音：');
                         $('.playing-action').show().siblings().hide();
@@ -228,7 +221,7 @@
                     });
                     break;
                 case recordStatusCode.PLAYING:
-                    // self.stopMusic();
+                    self.stopMusic();
                     if (!self.localId) {
                         ya.toast('请先录制一段音频！');
                         return false;
@@ -315,7 +308,6 @@
         }
     }
     var page = new Page();
-    
 </script>
 
 
