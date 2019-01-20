@@ -112,12 +112,12 @@
                 $('.J-video').addClass('show');
                 $('.J-video')[0].play()
             })
-            $('.J-video')[0].onended = function () {
-                $('.J-video').removeClass('show');
-            };
-            $('.J-video')[0].onpause = function () {
-                $('.J-video').removeClass('show');
-            };
+            // $('.J-video')[0].onended = function () {
+            //     $('.J-video').removeClass('show');
+            // };
+            // $('.J-video')[0].onpause = function () {
+            //     $('.J-video').removeClass('show');
+            // };
 
             $('.J-input').on('input', function () {
                 var v = self.name = $(this).val();
