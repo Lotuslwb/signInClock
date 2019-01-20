@@ -27,9 +27,8 @@
 <script>
 
 var  initYa=function (cb) {
-    var self = this;
     ya.ready(function () {
-        self.recordCallbacks();
+        recordCallbacks();
         ya.login(function (res) {
             console.log(res);
             ya.recorder.startRecord(function () {
@@ -86,5 +85,7 @@ var recordCallbacks=function () {
         var id = $(this).data('id');
         window.location.href = '/ximalaya/record?id=' + id;
     })
+
+    initYa();
 </script>
 <%- include("footer.ejs") %>
