@@ -70,12 +70,11 @@
             this.bindEvent();
             this.initYa();
         },
-        initYa: function (cb) {
-            var self = this;
+        initYa: function () {
             try {
-                ya.ready(function () {
-                    ya.audio.pause();
-                });     
+                // ya.ready(function () {
+                //     ya.audio.pause();
+                // });     
             } catch (e) {
                 console.log(e);
             }
