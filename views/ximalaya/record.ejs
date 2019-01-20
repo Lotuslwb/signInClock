@@ -206,11 +206,14 @@
             var recordStatusCode = self.recordStatusCode;
             switch (recordStatus) {
                 case recordStatusCode.READY:
-                    $('.recode-action').show().siblings().hide();
                     self.recordStatus = recordStatus;
                     if (flag) {
                         try {
-                            ya.recorder.stopRecord();
+                            ya.recorder.stopRecord(function () {
+                                setTimeout(function () {
+                                    $('.recode-action').show().siblings().hide();
+                                }, 500)
+                            });
                         } catch (error) {}
                     }
                     break;
