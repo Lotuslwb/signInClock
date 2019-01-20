@@ -98,16 +98,15 @@
                 PALYSTOP: 'PALYSTOP', // 播放停止
                 ERROR: 'ERROR' // 错误
             };
-            self.recordStatusChange(self.recordStatusCode.READY);
             self.initYa(function () {
                 // 必须登录喜马拉雅才可以使用
                 ya.login(function (res) {
                     console.log(res);
-                    setTimeout(function () {
-                        self.YaBindEvent();
-                    }, 800)
+                    self.YaBindEvent();
                 });
             });
+            self.recordStatusChange(self.recordStatusCode.READY);
+
         },
         bindEvent: function () {
             var self = this;
