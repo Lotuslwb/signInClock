@@ -208,7 +208,9 @@
                 case recordStatusCode.READY:
                     $('.recode-action').show().siblings().hide();
                     self.recordStatus = recordStatus;
-                    ya.recorder.stopRecord();
+                    try {
+                        ya.recorder.stopRecord();
+                    } catch (error) {}
                     break;
                 case recordStatusCode.RECORDING:
                     self.stopMusic();
