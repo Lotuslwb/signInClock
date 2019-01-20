@@ -100,6 +100,9 @@
                     console.log(res);
                     self.YaBindEvent();
                     self.recordStatusChange(self.recordStatusCode.READY);
+                    try {
+                        ya.recorder.stopRecord();
+                    } catch (error) {}
                 });
             });
         },
@@ -208,9 +211,6 @@
                 case recordStatusCode.READY:
                     $('.recode-action').show().siblings().hide();
                     self.recordStatus = recordStatus;
-                    try {
-                        ya.recorder.stopRecord();
-                    } catch (error) {}
                     break;
                 case recordStatusCode.RECORDING:
                     self.stopMusic();
