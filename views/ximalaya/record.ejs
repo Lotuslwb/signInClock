@@ -8,7 +8,7 @@
     <div class="content">
         <%- doc.arText %>
     </div>
-    <div class="actions">
+    <div class="actions" style="display:none;">
         <div class="action recode-action">
             <img class="action-img" src="/ximalaya/img/record-btn.png">
             <div class="action-txt"> 录音(1分钟内)</div>
@@ -72,6 +72,10 @@
 <!-- xmly  SDK -->
 <script src="/xmjssdk/xmjssdk.js?v=20"></script>
 <script>
+    setTimeout(function () {
+        $('.actions').show();
+    }, 1000)
+
     function tips(msg) {
         console.log(msg);
     }
@@ -198,6 +202,11 @@
                     }
                 });
             })
+
+            $('.recode-action').click()
+            $('.playing-action').click()
+            $('.replay-action').click()
+
         },
         initYa: function (cb) {
             var self = this;
