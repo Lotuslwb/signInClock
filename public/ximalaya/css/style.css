@@ -1,3 +1,7 @@
+#body_div {
+  height: 100%;
+  overflow: auto;
+}
 .f-hide {
   display: none;
 }

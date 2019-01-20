@@ -85,13 +85,10 @@
             var self = this;
             var $body = $('#body_div');
             var $rank = $('.J-rank-banner');
-            var bodyH = $(window).height();
-            $body.height(bodyH);
+            var bodyH = $body.height();
             $('.J-gotoRule').click(function () {
                 window.location.href = '/ximalaya/ruleTxt';
             });
-
-
             $body.scroll(function () {
                 if ($body.scrollTop() > bodyH) {
                     $rank.addClass('fixed');
@@ -134,9 +131,6 @@
             })
 
             $('.J-gotoRegistry').click(function () {
-                console.log(userAgent);
-                window.location.href = 'http://m.ximalaya.com/applink';
-
                 if (userAgent && userAgent.indexOf('iting') > -1) {
                     window.location.href = '/ximalaya/registry';
                 } else {
