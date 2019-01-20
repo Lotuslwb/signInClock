@@ -99,11 +99,7 @@
                 ya.login(function (res) {
                     console.log(res);
                     self.YaBindEvent();
-                    try {
-                        ya.recorder.stopRecord();
-                    } catch (error) {}
-                    self.recordStatusChange(self.recordStatusCode.READY);
-
+                    self.recordStatusChange(self.recordStatusCode.READY, true);
                 });
             });
         },
@@ -205,13 +201,18 @@
                 cb && cb();
             });
         },
-        recordStatusChange: function (recordStatus) {
+        recordStatusChange: function (recordStatus, flag) {
             var self = this;
             var recordStatusCode = self.recordStatusCode;
             switch (recordStatus) {
                 case recordStatusCode.READY:
                     $('.recode-action').show().siblings().hide();
                     self.recordStatus = recordStatus;
+                    if (flag) {
+                        try {
+                            ya.recorder.stopRecord();
+                        } catch (error) {}
+                    }
                     break;
                 case recordStatusCode.RECORDING:
                     self.stopMusic();
