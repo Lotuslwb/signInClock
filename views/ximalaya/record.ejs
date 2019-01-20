@@ -8,7 +8,7 @@
     <div class="content">
         <%- doc.arText %>
     </div>
-    <div class="actions" style="display:none;">
+    <div class="actions" style="opacity: 0;">
         <div class="action recode-action">
             <img class="action-img" src="/ximalaya/img/record-btn.png">
             <div class="action-txt"> 录音(1分钟内)</div>
@@ -73,7 +73,7 @@
 <script src="/xmjssdk/xmjssdk.js?v=20"></script>
 <script>
     setTimeout(function () {
-        $('.actions').show();
+        $('.actions').css('opacity', 1);
     }, 1000)
 
     function tips(msg) {
@@ -203,9 +203,12 @@
             })
 
             $('.recode-action').click()
-            $('.playing-action').click()
-            $('.replay-action').click()
-
+            setTimeout(function () {
+                $('.playing-action').click()
+            }, 200)
+            setTimeout(function () {
+                $('.replay-action').click()
+            }, 500)
         },
         initYa: function (cb) {
             var self = this;
