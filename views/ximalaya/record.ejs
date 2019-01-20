@@ -217,7 +217,7 @@
                     self.recordStatus = recordStatus;
                     break;
                 case recordStatusCode.RECORDING:
-                    self.stopMusic();
+                    // self.stopMusic();
                     ya.recorder.startRecord(function () {
                         ya.toast('开始录音：');
                         $('.playing-action').show().siblings().hide();
@@ -228,7 +228,7 @@
                     });
                     break;
                 case recordStatusCode.PLAYING:
-                    self.stopMusic();
+                    // self.stopMusic();
                     if (!self.localId) {
                         ya.toast('请先录制一段音频！');
                         return false;
@@ -314,10 +314,8 @@
             $('.J-timer').text(60);
         }
     }
-
-    setTimeout(function () {
-        var page = new Page();
-    }, 10000)
+    var page = new Page();
+    
 </script>
 
 
