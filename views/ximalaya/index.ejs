@@ -63,7 +63,6 @@
 <script>
     function Page() {
         this.init();
-        console.log('v1');
     }
     Page.prototype = {
         init: function () {
@@ -85,13 +84,13 @@
             var $body = $('#body');
             var $rank = $('.J-rank-banner');
             var bodyH = $body.height();
-            $('#body').scroll(function () {
-                if ($body.scrollTop() > bodyH) {
-                    $rank.addClass('fixed');
-                } else {
-                    $rank.removeClass('fixed');
-                }
-            });
+            // $('#body').scroll(function () {
+            //     if ($body.scrollTop() > bodyH) {
+            //         $rank.addClass('fixed');
+            //     } else {
+            //         $rank.removeClass('fixed');
+            //     }
+            // });
 
             $('.J-Pizza').click(function () {
                 $('.p-box-more').toggleClass('active');
