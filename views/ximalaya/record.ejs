@@ -105,8 +105,10 @@
                 // 必须登录喜马拉雅才可以使用
                 ya.login(function (res) {
                     console.log(res);
+                    setTimeout(function () {
+                        self.YaBindEvent();
+                    }, 800)
                 });
-                self.YaBindEvent();
             });
         },
         bindEvent: function () {
@@ -201,14 +203,6 @@
                     }
                 });
             })
-
-            $('.recode-action').click()
-            setTimeout(function () {
-                $('.playing-action').click()
-            }, 200)
-            setTimeout(function () {
-                $('.replay-action').click()
-            }, 500)
         },
         initYa: function (cb) {
             var self = this;
