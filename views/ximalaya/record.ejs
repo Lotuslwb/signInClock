@@ -207,8 +207,8 @@
         initYa: function (cb) {
             var self = this;
             ya.ready(function () {
-                cb && cb();
                 self.recordCallbacks();
+                cb && cb();
             });
         },
         recordStatusChange: function (recordStatus) {
