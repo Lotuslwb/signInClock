@@ -99,10 +99,11 @@
                 ya.login(function (res) {
                     console.log(res);
                     self.YaBindEvent();
-                    self.recordStatusChange(self.recordStatusCode.READY);
                     try {
                         ya.recorder.stopRecord();
                     } catch (error) {}
+                    self.recordStatusChange(self.recordStatusCode.READY);
+
                 });
             });
         },
