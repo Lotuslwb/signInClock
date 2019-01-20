@@ -69,13 +69,13 @@
         },
         initYa: function (cb) {
             var self = this;
-            ya.ready(function () {
-                try {
+            try {
+                ya.ready(function () {
                     ya.audio.pause();
-                } catch (e) {
-                    console.log(e);
-                }
-            });
+                });     
+            } catch (e) {
+                console.log(e);
+            }
         },
         bindEvent: function () {
             var self = this;
