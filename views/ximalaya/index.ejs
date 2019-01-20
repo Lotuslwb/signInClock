@@ -66,12 +66,9 @@
     }
     Page.prototype = {
         init: function () {
-            var self=this;
             this.renderList(0);
             this.bindEvent();
-            setTimeout(function(){
-                self.initYa();
-            },200)
+            this.initYa();
         },
         initYa: function () {
             try {
