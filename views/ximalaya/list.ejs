@@ -25,67 +25,9 @@
 </div>
 
 <script>
-
-var  initYa=function (cb) {
-    ya.ready(function () {
-        recordCallbacks();
-        ya.login(function (res) {
-            console.log(res);
-            ya.recorder.startRecord(function () {
-                
-            });
-        });
-    });
-};
-var recordCallbacks=function () {
-            var self = this;
-            ya.recorder.bind({
-                onAudioStatusChange: function (obj) {
-                    tips('音频状态改变' + JSON.stringify(obj));
-                },
-                onRecordStart: function (milliseconds) {
-                    tips('录音开始:' + milliseconds);
-                },
-                onRecording: function (milliseconds) {
-                    // 避免用toast，会产生toast延迟
-                    // ya.toast();
-                    tips('录音中:' + milliseconds);
-                },
-                onRecordPause: function (milliseconds) {
-                    tips('录音暂停:' + milliseconds);
-                },
-                onRecordResume: function (milliseconds) {
-                    tips('录音恢复:' + milliseconds);
-                },
-                onRecordEnd: function (obj) {
-                    $('.action').hide();
-                    $('.action-group').show();
-                    tips('录音结束:' + JSON.stringify(obj));
-                },
-                onPlayStart: function (obj) {
-                    tips('播放开始:' + JSON.stringify(obj));
-                },
-                onPlaying: function (obj) {
-                    // 避免用toast，会产生toast延迟
-                    tips('播放中:' + JSON.stringify(obj));
-                },
-                onPlayPause: function (obj) {
-                    tips('暂停:' + JSON.stringify(obj));
-                },
-                onPlayResume: function (obj) {
-                    tips('恢复播放:' + JSON.stringify(obj));
-                },
-                onPlayEnd: function (obj) {
-                    $('.replay-action').attr('src', '/ximalaya/img/replay-btn.png');
-                    tips('播放结束:' + JSON.stringify(obj));
-                }
-            });
-        }
     $('.J-gotoDetail').click(function () {
         var id = $(this).data('id');
         window.location.href = '/ximalaya/record?id=' + id;
     })
-
-    // initYa();
 </script>
 <%- include("footer.ejs") %>
