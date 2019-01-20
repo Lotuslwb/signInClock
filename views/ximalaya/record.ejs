@@ -89,13 +89,6 @@
     Page.prototype = {
         init: function () {
             var self = this;
-            self.initYa(function () {
-                // 必须登录喜马拉雅才可以使用
-                ya.login(function (res) {
-                    console.log(res);
-                });
-                self.YaBindEvent();
-            });
             // 录音状态控制
             self.recordStatusCode = {
                 READY: 'READY', // 准备
@@ -108,7 +101,13 @@
                 ERROR: 'ERROR' // 错误
             };
             self.recordStatusChange(self.recordStatusCode.READY);
-
+            self.initYa(function () {
+                // 必须登录喜马拉雅才可以使用
+                ya.login(function (res) {
+                    console.log(res);
+                });
+                self.YaBindEvent();
+            });
         },
         bindEvent: function () {
             var self = this;
