@@ -39,6 +39,8 @@
 <script src="/javascripts/qiniu.min.js"></script>
 
 <script>
+    var userAgent = navigator.userAgent;
+
     function tips(msg) {
         console.log(msg);
     }
@@ -56,14 +58,19 @@
         initBanner: function () {
             var self = this;
             self.genQrcode();
-            self.genPic(self, function (cvs) {
-                self.uploadPic(cvs, function (imgUrl) {
-                    self.imgUrl = imgUrl;
-                    console.log(imgUrl);
-                    $('.J-share-btns').show();
-                    $('.J-loading').hide();
+            if (userAgent && userAgent.indexOf('iting') > -1) {
+                self.genPic(self, function (cvs) {
+                    self.uploadPic(cvs, function (imgUrl) {
+                        self.imgUrl = imgUrl;
+                        console.log(imgUrl);
+                        $('.J-share-btns').show();
+                        $('.J-loading').hide();
+                    })
                 })
-            })
+            } else {
+                $('.J-share-btns').hide();
+                $('.J-loading').hide();
+            }
         },
         initYa: function (cb) {
             var self = this;
