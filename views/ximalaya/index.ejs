@@ -134,7 +134,8 @@
                 if (userAgent && userAgent.indexOf('iting') > -1) {
                     window.location.href = '/ximalaya/registry';
                 } else {
-                    window.location.href = 'http://m.ximalaya.com/applink';
+                    self.linkToApp();
+                    // window.location.href = 'http://m.ximalaya.com/applink';
                 }
             });
 
@@ -207,6 +208,16 @@
                     '<div class="vote J-vote" data-id="' + item._id + '">投票</div>' +
                     '</div></div></div>';
                 return returnStr;
+            }
+        },
+        linkToApp:function(){
+            var u = navigator.userAgent;
+            var url = window.location.href;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            if(isAndroid){
+                window.location.href = 'http://m.ximalaya.com/applink/?tag=and-wap&open_xm='+encodeURIComponent('iting://open?msg_type=14&url='+ url) + '&android_schema=' + encodeURIComponent('iting://open?msg_type=14&url='+ url);
+            }else{
+                window.location.href = 'http://m.ximalaya.com/applink/?tag=and-wap&open_xm='+encodeURIComponent('iting://open?msg_type=14&url='+ url);
             }
         }
     }
