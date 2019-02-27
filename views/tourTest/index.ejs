@@ -402,7 +402,9 @@
                                 <%}%>
                             </select>
                         </div>
+                        <div class="rightChecked"> <span class="checkbox active"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
                     </div>
+
                     <!-- <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt=""> -->
                     <div class="btn J-submit">确认</div>
                 </div>
@@ -414,7 +416,13 @@
         </div>
     </div>
     <canvas id='myCanvas' width='640' height='1008'></canvas>
-
+    <div class="right-pop">
+        <div class="overlay"></div>
+        <div class="pop-content">
+            <iframe class="iframe" src="https://liuxue.ef.com.cn/legal/privacy-policy/#" frameborder="0"></iframe>
+        </div>
+        <img class="closed" src="/tourTest/img/pop-closed.png" />
+    </div>
     <script src="/javascripts/jquery.js"></script>
     <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
     <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
@@ -563,6 +571,18 @@
             bindEvnet: function () {
                 var me = this;
                 var self = this;
+
+                $('.rightChecked').click(function () {
+                    var $checkbox = $(this).find('.checkbox');
+                    $checkbox.hasClass('active') ? $checkbox.removeClass('active') : $checkbox.addClass(
+                        'active');
+                })
+                $('.href').click(function () {
+                    $('.right-pop').show();
+                })
+                $('.closed').click(function () {
+                    $('.right-pop').hide();
+                })
 
                 $('.month-select').change(function () {
                     var month = $(this).val();
@@ -716,6 +736,11 @@
 
                     if (!me.checkTel($('.J-tel').val())) {
                         toast('手机号格式有误');
+                        return false;
+                    }
+
+                    if (!$('.rightChecked .checkbox').hasClass('active')) {
+                        toast('请勾选隐私策略');
                         return false;
                     }
 
