@@ -577,7 +577,8 @@
                     $checkbox.hasClass('active') ? $checkbox.removeClass('active') : $checkbox.addClass(
                         'active');
                 })
-                $('.href').click(function () {
+                $('.href').click(function (e) {
+                    e.stopPropagation();
                     $('.right-pop').show();
                 })
                 $('.closed').click(function () {
