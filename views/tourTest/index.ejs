@@ -479,6 +479,14 @@
             '你的旅行属性为：逛吃逛吃党，适合饮食丰富，特色小店、手工艺店比较多的城市，如巴黎、巴塞罗那、新加坡、首尔、马德里等',
             '你的旅行属性为：城市暴走族，适合去面积不大，但到处都有景点、风景和历史建筑的城市，比如罗马、东京、曼城、柏林', '你的旅行属性为：打卡狂魔，适合大山大河、需要自驾的地方，如美西、加拿大、新西兰等'
         ];
+
+        function genOptions(data) {
+            var returnStr = '';
+            data.map(item => {
+                returnStr += '<option value="' + item.value + '">' + item.text + '</option>';
+            });
+            return returnStr;
+        }
     </script>
     <script>
         var resultList = "<%- resultList %>".split(',');
@@ -957,15 +965,6 @@
                 $btn.hasClass('active') ? $btn.removeClass('active') : $btn.addClass('active');
             }, 1500)
             mySwiper = initMySwiper();
-        }
-
-
-        function genOptions(data) {
-            var returnStr = '';
-            data.map(item => {
-                returnStr += '<option value="' + item.value + '">' + item.text + '</option>';
-            });
-            return returnStr;
         }
     </script>
 

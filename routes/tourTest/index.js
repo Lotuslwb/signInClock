@@ -10,6 +10,12 @@ var {
 } = require('./StateRegion');
 var resultListV1 = 'female_1_1.jpg,female_1_2.jpg,female_2_1.jpg,female_2_2.jpg,female_3_1.jpg,female_4_1.jpg,male_1_1.jpg,male_2_1.jpg,male_3_1.jpg,male_4_1.jpg';
 var resultListV2 = 'female_1_1.jpg,female_1_2.jpg,female_1_3.jpg,female_2_1.jpg,female_2_2.jpg,female_2_3.jpg,female_3_1.jpg,female_3_2.jpg,female_4_1.jpg,female_4_2.jpg,male_1_1.jpg,male_1_2.jpg,male_1_3.jpg,male_2_1.jpg,male_2_2.jpg,male_2_3.jpg,male_3_1.jpg,male_3_2.jpg,male_4_1.jpg,male_4_2.jpg';
+
+/*  用手机和验证码登录 */
+var SMSDB = require('../../module/DB/SMSDB');
+var smsSendFunctions = require('../../module/sms/yxSMS');
+
+
 /* GET home page. */
 
 StateRegion.map(item => {
@@ -123,6 +129,7 @@ router.post('/api/sendSMS', function (req, res, next) {
         }).then(function (data) {
             res.send(sendData('200', data, ''));
         }).catch(function (e) {
+            console.log(e);
             logger.error([req.path, JSON.stringify(e)].toString());
             res.send(sendData('999', '发送短信太频繁了', ''));
         });
@@ -130,9 +137,6 @@ router.post('/api/sendSMS', function (req, res, next) {
 
 });
 
-/*  用手机和验证码登录 */
-var SMSDB = require('../../module/DB/SMSDB');
-var smsSendFunctions = require('../../module/sms/yxSMS');
 
 var smsDBAdd = function (json) {
     var promise = new Promise(function (resolve, reject) {

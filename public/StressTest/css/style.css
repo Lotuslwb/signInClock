@@ -8,7 +8,7 @@ body {
 }
 select {
   -webkit-appearance: none !important;
-  appearance: none !important;
+          appearance: none !important;
 }
 .f-hide {
   display: none;
@@ -27,7 +27,7 @@ select {
   left: 50%;
   top: 50%;
   -webkit-transform: translate3d(-50%, -50%, 0);
-  transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
 }
 .page {
   width: 100%;
@@ -102,23 +102,23 @@ select {
   margin-right: 38px;
   background-color: #ff8688;
   -webkit-animation: dot1Ani 3s step-start both 999;
-  animation: dot1Ani 3s step-start both 999;
+          animation: dot1Ani 3s step-start both 999;
 }
 .page.active .loading-dots .dot:nth-of-type(2) {
   background-color: #fbb600;
   -webkit-animation: dot2Ani 3s step-start both 999;
-  animation: dot2Ani 3s step-start both 999;
+          animation: dot2Ani 3s step-start both 999;
 }
 .page.active .loading-dots .dot:nth-of-type(3) {
   background-color: #5ac4d9;
   -webkit-animation: dot3Ani 3s step-start both 999;
-  animation: dot3Ani 3s step-start both 999;
+          animation: dot3Ani 3s step-start both 999;
 }
 .page.active .loading-dots .dot:nth-of-type(4) {
   background-color: #b4c940;
   margin-right: 0;
   -webkit-animation: dot4Ani 3s step-start both 999;
-  animation: dot4Ani 3s step-start both 999;
+          animation: dot4Ani 3s step-start both 999;
 }
 .page1 .page1-title {
   margin: auto;
@@ -139,7 +139,7 @@ select {
   height: 420px;
   background: url(../img/page1-pic1.png) no-repeat center bottom;
   -webkit-animation: page1Pic 5s step-start both 999;
-  animation: page1Pic 5s step-start both 999;
+          animation: page1Pic 5s step-start both 999;
 }
 .page1-btn {
   margin-top: 0;
@@ -177,7 +177,8 @@ select {
   margin: auto;
   overflow: auto;
 }
-.page2 .Q-option {
+.page2 .Q-option,
+.page2 .Q-option-css {
   position: relative;
   font-size: 36px;
   padding-left: 65px;
@@ -244,7 +245,7 @@ select {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
-  align-items: center;
+          align-items: center;
   height: 100%;
   font-size: 30px;
   line-height: 1.3;
@@ -261,7 +262,7 @@ select {
 }
 .swiper-slide .Q-form .Q-option.active {
   -webkit-animation: QoptionAni 1s ease both;
-  animation: QoptionAni 1s ease both;
+          animation: QoptionAni 1s ease both;
 }
 .swiper-slide .page-btn-select {
   margin-top: 40px;
@@ -528,10 +529,10 @@ select {
 }
 .page11 .page1-title {
   margin: auto;
-  padding-top: 15.6%;
+  padding-top: 50px;
 }
 .page11 .Q-title {
-  padding-top: 90px;
+  padding-top: 0;
 }
 .page11 .page11-form {
   width: 534px;
@@ -539,9 +540,10 @@ select {
 }
 .page11 .Q-options {
   width: auto;
-  padding-top: 90px;
+  padding-top: 5px;
 }
-.page11 .Q-option {
+.page11 .Q-option,
+.page11 .Q-option-css {
   font-size: 30px;
   width: 534px;
   border: 3px solid #000000;
@@ -552,14 +554,68 @@ select {
   color: #f5a600;
   margin-bottom: 18px;
   background: none;
+  display: -webkit-box;
+  display: flex;
 }
-.page11 select.Q-option,
-.page11 .date.Q-option {
+.page11 select.Q-option {
   background: url(../img/select-icon.png) no-repeat;
   background-position: center right 20px;
+  text-align: center;
+}
+.page11 .select {
+  background: url(../img/select-icon.png) no-repeat;
+  background-position: center right;
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  color: #f5a600;
+  display: inline-block;
+  text-align: center;
+}
+.page11 .year-select {
+  width: 145px;
+}
+.page11 .month-select {
+  width: 145px;
+  padding-left: 50px;
+}
+.page11 .date-select {
+  width: 145px;
+  padding-left: 50px;
+}
+.page11 .select-wrap {
+  line-height: 0;
+  text-align: left;
 }
 .page11 .btn {
-  margin-top: 100px;
+  margin-top: 35px;
+}
+.page11 .page11-info {
+  margin: 40px auto 0;
+}
+.page11 .qcode-btn {
+  width: 205px;
+  height: 58px;
+  line-height: 58px;
+  background-color: #fbb600;
+  border-left: 3px #000 solid;
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+}
+.page11 .qcode-btn.disabled {
+  background: #b7b7b7;
+}
+.page11 .qcode-input {
+  width: 328px;
+  border: 0;
+  padding: 0;
+}
+.page11 .city-select,
+.page11 .city-child-select {
+  padding: 0;
+  border: 0;
 }
 .page-result .result-pic {
   width: 100%;
@@ -589,7 +645,7 @@ select {
   left: 50%;
   top: 40%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   background: rgba(40, 40, 40, 0.75);
   text-align: center;
   border-radius: 10px;
@@ -842,28 +898,82 @@ input[type="date"].full:before {
 @-webkit-keyframes QoptionAni {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(0, -6px, 0);
-    transform: translate3d(0, -6px, 0);
+            transform: translate3d(0, -6px, 0);
   }
   100% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }
 @keyframes QoptionAni {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(0, -6px, 0);
-    transform: translate3d(0, -6px, 0);
+            transform: translate3d(0, -6px, 0);
   }
   100% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
+}
+/*  隐私策略*/
+.rightChecked {
+  text-align: left;
+  font-size: 22px;
+  color: #221816;
+  font-family: none;
+}
+.checkbox {
+  display: inline-block;
+  vertical-align: sub;
+  width: 25px;
+  height: 25px;
+  background: url('/tourTest/img/unchecked.png');
+  margin-right: 10px;
+}
+.checkbox.active {
+  background: url('/tourTest/img/checked.png');
+}
+.right-pop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: none;
+}
+.right-pop .closed {
+  position: absolute;
+  z-index: 100;
+  top: 870px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+.right-pop .pop-content {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0) scale(2);
+          transform: translate(-50%, 0) scale(2);
+  width: 270px;
+  height: 400px;
+  border-radius: 20px;
+  background: #fff;
+  overflow: auto;
+  z-index: 100;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+.right-pop .iframe {
+  width: 100%;
+  height: 100%;
 }
