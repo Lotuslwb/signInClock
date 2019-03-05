@@ -419,7 +419,9 @@
     <div class="right-pop">
         <div class="overlay"></div>
         <div class="pop-content">
-            <iframe class="iframe" src="https://liuxue.ef.com.cn/legal/privacy-policy/#" frameborder="0"></iframe>
+            <div class='iframeWrap'>
+                <iframe class="iframe" src="https://liuxue.ef.com.cn/legal/privacy-policy/#" frameborder="0"></iframe>
+            </div>
         </div>
         <img class="closed" src="/tourTest/img/pop-closed.png" />
     </div>
@@ -432,27 +434,27 @@
         var tagData = [{
             tagId: '1-1',
             text: '浪漫主义派',
-            des:'倾向1-2月的休息',
+            des: '倾向1-2月的休息',
         }, {
             tagId: '1-2',
             text: '理性主义派',
-            des:'倾向几周的休息',
+            des: '倾向几周的休息',
         }, {
             tagId: '1-3',
             text: '白日梦想派',
-            des:'倾向于间隔年',
+            des: '倾向于间隔年',
         }, {
             tagId: '3-1',
             text: '语言爱好者',
-            des:'对语言学习有兴趣',
+            des: '对语言学习有兴趣',
         }, {
             tagId: '3-2',
             text: '周密计划员',
-            des:'擅长运用翻译APP'
+            des: '擅长运用翻译APP'
         }, {
             tagId: '3-3',
             text: '佛系走天下',
-            des:'旅行时胆子大不爱做计划',
+            des: '旅行时胆子大不爱做计划',
         }, {
             tagId: '4-1',
             text: '热情似火'
@@ -784,7 +786,7 @@
                     customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
-                    customer.Comments ='用户标签属性：'+ me.tagDes + ';'+ levelMap[me.level];
+                    customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.level];
                     customer.City = $('.J-city-child').find("option:selected").text();
                     customer.Email = customer.MobilePhone + "@noemail.com";
 
@@ -815,7 +817,7 @@
 
                     console.log(submissionData);
 
-                    /** debug */ 
+                    /** debug */
                     // $('.loading-page').fadeIn();
                     // setTimeout(function () {
                     //     $('.loading-page').fadeOut();
@@ -870,20 +872,20 @@
                 img.src = resultURL;
                 img.onload = function () {
                     var tagImg = me.genTagImg(tagList, img, result);
-                     
-                    me.tagDes=me.genTagDes(tagList, img, result);
+
+                    me.tagDes = me.genTagDes(tagList, img, result);
 
                     $('.result-pic').attr('src', tagImg).parents('.result-page').css('background',
                         'url(/tourTest/img/v1/bg/' + result + ')');
                     $('.result-txt').addClass(result.split('.')[0]);
                 }
             },
-            genTagDes:function(tagList){
+            genTagDes: function (tagList) {
                 var tagDesList = tagList.map(item => {
                     var tagObj = tagData.find(it => it && it.tagId == item);
                     return tagObj.des;
                 })
-                return tagDesList.filter(it=>it).join();
+                return tagDesList.filter(it => it).join();
             },
             genTagImg: function (tagList, img, result) {
                 var tagImg;
