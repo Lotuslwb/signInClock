@@ -49,7 +49,7 @@ select {
   overflow: hidden;
 }
 .swiper-slide {
-  overflow: hidden;
+  overflow: auto;
 }
 .btn.active {
   -webkit-filter: none;
@@ -426,7 +426,7 @@ select {
 }
 .result-page .result-pic {
   width: 100%;
-  height: 100%;
+  height: 1268px;
   object-fit: none;
   object-position: bottom;
 }
@@ -456,8 +456,8 @@ select {
 }
 .result-txt {
   position: absolute;
-  bottom: 52px;
-  right: 158px;
+  bottom: 73px;
+  right: 162px;
 }
 .result-v2 .result-txt.female_1_1,
 .result-v2 .result-txt.female_1_2,

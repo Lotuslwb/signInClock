@@ -950,6 +950,9 @@ input[type="date"].full:before {
   z-index: 100;
   display: none;
 }
+.right-pop .overlay {
+  position: absolute;
+}
 .right-pop .closed {
   position: absolute;
   z-index: 100;
