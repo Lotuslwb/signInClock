@@ -417,7 +417,7 @@
         <div class="overlay"></div>
         <div class="pop-content">
             <div class='iframeWrap'>
-                <iframe class="iframe" src="https://liuxue.ef.com.cn/legal/privacy-policy/#" frameborder="0"></iframe>
+                <iframe class="iframe" data-src="https://liuxue.ef.com.cn/legal/privacy-policy/#" frameborder="0"></iframe>
             </div>
         </div>
         <img class="closed" src="/tourTest/img/pop-closed.png" />
@@ -501,6 +501,7 @@
                 this.initMusic();
                 this.bindEvnet(this);
 
+                $('.iframe').attr('src', $('.iframe').data('src'));
                 // var me=this;
                 // var tagList=["1-3", "3-3", "4-2", "5-3", "8-3"];
                 // var img=new Image();
@@ -764,7 +765,14 @@
                     submissionData.campaignData = campaigndata;
                     submissionData.qcode = $('.qcode-input').val();
 
-                    console.log(submissionData);
+                    // $('.loading-page').fadeIn();
+                    // setTimeout(function () {
+                    //     $('.loading-page').fadeOut();
+                    // }, 3000)
+                    // mySwiper.slideNext();
+                    // console.log(submissionData);
+                    // return false;
+
                     $.ajax({
                         url: '/tourTest/form',
                         dataType: 'json',

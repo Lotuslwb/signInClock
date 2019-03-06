@@ -910,33 +910,9 @@
                                 
                             </select>
                         </div>
-                        <div class="rightChecked"> <span class="checkbox active"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
-                    </div>
+                        <div class="rightChecked"> <span class="checkbox active"></span> 我已阅读并同意 <span class="href">英孚隐私政策
 
-                    <!-- <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt=""> -->
-                    <div class="btn J-submit">确认</div>
-                </div>
-                <div class="swiper-slide result-page result-v1 swiper-no-swiping" style="width: 640px;">
-                    <img src="http://localhost:8090/tourTest/v1" class="result-pic">
-                    <img src="./v1_files/result-text.png" class="result-txt">
-                </div>
-            </div>
-        </div>
-    </div>
-    <canvas id="myCanvas" width="640" height="1268"></canvas>
-    <div class="right-pop">
-        <div class="overlay"></div>
-        <div class="pop-content">
-            <iframe class="iframe" src="./v1_files/saved_resource.html" frameborder="0"></iframe>
-        </div>
-        <img class="closed" src="./v1_files/pop-closed.png">
-    </div>
-    <script src="./v1_files/jquery.js"></script>
-    <script src="./v1_files/imagesloaded.pkgd.min.js"></script>
-    <script src="./v1_files/swiper-3.3.1.jquery.min.js"></script>
-    <script src="./v1_files/tplTagStyle.js"></script>
-
-    <script>
+ <div>
         var tagData = [{
             tagId: '1-1',
             text: '浪漫主义派',
@@ -1001,42 +977,9 @@
             });
             return returnStr;
         }
-    </script>
-    <script>
-        var resultList = "female_1_1.jpg,female_1_2.jpg,female_2_1.jpg,female_2_2.jpg,female_3_1.jpg,female_4_1.jpg,male_1_1.jpg,male_2_1.jpg,male_3_1.jpg,male_4_1.jpg".split(',');
-        var channel = "";
-        var SourceCode = "";
+    </div>
 
-        Number.prototype.range = function (min, max) {
-            return this >= min && this <= max;
-        }
-
-        Array.prototype.random = function () {
-            var index = Math.floor(Math.random() * this.length)
-            return this[index];
-        }
-
-        if (typeof Array.prototype.filter != "function") {
-            Array.prototype.filter = function (fn, context) {
-                var arr = [];
-                if (typeof fn === "function") {
-                    for (var k = 0, length = this.length; k < length; k++) {
-                        fn.call(context, this[k], k, this) && arr.push(this[k]);
-                    }
-                }
-                return arr;
-            };
-        }
-
-        function initMySwiper() {
-            var mySwiper = new Swiper('.swiper-container', {
-                noSwiping: true
-            })
-
-            return mySwiper;
-        }
-    </script>
-    <script>
+  <div>
         var mySwiper;
         var timer;
 
@@ -1456,7 +1399,69 @@
             }
         }
         var page = new indexHanlder();
+    </div>
+
+    
+                        </span></div>
+                    </div>
+
+                    <!-- <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt=""> -->
+                    <div class="btn J-submit">确认</div>
+                </div>
+                <div class="swiper-slide result-page result-v1 swiper-no-swiping" style="width: 640px;">
+                    <img src="http://localhost:8090/tourTest/v1" class="result-pic">
+                    <img src="./v1_files/result-text.png" class="result-txt">
+                </div>
+            </div>
+        </div>
+    </div>
+    <canvas id="myCanvas" width="640" height="1268"></canvas>
+    <div class="right-pop">
+        <div class="overlay"></div>
+        <div class="pop-content">
+            <iframe class="iframe" src="./v1_files/saved_resource.html" frameborder="0"></iframe>
+        </div>
+        <img class="closed" src="./v1_files/pop-closed.png">
+    </div>
+    <script src="./v1_files/jquery.js"></script>
+    <script src="./v1_files/imagesloaded.pkgd.min.js"></script>
+    <script src="./v1_files/swiper-3.3.1.jquery.min.js"></script>
+    <script src="./v1_files/tplTagStyle.js"></script>
+    <script>
+        var resultList = "female_1_1.jpg,female_1_2.jpg,female_2_1.jpg,female_2_2.jpg,female_3_1.jpg,female_4_1.jpg,male_1_1.jpg,male_2_1.jpg,male_3_1.jpg,male_4_1.jpg".split(',');
+        var channel = "";
+        var SourceCode = "";
+
+        Number.prototype.range = function (min, max) {
+            return this >= min && this <= max;
+        }
+
+        Array.prototype.random = function () {
+            var index = Math.floor(Math.random() * this.length)
+            return this[index];
+        }
+
+        if (typeof Array.prototype.filter != "function") {
+            Array.prototype.filter = function (fn, context) {
+                var arr = [];
+                if (typeof fn === "function") {
+                    for (var k = 0, length = this.length; k < length; k++) {
+                        fn.call(context, this[k], k, this) && arr.push(this[k]);
+                    }
+                }
+                return arr;
+            };
+        }
+
+        function initMySwiper() {
+            var mySwiper = new Swiper('.swiper-container', {
+                noSwiping: true
+            })
+
+            return mySwiper;
+        }
     </script>
+  
     <script>
         var loaded = false;
         var loaded_ani = false;

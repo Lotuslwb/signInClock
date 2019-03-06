@@ -456,7 +456,7 @@ select {
 }
 .result-txt {
   position: absolute;
-  bottom: 73px;
+  top: 916px;
   right: 162px;
 }
 .result-v2 .result-txt.female_1_1,
