@@ -7,12 +7,12 @@
 // }
 
 // 英孚 订阅号
-var WXConfig = {
-    APPID: 'wxdf37904ad15f5f95',
-    APPSECRET: 'a2818a5b02f7a7c93f95fc9424eeb821',
-    token: 'icloudsoft',
-    encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
-}
+// var WXConfig = {
+//     APPID: 'wxdf37904ad15f5f95',
+//     APPSECRET: 'a2818a5b02f7a7c93f95fc9424eeb821',
+//     token: 'icloudsoft',
+//     encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
+// }
 
 
 // //英孚 服务号
@@ -22,6 +22,14 @@ var WXConfig = {
 //     token: 'icloudsoft',
 //     encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
 // }
+
+//  英孚 游学
+var WXConfig = {
+    APPID: 'wxf4fee74c7e6211e1',
+    APPSECRET: '6ed7a83585628ae1cc8035b1605e1920',
+    token: 'icloudsoft',
+    encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
+}
 
 
 module.exports = WXConfig;

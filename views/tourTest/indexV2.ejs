@@ -32,6 +32,15 @@
 </head>
 
 <body>
+    <style>
+        .result-txt{
+            top: auto;
+            bottom: 52px;
+        }  
+        .result-page .result-pic{
+            height: 100%;
+        }
+    </style>
     <!--需要预加载的images-->
     <div class="f-hide" id="f-hide">
         <img src="/tourTest/img/bg.png" />
@@ -428,6 +437,32 @@
     <script src="/tourTest/js/tplTagStyle.js?12"></script>
 
     <script>
+        var tagData = [{
+            tagId: '1-1',
+            text: '浪漫主义派',
+            des: '倾向1-2月的休息',
+        }, {
+            tagId: '1-2',
+            text: '理性主义派',
+            des: '倾向几周的休息',
+        }, {
+            tagId: '1-3',
+            text: '白日梦想派',
+            des: '倾向于间隔年',
+        }, {
+            tagId: '3-1',
+            text: '语言爱好者',
+            des: '对语言学习有兴趣',
+        }, {
+            tagId: '3-2',
+            text: '周密计划员',
+            des: '擅长运用翻译APP'
+        }, {
+            tagId: '3-3',
+            text: '佛系走天下',
+            des: '旅行时胆子大不爱做计划',
+        }];
+
         var levelMap = {
             'female_1_1.jpg': '适应型旅行者，推荐目的地:布莱顿',
             'female_1_2.jpg': '适应型旅行者，推荐目的地:马耳他',
@@ -502,13 +537,7 @@
                 this.bindEvnet(this);
 
                 $('.iframe').attr('src', $('.iframe').data('src'));
-                // var me=this;
-                // var tagList=["1-3", "3-3", "4-2", "5-3", "8-3"];
-                // var img=new Image();
-                // img.src='/tourTest/img/v1/male_4_1.jpg';
-                // img.onload=()=>{
-                //     me.genTagImg(tagList,img,'male_4_1.jpg');
-                // }  
+
             },
             initMain: function () {
                 var h = $('body').height();
@@ -737,7 +766,7 @@
                     customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
-                    customer.Comments = levelMap[me.result];
+                    customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.result];
                     customer.Email = customer.MobilePhone + "@noemail.com";
                     customer.City = $('.J-city-child').find("option:selected").text();
 
@@ -765,12 +794,14 @@
                     submissionData.campaignData = campaigndata;
                     submissionData.qcode = $('.qcode-input').val();
 
+                    console.log(submissionData);
+
+                    /** debug */
                     // $('.loading-page').fadeIn();
                     // setTimeout(function () {
                     //     $('.loading-page').fadeOut();
                     // }, 3000)
                     // mySwiper.slideNext();
-                    // console.log(submissionData);
                     // return false;
 
                     $.ajax({
@@ -806,6 +837,7 @@
                     totalScore += $Qitem.data('value') * 1;
                     tag && tagList.push(tag);
                 });
+                this.tagDes = this.genTagDes(tagList, img, result)
                 var level = this.getScoreLevel(totalScore);
                 var filterStr = (sex == 0 ? "male" : "female") + "_" + level;
                 console.log(filterStr);
@@ -819,6 +851,13 @@
                 img.src = resultURL;
                 $('.result-pic').attr('src', resultURL);
                 $('.result-txt').addClass(result.split('.')[0]);
+            },
+            genTagDes: function (tagList) {
+                var tagDesList = tagList.map(item => {
+                    var tagObj = tagData.find(it => it && it.tagId == item);
+                    return tagObj ? tagObj.des : '';
+                })
+                return tagDesList.filter(it => it).join();
             },
             getScoreLevel: function (score) {
                 var level = 0;
