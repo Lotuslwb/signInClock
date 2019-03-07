@@ -27,8 +27,6 @@
 var WXConfig = {
     APPID: 'wxf4fee74c7e6211e1',
     APPSECRET: '6ed7a83585628ae1cc8035b1605e1920',
-    token: 'icloudsoft',
-    encodingAESKey: '0123456789ABCDEFGhijklmnopqrstuvwxyz1234567'
 }
 
 
