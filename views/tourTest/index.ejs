@@ -402,7 +402,12 @@
                                 <%}%>
                             </select>
                         </div>
-                        <div class="rightChecked"> <span class="checkbox active"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
+                        <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
+                        <div class="rightChecked J-WantsBrochure"> <span class="checkbox active"></span>
+                            请发一份《全球旅行指南》到我邮箱</span></div>
+                        <div class="emailBox">
+                            <input type="text" class="input J-email" placeholder="请输入您的邮箱">
+                        </div>
                     </div>
 
                     <!-- <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt=""> -->
@@ -589,10 +594,20 @@
                 var me = this;
                 var self = this;
 
-                $('.rightChecked').click(function () {
+                $('.J-rightChecked').click(function () {
                     var $checkbox = $(this).find('.checkbox');
                     $checkbox.hasClass('active') ? $checkbox.removeClass('active') : $checkbox.addClass(
                         'active');
+                })
+                $('.J-WantsBrochure').click(function () {
+                    var $checkbox = $(this).find('.checkbox');
+                    if ($checkbox.hasClass('active')) {
+                        $checkbox.removeClass('active');
+                        $('.J-email').fadeOut();
+                    } else {
+                        $('.J-email').fadeIn();
+                        $checkbox.addClass('active');
+                    }
                 })
                 $('.href').click(function (e) {
                     e.stopPropagation();
@@ -757,7 +772,7 @@
                         return false;
                     }
 
-                    if (!$('.rightChecked .checkbox').hasClass('active')) {
+                    if (!$('.J-rightChecked .checkbox').hasClass('active')) {
                         toast('请勾选隐私策略');
                         return false;
                     }
@@ -778,6 +793,7 @@
                     var month = $('.month-select').val();
                     var date = $('.date-select').val();
                     var qcode = $('.qcode-input').val();
+                    var email = $('.J-email').val();
 
                     customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
                     customer.LastName = $('.J-name').val().substr(0, 1);
@@ -789,7 +805,7 @@
                     customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
                     customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.level];
                     customer.City = $('.J-city-child').find("option:selected").text();
-                    customer.Email = customer.MobilePhone + "@noemail.com";
+                    customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
 
 
                     // Tracking
@@ -803,7 +819,7 @@
 
                     //Extended Details
                     extendedDetail.WantsMoreInfo = true;
-                    extendedDetail.WantsBrochure = true;
+                    extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
 
 
 

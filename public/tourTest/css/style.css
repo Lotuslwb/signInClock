@@ -339,7 +339,7 @@ select {
   object-position: center;
 }
 .leads-page .leads-title {
-  margin: 100px auto 0;
+  margin: 50px auto 0;
 }
 .leads-page .leads-pic {
   margin: 15px auto 40px;
@@ -347,7 +347,7 @@ select {
 .leads-page .form {
   width: 470px;
   margin: auto;
-  padding: 70px 0;
+  padding: 50px 0 0;
 }
 .leads-page .input {
   text-align: center;
@@ -406,7 +406,7 @@ select {
   padding-right: 40px;
 }
 .leads-page .btn {
-  margin-top: 25px;
+  margin-top: 35px;
 }
 .result-page {
   max-height: 1268px;
@@ -770,6 +770,10 @@ select {
   color: #221816;
   padding-left: 40px;
   font-family: none;
+  margin-bottom: 20px;
+}
+.emailBox {
+  height: 85px;
 }
 .checkbox {
   display: inline-block;
