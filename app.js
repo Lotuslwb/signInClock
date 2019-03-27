@@ -12,10 +12,12 @@ var users = require('./routes/users');
 var wx = require('./routes/wxConnect');
 var wxAPI = require('./routes/wxAPI');
 
-//  压力测试
 var newyearTabs = require('./routes/newyearTabs');
+
+//  压力测试,旅游问卷,Up问卷
 var StressTest = require('./routes/StressTest');
 var tourTest = require('./routes/tourTest');
+var upQuiz = require('./routes/upQuiz');
 
 
 //js 调用接口
@@ -121,8 +123,8 @@ app.use('/yingfu-newyearTabs/', newyearTabs);
 
 
 app.use('/StressTest/', StressTest);
-
 app.use('/tourTest/', tourTest);
+app.use('/upQuiz/', upQuiz);
 
 
 app.use('/camp', camp);
