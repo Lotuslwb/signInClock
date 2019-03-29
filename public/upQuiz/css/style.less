@@ -71,7 +71,7 @@ select {
   border-radius: 10px;
 }
 
-.btn.touching {
+.btn.active.touching {
   color: #f8f8eb;
   background: #5d8e8b;
 }
@@ -120,6 +120,12 @@ select {
   height: 485px;
   transform: translate3d(0, 0, 0);
   transition: all 800ms 300ms cubic-bezier(0.175, 0.885, 0.710, 1.170);
+}
+
+.swiper-slide-active .card .result-card-img {
+  height: 620px;
+  transform: translate3d(0, 0, 0);
+  transition: all 800ms 3400ms cubic-bezier(0.175, 0.885, 0.710, 1.170);
 }
 
 
@@ -222,6 +228,13 @@ select {
 
 
 .form-page {
+
+  .btn.active.touching {
+    color: #5c8d8a;
+    background: #f8f8eb;
+  }
+
+
   .formpage-title {
     margin: auto;
     padding-top: 50px;
@@ -310,28 +323,9 @@ select {
 }
 
 .page-result {
-  .result-pic {
-    width: 100%;
-  }
-
-  .result-text {
-    font-size: 24px;
-    color: #ffffff;
-    line-height: 40px;
-    background: rgba(41, 41, 41, 0.3);
-    width: 100%;
-    position: absolute;
-    top: 0;
-    text-align: center;
-  }
-
-  .mask {
-    position: absolute;
-    background: #fff;
-    width: 180px;
-    height: 100px;
-    top: 859px;
-    right: 153px;
+  .result_text {
+    padding-top: 25px;
+    margin: 0 auto 10px;
   }
 }
 

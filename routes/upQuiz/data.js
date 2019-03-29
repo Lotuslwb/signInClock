@@ -169,16 +169,16 @@ const data = [{
     title: '哪个因素影响你选择学校？',
     options: [{
         text: "A. 大学排名",
-        value: 99
+        value: 5
     }, {
         text: "B. 大学口碑",
-        value: 99
+        value: 5
     }, {
         text: "C. 家庭预算",
-        value: 99
+        value: 5
     }, {
         text: "D. 是否有住得近的亲戚朋友",
-        value: 99
+        value: 5
     }, ]
 }];
 
@@ -201,4 +201,4 @@ const test_data = [{
     }, ]
 }];
 
-module.exports = test_data;
+module.exports = data;

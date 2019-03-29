@@ -23,14 +23,13 @@
     <link rel="stylesheet" href="/swiper/swiper-3.3.1.min.css">
     <script>
         var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?a0e9e1cce678aef060f414bcd2beb467";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
+        (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?d04976a94d838ffd07b71d6010b87a72";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
         })();
     </script>
-
 </head>
 
 <body>
@@ -40,8 +39,6 @@
         <img src="/StressTest/img/page1-pic<%=i%>.png">
         <% } %>
     </div>
-
-
     <div class="page loading-page active">
         <div class="loading-dots">
             <span class="dot"></span>
@@ -66,7 +63,7 @@
                             为你匹配梦想留学目的地。<br />
                         </div>
                     </div>
-                    <div class="btn J-page1-btn active">开始拷问</div>
+                    <div class="btn J-page1-btn active">开始测试</div>
                 </div>
 
                 <% for(var i=1;i<=data.length;i++){  var item=data[i-1]; %>
@@ -87,18 +84,18 @@
                     <div class="btn page-btn-select <%= i==data.length?'J-finishQ':'J-slideNext'%>">下一题</div>
                 </div>
                 <% } %>
-                    <div class="swiper-slide form-page swiper-no-swiping">
+                <div class="swiper-slide form-page swiper-no-swiping">
                         <img src="/upQuiz/img/formpage-title.png" class="formpage-title" />
                         <div class="form-box">
                             <div class="Q-options">
-                                <input class="Q-option J-name" type='text' placeholder="请输入您的姓名" />
-                                <input class="Q-option J-tel" type='tel' placeholder="请输入您的手机号" />
+                                <input class="Q-option J-name leads-Q" type='text' placeholder="请输入您的姓名" />
+                                <input class="Q-option J-tel leads-Q" type='tel' placeholder="请输入您的手机号" />
                                 <div class="Q-option-css">
                                     <input type="text" class="Q-option qcode-input leads-Q" placeholder="请输入验证码">
                                     <div class="qcode-btn J-sendSMS">获取验证码</div>
                                 </div>
                                 <div class="Q-option-css date select-wrap">
-                                    <select class="year-select select">
+                                    <select class="year-select select leads-Q">
                                         <option value=''>出生年</option>
                                         <% for(var i=0;i<year.length;i++){%>
                                             <option value="<%= year[i].value %>">
@@ -106,7 +103,7 @@
                                             </option>
                                             <%}%>
                                     </select>
-                                    <select class="month-select select">
+                                    <select class="month-select select leads-Q">
                                         <option value=''>月</option>
                                         <% for(var i=0;i<month.length;i++){%>
                                             <option value="<%= month[i].value %>">
@@ -114,7 +111,7 @@
                                             </option>
                                             <%}%>
                                     </select>
-                                    <select class="date-select select">
+                                    <select class="date-select select leads-Q">
                                         <option value=''>日</option>
                                         <% for(var i=0;i<date.length;i++){%>
                                             <option value="<%= date[i].value %>">
@@ -124,7 +121,7 @@
                                     </select>
                                 </div>                                
                                 <div class="Q-option-css select-wrap">
-                                    <select class="Q-option city-select J-city">
+                                    <select class="Q-option city-select J-city leads-Q">
                                         <option value=''>省份</option>
                                         <% for(var i=0;i<StateRegion.length;i++){%>
                                         <option data-id="<%= StateRegion[i].id %>" value="<%= StateRegion[i].value %>">
@@ -134,22 +131,25 @@
                                     </select>
                                 </div>
                                 <div class="Q-option-css select-wrap">
-                                    <select class="Q-option city-child-select J-city-child">
+                                    <select class="Q-option city-child-select J-city-child leads-Q">
                                         <option value=''>城市</option>
                                     </select>
                                 </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="rightChecked J-rightChecked"> <span class="checkbox active"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
-                    <div class="rightChecked J-WantsBrochure"> <span class="checkbox active"></span>
-                    请发一份《全球旅行指南》到我邮箱</span></div>
-                    <input type="text" class="Q-option J-email" placeholder="请输入您的邮箱">
+                    <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
+                    <div class="rightChecked J-WantsBrochure"> <span class="checkbox active"></span>愿意接受电子版的《全球留学资讯》</div>
+                    <input type="text" class="Q-option J-email leads-Q" placeholder="请输入您的邮箱">
                     <div class="btn J-submit">提交</div>
                 </div>
                 <div class="swiper-slide page-result swiper-no-swiping">
-                    <div class="result-text">长按保存结果，分享你的目的地</div>
-                    <div class="mask"></div>
-                    <img src="" class='result-pic' />
+                    <div class="page-form">
+                        <div class="card">
+                            <img src="" class='card-img result-card-img J-result-img'>
+                        </div>
+                        <img src="" class='result_text J-result-text'>
+                    </div>
+                    <div class="btn active J-gotoLink">了解<span class='J-text'></span>留学</div>
                 </div>
             </div>
         </div>
@@ -210,6 +210,12 @@
     <script>
         var mySwiper;
         var timer;
+        var labelMap={
+            '1':'美国',
+            '2':'加拿大',
+            '3':'英国',
+            '4':'澳大利亚',
+        }
 
         function indexHanlder() {
             this.init();
@@ -219,38 +225,8 @@
             init: function () {
                 this.countdown = 60;
                 this.timer = null;
-                this.initMain();
-                this.initMusic();
                 this.bindEvnet(this);
                 $('.iframe').attr('src', $('.iframe').data('src'));
-            },
-            initMain: function () {
-                var h = $('body').height();
-                var Qh = $('.Q-header').height();
-                $('.Q-main').height(h - Qh);
-            },
-            initMusic: function () {
-                var audioElement = this.audioElement = document.createElement('audio');
-                audioElement.controls = true;
-                audioElement.loop = false;
-                audioElement.autoplay = 'autoplay';
-                audioElement.onended = function () {
-                    $('.music').removeClass('play');
-                };
-            },
-            playMusic: function ($music) {
-                var audioElement = this.audioElement;
-                var src = $music.data('src');
-                audioElement.setAttribute('src', src);
-                audioElement.load();
-                audioElement.play();
-                $('.music').removeClass('play');
-                $music.addClass('play').addClass('done');
-            },
-            stopMusic: function () {
-                var audioElement = this.audioElement;
-                audioElement.pause();
-                $('.music').removeClass('play');
             },
             bindEvnet: function () {
                 var me = this;
@@ -269,6 +245,7 @@
                 })
                 $('.J-WantsBrochure').click(function () {
                     var $checkbox = $(this).find('.checkbox');
+                    var $this=$(this);
                     if ($checkbox.hasClass('active')) {
                         $checkbox.removeClass('active');
                         $('.J-email').fadeOut();
@@ -276,6 +253,14 @@
                         $('.J-email').fadeIn();
                         $checkbox.addClass('active');
                     }
+                    setTimeout(function(){
+                        if (checkVal()) {
+                            $this.parents('.swiper-slide').find('.btn').addClass('active');
+                        } else {
+                            $this.parents('.swiper-slide').find('.btn').removeClass('active');
+                        }
+                    },500)
+
                 })
 
                 $('.href').click(function (e) {
@@ -304,7 +289,6 @@
                 $('.J-slideNext').click(function () {
                     if ($(this).hasClass('active')) {
                         mySwiper.slideNext();
-                        me.stopMusic();
                     }
                 })
                 $('.J-finishQ').click(function () {
@@ -320,8 +304,8 @@
                     $(this).parents('.swiper-slide').find('.btn').addClass('active');
                 })
 
-                $(".leads-page .leads-Q").on("change", function () {
-                    console.log(checkVal());
+
+                $(".form-page .leads-Q").on("change", function () {
                     if (checkVal()) {
                         $(this).parents('.swiper-slide').find('.btn').addClass('active');
                     } else {
@@ -389,9 +373,10 @@
 
                 function checkVal() {
                     var result = true;
-                    $('.leads-page .leads-Q').each(function () {
+                    $('.form-page .leads-Q:visible').each(function () {
                         if (!$(this).val()) result = false;
                     })
+                    console.log(result);
                     return result;
                 }
 
@@ -461,19 +446,19 @@
                     customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.gender-page').find('.Q-option.active').index() == 0 ? "M" : "F";
-                    customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.level];
+                    customer.Comments = '适合留学国家：'+ labelMap[me.result];
                     customer.City = $('.J-city-child').find("option:selected").text();
                     customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
 
 
                     // Tracking
-                    trackingData.Etag = channel + "_Travel_IDV1";
+                    trackingData.Etag = channel + "_UPQuiz2019";
                     trackingData.EntrySourceCode = SourceCode;
 
                     //Campaign Data
-                    campaigndata.CampaignName = "Travel_ID";
-                    campaigndata.CampaignAllocationPrograms = "ILS,LY";
-                    campaigndata.CampaignAllocationCode = "mixed";
+                    campaigndata.CampaignName = "UPQuiz2019";
+                    campaigndata.CampaignAllocationPrograms = "BC";
+                    campaigndata.CampaignAllocationCode = "single";
 
                     //Extended Details
                     extendedDetail.WantsMoreInfo = true;
@@ -500,7 +485,6 @@
                     // mySwiper.slideNext();
                     // return false;
 
-
                     $.ajax({
                         url: '/tourTest/form',
                         dataType: 'json',
@@ -525,7 +509,8 @@
             },
             getResult: function () {
                 var me = this;
-                var scoreList = [0,0,0,0,0];
+                var scoreList = [0,0,0,0,0,0];
+            
                 $('.Quiz-page .Q-options').each(function () {
                     var $Qitem = $(this).find('.Q-option.active');
                     var val= $Qitem.data('value') * 1;
@@ -533,7 +518,10 @@
                 });
                 this.result =scoreList.findIndex(it=>it==Math.max.apply( Math, scoreList));
                 console.log(this.result);
-                
+                $('.J-text').text(labelMap[this.result]);
+                $('.J-result-text').attr('src','/upQuiz/img/result_'+this.result+'_text.png');
+                $('.J-result-img').attr('src','/upQuiz/img/result_'+this.result+'.png');
+
             },
             genTagDes: function (tagList) {
                
@@ -616,10 +604,10 @@
 
             //“分享给朋友”
             wx.onMenuShareAppMessage({
-                title: '测测你的隐藏旅行属性', // 分享标题
-                desc: '你是打卡狂魔，还是逛吃逛吃党？', // 分享描述
+                title: '测测我适合去哪个国家留学', // 分享标题
+                desc: '30秒小测试，为你匹配梦想留学目的地', // 分享描述
                 link: '', // 分享链接
-                imgUrl: 'http://ma.eldesign.cn/tourTest/img/share_logo.jpg', // 分享图标
+                imgUrl: 'http://ma.eldesign.cn/upQuiz/img/share_logo.jpg', // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -634,10 +622,10 @@
 
             //“分享到朋友圈”
             wx.onMenuShareTimeline({
-                title: '测测你的隐藏旅行属性', // 分享标题
-                desc: '你是打卡狂魔，还是逛吃逛吃党？', // 分享描述
+                title: '测测我适合去哪个国家留学', // 分享标题
+                desc: '30秒小测试，为你匹配梦想留学目的地', // 分享描述
                 link: '', // 分享链接
-                imgUrl: 'http://ma.eldesign.cn/tourTest/img/share_logo.jpg', // 分享图标
+                imgUrl: 'http://ma.eldesign.cn/upQuiz/img/share_logo.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                     _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
