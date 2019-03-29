@@ -248,7 +248,7 @@ select {
   color: #f8f8eb;
   font-size: 28px;
 }
-.form-page .qcode-btn.disabled {
+.form-page .disabled .qcode-btn {
   background: #a6d7c6;
   color: #5d8e8b;
 }
