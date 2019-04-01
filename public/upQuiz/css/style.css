@@ -2,6 +2,10 @@
   font-family: MHEIPRCHEAVY;
   src: url('../font/MHEIPRC-HEAVY.TTF');
 }
+@font-face {
+  font-family: MHEIPRCMEDIUM;
+  src: url('../font/MHEI+PRC+MEDIUM.TTF');
+}
 body {
   background: #77b49c;
   font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;
@@ -248,7 +252,7 @@ select {
 }
 .form-page .qcode-btn {
   width: 211px;
-  height: 60px;
+  height: 61px;
   line-height: 60px;
   background-color: #5d8e8b;
   text-align: center;
@@ -498,6 +502,10 @@ input[type="date"].full:before {
   font-size: 28px;
   color: #f8f8eb;
   margin-top: 35px;
+  font-family: MHEIPRCMEDIUM, Arial, Helvetica, sans-serif;
+}
+.rightChecked .href {
+  color: #baf1de;
 }
 .checkbox {
   display: inline-block;
