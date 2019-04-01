@@ -166,7 +166,9 @@ select {
 }
 .page1 .form-title {
   padding-top: 10px;
-  font-family: none;
+}
+.page1 .page1-title {
+  margin: auto;
 }
 .Q-options {
   margin: 10px auto;
