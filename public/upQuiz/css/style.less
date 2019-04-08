@@ -8,9 +8,13 @@
     src: url('../font/MHEI+PRC+MEDIUM.TTF');
 }
 
+html,
 body {
-    background: #77b49c;
-    font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif
+    background: #fff;
+    font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;
+    overflow: auto;
+    max-width: 750px;
+    margin: auto;
 }
 
 select {
@@ -40,8 +44,10 @@ select {
 }
 
 .page {
+    margin: auto;
+    background: #77b49c;
     width: 100%;
-    height: 100%;
+    height: auto;
     display: none; // background: url("../img/index-bg.jpg") #ffffff top center no-repeat;
     // background-size: cover;
     font-size: 24px;
