@@ -27,7 +27,8 @@ indexHanlder.prototype = {
     genPoster: function () {
         setTimeout(function () {
             html2canvas(document.querySelector("#tpl")).then(function (canvas) {
-                $('.poster-page .canvas').append(canvas);
+                dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
+                $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
             });
             $("#tpl").hide();
         }, 500)
