@@ -544,6 +544,9 @@ img {
   top: 0;
   left: 0;
 }
+.poster-page .canvas img {
+  width: 100%;
+}
 .poster-page .header {
   height: 210px;
   position: relative;
