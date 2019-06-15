@@ -25,11 +25,11 @@ indexHanlder.prototype = {
         this.genPoster();
     },
     genPoster: function () {
-        setTimeout(function () {
+        $('.file-img')[0].onload(function () {
             html2canvas(document.querySelector("#tpl")).then(function (canvas) {
                 $('.poster-page .canvas').append(canvas);
             });
-        }, 500)
+        })
     },
     initQcode: function () {
         new QRCode($('#qcode')[0], {
