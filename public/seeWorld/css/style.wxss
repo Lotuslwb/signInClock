@@ -7,6 +7,10 @@
   src: url('../font/2.TTF');
 }
 body {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
   background: #FFFFFF;
   font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;
 }

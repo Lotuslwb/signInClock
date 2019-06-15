@@ -29,6 +29,7 @@ indexHanlder.prototype = {
             html2canvas(document.querySelector("#tpl")).then(function (canvas) {
                 $('.poster-page .canvas').append(canvas);
             });
+            $("#tpl").hide();
         }, 500)
     },
     initQcode: function () {
