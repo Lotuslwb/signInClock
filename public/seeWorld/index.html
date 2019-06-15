@@ -159,37 +159,45 @@
 
                 <!-- 最终结果页面 -->
                 <div class="swiper-slide poster-page swiper-no-swiping">
-                    <div class="header">
-                        <img src="./img/logo.png" class="logo" alt="EF-英孚">
-                        <img src="./img/slogan.png" class="slogan" alt="英孚带你看世界">
-                    </div>
-                    <div class="uploadBox">
-                        <img src="./img/poster-bg-2.png" alt="">
-                        <img src="http://xmly.eldesign.cn/1560405228551" alt="" class="file-img">
-                        <div class="info"> <img class="location-icon" src="./img/location-icon2.png" alt="">2019夏· <span
-                                class="fill-posterCountry"></span>
+                    <div class="tpl" id="tpl">
+                        <div class="header">
+                            <img src="./img/logo.png" class="logo" alt="EF-英孚">
+                            <img src="./img/slogan.png" class="slogan" alt="英孚带你看世界">
+                        </div>
+                        <div class="uploadBox">
+                            <img src="./img/poster-bg-2.png" alt="">
+                            <img src="/qiniuProxy/1560405228551" alt="" class="file-img">
+                            <div class="info"> <img class="location-icon" src="./img/location-icon2.png" alt="">2019夏·
+                                <span class="fill-posterCountry"></span>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="data">
+                                <span class="color fill-name"></span>宝贝 <br>
+                                去过 <span class="color fill-landScore"></span> 个大洲 <span
+                                    class="color fill-countryScore"></span> 个国家<br>
+                                领先全国 <span class="color fill-percent"></span> 的同龄人<br>
+                                喜获 <span class="tab fill-tab">·空中小飞人· </span>称号<br>
+                            </div>
+                            <img class="fly" src="./img/poster-fly.png">
+                        </div>
+                        <div class="poster-footer">
+                            <div class="qcode" id="qcode"></div>
+                            <img src="./img/poster-footer.png" class="img" alt="扫扫二维码晒晒我家宝贝の环球足迹">
                         </div>
                     </div>
-                    <div class="panel">
-                        <div class="data">
-                            <span class="color fill-name"></span>宝贝 <br>
-                            去过 <span class="color fill-landScore"></span> 个大洲 <span
-                                class="color fill-countryScore"></span> 个国家<br>
-                            领先全国 <span class="color fill-percent"></span> 的同龄人<br>
-                            喜获 <span class="tab fill-tab">·空中小飞人· </span>称号<br>
-                        </div>
-                        <img class="fly" src="./img/poster-fly.png">
-                    </div>
-                    
+                    <div class="canvas"></div>
+                    <img src="./img/poster-footer-cover.png" class="cover" alt="长按后即可保存晒晒我家宝贝の环球足迹">
                 </div>
             </div>
         </div>
     </div>
     <canvas id="myCanvas" width="658" height="440"></canvas>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="swiper/swiper-3.3.1.jquery.min.js"></script>
-
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/imagesloaded.pkgd.min.js"></script>
+    <script src="./swiper/swiper-3.3.1.jquery.min.js"></script>
+    <script src="./js/html2canvas.min.js"></script>
+    <script src="./js/qrcode.min.js"></script>
     <script>
         function initMySwiper() {
             var mySwiper = new Swiper('.swiper-container', {

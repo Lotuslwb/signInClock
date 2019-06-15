@@ -19,11 +19,30 @@ indexHanlder.prototype = {
         this.countryScore = 0;
         this.initMain();
         this.bindEvnet(this);
+        this.initQcode();
+
+        //test
+        this.genPoster();
+    },
+    genPoster: function () {
+        setTimeout(function () {
+            html2canvas(document.querySelector("#tpl")).then(function (canvas) {
+                $('.poster-page .canvas').append(canvas);
+            });
+        }, 500)
+    },
+    initQcode: function () {
+        new QRCode($('#qcode')[0], {
+            text: window.location.href,
+            width: 140,
+            height: 140,
+            correctLevel: QRCode.CorrectLevel.H
+        });
     },
     initPoster: function () {
         var percent = getPercent(dataset.countryScore) + '%';
         var tab = `·${ getTab(dataset.countryScore)}·`;
-        $('.file-img').attr('src', 'http://xmly.eldesign.cn/' + dataset.uploadImg);
+        $('.file-img').attr('src', '/qiniuProxy/' + dataset.uploadImg);
         $('.fill-posterCountry').text(dataset.posterCountry);
         $('.panel .fill-name').text(dataset.name);
         $('.panel .fill-landScore').text(dataset.landScore);
