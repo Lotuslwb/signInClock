@@ -41,6 +41,8 @@
     grid:                           [1,1],
     debug:                          false,
     activeClass:                    'pep-active',
+    startClass:                     'pep-start',
+    easeClass:                      'pep-ease',
     multiplier:                     1,
     velocityMultiplier:             2.5,
     shouldPreventDefault:           true,
@@ -65,7 +67,12 @@
     revert:                         false,
     revertAfter:                    'stop',
     revertIf:                       function(){ return true; },
-    ignoreRightClick:               true
+    ignoreRightClick:               true,
+    startPos:                       {
+        left:                           null,
+        top:                            null
+    },
+    useBoundingClientRect:          false
   };
 
   //  ---------------------------------
@@ -89,9 +96,9 @@
     this.$body      = this.$document.find('body');
 
     //  Create our triggers based on touch/click device
-    this.moveTrigger        = "MSPointerMove touchmove mousemove";
-    this.startTrigger       = "MSPointerDown touchstart mousedown";
-    this.stopTrigger        = "MSPointerUp touchend mouseup";
+    this.moveTrigger        = "MSPointerMove pointermove touchmove mousemove";
+    this.startTrigger       = "MSPointerDown pointerdown touchstart mousedown";
+    this.stopTrigger        = "MSPointerUp pointerup touchend mouseup";
     this.startTriggerArray  = this.startTrigger.split(' ');
     this.moveTriggerArray   = this.moveTrigger.split(' ');
     this.stopTriggerArray   = this.stopTrigger.split(' ');
@@ -112,6 +119,7 @@
     this.scale          = 1;
     this.started        = false;
     this.disabled       = false;
+    this.autoAxis       = false;
     this.activeDropRegions = [];
     this.resetVelocityQueue();
 
@@ -153,8 +161,9 @@
     this.onStartEvent = function(ev){ self.handleStart(ev); };
     this.$el.on(this.startTrigger, this.onStartEvent);
 
-    // Prevent start events from being gobbled by elements that should allow user interaction
-    this.onStartEventOnElementsWithInteraction = function(ev){ ev.stopPropagation(); };
+    // Add a flag to events that start on elements that should allow interaction
+    // so handleStart() can ignore them but allow them to bubble up through the DOM
+    this.onStartEventOnElementsWithInteraction = function(ev){ ev.ignorePropagation = true; };
     this.$el.on(
       this.startTrigger,
       this.options.elementsWithInteraction,
@@ -185,6 +194,11 @@
   //    once this.startTrigger occurs, handle all of the logic
   //    that must go on. This is where Pep's heavy lifting is done.
   Pep.prototype.handleStart = function(ev) {
+
+    // ignorePropagation is set to true if the event originates from an element
+    // listed in this.options.elementsWithInteraction
+    if (ev.ignorePropagation) return;
+
     var self = this;
 
             // only continue chugging if our start event is a valid move event.
@@ -309,9 +323,12 @@
             var initialDy  = Math.abs(this.startY - curY);
             if ( !this.started && ( initialDx > this.options.startThreshold[0] || initialDy > this.options.startThreshold[1] ) ){
               this.started = true;
-              this.$el.addClass('pep-start');
+              this.$el.addClass(this.options.startClass);
               this.options.start.call(this, this.startEvent, this);
             }
+
+            // Move before calculate position and fire events
+            this.doMoveTo(dx, dy);
 
             // Calculate our drop regions
             if ( this.options.droppable ) {
@@ -330,13 +347,24 @@
             this.log({ type: 'event', event: ev.type });
             this.log({ type: 'event-coords', x: this.ev.x, y: this.ev.y });
             this.log({ type: 'velocity' });
-
-            this.doMoveTo(dx, dy);
   };
 
   Pep.prototype.doMoveTo = function(dx, dy) {
             var hash = this.handleConstraint(dx, dy);
             var xOp, yOp;
+
+            // if using the "auto" axis, determine which axis to use based on
+            // whether the user has dragged more along the x or the y axis
+            if ( this.options.axis === 'auto' && !this.autoAxis) {
+              if ( Math.abs(dx) > Math.abs(dy) ) this.autoAxis = 'x';
+              else
+              if ( Math.abs(dx) < Math.abs(dy) ) this.autoAxis = 'y';
+              // don't move at all if the axis can't be determined
+              else {
+                dy = 0;
+                dx = 0;
+              }
+            }
 
             // if using not using CSS transforms, move object via absolute position
             if ( typeof this.options.moveTo === 'function') {
@@ -349,8 +377,8 @@
               }
 
               // only move along single axis, if necessary
-              if ( this.options.axis  === 'x' ) yOp = hash.y;
-              if ( this.options.axis  === 'y' ) xOp = hash.x;
+              if ( this.options.axis === 'x' || this.autoAxis === 'x' ) yOp = hash.y;
+              if ( this.options.axis === 'y' || this.autoAxis === 'y' ) xOp = hash.x;
 
               this.options.moveTo.call(this, xOp, yOp);
             } else if ( !this.shouldUseCSSTranslation() ){
@@ -363,8 +391,8 @@
               }
 
               // only move along single axis, if necessary
-              if ( this.options.axis  === 'x' ) yOp = hash.y;
-              if ( this.options.axis  === 'y' ) xOp = hash.x;
+              if ( this.options.axis === 'x' || this.autoAxis === 'x' ) yOp = hash.y;
+              if ( this.options.axis === 'y' || this.autoAxis === 'y' ) xOp = hash.x;
 
               this.moveTo(xOp, yOp);
             }
@@ -379,8 +407,8 @@
               }
 
               // only move along single axis, if necessary
-              if ( this.options.axis  === 'x' ) dy = 0;
-              if ( this.options.axis  === 'y' ) dx = 0;
+              if ( this.options.axis === 'x' || this.autoAxis === 'x' ) dy = 0;
+              if ( this.options.axis === 'y' || this.autoAxis === 'y' ) dx = 0;
 
               this.moveToUsingTransforms( dx, dy );
             }
@@ -404,8 +432,8 @@
             this.easing = true;
 
             // remove our start class
-            this.$el.removeClass('pep-start')
-                    .addClass('pep-ease');
+            this.$el.removeClass(this.options.startClass)
+                    .addClass(this.options.easeClass);
 
             // Calculate our drop regions
             if ( this.options.droppable ) {
@@ -432,6 +460,9 @@
             // the user's stop event is called, so the dev
             // has access to it.
             this.started = false;
+
+            // reset the auto-axis
+            if ( this.autoAxis ) this.autoAxis = false;
 
             // reset the velocity queue
             this.resetVelocityQueue();
@@ -463,8 +494,8 @@
               yOp = (hash.y !== false) ? hash.y : yOp;
             }
 
-            if ( this.options.axis  === 'x' ) yOp = "+=0";
-            if ( this.options.axis  === 'y' ) xOp = "+=0";
+            if ( this.options.axis === 'x' || this.autoAxis === 'x' ) yOp = "+=0";
+            if ( this.options.axis === 'y' || this.autoAxis === 'y' ) xOp = "+=0";
 
             // ease it via JS, the last true tells it to animate.
             var jsAnimateFallback = !this.cssAnimationsSupported() || this.options.forceNonCSS3Movement;
@@ -507,7 +538,14 @@
   Pep.prototype.normalizeEvent = function(ev) {
       ev.pep        = {};
 
-      if ( this.isPointerEventCompatible() || !this.isTouch(ev) ) {
+      if ( this.isTouch(ev) ) {
+
+        ev.pep.x      = ev.originalEvent.touches[0].pageX;
+        ev.pep.y      = ev.originalEvent.touches[0].pageY;
+        ev.pep.type   = ev.type;
+
+      }
+      else if ( this.isPointerEventCompatible() || !this.isTouch(ev) ) {
 
         if ( ev.pageX  ) {
           ev.pep.x      = ev.pageX;
@@ -520,13 +558,8 @@
         ev.pep.type   = ev.type;
 
       }
-      else {
-        ev.pep.x      = ev.originalEvent.touches[0].pageX;
-        ev.pep.y      = ev.originalEvent.touches[0].pageY;
-        ev.pep.type   = ev.type;
-      }
 
-       return ev;
+      return ev;
    };
 
   // resetVelocityQueue()
@@ -669,7 +702,9 @@
       this.moveToUsingTransforms(-this.xTranslation(),-this.yTranslation());
     }
 
-    this.moveTo(this.initialPosition.left, this.initialPosition.top);
+    if (this.options.place) {
+      this.moveTo(this.initialPosition.left, this.initialPosition.top);
+    }
   };
 
   //  requestAnimationFrame();
@@ -723,8 +758,14 @@
     if ( parseInt( this.$el.css('left'), 10 ) )
       this.offset.left = this.$el.css('left');
 
+    if (typeof this.options.startPos.left === "number")
+        this.offset.left = this.options.startPos.left;
+
     if ( parseInt( this.$el.css('top'), 10 ) )
       this.offset.top = this.$el.css('top');
+
+    if (typeof this.options.startPos.top === "number")
+        this.offset.top = this.options.startPos.top;
 
     if ( this.options.removeMargins )
       this.$el.css({margin: 0});
@@ -785,7 +826,7 @@
   // removeActiveClass()
   //  Removes the active class.
   Pep.prototype.removeActiveClass = function() {
-    this.$el.removeClass( [this.options.activeClass, 'pep-ease'].join(' ') );
+    this.$el.removeClass( [this.options.activeClass, this.options.easeClass].join(' ') );
   };
 
   //  handleConstraint();
@@ -821,8 +862,8 @@
     } else if ( typeof this.options.constrainTo === 'string' ) {
       lowerXLimit       = 0;
       lowerYLimit       = 0;
-      upperXLimit       = this.$container.width()  - this.$el.outerWidth();
-      upperYLimit       = this.$container.height() - this.$el.outerHeight();
+      upperXLimit       = this.$container.width()  - (this.options.useBoundingClientRect ? this.$el[0].getBoundingClientRect().width : this.$el.outerWidth());
+      upperYLimit       = this.$container.height() - (this.options.useBoundingClientRect ? this.$el[0].getBoundingClientRect().height : this.$el.outerHeight());
 
       // is our object trying to move outside lower X & Y limits?
       if ( this.pos.x + dx < 0 )              hash.x = 0;
@@ -1148,19 +1189,17 @@
   };
 
   $.pep.unbind = function($obj){
-    var pep = $obj.data('plugin_' + pluginName);
+    $.each($obj, function(index, pepObj) {
+      pepObj = $(pepObj);
+      var pep = pepObj.data('plugin_' + pluginName);
 
-    if ( typeof pep === 'undefined' )
-      return;
+      if ( typeof pep === 'undefined' )
+        return;
 
-    pep.toggle(false);
-    pep.unsubscribe();
-    $obj.removeData('plugin_' + pluginName);
-
+      pep.toggle(false);
+      pep.unsubscribe();
+      pepObj.removeData('plugin_' + pluginName);
+    });
   };
 
 }(jQuery, window));
-
-
-
-

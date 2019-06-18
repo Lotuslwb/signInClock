@@ -23,8 +23,15 @@
 </head>
 
 <body>
-    <form style="display: none;"></form>
-
+    <div class="toast"></div>
+    <script>
+        var toast = function (msg, timer) {
+            $('.toast').text(msg).fadeIn();
+            setTimeout(function () {
+                $('.toast').fadeOut();
+            }, timer || 1000)
+        }
+    </script>
     <!--需要预加载的images-->
     <div class="f-hide" id="f-hide">
         <img src="./img/male-active.jpg" alt="">
@@ -36,6 +43,8 @@
         <img src="./img/M2.png" alt="">
         <img src="./img/W2.png" alt="">
         <img src="./img/long-bg.jpg" alt="">
+        <img src="./img/unchecked.png" alt="">
+        <img src="./img/checked.png" alt="">
     </div>
 
 
@@ -53,15 +62,15 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <!-- 开始页 -->
-                <!-- <div class="swiper-slide start-page swiper-no-swiping">
+                <div class="swiper-slide start-page swiper-no-swiping">
                     <img src="./img/start-fly.png" class="start-fly">
                     <img src="./img/start-pic1.png" class="start-pic1">
                     <img src="./img/start-logo.png" class="start-logo">
                     <img src="./img/start-pic2.png" class="start-pic2">
                     <div class="btn active J-slideNext"><img src="./img/start-btn.png" alt="开始"></div>
-                </div> -->
+                </div>
                 <!-- 表单 -->
-                <!-- <div class="swiper-slide gender-page swiper-no-swiping" data-page="gender">
+                <div class="swiper-slide gender-page swiper-no-swiping" data-page="gender">
                     <div class="name-title">填写宝贝名字</div>
                     <input class="input J-input" type="text">
                     <div class="gender-title">选择宝贝性别</div>
@@ -76,10 +85,10 @@
                         </div>
                     </div>
                     <div class="btn J-slideNext"><img src="./img/next-btn.png" alt="下一步"></div>
-                </div> -->
+                </div>
 
                 <!-- 选择国家 -->
-                <!-- <div class="swiper-slide main-page swiper-no-swiping">
+                <div class="swiper-slide main-page swiper-no-swiping">
                     <div class="long-bg">
                         <div class="photoshop J-slideNext active">
                             <img src="./img/photoshop-text.png" />
@@ -98,10 +107,10 @@
                             <img src="./img/alert-finish.png" style="display: none;" class="finished-land">
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <!-- 海报制作页面 -->
-                <!-- <div class="swiper-slide genposter-page swiper-no-swiping" data-page="genPoster">
+                <div class="swiper-slide genposter-page swiper-no-swiping" data-page="genPoster">
                     <div class="header">
                         <img src="./img/logo.png" class="logo" alt="EF-英孚">
                         <img src="./img/yun1.png" class="yun1" alt="云">
@@ -130,17 +139,17 @@
                             <span class="ok J-compose">完成</span>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <!-- 海报主页 -->
-                <!-- <div class="swiper-slide poster-page swiper-no-swiping">
+                <div class="swiper-slide poster-page swiper-no-swiping">
                     <div class="header">
                         <img src="./img/logo.png" class="logo" alt="EF-英孚">
                         <img src="./img/slogan.png" class="slogan" alt="英孚带你看世界">
                     </div>
                     <div class="uploadBox">
                         <img src="./img/poster-bg-2.png" alt="">
-                        <img src="http://xmly.eldesign.cn/1560405228551" alt="" class="file-img">
+                        <img src="" alt="" class="file-img">
                         <div class="info"> <img class="location-icon" src="./img/location-icon2.png" alt="">2019夏· <span class="fill-posterCountry"></span>
                         </div>
                     </div>
@@ -155,7 +164,38 @@
                     </div>
                     <div class="btn J-slideNext active"><img src="./img/gotoForm-btn.png" alt="免费领取实物相框"></div>
                     <div class="btn-info">填写信息后，即可领取宝贝的环球旅行相框</div>
-                </div> -->
+                </div>
+
+                <!-- 填写信息 -->
+                <div class="swiper-slide poster-page form-page swiper-no-swiping" data-page="form">
+                    <div class="header">
+                        <img src="./img/logo.png" class="logo" alt="EF-英孚">
+                        <img src="./img/slogan.png" class="slogan" alt="英孚带你看世界">
+                    </div>
+                    <div class="form">
+                        <img src="./img/form-title.png" alt="请填写您的收件信息" class="form-title">
+                        <input class="input J-input J-addressName" type="text" placeholder="收件人">
+                        <input class="input J-input J-tel" type="tel" name='telPhone' placeholder="联系电话">
+                        <div class="input">
+                            <input class="J-input qcode-input" type="number" placeholder="验证码">
+                            <div class="qcode-btn J-sendSMS">发送验证码</div>
+                        </div>
+                        <div class="input">
+                            <select class="select J-city J-input">
+                                <option value="">省份</option>
+                            </select>
+                            <select class="select J-city-child J-input">
+                                <option value="">市</option>
+                            </select>
+                        </div>
+                        <input class="input J-input J-detailAddress" type="详细地址" placeholder="详细地址">
+                        <div class="rightChecked J-rightChecked">
+                            <span class="checkbox active"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span>
+                        </div>
+                    </div>
+                    <div class="btn J-submit"><img src="./img/submit-btn.png" alt="提交"></div>
+                    <div class="btn-info J-slideNext active">跳过此步骤</div>
+                </div>
 
                 <!-- 最终结果页面 -->
                 <div class="swiper-slide poster-page swiper-no-swiping">
@@ -192,6 +232,17 @@
             </div>
         </div>
     </div>
+    <div class="right-pop">
+        <div class="overlay"></div>
+        <div class="pop-content">
+            <div class='iframeWrap'>
+                <iframe class="iframe" data-src="https://liuxue.ef.com.cn/legal/privacy-policy/#"
+                    frameborder="0"></iframe>
+            </div>
+        </div>
+        <img class="closed" src="/tourTest/img/pop-closed.png" />
+    </div>
+
     <canvas id="myCanvas" width="658" height="440"></canvas>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/imagesloaded.pkgd.min.js"></script>

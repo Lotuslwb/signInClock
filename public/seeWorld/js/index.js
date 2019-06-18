@@ -16,13 +16,162 @@ function indexHanlder() {
 }
 indexHanlder.prototype = {
     init: function () {
-        this.countryScore = 0;
+        this.countdown = 60;
+        this.timer = null;
+
         this.initMain();
         this.bindEvnet(this);
+        this.initCity();
+        this.initSubmitData();
         this.initQcode();
+    },
+    initSubmitData: function () {
+        var me = this;
+        var paramsObj = queryURL();
+        var channel = paramsObj.channel;
+        var SourceCode = paramsObj.SourceCode;
+        var Etag = paramsObj.Etag;
 
-        //test
-        this.genPoster();
+        $('.J-submit').click(function () {
+            if (!$(this).hasClass('active')) {
+                return false;
+            }
+
+            if (!checkTel($('.J-tel').val())) {
+                toast('手机号格式有误');
+                return false;
+            }
+
+            if (!$('.J-rightChecked .checkbox').hasClass('active')) {
+                toast('请勾选隐私策略');
+                return false;
+            }
+
+            //The main object to be sent with the submission request
+            var submissionData = new Object();
+            //Individual properties of the main object
+            var customer = new Object();
+            var extendedDetail = new Object();
+            var weChatData = new Object();
+            var trackingData = new Object();
+            var campaigndata = new Object();
+
+            customer.FirstName = dataset['name'].substr(1, dataset['name'].length - 1);
+            customer.LastName = dataset['name'].substr(0, 1);
+            customer.MobilePhone = $('.J-tel').val();
+            // customer.DateOfBirth = new Date(year + '-' + month + '-' + date); // January 9th, 1975 (0-based index for months)
+            customer.StateRegionName = $('.J-city').find("option:selected").text();
+            customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
+            customer.CountryOfResidence = "CN";
+            customer.Gender = dataset['gender'] == 'male' ? "M" : "F";
+            customer.Comments = '用户去过的国家:' + dataset['country'].toString();
+            customer.City = $('.J-city-child').find("option:selected").text();
+            customer.Email = customer.MobilePhone + "@noemail.com";
+
+
+            // Tracking
+            trackingData.Etag = channel + "_Footprint2019summer_" + Etag;
+            trackingData.EntrySourceCode = SourceCode;
+
+            //Campaign Data
+            campaigndata.CampaignName = "Footprint2019Summer";
+            campaigndata.CampaignAllocationPrograms = "LT";
+            campaigndata.CampaignAllocationCode = "single";
+
+            //Extended Details
+            extendedDetail.WantsMoreInfo = true;
+            extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
+
+
+
+            //Assigning individual classes to the main object
+            submissionData.customer = customer;
+            submissionData.extendedDetail = extendedDetail;
+            submissionData.tracking = trackingData;
+            submissionData.weChat = weChatData;
+            submissionData.campaignData = campaigndata;
+            submissionData.qcode = $('.qcode-input').val();
+            console.log(submissionData);
+
+            /** debug */
+            // $('.loading-page').fadeIn();
+            // setTimeout(function () {
+            //     $('.loading-page').fadeOut();
+            // }, 3000)
+            // mySwiper.slideNext();
+            // return false;
+            $.ajax({
+                url: '/tourTest/form',
+                dataType: 'json',
+                crossDomain: true,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(submissionData),
+                success: function (res) {
+                    console.log(res);
+                    if (res.status == 999) {
+                        toast(res.data)
+                    } else {
+                        $('.loading-page').fadeIn();
+                        setTimeout(function () {
+                            $('.loading-page').fadeOut();
+                        }, 3000)
+                        mySwiper.slideNext();
+                        var address = $('.J-city').find("option:selected").text() + $('.J-city-child').find("option:selected").text() + $('.J-detailAddress').val();
+                        $.ajax({
+                            url: '/EFAdmin/h5Api/yx/leads',
+                            dataType: 'json',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                name: dataset['name'],
+                                gender: dataset['gender'] == 'male' ? "M" : "F",
+                                tel: $('.J-tel').val(),
+                                address: [address, $('.J-addressName').val(), $('.J-tel').val()].toString(),
+                                etag: channel + "_Footprint2019summer_" + Etag,
+                                comments: dataset['country'].toString(),
+                                other1: [dataset['countryScore'], dataset['landScore'], dataset['uploadImg'], dataset['posterCountry']].toString(),
+                            }),
+                            success: function (res) {
+                                console.log(res);
+                            }
+                        })
+                    }
+                }
+            });
+        });
+
+        function checkTel(tel) {
+            var reg = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+            return reg.test(tel);
+        }
+
+        function queryURL() {
+            var url = window.location.href;
+            var arr1 = url.split("?");
+            var obj = {};
+            if (arr1.length > 1) {
+                var params = arr1[1].split("&");
+                for (var i = 0; i < params.length; i++) {
+                    var param = params[i].split("=");
+                    obj[param[0]] = param[1]; //为对象赋值
+                }
+            }
+            return obj;
+        }
+
+    },
+    initCity: function () {
+        $('.iframe').attr('src', $('.iframe').data('src'));
+        var html = this.genOptions(StateRegion);
+        $(".J-city").append(html);
+    },
+    genOptions: function (data) {
+        var html = '';
+        data.map(function (item) {
+            html += `<option data-id="${item.id}" value="${item.value}">${item.text}</option>`
+        });
+        return html;
     },
     genPoster: function () {
         setTimeout(function () {
@@ -173,11 +322,6 @@ indexHanlder.prototype = {
         }
 
         function handleImg($img) {
-            $img.pep({
-                shouldEase: false,
-                useCSSTranslation: false
-            });
-
             //固定的Selection长宽
             var SelectHeight = $('body').height(),
                 SelectWidth = $('body').width();
@@ -185,6 +329,14 @@ indexHanlder.prototype = {
             // mover 缩放
             var imgW = $img.width(),
                 imgH = $img.height();
+            $img.pep({
+                shouldEase: false,
+                useCSSTranslation: false,
+                startPos: {
+                    left: (SelectWidth - imgW) / 2,
+                    top: 470 - imgH / 2
+                }
+            });
 
             touch.on('.J-img', 'touchstart', function (ev) {
                 ev.preventDefault();
@@ -274,6 +426,81 @@ indexHanlder.prototype = {
     bindEvnet: function () {
         var me = this;
 
+        $('.J-rightChecked').click(function () {
+            var $checkbox = $(this).find('.checkbox');
+            $checkbox.hasClass('active') ? $checkbox.removeClass('active') : $checkbox.addClass(
+                'active');
+        })
+
+        $('.href').click(function (e) {
+            e.stopPropagation();
+            $('.right-pop').show();
+        })
+        $('.closed').click(function () {
+            $('.right-pop').hide();
+        })
+
+        $('.J-city').change(function () {
+            var id = $(this).find("option:selected").data('id');
+            $.ajax({
+                url: '/tourTest/queryCity',
+                dataType: 'json',
+                crossDomain: true,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    id: id
+                }),
+                success: function (res) {
+                    console.log(res);
+                    var data = res.data[0].map(item => {
+                        return {
+                            value: item.id,
+                            text: item.name
+                        }
+                    });
+                    var str = me.genOptions(data);
+                    $(".J-city-child").html(str);
+                }
+            });
+        })
+
+
+        // 获取验证码
+        $('.J-sendSMS').click(function () {
+            var $self = $(this);
+            if ($self.parent().hasClass('disabled')) {
+                return false;
+            }
+            var tel = $('input[name=telPhone]').val();
+            if (!tel) {
+                toast('请输入手机号');
+                return false;
+            }
+            if (!/^1[3|4|5|7|8|9][0-9]{9}$/.test(tel)) {
+                toast('请输入正确的手机号');
+                return false;
+            }
+            startTimer();
+
+            $.ajax({
+                type: 'POST',
+                url: '/tourTest/api/sendSMS',
+                data: {
+                    tel: tel,
+                },
+                success: function (data) {
+                    if (data.status == 200) {
+                        toast('短信发送成功');
+                    } else {
+                        toast(data.data);
+                    }
+                },
+                dataType: 'json'
+            });
+        });
+
+
         $('.J-slideNext').click(function () {
             if ($(this).hasClass('active')) {
                 if ($(this).parents('.swiper-slide').data('page') == 'gender') {
@@ -284,6 +511,7 @@ indexHanlder.prototype = {
                     dataset['name'] = $('.gender-page .J-input').val();
                 } else if ($(this).parents('.swiper-slide').data('page') == 'genPoster') {
                     me.initPoster();
+                    me.genPoster();
                 }
                 mySwiper.slideNext();
             }
@@ -369,9 +597,14 @@ indexHanlder.prototype = {
             checkpage($page);
         });
 
+        $('.J-input').on('change', function () {
+            var $page = $(this).parents('.swiper-slide');
+            checkpage($page);
+        });
+
         function checkpage($page) {
             var flag = true;
-            $page.find('.input').each(function () {
+            $page.find('.J-input').each(function () {
                 if (!$(this).val()) {
                     flag = false;
                 }
@@ -388,6 +621,30 @@ indexHanlder.prototype = {
             } else {
                 $page.find('.btn').removeClass('active')
             }
+        }
+
+        function startTimer() {
+            var $self = $('.J-sendSMS');
+            var countdown = me.countdown;
+
+            $self.text('已发送(' + countdown + 's)')
+            $self.parent().addClass('disabled');
+
+            me.timer = setInterval(function () {
+                countdown -= 1;
+                $self.text('已发送(' + countdown + 's)')
+                $self.parent().addClass('disabled');
+                if (countdown <= 0) {
+                    stopTimer();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            var $self = $('.J-sendSMS');
+            clearInterval(me.timer);
+            $self.text('获取验证码')
+            $self.parent().removeClass('disabled');
         }
     },
     genQitem: function (data, isAntarctica) {
