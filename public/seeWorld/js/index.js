@@ -174,13 +174,14 @@ indexHanlder.prototype = {
         return html;
     },
     genPoster: function () {
-        setTimeout(function () {
+        var img = $('.file-img')[0];
+        img.onload = function () {
             html2canvas(document.querySelector("#tpl")).then(function (canvas) {
                 dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
                 $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
             });
             $("#tpl").hide();
-        }, 500)
+        }
     },
     initQcode: function () {
         new QRCode($('#qcode')[0], {
@@ -221,13 +222,12 @@ indexHanlder.prototype = {
         var me = this;
         qiniuInit();
         $('#J-upload').change(function () {
+            $('.loading-page').show();
             var file = this.files[0];
             lrz(file).then(function (rst) {
-                $('.loading-page').show();
                 var img = new Image();
-                img.src = window.URL.createObjectURL(rst.file);;
+                img.src = rst.base64;
                 img.onload = function () {
-                    window.URL.revokeObjectURL(this.src);
                     me.width = img.width, me.height = img.height;
                     $('.m-clip-box').addClass('active').find('.editPic-box').html(img);
                     var $img = $('.m-clip-box .editPic-box').find('img').addClass('J-img');
@@ -365,9 +365,6 @@ indexHanlder.prototype = {
                 $.pep.unbind($img);
             });
             touch.on('.J-img', 'pinchend', function (ev) {
-                $(".selecton").css({
-                    "height": 0
-                });
                 $($img).pep({
                     shouldEase: false,
                     useCSSTranslation: false
@@ -396,7 +393,6 @@ indexHanlder.prototype = {
                     w = imgW * minScale;
                     h = imgW * minScale / imgScale;
                 }
-                //alert(JSON.stringify({"width": imgW, "height": imgH}));
                 $img.css({
                     "width": w,
                     "height": h
