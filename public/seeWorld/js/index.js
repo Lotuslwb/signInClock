@@ -194,7 +194,7 @@ indexHanlder.prototype = {
     initPoster: function () {
         var percent = getPercent(dataset.countryScore) + '%';
         var tab = `·${ getTab(dataset.countryScore)}·`;
-        $('.file-img').attr('src', '/qiniuProxy/' + dataset.uploadImg + '-seeWorld');
+        $('.file-img').attr('src', '/qiniuProxy/' + dataset.uploadImg);
         $('.fill-posterCountry').text(dataset.posterCountry);
         $('.panel .fill-name').text(dataset.name);
         $('.panel .fill-landScore').text(dataset.landScore);
@@ -224,6 +224,11 @@ indexHanlder.prototype = {
         $('#J-upload').change(function () {
             $('.loading-page').show();
             var file = this.files[0];
+            var fileSize = file.size;
+            if (fileSize > 20 * 1024 * 1024) {
+                toast('图片不能超过20M');
+                return false;
+            }
             lrz(file).then(function (rst) {
                 var img = new Image();
                 img.src = rst.base64;
@@ -519,6 +524,7 @@ indexHanlder.prototype = {
                     dataset['name'] = $('.gender-page .J-input').val();
                 } else if ($(this).parents('.swiper-slide').data('page') == 'genPoster') {
                     me.initPoster();
+                } else if ($(this).parents('.swiper-slide').data('page') == 'posterIndex') {
                     me.genPoster();
                 }
                 mySwiper.slideNext();

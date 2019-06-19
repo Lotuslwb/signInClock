@@ -662,7 +662,7 @@ img {
   position: absolute;
   z-index: 12;
   right: 248px;
-  top: 1044px;
+  top: 1046px;
 }
 .m-clip-box {
   position: absolute;
