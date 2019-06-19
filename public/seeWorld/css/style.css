@@ -708,8 +708,9 @@ img {
 .m-clip-box .pic-btn-list {
   position: absolute;
   z-index: 11;
-  width: 100%;
-  bottom: 60px;
+  bottom: 0;
+  height: 100px;
+  background: #000;
 }
 .m-clip-box .pic-btn-list .cancel {
   float: left;
@@ -1100,5 +1101,8 @@ img {
 }
 #myCanvas {
   display: block;
+  width: 100%;
+}
+.J-img {
   width: 100%;
 }
