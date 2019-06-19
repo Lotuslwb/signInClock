@@ -194,7 +194,7 @@ indexHanlder.prototype = {
     initPoster: function () {
         var percent = getPercent(dataset.countryScore) + '%';
         var tab = `·${ getTab(dataset.countryScore)}·`;
-        $('.file-img').attr('src', '/qiniuProxy/' + dataset.uploadImg);
+        $('.file-img').attr('src', '/qiniuProxy/' + dataset.uploadImg + '-seeWorld');
         $('.fill-posterCountry').text(dataset.posterCountry);
         $('.panel .fill-name').text(dataset.name);
         $('.panel .fill-landScore').text(dataset.landScore);
