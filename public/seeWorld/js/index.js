@@ -28,7 +28,7 @@ indexHanlder.prototype = {
     initSubmitData: function () {
         var me = this;
         var paramsObj = queryURL();
-        var channel = paramsObj.channel;
+        var channel = paramsObj.Channel;
         var SourceCode = paramsObj.SourceCode;
         var Etag = paramsObj.Etag;
 
@@ -223,13 +223,16 @@ indexHanlder.prototype = {
         $('#J-upload').change(function () {
             var file = this.files[0];
             lrz(file).then(function (rst) {
+                $('.loading-page').show();
                 var img = new Image();
-                img.src = rst.base64;
+                img.src = window.URL.createObjectURL(rst.file);;
                 img.onload = function () {
+                    window.URL.revokeObjectURL(this.src);
                     me.width = img.width, me.height = img.height;
                     $('.m-clip-box').addClass('active').find('.editPic-box').html(img);
                     var $img = $('.m-clip-box .editPic-box').find('img').addClass('J-img');
                     handleImg($img);
+                    $('.loading-page').hide();
                 };
             })
         })
@@ -239,32 +242,41 @@ indexHanlder.prototype = {
         })
 
         $('.J-compose').click(function () {
+
+            // 如果不在可视区域内，offset返回错误，所以先处理offset再show loading
             var targetBoxLeft = 52,
                 targetBoxTop = 252;
-
-            var canvas = $('#myCanvas')[0];
-            var canvasContext = canvas.getContext("2d");
             var sx = $('.J-img').offset().left - targetBoxLeft;
             var sh = $('.J-img').offset().top - targetBoxTop;
-            var imgW = $(".J-img").width(),
-                imgH = $('.J-img').height();
-            canvasContext.save();
+            $('.loading-page').show();
+            //优先显示loading，让canvas处理滞后
+            setTimeout(function () {
 
-            canvasContext.rect(0, 0, 658, 440);
-            canvasContext.fillStyle = "#ffffff";
-            canvasContext.fill();
+                var ratio = 10;
+                var canvas = $('#myCanvas')[0];
+                canvas.width = ratio * 658, canvas.height = ratio * 440;
+                var canvasContext = canvas.getContext("2d");
+                var imgW = $(".J-img").width(),
+                    imgH = $('.J-img').height();
 
-            canvasContext.drawImage($(".J-img")[0], 0, 0, me.width, me.height, sx, sh, imgW, imgH);
-            canvasContext.restore();
+                canvasContext.save();
 
-            var png = Canvas2Image.convertToJPEG(canvas, 658, 440);
-            $('.uploadBox').find('.J-file').html(png);
-            $('.m-clip-box').removeClass('active');
-            var imgData = $(png).attr('src');
-            qiniuUpload(convertBase64UrlToBlob(imgData), function (data) {
-                me.uploadImg = dataset['uploadImg'] = data.key;
-                checkGen()
-            });
+                canvasContext.rect(0, 0, canvas.width, canvas.height);
+                canvasContext.fillStyle = "#ffffff";
+                canvasContext.fill();
+
+                canvasContext.drawImage($(".J-img")[0], 0, 0, me.width, me.height, sx * ratio, sh * ratio, imgW * ratio, imgH * ratio);
+                canvasContext.restore();
+                $('.uploadBox').find('.J-file').html(canvas);
+                $('.m-clip-box').removeClass('active');
+
+                var imgData = canvas.toDataURL("image/png");
+                qiniuUpload(convertBase64UrlToBlob(imgData), function (data) {
+                    me.uploadImg = dataset['uploadImg'] = data.key;
+                    checkGen()
+                    $('.loading-page').hide();
+                });
+            }, 10)
         });
 
         $('.J-posterCountry').on('input', function () {

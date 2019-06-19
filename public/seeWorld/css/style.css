@@ -1098,3 +1098,7 @@ img {
     background: url(../img/shou_2.png) no-repeat;
   }
 }
+#myCanvas {
+  display: block;
+  width: 100%;
+}
