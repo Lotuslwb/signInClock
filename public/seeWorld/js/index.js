@@ -257,7 +257,7 @@ indexHanlder.prototype = {
             //优先显示loading，让canvas处理滞后
             setTimeout(function () {
 
-                var ratio = 10;
+                var ratio = 5;
                 var canvas = $('#myCanvas')[0];
                 canvas.width = ratio * 658, canvas.height = ratio * 440;
                 var canvasContext = canvas.getContext("2d");

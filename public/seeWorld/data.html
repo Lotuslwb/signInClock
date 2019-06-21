@@ -1,0 +1,1268 @@
+﻿<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="js/dpi.js"></script>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="swiper/swiper-3.3.1.min.css">
+
+</head>
+
+<body>
+    <!-- <script src="/xmjssdk/vconsole.min.js?v=16"></script>
+    <script>
+        var vConsole = new VConsole();
+    </script> -->
+    <div class="toast"></div>
+    <script>
+        var toast = function (msg, timer) {
+            $('.toast').text(msg).fadeIn();
+            setTimeout(function () {
+                $('.toast').fadeOut();
+            }, timer || 1000)
+        }
+    </script>
+    <!--需要预加载的images-->
+    <div class="f-hide" id="f-hide">
+        <img src="./img/male-active.jpg" alt="">
+        <img src="./img/male.jpg" alt="">
+        <img src="./img/female-active.jpg" alt="">
+        <img src="./img/female.jpg" alt="">
+        <img src="./img/M1.png" alt="">
+        <img src="./img/W1.png" alt="">
+        <img src="./img/M2.png" alt="">
+        <img src="./img/W2.png" alt="">
+        <img src="./img/long-bg.jpg" alt="">
+        <img src="./img/unchecked.png" alt="">
+        <img src="./img/checked.png" alt="">
+    </div>
+    <div>
+
+        var mainlandInfo = [{
+        key: 'Europe',
+        label: '欧洲',
+        options: [{
+        text: '英国',
+        value: 1
+        }, {
+        text: '法国',
+        value: 1
+        }, {
+        text: '德国',
+        value: 1
+        }, {
+        text: '意大利',
+        value: 1
+        }, {
+        text: '西班牙',
+        value: 1
+        }, {
+        text: '瑞士',
+        value: 1
+        }, {
+        text: '俄罗斯',
+        value: 1
+        }, {
+        text: '其他',
+        value: 1
+        }, {
+        text: '还没去过',
+        value: 0
+        }],
+        }, {
+        key: 'Asia',
+        label: '亚洲',
+        options: [{
+        text: '中国',
+        code: 'china',
+        value: 1
+        }, {
+        text: '日本',
+        value: 1
+        }, {
+        text: '韩国',
+        value: 1
+        }, {
+        text: '新加坡',
+        value: 1
+        }, {
+        text: '泰国',
+        value: 1
+        }, {
+        text: '越南',
+        value: 1
+        }, {
+        text: '菲律宾',
+        value: 1
+        }, {
+        text: '阿联酋',
+        value: 1
+        }, {
+        text: '其他',
+        value: 1
+        }, ]
+        }, {
+        key: 'NorthAmerica',
+        label: '北美洲',
+        options: [{
+        text: '美国',
+        value: 1
+        }, {
+        text: '加拿大',
+        value: 1
+        }, {
+        text: '古巴',
+        value: 1
+        }, {
+        text: '墨西哥',
+        value: 1
+        }, {
+        text: '哥斯达黎加',
+        value: 1
+        }, {
+        text: '其他',
+        value: 1
+        }, {
+        text: '还没去过',
+        value: 0
+        }, ]
+        }, {
+        key: 'SouthAmerica',
+        label: '南美洲',
+        options: [{
+        text: '智利',
+        value: 1
+        }, {
+        text: '阿根廷',
+        value: 1
+        }, {
+        text: '巴西',
+        value: 1
+        }, {
+        text: '秘鲁',
+        value: 1
+        }, {
+        text: '玻利维亚',
+        value: 1
+        }, {
+        text: '哥伦比亚',
+        value: 1
+        }, {
+        text: '其他',
+        value: 1
+        }, {
+        text: '还没去过',
+        value: 0
+        }],
+        }, {
+        key: 'Oceania',
+        label: '大洋洲',
+        options: [{
+        text: '澳大利亚',
+        value: 1
+        }, {
+        text: '新西兰',
+        value: 1
+        }, {
+        text: '斐济',
+        value: 1
+        }, {
+        text: '帕劳',
+        value: 1
+        }, {
+        text: '其他',
+        value: 1
+        }, {
+        text: '还没去过',
+        value: 0
+        }],
+        }, {
+        key: 'Africa',
+        label: '非洲',
+        options: [{
+        text: '埃及',
+        value: 1
+        }, {
+        text: '摩洛哥',
+        value: 1
+        }, {
+        text: '南非',
+        value: 1
+        }, {
+        text: '肯尼亚',
+        value: 1
+        }, {
+        text: '纳米比亚',
+        value: 1
+        }, {
+        text: '其他',
+        value: 1
+        }, {
+        text: '还没去过',
+        value: 0
+        }],
+        }, {
+        key: 'Antarctica',
+        label: '南极',
+        options: [{
+        text: '是',
+        value: 1
+        }, {
+        text: '否',
+        value: 0
+        }],
+        }];
+
+        var StateRegion = [{
+        'text': '北京',
+        'value': '11'
+        }, {
+        'text': '天津',
+        'value': '12'
+        }, {
+        'text': '上海',
+        'value': '31'
+        }, {
+        'text': '重庆',
+        'value': '50'
+        }, {
+        'text': '河北',
+        'value': '13'
+        }, {
+        'text': '河南',
+        'value': '41'
+        }, {
+        'text': '云南',
+        'value': '53'
+        }, {
+        'text': '辽宁',
+        'value': '21'
+        }, {
+        'text': '黑龙江',
+        'value': '23'
+        }, {
+        'text': '湖南',
+        'value': '43'
+        }, {
+        'text': '安徽',
+        'value': '34'
+        }, {
+        'text': '山东',
+        'value': '37'
+        }, {
+        'text': '新疆',
+        'value': '65'
+        }, {
+        'text': '江苏',
+        'value': '32'
+        }, {
+        'text': '浙江',
+        'value': '33'
+        }, {
+        'text': '江西',
+        'value': '36'
+        }, {
+        'text': '湖北',
+        'value': '42'
+        }, {
+        'text': '广西',
+        'value': '45'
+        }, {
+        'text': '甘肃',
+        'value': '62'
+        }, {
+        'text': '山西',
+        'value': '14'
+        }, {
+        'text': '内蒙古',
+        'value': '15'
+        }, {
+        'text': '陕西',
+        'value': '61'
+        }, {
+        'text': '吉林',
+        'value': '22'
+        }, {
+        'text': '福建',
+        'value': '35'
+        }, {
+        'text': '贵州',
+        'value': '52'
+        }, {
+        'text': '广东',
+        'value': '44'
+        }, {
+        'text': '青海',
+        'value': '63'
+        }, {
+        'text': '西藏',
+        'value': '54'
+        }, {
+        'text': '四川',
+        'value': '51'
+        }, {
+        'text': '宁夏',
+        'value': '64'
+        }, {
+        'text': '海南',
+        'value': '46'
+        }];
+
+        var StateCode = [{
+        id: "110000",
+        name: "北京",
+        fullname: "北京市",
+        pinyin: [
+        "bei",
+        "jing"
+        ],
+        location: {
+        lat: 39.90469,
+        lng: 116.40717
+        },
+        cidx: [
+        0,
+        15
+        ]
+        },
+        {
+        id: "120000",
+        name: "天津",
+        fullname: "天津市",
+        pinyin: [
+        "tian",
+        "jin"
+        ],
+        location: {
+        lat: 39.0851,
+        lng: 117.19937
+        },
+        cidx: [
+        16,
+        31
+        ]
+        },
+        {
+        id: "130000",
+        name: "河北",
+        fullname: "河北省",
+        pinyin: [
+        "he",
+        "bei"
+        ],
+        location: {
+        lat: 38.03599,
+        lng: 114.46979
+        },
+        cidx: [
+        32,
+        42
+        ]
+        },
+        {
+        id: "140000",
+        name: "山西",
+        fullname: "山西省",
+        pinyin: [
+        "shan",
+        "xi"
+        ],
+        location: {
+        lat: 37.87343,
+        lng: 112.56272
+        },
+        cidx: [
+        43,
+        53
+        ]
+        },
+        {
+        id: "150000",
+        name: "内蒙古",
+        fullname: "内蒙古自治区",
+        pinyin: [
+        "nei",
+        "meng",
+        "gu"
+        ],
+        location: {
+        lat: 40.81733,
+        lng: 111.76522
+        },
+        cidx: [
+        54,
+        65
+        ]
+        },
+        {
+        id: "210000",
+        name: "辽宁",
+        fullname: "辽宁省",
+        pinyin: [
+        "liao",
+        "ning"
+        ],
+        location: {
+        lat: 41.83571,
+        lng: 123.42925
+        },
+        cidx: [
+        66,
+        79
+        ]
+        },
+        {
+        id: "220000",
+        name: "吉林",
+        fullname: "吉林省",
+        pinyin: [
+        "ji",
+        "lin"
+        ],
+        location: {
+        lat: 43.89616,
+        lng: 125.3268
+        },
+        cidx: [
+        80,
+        88
+        ]
+        },
+        {
+        id: "230000",
+        name: "黑龙江",
+        fullname: "黑龙江省",
+        pinyin: [
+        "hei",
+        "long",
+        "jiang"
+        ],
+        location: {
+        lat: 45.74208,
+        lng: 126.66285
+        },
+        cidx: [
+        89,
+        101
+        ]
+        },
+        {
+        id: "310000",
+        name: "上海",
+        fullname: "上海市",
+        pinyin: [
+        "shang",
+        "hai"
+        ],
+        location: {
+        lat: 31.23037,
+        lng: 121.4737
+        },
+        cidx: [
+        102,
+        117
+        ]
+        },
+        {
+        id: "320000",
+        name: "江苏",
+        fullname: "江苏省",
+        pinyin: [
+        "jiang",
+        "su"
+        ],
+        location: {
+        lat: 32.06071,
+        lng: 118.76295
+        },
+        cidx: [
+        118,
+        130
+        ]
+        },
+        {
+        id: "330000",
+        name: "浙江",
+        fullname: "浙江省",
+        pinyin: [
+        "zhe",
+        "jiang"
+        ],
+        location: {
+        lat: 30.26555,
+        lng: 120.1536
+        },
+        cidx: [
+        131,
+        141
+        ]
+        },
+        {
+        id: "340000",
+        name: "安徽",
+        fullname: "安徽省",
+        pinyin: [
+        "an",
+        "hui"
+        ],
+        location: {
+        lat: 31.86157,
+        lng: 117.28565
+        },
+        cidx: [
+        142,
+        157
+        ]
+        },
+        {
+        id: "350000",
+        name: "福建",
+        fullname: "福建省",
+        pinyin: [
+        "fu",
+        "jian"
+        ],
+        location: {
+        lat: 26.09982,
+        lng: 119.29659
+        },
+        cidx: [
+        158,
+        166
+        ]
+        },
+        {
+        id: "360000",
+        name: "江西",
+        fullname: "江西省",
+        pinyin: [
+        "jiang",
+        "xi"
+        ],
+        location: {
+        lat: 28.67417,
+        lng: 115.91004
+        },
+        cidx: [
+        167,
+        177
+        ]
+        },
+        {
+        id: "370000",
+        name: "山东",
+        fullname: "山东省",
+        pinyin: [
+        "shan",
+        "dong"
+        ],
+        location: {
+        lat: 36.66826,
+        lng: 117.02076
+        },
+        cidx: [
+        178,
+        194
+        ]
+        },
+        {
+        id: "410000",
+        name: "河南",
+        fullname: "河南省",
+        pinyin: [
+        "he",
+        "nan"
+        ],
+        location: {
+        lat: 34.76571,
+        lng: 113.75322
+        },
+        cidx: [
+        195,
+        212
+        ]
+        },
+        {
+        id: "420000",
+        name: "湖北",
+        fullname: "湖北省",
+        pinyin: [
+        "hu",
+        "bei"
+        ],
+        location: {
+        lat: 30.54539,
+        lng: 114.34234
+        },
+        cidx: [
+        213,
+        229
+        ]
+        },
+        {
+        id: "430000",
+        name: "湖南",
+        fullname: "湖南省",
+        pinyin: [
+        "hu",
+        "nan"
+        ],
+        location: {
+        lat: 28.11266,
+        lng: 112.9834
+        },
+        cidx: [
+        230,
+        243
+        ]
+        },
+        {
+        id: "440000",
+        name: "广东",
+        fullname: "广东省",
+        pinyin: [
+        "guang",
+        "dong"
+        ],
+        location: {
+        lat: 23.13171,
+        lng: 113.26627
+        },
+        cidx: [
+        244,
+        264
+        ]
+        },
+        {
+        id: "450000",
+        name: "广西",
+        fullname: "广西壮族自治区",
+        pinyin: [
+        "guang",
+        "xi"
+        ],
+        location: {
+        lat: 22.81521,
+        lng: 108.32754
+        },
+        cidx: [
+        265,
+        278
+        ]
+        },
+        {
+        id: "460000",
+        name: "海南",
+        fullname: "海南省",
+        pinyin: [
+        "hai",
+        "nan"
+        ],
+        location: {
+        lat: 20.01997,
+        lng: 110.34863
+        },
+        cidx: [
+        279,
+        297
+        ]
+        },
+        {
+        id: "500000",
+        name: "重庆",
+        fullname: "重庆市",
+        pinyin: [
+        "chong",
+        "qing"
+        ],
+        location: {
+        lat: 29.56471,
+        lng: 106.55073
+        },
+        cidx: [
+        298,
+        335
+        ]
+        },
+        {
+        id: "510000",
+        name: "四川",
+        fullname: "四川省",
+        pinyin: [
+        "si",
+        "chuan"
+        ],
+        location: {
+        lat: 30.65089,
+        lng: 104.07572
+        },
+        cidx: [
+        336,
+        356
+        ]
+        },
+        {
+        id: "520000",
+        name: "贵州",
+        fullname: "贵州省",
+        pinyin: [
+        "gui",
+        "zhou"
+        ],
+        location: {
+        lat: 26.5982,
+        lng: 106.70722
+        },
+        cidx: [
+        357,
+        365
+        ]
+        },
+        {
+        id: "530000",
+        name: "云南",
+        fullname: "云南省",
+        pinyin: [
+        "yun",
+        "nan"
+        ],
+        location: {
+        lat: 25.0453,
+        lng: 102.70973
+        },
+        cidx: [
+        366,
+        381
+        ]
+        },
+        {
+        id: "540000",
+        name: "西藏",
+        fullname: "西藏自治区",
+        pinyin: [
+        "xi",
+        "zang"
+        ],
+        location: {
+        lat: 29.64725,
+        lng: 91.11748
+        },
+        cidx: [
+        382,
+        388
+        ]
+        },
+        {
+        id: "610000",
+        name: "陕西",
+        fullname: "陕西省",
+        pinyin: [
+        "shan",
+        "xi"
+        ],
+        location: {
+        lat: 34.26486,
+        lng: 108.95424
+        },
+        cidx: [
+        389,
+        398
+        ]
+        },
+        {
+        id: "620000",
+        name: "甘肃",
+        fullname: "甘肃省",
+        pinyin: [
+        "gan",
+        "su"
+        ],
+        location: {
+        lat: 36.05942,
+        lng: 103.82634
+        },
+        cidx: [
+        399,
+        412
+        ]
+        },
+        {
+        id: "630000",
+        name: "青海",
+        fullname: "青海省",
+        pinyin: [
+        "qing",
+        "hai"
+        ],
+        location: {
+        lat: 36.62087,
+        lng: 101.78011
+        },
+        cidx: [
+        413,
+        420
+        ]
+        },
+        {
+        id: "640000",
+        name: "宁夏",
+        fullname: "宁夏回族自治区",
+        pinyin: [
+        "ning",
+        "xia"
+        ],
+        location: {
+        lat: 38.47117,
+        lng: 106.25867
+        },
+        cidx: [
+        421,
+        425
+        ]
+        },
+        {
+        id: "650000",
+        name: "新疆",
+        fullname: "新疆维吾尔自治区",
+        pinyin: [
+        "xin",
+        "jiang"
+        ],
+        location: {
+        lat: 43.79343,
+        lng: 87.6271
+        },
+        cidx: [
+        426,
+        448
+        ]
+        },
+        {
+        id: "710000",
+        name: "台湾",
+        fullname: "台湾省",
+        pinyin: [
+        "tai",
+        "wan"
+        ],
+        location: {
+        lat: 25.030724,
+        lng: 121.520076
+        },
+        cidx: [
+        449,
+        468
+        ]
+        },
+        {
+        id: "810000",
+        name: "香港",
+        fullname: "香港特别行政区",
+        pinyin: [
+        "xiang",
+        "gang"
+        ],
+        location: {
+        lat: 22.27534,
+        lng: 114.16546
+        },
+        cidx: [
+        469,
+        486
+        ]
+        },
+        {
+        id: "820000",
+        name: "澳门",
+        fullname: "澳门特别行政区",
+        pinyin: [
+        "ao",
+        "men"
+        ],
+        location: {
+        lat: 22.19875,
+        lng: 113.54913
+        },
+        cidx: [
+        487,
+        490
+        ]
+        }
+        ];
+
+
+        StateRegion.map(item => {
+        let currentCode = StateCode.find(it => it.name == item.text);
+        item.id = currentCode.id;
+        return item;
+        })
+    </div>
+
+    <div class="page loading-page active">
+        <div class="loading-img dog"></div>
+        <div class="loading-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <div class="page swiper-page">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- 开始页 -->
+                <!-- <div class="swiper-slide start-page swiper-no-swiping">
+                    <img src="./img/start-fly.png" class="start-fly">
+                    <img src="./img/start-pic1.png" class="start-pic1">
+                    <img src="./img/start-logo.png" class="start-logo">
+                    <img src="./img/start-pic2.png" class="start-pic2">
+                    <div class="btn active J-slideNext"><img src="./img/start-btn.png" alt="开始"></div>
+                </div> -->
+                <!-- 表单 -->
+                <!-- <div class="swiper-slide gender-page swiper-no-swiping" data-page="gender">
+                    <div class="name-title">填写宝贝名字</div>
+                    <input class="input J-input" type="text">
+                    <div class="gender-title">选择宝贝性别</div>
+                    <div class="Q-list" data-name="gender">
+                        <div class="Q-item" data-value="male">
+                            <span class="icon male-icon" alt='男'></span>
+                            <span class="radio"></span>
+                        </div>
+                        <div class="Q-item" data-value="female">
+                            <span class="icon female-icon" alt='女'></span>
+                            <span class="radio"></span>
+                        </div>
+                    </div>
+                    <div class="btn J-slideNext"><img src="./img/next-btn.png" alt="下一步"></div>
+                </div> -->
+
+                <!-- 选择国家 -->
+                <!-- <div class="swiper-slide main-page swiper-no-swiping">
+                    <div class="long-bg">
+                        <div class="photoshop J-slideNext active">
+                            <img src="./img/photoshop-text.png" />
+                            <img src="./img/photoshop.png" />
+                        </div>
+                        <div class="mainlandList"></div>
+                    </div>
+                    <span class="person"></span>
+                    <div class="overlay">
+                        <div class="alert mid">
+                            <div class="title J-alert-title">选择你家宝贝曾去过的非洲国家</div>
+                            <div class="content Q-list J-alert-list">
+
+                            </div>
+                            <img src="./img/alert-btn.png" class="next-land">
+                            <img src="./img/alert-finish.png" style="display: none;" class="finished-land">
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- 海报制作页面 -->
+                <div class="swiper-slide genposter-page swiper-no-swiping" data-page="genPoster">
+                    <div class="header">
+                        <img src="./img/logo.png" class="logo" alt="EF-英孚">
+                        <img src="./img/yun1.png" class="yun1" alt="云">
+                        <img src="./img/yun2.png" class="yun2" alt="云">
+                        <img src="./img/genposter-fly.png" class="fly" alt="飞机">
+                    </div>
+                    <div class="title">今年暑假宝贝去哪儿？</div>
+                    <div class="uploadBox">
+                        <input type="file" name="" class="upload J-upload" id="J-upload">
+                        <img src="./img/poster-bg.png" alt="">
+                        <img src="./img/upload-info.png" class="mid" alt="点击上传照片 生成专属朋友圈海报">
+                        <div class="J-file file mid"></div>
+                    </div>
+                    <div class="inputBox">
+                        <img class="location-icon" src="./img/location-icon.png" alt="">宝贝今年去了 <input
+                            class="input J-posterCountry" type="text" placeholder="请输入国家，如英国">
+                    </div>
+                    <div class="btn J-slideNext"><img src="./img/genPoster-btn.png" alt="生成专属海报"></div>
+
+                    <div class="m-clip-box">
+                        <div class="editPic-box">
+                        </div>
+                        <div class="mask"></div>
+                        <div class="pic-btn-list">
+                            <span class="cancel J-pic-cancel">取消</span>
+                            <span class="ok J-compose">完成</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 海报主页 -->
+                <div class="swiper-slide poster-page swiper-no-swiping" data-page="posterIndex">
+                    <div class="header">
+                        <img src="./img/logo.png" class="logo" alt="EF-英孚">
+                        <img src="./img/slogan.png" class="slogan" alt="英孚带你看世界">
+                    </div>
+                    <div class="uploadBox">
+                        <img src="./img/poster-bg-2.png" alt="">
+                        <img src="" alt="" class="file-img">
+                        <div class="info"> <img class="location-icon" src="./img/location-icon2.png" alt="">2019夏· <span
+                                class="fill-posterCountry"></span>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="data">
+                            <span class="color fill-name"></span>宝贝 <br>
+                            去过 <span class="color fill-landScore"></span> 个大洲 <span
+                                class="color fill-countryScore"></span> 个国家<br>
+                            领先全国 <span class="color fill-percent"></span> 的同龄人<br>
+                            喜获 <span class="tab fill-tab">·空中小飞人· </span>称号<br>
+                        </div>
+                        <img class="fly" src="./img/poster-fly.png">
+                    </div>
+                    <div class="btn J-slideNext active"><img src="./img/gotoForm-btn.png" alt="免费领取实物相框"></div>
+                    <div class="btn-info">填写信息后，即可领取宝贝的环球旅行相框</div>
+                </div>
+
+                <!-- 填写信息 -->
+                <div class="swiper-slide poster-page form-page swiper-no-swiping" data-page="form">
+                    <div class="header">
+                        <img src="./img/logo.png" class="logo" alt="EF-英孚">
+                        <img src="./img/slogan.png" class="slogan" alt="英孚带你看世界">
+                    </div>
+                    <div class="form">
+                        <img src="./img/form-title.png" alt="请填写您的收件信息" class="form-title">
+                        <input class="input J-input J-addressName" type="text" placeholder="收件人">
+                        <input class="input J-input J-tel" type="tel" name='telPhone' placeholder="联系电话">
+                        <div class="input">
+                            <input class="J-input qcode-input" type="number" placeholder="验证码">
+                            <div class="qcode-btn J-sendSMS">发送验证码</div>
+                        </div>
+                        <div class="input">
+                            <select class="select J-city J-input">
+                                <option value="">省份</option>
+                            </select>
+                            <select class="select J-city-child J-input">
+                                <option value="">市</option>
+                            </select>
+                        </div>
+                        <input class="input J-input J-detailAddress" type="详细地址" placeholder="详细地址">
+                        <div class="rightChecked J-rightChecked">
+                            <span class="checkbox active"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span>
+                        </div>
+                    </div>
+                    <div class="btn J-submit"><img src="./img/submit-btn.png" alt="提交"></div>
+                    <div class="btn-info J-slideNext active">跳过此步骤</div>
+                </div>
+
+                <!-- 最终结果页面 -->
+                <div class="swiper-slide poster-page swiper-no-swiping">
+                    <div class="tpl" id="tpl" style="background: #fdf6ee">
+                        <div class="header">
+                            <img src="./img/logo.png" class="logo" alt="EF-英孚">
+                            <img src="./img/slogan.png" class="slogan" alt="英孚带你看世界">
+                        </div>
+                        <div class="uploadBox">
+                            <img src="./img/poster-bg-2.png" alt="">
+                            <img src="/qiniuProxy/1560405228551" alt="" class="file-img">
+                            <div class="info"> <img class="location-icon" src="./img/location-icon2.png" alt="">2019夏·
+                                <span class="fill-posterCountry"></span>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="data">
+                                <span class="color fill-name"></span>宝贝 <br>
+                                去过 <span class="color fill-landScore"></span> 个大洲 <span
+                                    class="color fill-countryScore"></span> 个国家<br>
+                                领先全国 <span class="color fill-percent"></span> 的同龄人<br>
+                                喜获 <span class="tab fill-tab">·空中小飞人· </span>称号<br>
+                            </div>
+                            <img class="fly" src="./img/poster-fly.png">
+                        </div>
+                        <div class="poster-footer">
+                            <div class="qcode" id="qcode"></div>
+                            <img src="./img/poster-footer.png" class="img" alt="扫扫二维码晒晒我家宝贝の环球足迹">
+                        </div>
+                    </div>
+                    <div class="canvas"></div>
+                    <img src="./img/poster-footer-cover.png" class="cover" alt="长按后即可保存晒晒我家宝贝の环球足迹">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-pop">
+        <div class="overlay"></div>
+        <div class="pop-content">
+            <div class='iframeWrap'>
+                <iframe class="iframe" data-src="https://liuxue.ef.com.cn/legal/privacy-policy/#"
+                    frameborder="0"></iframe>
+            </div>
+        </div>
+        <img class="closed" src="/tourTest/img/pop-closed.png" />
+    </div>
+
+    <canvas id="myCanvas"></canvas>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/imagesloaded.pkgd.min.js"></script>
+    <script src="./swiper/swiper-3.3.1.jquery.min.js"></script>
+    <script src="./js/html2canvas.min.js"></script>
+    <script src="./js/qrcode.min.js"></script>
+    <script>
+        function initMySwiper() {
+            var mySwiper = new Swiper('.swiper-container', {
+                noSwiping: true
+            })
+
+            return mySwiper;
+        }
+    </script>
+    <script src="./js/data.js"></script>
+
+    <!-- upload img -->
+    <script src="./upload/lrz.all.bundle.js"></script>
+    <script src="./upload/jquery.pep.js"></script>
+    <script src="./upload/touch-0.2.13.min.js"></script>
+    <script src="./upload/canvas2image.js"></script>
+    <script src="./upload/qiniu.min.js"></script>
+
+
+    <script src="./js/index.js"></script>
+    <script>
+        var loaded = false;
+        var loaded_ani = false;
+
+
+        //预加载器
+        function loader() {
+            this.init();
+        }
+
+        loader.prototype = {
+            init: function () {
+                var me = this;
+                var loaded = 0;
+
+                if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+                    me.onLoaded();
+                } else {
+                    var imgLoad = imagesLoaded('body');
+                    imgLoad.on('progress', function (instance, image) {
+                        loaded++;
+                        if (loaded == instance.images.length) {
+                            me.onLoaded();
+                        }
+                    });
+                }
+            },
+        }
+
+        var loader = new loader();
+        loader.onLoaded = function () {
+            loaded = true;
+            $('.loading-page').fadeOut();
+            $('.swiper-page').addClass('active');
+            mySwiper = initMySwiper();
+        }
+    </script>
+
+
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        function initWXSahre() {
+
+            //“分享给朋友”
+            wx.onMenuShareAppMessage({
+                title: '晒晒我家宝贝の环球足迹', // 分享标题
+                desc: '英孚带你看世界', // 分享描述
+                link: '', // 分享链接
+                imgUrl: 'https://ma.eldesign.cn/seeWorld/img/logo.jpg', // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                    _hmt.push(['_trackEvent', '分享', '分享给朋友']);
+
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            //“分享到朋友圈”
+            wx.onMenuShareTimeline({
+                title: '晒晒我家宝贝の环球足迹', // 分享标题
+                desc: '英孚带你看世界', // 分享描述
+                link: '', // 分享链接
+                imgUrl: 'https://ma.eldesign.cn/seeWorld/img/logo.jpg', // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                    _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        }
+
+        function initWX(callback) {
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/getWxSDK',
+                data: {
+                    'originalUrl': window.location.href
+                },
+                success: function (data) {
+                    var wxConfig = data.data.wxConfig;
+
+                    console.log(wxConfig);
+
+                    wx.config({
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: wxConfig.appId, // 必填，公众号的唯一标识
+                        timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                        signature: wxConfig.signature, // 必填，签名，见附录1
+                        jsApiList: ['onMenuShareTimeline',
+                            'onMenuShareAppMessage'
+                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
+
+                    wx.ready(function () {
+                        callback && callback();
+                    });
+
+                    wx.error(function (res) {
+                        console.log(res);
+                    });
+
+
+                },
+                dataType: 'json'
+            });
+        }
+
+        initWX(initWXSahre);
+    </script>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?65d638410a947f8ec8e75c8131137c4f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</body>
+
+</html>

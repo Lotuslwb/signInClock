@@ -23,10 +23,10 @@
 </head>
 
 <body>
-    <script src="/xmjssdk/vconsole.min.js?v=16"></script>
+    <!-- <script src="/xmjssdk/vconsole.min.js?v=16"></script>
     <script>
         var vConsole = new VConsole();
-    </script>
+    </script> -->
     <div class="toast"></div>
     <script>
         var toast = function (msg, timer) {
@@ -320,10 +320,10 @@
 
             //“分享给朋友”
             wx.onMenuShareAppMessage({
-                title: '一分钟灵魂拷问……', // 分享标题
-                desc: '敢不敢来测一测？', // 分享描述
+                title: '晒晒我家宝贝の环球足迹', // 分享标题
+                desc: '英孚带你看世界', // 分享描述
                 link: '', // 分享链接
-                imgUrl: 'http://ma.eldesign.cn/StressTest/img/logo.jpg', // 分享图标
+                imgUrl: 'https://ma.eldesign.cn/seeWorld/img/share_logo.jpg', // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
@@ -338,10 +338,10 @@
 
             //“分享到朋友圈”
             wx.onMenuShareTimeline({
-                title: '一分钟灵魂拷问……', // 分享标题
-                desc: '敢不敢来测一测？', // 分享描述
+                title: '晒晒我家宝贝の环球足迹', // 分享标题
+                desc: '英孚带你看世界', // 分享描述
                 link: '', // 分享链接
-                imgUrl: 'http://ma.eldesign.cn/StressTest/img/logo.jpg', // 分享图标
+                imgUrl: 'https://ma.eldesign.cn/seeWorld/img/share_logo.jpg', // 分享图标
                 success: function () {
                     // 用户确认分享后执行的回调函数
                     _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
@@ -393,6 +393,15 @@
         initWX(initWXSahre);
     </script>
 
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?65d638410a947f8ec8e75c8131137c4f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
 </body>
 
