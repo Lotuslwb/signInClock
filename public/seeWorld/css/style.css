@@ -816,7 +816,7 @@ img {
   width: 237px;
   font-family: MHEIPRCMEDIUM;
 }
-.form-page .disable .qcode-btn {
+.form-page .disabled .qcode-btn {
   background: #dde8df;
   color: #999999;
 }

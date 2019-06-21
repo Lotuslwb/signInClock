@@ -174,14 +174,12 @@ indexHanlder.prototype = {
         return html;
     },
     genPoster: function () {
-        var img = $('.file-img')[0];
-        img.onload = function () {
-            html2canvas(document.querySelector("#tpl")).then(function (canvas) {
-                dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
-                $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
-            });
-            $("#tpl").hide();
-        }
+        debugger;
+        html2canvas(document.querySelector("#tpl")).then(function (canvas) {
+            dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
+            $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
+        });
+        $("#tpl").hide();
     },
     initQcode: function () {
         new QRCode($('#qcode')[0], {
