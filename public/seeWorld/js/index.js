@@ -32,6 +32,14 @@ indexHanlder.prototype = {
         var SourceCode = paramsObj.SourceCode;
         var Etag = paramsObj.Etag;
 
+        $('.J-skipForm').click(function () {
+            $('.loading-page').fadeIn();
+            setTimeout(function () {
+                $('.loading-page').fadeOut();
+            }, 3000)
+            mySwiper.slideNext();
+        })
+
         $('.J-submit').click(function () {
             if (!$(this).hasClass('active')) {
                 return false;
@@ -174,7 +182,6 @@ indexHanlder.prototype = {
         return html;
     },
     genPoster: function () {
-        debugger;
         html2canvas(document.querySelector("#tpl")).then(function (canvas) {
             dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
             $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
@@ -276,8 +283,12 @@ indexHanlder.prototype = {
                 var imgData = canvas.toDataURL("image/png");
                 qiniuUpload(convertBase64UrlToBlob(imgData), function (data) {
                     me.uploadImg = dataset['uploadImg'] = data.key;
+                    var newImg = new Image();
+                    newImg.src = '/qiniuProxy/' + dataset.uploadImg;
+                    newImg.onload = function () {
+                        $('.loading-page').hide();
+                    }
                     checkGen()
-                    $('.loading-page').hide();
                 });
             }, 10)
         });
