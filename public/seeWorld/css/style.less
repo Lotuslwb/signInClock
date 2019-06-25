@@ -1,11 +1,11 @@
 @font-face {
     font-family: MHEIPRCHEAVY;
-    src: url('../font/1.TTF');
+    src: url('../font/MHEIPRCHEAVY.TTF');
 }
 
 @font-face {
     font-family: MHEIPRCMEDIUM;
-    src: url('../font/2.TTF');
+    src: url('../font/MHEIMEDIUM.TTF');
 }
 
 
@@ -33,7 +33,7 @@ body {
     -webkit-user-select: none;
     /* Chrome/Safari/Opera */
     background: #FFFFFF;
-    font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;
+    font-family: MHEIPRCHEAVY;
 }
 
 select {
@@ -226,8 +226,8 @@ img {
     }
 
     &.swiper-slide-active .start-logo {
-        -webkit-animation: fadeInUpBig 1.5s ease 800ms both;
-        animation: fadeInUpBig 1.5s ease 800ms both;
+        -webkit-animation: fadeIn 1.5s ease 800ms both;
+        animation: fadeIn 1.5s ease 800ms both;
     }
 
     background: url('../img/start-bg.png') no-repeat center 70px;
@@ -261,9 +261,10 @@ img {
     }
 
     .gender-title {
-        font-size: 36px;
+        font-size: 40px;
         text-align: center;
         padding-top: 120px;
+        // font-family: MHEIPRCMEDIUM;
     }
 
     .input {
@@ -277,8 +278,9 @@ img {
         border-radius: 40px;
         margin-top: 36px;
         box-sizing: border-box;
-        font-size: 36px;
+        font-size: 40px;
         text-align: center;
+        font-family: MHEIPRCMEDIUM;
     }
 
     .Q-list {
@@ -496,12 +498,13 @@ img {
     }
 
     .alert {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.95);
         width: 630px;
         height: 1060px;
     }
 
     .alert .title {
+        background: #fff;
         line-height: 126px;
         height: 126px;
         text-align: center;
@@ -512,7 +515,7 @@ img {
 
     .alert .content {
         height: 800px;
-        padding-top: 25px;
+        // padding-top: 25px;
         box-sizing: border-box;
     }
 
@@ -568,7 +571,7 @@ img {
 
     .title {
         color: #333333;
-        font-size: 45px;
+        font-size: 60px;
         text-align: center;
         padding-bottom: 34px;
     }
@@ -894,7 +897,7 @@ img {
         height: 74px;
         line-height: 74px;
         border-radius: 40px;
-        margin-top: 36px;
+        margin-top: 24px;
         box-sizing: border-box;
         font-size: 36px;
         padding-left: 65px;
@@ -904,22 +907,24 @@ img {
 
     .qcode-input {
         width: 338px;
-        height: 74px;
+        height: 70px;
+        line-height: 70px;
         background: transparent;
         font-size: 36px;
         border: none;
         color: #999999;
+        transform: translate(0, -2px);
     }
 
     .qcode-btn {
         position: absolute;
         right: -4px;
-        top: -6px;
+        top: -4px;
 
         text-align: center;
         color: #fdf6ee;
         font-size: 36px;
-        line-height: 74px;
+        line-height: 70px;
         background: #f46c56;
         border: 3px solid #9ec7c7;
         border-radius: 40px;
