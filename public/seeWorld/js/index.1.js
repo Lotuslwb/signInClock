@@ -120,6 +120,11 @@ indexHanlder.prototype = {
                     if (res.status == 999) {
                         toast(res.data)
                     } else {
+                        $('.loading-page').fadeIn();
+                        setTimeout(function () {
+                            $('.loading-page').fadeOut();
+                        }, 3000)
+                        mySwiper.slideNext();
                         var address = $('.J-city').find("option:selected").text() + $('.J-city-child').find("option:selected").text() + $('.J-detailAddress').val();
                         $.ajax({
                             url: '/EFAdmin/h5Api/yx/leads',
@@ -136,15 +141,6 @@ indexHanlder.prototype = {
                                 other1: [dataset['countryScore'], dataset['landScore'], dataset['uploadImg'], dataset['posterCountry']].toString(),
                             }),
                             success: function (res) {
-                                if (res.code == 998) {
-                                    toast('用户已经存在')
-                                } else {
-                                    $('.loading-page').fadeIn();
-                                    setTimeout(function () {
-                                        $('.loading-page').fadeOut();
-                                    }, 3000)
-                                    mySwiper.slideNext();
-                                }
                                 console.log(res);
                             }
                         })
@@ -396,9 +392,7 @@ indexHanlder.prototype = {
             touch.on('.J-img', 'pinch', function (ev) {
                 var imgScale = imgW / imgH;
                 var minScale = 0.2,
-                    maxScale = 2;
-                var minW = 658,
-                    minH = 440;
+                    maxScale = 1.5;
                 var base = ev.scale;
                 var w = imgW * base;
                 var h = imgH * base;
@@ -410,13 +404,13 @@ indexHanlder.prototype = {
                     w = SelectWidth * maxScale;
                     h = SelectWidth * maxScale / imgScale;
                 }
-                if (h < minH) {
-                    h = minH;
-                    w = minH * imgScale;
+                if (h < imgH * minScale) {
+                    h = imgH * minScale;
+                    w = imgH * minScale * imgScale;
                 }
-                if (w < minW) {
-                    w = minW;
-                    h = minW / imgScale;
+                if (w < imgW * minScale) {
+                    w = imgW * minScale;
+                    h = imgW * minScale / imgScale;
                 }
                 $img.css({
                     "width": w,
