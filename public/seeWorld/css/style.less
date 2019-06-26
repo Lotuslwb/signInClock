@@ -9,6 +9,7 @@
 }
 
 
+
 .toast {
     position: fixed;
     z-index: 99;
@@ -133,6 +134,13 @@ img {
         background: url(../img/loading-img-1.png) no-repeat;
         width: 177px;
         height: 178px;
+    }
+
+    .loading-txt {
+        display: none;
+        text-align: center;
+        margin-top: 60px;
+        font-size: 28px;
     }
 }
 
@@ -310,16 +318,45 @@ img {
     }
 
     .Q-item.active .male-icon {
-        background: url(../img//male-active.jpg);
+        background: url(../img/male-active.jpg);
     }
 
     .Q-item.active .female-icon {
-        background: url(../img//female-active.jpg);
+        background: url(../img/female-active.jpg);
     }
 }
 
 
 .main-page {
+    .photoshop-text {
+        opacity: 0;
+        transition: all 800ms ease;
+        position: relative;
+
+        .photoshop-text-1 {
+            margin-bottom: 30px;
+        }
+
+        .shou {
+            right: 75px;
+            display: none;
+        }
+
+        &.active {
+            opacity: 1;
+        }
+
+        &.active .photoshop-text-2 {
+            animation: mainlandAni 800ms ease both 3;
+        }
+
+        .shou.active {
+            display: block;
+            animation: shouAni 800ms step-end both 999;
+        }
+    }
+
+
     .person.Europe {
         transition: transform linear 2s;
         transform: translate3d(-50px, -150px, 0);
@@ -377,7 +414,7 @@ img {
 
     .person.Antarctica {
         transition: transform linear 3s;
-        transform: translate(-140px, -540px);
+        transform: translate3d(-140px, -540px, 0);
     }
 
     .long-bg.Antarctica {
@@ -387,7 +424,7 @@ img {
 
     .person.Finished {
         transition: transform linear 3s;
-        transform: translate(-200px, -40px);
+        transform: translate3d(-200px, -100px, 0);
     }
 
     .long-bg.Finished {
@@ -403,11 +440,17 @@ img {
         height: 70px;
         z-index: 10;
         right: -40px;
-        bottom: -10px
+        bottom: -10px;
+        display: none;
+        background: url(../img/shou_1.png) no-repeat;
     }
 
     .mainlandBox.active .shou {
         animation: shouAni 800ms step-end both 999;
+    }
+
+    .mainlandBox.active .mainland {
+        animation: mainlandAni 800ms ease both 10;
     }
 
     .mainlandBox {
@@ -672,7 +715,7 @@ img {
     }
 
     .uploadBox {
-        margin-bottom: 70px;
+        margin-bottom: 45px;
         position: relative;
 
         .file-img {
@@ -693,6 +736,8 @@ img {
             padding: 0 20px 0 60px;
             border-radius: 20px;
             line-height: 45px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
         }
 
         .location-icon {
@@ -713,7 +758,8 @@ img {
             display: inline-block;
             line-height: 1.75;
             width: 435px;
-            font-family: MHEIPRCMEDIUM;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
         }
 
         .color {
@@ -768,7 +814,7 @@ img {
         position: absolute;
         z-index: 12;
         right: 248px;
-        top: 1046px;
+        top: 1020px;
     }
 }
 
@@ -1128,6 +1174,18 @@ img {
 
     50% {
         background: url(../img/shou_2.png) no-repeat;
+    }
+}
+
+@keyframes mainlandAni {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0)
+    }
+
+    50% {
+        transform: translate3d(0, -10px, 0)
     }
 }
 

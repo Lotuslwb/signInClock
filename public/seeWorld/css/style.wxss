@@ -113,6 +113,12 @@ img {
   width: 177px;
   height: 178px;
 }
+.loading-page .loading-txt {
+  display: none;
+  text-align: center;
+  margin-top: 60px;
+  font-size: 28px;
+}
 .page.active {
   display: block;
 }
@@ -261,10 +267,34 @@ img {
   background: url(../img/female.jpg);
 }
 .gender-page .Q-item.active .male-icon {
-  background: url(../img//male-active.jpg);
+  background: url(../img/male-active.jpg);
 }
 .gender-page .Q-item.active .female-icon {
-  background: url(../img//female-active.jpg);
+  background: url(../img/female-active.jpg);
+}
+.main-page .photoshop-text {
+  opacity: 0;
+  transition: all 800ms ease;
+  position: relative;
+}
+.main-page .photoshop-text .photoshop-text-1 {
+  margin-bottom: 30px;
+}
+.main-page .photoshop-text .shou {
+  right: 75px;
+  display: none;
+}
+.main-page .photoshop-text.active {
+  opacity: 1;
+}
+.main-page .photoshop-text.active .photoshop-text-2 {
+  -webkit-animation: mainlandAni 800ms ease both 3;
+          animation: mainlandAni 800ms ease both 3;
+}
+.main-page .photoshop-text .shou.active {
+  display: block;
+  -webkit-animation: shouAni 800ms step-end both 999;
+          animation: shouAni 800ms step-end both 999;
 }
 .main-page .person.Europe {
   transition: -webkit-transform linear 2s;
@@ -332,8 +362,8 @@ img {
   transition: -webkit-transform linear 3s;
   transition: transform linear 3s;
   transition: transform linear 3s, -webkit-transform linear 3s;
-  -webkit-transform: translate(-140px, -540px);
-          transform: translate(-140px, -540px);
+  -webkit-transform: translate3d(-140px, -540px, 0);
+          transform: translate3d(-140px, -540px, 0);
 }
 .main-page .long-bg.Antarctica {
   bottom: -2900px;
@@ -343,8 +373,8 @@ img {
   transition: -webkit-transform linear 3s;
   transition: transform linear 3s;
   transition: transform linear 3s, -webkit-transform linear 3s;
-  -webkit-transform: translate(-200px, -40px);
-          transform: translate(-200px, -40px);
+  -webkit-transform: translate3d(-200px, -100px, 0);
+          transform: translate3d(-200px, -100px, 0);
 }
 .main-page .long-bg.Finished {
   bottom: -4200px;
@@ -358,10 +388,16 @@ img {
   z-index: 10;
   right: -40px;
   bottom: -10px;
+  display: none;
+  background: url(../img/shou_1.png) no-repeat;
 }
 .main-page .mainlandBox.active .shou {
   -webkit-animation: shouAni 800ms step-end both 999;
           animation: shouAni 800ms step-end both 999;
+}
+.main-page .mainlandBox.active .mainland {
+  -webkit-animation: mainlandAni 800ms ease both 10;
+          animation: mainlandAni 800ms ease both 10;
 }
 .main-page .mainlandBox {
   position: absolute;
@@ -579,7 +615,7 @@ img {
   top: 75px;
 }
 .poster-page .uploadBox {
-  margin-bottom: 70px;
+  margin-bottom: 45px;
   position: relative;
 }
 .poster-page .uploadBox .file-img {
@@ -600,6 +636,8 @@ img {
   padding: 0 20px 0 60px;
   border-radius: 20px;
   line-height: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }
 .poster-page .uploadBox .location-icon {
   display: inline-block;
@@ -617,7 +655,8 @@ img {
   display: inline-block;
   line-height: 1.75;
   width: 435px;
-  font-family: MHEIPRCMEDIUM;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }
 .poster-page .panel .color {
   color: #f46c56;
@@ -663,7 +702,7 @@ img {
   position: absolute;
   z-index: 12;
   right: 248px;
-  top: 1046px;
+  top: 1020px;
 }
 .m-clip-box {
   position: absolute;
@@ -1086,6 +1125,28 @@ img {
   }
   50% {
     background: url(../img/shou_2.png) no-repeat;
+  }
+}
+@-webkit-keyframes mainlandAni {
+  0%,
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
+  }
+}
+@keyframes mainlandAni {
+  0%,
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
   }
 }
 #myCanvas {

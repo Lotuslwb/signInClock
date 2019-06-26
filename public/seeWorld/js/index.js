@@ -227,6 +227,7 @@ indexHanlder.prototype = {
         var me = this;
         qiniuInit();
         $('#J-upload').change(function () {
+            me.loadingTxtStart();
             $('.loading-page').show();
             var file = this.files[0];
             var fileSize = file.size;
@@ -243,6 +244,7 @@ indexHanlder.prototype = {
                     var $img = $('.m-clip-box .editPic-box').find('img').addClass('J-img');
                     handleImg($img);
                     $('.loading-page').hide();
+                    me.loadingTxtStop();
                 };
             })
         })
@@ -259,6 +261,8 @@ indexHanlder.prototype = {
             var sx = $('.J-img').offset().left - targetBoxLeft;
             var sh = $('.J-img').offset().top - targetBoxTop;
             $('.loading-page').show();
+            me.loadingTxtStart();
+
             //优先显示loading，让canvas处理滞后
             setTimeout(function () {
 
@@ -287,6 +291,7 @@ indexHanlder.prototype = {
                     newImg.src = '/qiniuProxy/' + dataset.uploadImg;
                     newImg.onload = function () {
                         $('.loading-page').hide();
+                        me.loadingTxtStop();
                     }
                     checkGen()
                 });
@@ -438,9 +443,13 @@ indexHanlder.prototype = {
     initMain: function () {
         var html = '';
         mainlandInfo.map(item => {
-            html +=
-                `<div class="mainlandBox ${item.key
-                }" data-land='${item.key}'><span class="shou"></span><img src="./img/${item.key}.png" alt="" class="mainland"></div>`
+            if (item.key == 'Europe') {
+                html +=
+                    `<div class="mainlandBox ${item.key}" data-land='${item.key}'><span class="shou"></span><img src="./img/${item.key}.png" alt="" class="mainland"></div>`
+            } else {
+                html +=
+                    `<div class="mainlandBox ${item.key}" data-land='${item.key}'><img src="./img/${item.key}.png" alt="" class="mainland"></div>`
+            }
         })
         $('.mainlandList').html(html);
         $('.mainlandList .mainlandBox').eq(0).addClass('active');
@@ -613,6 +622,7 @@ indexHanlder.prototype = {
             var isAntarctica = (land == 'Antarctica')
             me.genQitem(data, isAntarctica);
             $('.main-page .overlay').addClass('active');
+            $(this).removeClass('active');
         })
 
         $('.J-input').on('input', function () {
@@ -670,6 +680,29 @@ indexHanlder.prototype = {
             $self.parent().removeClass('disabled');
         }
     },
+    loadingTxtStart: function () {
+        var loaded_txt = ['宝贝的照片正在上传中...', '请耐心等待O(∩_∩)O~', '努力中...  努力中...', '马上就好了...', '请不要走开哦~'];
+        var index = 0;
+        var $txt = $('.J-loading-txt');
+        var text = loaded_txt[index];
+
+        $txt.fadeOut(function () {
+            $txt.text(text).fadeIn();
+        });
+        ++index >= loaded_txt.length ? index = 0 : '';
+
+        this.loadingTxtTimer = setInterval(function () {
+            var text = loaded_txt[index];
+            $txt.fadeOut(function () {
+                $txt.text(text).fadeIn();
+            });
+            ++index >= loaded_txt.length ? index = 0 : '';
+        }, 2000)
+    },
+    loadingTxtStop: function () {
+        $('.J-loading-txt').text('');
+        clearInterval(this.loadingTxtTimer);
+    },
     genQitem: function (data, isAntarctica) {
         var html = '',
             title = '';
@@ -702,7 +735,19 @@ indexHanlder.prototype = {
         $('.main-page .person').addClass(land).addClass('active');
         $('.main-page .long-bg').addClass(land).addClass('active');
         $('.main-page .person').on('transitionend', function () {
-            $(this).removeClass('active')
+            $(this).removeClass('active');
+            if (land == 'Europe') {
+                $('.mainlandBox.Europe .shou').show();
+            } else if (land == 'Finished') {
+                $('.photoshop-text').addClass('active');
+                setTimeout(function () {
+                    $('.photoshop-text .shou').addClass('active');
+                }, 2000)
+            } else {
+                setTimeout(function () {
+                    $('.mainlandBox.active').click();
+                }, 500)
+            }
         })
     }
 }

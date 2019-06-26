@@ -60,6 +60,7 @@
             <span class="dot"></span>
             <span class="dot"></span>
         </div>
+        <div class="loading-txt J-loading-txt">宝贝的照片正在上传中...</div>
     </div>
 
     <div class="page swiper-page">
@@ -95,7 +96,12 @@
                 <div class="swiper-slide main-page swiper-no-swiping">
                     <div class="long-bg">
                         <div class="photoshop J-slideNext active">
-                            <img src="./img/photoshop-text.png" />
+                            <div class="photoshop-text">
+                                <img src="./img/photoshop-text-1.png" class="photoshop-text-1" />
+                                <img src="./img/photoshop-text-2.png" class="photoshop-text-2" />
+                                <span class="shou"></span>
+                            </div>
+
                             <img src="./img/photoshop.png" />
                         </div>
                         <div class="mainlandList"></div>
@@ -160,7 +166,7 @@
                     </div>
                     <div class="panel">
                         <div class="data">
-                            <span class="color fill-name"></span> &nbsp; 宝贝 <br>
+                            <span class="color fill-name"></span> 宝贝 <br>
                             去过 <span class="color fill-landScore"></span> 个大洲 <span
                                 class="color fill-countryScore"></span> 个国家<br>
                             领先全国 <span class="color fill-percent"></span> 的同龄人<br>
@@ -219,7 +225,7 @@
                         </div>
                         <div class="panel">
                             <div class="data">
-                                <span class="color fill-name"></span>宝贝 <br>
+                                <span class="color fill-name"></span> 宝贝<br>
                                 去过 <span class="color fill-landScore"></span> 个大洲 <span
                                     class="color fill-countryScore"></span> 个国家<br>
                                 领先全国 <span class="color fill-percent"></span> 的同龄人<br>
@@ -278,7 +284,6 @@
     <script>
         var loaded = false;
         var loaded_ani = false;
-        var loaded_txt = ['宝贝的照片正在上传中...', '请耐心等待O(∩_∩)O~', '努力中...  努力中...', '马上就好了...', '请不要走开哦~'];
 
 
         //预加载器
