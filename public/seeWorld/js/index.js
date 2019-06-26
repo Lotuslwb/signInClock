@@ -746,7 +746,7 @@ indexHanlder.prototype = {
             } else {
                 setTimeout(function () {
                     $('.mainlandBox.active').click();
-                }, 800)
+                }, 500)
             }
         })
     }
