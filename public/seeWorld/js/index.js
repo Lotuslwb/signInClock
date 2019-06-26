@@ -575,7 +575,7 @@ indexHanlder.prototype = {
             $(this).addClass('active').siblings('.singleQ-item').removeClass('active');
         });
 
-        $('.main-page .overlay').on('click', '.next-land', function () {
+        $('body').on('click', '.next-land', function () {
             var $list = $(this).parents('.main-page').find('.J-alert-list');
             var currentLand = $list.data('land');
             var currentIndex = mainlandInfo.findIndex(item => item.key == currentLand)
