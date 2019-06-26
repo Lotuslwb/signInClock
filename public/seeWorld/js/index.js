@@ -452,7 +452,6 @@ indexHanlder.prototype = {
             }
         })
         $('.mainlandList').html(html);
-        $('.mainlandList .mainlandBox').eq(0).addClass('active');
     },
     bindEvnet: function () {
         var me = this;
@@ -540,6 +539,7 @@ indexHanlder.prototype = {
                     me.gotoLand('Europe');
                     dataset['gender'] = gender;
                     dataset['name'] = $('.gender-page .J-input').val();
+                    $('.mainlandList .mainlandBox').eq(0).addClass('active');
                 } else if ($(this).parents('.swiper-slide').data('page') == 'genPoster') {
                     me.initPoster();
                 } else if ($(this).parents('.swiper-slide').data('page') == 'posterIndex') {
