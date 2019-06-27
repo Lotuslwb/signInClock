@@ -137,7 +137,7 @@ indexHanlder.prototype = {
                             }),
                             success: function (res) {
                                 if (res.code == 998) {
-                                    toast('用户已经存在')
+                                    toast('您已注册过，请勿重复提交')
                                 } else {
                                     $('.loading-page').fadeIn();
                                     setTimeout(function () {
