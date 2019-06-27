@@ -78,7 +78,7 @@ indexHanlder.prototype = {
 
 
             // Tracking
-            trackingData.Etag = channel + "_Footprint2019summer_" + Etag;
+            trackingData.Etag = channel + "_" + Etag;
             trackingData.EntrySourceCode = SourceCode;
 
             //Campaign Data
