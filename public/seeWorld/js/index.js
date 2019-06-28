@@ -706,8 +706,10 @@ indexHanlder.prototype = {
         }, 2000)
     },
     loadingTxtStop: function () {
-        $('.J-loading-txt').text('');
         clearInterval(this.loadingTxtTimer);
+        setTimeout(function () {
+            $('.J-loading-txt').hide();
+        }, 2000);
     },
     genQitem: function (data, isAntarctica) {
         var html = '',
