@@ -310,6 +310,10 @@ indexHanlder.prototype = {
             checkGen();
             dataset['posterCountry'] = $(this).val();
         })
+        
+        $('.J-posterCountry').on("blur", function () {
+            window.scroll(0, 0);
+        });
 
         function checkGen() {
             if (me.uploadImg && $('.J-posterCountry').val()) {
