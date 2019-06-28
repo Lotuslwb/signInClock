@@ -650,8 +650,7 @@ img {
   position: absolute;
   left: 50%;
   top: 30px;
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
+  margin-left: -270px;
 }
 .poster-page .uploadBox .info {
   position: absolute;
@@ -663,7 +662,7 @@ img {
   padding: 0 20px 0 60px;
   border-radius: 20px;
   line-height: 45px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: none;
   font-weight: bold;
 }
 .poster-page .uploadBox .location-icon {
@@ -682,16 +681,14 @@ img {
   display: inline-block;
   line-height: 1.75;
   width: 435px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: none;
   font-weight: bold;
 }
 .poster-page .panel .color {
   color: #f46c56;
-  font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;
 }
 .poster-page .panel .tab {
   background: #f46c56;
-  font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif;
   color: #ffffff;
   padding: 5px 16px;
   border-radius: 10px;
