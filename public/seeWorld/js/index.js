@@ -36,6 +36,7 @@ indexHanlder.prototype = {
             $('.loading-page').fadeIn();
             setTimeout(function () {
                 $('.loading-page').fadeOut();
+                me.genPoster();
             }, 3000)
             mySwiper.slideNext();
         })
@@ -142,6 +143,7 @@ indexHanlder.prototype = {
                                     $('.loading-page').fadeIn();
                                     setTimeout(function () {
                                         $('.loading-page').fadeOut();
+                                        me.genPoster();
                                     }, 3000)
                                     mySwiper.slideNext();
                                 }
@@ -549,7 +551,7 @@ indexHanlder.prototype = {
                 } else if ($(this).parents('.swiper-slide').data('page') == 'genPoster') {
                     me.initPoster();
                 } else if ($(this).parents('.swiper-slide').data('page') == 'posterIndex') {
-                    me.genPoster();
+                    // me.genPoster();
                 }
                 mySwiper.slideNext();
             }
