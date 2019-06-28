@@ -35,8 +35,9 @@ indexHanlder.prototype = {
         $('.J-skipForm').click(function () {
             $('.loading-page').fadeIn();
             setTimeout(function () {
-                $('.loading-page').fadeOut();
-                me.genPoster();
+                $('.loading-page').fadeOut(function () {
+                    me.genPoster();
+                });
             }, 3000)
             mySwiper.slideNext();
         })
@@ -142,8 +143,9 @@ indexHanlder.prototype = {
                                 } else {
                                     $('.loading-page').fadeIn();
                                     setTimeout(function () {
-                                        $('.loading-page').fadeOut();
-                                        me.genPoster();
+                                        $('.loading-page').fadeOut(function () {
+                                            me.genPoster();
+                                        });
                                     }, 3000)
                                     mySwiper.slideNext();
                                 }
