@@ -191,11 +191,9 @@ indexHanlder.prototype = {
     },
     genPoster: function () {
         $('.iframe').remove();
-        html2canvas(document.querySelector("#tpl"), {
-            useCORS: false, //（图片跨域相关）
-        }).then(function (canvas) {
+        html2canvas(document.querySelector("#tpl")).then(function (canvas) {
             try {
-                $('body').append(canvas);
+                // $('body').append(canvas);
                 dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
                 $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
                 $("#tpl").hide();
