@@ -190,7 +190,11 @@ indexHanlder.prototype = {
         return html;
     },
     genPoster: function () {
-        html2canvas(document.querySelector("#tpl")).then(function (canvas) {
+        html2canvas(document.querySelector("#tpl"), {
+            imageTimeout: 20000,
+            logging: true,
+            useCORS: true, //（图片跨域相关）
+        }).then(function (canvas) {
             dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
             $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
             $("#tpl").hide();
@@ -310,7 +314,7 @@ indexHanlder.prototype = {
             checkGen();
             dataset['posterCountry'] = $(this).val();
         })
-        
+
         $('.J-posterCountry').on("blur", function () {
             window.scroll(0, 0);
         });
