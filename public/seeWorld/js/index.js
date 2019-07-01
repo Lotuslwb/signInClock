@@ -190,6 +190,7 @@ indexHanlder.prototype = {
         return html;
     },
     genPoster: function () {
+        $('.iframe').remove();
         html2canvas(document.querySelector("#tpl"), {
             imageTimeout: 20000,
             logging: true,
