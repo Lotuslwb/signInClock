@@ -196,9 +196,14 @@ indexHanlder.prototype = {
             logging: true,
             useCORS: true, //（图片跨域相关）
         }).then(function (canvas) {
-            dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
-            $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
-            $("#tpl").hide();
+            try {
+                $('body').append(canvas);
+                dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
+                $('.poster-page .canvas').append(`<img src='${dataURL}'>`);
+                $("#tpl").hide();
+            } catch (error) {
+                console.log(error);
+            }
         });
     },
     initQcode: function () {
