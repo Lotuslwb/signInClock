@@ -94,20 +94,9 @@
 
         function gotoVedio(typeId) {
             var videoObj = $('.video')[0]
-            videoObj.src = 'http://xmly.eldesign.cn/ipadVideo' + typeId + '.mp4'
+            videoObj.src = 'https://ma.eldesign.cn/qiniuProxy/ipadVideo' + typeId + '.mp4'
             $('.vedio-page').addClass('active').siblings('.page').removeClass('active');
             videoObj.play();
-            videoObj.onpause = function () {
-                $('.overlay').addClass('active');
-            }
-
-            videoObj.onended = function () {
-                $('.overlay').addClass('active');
-            }
-
-            videoObj.onplay = function () {
-                $('.overlay').removeClass('active');
-            }
         }
 
         function checkLand() {
@@ -120,6 +109,20 @@
         }
         checkLand();
         window.addEventListener("resize", checkLand, false);
+
+
+        var videoObj = $('.video')[0];
+        videoObj.onpause = function () {
+            $('.overlay').addClass('active');
+        }
+
+        videoObj.onended = function () {
+            $('.overlay').addClass('active');
+        }
+
+        videoObj.onplay = function () {
+            $('.overlay').removeClass('active');
+        }
     </script>
     <script>
         var loaded = false;

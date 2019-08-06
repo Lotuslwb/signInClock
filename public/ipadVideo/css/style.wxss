@@ -14,9 +14,12 @@ select {
   height: 100%;
   width: 100%;
   z-index: 99;
-  background: #000000;
+  background: rgba(0, 0, 0, 0.6);
   top: 0;
   left: 0;
+}
+.overlay-portrait {
+  background: #000000;
 }
 .mid {
   position: absolute;
