@@ -1,0 +1,1 @@
+cp /Users/lotuslwb/Documents/MJobs/ipadVideo  /Users/lotuslwb/Documents/MJobs/yingfu-daka/signInClock/public/

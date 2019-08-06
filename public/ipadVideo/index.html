@@ -54,6 +54,7 @@
                 <img src="./img/return-btn.png" class="return-btn" alt="返回主菜单">
             </div>
         </div>
+        <img src="./img/return-btn.png" class="return-btn return-btn-2" alt="返回主菜单">
         <video class="video" src="https://ma.eldesign.cn/qiniuProxy/GDATA_V1.mp4" controls="controls"></video>
     </div>
 
@@ -66,6 +67,13 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script>
+        setTimeout(function () {
+            $('.kv-page').fadeOut(500, function () {
+
+            });
+            $('.index-page').addClass('active');
+        }, 1000)
+
         // 1-对话口语;2-自然拼读;3-阅读;4-语法;5-童谣;6-热身;7-拓展;8-词汇;
         $('.kv-page').click(function () {
             $(this).removeClass('active');

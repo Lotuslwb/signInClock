@@ -41,6 +41,9 @@ select {
 .kv-page {
   background: url(../img/kv.jpg) no-repeat center;
   background-size: cover;
+  position: absolute;
+  top: 0;
+  z-index: 10;
 }
 .index-page {
   background: url(../img/index-bg.jpg) no-repeat center;
@@ -122,4 +125,10 @@ select {
   display: flex;
   -webkit-box-pack: justify;
           justify-content: space-between;
+}
+.return-btn-2 {
+  position: absolute;
+  z-index: 999;
+  bottom: 65px;
+  right: 90px;
 }
