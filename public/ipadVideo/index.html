@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="js/dpi.js"></script>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <!--需要预加载的images-->
+    <div class="f-hide" id="f-hide">
+        <img src="./img/index-bg.jpg">
+        <img src="./img/content-bg.png">
+    </div>
+
+
+    <div class="page kv-page active">
+
+    </div>
+    <div class="page index-page">
+        <img src="./img/logo.png" class="logo" alt="EF">
+        <img src="./img/footer-btn.png" class="footer-btn" alt="查看完整视频">
+
+        <div class="content mid">
+            <img src="./img/icon/type-1.png" alt="对话口语" class="type-btn type-1" data-type="1">
+            <img src="./img/icon/type-2.png" alt="自然拼读" class="type-btn type-2" data-type="2">
+            <img src="./img/icon/type-3.png" alt="阅读" class="type-btn type-3" data-type="3">
+            <img src="./img/icon/type-4.png" alt="语法" class="type-btn type-4" data-type="4">
+            <img src="./img/icon/type-5.png" alt="童谣" class="type-btn type-5" data-type="5">
+            <img src="./img/icon/type-6.png" alt="热身" class="type-btn type-6" data-type="6">
+            <img src="./img/icon/type-7.png" alt="拓展" class="type-btn type-7" data-type="7">
+            <img src="./img/icon/type-8.png" alt="词汇" class="type-btn type-8" data-type="8">
+        </div>
+    </div>
+    <div class="page vedio-page">
+        <div class="overlay">
+            <div class="btn-box mid">
+                <img src="./img/replay-btn.png" class="replay-btn" alt="重新播放">
+                <img src="./img/return-btn.png" class="return-btn" alt="返回主菜单">
+            </div>
+        </div>
+        <video class="video" src="https://ma.eldesign.cn/qiniuProxy/GDATA_V1.mp4" controls="controls"></video>
+    </div>
+
+    <div class="overlay overlay-portrait" style="display: none;">
+        <img class="mid" src="./img/portraitInfo.png" alt="为了更好的体验，请将ipad横过来">
+    </div>
+
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script>
+        // 1-对话口语;2-自然拼读;3-阅读;4-语法;5-童谣;6-热身;7-拓展;8-词汇;
+        $('.kv-page').click(function () {
+            $(this).removeClass('active');
+            $('.index-page').addClass('active');
+        })
+
+        $('.type-btn').click(function () {
+            var typeid = $(this).data('type');
+            gotoVedio(typeid);
+        })
+
+        $('.footer-btn').click(function () {
+            gotoVedio(99);
+        })
+
+        $('.replay-btn').click(function () {
+            var videoObj = $('.video')[0]
+            videoObj.currentTime = 0
+            videoObj.play();
+        })
+        $('.return-btn').click(function () {
+            var videoObj = $('.video')[0]
+            videoObj.pause();
+            $('.index-page').addClass('active').siblings('.page').removeClass('active');
+        })
+
+        function gotoVedio(typeId) {
+            var videoObj = $('.video')[0]
+            videoObj.src = 'http://xmly.eldesign.cn/ipadVideo' + typeId + '.mp4'
+            $('.vedio-page').addClass('active').siblings('.page').removeClass('active');
+            videoObj.play();
+            videoObj.onpause = function () {
+                $('.overlay').addClass('active');
+            }
+
+            videoObj.onended = function () {
+                $('.overlay').addClass('active');
+            }
+
+            videoObj.onplay = function () {
+                $('.overlay').removeClass('active');
+            }
+        }
+
+        function checkLand() {
+            var oritentation = (window.innerWidth > window.innerHeight) ? "landscape" : "portrait";
+            if (oritentation == 'portrait') {
+                $('.overlay-portrait').show();
+            } else {
+                $('.overlay-portrait').hide();
+            }
+        }
+        checkLand();
+        window.addEventListener("resize", checkLand, false);
+    </script>
+    <script>
+        var loaded = false;
+        var loaded_ani = false;
+
+
+        //预加载器
+        function loader() {
+            this.init();
+        }
+
+        loader.prototype = {
+            init: function () {
+                var me = this;
+                var loaded = 0;
+
+                if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+                    me.onLoaded();
+                } else {
+                    var imgLoad = imagesLoaded('body');
+                    imgLoad.on('progress', function (instance, image) {
+                        loaded++;
+                        if (loaded == instance.images.length) {
+                            me.onLoaded();
+                        }
+                    });
+                }
+            },
+            onLoaded: function () {
+
+            }
+        }
+
+        var loader = new loader();
+        loader.onLoaded = function () {
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>
