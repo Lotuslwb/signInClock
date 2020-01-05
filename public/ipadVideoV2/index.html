@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="js/dpi.js"></script>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!--需要预加载的images-->
+    <div class="f-hide" id="f-hide">
+        <img src="./img/index-bg.jpg">
+        <img src="./img/content-bg.png">
+    </div>
+
+
+    <div class="page kv-page active">
+        <img src="./img/kv-logo.png" class="index-logo" alt="英孚教育">
+    </div>
+    <div class="page index-page">
+        <img src="./img/index-logo.png" class="logo" alt="EF英孚教育">
+
+        <div class="content mid">
+            <img src="./img/icon/type-1.png" alt="热身" class="type-btn type-1" data-type="1">
+            <img src="./img/icon/type-2.png" alt="专项技能训练" class="type-btn type-2" data-type="2">
+            <img src="./img/icon/type-3.png" alt="对话" class="type-btn type-3" data-type="3">
+            <img src="./img/icon/type-4.png" alt="复习" class="type-btn type-4" data-type="4">
+        </div>
+    </div>
+
+    <!-- 专享技能-展开 -->
+    <div class="page action-page-2">
+        <div class="content mid">
+            <img src="./img/icon/type-5.png" alt="专项技能训练" class="type-btn type-5" data-type="5">
+            <img src="./img/icon/type-6.png" alt="自然拼读" class="type-btn type-6" data-type="6">
+            <img src="./img/icon/type-7.png" alt="听力" class="type-btn type-7" data-type="7">
+            <img src="./img/icon/type-8.png" alt="语法" class="type-btn type-8" data-type="8">
+            <img src="./img/icon/type-9.png" alt="阅读" class="type-btn type-9" data-type="9">
+        </div>
+        <img src="./img/icon/action2-return-btn.png" class="action2-return-btn J-back" alt="返回">
+    </div>
+
+    <!-- 对话-展开 -->
+    <div class="page action-page-3">
+        <div class="content mid">
+            <img src="./img/icon/type-10.png" alt="对话" class="type-btn type-10" data-type="10">
+            <img src="./img/icon/type-11.png" alt="基础对话" class="type-btn type-11" data-type="11">
+            <img src="./img/icon/type-12.png" alt="课程主题口语练习" class="type-btn type-12" data-type="12">
+            <img src="./img/icon/type-13.png" alt="自由对话" class="type-btn type-13" data-type="13">
+        </div>
+        <img src="./img/icon/action3-return-btn.png" class="action3-return-btn J-back" alt="返回">
+    </div>
+
+    <div class="page vedio-page">
+        <div class="overlay">
+            <div class="btn-box mid">
+                <img src="./img/replay-btn.png" class="replay-btn" alt="重新播放">
+                <img src="./img/return-btn.png" class="return-btn" alt="返回主菜单">
+            </div>
+        </div>
+        <!-- <img src="./img/return-btn.png" class="return-btn return-btn-2" alt="返回主菜单"> -->
+        <video class="video" src="https://ma.eldesign.cn/qiniuProxy/GDATA_V1.mp4" controls="controls"></video>
+    </div>
+
+    <div class="overlay overlay-portrait" style="display: none;">
+        <img class="mid" src="./img/portraitInfo.png" alt="为了更好的体验，请将ipad横过来">
+    </div>
+
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script>
+        function changePage(page) {
+            const $prePage = $('.page.active');
+            const $currentPage = $('.' + page);
+            $prePage.removeClass('active');
+            $currentPage.addClass('active');
+        }
+        setTimeout(function () {
+            $('.kv-page').fadeOut();
+            $('.index-page').addClass('active');
+        }, 1000)
+
+        $('.kv-page').click(function () {
+            $('.kv-page').fadeOut();
+            $('.index-page').addClass('active');
+        })
+
+        $('.type-btn').click(function () {
+            var typeid = $(this).data('type');
+            if ([2, 3].includes(typeid)) {
+                changePage('action-page-' + typeid);
+            } else if ([5, 10].includes(typeid)) {
+
+            } else {
+                gotoVedio(typeid);
+            }
+        })
+        $('.J-back').click(function () {
+            changePage('index-page');
+        })
+
+        $('.replay-btn').click(function () {
+            var videoObj = $('.video')[0]
+            videoObj.currentTime = 0
+            videoObj.play();
+        })
+        $('.return-btn').click(function () {
+            var videoObj = $('.video')[0]
+            videoObj.pause();
+            changePage('index-page');
+        })
+
+        function gotoVedio(typeId) {
+            var videoObj = $('.video')[0]
+            videoObj.src = 'https://ma.eldesign.cn/qiniuProxy/ipadVideo' + typeId + '.mp4'
+            changePage('vedio-page')
+            videoObj.play();
+        }
+
+        function checkLand() {
+            var oritentation = (window.innerWidth > window.innerHeight) ? "landscape" : "portrait";
+            if (oritentation == 'portrait') {
+                $('.overlay-portrait').show();
+            } else {
+                $('.overlay-portrait').hide();
+            }
+        }
+        checkLand();
+        window.addEventListener("resize", checkLand, false);
+
+
+        var videoObj = $('.video')[0];
+        videoObj.onpause = function () {
+            $('.overlay').addClass('active');
+        }
+
+        videoObj.onended = function () {
+            $('.overlay').addClass('active');
+        }
+
+        videoObj.onplay = function () {
+            $('.overlay').removeClass('active');
+        }
+    </script>
+    <script>
+        var loaded = false;
+        var loaded_ani = false;
+
+
+        //预加载器
+        function loader() {
+            this.init();
+        }
+
+        loader.prototype = {
+            init: function () {
+                var me = this;
+                var loaded = 0;
+
+                if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+                    me.onLoaded();
+                } else {
+                    var imgLoad = imagesLoaded('body');
+                    imgLoad.on('progress', function (instance, image) {
+                        loaded++;
+                        if (loaded == instance.images.length) {
+                            me.onLoaded();
+                        }
+                    });
+                }
+            },
+            onLoaded: function () {
+
+            }
+        }
+
+        var loader = new loader();
+        loader.onLoaded = function () {
+
+        }
+    </script>
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?d86eedbb59e569663df53ac5343f3a9c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</body>
+
+</html>

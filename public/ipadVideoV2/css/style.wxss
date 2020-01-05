@@ -1,0 +1,239 @@
+body {
+  background: #FFFFFF;
+  font-family: Arial, Helvetica, sans-serif;
+}
+select {
+  -webkit-appearance: none !important;
+          appearance: none !important;
+}
+.f-hide {
+  display: none;
+}
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+}
+.overlay-portrait {
+  background: #000000;
+}
+.mid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+}
+.page {
+  width: 100%;
+  height: 100%;
+  display: none;
+  font-size: 24px;
+  color: #000;
+}
+.page.active {
+  display: block;
+}
+.kv-page {
+  background: url(../img/kv.jpg) no-repeat center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  overflow: hidden;
+}
+.kv-page .index-logo {
+  position: absolute;
+  bottom: 70px;
+  left: 100px;
+}
+.action-page-2 {
+  background: url(../img/index-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+.action-page-2 .action2-return-btn {
+  position: absolute;
+  z-index: 2;
+  right: 123px;
+  bottom: 115px;
+}
+.action-page-3 {
+  background: url(../img/index-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+.action-page-3 .action3-return-btn {
+  position: absolute;
+  z-index: 2;
+  right: 123px;
+  bottom: 115px;
+}
+.index-page {
+  background: url(../img/index-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+.index-page .logo {
+  position: absolute;
+  top: 200px;
+  left: 180px;
+  z-index: 2;
+}
+.content {
+  width: 1688px;
+  height: 1294px;
+  position: relative;
+}
+.type-btn {
+  position: absolute;
+}
+.type-btn.type-1 {
+  left: 0;
+  top: 530px;
+}
+.type-btn.type-2 {
+  left: 422px;
+  top: 690px;
+}
+.type-btn.type-3 {
+  left: 813px;
+  top: 430px;
+}
+.type-btn.type-4 {
+  right: 0;
+  top: 656px;
+}
+.type-btn.type-5 {
+  left: 28px;
+  top: 184px;
+}
+.type-btn.type-6 {
+  left: 117px;
+  top: 758px;
+}
+.type-btn.type-7 {
+  left: 520px;
+  top: 743px;
+}
+.type-btn.type-8 {
+  left: 949px;
+  top: 744px;
+}
+.type-btn.type-9 {
+  right: 38px;
+  top: 707px;
+}
+.type-btn.type-10 {
+  left: 18px;
+  top: 220px;
+}
+.type-btn.type-11 {
+  left: 290px;
+  top: 780px;
+}
+.type-btn.type-12 {
+  left: 655px;
+  top: 741px;
+}
+.type-btn.type-13 {
+  right: 340px;
+  top: 740px;
+}
+.vedio-page .video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.vedio-page .overlay {
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+.vedio-page .overlay.active {
+  display: block;
+}
+.vedio-page .btn-box {
+  width: 660px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+.return-btn-2 {
+  position: absolute;
+  z-index: 999;
+  bottom: 65px;
+  right: 90px;
+}
+.page.active.index-page .logo {
+  -webkit-animation: fadeIn 0ms ease 500ms both;
+          animation: fadeIn 0ms ease 500ms both;
+}
+.page.active.index-page .type-1 {
+  -webkit-animation: fadeIn 500ms ease 500ms both;
+          animation: fadeIn 500ms ease 500ms both;
+}
+.page.active.index-page .type-2 {
+  -webkit-animation: fadeIn 1000ms ease 500ms both;
+          animation: fadeIn 1000ms ease 500ms both;
+}
+.page.active.index-page .type-3 {
+  -webkit-animation: fadeIn 1500ms ease 500ms both;
+          animation: fadeIn 1500ms ease 500ms both;
+}
+.page.active.index-page .type-4 {
+  -webkit-animation: fadeIn 2000ms ease 500ms both;
+          animation: fadeIn 2000ms ease 500ms both;
+}
+.page.active.action-page-2 .type-5 {
+  -webkit-animation: fadeIn 0ms ease 500ms both;
+          animation: fadeIn 0ms ease 500ms both;
+}
+.page.active.action-page-2 .type-6 {
+  -webkit-animation: fadeIn 500ms ease 500ms both;
+          animation: fadeIn 500ms ease 500ms both;
+}
+.page.active.action-page-2 .type-7 {
+  -webkit-animation: fadeIn 1000ms ease 500ms both;
+          animation: fadeIn 1000ms ease 500ms both;
+}
+.page.active.action-page-2 .type-8 {
+  -webkit-animation: fadeIn 1500ms ease 500ms both;
+          animation: fadeIn 1500ms ease 500ms both;
+}
+.page.active.action-page-2 .type-9 {
+  -webkit-animation: fadeIn 2000ms ease 500ms both;
+          animation: fadeIn 2000ms ease 500ms both;
+}
+.page.active.action-page-2 .action2-return-btn {
+  -webkit-animation: fadeIn 2500ms ease 500ms both;
+          animation: fadeIn 2500ms ease 500ms both;
+}
+.page.active.action-page-3 .type-10 {
+  -webkit-animation: fadeIn 0ms ease 500ms both;
+          animation: fadeIn 0ms ease 500ms both;
+}
+.page.active.action-page-3 .type-11 {
+  -webkit-animation: fadeIn 500ms ease 500ms both;
+          animation: fadeIn 500ms ease 500ms both;
+}
+.page.active.action-page-3 .type-12 {
+  -webkit-animation: fadeIn 1000ms ease 500ms both;
+          animation: fadeIn 1000ms ease 500ms both;
+}
+.page.active.action-page-3 .type-13 {
+  -webkit-animation: fadeIn 1500ms ease 500ms both;
+          animation: fadeIn 1500ms ease 500ms both;
+}
+.page.active.action-page-3 .action3-return-btn {
+  -webkit-animation: fadeIn 2500ms ease 500ms both;
+          animation: fadeIn 2500ms ease 500ms both;
+}

@@ -1,0 +1,293 @@
+// @font-face {
+//     font-family: MHEIPRCHEAVY;
+//     src: url('../font/1.TTF');
+// }
+
+body {
+    background: #FFFFFF;
+    // font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif
+}
+
+select {
+    appearance: none !important;
+}
+
+.f-hide {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+}
+
+.overlay-portrait {
+    background: rgba(0, 0, 0, 1);
+}
+
+.mid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    display: none;
+    font-size: 24px;
+    color: #000;
+}
+
+.page.active {
+    display: block;
+}
+
+.kv-page {
+    background: url(../img/kv.jpg) no-repeat center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
+
+    .index-logo {
+        position: absolute;
+        bottom: 70px;
+        left: 100px;
+    }
+}
+
+.action-page-2 {
+    background: url(../img/index-bg.jpg) no-repeat center;
+    background-size: cover;
+
+    .action2-return-btn {
+        position: absolute;
+        z-index: 2;
+        right: 123px;
+        bottom: 115px;
+    }
+}
+
+.action-page-3 {
+    background: url(../img/index-bg.jpg) no-repeat center;
+    background-size: cover;
+
+    .action3-return-btn {
+        position: absolute;
+        z-index: 2;
+        right: 123px;
+        bottom: 115px;
+    }
+}
+
+.index-page {
+
+    background: url(../img/index-bg.jpg) no-repeat center;
+    background-size: cover;
+
+    .logo {
+        position: absolute;
+        top: 200px;
+        left: 180px;
+        z-index: 2;
+    }
+}
+
+.content {
+    width: 1688px;
+    height: 1294px;
+    position: relative;
+}
+
+.type-btn {
+    position: absolute;
+
+    &.type-1 {
+        left: 0;
+        top: 530px;
+    }
+
+    &.type-2 {
+        left: 422px;
+        top: 690px;
+    }
+
+    &.type-3 {
+        left: 813px;
+        top: 430px;
+    }
+
+    &.type-4 {
+        right: 0;
+        top: 656px;
+    }
+
+    &.type-5 {
+        left: 28px;
+        top: 184px;
+    }
+
+    &.type-6 {
+        left: 117px;
+        top: 758px;
+    }
+
+    &.type-7 {
+        left: 520px;
+        top: 743px;
+    }
+
+    &.type-8 {
+        left: 949px;
+        top: 744px;
+    }
+
+    &.type-9 {
+        right: 38px;
+        top: 707px;
+    }
+
+    &.type-10 {
+        left: 18px;
+        top: 220px;
+    }
+
+    &.type-11 {
+        left: 290px;
+        top: 780px;
+    }
+
+    &.type-12 {
+        left: 655px;
+        top: 741px;
+    }
+
+    &.type-13 {
+        right: 340px;
+        top: 740px;
+    }
+}
+
+.vedio-page {
+    .video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .overlay {
+        position: absolute;
+        z-index: 99;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .btn-box {
+        width: 660px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.return-btn-2 {
+    position: absolute;
+    z-index: 999;
+    bottom: 65px;
+    right: 90px;
+}
+
+
+//动画
+@initTime: 0ms;
+@intervalTime: 500ms;
+
+
+.page {
+    &.active.index-page {
+        .logo {
+            animation: fadeIn @initTime ease @intervalTime both;
+        }
+
+        .type-1 {
+            animation: fadeIn @initTime+@intervalTime ease @intervalTime both;
+        }
+
+        .type-2 {
+            animation: fadeIn @initTime+@intervalTime*2 ease @intervalTime both;
+        }
+
+        .type-3 {
+            animation: fadeIn @initTime+@intervalTime*3 ease @intervalTime both;
+        }
+
+        .type-4 {
+            animation: fadeIn @initTime+@intervalTime*4 ease @intervalTime both;
+        }
+    }
+
+    &.active.action-page-2 {
+        .type-5 {
+            animation: fadeIn @initTime ease @intervalTime both;
+        }
+
+        .type-6 {
+            animation: fadeIn @initTime+@intervalTime ease @intervalTime both;
+        }
+
+        .type-7 {
+            animation: fadeIn @initTime+@intervalTime*2 ease @intervalTime both;
+        }
+
+        .type-8 {
+            animation: fadeIn @initTime+@intervalTime*3 ease @intervalTime both;
+        }
+
+        .type-9 {
+            animation: fadeIn @initTime+@intervalTime*4 ease @intervalTime both;
+        }
+
+        .action2-return-btn {
+            animation: fadeIn @initTime+@intervalTime*5 ease @intervalTime both;
+        }
+    }
+
+    &.active.action-page-3 {
+        .type-10 {
+            animation: fadeIn @initTime ease @intervalTime both;
+        }
+
+        .type-11 {
+            animation: fadeIn @initTime+@intervalTime ease @intervalTime both;
+        }
+
+        .type-12 {
+            animation: fadeIn @initTime+@intervalTime*2 ease @intervalTime both;
+        }
+
+        .type-13 {
+            animation: fadeIn @initTime+@intervalTime*3 ease @intervalTime both;
+        }
+
+        .action3-return-btn {
+            animation: fadeIn @initTime+@intervalTime*5 ease @intervalTime both;
+        }
+    }
+}
