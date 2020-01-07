@@ -73,7 +73,7 @@
             </div>
         </div>
         <!-- <img src="./img/return-btn.png" class="return-btn return-btn-2" alt="返回主菜单"> -->
-        <video class="video" src="https://ma.eldesign.cn/qiniuProxy/GDATA_V1.mp4" controls="controls"></video>
+        <video class="video" src="" controls="controls"></video>
     </div>
 
     <div class="overlay overlay-portrait" style="display: none;">
@@ -128,7 +128,7 @@
 
         function gotoVedio(typeId) {
             var videoObj = $('.video')[0]
-            videoObj.src = 'https://ma.eldesign.cn/qiniuProxy/ipadVideo' + typeId + '.mp4'
+            videoObj.src = 'https://ma.eldesign.cn/qiniuProxy/ipadVideoV2_' + typeId + '.mp4'
             changePage('vedio-page')
             videoObj.play();
         }
