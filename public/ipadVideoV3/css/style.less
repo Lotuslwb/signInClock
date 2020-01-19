@@ -1,0 +1,282 @@
+// @font-face {
+//     font-family: MHEIPRCHEAVY;
+//     src: url('../font/1.TTF');
+// }
+
+body {
+    background: #FFFFFF;
+    // font-family: MHEIPRCHEAVY, Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif
+}
+
+select {
+    appearance: none !important;
+}
+
+.f-hide {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+}
+
+.overlay-portrait {
+    background: rgba(0, 0, 0, 1);
+}
+
+.mid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    display: none;
+    font-size: 24px;
+    color: #000;
+}
+
+.page.active {
+    display: block;
+}
+
+.kv-page {
+    background: url(../img/kv.jpg) no-repeat center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
+
+    .index-logo {
+        position: absolute;
+        bottom: 66px;
+        right: 120px;
+    }
+}
+
+.action-page-2 {
+    background: url(../img/index-bg.jpg) no-repeat center;
+    background-size: cover;
+
+    .action2-return-btn {
+        position: absolute;
+        z-index: 2;
+        right: 123px;
+        bottom: 115px;
+    }
+}
+
+.action-page-3 {
+    background: url(../img/index-bg.jpg) no-repeat center;
+    background-size: cover;
+
+    .action3-return-btn {
+        position: absolute;
+        z-index: 2;
+        right: 123px;
+        bottom: 115px;
+    }
+}
+
+.index-page {
+
+    background: url(../img/index-bg.jpg) no-repeat center;
+    background-size: cover;
+
+    .logo {
+        position: absolute;
+        top: 200px;
+        left: 180px;
+        z-index: 2;
+    }
+}
+
+
+@sideWidth: 241px;
+
+.content {
+    width: 1565px;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding-top: 460px;
+    box-sizing: border-box;
+
+    .index-info {
+        position: absolute;
+        top: 56px;
+        left: 714px-@sideWidth;
+    }
+
+    .index-footer {
+        position: absolute;
+        bottom: 88px;
+        right: 83px-@sideWidth;
+    }
+}
+
+.type-btn {
+    position: absolute;
+    padding: 20px;
+    z-index: 10;
+
+    &.type-1 {
+        top: 509px;
+        left: 45px+180px-@sideWidth;
+    }
+
+    &.type-2 {
+        top: 466px;
+        left: 363px+180px-@sideWidth;
+    }
+
+    &.type-3 {
+        top: 492px;
+        left: 688px+180px-@sideWidth;
+    }
+
+    &.type-4 {
+        top: 506px;
+        left: 1171px-@sideWidth;
+    }
+
+    &.type-5 {
+        top: 482px;
+        left: 1509px-@sideWidth;
+    }
+
+    &.type-6 {
+        top: 853px;
+        left: 241px-@sideWidth;
+    }
+
+    &.type-7 {
+        top: 833px;
+        left: 566px-@sideWidth;
+    }
+
+    &.type-8 {
+        top: 860px;
+        left: 869px-@sideWidth;
+    }
+
+    &.type-9 {
+        top: 881px;
+        left: 1187px-@sideWidth;
+    }
+
+    &.type-10 {
+        top: 842px;
+        left: 1502px-@sideWidth;
+    }
+}
+
+.vedio-page {
+    .video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .overlay {
+        position: absolute;
+        z-index: 99;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .btn-box {
+        width: 660px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.return-btn-2 {
+    position: absolute;
+    z-index: 999;
+    bottom: 65px;
+    right: 90px;
+}
+
+
+//动画
+@initTime: 0ms;
+@intervalTime: 500ms;
+@timingFunction: linear;
+
+
+.page {
+    &.active.index-page {
+
+        .logo,
+        .index-info,
+        .index-footer {
+            animation: fadeIn @initTime @timingFunction @intervalTime both;
+        }
+
+        .type-1 {
+            animation: fadeIn @initTime+@intervalTime @timingFunction @intervalTime both;
+        }
+
+        .type-2 {
+            animation: fadeIn @initTime+@intervalTime*1*0.7 @timingFunction @intervalTime both;
+        }
+
+        .type-3 {
+            animation: fadeIn @initTime+@intervalTime*2*0.7 @timingFunction @intervalTime both;
+        }
+
+        .type-4 {
+            animation: fadeIn @initTime+@intervalTime*3*0.7 @timingFunction @intervalTime both;
+        }
+
+        .type-5 {
+            animation: fadeIn @initTime+@intervalTime*4*0.7 @timingFunction @intervalTime both;
+        }
+
+        .type-6 {
+            animation: fadeIn @initTime+@intervalTime*0*0.7 @timingFunction @intervalTime both;
+        }
+
+        .type-7 {
+            animation: fadeIn @initTime+@intervalTime*1*0.7 @timingFunction @intervalTime both;
+        }
+
+        .type-8 {
+            animation: fadeIn @initTime+@intervalTime*2*0.7 @timingFunction @intervalTime both;
+        }
+
+        .type-9 {
+            animation: fadeIn @initTime+@intervalTime*3*0.7 @timingFunction @intervalTime both;
+        }
+
+        .type-10 {
+            animation: fadeIn @initTime+@intervalTime*4*0.7 @timingFunction @intervalTime both;
+        }
+    }
+}

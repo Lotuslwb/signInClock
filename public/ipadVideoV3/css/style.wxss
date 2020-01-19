@@ -1,0 +1,231 @@
+body {
+  background: #FFFFFF;
+  font-family: Arial, Helvetica, sans-serif;
+}
+select {
+  -webkit-appearance: none !important;
+          appearance: none !important;
+}
+.f-hide {
+  display: none;
+}
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+}
+.overlay-portrait {
+  background: #000000;
+}
+.mid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+}
+.page {
+  width: 100%;
+  height: 100%;
+  display: none;
+  font-size: 24px;
+  color: #000;
+}
+.page.active {
+  display: block;
+}
+.kv-page {
+  background: url(../img/kv.jpg) no-repeat center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  overflow: hidden;
+}
+.kv-page .index-logo {
+  position: absolute;
+  bottom: 66px;
+  right: 120px;
+}
+.action-page-2 {
+  background: url(../img/index-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+.action-page-2 .action2-return-btn {
+  position: absolute;
+  z-index: 2;
+  right: 123px;
+  bottom: 115px;
+}
+.action-page-3 {
+  background: url(../img/index-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+.action-page-3 .action3-return-btn {
+  position: absolute;
+  z-index: 2;
+  right: 123px;
+  bottom: 115px;
+}
+.index-page {
+  background: url(../img/index-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+.index-page .logo {
+  position: absolute;
+  top: 200px;
+  left: 180px;
+  z-index: 2;
+}
+.content {
+  width: 1565px;
+  height: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  margin: auto;
+  padding-top: 460px;
+  box-sizing: border-box;
+}
+.content .index-info {
+  position: absolute;
+  top: 56px;
+  left: 473px;
+}
+.content .index-footer {
+  position: absolute;
+  bottom: 88px;
+  right: -158px;
+}
+.type-btn {
+  position: absolute;
+  padding: 20px;
+  z-index: 10;
+}
+.type-btn.type-1 {
+  top: 509px;
+  left: -16px;
+}
+.type-btn.type-2 {
+  top: 466px;
+  left: 302px;
+}
+.type-btn.type-3 {
+  top: 492px;
+  left: 627px;
+}
+.type-btn.type-4 {
+  top: 506px;
+  left: 930px;
+}
+.type-btn.type-5 {
+  top: 482px;
+  left: 1268px;
+}
+.type-btn.type-6 {
+  top: 853px;
+  left: 0px;
+}
+.type-btn.type-7 {
+  top: 833px;
+  left: 325px;
+}
+.type-btn.type-8 {
+  top: 860px;
+  left: 628px;
+}
+.type-btn.type-9 {
+  top: 881px;
+  left: 946px;
+}
+.type-btn.type-10 {
+  top: 842px;
+  left: 1261px;
+}
+.vedio-page .video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.vedio-page .overlay {
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+.vedio-page .overlay.active {
+  display: block;
+}
+.vedio-page .btn-box {
+  width: 660px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+.return-btn-2 {
+  position: absolute;
+  z-index: 999;
+  bottom: 65px;
+  right: 90px;
+}
+.page.active.index-page .logo,
+.page.active.index-page .index-info,
+.page.active.index-page .index-footer {
+  -webkit-animation: fadeIn 0ms linear 500ms both;
+          animation: fadeIn 0ms linear 500ms both;
+}
+.page.active.index-page .type-1 {
+  -webkit-animation: fadeIn 500ms linear 500ms both;
+          animation: fadeIn 500ms linear 500ms both;
+}
+.page.active.index-page .type-2 {
+  -webkit-animation: fadeIn 350ms linear 500ms both;
+          animation: fadeIn 350ms linear 500ms both;
+}
+.page.active.index-page .type-3 {
+  -webkit-animation: fadeIn 700ms linear 500ms both;
+          animation: fadeIn 700ms linear 500ms both;
+}
+.page.active.index-page .type-4 {
+  -webkit-animation: fadeIn 1050ms linear 500ms both;
+          animation: fadeIn 1050ms linear 500ms both;
+}
+.page.active.index-page .type-5 {
+  -webkit-animation: fadeIn 1400ms linear 500ms both;
+          animation: fadeIn 1400ms linear 500ms both;
+}
+.page.active.index-page .type-6 {
+  -webkit-animation: fadeIn 0ms linear 500ms both;
+          animation: fadeIn 0ms linear 500ms both;
+}
+.page.active.index-page .type-7 {
+  -webkit-animation: fadeIn 350ms linear 500ms both;
+          animation: fadeIn 350ms linear 500ms both;
+}
+.page.active.index-page .type-8 {
+  -webkit-animation: fadeIn 700ms linear 500ms both;
+          animation: fadeIn 700ms linear 500ms both;
+}
+.page.active.index-page .type-9 {
+  -webkit-animation: fadeIn 1050ms linear 500ms both;
+          animation: fadeIn 1050ms linear 500ms both;
+}
+.page.active.index-page .type-10 {
+  -webkit-animation: fadeIn 1400ms linear 500ms both;
+          animation: fadeIn 1400ms linear 500ms both;
+}
