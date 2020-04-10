@@ -29,7 +29,6 @@
         s.parentNode.insertBefore(hm, s);
         })();
     </script>
-
 </head>
 
 <body>
@@ -91,14 +90,47 @@
                                     <input type="text" class="Q-option qcode-input leads-Q" placeholder="请输入验证码">
                                     <div class="qcode-btn J-sendSMS">获取验证码</div>
                                 </div>
-                                <div class="Q-option-css select-wrap">
-                                    <select class="Q-option city-child-select J-age-levels leads-Q">
-                                        <option value=''>您的留学需求</option>
-                                        <option value='1'>在校生，高中升本科</option>
-                                        <option value='2'>在校生，本科升研究生</option>
-                                        <option value='3'>已工作，打算出国读研</option>
+                                <div class="Q-option-css date select-wrap">
+                                    <select class="year-select select leads-Q">
+                                        <option value=''>出生年</option>
+                                        <% for(var i=0;i<year.length;i++){%>
+                                            <option value="<%= year[i].value %>">
+                                                <%= year[i].text %>
+                                            </option>
+                                            <%}%>
                                     </select>
-                                </div>                        
+                                    <select class="month-select select leads-Q">
+                                        <option value=''>月</option>
+                                        <% for(var i=0;i<month.length;i++){%>
+                                            <option value="<%= month[i].value %>">
+                                                <%= month[i].text %>
+                                            </option>
+                                            <%}%>
+                                    </select>
+                                    <select class="date-select select leads-Q">
+                                        <option value=''>日</option>
+                                        <% for(var i=0;i<date.length;i++){%>
+                                            <option value="<%= date[i].value %>">
+                                                <%= date[i].text %>
+                                            </option>
+                                            <%}%>
+                                    </select>
+                                </div>                                
+                                <div class="Q-option-css select-wrap">
+                                    <select class="Q-option city-select J-city leads-Q">
+                                        <option value=''>省份</option>
+                                        <% for(var i=0;i<StateRegion.length;i++){%>
+                                        <option data-id="<%= StateRegion[i].id %>" value="<%= StateRegion[i].value %>">
+                                            <%= StateRegion[i].text %>
+                                        </option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                                <div class="Q-option-css select-wrap">
+                                    <select class="Q-option city-child-select J-city-child leads-Q">
+                                        <option value=''>城市</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意<span class="href">【英孚隐私政策】</span></div>
@@ -179,11 +211,6 @@
             '2':'加拿大',
             '3':'英国',
             '4':'澳大利亚',
-        }
-        var ageMap={
-            '1':'2003-01-01',
-            '2':'1998-01-01',
-            '3':'1994-01-01'
         }
 
         function indexHanlder() {
@@ -392,15 +419,9 @@
                         return false;
                     }
 
-                    $.ajax({
-                        url: '/tourTest/api/getMobileInfo?tel='+ $('.J-tel').val(),
-                        dataType: 'json',
-                        crossDomain: true,
-                        type: 'GET',
-                        contentType: 'application/json',
-                        success: function (moblieRes) {
-                           
-                    var moblieInfo=moblieRes.data;
+
+
+
                     //The main object to be sent with the submission request
                     var submissionData = new Object();
                     //Individual properties of the main object
@@ -409,19 +430,23 @@
                     var weChatData = new Object();
                     var trackingData = new Object();
                     var campaigndata = new Object();
+
+                    var year = $('.year-select').val();
+                    var month = $('.month-select').val();
+                    var date = $('.date-select').val();
                     var qcode = $('.qcode-input').val();
                     var email = $('.J-email').val();
 
                     customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
                     customer.LastName = $('.J-name').val().substr(0, 1);
                     customer.MobilePhone = $('.J-tel').val();
-                    customer.DateOfBirth =ageMap[$('.J-age-levels').val()]; // January 9th, 1975 (0-based index for months)
-                    customer.StateRegionName = moblieInfo.provinceName;
-                    customer.StateRegionCode = "CN-" + moblieInfo.provinceValue;
+                    customer.DateOfBirth = new Date(year + '-' + month + '-' + date); // January 9th, 1975 (0-based index for months)
+                    customer.StateRegionName = $('.J-city').find("option:selected").text();
+                    customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
                     customer.CountryOfResidence = "CN";
                     customer.Gender = $('.gender-page').find('.Q-option.active').index() == 0 ? "M" : "F";
                     customer.Comments = '适合留学国家：'+ labelMap[me.result];
-                    customer.City =moblieInfo.city;
+                    customer.City = $('.J-city-child').find("option:selected").text();
                     customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
 
 
@@ -480,11 +505,6 @@
                             }
                         }
                     });
-                        }
-                    });
-
-
-
                 });
             },
             getResult: function () {

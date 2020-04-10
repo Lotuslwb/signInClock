@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var logger = require('../../module/tools/log4').logger;
 var sendData = require('../../module/tools/sendData');
+var superagent = require('superagent');
 
 var date = require('./date');
 var {
@@ -137,6 +138,51 @@ router.post('/api/sendSMS', function (req, res, next) {
 
 });
 
+
+// 获取归属地
+router.get('/api/getMobileInfo', function (req, res, next) {
+    var mobile = req.query.tel;
+    if (!mobile) {
+        res.send(sendData('999', '手机号不能为空', ''));
+    } else {
+        getMobileInfo(mobile, function (data) {
+            var provinceLabel = data.province;
+            var provinceValue = StateRegion.find(it => it.text == provinceLabel).value;
+            res.send(sendData('200', {
+                city: data.city,
+                provinceName: provinceLabel,
+                provinceValue: provinceValue,
+            }, ''));
+        });
+    }
+
+});
+
+
+//获取归属地
+var getMobileInfo = function (mobile, cb) {
+    const url = `https://sjgsdcs.market.alicloudapi.com/mobile/info?mobile=${mobile}`;
+    return superagent.get(url).set('Authorization', 'APPCODE 2bceff4da7164f8abef682b158be9f8d')
+        .then(res => {
+            const data = JSON.parse(res.text)
+            if (data.code == 0) {
+                cb(data.data)
+            } else {
+                console.log(data);
+                cb({
+                    province: '',
+                    city: ''
+                })
+            }
+        }).catch(e => {
+            console.log('手机归属地获取失败', e);
+            cb({
+                mobile,
+                province: '',
+                city: ''
+            })
+        })
+}
 
 var smsDBAdd = function (json) {
     var promise = new Promise(function (resolve, reject) {
