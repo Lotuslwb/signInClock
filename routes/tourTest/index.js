@@ -82,21 +82,21 @@ router.post('/form', function (req, res, next) {
     var tel = req.body.customer.MobilePhone;
     checkSMS(tel, qcode).then(function (result) {
         if (result) {
-            // superagent.post(submissionURL).send(req.body).then((res) => {
-            //     console.log(res.body);
-            //     return superagent.post('http://ma.eldesign.cn/leads/api/addLeads').send({
-            //         realName: req.body.customer.LastName + req.body.customer.FirstName,
-            //         cellPhone: req.body.customer.MobilePhone,
-            //         cityName: req.body.customer.StateRegionName,
-            //         others: JSON.stringify(res.body),
-            //         age: req.body.customer.score,
-            //         tag: 'v8',
-            //     });
-            // }).then((res) => {
-            //     console.log(res.body);
-            // }).catch((e) => {
-            //     console.log(e);
-            // });
+            superagent.post(submissionURL).send(req.body).then((res) => {
+                console.log(res.body);
+                return superagent.post('http://ma.eldesign.cn/leads/api/addLeads').send({
+                    realName: req.body.customer.LastName + req.body.customer.FirstName,
+                    cellPhone: req.body.customer.MobilePhone,
+                    cityName: req.body.customer.StateRegionName,
+                    others: JSON.stringify(res.body),
+                    age: req.body.customer.score,
+                    tag: 'v8',
+                });
+            }).then((res) => {
+                console.log(res.body);
+            }).catch((e) => {
+                console.log(e);
+            });
             res.send({
                 status: 200,
                 data: req.body
