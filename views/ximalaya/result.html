@@ -5,7 +5,8 @@
     <title>提交完成</title>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=0" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=0" />
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="telephone=no" name="format-detection" />
     <meta name="HandheldFriendly" content="true">
@@ -25,7 +26,7 @@
         <a href="javascript:window.location.reload();">刷新</a>
     </div>
 
-    <script src="/xmjssdk/vconsole.min.js?v=16"></script>
+    <script src="https://ma.eldesign.cn/xmjssdk/vconsole.min.js"></script>
     <script>
         var vConsole = new VConsole();
     </script>
@@ -190,7 +191,8 @@
                         timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
                         nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
                         signature: wxConfig.signature, // 必填，签名，见附录1
-                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                        jsApiList: ['onMenuShareTimeline',
+                            'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                     });
 
                     wx.ready(function () {
