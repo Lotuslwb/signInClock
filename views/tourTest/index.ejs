@@ -361,45 +361,11 @@
                             <input type="text" class="input qcode-input leads-Q" placeholder="请输入验证码">
                             <div class="qcode-btn J-sendSMS">获取验证码</div>
                         </div>
-                        <div class="selectWrap">
-                            <select class="city-select J-city select leads-Q">
-                                <option value=''>请选择您的省份</option>
-                                <% for(var i=0;i<StateRegion.length;i++){%>
-                                <option data-id="<%= StateRegion[i].id %>" value="<%= StateRegion[i].value %>">
-                                    <%= StateRegion[i].text %>
-                                </option>
-                                <%}%>
-                            </select>
-                        </div>
-                        <div class="selectWrap">
-                            <select class="city-select J-city-child select leads-Q">
-                                <option value=''>请选择您的城市</option>
-                            </select>
-                        </div>
-                        <div class="selectWrap">
-                            <select class="year-select select leads-Q">
-                                <option value=''>出生年</option>
-                                <% for(var i=0;i<year.length;i++){%>
-                                <option value="<%= year[i].value %>">
-                                    <%= year[i].text %>
-                                </option>
-                                <%}%>
-                            </select>
-                            <select class="month-select select leads-Q">
-                                <option value=''>月</option>
-                                <% for(var i=0;i<month.length;i++){%>
-                                <option value="<%= month[i].value %>">
-                                    <%= month[i].text %>
-                                </option>
-                                <%}%>
-                            </select>
-                            <select class="date-select select leads-Q">
-                                <option value=''>日</option>
-                                <% for(var i=0;i<date.length;i++){%>
-                                <option value="<%= date[i].value %>">
-                                    <%= date[i].text %>
-                                </option>
-                                <%}%>
+                        <div class="Q-option-css select-wrap">
+                            <select class="Q-option city-child-select J-age-levels leads-Q">
+                                <option value=''>您的身份是</option>
+                                <option value='1'>学生党</option>
+                                <option value='2'>职场人</option>
                             </select>
                         </div>
                         <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
@@ -502,6 +468,10 @@
         }
     </script>
     <script>
+        var ageMap={
+            '1':'2003-01-01',
+            '2':'1994-01-01'
+        }
         var resultList = "<%- resultList %>".split(',');
         var channel = "<%- channel %>";
         var SourceCode = "<%- SourceCode %>";
@@ -777,92 +747,106 @@
                         return false;
                     }
 
-
-
-
-                    //The main object to be sent with the submission request
-                    var submissionData = new Object();
-                    //Individual properties of the main object
-                    var customer = new Object();
-                    var extendedDetail = new Object();
-                    var weChatData = new Object();
-                    var trackingData = new Object();
-                    var campaigndata = new Object();
-
-                    var year = $('.year-select').val();
-                    var month = $('.month-select').val();
-                    var date = $('.date-select').val();
-                    var qcode = $('.qcode-input').val();
-                    var email = $('.J-email').val();
-
-                    customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
-                    customer.LastName = $('.J-name').val().substr(0, 1);
-                    customer.MobilePhone = $('.J-tel').val();
-                    customer.DateOfBirth = new Date(year + '-' + month + '-' + date); // January 9th, 1975 (0-based index for months)
-                    customer.StateRegionName = $('.J-city').find("option:selected").text();
-                    customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
-                    customer.CountryOfResidence = "CN";
-                    customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
-                    customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.level];
-                    customer.City = $('.J-city-child').find("option:selected").text();
-                    customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
-
-
-                    // Tracking
-                    trackingData.Etag = channel + "_Travel_IDV1";
-                    trackingData.EntrySourceCode = SourceCode;
-
-                    //Campaign Data
-                    campaigndata.CampaignName = "Travel_ID";
-                    campaigndata.CampaignAllocationPrograms = "ILS,LY";
-                    campaigndata.CampaignAllocationCode = "mixed";
-
-                    //Extended Details
-                    extendedDetail.WantsMoreInfo = true;
-                    extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
-
-
-
-                    //Assigning individual classes to the main object
-                    submissionData.customer = customer;
-                    submissionData.extendedDetail = extendedDetail;
-                    submissionData.tracking = trackingData;
-                    submissionData.weChat = weChatData;
-                    submissionData.campaignData = campaigndata;
-                    submissionData.qcode = $('.qcode-input').val();
-
-
-                    console.log(submissionData);
-
-                    /** debug */
-                    // $('.loading-page').fadeIn();
-                    // setTimeout(function () {
-                    //     $('.loading-page').fadeOut();
-                    // }, 3000)
-                    // mySwiper.slideNext();
-                    // return false;
-
-
                     $.ajax({
-                        url: '/tourTest/form',
+                        url: '/tourTest/api/getMobileInfo?tel='+ $('.J-tel').val(),
                         dataType: 'json',
                         crossDomain: true,
-                        type: 'POST',
+                        type: 'GET',
                         contentType: 'application/json',
-                        data: JSON.stringify(submissionData),
-                        success: function (res) {
-                            console.log(res);
-                            if (res.status == 999) {
-                                toast(res.data)
-                            } else {
-                                $('.loading-page').fadeIn();
-                                setTimeout(function () {
-                                    $('.loading-page').fadeOut();
-                                }, 3000)
-                                mySwiper.slideNext();
+                        success: function (moblieRes) {
+                        
+                        var moblieInfo=moblieRes.data;
+                        //The main object to be sent with the submission request
+                        var submissionData = new Object();
+                        //Individual properties of the main object
+                        var customer = new Object();
+                        var extendedDetail = new Object();
+                        var weChatData = new Object();
+                        var trackingData = new Object();
+                        var campaigndata = new Object();
+
+                        var year = $('.year-select').val();
+                        var month = $('.month-select').val();
+                        var date = $('.date-select').val();
+                        var qcode = $('.qcode-input').val();
+                        var email = $('.J-email').val();
+
+                        customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
+                        customer.LastName = $('.J-name').val().substr(0, 1);
+                        customer.MobilePhone = $('.J-tel').val();
+                     
+                        customer.DateOfBirth =ageMap[$('.J-age-levels').val()]; // January 9th, 1975 (0-based index for months)
+                        customer.StateRegionName = moblieInfo.provinceName;
+                        customer.StateRegionCode = "CN-" + moblieInfo.provinceValue;
+
+                        customer.CountryOfResidence = "CN";
+                        customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
+                        customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.level];
+                        customer.City =moblieInfo.city;
+                        customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
+
+
+                        // Tracking
+                        trackingData.Etag = channel + "_Travel_IDV1";
+                        trackingData.EntrySourceCode = SourceCode;
+
+                        //Campaign Data
+                        campaigndata.CampaignName = "Travel_ID";
+                        campaigndata.CampaignAllocationPrograms = "ILS,LY";
+                        campaigndata.CampaignAllocationCode = "mixed";
+
+                        //Extended Details
+                        extendedDetail.WantsMoreInfo = true;
+                        extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
+
+
+
+                        //Assigning individual classes to the main object
+                        submissionData.customer = customer;
+                        submissionData.extendedDetail = extendedDetail;
+                        submissionData.tracking = trackingData;
+                        submissionData.weChat = weChatData;
+                        submissionData.campaignData = campaigndata;
+                        submissionData.qcode = $('.qcode-input').val();
+
+
+                        console.log(submissionData);
+
+                        /** debug */
+                        // $('.loading-page').fadeIn();
+                        // setTimeout(function () {
+                        //     $('.loading-page').fadeOut();
+                        // }, 3000)
+                        // mySwiper.slideNext();
+                        // return false;
+
+
+                        $.ajax({
+                            url: '/tourTest/form',
+                            dataType: 'json',
+                            crossDomain: true,
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(submissionData),
+                            success: function (res) {
+                                console.log(res);
+                                if (res.status == 999) {
+                                    toast(res.data)
+                                } else {
+                                    $('.loading-page').fadeIn();
+                                    setTimeout(function () {
+                                        $('.loading-page').fadeOut();
+                                    }, 3000)
+                                    mySwiper.slideNext();
+                                }
                             }
+                        });
+
                         }
-                    });
+                    })
+
+
+
                 });
             },
             getResult: function () {

@@ -32,15 +32,6 @@
 </head>
 
 <body>
-    <style>
-        .result-txt{
-            top: auto;
-            bottom: 52px;
-        }  
-        .result-page .result-pic{
-            height: 100%;
-        }
-    </style>
     <!--需要预加载的images-->
     <div class="f-hide" id="f-hide">
         <img src="/tourTest/img/bg.png" />
@@ -67,7 +58,10 @@
     <div class="page swiper-page">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide start-page  start-page-v2 swiper-no-swiping">
+                <div class="swiper-slide start-page swiper-no-swiping">
+                    <img src="/tourTest/img/startpage-music.png" class="startpage-music">
+                    <img src="/tourTest/img/startpage-icon1.png" class="startpage-icon1">
+                    <img src="/tourTest/img/startpage-icon2.png" class="startpage-icon2">
                     <div class="btn withDog J-slideNext active">开始测试</div>
                 </div>
                 <div class="swiper-slide gender-page swiper-no-swiping">
@@ -367,11 +361,45 @@
                             <input type="text" class="input qcode-input leads-Q" placeholder="请输入验证码">
                             <div class="qcode-btn J-sendSMS">获取验证码</div>
                         </div>
-                        <div class="Q-option-css select-wrap">
-                            <select class="Q-option city-child-select J-age-levels leads-Q">
-                                <option value=''>您的身份是</option>
-                                <option value='1'>学生党</option>
-                                <option value='2'>职场人</option>
+                        <div class="selectWrap">
+                            <select class="city-select J-city select leads-Q">
+                                <option value=''>请选择您的省份</option>
+                                <% for(var i=0;i<StateRegion.length;i++){%>
+                                <option data-id="<%= StateRegion[i].id %>" value="<%= StateRegion[i].value %>">
+                                    <%= StateRegion[i].text %>
+                                </option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="selectWrap">
+                            <select class="city-select J-city-child select leads-Q">
+                                <option value=''>请选择您的城市</option>
+                            </select>
+                        </div>
+                        <div class="selectWrap">
+                            <select class="year-select select leads-Q">
+                                <option value=''>出生年</option>
+                                <% for(var i=0;i<year.length;i++){%>
+                                <option value="<%= year[i].value %>">
+                                    <%= year[i].text %>
+                                </option>
+                                <%}%>
+                            </select>
+                            <select class="month-select select leads-Q">
+                                <option value=''>月</option>
+                                <% for(var i=0;i<month.length;i++){%>
+                                <option value="<%= month[i].value %>">
+                                    <%= month[i].text %>
+                                </option>
+                                <%}%>
+                            </select>
+                            <select class="date-select select leads-Q">
+                                <option value=''>日</option>
+                                <% for(var i=0;i<date.length;i++){%>
+                                <option value="<%= date[i].value %>">
+                                    <%= date[i].text %>
+                                </option>
+                                <%}%>
                             </select>
                         </div>
                         <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
@@ -381,17 +409,18 @@
                             <input type="text" class="input J-email" placeholder="请输入您的邮箱">
                         </div>
                     </div>
+
+                    <!-- <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt=""> -->
                     <div class="btn J-submit">确认</div>
                 </div>
-
-                <div class="swiper-slide result-page result-v2 swiper-no-swiping">
+                <div class="swiper-slide result-page result-v1 swiper-no-swiping">
                     <img src="" class="result-pic">
                     <img src='/tourTest/img/result-text.png' class='result-txt'>
                 </div>
             </div>
         </div>
     </div>
-    <canvas id='myCanvas' width='640' height='1008'></canvas>
+    <canvas id='myCanvas' width='640' height='1268'></canvas>
     <div class="right-pop">
         <div class="overlay"></div>
         <div class="pop-content">
@@ -431,37 +460,48 @@
             tagId: '3-3',
             text: '佛系走天下',
             des: '旅行时胆子大不爱做计划',
-        }];
+        }, {
+            tagId: '4-1',
+            text: '热情似火'
+        }, {
+            tagId: '4-2',
+            text: '深沉如你'
+        }, {
+            tagId: '4-3',
+            text: '自由活泼'
+        }, {
+            tagId: '5-1',
+            text: '拖延症患者'
+        }, {
+            tagId: '5-2',
+            text: '极度自律'
+        }, {
+            tagId: '5-3',
+            text: '随心所欲'
+        }, , {
+            tagId: '8-1',
+            text: '另辟蹊径'
+        }, {
+            tagId: '8-2',
+            text: '度假=放空'
+        }, {
+            tagId: '8-3',
+            text: '极限挑战'
+        }, ];
+        var levelMap = ['', '旅行属性：休闲懒散派，适合海滨城市如布莱顿、马耳他、迈阿密等',
+            '旅行属性：逛吃逛吃党，适合饮食丰富，特色小店、手工艺店比较多的城市，如巴黎、巴塞罗那、新加坡、首尔、马德里等',
+            '旅行属性：城市暴走族，适合去面积不大，但到处都有景点、风景和历史建筑的城市，比如罗马、东京、曼城、柏林', '你的旅行属性为：打卡狂魔，适合大山大河、需要自驾的地方，如美西、加拿大、新西兰等'
+        ];
 
-        var levelMap = {
-            'female_1_1.jpg': '适应型旅行者，推荐目的地:布莱顿',
-            'female_1_2.jpg': '适应型旅行者，推荐目的地:马耳他',
-            'female_1_3.jpg': '适应型旅行者，推荐目的地:迈阿密',
-            'female_2_1.jpg': '收集型旅行者，推荐目的地:马德里',
-            'female_2_2.jpg': '收集型旅行者，推荐目的地:首尔',
-            'female_2_3.jpg': '收集型旅行者，推荐目的地:巴黎',
-            'female_3_1.jpg': '思考型旅行者，推荐目的地:东京',
-            'female_3_2.jpg': '思考型旅行者，推荐目的地:罗马',
-            'female_4_1.jpg': '自律型旅行者，推荐目的地:加拿大',
-            'female_4_2.jpg': '自律型旅行者，推荐目的地:美西',
-            'male_1_1.jpg': '适应型旅行者，推荐目的地:布莱顿',
-            'male_1_2.jpg': '适应型旅行者，推荐目的地:马耳他',
-            'male_1_3.jpg': '适应型旅行者，推荐目的地:迈阿密',
-            'male_2_1.jpg': '收集型旅行者，推荐目的地:巴塞罗那',
-            'male_2_2.jpg': '收集型旅行者，推荐目的地:新加坡',
-            'male_2_3.jpg': '收集型旅行者，推荐目的地:巴黎',
-            'male_3_1.jpg': '思考型旅行者，推荐目的地:柏林',
-            'male_3_2.jpg': '思考型旅行者，推荐目的地:曼切斯特',
-            'male_4_1.jpg': '自律型旅行者，推荐目的地:新西兰',
-            'male_4_2.jpg': '自律型旅行者，推荐目的地:美西',
+        function genOptions(data) {
+            var returnStr = '';
+            data.map(item => {
+                returnStr += '<option value="' + item.value + '">' + item.text + '</option>';
+            });
+            return returnStr;
         }
     </script>
     <script>
-        var ageMap={
-            '1':'2003-01-01',
-            '2':'1994-01-01'
-        }
-        
         var resultList = "<%- resultList %>".split(',');
         var channel = "<%- channel %>";
         var SourceCode = "<%- SourceCode %>";
@@ -507,12 +547,20 @@
             init: function () {
                 this.countdown = 60;
                 this.timer = null;
+
                 this.initMain();
                 this.initMusic();
                 this.bindEvnet(this);
-
                 $('.iframe').attr('src', $('.iframe').data('src'));
 
+                // var me=this;
+                // var tagList=["1-3", "3-3", "4-2", "5-3", "8-3"];
+                // var img=new Image();
+                // img.src='/tourTest/img/v1/female_2_1.jpg';
+                // img.onload=()=>{
+                //     me.genTagImg(tagList,img,'female_2_1.jpg');
+                // }  
+                // $('#myCanvas').show();
             },
             initMain: function () {
                 var h = $('body').height();
@@ -724,100 +772,95 @@
                         return false;
                     }
 
-                    if (!$('.rightChecked .checkbox').hasClass('active')) {
+                    if (!$('.J-rightChecked .checkbox').hasClass('active')) {
                         toast('请勾选隐私策略');
                         return false;
                     }
 
+
+
+
+                    //The main object to be sent with the submission request
+                    var submissionData = new Object();
+                    //Individual properties of the main object
+                    var customer = new Object();
+                    var extendedDetail = new Object();
+                    var weChatData = new Object();
+                    var trackingData = new Object();
+                    var campaigndata = new Object();
+
+                    var year = $('.year-select').val();
+                    var month = $('.month-select').val();
+                    var date = $('.date-select').val();
+                    var qcode = $('.qcode-input').val();
+                    var email = $('.J-email').val();
+
+                    customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
+                    customer.LastName = $('.J-name').val().substr(0, 1);
+                    customer.MobilePhone = $('.J-tel').val();
+                    customer.DateOfBirth = new Date(year + '-' + month + '-' + date); // January 9th, 1975 (0-based index for months)
+                    customer.StateRegionName = $('.J-city').find("option:selected").text();
+                    customer.StateRegionCode = "CN-" + $('.J-city').find("option:selected").val();
+                    customer.CountryOfResidence = "CN";
+                    customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
+                    customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.level];
+                    customer.City = $('.J-city-child').find("option:selected").text();
+                    customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
+
+
+                    // Tracking
+                    trackingData.Etag = channel + "_Travel_IDV1";
+                    trackingData.EntrySourceCode = SourceCode;
+
+                    //Campaign Data
+                    campaigndata.CampaignName = "Travel_ID";
+                    campaigndata.CampaignAllocationPrograms = "ILS,LY";
+                    campaigndata.CampaignAllocationCode = "mixed";
+
+                    //Extended Details
+                    extendedDetail.WantsMoreInfo = true;
+                    extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
+
+
+
+                    //Assigning individual classes to the main object
+                    submissionData.customer = customer;
+                    submissionData.extendedDetail = extendedDetail;
+                    submissionData.tracking = trackingData;
+                    submissionData.weChat = weChatData;
+                    submissionData.campaignData = campaigndata;
+                    submissionData.qcode = $('.qcode-input').val();
+
+
+                    console.log(submissionData);
+
+                    /** debug */
+                    // $('.loading-page').fadeIn();
+                    // setTimeout(function () {
+                    //     $('.loading-page').fadeOut();
+                    // }, 3000)
+                    // mySwiper.slideNext();
+                    // return false;
+
+
                     $.ajax({
-                        url: '/tourTest/api/getMobileInfo?tel='+ $('.J-tel').val(),
+                        url: '/tourTest/form',
                         dataType: 'json',
                         crossDomain: true,
-                        type: 'GET',
+                        type: 'POST',
                         contentType: 'application/json',
-                        success: function (moblieRes) {
-                        
-                        var moblieInfo=moblieRes.data;
-
-                            //The main object to be sent with the submission request
-                        var submissionData = new Object();
-                        //Individual properties of the main object
-                        var customer = new Object();
-                        var extendedDetail = new Object();
-                        var weChatData = new Object();
-                        var trackingData = new Object();
-                        var campaigndata = new Object();
-
-                        var email = $('.J-email').val();
-
-                        customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
-                        customer.LastName = $('.J-name').val().substr(0, 1);
-                        customer.MobilePhone = $('.J-tel').val();
-                        customer.DateOfBirth =ageMap[$('.J-age-levels').val()]; // January 9th, 1975 (0-based index for months)
-                        customer.StateRegionName = moblieInfo.provinceName;
-                        customer.StateRegionCode = "CN-" + moblieInfo.provinceValue;
-                       
-                        customer.CountryOfResidence = "CN";
-                        customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
-                        customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.result];
-                        customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
-                        customer.City =moblieInfo.city;
-
-
-                        // Tracking
-                        trackingData.Etag = channel + "_Travel_IDV2";
-                        trackingData.EntrySourceCode = SourceCode;
-
-                        //Campaign Data
-                        campaigndata.CampaignName = "Travel_ID";
-                        campaigndata.CampaignAllocationPrograms = "ILS,LY";
-                        campaigndata.CampaignAllocationCode = "mixed";
-
-                        //Extended Details
-                        extendedDetail.WantsMoreInfo = true;
-                        extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
-
-
-
-                        //Assigning individual classes to the main object
-                        submissionData.customer = customer;
-                        submissionData.extendedDetail = extendedDetail;
-                        submissionData.tracking = trackingData;
-                        submissionData.weChat = weChatData;
-                        submissionData.campaignData = campaigndata;
-                        submissionData.qcode = $('.qcode-input').val();
-
-                        console.log(submissionData);
-
-                        /** debug */
-                        // $('.loading-page').fadeIn();
-                        // setTimeout(function () {
-                        //     $('.loading-page').fadeOut();
-                        // }, 3000)
-                        // mySwiper.slideNext();
-                        // return false;
-
-                        $.ajax({
-                            url: '/tourTest/form',
-                            dataType: 'json',
-                            crossDomain: true,
-                            type: 'POST',
-                            contentType: 'application/json',
-                            data: JSON.stringify(submissionData),
-                            success: function (res) {
-                                console.log(res);
-                                if (res.status == 999) {
-                                    toast(res.data)
-                                } else {
-                                    $('.loading-page').fadeIn();
-                                    setTimeout(function () {
-                                        $('.loading-page').fadeOut();
-                                    }, 3000)
-                                    mySwiper.slideNext();
-                                }
+                        data: JSON.stringify(submissionData),
+                        success: function (res) {
+                            console.log(res);
+                            if (res.status == 999) {
+                                toast(res.data)
+                            } else {
+                                $('.loading-page').fadeIn();
+                                setTimeout(function () {
+                                    $('.loading-page').fadeOut();
+                                }, 3000)
+                                mySwiper.slideNext();
                             }
-                        });
-
                         }
                     });
                 });
@@ -833,27 +876,70 @@
                     totalScore += $Qitem.data('value') * 1;
                     tag && tagList.push(tag);
                 });
-                this.tagDes = this.genTagDes(tagList, img, result)
                 var level = this.getScoreLevel(totalScore);
                 var filterStr = (sex == 0 ? "male" : "female") + "_" + level;
                 console.log(filterStr);
-                var result = this.result = resultList.filter(function (item) {
+                var result = resultList.filter(function (item) {
                     return item.indexOf(filterStr) == 0;
                 }).random();
                 console.log(result);
                 this.level = level;
-                var resultURL = '/tourTest/img/v2/' + result;
+                var resultURL = '/tourTest/img/v1/' + result;
                 var img = new Image();
                 img.src = resultURL;
-                $('.result-pic').attr('src', resultURL);
-                $('.result-txt').addClass(result.split('.')[0]);
+                img.onload = function () {
+                    var tagImg = me.genTagImg(tagList, img, result);
+
+                    me.tagDes = me.genTagDes(tagList, img, result);
+
+                    $('.result-pic').attr('src', tagImg).parents('.result-page').css('background',
+                        'url(/tourTest/img/v1/bg/' + result + ')');
+                    $('.result-txt').addClass(result.split('.')[0]);
+                }
             },
             genTagDes: function (tagList) {
                 var tagDesList = tagList.map(item => {
                     var tagObj = tagData.find(it => it && it.tagId == item);
-                    return tagObj ? tagObj.des : '';
+                    return tagObj.des;
                 })
                 return tagDesList.filter(it => it).join();
+            },
+            genTagImg: function (tagList, img, result) {
+                var tagImg;
+                var tagTxtList = tagList.map(item => {
+                    var tagObj = tagData.find(it => it && it.tagId == item)
+                    return tagObj.text;
+                })
+                var myCanvas = $('#myCanvas')[0];
+                var ctx = myCanvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                tagTxtList.map((text, index) => {
+                    var styleObj = tplTagStyle[result][index];
+                    drawTag(text, styleObj);
+                })
+
+                tagImg = myCanvas.toDataURL("image/png");
+                return tagImg;
+
+                function drawTag(text, styleObj) {
+                    console.log(styleObj);
+                    var tagW = 170,
+                        tagH = 50,
+                        x = styleObj.x,
+                        y = styleObj.y;
+                    ctx.beginPath();
+                    ctx.rect(x, y, tagW, tagH);
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fill();
+                    ctx.lineWidth = "4";
+                    ctx.strokeStyle = styleObj.borderColor;
+                    ctx.rect(x, y, tagW, tagH);
+                    ctx.stroke();
+                    ctx.textAlign = "center";
+                    ctx.fillStyle = '#4d4d4d';
+                    ctx.font = "28px MHEIPRCHEAVY";
+                    ctx.fillText(text, x + tagW / 2, y + 36, tagW);
+                }
             },
             getScoreLevel: function (score) {
                 var level = 0;
@@ -881,14 +967,6 @@
             }
         }
         var page = new indexHanlder();
-
-        function genOptions(data) {
-            var returnStr = '';
-            data.map(item => {
-                returnStr += '<option value="' + item.value + '">' + item.text + '</option>';
-            });
-            return returnStr;
-        }
     </script>
     <script>
         var loaded = false;
@@ -925,8 +1003,8 @@
         var loader = new loader();
         loader.onLoaded = function () {
             loaded = true;
-            $('.swiper-page').addClass('active');
             $('.loading-page').fadeOut();
+            $('.swiper-page').addClass('active');
             var $btn = $('.J-page1-btn');
             timer = setInterval(function () {
                 $btn.hasClass('active') ? $btn.removeClass('active') : $btn.addClass('active');
@@ -952,8 +1030,8 @@
 
             //“分享给朋友”
             wx.onMenuShareAppMessage({
-                title: '测测你的旅行偏好，解码隐藏个人优势~', // 分享标题
-                desc: '一个人的优势，也可以从旅行中发现', // 分享描述
+                title: '测测你的隐藏旅行属性', // 分享标题
+                desc: '你是打卡狂魔，还是逛吃逛吃党？', // 分享描述
                 link: '', // 分享链接
                 imgUrl: 'http://ma.eldesign.cn/tourTest/img/share_logo.jpg', // 分享图标
                 type: '', // 分享类型,music、video或link，不填默认为link
@@ -970,8 +1048,8 @@
 
             //“分享到朋友圈”
             wx.onMenuShareTimeline({
-                title: '测测你的旅行偏好，解码隐藏个人优势~', // 分享标题
-                desc: '一个人的优势，也可以从旅行中发现', // 分享描述
+                title: '测测你的隐藏旅行属性', // 分享标题
+                desc: '你是打卡狂魔，还是逛吃逛吃党？', // 分享描述
                 link: '', // 分享链接
                 imgUrl: 'http://ma.eldesign.cn/tourTest/img/share_logo.jpg', // 分享图标
                 success: function () {
