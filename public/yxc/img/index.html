@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta name="HandheldFriendly" content="true">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script src="js/dpi.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css"/>
+    <title>敢不敢让朋友监督你的新年计划?</title>
+</head>
+<body>
+
+<img src="img/logo.jpg" width="0" height="0">
+
+<!--滑动主页面-->
+<div class="page page-main">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide index-slide">
+                <img src="img/index-title.png" class="index-title"/>
+                <img src="img/index-arrow.png" class="index-arrow"/>
+            </div>
+            <div class="swiper-slide info-slide">
+                <img src="img/info-img.png" class="img">
+                <img src="img/info-text1.png" class="text1">
+                <img src="img/info-text2.png" class="text2">
+                <img src="img/index-arrow.png" class="index-arrow"/>
+            </div>
+            <div class="swiper-slide form-slide">
+                <img src="img/form-img.png" class="img">
+                <img src="img/form-text1.png" class="text1">
+                <img src="img/form-text2.png" class="text2">
+
+                <div class="form">
+                    <input type="text" placeholder="姓名" class="input upAni yourname">
+                    <input type="text" placeholder="计划1(必填)" class="input upAni plan-input">
+                    <input type="text" placeholder="计划2(选填)" class="input upAni plan-input">
+                    <input type="text" placeholder="计划3(选填)" class="input upAni plan-input">
+                    <input type="text" placeholder="计划4(选填)" class="input upAni plan-input">
+                    <div class="label upAni">
+                        至少完成<select class="numberBox plansNumber">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>项,如果达不到,我
+                        <div class="lanBox">
+                            <input class="punishmentSelect" placeholder=" 惩罚措施(必填)"/>
+                            <select class="selectOverLay">
+                                <option value="">惩罚措施(必填)</option>
+                                <option value='99'>自定义</option>
+                                <option value='1'>请大家喝饮料</option>
+                                <option value="2">请大家吃大餐</option>
+                                <option value="3">给大家发红包</option>
+                                <option value="4">给大家做牛做马</option>
+                                <option value="5">狂奔20公里</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <img src="img/form-submit.png" class="submit upAni J-submit">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page page-result">
+    <div class="J-confirm"></div>
+    <canvas id="myCanvas" width="640" height="1008"></canvas>
+</div>
+
+<img src="img/tpl.jpg" class="f-hide J-tpl">
+
+<div class="toast"></div>
+<script>
+    var toast = function (msg, timer) {
+        $('.toast').html(msg).fadeIn();
+        setTimeout(function () {
+            $('.toast').fadeOut();
+        }, timer || 1000)
+    }
+
+    var showToast = function (msg) {
+        $('.toast').html(msg).fadeIn();
+    };
+
+    var hideToast = function () {
+        $('.toast').fadeOut();
+    }
+</script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/swiper-3.3.1.jquery.min.js"></script>
+<script src="js/canvas2image.js"></script>
+<script>
+
+    function indexHanlder() {
+        this.init();
+    }
+
+    indexHanlder.prototype = {
+        init: function () {
+            var data = window.localStorage.getItem('data');
+            if (data && data.length > 0) {
+                data = JSON.parse(data);
+                $('.yourname').val(data.yourname);
+                $('.plansNumber').val(data.plansNumber);
+                $('.punishmentSelect').val(data.punishmentText);
+                $.each(data.plansArray, function (index, item) {
+                    $('.plan-input').eq(index).val(item);
+                })
+            }
+
+            $('.page-main').addClass('active').siblings().removeClass('active');
+            this.initSwiper(this);
+            this.bindEvnet(this);
+
+        },
+        genImg: function (data) {
+            var image = new Image();
+            image.src = $('.J-tpl').prop('src');
+            if (image.complete) {
+                drawImage(image);
+            } else {
+                image.onload = function () {
+                    drawImage(image);
+                };
+                image.onerror = function () {
+                    toast('生成失败');
+                };
+            }
+
+            function drawImage(image) {
+                var mycv = document.getElementById("myCanvas");
+                var myctx = mycv.getContext("2d");
+                myctx.drawImage(image, 0, 0);
+                drawInfo(myctx, data);
+
+                var png = Canvas2Image.convertToPNG(mycv, 640, 1008);
+                $('.J-confirm').html(png);
+                $('.page-result').addClass('active').siblings().removeClass('active');
+            }
+
+            function drawInfo(myctx, data) {
+
+                //处理计划列表文字
+                //设置字体样式
+                myctx.font = "24px Courier New";
+                //设置字体填充颜色
+                myctx.fillStyle = "#0a0a0a";
+                var x = 65, y = 145;
+                for (var i = 0; i < 4; i++) {
+                    y += 90;
+                    if (data.plansArray[i]) {
+                        canvasTextAutoLine(data.plansArray[i], myctx, x, y, 30, 582);
+                    } else {
+                        canvasTextAutoLine('暂时没有填写计划哦', myctx, x, y, 30, 582);
+                    }
+                }
+
+                //处理计划数
+                myctx.font = "30px";
+                canvasTextAutoLine(data.plansNumber, myctx, 157, 590, 30, 60);
+
+                //处理惩罚
+                myctx.font = "28px";
+                canvasTextAutoLine(data.punishmentText, myctx, 425, 622, 30, 1000);
+
+                //处理名字
+                myctx.font = "32px bolder";
+                canvasTextAutoLine(data.yourname + '要', myctx, 42, 172, 30, 1000);
+            }
+        },
+        bindEvnet: function (me) {
+            $('.J-submit').click(function () {
+                var data = me.checkForm(me);
+                if (data) {
+                    showToast('生成计划中...');
+                    window.localStorage.setItem('data', JSON.stringify(data));
+                    me.genImg(data);
+                    toast('生成成功，长按保存图片，<br/>分享到朋友圈，让朋友监督吧！', 4000);
+                }
+            });
+
+            $('.selectOverLay').change(function () {
+                var text = $('.selectOverLay option:selected').text();
+                var v = $('.selectOverLay').val();
+
+                if (v == '') {
+                    $('.punishmentSelect').val('');
+                } else {
+                    $('.punishmentSelect').val(text);
+                }
+
+                if (v == 99) {
+                    $(this).hide();
+                    $('.punishmentSelect').focus();
+                }
+            })
+
+            $('.punishmentSelect').blur(function () {
+                $('.selectOverLay').show().val('');
+            })
+        },
+        initSwiper: function (me) {
+            me.mySwiper = new Swiper('.swiper-container', {
+                direction: 'vertical',
+                loop: false
+            })
+        },
+        checkForm: function (me) {
+            var data = {
+                yourname: $('.yourname').val(),
+                plansArray: me.getPlansArray(),
+                plansNumber: $('.plansNumber').val(),
+                punishmentText: $('.punishmentSelect').val()
+            }
+
+
+            if (data.yourname.length <= 0) {
+                toast('请填上您的姓名');
+                return false;
+            }
+
+            if (data.plansArray.length <= 0) {
+                toast('请至少选择一个计划');
+                return false;
+            }
+
+            for (var i = 0; i < data.plansArray.length; i++) {
+                if (data.plansArray[i].length > 40) {
+                    toast('计划最多40个字');
+                    return false;
+                }
+            }
+
+            if (data.plansNumber <= 0) {
+                toast('至少完成数量要大于0');
+                return false;
+            }
+
+            if (data.plansNumber * 1 > data.plansArray.length) {
+                toast('完成数量不能大于你填写的计划', 1200);
+                return false;
+            }
+
+            if (data.punishmentText.length <= 0) {
+                toast('请选择一个惩罚');
+                return false;
+            }
+
+            if (data.punishmentText.length > 7) {
+                toast('惩罚最多只能填7个字');
+                return false;
+            }
+
+            return data;
+        },
+        getPlansArray: function () {
+            var plansArray = [];
+
+            $('.plan-input').map(function (index, item) {
+                var v = item.value;
+                if (v) {
+                    plansArray.push(v);
+                }
+            })
+            return plansArray;
+        }
+    }
+
+
+    new indexHanlder();
+
+
+    /*
+
+    canvas text换行
+    str:要绘制的字符串
+    canvas:canvas对象
+    initX:绘制字符串起始x坐标
+    initY:绘制字符串起始y坐标
+    lineHeight:字行高
+    */
+    function canvasTextAutoLine(str, ctx, initX, initY, lineHeight, maxWidth) {
+        var lineWidth = 0;
+        var canvasWidth = maxWidth;
+        var lastSubStrIndex = 0;
+        for (var i = 0; i < str.length; i++) {
+            lineWidth += ctx.measureText(str[i]).width;
+            if (lineWidth > canvasWidth - initX) {//减去initX,防止边界出现的问题
+                ctx.fillText(str.substring(lastSubStrIndex, i), initX, initY);
+                initY += lineHeight;
+                lineWidth = 0;
+                lastSubStrIndex = i;
+            }
+            if (i == str.length - 1) {
+                ctx.fillText(str.substring(lastSubStrIndex, i + 1), initX, initY);
+            }
+        }
+    }
+
+</script>
+<script src="js/jweixin-1.0.0.js"></script>
+
+</body>
+</html>
