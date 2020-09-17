@@ -57,7 +57,51 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/swiper-3.3.1.jquery.min.js"></script>
+    <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
+    <script>
+        var loaded = false;
+        var loaded_ani = false;
 
+
+        //预加载器
+        function loader() {
+            this.init();
+        }
+
+        loader.prototype = {
+            init: function () {
+                var me = this;
+                var loaded = 0;
+
+                if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+                    me.onLoaded();
+                } else {
+                    var imgLoad = imagesLoaded('body');
+                    imgLoad.on('progress', function (instance, image) {
+                        loaded++;
+                        if (loaded == instance.images.length) {
+                            me.onLoaded();
+                        }
+                    });
+                }
+            },
+            onLoaded: function () {
+
+            }
+        }
+
+        var loader = new loader();
+        loader.onLoaded = function () {
+            loaded = true;
+            $('.loading-page').fadeOut();
+            $('.swiper-page').addClass('active');
+            var $btn = $('.J-page1-btn');
+            timer = setInterval(function () {
+                $btn.hasClass('active') ? $btn.removeClass('active') : $btn.addClass('active');
+            }, 1500)
+            mySwiper = initMySwiper();
+        }
+    </script>
     <script>
         function indexHanlder() {
             this.init();

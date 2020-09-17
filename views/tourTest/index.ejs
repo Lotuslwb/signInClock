@@ -21,12 +21,12 @@
     <link rel="stylesheet" href="/swiper/swiper-3.3.1.min.css">
     <script>
         var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?a0e9e1cce678aef060f414bcd2beb467";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a0e9e1cce678aef060f414bcd2beb467";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
     </script>
 
 </head>
@@ -172,8 +172,8 @@
                             <div class="Q-itemWrap">
                                 <span class="radio music-radio"></span>
                                 <span class="music" data-src='/tourTest/mp3/1.mp3'>
-                                    <span class="pross J-music" style="width:230px;"><img src="/tourTest/img/music-pross-icon.png"
-                                            class="pross-icon">
+                                    <span class="pross J-music" style="width:230px;"><img
+                                            src="/tourTest/img/music-pross-icon.png" class="pross-icon">
                                     </span>
                                     <span class="readIcon"></span>
                                     <span class="timer">10</span>
@@ -184,8 +184,8 @@
                             <div class="Q-itemWrap">
                                 <span class="radio music-radio"></span>
                                 <span class="music" data-src='/tourTest/mp3/2.mp3'>
-                                    <span class="pross J-music" style="width:295px;"><img src="/tourTest/img/music-pross-icon.png"
-                                            class="pross-icon">
+                                    <span class="pross J-music" style="width:295px;"><img
+                                            src="/tourTest/img/music-pross-icon.png" class="pross-icon">
                                     </span>
                                     <span class="readIcon"></span>
                                     <span class="timer">13</span>
@@ -196,8 +196,8 @@
                             <div class="Q-itemWrap">
                                 <span class="radio music-radio"></span>
                                 <span class="music" data-src='/tourTest/mp3/3.mp3'>
-                                    <span class="pross J-music" style="width:260px;"><img src="/tourTest/img/music-pross-icon.png"
-                                            class="pross-icon">
+                                    <span class="pross J-music" style="width:260px;"><img
+                                            src="/tourTest/img/music-pross-icon.png" class="pross-icon">
                                     </span>
                                     <span class="readIcon"></span>
                                     <span class="timer">12</span>
@@ -244,13 +244,15 @@
                         <div class="Q-item imageItem" data-value=3>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
-                                <span class="label">落日余晖 <img class="image" src="/tourTest/img/Q6-option-1.png" /></span>
+                                <span class="label">落日余晖 <img class="image"
+                                        src="/tourTest/img/Q6-option-1.png" /></span>
                             </div>
                         </div>
                         <div class="Q-item imageItem" data-value=2>
                             <div class="Q-itemWrap">
                                 <span class="radio"></span>
-                                <span class="label">碧空万里 <img class="image" src="/tourTest/img/Q6-option-2.png" /></span>
+                                <span class="label">碧空万里 <img class="image"
+                                        src="/tourTest/img/Q6-option-2.png" /></span>
                             </div>
                         </div>
                         <div class="Q-item imageItem" data-value=1>
@@ -368,12 +370,17 @@
                                 <option value='2'>职场人</option>
                             </select>
                         </div>
-                        <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意 <span class="href">英孚隐私政策</span></div>
+                        <div class="emailBox">
+                            <input type="text" class="input J-center" placeholder="您的就读EF中心">
+                        </div>
+                        <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意 <span
+                                class="href">英孚隐私政策</span></div>
                         <div class="rightChecked J-WantsBrochure"> <span class="checkbox active"></span>
-                            请发一份《全球旅行指南》到我邮箱</span></div>
+                            请发一份《全球游学指南》到我邮箱</span></div>
                         <div class="emailBox">
                             <input type="text" class="input J-email" placeholder="请输入您的邮箱">
                         </div>
+
                     </div>
 
                     <!-- <img class="leads-pic" src="/tourTest/img/Q-pic-leads.png" alt=""> -->
@@ -391,7 +398,8 @@
         <div class="overlay"></div>
         <div class="pop-content">
             <div class='iframeWrap'>
-                <iframe class="iframe" data-src="https://liuxue.ef.com.cn/legal/privacy-policy/#" frameborder="0"></iframe>
+                <iframe class="iframe" data-src="https://liuxue.ef.com.cn/legal/privacy-policy/#"
+                    frameborder="0"></iframe>
             </div>
         </div>
         <img class="closed" src="/tourTest/img/pop-closed.png" />
@@ -468,9 +476,9 @@
         }
     </script>
     <script>
-        var ageMap={
-            '1':'2003-01-01',
-            '2':'1994-01-01'
+        var ageMap = {
+            '1': '2003-01-01',
+            '2': '1994-01-01'
         }
         var resultList = "<%- resultList %>".split(',');
         var channel = "<%- channel %>";
@@ -748,99 +756,106 @@
                     }
 
                     $.ajax({
-                        url: '/tourTest/api/getMobileInfo?tel='+ $('.J-tel').val(),
+                        url: '/tourTest/api/getMobileInfo?tel=' + $('.J-tel').val(),
                         dataType: 'json',
                         crossDomain: true,
                         type: 'GET',
                         contentType: 'application/json',
                         success: function (moblieRes) {
-                        
-                        var moblieInfo=moblieRes.data;
-                        //The main object to be sent with the submission request
-                        var submissionData = new Object();
-                        //Individual properties of the main object
-                        var customer = new Object();
-                        var extendedDetail = new Object();
-                        var weChatData = new Object();
-                        var trackingData = new Object();
-                        var campaigndata = new Object();
 
-                        var year = $('.year-select').val();
-                        var month = $('.month-select').val();
-                        var date = $('.date-select').val();
-                        var qcode = $('.qcode-input').val();
-                        var email = $('.J-email').val();
+                            var moblieInfo = moblieRes.data;
+                            //The main object to be sent with the submission request
+                            var submissionData = new Object();
+                            //Individual properties of the main object
+                            var customer = new Object();
+                            var extendedDetail = new Object();
+                            var weChatData = new Object();
+                            var trackingData = new Object();
+                            var campaigndata = new Object();
 
-                        customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
-                        customer.LastName = $('.J-name').val().substr(0, 1);
-                        customer.MobilePhone = $('.J-tel').val();
-                     
-                        customer.DateOfBirth =ageMap[$('.J-age-levels').val()]; // January 9th, 1975 (0-based index for months)
-                        customer.StateRegionName = moblieInfo.provinceName;
-                        customer.StateRegionCode = "CN-" + moblieInfo.provinceValue;
+                            var year = $('.year-select').val();
+                            var month = $('.month-select').val();
+                            var date = $('.date-select').val();
+                            var qcode = $('.qcode-input').val();
+                            var email = $('.J-email').val();
 
-                        customer.CountryOfResidence = "CN";
-                        customer.Gender = $('.gender-page').find('.Q-item.active').index() == 0 ? "M" : "F";
-                        customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me.level];
-                        customer.City =moblieInfo.city;
-                        customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
+                            customer.FirstName = $('.J-name').val().substr(1, $('.J-name')
+                                .val().length - 1);
+                            customer.LastName = $('.J-name').val().substr(0, 1);
+                            customer.MobilePhone = $('.J-tel').val();
 
+                            customer.DateOfBirth = ageMap[$('.J-age-levels')
+                                .val()]; // January 9th, 1975 (0-based index for months)
+                            customer.StateRegionName = moblieInfo.provinceName;
+                            customer.StateRegionCode = "CN-" + moblieInfo.provinceValue;
 
-                        // Tracking
-                        trackingData.Etag = channel + "_Travel_IDV1";
-                        trackingData.EntrySourceCode = SourceCode;
-
-                        //Campaign Data
-                        campaigndata.CampaignName = "Travel_ID";
-                        campaigndata.CampaignAllocationPrograms = "ILS,LY";
-                        campaigndata.CampaignAllocationCode = "mixed";
-
-                        //Extended Details
-                        extendedDetail.WantsMoreInfo = true;
-                        extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
+                            customer.CountryOfResidence = "CN";
+                            customer.Gender = $('.gender-page').find('.Q-item.active')
+                                .index() == 0 ? "M" : "F";
+                            customer.Comments = '用户标签属性：' + me.tagDes + ';' + levelMap[me
+                                .level] + '|就读中心：' + $('.J-center').val();
+                            customer.City = moblieInfo.city;
+                            customer.Email = email ? email : customer.MobilePhone +
+                                "@noemail.com";
 
 
+                            // Tracking
+                            trackingData.Etag = channel + "_Travel_IDV1";
+                            trackingData.EntrySourceCode = SourceCode;
 
-                        //Assigning individual classes to the main object
-                        submissionData.customer = customer;
-                        submissionData.extendedDetail = extendedDetail;
-                        submissionData.tracking = trackingData;
-                        submissionData.weChat = weChatData;
-                        submissionData.campaignData = campaigndata;
-                        submissionData.qcode = $('.qcode-input').val();
+                            //Campaign Data
+                            campaigndata.CampaignName = "Travel_ID";
+                            campaigndata.CampaignAllocationPrograms = "ILS,LY";
+                            campaigndata.CampaignAllocationCode = "mixed";
 
-
-                        console.log(submissionData);
-
-                        /** debug */
-                        // $('.loading-page').fadeIn();
-                        // setTimeout(function () {
-                        //     $('.loading-page').fadeOut();
-                        // }, 3000)
-                        // mySwiper.slideNext();
-                        // return false;
+                            //Extended Details
+                            extendedDetail.WantsMoreInfo = true;
+                            extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox')
+                                .hasClass('active');
 
 
-                        $.ajax({
-                            url: '/tourTest/form',
-                            dataType: 'json',
-                            crossDomain: true,
-                            type: 'POST',
-                            contentType: 'application/json',
-                            data: JSON.stringify(submissionData),
-                            success: function (res) {
-                                console.log(res);
-                                if (res.status == 999) {
-                                    toast(res.data)
-                                } else {
-                                    $('.loading-page').fadeIn();
-                                    setTimeout(function () {
-                                        $('.loading-page').fadeOut();
-                                    }, 3000)
-                                    mySwiper.slideNext();
+
+                            //Assigning individual classes to the main object
+                            submissionData.customer = customer;
+                            submissionData.extendedDetail = extendedDetail;
+                            submissionData.tracking = trackingData;
+                            submissionData.weChat = weChatData;
+                            submissionData.campaignData = campaigndata;
+                            submissionData.qcode = $('.qcode-input').val();
+
+
+                            console.log(submissionData);
+
+                            /** debug */
+                            // $('.loading-page').fadeIn();
+                            // setTimeout(function () {
+                            //     $('.loading-page').fadeOut();
+                            // }, 3000)
+                            // mySwiper.slideNext();
+                            // return false;
+
+
+                            $.ajax({
+                                url: '/tourTest/form',
+                                dataType: 'json',
+                                crossDomain: true,
+                                type: 'POST',
+                                contentType: 'application/json',
+                                data: JSON.stringify(submissionData),
+                                success: function (res) {
+                                    console.log(res);
+                                    if (res.status == 999) {
+                                        toast(res.data)
+                                    } else {
+                                        $('.loading-page').fadeIn();
+                                        setTimeout(function () {
+                                            $('.loading-page')
+                                                .fadeOut();
+                                        }, 3000)
+                                        mySwiper.slideNext();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
                         }
                     })
@@ -1065,7 +1080,9 @@
                         timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
                         nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
                         signature: wxConfig.signature, // 必填，签名，见附录1
-                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                        jsApiList: ['onMenuShareTimeline',
+                            'onMenuShareAppMessage'
+                        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                     });
 
                     wx.ready(function () {
