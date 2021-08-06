@@ -4,7 +4,8 @@ var data = require('./data');
 var date = require('./date');
 var {
     StateRegion,
-    StateCode
+    StateCode,
+    CenterList
 } = require('./StateRegion');
 
 /* GET home page. */
@@ -26,6 +27,7 @@ router.get('/', function (req, res, next) {
         month: date.month,
         date: date.date,
         data,
+        CenterList,
     });
 });
 

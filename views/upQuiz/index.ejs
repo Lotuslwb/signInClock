@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="/swiper/swiper-3.3.1.min.css">
     <script>
         var _hmt = _hmt || [];
-        (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?d04976a94d838ffd07b71d6010b87a72";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?d04976a94d838ffd07b71d6010b87a72";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
         })();
     </script>
 
@@ -57,7 +57,7 @@
                             <img src="/upQuiz/img/page1-card.png" class='card-img'>
                         </div>
                         <div class="form-title">
-                        <img src="/upQuiz/img/page1-title.png" class='page1-title'>
+                            <img src="/upQuiz/img/page1-title.png" class='page1-title'>
                         </div>
                     </div>
                     <div class="btn J-page1-btn active">开始测试</div>
@@ -79,9 +79,9 @@
                         </div>
                     </div>
                     <div class="btn page-btn-select <%= i==data.length?'J-finishQ':'J-slideNext'%>">下一题</div>
-                </div>
-                <% } %>
-                <div class="swiper-slide form-page swiper-no-swiping">
+                    </div>
+                    <% } %>
+                    <div class="swiper-slide form-page swiper-no-swiping">
                         <img src="/upQuiz/img/formpage-title.png" class="formpage-title" />
                         <div class="form-box">
                             <div class="Q-options">
@@ -92,568 +92,591 @@
                                     <div class="qcode-btn J-sendSMS">获取验证码</div>
                                 </div>
                                 <div class="Q-option-css select-wrap">
+                                    <select class="Q-option city-child-select J-center leads-Q">
+                                        <option value=''>您所就读的EF中心</option>
+                                        <% for(var i=0;i<CenterList.length;i++){  var item=CenterList[i]; %>
+                                        <option value='<%= i %> %>'><%= item %> </option>
+                                        <% } %>
+                                    </select>
+                                </div>
+
+                                <div class="Q-option-css select-wrap">
                                     <select class="Q-option city-child-select J-age-levels leads-Q">
                                         <option value=''>您的留学需求</option>
                                         <option value='1'>在校生，高中升本科</option>
                                         <option value='2'>在校生，本科升研究生</option>
                                         <option value='3'>已工作，打算出国读研</option>
                                     </select>
-                                </div>                        
+                                </div>
                             </div>
                         </div>
-                    <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意<span class="href">【英孚隐私政策】</span></div>
-                    <div class="rightChecked J-WantsBrochure"> <span class="checkbox active"></span> 愿意接受电子版的《全球留学资讯》</div>
-                    <input type="text" class="Q-option J-email leads-Q" placeholder="请输入您的邮箱">
-                    <div class="btn J-submit">提交</div>
-                </div>
-                <div class="swiper-slide page-result swiper-no-swiping">
-                    <div class="page-form">
-                        <div class="card">
-                            <img src="" class='card-img result-card-img J-result-img'>
-                        </div>
-                        <img src="" class='result_text J-result-text'>
+                        <div class="rightChecked J-rightChecked"> <span class="checkbox"></span> 我已阅读并同意<span
+                                class="href">【英孚隐私政策】</span></div>
+                        <div class="rightChecked J-WantsBrochure"> <span class="checkbox active"></span>
+                            愿意接受电子版的《全球留学资讯》</div>
+                        <input type="text" class="Q-option J-email leads-Q" placeholder="请输入您的邮箱">
+                        <div class="btn J-submit">提交</div>
                     </div>
-                    <div class="btn active J-gotoLink">了解<span class='J-text'></span>留学</div>
+                    <div class="swiper-slide page-result swiper-no-swiping">
+                        <div class="page-form">
+                            <div class="card">
+                                <img src="" class='card-img result-card-img J-result-img'>
+                            </div>
+                            <img src="" class='result_text J-result-text'>
+                        </div>
+                        <div class="btn active J-gotoLink">了解<span class='J-text'></span>留学</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="right-pop">
-        <div class="overlay"></div>
-        <div class="pop-content">
-            <div class='iframeWrap'>
-                <iframe class="iframe" src="https://liuxue.ef.com.cn/legal/privacy-policy/#" frameborder="0"></iframe>
+        <div class="right-pop">
+            <div class="overlay"></div>
+            <div class="pop-content">
+                <div class='iframeWrap'>
+                    <iframe class="iframe" src="https://liuxue.ef.com.cn/legal/privacy-policy/#"
+                        frameborder="0"></iframe>
+                </div>
             </div>
+            <img class="closed" src="/tourTest/img/pop-closed.png" />
         </div>
-        <img class="closed" src="/tourTest/img/pop-closed.png" />
-    </div>
-    <script src="/javascripts/jquery.js"></script>
-    <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
-    <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
-    <script>
-        var channel = "<%- channel %>";
-        var SourceCode = "<%- SourceCode %>";
-        
-        Number.prototype.range = function (min, max) {
-            return this >= min && this <= max;
-        }
+        <script src="/javascripts/jquery.js"></script>
+        <script src="/StressTest/js/imagesloaded.pkgd.min.js"></script>
+        <script src="/swiper/swiper-3.3.1.jquery.min.js"></script>
+        <script>
+            var channel = "<%- channel %>";
+            var SourceCode = "<%- SourceCode %>";
 
-        Array.prototype.random = function () {
-            var index = Math.floor(Math.random() * this.length)
-            return this[index];
-        }
+            Number.prototype.range = function (min, max) {
+                return this >= min && this <= max;
+            }
 
-        if (typeof Array.prototype.filter != "function") {
-            Array.prototype.filter = function (fn, context) {
-                var arr = [];
-                if (typeof fn === "function") {
-                    for (var k = 0, length = this.length; k < length; k++) {
-                        fn.call(context, this[k], k, this) && arr.push(this[k]);
-                    }
-                }
-                return arr;
-            };
-        }
+            Array.prototype.random = function () {
+                var index = Math.floor(Math.random() * this.length)
+                return this[index];
+            }
 
-        function initMySwiper() {
-            var mySwiper = new Swiper('.swiper-container', {
-                noSwiping: true
-            })
-
-            return mySwiper;
-        }
-
-        function genOptions(data) {
-            var returnStr = '';
-            data.map(item => {
-                returnStr += '<option value="' + item.value + '">' + item.text + '</option>';
-            });
-            return returnStr;
-        }
-    </script>
-    <script>
-        var mySwiper;
-        var timer;
-        var labelMap={
-            '1':'美国',
-            '2':'加拿大',
-            '3':'英国',
-            '4':'澳大利亚',
-        }
-        var ageMap={
-            '1':'2003-01-01',
-            '2':'1998-01-01',
-            '3':'1994-01-01'
-        }
-
-        function indexHanlder() {
-            this.init();
-        }
-
-        indexHanlder.prototype = {
-            init: function () {
-                this.countdown = 60;
-                this.timer = null;
-                this.bindEvnet(this);
-            },
-            bindEvnet: function () {
-                var me = this;
-                var self = this;
-
-                $('.J-gotoLink').click(function(){
-                    window.location.href='https://host.convertlab.com/p/5a043';
-                })
-                
-                $('.btn').on('touchstart',function(){
-                    if($(this).hasClass('active')){
-                        $(this).addClass('touching');
-                    }
-                })
-
-                $('.J-rightChecked').click(function () {
-                    var $checkbox = $(this).find('.checkbox');
-                    $checkbox.hasClass('active') ? $checkbox.removeClass('active') : $checkbox.addClass(
-                        'active');
-                })
-                $('.J-WantsBrochure').click(function () {
-                    var $checkbox = $(this).find('.checkbox');
-                    var $this=$(this);
-                    if ($checkbox.hasClass('active')) {
-                        $checkbox.removeClass('active');
-                        $('.J-email').fadeOut();
-                    } else {
-                        $('.J-email').fadeIn();
-                        $checkbox.addClass('active');
-                    }
-                    setTimeout(function(){
-                        if (checkVal()) {
-                            $this.parents('.swiper-slide').find('.btn').addClass('active');
-                        } else {
-                            $this.parents('.swiper-slide').find('.btn').removeClass('active');
+            if (typeof Array.prototype.filter != "function") {
+                Array.prototype.filter = function (fn, context) {
+                    var arr = [];
+                    if (typeof fn === "function") {
+                        for (var k = 0, length = this.length; k < length; k++) {
+                            fn.call(context, this[k], k, this) && arr.push(this[k]);
                         }
-                    },500)
-
-                })
-
-                $('.href').click(function (e) {
-                    e.stopPropagation();
-                    $('.right-pop').show();
-                })
-                $('.closed').click(function () {
-                    $('.right-pop').hide();
-                })
-
-                $('.month-select').change(function () {
-                    var month = $(this).val();
-                    var days = 31;
-                    if (month == '2') {
-                        days = 28;
-                    } else if (month == '4' || month == "6" || month == "9" || month == "11") {
-                        days = 30
                     }
-                    me.genDates(days);
+                    return arr;
+                };
+            }
+
+            function initMySwiper() {
+                var mySwiper = new Swiper('.swiper-container', {
+                    noSwiping: true
                 })
 
-                $('.J-page1-btn').click(function () {
-                    timer && clearInterval(timer);
-                    mySwiper.slideNext();
-                })
-                $('.J-slideNext').click(function () {
-                    if ($(this).hasClass('active')) {
-                        mySwiper.slideNext();
-                    }
-                })
-                $('.J-finishQ').click(function () {
-                    if ($(this).hasClass('active')) {
-                        mySwiper.slideNext();
-                        me.getResult();
-                    }
-                })
+                return mySwiper;
+            }
 
-                $('.Q-option').click(function () {
-                    if ($(this).parents('.form-page').length) return true;
-                    $(this).addClass('active').siblings('.Q-option').removeClass('active');
-                    $(this).parents('.swiper-slide').find('.btn').addClass('active');
-                })
-
-
-                $(".form-page .leads-Q").on("change", function () {
-                    if (checkVal()) {
-                        $(this).parents('.swiper-slide').find('.btn').addClass('active');
-                    } else {
-                        $(this).parents('.swiper-slide').find('.btn').removeClass('active');
-                    }
+            function genOptions(data) {
+                var returnStr = '';
+                data.map(item => {
+                    returnStr += '<option value="' + item.value + '">' + item.text + '</option>';
                 });
+                return returnStr;
+            }
+        </script>
+        <script>
+            var mySwiper;
+            var timer;
+            var labelMap = {
+                '1': '美国',
+                '2': '加拿大',
+                '3': '英国',
+                '4': '澳大利亚',
+            }
+            var ageMap = {
+                '1': '2003-01-01',
+                '2': '1998-01-01',
+                '3': '1994-01-01'
+            }
 
-                // 获取验证码
-                $('.J-sendSMS').click(function () {
-                    var $self = $(this);
-                    if ($self.parent().hasClass('disabled')) {
-                        return false;
-                    }
-                    var tel = $('.J-tel').val();
-                    if (!tel) {
-                        toast('请输入手机号');
-                        return false;
-                    }
-                    if (!/^1[3|4|5|7|8|9][0-9]{9}$/.test(tel)) {
-                        toast('请输入正确的手机号');
-                        return false;
-                    }
-                    startTimer();
+            function indexHanlder() {
+                this.init();
+            }
 
-                    $.ajax({
-                        type: 'POST',
-                        url: '/tourTest/api/sendSMS',
-                        data: {
-                            tel: tel,
-                        },
-                        success: function (data) {
-                            if (data.status == 200) {
-                                toast('短信发送成功');
+            indexHanlder.prototype = {
+                init: function () {
+                    this.countdown = 60;
+                    this.timer = null;
+                    this.bindEvnet(this);
+                },
+                bindEvnet: function () {
+                    var me = this;
+                    var self = this;
+
+                    $('.J-gotoLink').click(function () {
+                        window.location.href = 'https://host.convertlab.com/p/5a043';
+                    })
+
+                    $('.btn').on('touchstart', function () {
+                        if ($(this).hasClass('active')) {
+                            $(this).addClass('touching');
+                        }
+                    })
+
+                    $('.J-rightChecked').click(function () {
+                        var $checkbox = $(this).find('.checkbox');
+                        $checkbox.hasClass('active') ? $checkbox.removeClass('active') : $checkbox
+                            .addClass(
+                                'active');
+                    })
+                    $('.J-WantsBrochure').click(function () {
+                        var $checkbox = $(this).find('.checkbox');
+                        var $this = $(this);
+                        if ($checkbox.hasClass('active')) {
+                            $checkbox.removeClass('active');
+                            $('.J-email').fadeOut();
+                        } else {
+                            $('.J-email').fadeIn();
+                            $checkbox.addClass('active');
+                        }
+                        setTimeout(function () {
+                            if (checkVal()) {
+                                $this.parents('.swiper-slide').find('.btn').addClass('active');
                             } else {
-                                toast(data.data);
+                                $this.parents('.swiper-slide').find('.btn').removeClass(
+                                    'active');
                             }
-                        },
-                        dataType: 'json'
+                        }, 500)
+
+                    })
+
+                    $('.href').click(function (e) {
+                        e.stopPropagation();
+                        $('.right-pop').show();
+                    })
+                    $('.closed').click(function () {
+                        $('.right-pop').hide();
+                    })
+
+                    $('.month-select').change(function () {
+                        var month = $(this).val();
+                        var days = 31;
+                        if (month == '2') {
+                            days = 28;
+                        } else if (month == '4' || month == "6" || month == "9" || month == "11") {
+                            days = 30
+                        }
+                        me.genDates(days);
+                    })
+
+                    $('.J-page1-btn').click(function () {
+                        timer && clearInterval(timer);
+                        mySwiper.slideNext();
+                    })
+                    $('.J-slideNext').click(function () {
+                        if ($(this).hasClass('active')) {
+                            mySwiper.slideNext();
+                        }
+                    })
+                    $('.J-finishQ').click(function () {
+                        if ($(this).hasClass('active')) {
+                            mySwiper.slideNext();
+                            me.getResult();
+                        }
+                    })
+
+                    $('.Q-option').click(function () {
+                        if ($(this).parents('.form-page').length) return true;
+                        $(this).addClass('active').siblings('.Q-option').removeClass('active');
+                        $(this).parents('.swiper-slide').find('.btn').addClass('active');
+                    })
+
+
+                    $(".form-page .leads-Q").on("change", function () {
+                        if (checkVal()) {
+                            $(this).parents('.swiper-slide').find('.btn').addClass('active');
+                        } else {
+                            $(this).parents('.swiper-slide').find('.btn').removeClass('active');
+                        }
                     });
-                });
 
-                function startTimer() {
-                    var $self = $('.J-sendSMS');
-                    var countdown = self.countdown;
+                    // 获取验证码
+                    $('.J-sendSMS').click(function () {
+                        var $self = $(this);
+                        if ($self.parent().hasClass('disabled')) {
+                            return false;
+                        }
+                        var tel = $('.J-tel').val();
+                        if (!tel) {
+                            toast('请输入手机号');
+                            return false;
+                        }
+                        if (!/^1[3|4|5|7|8|9][0-9]{9}$/.test(tel)) {
+                            toast('请输入正确的手机号');
+                            return false;
+                        }
+                        startTimer();
 
-                    $self.text('已发送(' + countdown + 's)')
-                    $self.parent().addClass('disabled');
+                        $.ajax({
+                            type: 'POST',
+                            url: '/tourTest/api/sendSMS',
+                            data: {
+                                tel: tel,
+                            },
+                            success: function (data) {
+                                if (data.status == 200) {
+                                    toast('短信发送成功');
+                                } else {
+                                    toast(data.data);
+                                }
+                            },
+                            dataType: 'json'
+                        });
+                    });
 
-                    self.timer = setInterval(function () {
-                        countdown -= 1;
+                    function startTimer() {
+                        var $self = $('.J-sendSMS');
+                        var countdown = self.countdown;
+
                         $self.text('已发送(' + countdown + 's)')
                         $self.parent().addClass('disabled');
-                        if (countdown <= 0) {
-                            stopTimer();
-                        }
-                    }, 1000);
-                }
 
-                function stopTimer() {
-                    var $self = $('.J-sendSMS');
-                    clearInterval(self.timer);
-                    $self.text('获取验证码')
-                    $self.parent().removeClass('disabled');
-                }
-
-                function checkVal() {
-                    var result = true;
-                    $('.form-page .leads-Q:visible').each(function () {
-                        if (!$(this).val()) result = false;
-                    })
-                    console.log(result);
-                    return result;
-                }
-
-                $('.J-city').change(function () {
-                    var id = $(this).find("option:selected").data('id');
-                    $.ajax({
-                        url: '/tourTest/queryCity',
-                        dataType: 'json',
-                        crossDomain: true,
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            id: id
-                        }),
-                        success: function (res) {
-                            console.log(res);
-                            var data = res.data[0].map(item => {
-                                return {
-                                    value: item.id,
-                                    text: item.name
-                                }
-                            });
-                            var str = genOptions(data);
-                            $(".J-city-child").html(str);
-                        }
-                    });
-                })
-
-                $('.J-submit').click(function () {
-                    if (!$(this).hasClass('active') || !checkVal()) {
-                        return false;
-                    }
-
-                    if (!me.checkTel($('.J-tel').val())) {
-                        toast('手机号格式有误');
-                        return false;
-                    }
-
-                    if (!$('.J-rightChecked .checkbox').hasClass('active')) {
-                        toast('请勾选隐私策略');
-                        return false;
-                    }
-
-                    $.ajax({
-                        url: '/tourTest/api/getMobileInfo?tel='+ $('.J-tel').val(),
-                        dataType: 'json',
-                        crossDomain: true,
-                        type: 'GET',
-                        contentType: 'application/json',
-                        success: function (moblieRes) {
-                           
-                    var moblieInfo=moblieRes.data;
-                    //The main object to be sent with the submission request
-                    var submissionData = new Object();
-                    //Individual properties of the main object
-                    var customer = new Object();
-                    var extendedDetail = new Object();
-                    var weChatData = new Object();
-                    var trackingData = new Object();
-                    var campaigndata = new Object();
-                    var qcode = $('.qcode-input').val();
-                    var email = $('.J-email').val();
-
-                    customer.FirstName = $('.J-name').val().substr(1, $('.J-name').val().length - 1);
-                    customer.LastName = $('.J-name').val().substr(0, 1);
-                    customer.MobilePhone = $('.J-tel').val();
-                    customer.DateOfBirth =ageMap[$('.J-age-levels').val()]; // January 9th, 1975 (0-based index for months)
-                    customer.StateRegionName = moblieInfo.provinceName;
-                    customer.StateRegionCode = "CN-" + moblieInfo.provinceValue;
-                    customer.CountryOfResidence = "CN";
-                    customer.Gender = $('.gender-page').find('.Q-option.active').index() == 0 ? "M" : "F";
-                    customer.Comments = '适合留学国家：'+ labelMap[me.result];
-                    customer.City =moblieInfo.city;
-                    customer.Email = email ? email : customer.MobilePhone + "@noemail.com";
-
-
-                    // Tracking
-                    trackingData.Etag = channel + "_UPQuiz2019";
-                    trackingData.EntrySourceCode = SourceCode;
-
-                    //Campaign Data
-                    campaigndata.CampaignName = "UPQuiz2019";
-                    campaigndata.CampaignAllocationPrograms = "BC";
-                    campaigndata.CampaignAllocationCode = "single";
-
-                    //Extended Details
-                    extendedDetail.WantsMoreInfo = true;
-                    // extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
-                    extendedDetail.WantsBrochure =true;
-
-
-
-                    //Assigning individual classes to the main object
-                    submissionData.customer = customer;
-                    submissionData.extendedDetail = extendedDetail;
-                    submissionData.tracking = trackingData;
-                    submissionData.weChat = weChatData;
-                    submissionData.campaignData = campaigndata;
-                    submissionData.qcode = $('.qcode-input').val();
-
-
-                    console.log(submissionData);
-
-                    /** debug */
-                    // $('.loading-page').fadeIn();
-                    // setTimeout(function () {
-                    //     $('.loading-page').fadeOut();
-                    // }, 3000)
-                    // mySwiper.slideNext();
-                    // return false;
-
-                    $.ajax({
-                        url: '/tourTest/form',
-                        dataType: 'json',
-                        crossDomain: true,
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify(submissionData),
-                        success: function (res) {
-                            console.log(res);
-                            if (res.status == 999) {
-                                toast(res.data)
-                            } else {
-                                $('.loading-page').fadeIn();
-                                setTimeout(function () {
-                                    $('.loading-page').fadeOut();
-                                }, 3000)
-                                mySwiper.slideNext();
+                        self.timer = setInterval(function () {
+                            countdown -= 1;
+                            $self.text('已发送(' + countdown + 's)')
+                            $self.parent().addClass('disabled');
+                            if (countdown <= 0) {
+                                stopTimer();
                             }
+                        }, 1000);
+                    }
+
+                    function stopTimer() {
+                        var $self = $('.J-sendSMS');
+                        clearInterval(self.timer);
+                        $self.text('获取验证码')
+                        $self.parent().removeClass('disabled');
+                    }
+
+                    function checkVal() {
+                        var result = true;
+                        $('.form-page .leads-Q:visible').each(function () {
+                            if (!$(this).val()) result = false;
+                        })
+                        console.log(result);
+                        return result;
+                    }
+
+                    $('.J-city').change(function () {
+                        var id = $(this).find("option:selected").data('id');
+                        $.ajax({
+                            url: '/tourTest/queryCity',
+                            dataType: 'json',
+                            crossDomain: true,
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                id: id
+                            }),
+                            success: function (res) {
+                                console.log(res);
+                                var data = res.data[0].map(item => {
+                                    return {
+                                        value: item.id,
+                                        text: item.name
+                                    }
+                                });
+                                var str = genOptions(data);
+                                $(".J-city-child").html(str);
+                            }
+                        });
+                    })
+
+                    $('.J-submit').click(function () {
+                        if (!$(this).hasClass('active') || !checkVal()) {
+                            return false;
                         }
-                    });
+
+                        if (!me.checkTel($('.J-tel').val())) {
+                            toast('手机号格式有误');
+                            return false;
                         }
+
+                        if (!$('.J-rightChecked .checkbox').hasClass('active')) {
+                            toast('请勾选隐私策略');
+                            return false;
+                        }
+
+                        $.ajax({
+                            url: '/tourTest/api/getMobileInfo?tel=' + $('.J-tel').val(),
+                            dataType: 'json',
+                            crossDomain: true,
+                            type: 'GET',
+                            contentType: 'application/json',
+                            success: function (moblieRes) {
+
+                                var moblieInfo = moblieRes.data;
+                                //The main object to be sent with the submission request
+                                var submissionData = new Object();
+                                //Individual properties of the main object
+                                var customer = new Object();
+                                var extendedDetail = new Object();
+                                var weChatData = new Object();
+                                var trackingData = new Object();
+                                var campaigndata = new Object();
+                                var qcode = $('.qcode-input').val();
+                                var email = $('.J-email').val();
+
+                                customer.FirstName = $('.J-name').val().substr(1, $(
+                                    '.J-name').val().length - 1);
+                                customer.LastName = $('.J-name').val().substr(0, 1);
+                                customer.MobilePhone = $('.J-tel').val();
+                                customer.DateOfBirth = ageMap[$('.J-age-levels')
+                                    .val()]; // January 9th, 1975 (0-based index for months)
+                                customer.StateRegionName = moblieInfo.provinceName;
+                                customer.StateRegionCode = "CN-" + moblieInfo.provinceValue;
+                                customer.CountryOfResidence = "CN";
+                                customer.Gender = $('.gender-page').find('.Q-option.active')
+                                    .index() == 0 ? "M" : "F";
+                                customer.Comments = '适合留学国家：' + labelMap[me.result] +
+                                    '&就读中心：' +
+                                    $('.J-center').find('option:selected').text();
+                                customer.City = moblieInfo.city;
+                                customer.Email = email ? email : customer.MobilePhone +
+                                    "@noemail.com";
+
+
+                                // Tracking
+                                trackingData.Etag = channel + "_UPQuiz2021";
+                                trackingData.EntrySourceCode = SourceCode;
+
+                                //Campaign Data
+                                campaigndata.CampaignName = "UPQuiz2021";
+                                campaigndata.CampaignAllocationPrograms = "BC";
+                                campaigndata.CampaignAllocationCode = "single";
+
+                                //Extended Details
+                                extendedDetail.WantsMoreInfo = true;
+                                // extendedDetail.WantsBrochure = $('.J-WantsBrochure .checkbox').hasClass('active');
+                                extendedDetail.WantsBrochure = true;
+
+
+
+                                //Assigning individual classes to the main object
+                                submissionData.customer = customer;
+                                submissionData.extendedDetail = extendedDetail;
+                                submissionData.tracking = trackingData;
+                                submissionData.weChat = weChatData;
+                                submissionData.campaignData = campaigndata;
+                                submissionData.qcode = $('.qcode-input').val();
+
+
+                                console.log(submissionData);
+
+                                /** debug */
+                                // $('.loading-page').fadeIn();
+                                // setTimeout(function () {
+                                //     $('.loading-page').fadeOut();
+                                // }, 3000)
+                                // mySwiper.slideNext();
+                                // return false;
+
+                                $.ajax({
+                                    url: '/tourTest/form',
+                                    dataType: 'json',
+                                    crossDomain: true,
+                                    type: 'POST',
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(submissionData),
+                                    success: function (res) {
+                                        console.log(res);
+                                        if (res.status == 999) {
+                                            toast(res.data)
+                                        } else {
+                                            $('.loading-page').fadeIn();
+                                            setTimeout(function () {
+                                                $('.loading-page')
+                                                    .fadeOut();
+                                            }, 3000)
+                                            mySwiper.slideNext();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+
+
+
                     });
+                },
+                getResult: function () {
+                    var me = this;
+                    var scoreList = [0, 0, 0, 0, 0, 0];
 
+                    $('.Quiz-page .Q-options').each(function () {
+                        var $Qitem = $(this).find('.Q-option.active');
+                        var val = $Qitem.data('value') * 1;
+                        scoreList[val]++;
+                    });
+                    this.result = scoreList.findIndex(it => it == Math.max.apply(Math, scoreList));
+                    console.log(this.result);
+                    $('.J-text').text(labelMap[this.result]);
+                    $('.J-result-text').attr('src', '/upQuiz/img/result_' + this.result + '_text.png');
+                    $('.J-result-img').attr('src', '/upQuiz/img/result_' + this.result + '.png');
 
+                },
+                genTagDes: function (tagList) {
 
-                });
-            },
-            getResult: function () {
-                var me = this;
-                var scoreList = [0,0,0,0,0,0];
-            
-                $('.Quiz-page .Q-options').each(function () {
-                    var $Qitem = $(this).find('.Q-option.active');
-                    var val= $Qitem.data('value') * 1;
-                    scoreList[val]++;
-                });
-                this.result =scoreList.findIndex(it=>it==Math.max.apply( Math, scoreList));
-                console.log(this.result);
-                $('.J-text').text(labelMap[this.result]);
-                $('.J-result-text').attr('src','/upQuiz/img/result_'+this.result+'_text.png');
-                $('.J-result-img').attr('src','/upQuiz/img/result_'+this.result+'.png');
+                },
+                genTagImg: function (tagList, img, result) {
 
-            },
-            genTagDes: function (tagList) {
-               
-            },
-            genTagImg: function (tagList, img, result) {
-               
-            },
-            getScoreLevel: function (score) {
-               
-            },
-            checkTel: function (tel) {
-                var reg = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
-                return reg.test(tel);
-            },
-            genDates: function (days) {
-                var html = "<option value=''>日</option>";
-                for (var i = 1; i <= days; i++) {
-                    html += '<option value="' + i + '">' + i + '</option>';
+                },
+                getScoreLevel: function (score) {
+
+                },
+                checkTel: function (tel) {
+                    var reg = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+                    return reg.test(tel);
+                },
+                genDates: function (days) {
+                    var html = "<option value=''>日</option>";
+                    for (var i = 1; i <= days; i++) {
+                        html += '<option value="' + i + '">' + i + '</option>';
+                    }
+                    $('.date-select').html(html);
                 }
-                $('.date-select').html(html);
             }
-        }
-        var page = new indexHanlder();
-    </script>
-    <script>
-        var loaded = false;
-        var loaded_ani = false;
+            var page = new indexHanlder();
+        </script>
+        <script>
+            var loaded = false;
+            var loaded_ani = false;
 
 
-        //预加载器
-        function loader() {
-            this.init();
-        }
-
-        loader.prototype = {
-            init: function () {
-                var me = this;
-                var loaded = 0;
-
-                if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
-                    me.onLoaded();
-                } else {
-                    var imgLoad = imagesLoaded('body');
-                    imgLoad.on('progress', function (instance, image) {
-                        loaded++;
-                        if (loaded == instance.images.length) {
-                            me.onLoaded();
-                        }
-                    });
-                }
-            },
-            onLoaded: function () {
-
+            //预加载器
+            function loader() {
+                this.init();
             }
-        }
 
-        var loader = new loader();
-        loader.onLoaded = function () {
-            loaded = true;
-            $('.loading-page').fadeOut();
-            $('.swiper-page').addClass('active');
-            mySwiper = initMySwiper();
-        }
-    </script>
+            loader.prototype = {
+                init: function () {
+                    var me = this;
+                    var loaded = 0;
 
-    <div class="toast"></div>
-    <script>
-        var toast = function (msg, timer) {
-            $('.toast').text(msg).fadeIn();
-            setTimeout(function () {
-                $('.toast').fadeOut();
-            }, timer || 1000)
-        }
-    </script>
-
-
-    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script>
-        function initWXSahre() {
-
-            //“分享给朋友”
-            wx.onMenuShareAppMessage({
-                title: '测测我适合去哪个国家留学', // 分享标题
-                desc: '30秒小测试，为你匹配梦想留学目的地', // 分享描述
-                link: '', // 分享链接
-                imgUrl: 'http://ma.eldesign.cn/upQuiz/img/share_logo.jpg', // 分享图标
-                type: '', // 分享类型,music、video或link，不填默认为link
-                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                success: function () {
-                    // 用户确认分享后执行的回调函数
-                    _hmt.push(['_trackEvent', '分享', '分享给朋友']);
-
+                    if ($('body').length === 0 || navigator.userAgent.indexOf('MSIE 9') != -1) {
+                        me.onLoaded();
+                    } else {
+                        var imgLoad = imagesLoaded('body');
+                        imgLoad.on('progress', function (instance, image) {
+                            loaded++;
+                            if (loaded == instance.images.length) {
+                                me.onLoaded();
+                            }
+                        });
+                    }
                 },
-                cancel: function () {
-                    // 用户取消分享后执行的回调函数
+                onLoaded: function () {
+
                 }
-            });
+            }
 
-            //“分享到朋友圈”
-            wx.onMenuShareTimeline({
-                title: '测测我适合去哪个国家留学', // 分享标题
-                desc: '30秒小测试，为你匹配梦想留学目的地', // 分享描述
-                link: '', // 分享链接
-                imgUrl: 'http://ma.eldesign.cn/upQuiz/img/share_logo.jpg', // 分享图标
-                success: function () {
-                    // 用户确认分享后执行的回调函数
-                    _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
-                },
-                cancel: function () {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-        }
+            var loader = new loader();
+            loader.onLoaded = function () {
+                loaded = true;
+                $('.loading-page').fadeOut();
+                $('.swiper-page').addClass('active');
+                mySwiper = initMySwiper();
+            }
+        </script>
 
-        function initWX(callback) {
-
-            $.ajax({
-                type: 'GET',
-                url: '/api/getWxSDK',
-                data: {
-                    'originalUrl': window.location.href
-                },
-                success: function (data) {
-                    var wxConfig = data.data.wxConfig;
-
-                    console.log(wxConfig);
-
-                    wx.config({
-                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                        appId: wxConfig.appId, // 必填，公众号的唯一标识
-                        timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
-                        nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
-                        signature: wxConfig.signature, // 必填，签名，见附录1
-                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-                    });
-
-                    wx.ready(function () {
-                        callback && callback();
-                    });
-
-                    wx.error(function (res) {
-                        console.log(res);
-                    });
+        <div class="toast"></div>
+        <script>
+            var toast = function (msg, timer) {
+                $('.toast').text(msg).fadeIn();
+                setTimeout(function () {
+                    $('.toast').fadeOut();
+                }, timer || 1000)
+            }
+        </script>
 
 
-                },
-                dataType: 'json'
-            });
-        }
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script>
+            function initWXSahre() {
 
-        initWX(initWXSahre);
-    </script>
+                //“分享给朋友”
+                wx.onMenuShareAppMessage({
+                    title: '测测我适合去哪个国家留学', // 分享标题
+                    desc: '30秒小测试，为你匹配梦想留学目的地', // 分享描述
+                    link: '', // 分享链接
+                    imgUrl: 'http://ma.eldesign.cn/upQuiz/img/share_logo.jpg', // 分享图标
+                    type: '', // 分享类型,music、video或link，不填默认为link
+                    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                        _hmt.push(['_trackEvent', '分享', '分享给朋友']);
+
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+
+                //“分享到朋友圈”
+                wx.onMenuShareTimeline({
+                    title: '测测我适合去哪个国家留学', // 分享标题
+                    desc: '30秒小测试，为你匹配梦想留学目的地', // 分享描述
+                    link: '', // 分享链接
+                    imgUrl: 'http://ma.eldesign.cn/upQuiz/img/share_logo.jpg', // 分享图标
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                        _hmt.push(['_trackEvent', '分享', '分享朋友圈']);
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+            }
+
+            function initWX(callback) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/getWxSDK',
+                    data: {
+                        'originalUrl': window.location.href
+                    },
+                    success: function (data) {
+                        var wxConfig = data.data.wxConfig;
+
+                        console.log(wxConfig);
+
+                        wx.config({
+                            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                            appId: wxConfig.appId, // 必填，公众号的唯一标识
+                            timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+                            nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+                            signature: wxConfig.signature, // 必填，签名，见附录1
+                            jsApiList: ['onMenuShareTimeline',
+                                'onMenuShareAppMessage'
+                            ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                        });
+
+                        wx.ready(function () {
+                            callback && callback();
+                        });
+
+                        wx.error(function (res) {
+                            console.log(res);
+                        });
+
+
+                    },
+                    dataType: 'json'
+                });
+            }
+
+            initWX(initWXSahre);
+        </script>
 
 
 </body>
